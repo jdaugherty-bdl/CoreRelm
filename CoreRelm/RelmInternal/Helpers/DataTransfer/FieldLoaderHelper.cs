@@ -23,7 +23,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
             this.targetObjects = targetObjects;
         }
 
-        public void LoadData(IRelmFieldLoader fieldLoader)
+        public void LoadData(IRelmFieldLoaderBase fieldLoader)
         {
             // find all fields marked with a RelmFieldLoader attribute that have a type derived from IRelmFieldLoader<> and add them to the list of field loaders as long as they are not already there
             // execute all field loaders

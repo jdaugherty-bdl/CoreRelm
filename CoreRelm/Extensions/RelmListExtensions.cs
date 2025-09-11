@@ -1,4 +1,5 @@
 ﻿using CoreRelm.Interfaces;
+using CoreRelm.Interfaces.RelmQuick;
 using CoreRelm.Options;
 using CoreRelm.RelmInternal.Helpers.DataTransfer;
 using CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence;

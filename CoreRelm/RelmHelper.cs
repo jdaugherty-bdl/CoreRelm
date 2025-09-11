@@ -1,5 +1,4 @@
-﻿using CoreRelm.Helpers.Operations;
-using CoreRelm.Interfaces;
+﻿using CoreRelm.Interfaces;
 using CoreRelm.Interfaces.RelmQuick;
 using CoreRelm.Options;
 using CoreRelm.Persistence;
@@ -8,6 +7,7 @@ using CoreRelm.RelmInternal.Helpers.DataCollection;
 using CoreRelm.RelmInternal.Helpers.DataTransfer;
 using CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence;
 using CoreRelm.RelmInternal.Helpers.Operations;
+using CoreRelm.RelmInternal.Helpers.Paths;
 using CoreRelm.RelmInternal.Helpers.Utilities;
 using MySql.Data.MySqlClient;
 using System;
@@ -50,9 +50,8 @@ namespace CoreRelm
         {
             get
             {
-                return ConfigurationManager.AppSettings.AllKeys.Contains("EnergyStarQpx_LoggingDir")
-                    ? ConfigurationManager.AppSettings["EnergyStarQpx_LoggingDir"]
-                    : Path.GetDirectoryName((new Uri(AssemblyHelper.GetEntryAssembly().CodeBase)).AbsolutePath); // Assembly.GetExecutingAssembly()
+                return PathProvider.GetCurrentPath();
+                //return Path.GetDirectoryName((new Uri(AssemblyHelper.GetEntryAssembly().CodeBase)).AbsolutePath);
             }
         }
 
@@ -106,7 +105,7 @@ namespace CoreRelm
         /// <param name="connectionString">An enum type to reference a connection string defined in web.config.</param>
         /// <param name="allowUserVariables">Will allow special user variables (variables start with "@") to be defined in the query that will be eventually executed.</param>
         /// <returns>An unopened MySQL connection.</returns>
-        public static MySqlConnection GetConnectionFromConnectionString(string connectionString, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0)
+        public static MySqlConnection GetConnectionFromConnectionString(string? connectionString, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0)
             => ConnectionHelper.GetConnectionFromConnectionString(connectionString, allowUserVariables: allowUserVariables, convertZeroDateTime: convertZeroDateTime, lockWaitTimeoutSeconds: lockWaitTimeoutSeconds);
 
         //***************** Identity functions *****************//

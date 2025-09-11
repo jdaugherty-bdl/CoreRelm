@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.Interfaces
 {
-    public interface IRelmContext
+    public interface IRelmContext : IDisposable, IAsyncDisposable
     {
         RelmContextOptionsBuilder ContextOptions { get; }
 

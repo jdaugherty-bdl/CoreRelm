@@ -200,8 +200,11 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
             return GetConnection(connectionBuilder, allowUserVariables: allowUserVariables, convertZeroDateTime: convertZeroDateTime, lockWaitTimeoutSeconds: lockWaitTimeoutSeconds);
         }
 
-        internal static MySqlConnection GetConnectionFromConnectionString(string connectionString, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0)
+        internal static MySqlConnection GetConnectionFromConnectionString(string? connectionString, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0)
         {
+            if (string.IsNullOrWhiteSpace(connectionString))
+                throw new ArgumentNullException(nameof(connectionString), "A valid connection string must be provided.");
+
             var connectionBuilder = GetConnectionBuilderFromConnectionString(connectionString);
 
             return GetConnection(connectionBuilder, allowUserVariables: allowUserVariables, convertZeroDateTime: convertZeroDateTime, lockWaitTimeoutSeconds: lockWaitTimeoutSeconds);

@@ -9,6 +9,7 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
 {
     internal class AssemblyHelper
     {
+        /*
         public static Assembly GetEntryAssembly()
         {
             return Assembly.GetEntryAssembly() ?? Assembly.GetCallingAssembly() ?? GetWebEntryAssembly();
@@ -24,5 +25,6 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
 
             return type?.Assembly;
         }
+        */
     }
 }

@@ -14,14 +14,14 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.Models
 {
-    public class RelmContext : IDisposable, IRelmContext
+    public class RelmContext : IDisposable, IAsyncDisposable, IRelmContext
     {
         public virtual void OnConfigure(RelmContextOptionsBuilder OptionsBuilder) { }
 
         public RelmContextOptionsBuilder ContextOptions { get; private set; }
 
-        private IEnumerable<PropertyInfo> _attachedProperties;
-        private List<object> _attachedDataSets;
+        private IEnumerable<PropertyInfo>? _attachedProperties;
+        private List<object> _attachedDataSets = [];
 
         private bool localOpenConnection = false;
         private bool localOpenTransaction = false;
@@ -76,7 +76,7 @@ namespace CoreRelm.Models
             if ((autoOpenConnection || autoOpenTransaction) && ContextOptions.DatabaseConnection != null)
                 StartConnection(autoOpenTransaction: autoOpenTransaction, lockWaitTimeoutSeconds: lockWaitTimeoutSeconds);
 
-            _attachedDataSets = new List<object>();
+            _attachedDataSets = [];
 
             // call the user's OnConfigure method
             OnConfigure(ContextOptions);
@@ -98,10 +98,9 @@ namespace CoreRelm.Models
                 .ToList();
 
             // don't initialize the data sets if the table name is not in the current database
-            _attachedProperties = tableNames
+            _attachedProperties = [.. tableNames
                 .Where(x => currentDatabaseTables.Contains(x.TableName))
-                .Select(x => x.attachedProperty)
-                .ToList();
+                .Select(x => x.attachedProperty)];
 
             // instantiate each item in the DALDataSet<T> properties
             foreach (var attachedProperty in _attachedProperties)
@@ -110,15 +109,15 @@ namespace CoreRelm.Models
 
                 // create a default data loader for the generic type argument then create a dataset and pass the data loader
                 // check if dalDataSetType has a RelmDataLoader attribute defined at the class level, and create a new instance of the type indicated and save to dalDataLoader
-                object dalDataLoader = null;
+                object? dalDataLoader = null;
                 var classDataLoader = dalDataSetType.GetCustomAttribute<RelmDataLoader>(true);
 
                 try
                 {
                     if (classDataLoader?.LoaderType == null)
-                        dalDataLoader = Activator.CreateInstance(typeof(RelmDefaultDataLoader<>).MakeGenericType(dalDataSetType), new object[] { ContextOptions });
+                        dalDataLoader = Activator.CreateInstance(typeof(RelmDefaultDataLoader<>).MakeGenericType(dalDataSetType), [ContextOptions]);
                     else
-                        dalDataLoader = Activator.CreateInstance(classDataLoader.LoaderType, new object[] { ContextOptions });
+                        dalDataLoader = Activator.CreateInstance(classDataLoader.LoaderType, [ContextOptions]);
                 }
                 catch (Exception ex)
                 {
@@ -126,7 +125,8 @@ namespace CoreRelm.Models
                 }
 
                 // create a new instance of the DALDataSet<T> and pass the data loader
-                var dalDataSet = Activator.CreateInstance(typeof(RelmDataSet<>).MakeGenericType(dalDataSetType), new object[] { this, dalDataLoader });
+                var dalDataSet = Activator.CreateInstance(typeof(RelmDataSet<>).MakeGenericType(dalDataSetType), [this, dalDataLoader])
+                    ?? throw new InvalidOperationException($"Error creating dataset of type [{dalDataSetType.Name}]");
 
                 attachedProperty.SetValue(this, dalDataSet);
 
@@ -150,6 +150,9 @@ namespace CoreRelm.Models
         //internal void SetDataSet<T>(IRelmDataSet<T> dataSet) where T : RelmModel, new()
         internal void SetDataSet<T>(T dataSet)
         {
+            if (dataSet == null)
+                throw new ArgumentNullException(nameof(dataSet), "DataSet cannot be null.");
+
             // First, let's try to find an existing dataSet of the same type.
             var existingDataSet = _attachedDataSets
                 .FirstOrDefault(ds => typeof(T).IsInstanceOfType(ds));
@@ -208,21 +211,21 @@ namespace CoreRelm.Models
 
         public void EndConnection(bool commitTransaction = true)
         {
-            if ((ContextOptions?.DatabaseConnection?.State ?? System.Data.ConnectionState.Closed) != System.Data.ConnectionState.Closed)
+            if ((ContextOptions?.DatabaseConnection?.State ?? System.Data.ConnectionState.Closed) == System.Data.ConnectionState.Closed)
+                return;
+
+            if (commitTransaction && localOpenTransaction)
             {
-                if (commitTransaction && localOpenTransaction)
-                {
-                    ContextOptions.DatabaseTransaction?.Commit();
+                ContextOptions?.DatabaseTransaction?.Commit();
 
-                    localOpenTransaction = false;
-                }
+                localOpenTransaction = false;
+            }
 
-                if (localOpenConnection)
-                {
-                    ContextOptions.DatabaseConnection.Close();
+            if (localOpenConnection)
+            {
+                ContextOptions?.DatabaseConnection.Close();
 
-                    localOpenConnection = false;
-                }
+                localOpenConnection = false;
             }
         }
 
@@ -231,8 +234,11 @@ namespace CoreRelm.Models
             return ContextOptions.DatabaseTransaction != null && ContextOptions.DatabaseTransaction.Connection != null;
         }
 
-        public MySqlTransaction BeginTransaction()
+        public MySqlTransaction? BeginTransaction()
         {
+            if (ContextOptions == null || ContextOptions.DatabaseConnection == null)
+                throw new InvalidOperationException("Cannot begin a transaction without a valid database connection.");
+
             if (ContextOptions.DatabaseTransaction == null)
                 ContextOptions.SetDatabaseTransaction(ContextOptions.DatabaseConnection?.BeginTransaction());
 
@@ -255,6 +261,13 @@ namespace CoreRelm.Models
             ContextOptions.SetDatabaseTransaction(null);
         }
 
+        public ValueTask DisposeAsync()
+        {
+            // Implement full disposable pattern
+            Dispose();
+            return ValueTask.CompletedTask;
+        }
+
         public void Dispose()
         {
             // Implement full disposable pattern
@@ -268,12 +281,15 @@ namespace CoreRelm.Models
 
             if (disposing)
             {
-                foreach (var attachedProperty in _attachedProperties)
+                if (_attachedProperties != null)
                 {
-                    if (attachedProperty.GetValue(this) is IDisposable disposable)
-                        disposable.Dispose();
-                    else
-                        attachedProperty.SetValue(this, default);
+                    foreach (var attachedProperty in _attachedProperties)
+                    {
+                        if (attachedProperty.GetValue(this) is IDisposable disposable)
+                            disposable.Dispose();
+                        else
+                            attachedProperty.SetValue(this, default);
+                    }
                 }
 
                 _attachedDataSets.Clear();
@@ -361,7 +377,8 @@ namespace CoreRelm.Models
             // loop through each _attachedDataSet and call Save()
             foreach (var attachedDataSet in _attachedDataSets)
             {
-                var saveMethod = attachedDataSet.GetType().GetMethod(nameof(RelmDataSet<RelmModel>.Save));
+                var saveMethod = attachedDataSet.GetType().GetMethod(nameof(RelmDataSet<RelmModel>.Save)) 
+                    ?? throw new InvalidOperationException($"No Save method found on dataset of type [{attachedDataSet.GetType().Name}]");
 
                 saveMethod.Invoke(attachedDataSet, null);
             }

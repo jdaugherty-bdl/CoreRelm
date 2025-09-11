@@ -1,5 +1,6 @@
 ﻿using CoreRelm.Attributes;
 using CoreRelm.Interfaces;
+using CoreRelm.Interfaces.Internal;
 using CoreRelm.Interfaces.RelmQuick;
 using CoreRelm.Options;
 using MySql.Data.MySqlClient;

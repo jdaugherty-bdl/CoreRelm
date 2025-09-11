@@ -1,4 +1,5 @@
 ﻿using CoreRelm.Interfaces;
+using CoreRelm.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,14 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
 {
     internal class RowIdentityHelper
     {
+        internal static string GetLastInsertId(Enum ConfigConnectionString)
+        {
+            using (IRelmContext context = new RelmContext(ConfigConnectionString))
+            {
+                return GetLastInsertId(context);
+            }
+        }
+
         /// <summary>
         /// Use the MySql built in function to get the ID of the last row inserted.
         /// </summary>
@@ -17,6 +26,14 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         internal static string GetLastInsertId(IRelmContext ConfigContext)
         {
             return RefinedResultsHelper.GetScalar<string>(ConfigContext, "SELECT LAST_INSERT_ID();");
+        }
+
+        internal static string GetIdFromInternalId(Enum ConfigConnectionString, string Table, string InternalId)
+        {
+            using (IRelmContext context = new RelmContext(ConfigConnectionString))
+            {
+                return GetIdFromInternalId(context, Table, InternalId);
+            }
         }
 
         /// <summary>
