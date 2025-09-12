@@ -110,6 +110,7 @@ namespace CoreRelm.Extensions
             return new DataLoaderHelper<T>(relmContext, DbModelData).LoadField(predicate);
         }
 
+        /*
         public static ICollection<T> FlattenTreeObject<T>(this IEnumerable<T> EnumerableList, Func<T, ICollection<T>> GetChildrenFunction)
         {
             return EnumerableList
@@ -121,6 +122,28 @@ namespace CoreRelm.Extensions
                         ??
                         Enumerable.Empty<T>()))
                 .ToList();
+        }
+        */
+        public static IEnumerable<T> FlattenTreeObject<T>(this IEnumerable<T> source, Func<T, ICollection<T>?> childrenSelector)
+        {
+            if (source == null)
+                yield break;
+
+            var stack = new Stack<T>(source);
+            while (stack.Count > 0)
+            {
+                var current = stack.Pop();
+                yield return current;
+
+                var children = childrenSelector(current);
+                if (children != null)
+                {
+                    foreach (var child in children)
+                    {
+                        stack.Push(child);
+                    }
+                }
+            }
         }
 
         public static ICollection<dynamic> GenerateDTO<T>(this IEnumerable<T> BaseObjects, ICollection<string> IncludeProperties = null, ICollection<string> ExcludeProperties = null, string SourceObjectName = null, Func<IRelmModel, Dictionary<string, object>> GetAdditionalObjectProperties = null) where T : IRelmModel

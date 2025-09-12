@@ -15,19 +15,18 @@ namespace CoreRelm.Models
 {
     public class RelmDefaultDataLoader<T> : IRelmDataLoader<T> where T : IRelmModel, new()
     {
-        public Dictionary<Command, List<IRelmExecutionCommand>> LastCommandsExecuted { get; set; }
+        public Dictionary<Command, List<IRelmExecutionCommand?>>? LastCommandsExecuted { get; set; }
 
         // this is marked as internal to facilitate unit testing only
         // get the table name from the DALTable attribute of T
-        internal virtual string TableName => typeof(T).GetCustomAttribute<RelmTable>(false)?.TableName;
+        internal virtual string? TableName => typeof(T).GetCustomAttribute<RelmTable>(false)?.TableName;
 
-        private readonly RelmContextOptionsBuilder _contextOptionsBuilder;
+        private readonly RelmContextOptionsBuilder? _contextOptionsBuilder;
 
-        private string _fullPropertySelectList;
-        private DatabaseColumnRegistry<T> _columnRegistry;
+        private string? _fullPropertySelectList;
+        private DatabaseColumnRegistry<T>? _columnRegistry = null;
 
-        //private Dictionary<Command, List<Expression>> _commands;
-        private Dictionary<Command, List<IRelmExecutionCommand>> _commands;
+        private Dictionary<Command, List<IRelmExecutionCommand?>>? _commands;
 
         public RelmDefaultDataLoader()
         {
@@ -36,7 +35,7 @@ namespace CoreRelm.Models
 
         public RelmDefaultDataLoader(RelmContextOptionsBuilder contextOptionsBuilder)
         {
-            this._contextOptionsBuilder = contextOptionsBuilder;
+            _contextOptionsBuilder = contextOptionsBuilder;
 
             InitialSetup();
         }
@@ -65,11 +64,10 @@ namespace CoreRelm.Models
                     .Select(p => $"a.`{p.Value.Item1}`"));
         }
 
-        public bool HasUnderscoreProperty(string PropertyKey) => _columnRegistry.PropertyColumns?.ContainsKey(PropertyKey) ?? false;
+        public bool HasUnderscoreProperty(string PropertyKey) => _columnRegistry?.PropertyColumns?.ContainsKey(PropertyKey) ?? false;
 
         public IRelmExecutionCommand AddExpression(Command command, Expression expression)
         {
-            //PrewarmQuery(command).Add(expression);
             var newExecution = new RelmExecutionCommand(command, expression);
 
             PrewarmQuery(command).Add(newExecution);
@@ -77,35 +75,24 @@ namespace CoreRelm.Models
             return newExecution;
         }
 
-        public IRelmExecutionCommand AddSingleExpression(Command command, Expression expression)
+        public IRelmExecutionCommand? AddSingleExpression(Command command, Expression expression)
         {
             var expressions = PrewarmQuery(command);
 
             if (expressions.Count == 0)
                 expressions.Add(null);
 
-            //expressions[0] = expression;
             expressions[0] = new RelmExecutionCommand(command, expression);
 
             return expressions[0];
         }
 
-        private List<IRelmExecutionCommand> PrewarmQuery(Command PredicateCommand)
+        private List<IRelmExecutionCommand?> PrewarmQuery(Command PredicateCommand)
         {
-            /*
-            if (_commands == null)
-                _commands = new Dictionary<Command, List<Expression>>();
+            _commands ??= [];
 
             if (!_commands.ContainsKey(PredicateCommand))
-                _commands.Add(PredicateCommand, new List<Expression>());
-
-            return _commands[PredicateCommand];
-            */
-            if (_commands == null)
-                _commands = new Dictionary<Command, List<IRelmExecutionCommand>>();
-
-            if (!_commands.ContainsKey(PredicateCommand))
-                _commands.Add(PredicateCommand, new List<IRelmExecutionCommand>());
+                _commands.Add(PredicateCommand, []);
 
             return _commands[PredicateCommand];
         }
@@ -120,14 +107,20 @@ namespace CoreRelm.Models
 
         public virtual ICollection<T> PullData(string selectQuery, Dictionary<string, object> findOptions)
         {
+            if (_contextOptionsBuilder == null)
+                throw new Exception("Context options builder not set on data loader.");
+
             if (_contextOptionsBuilder.OptionsBuilderType == RelmContextOptionsBuilder.OptionsBuilderTypes.OpenConnection)
-                return RelmHelper.GetDataObjects<T>(_contextOptionsBuilder.DatabaseConnection, selectQuery, findOptions, SqlTransaction: _contextOptionsBuilder.DatabaseTransaction).ToList();
+                return [.. RelmHelper.GetDataObjects<T>(_contextOptionsBuilder.DatabaseConnection, selectQuery, findOptions, SqlTransaction: _contextOptionsBuilder.DatabaseTransaction)];
             else
-                return RelmHelper.GetDataObjects<T>(_contextOptionsBuilder.ConnectionStringType, selectQuery, findOptions).ToList();
+                return [.. RelmHelper.GetDataObjects<T>(_contextOptionsBuilder.ConnectionStringType, selectQuery, findOptions)];
         }
 
         public int WriteData()
         {
+            if (_contextOptionsBuilder == null)
+                throw new Exception("Context options builder not set on data loader.");
+
             var findOptions = new Dictionary<string, object>();
 
             var selectQuery = GetUpdateQuery(findOptions);
@@ -140,6 +133,9 @@ namespace CoreRelm.Models
 
         internal string GetSelectQuery(Dictionary<string, object> FindOptions)
         {
+            if (string.IsNullOrWhiteSpace(_fullPropertySelectList))
+                throw new Exception("No properties found to select.");
+
             return BuildQuery($"SELECT {_fullPropertySelectList} ", FindOptions, true);
         }
 
@@ -153,6 +149,9 @@ namespace CoreRelm.Models
             if (string.IsNullOrWhiteSpace(TableName))
                 throw new Exception($"RelmTable attribute not found on type {typeof(T).Name}");
 
+            if (_columnRegistry == null)
+                throw new Exception("Column registry not initialized.");
+
             // hardcode first table alias to 'a', and inject that into the expression evaluator
             var expressionEvaluator = new ExpressionEvaluator(TableName, _columnRegistry.PropertyColumns.ToDictionary(x => x.Key, x => x.Value.Item1), UsedTableAliases: new Dictionary<string, string> { [TableName] = "a" });
 
@@ -163,7 +162,7 @@ namespace CoreRelm.Models
                 foreach (var command in _commands)
                 {
                     if (!queryPieces.ContainsKey(command.Key))
-                        queryPieces.Add(command.Key, new List<string>());
+                        queryPieces.Add(command.Key, []);
 
                     // evaluate all expressions, except references and collections as those are evaluated after selection
                     switch (command.Key)
@@ -200,15 +199,15 @@ namespace CoreRelm.Models
 
             findQuery += " ";
 
-            if (queryPieces.ContainsKey(Command.Count))
+            if (queryPieces.TryGetValue(Command.Count, out List<string>? countValue))
             {
-                findQuery += queryPieces[Command.Count];
+                findQuery += countValue;
             }
             else
             {
-                if (queryPieces.ContainsKey(Command.DistinctBy))
+                if (queryPieces.TryGetValue(Command.DistinctBy, out List<string>? distinctByValue))
                 {
-                    findQuery += string.Join("\n", queryPieces[Command.DistinctBy]);
+                    findQuery += string.Join("\n", distinctByValue);
                     findQuery += ", ";
                 }
 
@@ -220,24 +219,24 @@ namespace CoreRelm.Models
                 findQuery += " FROM ";
             findQuery += $" `{TableName}` a "; // hardcode first table alias to 'a'
 
-            if (queryPieces.ContainsKey(Command.Reference))
-                findQuery += string.Join("\n", queryPieces[Command.Reference]);
+            if (queryPieces.TryGetValue(Command.Reference, out List<string>? referenceValue))
+                findQuery += string.Join("\n", referenceValue);
 
-            if (queryPieces.ContainsKey(Command.Set))
-                findQuery += string.Join("\n", queryPieces[Command.Set]);
+            if (queryPieces.TryGetValue(Command.Set, out List<string>? setValue))
+                findQuery += string.Join("\n", setValue);
 
-            if (queryPieces.ContainsKey(Command.Where))
-                findQuery += string.Join("\n", queryPieces[Command.Where]);
+            if (queryPieces.TryGetValue(Command.Where, out List<string>? whereValue))
+                findQuery += string.Join("\n", whereValue);
 
-            if (queryPieces.ContainsKey(Command.OrderBy))
-                findQuery += string.Join("\n", queryPieces[Command.OrderBy]);
-            if (queryPieces.ContainsKey(Command.OrderByDescending))
-                findQuery += string.Join("\n", queryPieces[Command.OrderByDescending]);
-            if (queryPieces.ContainsKey(Command.GroupBy))
-                findQuery += string.Join("\n", queryPieces[Command.GroupBy]);
+            if (queryPieces.TryGetValue(Command.OrderBy, out List<string>? orderByValue))
+                findQuery += string.Join("\n", orderByValue);
+            if (queryPieces.TryGetValue(Command.OrderByDescending, out List<string>? orderByDescendingValue))
+                findQuery += string.Join("\n", orderByDescendingValue);
+            if (queryPieces.TryGetValue(Command.GroupBy, out List<string>? groupByValue))
+                findQuery += string.Join("\n", groupByValue);
 
-            if (queryPieces.ContainsKey(Command.Limit))
-                findQuery += string.Join("\n", queryPieces[Command.Limit]);
+            if (queryPieces.TryGetValue(Command.Limit, out List<string>? limitValue))
+                findQuery += string.Join("\n", limitValue);
 
             LastCommandsExecuted = _commands;
             _commands = null;

@@ -10,12 +10,12 @@ namespace CoreRelm.Interfaces
 {
     public interface IRelmDataLoader<T>
     {
-        Dictionary<Command, List<IRelmExecutionCommand>> LastCommandsExecuted { get; set; }
+        Dictionary<Command, List<IRelmExecutionCommand?>>? LastCommandsExecuted { get; set; }
 
         ICollection<T> GetLoadData();
         int WriteData();
         IRelmExecutionCommand AddExpression(Command command, Expression expression);
-        IRelmExecutionCommand AddSingleExpression(Command command, Expression expression);
+        IRelmExecutionCommand? AddSingleExpression(Command command, Expression expression);
         bool HasUnderscoreProperty(string PropertyKey);
     }
 }
