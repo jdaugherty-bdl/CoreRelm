@@ -1,8 +1,8 @@
 ﻿using Moq;
-using SimpleRelm.Attributes;
-using SimpleRelm.Models;
-using SimpleRelm.RelmInternal.Helpers.DataTransfer;
-using SimpleRelm.RelmInternal.Helpers.Operations;
+using CoreRelm.Attributes;
+using CoreRelm.Models;
+using CoreRelm.RelmInternal.Helpers.DataTransfer;
+using CoreRelm.RelmInternal.Helpers.Operations;
 using CoreRelm.Tests.TestModels;
 using System;
 using System.Collections.Generic;

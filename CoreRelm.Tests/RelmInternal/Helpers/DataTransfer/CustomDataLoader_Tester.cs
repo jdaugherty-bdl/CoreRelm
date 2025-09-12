@@ -1,7 +1,7 @@
 ﻿using Moq;
-using SimpleRelm.Interfaces;
-using SimpleRelm.Models;
-using SimpleRelm.RelmInternal.Helpers.DataTransfer;
+using CoreRelm.Interfaces;
+using CoreRelm.Models;
+using CoreRelm.RelmInternal.Helpers.DataTransfer;
 using CoreRelm.Tests.TestModels;
 using System;
 using System.Collections.Generic;
@@ -20,13 +20,13 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.DataTransfer
             // dummy data
             var mockComplexTestModels = new List<ComplexTestModel>
             {
-                new ComplexTestModel
+                new() 
                 {
                     InternalId = "ID1",
                     TestFieldBoolean = null,
                     TestFieldBooleans = null,
                 },
-                new ComplexTestModel
+                new() 
                 {
                     InternalId = "ID2",
                     TestFieldBoolean = null,

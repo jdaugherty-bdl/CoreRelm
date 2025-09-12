@@ -1,7 +1,7 @@
-﻿using SimpleRelm.Attributes;
-using SimpleRelm.Interfaces;
-using SimpleRelm.Models;
-using SimpleRelm.RelmInternal.Helpers.Operations;
+﻿using CoreRelm.Attributes;
+using CoreRelm.Interfaces;
+using CoreRelm.Models;
+using CoreRelm.RelmInternal.Helpers.Operations;
 using CoreRelm.Tests.TestModels;
 using System;
 using System.Collections.Generic;
@@ -18,7 +18,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
     {
         private readonly ExpressionEvaluator evaluator;
         private readonly Dictionary<string, object> queryParameters;
-        private Expression<Func<ComplexTestModel, bool>>? predicate;
+        private readonly Expression<Func<ComplexTestModel, bool>>? predicate;
 
         public InternalWhereExpressionTests()
         {
@@ -27,7 +27,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
 
             evaluator = new ExpressionEvaluator(tableName, underscoreProperties, UsedTableAliases: new Dictionary<string, string> { [tableName] = "a" });
 
-            queryParameters = new();
+            queryParameters = [];
         }
 
         [Fact]
@@ -53,9 +53,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             var containsCall = Expression.Lambda(funcType, containsExpression, parameter);
 
             // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.Where, 
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.Where, containsCall) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, containsCall)])
                 , queryParameters);
 
             // Assert
@@ -85,9 +85,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             var containsCall = Expression.Lambda(funcType, containsExpression, parameter);
 
             // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.Where,
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.Where, containsCall) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, containsCall)])
                 , queryParameters);
 
             // Assert

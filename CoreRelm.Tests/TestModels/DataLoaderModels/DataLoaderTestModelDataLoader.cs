@@ -1,9 +1,9 @@
-﻿using SimpleRelm.Attributes;
-using SimpleRelm.Interfaces;
-using SimpleRelm.Models;
-using SimpleRelm.Options;
-using SimpleRelm.RelmInternal.Helpers.DataTransfer;
-using SimpleRelm.RelmInternal.Helpers.Operations;
+﻿using CoreRelm.Attributes;
+using CoreRelm.Interfaces;
+using CoreRelm.Models;
+using CoreRelm.Options;
+using CoreRelm.RelmInternal.Helpers.DataTransfer;
+using CoreRelm.RelmInternal.Helpers.Operations;
 using System;
 using System.Collections.Generic;
 using System.Linq;

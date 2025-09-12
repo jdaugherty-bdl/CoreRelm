@@ -17,7 +17,7 @@ namespace CoreRelm.Tests.TestModels.MultipleKeys
         [RelmColumn]
         public string? ReferenceKey2 { get; set; }
 
-        [RelmForeignKey(new string[] { nameof(MultipleKeysTestObject.MultipleKeysReferenceObjectLocalKey1), nameof(MultipleKeysTestObject.MultipleKeysReferenceObjectLocalKey2) }, new string[] { nameof(ReferenceKey1), nameof(ReferenceKey2) })]
+        [RelmForeignKey([nameof(MultipleKeysTestObject.MultipleKeysReferenceObjectLocalKey1), nameof(MultipleKeysTestObject.MultipleKeysReferenceObjectLocalKey2)], [nameof(ReferenceKey1), nameof(ReferenceKey2)])]
         public MultipleKeysTestObject? MultipleKeysTestObject_Reference { get; set; }
     }
 }

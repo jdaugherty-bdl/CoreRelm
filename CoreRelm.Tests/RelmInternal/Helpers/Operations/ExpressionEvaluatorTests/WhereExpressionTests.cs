@@ -1,7 +1,7 @@
-﻿using SimpleRelm.Attributes;
-using SimpleRelm.Interfaces;
-using SimpleRelm.Models;
-using SimpleRelm.RelmInternal.Helpers.Operations;
+﻿using CoreRelm.Attributes;
+using CoreRelm.Interfaces;
+using CoreRelm.Models;
+using CoreRelm.RelmInternal.Helpers.Operations;
 using CoreRelm.Tests.TestModels;
 using System;
 using System.Collections.Generic;
@@ -28,7 +28,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
 
             evaluator = new ExpressionEvaluator(tableName, underscoreProperties, UsedTableAliases: new Dictionary<string, string> { [tableName] = "a" });
 
-            queryParameters = new();
+            queryParameters = [];
         }
 
         [Fact]
@@ -38,9 +38,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             predicate = x => x.Id == 3L;
 
             // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.Where, 
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate)])
                 , queryParameters);
 
             // Assert
@@ -56,9 +56,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             predicate = x => x.Id == id;
 
             // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.Where,
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate)])
                 , queryParameters);
 
             // Assert
@@ -73,9 +73,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             predicate = x => x.InternalId == "00000000-0000-0000-0000-000000000000";
 
             // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.Where,
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate)])
                 , queryParameters);
 
             // Assert
@@ -91,9 +91,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             predicate = x => x.InternalId == internalId;
 
             // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.Where,
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate)])
                 , queryParameters);
 
             // Assert
@@ -108,9 +108,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             predicate = x => x.CreateDate == new DateTime(2021, 1, 1);
 
             // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.Where,
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate)])
                 , queryParameters);
 
             // Assert
@@ -125,9 +125,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             predicate = x => x.Active == true;
 
             // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.Where,
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate)])
                 , queryParameters);
 
             // Assert
@@ -140,17 +140,17 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
         {
             var objectList = new List<ComplexTestModel>
             {
-                new ComplexTestModel { TestColumnInternalId = "00000000-0000-0000-0000-000000000000" },
-                new ComplexTestModel { TestColumnInternalId = "00000000-0000-0000-0000-000000000001" }
+                new() { TestColumnInternalId = "00000000-0000-0000-0000-000000000000" },
+                new() { TestColumnInternalId = "00000000-0000-0000-0000-000000000001" }
             };
 
             // Arrange
             predicate = x => objectList.Select(y => y.TestColumnInternalId).Contains(x.InternalId);
 
             // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.Where,
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate)])
                 , queryParameters);
 
             // Assert
@@ -165,9 +165,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             predicate = x => x.Id == 3L && x.InternalId == "00000000-0000-0000-0000-000000000000" && x.CreateDate == new DateTime(2021, 1, 1) && x.Active == true;
 
             // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.Where,
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate)])
                 , queryParameters);
 
             // Assert
@@ -186,9 +186,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             predicate = x => (x.Id == 3L && x.InternalId == "00000000-0000-0000-0000-000000000000") || (x.CreateDate == new DateTime(2021, 1, 1) && x.Active == true);
 
             // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.Where,
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate)])
                 , queryParameters);
 
             // Assert
@@ -207,9 +207,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             predicate = x => x.CreateDate >= new DateTime(2021, 1, 1);
 
             // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.Where,
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate)])
                 , queryParameters);
 
             // Assert
@@ -227,9 +227,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             predicate = x => x.CreateDate >= originalDate.AddMinutes(-15); // make originalDate.AddMinutes instead of expectedDate so we get a MethodCallExpression
 
             // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.Where,
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate)])
                 , queryParameters);
 
             // Assert
@@ -247,9 +247,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             predicate = x => originalDate.AddMinutes(-15) < x.CreateDate; // make originalDate.AddMinutes instead of expectedDate so we get a MethodCallExpression
 
             // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.Where,
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate)])
                 , queryParameters);
 
             // Assert
@@ -265,9 +265,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             predicate = x => x.InternalId == submissionIds.FirstOrDefault();
 
             // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.Where,
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate)])
                 , queryParameters);
 
             // Assert
@@ -282,9 +282,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             predicate = x => !string.IsNullOrWhiteSpace(x.TestColumnNoAttributeArguments);
 
             // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.Where,
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate)])
                 , queryParameters);
 
             // Assert
@@ -298,9 +298,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             predicate = x => string.IsNullOrWhiteSpace(x.TestColumnNoAttributeArguments);
 
             // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.Where,
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate)])
                 , queryParameters);
 
             // Assert
@@ -313,19 +313,19 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             // Arrange
             var expectedIds = new List<ComplexTestModel>
             { 
-                new ComplexTestModel { Id = 1 },
-                new ComplexTestModel { Id = 2 },
-                new ComplexTestModel { Id = 3 },
-                new ComplexTestModel { Id = 4 },
+                new() { Id = 1 },
+                new() { Id = 2 },
+                new() { Id = 3 },
+                new() { Id = 4 },
             };
             var expectedInternalId = "00000000-0000-0000-0000-000000000000";
 
             predicate = x => expectedIds.Select(y => y.Id).Contains(x.Id) && x.TestColumnNoAttributeArguments != expectedInternalId;
 
             // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.Where,
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate)])
                 , queryParameters);
 
             // Assert
@@ -344,19 +344,19 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             };
             var expectedIds = new List<ComplexTestModel>
             { 
-                new ComplexTestModel { InternalId = "1" },
-                new ComplexTestModel { InternalId = "2" },
-                new ComplexTestModel { InternalId = "3" },
-                new ComplexTestModel { InternalId = "4" },
+                new() { InternalId = "1" },
+                new() { InternalId = "2" },
+                new() { InternalId = "3" },
+                new() { InternalId = "4" },
             };
             var expectedInternalId = "00000000-0000-0000-0000-000000000000";
 
             predicate = x => keyData.All(y => y.Select(z => z.ToString()).ToList().Contains(x.InternalId));
 
             // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.Where,
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate)])
                 , queryParameters);
 
             // Assert
@@ -370,19 +370,19 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
         {
             // Arrange
             var expectedIds = new List<ComplexTestModel>
-            { 
-                new ComplexTestModel { Id = 1 },
-                new ComplexTestModel { Id = 2 },
-                new ComplexTestModel { Id = 3 },
-                new ComplexTestModel { Id = 4 },
+            {
+                new() { Id = 1 },
+                new() { Id = 2 },
+                new() { Id = 3 },
+                new() { Id = 4 },
             };
 
             predicate = x => expectedIds.Select(y => y.Id).Contains(x.Id) && !string.IsNullOrWhiteSpace(x.TestColumnNoAttributeArguments);
 
             // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.Where,
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate)])
                 , queryParameters);
 
             // Assert
@@ -395,19 +395,19 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
         {
             // Arrange
             var expectedIds = new List<ComplexTestModel>
-            { 
-                new ComplexTestModel { Id = 1 },
-                new ComplexTestModel { Id = 2 },
-                new ComplexTestModel { Id = 3 },
-                new ComplexTestModel { Id = 4 },
+            {
+                new() { Id = 1 },
+                new() { Id = 2 },
+                new() { Id = 3 },
+                new() { Id = 4 },
             };
 
             predicate = x => !string.IsNullOrWhiteSpace(x.TestColumnNoAttributeArguments) && expectedIds.Select(y => y.Id).Contains(x.Id);
 
             // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.Where,
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate)])
                 , queryParameters);
 
             // Assert
@@ -424,7 +424,10 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             predicate = x => x.WhereTypeProperty == whereType;
 
             // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(ExpressionEvaluator.Command.Where, new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate) }), queryParameters);
+            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
+                    ExpressionEvaluator.Command.Where, 
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate)])
+                , queryParameters);
 
             // Assert
             Assert.Equal(" WHERE ( a.`Where_Type_Property` = @_WhereTypeProperty_1_ )", result);
@@ -438,7 +441,10 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             predicate = x => x.WhereTypeProperty == WhereTypes.WhereType1;
 
             // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(ExpressionEvaluator.Command.Where, new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate) }), queryParameters);
+            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
+                    ExpressionEvaluator.Command.Where, 
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate)])
+                , queryParameters);
 
             // Assert
             Assert.Equal(" WHERE ( a.`Where_Type_Property` = @_WhereTypeProperty_1_ )", result);
@@ -451,8 +457,8 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             // Arrange
             var compareModels = new ComplexTestModel[]
             {
-                new ComplexTestModel { Id = 0, InternalId = "TEST1" },
-                new ComplexTestModel { Id = 1, InternalId = "TEST2" }
+                new() { Id = 0, InternalId = "TEST1" },
+                new() { Id = 1, InternalId = "TEST2" }
             }
             .ToDictionary(x => x.Id ?? 0, x => x);
             var modelCount = 0;
@@ -460,7 +466,10 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             predicate = x => x.InternalId == compareModels[modelCount].InternalId;
 
             // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(ExpressionEvaluator.Command.Where, new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate) }), queryParameters);
+            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
+                    ExpressionEvaluator.Command.Where, 
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate)])
+                , queryParameters);
 
             // Assert
             Assert.Equal(" WHERE ( a.`InternalId` = @_InternalId_1_ )", result);
@@ -473,8 +482,8 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             // Arrange
             var compareModels = new ComplexTestModel[]
             {
-                new ComplexTestModel { Id = 0, InternalId = "TEST1" },
-                new ComplexTestModel { Id = 1, InternalId = "TEST2" }
+                new() { Id = 0, InternalId = "TEST1" },
+                new() { Id = 1, InternalId = "TEST2" }
             }
             .ToDictionary(x => x.Id ?? 0, x => x);
             var modelCount = 0L;
@@ -482,7 +491,10 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             predicate = x => compareModels[modelCount].InternalId == x.InternalId;
 
             // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(ExpressionEvaluator.Command.Where, new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate) }), queryParameters);
+            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
+                    ExpressionEvaluator.Command.Where, 
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate)])
+                , queryParameters);
 
             // Assert
             Assert.Equal(" WHERE ( a.`InternalId` = @_InternalId_1_ )", result);
@@ -494,22 +506,22 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
         {
             var objectList = new List<ComplexTestModel>
             {
-                new ComplexTestModel { TestColumnInternalId = "00000000-0000-0000-0000-000000000000", TestColumnNoAttributeArguments = "0" },
-                new ComplexTestModel { TestColumnInternalId = "00000000-0000-0000-0000-000000000001", TestColumnNoAttributeArguments = "1" }
+                new() { TestColumnInternalId = "00000000-0000-0000-0000-000000000000", TestColumnNoAttributeArguments = "0" },
+                new() { TestColumnInternalId = "00000000-0000-0000-0000-000000000001", TestColumnNoAttributeArguments = "1" }
             };
 
             var objectCompareList = new string[][]
             {
-                new string[] { "00000000-0000-0000-0000-000000000001", "1" }
+                ["00000000-0000-0000-0000-000000000001", "1"]
             };
 
             // Arrange
             predicate = x => objectCompareList.Any(y => x.TestColumnInternalId == y[0] && x.TestColumnNoAttributeArguments == y[1]);
 
             // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.Where,
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate)])
                 , queryParameters);
 
             // Assert
@@ -522,13 +534,13 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
         {
             var objectList = new List<ComplexTestModel>
             {
-                new ComplexTestModel { TestColumnInternalId = "00000000-0000-0000-0000-000000000000", TestColumnNoAttributeArguments = "0" },
-                new ComplexTestModel { TestColumnInternalId = "00000000-0000-0000-0000-000000000001", TestColumnNoAttributeArguments = "1" }
+                new() { TestColumnInternalId = "00000000-0000-0000-0000-000000000000", TestColumnNoAttributeArguments = "0" },
+                new() { TestColumnInternalId = "00000000-0000-0000-0000-000000000001", TestColumnNoAttributeArguments = "1" }
             };
 
             var objectCompareList = new string[][]
             {
-                new string[] { "00000000-0000-0000-0000-000000000001", "1" }
+                ["00000000-0000-0000-0000-000000000001", "1"]
             };
 
             var objectCompareListKeys = objectCompareList.Select(x => string.Join(string.Empty, x)).ToArray();
@@ -537,9 +549,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             predicate = x => objectCompareListKeys.Contains(x.TestColumnInternalId + x.TestColumnNoAttributeArguments);
 
             // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.Where,
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, predicate)])
                 , queryParameters);
 
             // Assert

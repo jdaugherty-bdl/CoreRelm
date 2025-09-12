@@ -1,5 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
-using SimpleRelm.RelmInternal.Resolvers;
+using CoreRelm.RelmInternal.Resolvers;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

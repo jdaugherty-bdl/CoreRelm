@@ -1,4 +1,4 @@
-﻿using SimpleRelm.Interfaces;
+﻿using CoreRelm.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +9,8 @@ namespace CoreRelm.Tests.TestModels.DataLoaderModels
 {
     public class TestFieldBooleansFieldLoader : IRelmFieldLoader
     {
+        public IRelmContext RelmContext { get; } = new ComplexTestContext();
+
         private readonly string? _fieldName;
         public string? FieldName => _fieldName;
         private readonly string[]? _keyFields;

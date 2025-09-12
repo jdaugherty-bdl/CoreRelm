@@ -1,11 +1,11 @@
-﻿using SimpleRelm.Options;
+﻿using CoreRelm.Options;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static SimpleRelm.Options.RelmContextOptionsBuilder;
+using static CoreRelm.Options.RelmContextOptionsBuilder;
 
 namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
 {

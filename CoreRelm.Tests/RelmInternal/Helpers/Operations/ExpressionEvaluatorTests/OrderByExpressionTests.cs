@@ -1,7 +1,7 @@
-﻿using SimpleRelm.Attributes;
-using SimpleRelm.Interfaces;
-using SimpleRelm.Models;
-using SimpleRelm.RelmInternal.Helpers.Operations;
+﻿using CoreRelm.Attributes;
+using CoreRelm.Interfaces;
+using CoreRelm.Models;
+using CoreRelm.RelmInternal.Helpers.Operations;
 using CoreRelm.Tests.TestModels;
 using System;
 using System.Collections.Generic;
@@ -17,8 +17,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
     public class OrderByExpressionTests
     {
         private readonly ExpressionEvaluator evaluator;
-        private readonly Dictionary<string, object> queryParameters;
-        private Expression<Func<ComplexTestModel, object>>? predicate;
+        private Expression<Func<ComplexTestModel, object?>>? predicate;
 
         public OrderByExpressionTests()
         {
@@ -26,8 +25,6 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             var underscoreProperties = DataNamingHelper.GetUnderscoreProperties<ComplexTestModel>(true, false).ToDictionary(x => x.Value.Item1, x => x.Key);
 
             evaluator = new ExpressionEvaluator(tableName, underscoreProperties, UsedTableAliases: new Dictionary<string, string> { [tableName] = "a" });
-
-            queryParameters = new();
         }
 
         [Fact]
@@ -37,9 +34,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             predicate = x => x.Id;
 
             // Act
-            var result = evaluator.EvaluateOrderBy(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateOrderBy(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.OrderBy, 
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.OrderBy, predicate.Body) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.OrderBy, predicate.Body)])
                 , false);
 
             // Assert
@@ -53,9 +50,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             predicate = x => x.Id;
 
             // Act
-            var result = evaluator.EvaluateOrderBy(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateOrderBy(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.OrderBy, 
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.OrderBy, predicate.Body) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.OrderBy, predicate.Body)])
                 , true);
 
             // Assert
@@ -66,12 +63,12 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
         public void TestOrderByQuery_Ascending_PropertyArray_2Elements()
         {
             // Arrange
-            predicate = x => new object[] { x.Id, x.InternalId };
+            predicate = x => new object?[] { x.Id, x.InternalId };
 
             // Act
-            var result = evaluator.EvaluateOrderBy(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateOrderBy(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.OrderBy, 
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.OrderBy, predicate.Body) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.OrderBy, predicate.Body)])
                 , false);
 
             // Assert
@@ -82,12 +79,12 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
         public void TestOrderByQuery_Descending_PropertyArray_2Elements()
         {
             // Arrange
-            predicate = x => new object[] { x.Id, x.InternalId };
+            predicate = x => new object?[] { x.Id, x.InternalId };
 
             // Act
-            var result = evaluator.EvaluateOrderBy(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateOrderBy(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.OrderBy, 
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.OrderBy, predicate.Body) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.OrderBy, predicate.Body)])
                 , true);
 
             // Assert
@@ -98,12 +95,12 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
         public void TestOrderByQuery_Ascending_PropertyArray_3Elements()
         {
             // Arrange
-            predicate = x => new object[] { x.Id, x.InternalId, x.TestColumnInternalId };
+            predicate = x => new object?[] { x.Id, x.InternalId, x.TestColumnInternalId };
 
             // Act
-            var result = evaluator.EvaluateOrderBy(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateOrderBy(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.OrderBy, 
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.OrderBy, predicate.Body) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.OrderBy, predicate.Body)])
                 , false);
 
             // Assert
@@ -114,12 +111,12 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
         public void TestOrderByQuery_Descending_PropertyArray_3Elements()
         {
             // Arrange
-            predicate = x => new object[] { x.Id, x.InternalId, x.TestColumnInternalId };
+            predicate = x => new object?[] { x.Id, x.InternalId, x.TestColumnInternalId };
 
             // Act
-            var result = evaluator.EvaluateOrderBy(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateOrderBy(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.OrderBy, 
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.OrderBy, predicate.Body) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.OrderBy, predicate.Body)])
                 , true);
 
             // Assert
@@ -134,13 +131,12 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             Expression<Func<ComplexTestModel, object>>? predicate2 = x => x.InternalId;
 
             // Act
-            var result = evaluator.EvaluateOrderBy(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateOrderBy(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.OrderBy, 
-                    new List<IRelmExecutionCommand> 
-                    { 
+                    [ 
                         new RelmExecutionCommand(ExpressionEvaluator.Command.Set, predicate.Body), 
                         new RelmExecutionCommand(ExpressionEvaluator.Command.Set, predicate2.Body) 
-                    })
+                    ])
                 , false);
 
             // Assert
@@ -155,13 +151,12 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             Expression<Func<ComplexTestModel, object>>? predicate2 = x => x.InternalId;
 
             // Act
-            var result = evaluator.EvaluateOrderBy(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateOrderBy(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.OrderBy,
-                    new List<IRelmExecutionCommand>
-                    {
+                    [
                         new RelmExecutionCommand(ExpressionEvaluator.Command.Set, predicate.Body),
                         new RelmExecutionCommand(ExpressionEvaluator.Command.Set, predicate2.Body)
-                    })
+                    ])
                 , true);
 
             // Assert
@@ -173,18 +168,17 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
         {
             // Arrange
             predicate = x => x.Id;
-            Expression<Func<ComplexTestModel, object>>? predicate2 = x => x.InternalId;
-            Expression<Func<ComplexTestModel, object>>? predicate3 = x => x.TestColumnInternalId;
+            Expression<Func<ComplexTestModel, object?>>? predicate2 = x => x.InternalId;
+            Expression<Func<ComplexTestModel, object?>>? predicate3 = x => x.TestColumnInternalId;
 
             // Act
-            var result = evaluator.EvaluateOrderBy(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateOrderBy(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.OrderBy, 
-                    new List<IRelmExecutionCommand> 
-                    {
+                    [
                         new RelmExecutionCommand(ExpressionEvaluator.Command.Set, predicate.Body),
                         new RelmExecutionCommand(ExpressionEvaluator.Command.Set, predicate2.Body),
                         new RelmExecutionCommand(ExpressionEvaluator.Command.Set, predicate3.Body)
-                    })
+                    ])
                 , false);
 
             // Assert
@@ -196,18 +190,17 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
         {
             // Arrange
             predicate = x => x.Id;
-            Expression<Func<ComplexTestModel, object>>? predicate2 = x => x.InternalId;
-            Expression<Func<ComplexTestModel, object>>? predicate3 = x => x.TestColumnInternalId;
+            Expression<Func<ComplexTestModel, object?>>? predicate2 = x => x.InternalId;
+            Expression<Func<ComplexTestModel, object?>>? predicate3 = x => x.TestColumnInternalId;
 
             // Act
-            var result = evaluator.EvaluateOrderBy(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateOrderBy(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.OrderBy,
-                    new List<IRelmExecutionCommand>
-                    {
+                    [
                         new RelmExecutionCommand(ExpressionEvaluator.Command.Set, predicate.Body),
                         new RelmExecutionCommand(ExpressionEvaluator.Command.Set, predicate2.Body),
                         new RelmExecutionCommand(ExpressionEvaluator.Command.Set, predicate3.Body)
-                    })
+                    ])
                 , true);
 
             // Assert
@@ -222,14 +215,14 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             Expression<Func<ComplexTestModel, object>>? predicate2 = x => x.InternalId;
 
             // Act
-            var result = evaluator.EvaluateOrderBy(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateOrderBy(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.OrderBy, 
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.OrderBy, predicate.Body) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.OrderBy, predicate.Body)])
                 , false);
 
-            result += evaluator.EvaluateOrderBy(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            result += evaluator.EvaluateOrderBy(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.OrderBy, 
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.OrderBy, predicate2.Body) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.OrderBy, predicate2.Body)])
                 , false);
 
             // Assert
@@ -244,14 +237,14 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             Expression<Func<ComplexTestModel, object>>? predicate2 = x => x.InternalId;
 
             // Act
-            var result = evaluator.EvaluateOrderBy(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateOrderBy(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.OrderBy,
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.OrderBy, predicate.Body) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.OrderBy, predicate.Body)])
                 , false);
 
-            result += evaluator.EvaluateOrderBy(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
+            result += evaluator.EvaluateOrderBy(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
                     ExpressionEvaluator.Command.OrderBy,
-                    new List<IRelmExecutionCommand> { new RelmExecutionCommand(ExpressionEvaluator.Command.OrderBy, predicate2.Body) })
+                    [new RelmExecutionCommand(ExpressionEvaluator.Command.OrderBy, predicate2.Body)])
                 , true);
 
             // Assert
