@@ -25,13 +25,13 @@ namespace CoreRelm.Models
         public int Count => _items?.Count ?? 0;
         public bool IsReadOnly => _items?.IsReadOnly ?? true;
 
-        private readonly IRelmContext _currentContext;
-        private readonly IRelmQuickContext _currentQuickContext;
-        private IRelmDataLoader<T> _dataLoader;
-        private FieldLoaderRegistry<IRelmFieldLoader> _fieldDataLoaders;
-        private FieldLoaderRegistry<IRelmQuickFieldLoader> _fieldDataLoadersQuick;
+        private readonly IRelmContext? _currentContext;
+        private readonly IRelmQuickContext? _currentQuickContext;
+        private IRelmDataLoader<T>? _dataLoader;
+        private FieldLoaderRegistry<IRelmFieldLoader> _fieldDataLoaders = new();
+        private FieldLoaderRegistry<IRelmQuickFieldLoader> _fieldDataLoadersQuick = new();
 
-        private ICollection<T> _items;
+        private ICollection<T>? _items;
 
         public RelmDataSet(IRelmQuickContext currentContext, IRelmDataLoader<T> dataLoader)
         {
@@ -51,8 +51,8 @@ namespace CoreRelm.Models
         {
             _dataLoader = dataLoader ?? throw new ArgumentNullException(nameof(dataLoader));
 
-            _fieldDataLoaders = new FieldLoaderRegistry<IRelmFieldLoader>();
-            _fieldDataLoadersQuick = new FieldLoaderRegistry<IRelmQuickFieldLoader>();
+            //_fieldDataLoaders = new FieldLoaderRegistry<IRelmFieldLoader>();
+            //_fieldDataLoadersQuick = new FieldLoaderRegistry<IRelmQuickFieldLoader>();
 
             Modified = false;
         }
@@ -60,7 +60,7 @@ namespace CoreRelm.Models
         public IEnumerator<T> GetEnumerator()
         {
             // get cached items if not null, otherwise load new items list if not null, otherwise return empty collection
-            return (_items ?? Load() ?? Enumerable.Empty<T>())?.GetEnumerator();
+            return (_items ?? Load())?.GetEnumerator() ?? Enumerable.Empty<T>().GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -68,18 +68,22 @@ namespace CoreRelm.Models
             return GetEnumerator();
         }
 
-        public IRelmFieldLoader SetFieldLoader(string fieldName, IRelmFieldLoader dataLoader)
+        public IRelmFieldLoader? SetFieldLoader(string fieldName, IRelmFieldLoader dataLoader)
         {
             if (!typeof(T).GetProperties().Any(x => x.Name == fieldName))
                 throw new ArgumentException($"The field {fieldName} does not exist on the model {typeof(T).Name}");
+
+            _fieldDataLoaders ??= new();
 
             return _fieldDataLoaders.RegisterFieldLoader(fieldName, dataLoader);
         }
 
-        public IRelmQuickFieldLoader SetFieldLoader(string fieldName, IRelmQuickFieldLoader dataLoader)
+        public IRelmQuickFieldLoader? SetFieldLoader(string fieldName, IRelmQuickFieldLoader dataLoader)
         {
             if (!typeof(T).GetProperties().Any(x => x.Name == fieldName))
                 throw new ArgumentException($"The field {fieldName} does not exist on the model {typeof(T).Name}");
+
+            _fieldDataLoadersQuick ??= new();
 
             return _fieldDataLoadersQuick.RegisterFieldLoader(fieldName, dataLoader);
         }
@@ -91,13 +95,16 @@ namespace CoreRelm.Models
             return _dataLoader;
         }
 
-        internal IRelmDataLoader<T> GetDataLoader()
+        internal IRelmDataLoader<T>? GetDataLoader()
         {
             return _dataLoader;
         }
 
         public IRelmDataSet<T> Where(Expression<Func<T, bool>> predicate)
         {
+            if (_dataLoader == null)
+                throw new InvalidOperationException("DataLoader is not set. Please set the DataLoader before using the Where method.");
+
             _dataLoader.AddExpression(Command.Where, predicate);
 
             return this;
@@ -110,12 +117,12 @@ namespace CoreRelm.Models
 
         public IRelmDataSet<T> Reference<S>(Expression<Func<T, ICollection<S>>> predicate, Expression<Func<S, object>> additionalConstraints)
         {
-            return Reference(predicate, new Expression<Func<S, object>>[] { additionalConstraints });
+            return Reference(predicate, [additionalConstraints]);
         }
 
         public IRelmDataSet<T> Reference<S>(Expression<Func<T, S>> predicate, Expression<Func<S, object>> additionalConstraints)
         {
-            return Reference(predicate, new Expression<Func<S, object>>[] { additionalConstraints });
+            return Reference(predicate, [additionalConstraints]);
         }
 
         public IRelmDataSet<T> Reference<S>(Expression<Func<T, ICollection<S>>> predicate, ICollection<Expression<Func<S, object>>> additionalConstraints)
@@ -123,13 +130,16 @@ namespace CoreRelm.Models
             return InternalReference(predicate, additionalConstraints);
         }
 
-        public IRelmDataSet<T> Reference<S>(Expression<Func<T, S>> predicate, ICollection<Expression<Func<S, object>>> additionalConstraints)
+        public IRelmDataSet<T> Reference<S>(Expression<Func<T, S>> predicate, ICollection<Expression<Func<S, object>>>? additionalConstraints)
         {
             return InternalReference(predicate, additionalConstraints);
         }
 
-        private IRelmDataSet<T> InternalReference<S>(LambdaExpression predicate, ICollection<Expression<Func<S, object>>> additionalConstraints)
+        private RelmDataSet<T> InternalReference<S>(LambdaExpression predicate, ICollection<Expression<Func<S, object>>>? additionalConstraints)
         {
+            if (_dataLoader == null)
+                throw new InvalidOperationException("DataLoader is not set. Please set the DataLoader before using the InternalReference method.");
+
             var referenceExpression = _dataLoader.AddExpression(Command.Reference, predicate.Body);
 
             if (additionalConstraints != null)
@@ -139,32 +149,32 @@ namespace CoreRelm.Models
             return this;
         }
 
-        public T Find(int ItemId)
+        public T? Find(int ItemId)
         {
             return Where(x => x.Id == ItemId).FirstOrDefault();
         }
 
-        public T Find(string ItemInternalId)
+        public T? Find(string ItemInternalId)
         {
             return Where(x => x.InternalId == ItemInternalId).FirstOrDefault();
         }
 
-        public T FirstOrDefault()
+        public T? FirstOrDefault()
         {
             return FirstOrDefault(null, true);
         }
 
-        public T FirstOrDefault(bool loadItems)
+        public T? FirstOrDefault(bool loadItems)
         {
             return FirstOrDefault(null, loadItems);
         }
 
-        public T FirstOrDefault(Expression<Func<T, bool>> predicate)
+        public T? FirstOrDefault(Expression<Func<T, bool>> predicate)
         {
             return FirstOrDefault(predicate, true);
         }
 
-        public T FirstOrDefault(Expression<Func<T, bool>> predicate, bool loadItems)
+        public T? FirstOrDefault(Expression<Func<T, bool>>? predicate, bool loadItems)
         {
             if (loadItems)
             {
@@ -196,25 +206,16 @@ namespace CoreRelm.Models
 
         public ICollection<T> Load(bool loadDataLoaders)
         {
+            if (_dataLoader == null)
+                throw new InvalidOperationException("DataLoader is not set. Please set the DataLoader before using the Load method.");
+
             _items = _dataLoader.GetLoadData();
 
-            if (_items?.Any() ?? false)
+            if ((_items?.Count ?? 0) > 0)
             {
                 if (loadDataLoaders)
                 {
                     // find all fields marked with a RelmFieldLoader attribute that have a type derived from IRelmFieldLoader<> and add them to the list of field loaders as long as they are not already there
-                    /*
-                    var fieldLoaders = typeof(T)
-                        .GetProperties()
-                        .Where(x => x.GetCustomAttribute<RelmDataLoader>()?.LoaderType?.GetInterfaces()?.Any(y => y == (_currentContext == null ? typeof(IRelmQuickFieldLoader) : typeof(IRelmFieldLoader))) ?? false)
-                        .ToList();
-                    */
-                    /*
-                    var fieldLoaders = typeof(T)
-                        .GetProperties()
-                        .Where(x => x.GetCustomAttributes<RelmDataLoader>()?.Any(y => y.LoaderType?.GetInterface(_currentContext == null ? nameof(IRelmQuickFieldLoader) : nameof(IRelmFieldLoader)) != null) ?? false)
-                        .ToList();
-                    */
                     var relevantContextName = _currentContext == null ? nameof(IRelmQuickFieldLoader) : nameof(IRelmFieldLoader);
                     var fieldLoaders = new List<PropertyInfo>();
                     var loaderProperties = typeof(T).GetProperties();
@@ -234,16 +235,22 @@ namespace CoreRelm.Models
                         }
                     }
 
+                    if (fieldLoaders.Count != 0)
+                    {
+                    }
+
                     foreach (var field in fieldLoaders)
                     {
                         if (_fieldDataLoaders.HasFieldLoader(field.Name) || _fieldDataLoadersQuick.HasFieldLoader(field.Name))
                             continue;
 
-                        var dataLoaderAttribute = field.GetCustomAttributes<RelmDataLoader>().FirstOrDefault(x => x.LoaderType.GetInterfaces().FirstOrDefault(y => y.Name == relevantContextName) != null);
+                        var dataLoaderAttribute = field.GetCustomAttributes<RelmDataLoader>().FirstOrDefault(x => x.LoaderType.GetInterfaces().FirstOrDefault(y => y.Name == relevantContextName) != null) 
+                            ?? throw new Exception($"The field {field.Name} on model {typeof(T).Name} is marked with a RelmDataLoader attribute, but the specified loader type does not implement the required interface {relevantContextName}.");
+
                         if (_currentQuickContext != null)
-                            _fieldDataLoadersQuick.RegisterFieldLoader(field.Name, (IRelmQuickFieldLoader)Activator.CreateInstance(dataLoaderAttribute.LoaderType, new object[] { _currentQuickContext, field.Name, dataLoaderAttribute.KeyFields }));
+                            _fieldDataLoadersQuick.RegisterFieldLoader(field.Name, (IRelmQuickFieldLoader?)Activator.CreateInstance(dataLoaderAttribute.LoaderType, [_currentQuickContext, field.Name, dataLoaderAttribute.KeyFields]));
                         if (_currentContext != null)
-                            _fieldDataLoaders.RegisterFieldLoader(field.Name, (IRelmFieldLoader)Activator.CreateInstance(dataLoaderAttribute.LoaderType, new object[] { _currentContext, field.Name, dataLoaderAttribute.KeyFields }));
+                            _fieldDataLoaders.RegisterFieldLoader(field.Name, (IRelmFieldLoader?)Activator.CreateInstance(dataLoaderAttribute.LoaderType, [_currentContext, field.Name, dataLoaderAttribute.KeyFields]));
                     }
 
                     // execute all field loaders
@@ -268,6 +275,9 @@ namespace CoreRelm.Models
 
         public int Write()
         {
+            if (_dataLoader == null)
+                throw new InvalidOperationException("DataLoader is not set. Please set the DataLoader before using the Write method.");
+
             return _dataLoader.WriteData();
         }
 
@@ -288,6 +298,9 @@ namespace CoreRelm.Models
         /// <exception cref="Exception">General exception for unexpected issues, such as a failure to find attributes or properties.</exception>
         private void LoadReference()
         {
+            if (_dataLoader == null)
+                throw new InvalidOperationException("DataLoader is not set. Please set the DataLoader before using the LoadReference method.");
+
             var objectsLoader = _currentContext == null
                 ? new ForeignObjectsLoader<T>(_items, _currentQuickContext)
                 : new ForeignObjectsLoader<T>(_items, _currentContext);
@@ -325,6 +338,9 @@ namespace CoreRelm.Models
 
         public IRelmDataSet<T> OrderBy(Expression<Func<T, object>> predicate)
         {
+            if (_dataLoader == null)
+                throw new InvalidOperationException("DataLoader is not set. Please set the DataLoader before using the OrderBy method.");
+
             _dataLoader.AddSingleExpression(Command.OrderBy, predicate.Body);
 
             return this;
@@ -332,6 +348,9 @@ namespace CoreRelm.Models
 
         public IRelmDataSet<T> OrderByDescending(Expression<Func<T, object>> predicate)
         {
+            if (_dataLoader == null)
+                throw new InvalidOperationException("DataLoader is not set. Please set the DataLoader before using the OrderByDescending method.");
+
             _dataLoader.AddSingleExpression(Command.OrderByDescending, predicate.Body);
 
             return this;
@@ -339,6 +358,9 @@ namespace CoreRelm.Models
 
         public IRelmDataSet<T> Set(Expression<Func<T, T>> predicate)
         {
+            if (_dataLoader == null)
+                throw new InvalidOperationException("DataLoader is not set. Please set the DataLoader before using the Set method.");
+
             _dataLoader.AddExpression(Command.Set, predicate.Body);
 
             return this;
@@ -346,6 +368,9 @@ namespace CoreRelm.Models
 
         public IRelmDataSet<T> GroupBy(Expression<Func<T, object>> predicate)
         {
+            if (_dataLoader == null)
+                throw new InvalidOperationException("DataLoader is not set. Please set the DataLoader before using the GroupBy method.");
+
             _dataLoader.AddSingleExpression(Command.GroupBy, predicate.Body);
 
             return this;
@@ -353,6 +378,9 @@ namespace CoreRelm.Models
 
         public IRelmDataSet<T> Limit(int LimitCount)
         {
+            if (_dataLoader == null)
+                throw new InvalidOperationException("DataLoader is not set. Please set the DataLoader before using the Limit method.");
+
             _dataLoader.AddSingleExpression(Command.Limit, Expression.Constant(LimitCount, LimitCount.GetType()));
 
             return this;
@@ -360,6 +388,9 @@ namespace CoreRelm.Models
 
         public IRelmDataSet<T> DistinctBy(Expression<Func<T, object>> predicate)
         {
+            if (_dataLoader == null)
+                throw new InvalidOperationException("DataLoader is not set. Please set the DataLoader before using the DistinctBy method.");
+
             _dataLoader.AddSingleExpression(Command.DistinctBy, predicate.Body);
 
             return this;
@@ -404,9 +435,16 @@ namespace CoreRelm.Models
 
             // run through each property in the dynamic object, and if the name matches one of the keys in Underscore properties, use reflection to set the value of the new object
             if (NewObjectParameters != null)
+            {
+                if (_dataLoader == null)
+                    throw new InvalidOperationException("DataLoader is not set. Please set the DataLoader before using the New method with parameters.");
+
                 foreach (var property in new RouteValueDictionary(NewObjectParameters))
+                {
                     if (_dataLoader.HasUnderscoreProperty(property.Key))
-                        typeof(T).GetProperty(property.Key).SetValue(newObject, property.Value);
+                        typeof(T).GetProperty(property.Key)?.SetValue(newObject, property.Value);
+                }
+            }
 
             Add(newObject, Persist: Persist);
 

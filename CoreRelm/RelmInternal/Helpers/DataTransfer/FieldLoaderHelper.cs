@@ -11,14 +11,17 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
 {
     internal class FieldLoaderHelper<T> where T : IRelmModel, new()
     {
-        private readonly ICollection<T> targetObjects;
+        private readonly ICollection<T>? targetObjects;
 
         public FieldLoaderHelper(T targetObject)
         {
-            this.targetObjects = new[] { targetObject };
+            if (targetObject == null)
+                throw new ArgumentNullException(nameof(targetObject));
+
+            targetObjects = [targetObject];
         }
 
-        public FieldLoaderHelper(ICollection<T> targetObjects)
+        public FieldLoaderHelper(ICollection<T>? targetObjects)
         {
             this.targetObjects = targetObjects;
         }
@@ -49,9 +52,13 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
                         if (fieldValue is IEnumerable)
                         {
                             var xlist = (fieldValue as IEnumerable)?.Cast<object>()?.ToList();
-                            var castMethod = typeof(Enumerable).GetMethod(nameof(Enumerable.Cast)).MakeGenericMethod(genericType);
-                            var toListMethod = typeof(Enumerable).GetMethod(nameof(Enumerable.ToList)).MakeGenericMethod(genericType);
-                            var castedList = toListMethod.Invoke(null, new object[] { castMethod.Invoke(null, new object[] { xlist }) });
+                            var castMethod = typeof(Enumerable).GetMethod(nameof(Enumerable.Cast))?.MakeGenericMethod(genericType);
+                            var toListMethod = typeof(Enumerable).GetMethod(nameof(Enumerable.ToList))?.MakeGenericMethod(genericType);
+
+                            if (castMethod == null || toListMethod == null)
+                                continue;
+
+                            var castedList = toListMethod.Invoke(null, [castMethod.Invoke(null, [xlist])]);
 
                             setField.SetValue(targetObject, castedList);
                         }

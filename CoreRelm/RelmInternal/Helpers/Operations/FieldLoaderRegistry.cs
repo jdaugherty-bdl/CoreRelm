@@ -9,11 +9,11 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
 {
     internal class FieldLoaderRegistry<T> : IEnumerable<T>
     {
-        private readonly Dictionary<string, T> _fieldDataLoaders = new Dictionary<string, T>();
+        private readonly Dictionary<string, T> _fieldDataLoaders = [];
 
         public IEnumerator<T> GetEnumerator()
         {
-            return _fieldDataLoaders.Values?.GetEnumerator();
+            return _fieldDataLoaders.Values?.GetEnumerator() ?? Enumerable.Empty<T>().GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -39,22 +39,18 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         /// <param name="loader">The loader implementation to register, or null to remove.</param>
         /// <returns>The field loader that was successfully registered, or null if one was removed.</returns>
         /// <exception cref="ArgumentException">Throws when passing a null loader with an invalid field name.</exception>
-        public T RegisterFieldLoader(string fieldName, T loader)
+        public T? RegisterFieldLoader(string fieldName, T? loader)
         {
             if (loader == null)
             {
-                if (_fieldDataLoaders.ContainsKey(fieldName))
-                    _fieldDataLoaders.Remove(fieldName);
-                else
+                if (!_fieldDataLoaders.Remove(fieldName))
                     throw new ArgumentException($"The field {fieldName} does not have a data loader set");
 
                 return default;
             }
             else
             {
-                if (!_fieldDataLoaders.ContainsKey(fieldName))
-                    _fieldDataLoaders.Add(fieldName, loader);
-                else
+                if (!_fieldDataLoaders.TryAdd(fieldName, loader))
                     _fieldDataLoaders[fieldName] = loader;
 
                 return _fieldDataLoaders[fieldName];
@@ -66,7 +62,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         /// </summary>
         /// <param name="fieldName">The field name to get the loader for.</param>
         /// <returns>The loader for the provided field name, or null if none exists.</returns>
-        public T GetFieldLoader(string fieldName)
+        public T? GetFieldLoader(string fieldName)
         {
             _fieldDataLoaders.TryGetValue(fieldName, out var loader);
 
