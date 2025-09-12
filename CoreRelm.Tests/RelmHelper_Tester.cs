@@ -427,7 +427,7 @@ namespace CoreRelm.Tests
             var complexTestModel = new ComplexTestModel();
 
             // Act
-            RelmHelper.LoadDataLoaderField(complexTestModel, x => x.TestFieldBoolean);
+            RelmHelper.LoadDataLoaderField(new ComplexTestContext(), complexTestModel, x => x.TestFieldBoolean);
 
             // Assert
             Assert.NotNull(complexTestModel.TestFieldBoolean);
@@ -441,7 +441,7 @@ namespace CoreRelm.Tests
             var complexTestModel = new ComplexTestModel();
 
             // Act
-            RelmHelper.LoadDataLoaderField(complexTestModel, x => x.TestFieldBooleans);
+            RelmHelper.LoadDataLoaderField(new ComplexTestContext(), complexTestModel, x => x.TestFieldBooleans);
 
             // Assert
             Assert.Equal(4, complexTestModel?.TestFieldBooleans?.Count);
