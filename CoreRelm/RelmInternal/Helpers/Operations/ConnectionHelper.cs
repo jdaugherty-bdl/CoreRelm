@@ -1,8 +1,10 @@
 ﻿using CoreRelm.Interfaces.Resolvers;
 using CoreRelm.RelmInternal.Resolvers;
+using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -13,14 +15,14 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
     internal class ConnectionHelper
     {
         // a pointer to the application's resolver instance
-        internal static IRelmResolver_MySQL DALResolver = GetResolverInstance();
+        internal static IRelmResolver_MySQL? DALResolver = GetResolverInstance();
 
         /// <summary>
         /// find an object inheriting from IDALResolver, but only look in the entry assembly (where all your custom code is)
         /// once it is found, then that object is loaded through Reflection to be used later on.
         /// </summary>
         /// <returns>The application's DALResolver instance.</returns>
-        internal static IRelmResolver_MySQL GetResolverInstance()
+        internal static IRelmResolver_MySQL? GetResolverInstance()
         {
             // try to get the resolver the standard way
             /*
@@ -38,7 +40,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
                 .FirstOrDefault();
             Console.WriteLine($"entryAssembly = {string.Join(",", AppDomain.CurrentDomain.GetAssemblies().Where(x => !string.IsNullOrWhiteSpace(x.EntryPoint?.Name)).Select(x => x?.FullName))}");
             */
-            Type entryAssembly = null;
+            Type? entryAssembly = null;
             var assemblies = AppDomain.CurrentDomain.GetAssemblies();
             foreach (var assembly in assemblies)
             {
@@ -158,7 +160,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
                 if (clientDalResolverType != null)
                     break;
             }
-
+            
             // if a resolver is found use that, otherwise use the simple default resolver
             if (clientDalResolverType != null)
                 return (IRelmResolver_MySQL)Activator.CreateInstance(clientDalResolverType);

@@ -263,7 +263,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
         {
             // Arrange
             Expression<Func<TestModel, object>> expression = x => x.Status;
-            var commandExpression = new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
+            var commandExpression = new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
                 ExpressionEvaluator.Command.DistinctBy,
                 [new RelmExecutionCommand(ExpressionEvaluator.Command.DistinctBy, expression)]);
 
