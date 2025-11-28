@@ -9,7 +9,7 @@ It sits close to ADO.NET, but gives you:
 - Helper methods for the common database shapes you actually use
 - A clean, explicit pattern for transactions and error handling
 
-It’s especially aimed at **.NET Framework** apps and services that need something quick and focused, but it also works from modern .NET projects.
+It’s especially aimed at **.NET Core** apps and services that need something quick and focused, but it also works from modern .NET projects.
 
 > ⚠️ **Status:** CoreRelm is under active development. APIs and examples may evolve as features are added and real-world scenarios are covered. Feedback, issues, and PRs are welcome.
 
