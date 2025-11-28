@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace CoreRelm.RelmInternal.Helpers.Expressions
 {
     // from: https://learn.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2008/bb882521(v=vs.90)?redirectedfrom=MSDN
-    public abstract class ExpressionVisitor
+    internal abstract class ExpressionVisitor
     {
         protected ExpressionVisitor() { }
 

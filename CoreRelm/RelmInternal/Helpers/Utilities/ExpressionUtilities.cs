@@ -6,10 +6,11 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using static CoreRelm.RelmInternal.Helpers.Operations.ExpressionEvaluator;
 
 namespace CoreRelm.RelmInternal.Helpers.Utilities
 {
-    public static class ExpressionUtilities
+    internal static class ExpressionUtilities
     {
         public static object GetValue(Expression expression)
         {
@@ -46,7 +47,7 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
             return getValue(expression, true, argumentValues);
         }
         */
-
+        
         public static object GetValue(Expression expression, List<object> argumentValues, bool allowCompile, bool useDynamicInvoke = false)
         {
             // Implementation that uses argumentValues
@@ -84,7 +85,7 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
                 else
                     return compiledDelegate.DynamicInvoke();
             }
-
+        
             return getValue(expression, allowCompile, argumentValues);
         }
 

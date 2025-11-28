@@ -11,11 +11,28 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
 {
     internal static class CoreUtilities
     {
-        // message for the "no DALTable attribute" exception
-        internal static string NoDalTableAttributeError => "Cannot get table name from class, try adding a 'DALTable' attribute.";
-        // message for the "no DALResolvable attributes" exception
-        internal static string NoDalPropertyAttributeError => "Cannot find any table properties in class, try adding a 'DALResolvable' attribute.";
+        /// <summary>
+        /// Gets an error message indicating that the table name could not be retrieved from the class.
+        /// </summary>
+        internal static string NoDalTableAttributeError => "Cannot get table name from class, try adding a 'RelmTable' attribute.";
 
+        /// <summary>
+        /// Gets an error message indicating that no column properties were found in the class.
+        /// </summary>
+        internal static string NoDalPropertyAttributeError => "Cannot find any column properties in class, try adding a 'RelmColumn' attribute.";
+
+        /// <summary>
+        /// Converts a scalar value to the specified type <typeparamref name="T"/>.
+        /// </summary>
+        /// <remarks>This method supports conversion to common types such as <see cref="string"/>, <see
+        /// cref="int"/>, <see cref="long"/>,  <see cref="decimal"/>, <see cref="float"/>, <see cref="bool"/>, <see
+        /// cref="DateTime"/>, and enums.  For <see cref="bool"/>, the method interprets non-zero numeric or non-empty
+        /// string values as <see langword="true"/>.</remarks>
+        /// <typeparam name="T">The target type to which the scalar value should be converted.</typeparam>
+        /// <param name="scalarValue">The scalar value to convert. Can be of any type, including <see langword="null"/> or <see cref="DBNull"/>.</param>
+        /// <returns>The converted value of type <typeparamref name="T"/>. If <paramref name="scalarValue"/> is <see
+        /// langword="null"/> or <see cref="DBNull"/>,  the default value of <typeparamref name="T"/> is returned. For
+        /// nullable types, <see langword="null"/> is returned in such cases.</returns>
         internal static object ConvertScalar<T>(object scalarValue)
         {
             if (scalarValue == null || scalarValue is DBNull)
@@ -42,11 +59,21 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
                 return (T)scalarValue;
         }
 
-        internal static void AddAllParameters(this MySqlParameterCollection CommandParameters, Dictionary<string, object> Parameters)
+        /// <summary>
+        /// Adds all parameters from the specified dictionary to the current <see cref="MySqlParameterCollection"/>.
+        /// </summary>
+        /// <remarks>This method converts each key-value pair in the dictionary into a <see
+        /// cref="MySqlParameter"/>  and adds them to the <see cref="MySqlParameterCollection"/>. If the dictionary is
+        /// empty or  <see langword="null"/>, the method performs no operation.</remarks>
+        /// <param name="commandParameters">The <see cref="MySqlParameterCollection"/> to which the parameters will be added.</param>
+        /// <param name="parameters">A dictionary containing parameter names and their corresponding values.  The keys represent the parameter
+        /// names, and the values represent the parameter values.  If <paramref name="parameters"/> is <see
+        /// langword="null"/>, no parameters are added.</param>
+        internal static void AddAllParameters(this MySqlParameterCollection commandParameters, Dictionary<string, object> parameters)
         {
-            CommandParameters
+            commandParameters
                 .AddRange(
-                    Parameters?
+                    parameters?
                         .Select(x => new MySqlParameter(x.Key, x.Value))
                         .ToArray()
                     ??
@@ -55,6 +82,15 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
                         .ToArray());
         }
 
+        /// <summary>
+        /// Creates a delegate that instantiates an object of type <typeparamref name="T"/> using a parameterless
+        /// constructor.
+        /// </summary>
+        /// <remarks>This method searches for a parameterless constructor in the type <typeparamref
+        /// name="T"/> and generates a compiled expression to create instances of the type. If no parameterless
+        /// constructor is available, an exception is thrown.</remarks>
+        /// <typeparam name="T">The type of object to create.</typeparam>
+        /// <returns>A <see cref="Func{T}"/> delegate that, when invoked, creates a new instance of <typeparamref name="T"/>.</returns>
         internal static Func<T> CreateCreatorExpression<T>()
         {
             var constructor = GetConstructorsRecursively(typeof(T))
@@ -65,31 +101,27 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
         }
 
         /// <summary>
-        /// Creates a labmda expression to instantiate objects of type T which take two constructor parameters.
+        /// Creates a compiled lambda expression that constructs an instance of the specified type <typeparamref
+        /// name="T"/>  using a constructor that accepts two parameters of types <typeparamref name="TArg1"/> and
+        /// <typeparamref name="TArg2"/>.
         /// </summary>
-        /// <typeparam name="TArg1">First parameter type.</typeparam>
-        /// <typeparam name="TArg2">Second parameter type.</typeparam>
-        /// <typeparam name="T">Return type.</typeparam>
-        /// <returns>An instantiation function that will create a new concrete object of type T.</returns>
+        /// <remarks>This method uses expression trees to generate a compiled lambda expression, which is
+        /// typically faster than  using <see cref="Activator.CreateInstance"/> for repeated object creation. Ensure
+        /// that the type <typeparamref name="T"/>  has a public constructor that matches the specified parameter types;
+        /// otherwise, an exception will be thrown at runtime.</remarks>
+        /// <typeparam name="TArg1">The type of the first parameter required by the constructor.</typeparam>
+        /// <typeparam name="TArg2">The type of the second parameter required by the constructor.</typeparam>
+        /// <typeparam name="T">The type of the object to be created.</typeparam>
+        /// <returns>A function delegate that takes two arguments of types <typeparamref name="TArg1"/> and <typeparamref
+        /// name="TArg2"/>  and returns an instance of type <typeparamref name="T"/>.</returns>
         internal static Func<TArg1, TArg2, T> CreateCreatorExpression<TArg1, TArg2, T>()
         {
-            //TODO: make this allow a variable number of TArgs
             var typeList = new Type[] { typeof(TArg1), typeof(TArg2) };
 
             // Lambda Expressions are much faster than Activator.CreateInstance when creating more than one object due to Expression caching
 
             // get object constructor
-            //var constructor = typeof(T).GetConstructor(new Type[] { typeof(TArg1), typeof(TArg2) });
             var constructor = typeof(T).GetConstructor(typeList);
-            /*
-            var constructor = GetConstructorsRecursively(typeof(T))
-                .Where(x => x
-                    .GetParameters()
-                    .Select(y => y.ParameterType)
-                    .Intersect(typeList)
-                    .Any())
-                .FirstOrDefault();
-            */
 
             // define individual parameters
             var parameterList = new ParameterExpression[]
@@ -106,14 +138,20 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
         }
 
         /// <summary>
-        /// Creates a labmda expression to instantiate objects of type T which take four constructor parameters.
+        /// Creates a compiled lambda expression that constructs an instance of the specified type <typeparamref
+        /// name="T"/>  using a constructor that accepts four parameters of types <typeparamref name="TArg1"/>,
+        /// <typeparamref name="TArg2"/>,  <typeparamref name="TArg3"/>, and <typeparamref name="TArg4"/>.
         /// </summary>
-        /// <typeparam name="TArg1">First parameter type.</typeparam>
-        /// <typeparam name="TArg2">Second parameter type.</typeparam>
-        /// <typeparam name="TArg3">Third parameter type.</typeparam>
-        /// <typeparam name="TArg4">Fourth parameter type</typeparam>
-        /// <typeparam name="T">Return type.</typeparam>
-        /// <returns>An instantiation function that will create a new concrete object of type T.</returns>
+        /// <remarks>This method is optimized for scenarios where multiple instances of <typeparamref
+        /// name="T"/> need to be created,  as the compiled lambda expression is significantly faster than using <see
+        /// cref="Activator.CreateInstance"/>  for repeated object creation.</remarks>
+        /// <typeparam name="TArg1">The type of the first parameter required by the constructor.</typeparam>
+        /// <typeparam name="TArg2">The type of the second parameter required by the constructor.</typeparam>
+        /// <typeparam name="TArg3">The type of the third parameter required by the constructor.</typeparam>
+        /// <typeparam name="TArg4">The type of the fourth parameter required by the constructor.</typeparam>
+        /// <typeparam name="T">The type of the object to be created.</typeparam>
+        /// <returns>A compiled lambda expression that, when invoked, creates an instance of <typeparamref name="T"/>  using the
+        /// specified constructor.</returns>
         internal static Func<TArg1, TArg2, TArg3, TArg4, T> CreateCreatorExpression<TArg1, TArg2, TArg3, TArg4, T>()
         {
             // Lambda Expressions are much faster than Activator.CreateInstance when creating more than one object due to Expression caching
@@ -137,6 +175,17 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
             return creatorExpression.Compile();
         }
 
+        /// <summary>
+        /// Retrieves a list of all constructors defined in the specified type and its base types, recursively.
+        /// </summary>
+        /// <remarks>This method retrieves both public and non-public constructors of the specified type
+        /// and its base types. The constructors are returned in the order they are discovered, starting with the
+        /// specified type and moving up the inheritance hierarchy.</remarks>
+        /// <param name="type">The <see cref="Type"/> for which to retrieve the constructors. If <paramref name="type"/> is <see
+        /// langword="null"/>, an empty list is returned.</param>
+        /// <returns>A <see cref="List{T}"/> of <see cref="ConstructorInfo"/> objects representing the constructors of the
+        /// specified type and its base types. The list will be empty if the specified type is <see langword="null"/> or
+        /// if no constructors are found.</returns>
         internal static List<ConstructorInfo> GetConstructorsRecursively(Type type)
         {
             List<ConstructorInfo> allConstructors = new List<ConstructorInfo>();

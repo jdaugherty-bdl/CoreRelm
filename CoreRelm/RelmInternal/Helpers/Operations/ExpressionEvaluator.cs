@@ -5,29 +5,20 @@ using CoreRelm.RelmInternal.Helpers.Utilities;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using static CoreRelm.Enums.Commands;
 
 namespace CoreRelm.RelmInternal.Helpers.Operations
 {
-    public class ExpressionEvaluator
+    /// <summary>
+    /// 
+    /// </summary>
+    internal class ExpressionEvaluator
     {
-        public enum Command
-        {
-            Where,
-            Reference,
-            OrderBy,
-            OrderByDescending,
-            Set,
-            SetPostfix,
-            GroupBy,
-            Limit,
-            DistinctBy,
-            Count
-        }
-
         private bool HasWhere = false;
         private bool HasOrderBy = false;
         private bool HasGroupBy = false;
@@ -35,7 +26,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         private readonly Dictionary<string, string> UnderscoreProperties;
         private readonly Dictionary<string, string> UsedTableAliases;
 
-        public ExpressionEvaluator(string TableName, Dictionary<string, string> UnderscoreProperties, Dictionary<string, string> UsedTableAliases = null)
+        internal ExpressionEvaluator(string TableName, Dictionary<string, string> UnderscoreProperties, Dictionary<string, string> UsedTableAliases = null)
         {
             this.UnderscoreProperties = UnderscoreProperties;
 
@@ -73,8 +64,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
             return parameterName;
         }
 
-        //public string EvaluateWhere(KeyValuePair<Command, List<Expression>> CommandExpression, Dictionary<string, object> QueryParameters, bool GiveCommandPrefix = true, ExpressionType NodeType = ExpressionType.And)
-        public string EvaluateWhere(KeyValuePair<Command, List<IRelmExecutionCommand?>> CommandExpression, Dictionary<string, object> QueryParameters, bool GiveCommandPrefix = true, ExpressionType NodeType = ExpressionType.And)
+        internal string EvaluateWhere(KeyValuePair<Command, List<IRelmExecutionCommand>> CommandExpression, Dictionary<string, object> QueryParameters, bool GiveCommandPrefix = true, ExpressionType NodeType = ExpressionType.And)
         {
             var expression = new KeyValuePair<Command, List<Tuple<Expression, ICollection<ParameterExpression>>>>(
                 CommandExpression.Key,
@@ -127,7 +117,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
                             ? " ) OR ( "
                             : " ) AND ( ")
                         : " WHERE (";
-
+                
                     HasWhere = true;
                 }
 
@@ -184,7 +174,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
                         parameterValue = ResolveParameter(memberExpressionRight1, queryParameters, parameterName);
 
                     if (binaryExpression.Left is UnaryExpression unaryExpressionLeft1 && !(unaryExpressionLeft1.Operand is MethodCallExpression))
-                    {
+                    { 
                         if (unaryExpressionLeft1.NodeType == ExpressionType.Convert && unaryExpressionLeft1.Operand.Type.IsEnum && unaryExpressionLeft1.Operand is MemberExpression memberExpression)
                         {
                             if (memberExpression.Expression.NodeType != ExpressionType.Parameter)
@@ -195,7 +185,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
                     }
 
                     if (binaryExpression.Right is UnaryExpression unaryExpressionRight1 && !(unaryExpressionRight1.Operand is MethodCallExpression))
-                    {
+                    { 
                         if (unaryExpressionRight1.NodeType == ExpressionType.Convert && unaryExpressionRight1.Operand.Type.IsEnum && unaryExpressionRight1.Operand is MemberExpression memberExpression)
                         {
                             if (memberExpression.Expression.NodeType != ExpressionType.Parameter)
@@ -322,7 +312,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
                     //    queryParameters.Remove("TESTEXPRESSION1");
 
                     //    command.Item2.Add(Expression.Parameter(ddd.GetType(), "y"));
-
+                        
                     //    EvaluateWhereExpression(new KeyValuePair<Command, List<Tuple<Expression, ICollection<ParameterExpression>>>>(Command.Where, new List<Tuple<Expression, ICollection<ParameterExpression>>> { new Tuple<Expression, ICollection<ParameterExpression>>(methodCall.Arguments[1], command.Item2) }), queryParameters, giveCommandPrefix: false);
                     //}
                     //else
@@ -513,7 +503,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
             return findQuery;
         }
 
-        public Tuple<string, string> EvaluateInsertInto(KeyValuePair<Command, List<IRelmExecutionCommand?>> commandExpression, Dictionary<string, object> queryParameters)
+        internal Tuple<string, string> EvaluateInsertInto(KeyValuePair<Command, List<IRelmExecutionCommand>> commandExpression, Dictionary<string, object> queryParameters)
         {
             var setLines = new List<string>();
             var usedColumns = new List<string>();
@@ -535,7 +525,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
             return new Tuple<string, string>(queryPrefix, queryPostfix);
         }
 
-        public string EvaluateSet(KeyValuePair<Command, List<IRelmExecutionCommand?>> commandExpression, Dictionary<string, object> queryParameters)
+        internal string EvaluateSet(KeyValuePair<Command, List<IRelmExecutionCommand>> commandExpression, Dictionary<string, object> queryParameters)
         {
             var setLines = new List<string>();
             var usedColumns = new List<string>();
@@ -597,7 +587,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
             return findQuery;
         }
 
-        private string EvaluatePostProcessor(List<IRelmExecutionCommand?> commandExpressionValues, bool? isDescending = null)
+        private string EvaluatePostProcessor(List<IRelmExecutionCommand> commandExpressionValues, bool? isDescending = null)
         {
             var findQuery = " ";
 
@@ -656,20 +646,17 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
 
         }
 
-        //public string EvaluateOrderBy(KeyValuePair<Command, List<Expression>> CommandExpression, bool IsDescending)
-        public string EvaluateOrderBy(KeyValuePair<Command, List<IRelmExecutionCommand?>> CommandExpression, bool IsDescending)
+        internal string EvaluateOrderBy(KeyValuePair<Command, List<IRelmExecutionCommand>> CommandExpression, bool IsDescending)
         {
             return EvaluatePostProcessor(CommandExpression.Value, IsDescending);
         }
 
-        //public string EvaluateGroupBy(KeyValuePair<Command, List<Expression>> CommandExpression)
-        public string EvaluateGroupBy(KeyValuePair<Command, List<IRelmExecutionCommand?>> CommandExpression)
+        internal string EvaluateGroupBy(KeyValuePair<Command, List<IRelmExecutionCommand>> CommandExpression)
         {
             return EvaluatePostProcessor(CommandExpression.Value);
         }
 
-        //public string EvaluateCount(KeyValuePair<Command, List<Expression>> CommandExpression)
-        public string EvaluateCount(KeyValuePair<Command, List<IRelmExecutionCommand?>> CommandExpression)
+        internal string EvaluateCount(KeyValuePair<Command, List<IRelmExecutionCommand>> CommandExpression)
         {
             var findQuery = string.Empty;
 
@@ -680,14 +667,12 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
             return findQuery;
         }
 
-        //public string EvaluateLimit(KeyValuePair<Command, List<Expression>> CommandExpression)
-        public string EvaluateLimit(KeyValuePair<Command, List<IRelmExecutionCommand?>> CommandExpression)
+        internal string EvaluateLimit(KeyValuePair<Command, List<IRelmExecutionCommand>> CommandExpression)
         {
             return $" LIMIT {(CommandExpression.Value[0].InitialExpression as ConstantExpression).Value} ";
         }
 
-        //public string EvaluateDistinctBy(KeyValuePair<Command, List<Expression>> CommandExpression)
-        public string EvaluateDistinctBy(KeyValuePair<Command, List<IRelmExecutionCommand?>> CommandExpression)
+        internal string EvaluateDistinctBy(KeyValuePair<Command, List<IRelmExecutionCommand>> CommandExpression)
         {
             MemberExpression methodOperand;
             if (CommandExpression.Value[0].InitialExpression is MemberExpression methodCall)

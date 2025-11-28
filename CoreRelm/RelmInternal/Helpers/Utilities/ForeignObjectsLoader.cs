@@ -1,10 +1,14 @@
-﻿using CoreRelm.Interfaces;
+﻿using MoreLinq;
+using Newtonsoft.Json;
+using CoreRelm.Attributes;
+using CoreRelm.Interfaces;
 using CoreRelm.Interfaces.RelmQuick;
 using CoreRelm.Models;
-using Newtonsoft.Json;
+using CoreRelm.RelmInternal.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -108,7 +112,7 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
                 // Find the DALDataSet with the same generic type as referenceType and create a new one
                 dataSet = dataSetMethod.Invoke(_currentContext, new object[] { navigationOptions.ReferenceType }); //as IRelmDataSetBase
             }
-
+                
             if (dataSet == null)
                 throw new InvalidOperationException($"No RelmDataSet with generic type [{navigationOptions.ReferenceProperty.Type.Name}] found in context [{_currentContext.GetType().Name}].");
 

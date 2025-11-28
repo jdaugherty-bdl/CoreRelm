@@ -9,7 +9,6 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
 {
     internal class AssemblyHelper
     {
-        /*
         public static Assembly GetEntryAssembly()
         {
             return Assembly.GetEntryAssembly() ?? Assembly.GetCallingAssembly() ?? GetWebEntryAssembly();
@@ -17,6 +16,7 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
 
         static private Assembly GetWebEntryAssembly()
         {
+            /*
             var type = System.Web.HttpContext.Current?.ApplicationInstance?.GetType();
             while (type?.Namespace == "ASP")
             {
@@ -24,7 +24,8 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
             }
 
             return type?.Assembly;
+            */
+            throw new NotImplementedException("Web entry assembly retrieval is not implemented.");
         }
-        */
     }
 }

@@ -1,4 +1,5 @@
-﻿using CoreRelm.Attributes;
+﻿using Newtonsoft.Json;
+using CoreRelm.Attributes;
 using CoreRelm.Interfaces;
 using System;
 using System.Collections.Generic;

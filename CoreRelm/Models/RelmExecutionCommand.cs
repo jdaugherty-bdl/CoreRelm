@@ -1,6 +1,6 @@
 ﻿using CoreRelm.Attributes;
 using CoreRelm.Interfaces;
-using MoreLinq;
+using CoreRelm.RelmInternal.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +8,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using static CoreRelm.Enums.Commands;
 using static CoreRelm.RelmInternal.Helpers.Operations.ExpressionEvaluator;
 
 namespace CoreRelm.Models
@@ -96,8 +97,12 @@ namespace CoreRelm.Models
                 var targetForeignKeyDecorators = targetProperties
                     .Where(x => x.GetCustomAttribute<RelmForeignKey>() != null)
                     .ToDictionary(x => x, x => x.GetCustomAttribute<RelmForeignKey>())
+                    /*
                     .Segment((prev, next, i) => !(prev.Value.LocalKeys ?? defaultLocalKeys).All(x => (next.Value.LocalKeys ?? defaultLocalKeys).Contains(x)))
                     .ToDictionary(x => x.FirstOrDefault().Value.LocalKeys ?? defaultLocalKeys, x => x.ToDictionary(y => y.Key, y => y.Value.ForeignKeys));
+                    */
+                    .GroupBy(x => x.Value.LocalKeys ?? defaultLocalKeys)
+                    .ToDictionary(x => x.Key, x => x.ToDictionary(y => y.Key, y => y.Value.ForeignKeys));
 
                 // find any navigation properties that are the same type as this data set
                 var navigationProps = targetPropertiesOfTypeT

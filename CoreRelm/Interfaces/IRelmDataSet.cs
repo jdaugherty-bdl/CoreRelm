@@ -1,5 +1,4 @@
-﻿using CoreRelm.Interfaces.Internal;
-using CoreRelm.Interfaces.RelmQuick;
+﻿using CoreRelm.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +10,7 @@ namespace CoreRelm.Interfaces
 {
     public interface IRelmDataSet<T> : ICollection<T>, IRelmDataSetBase where T : IRelmModel, new()
     {
-        IRelmFieldLoader? SetFieldLoader(string fieldName, IRelmFieldLoader dataLoader);
-        IRelmQuickFieldLoader? SetFieldLoader(string fieldName, IRelmQuickFieldLoader dataLoader);
+        IRelmFieldLoader SetFieldLoader(string fieldName, IRelmFieldLoader dataLoader);
         IRelmDataLoader<T> SetDataLoader(IRelmDataLoader<T> dataLoader);
         IRelmDataSet<T> Where(Expression<Func<T, bool>> predicate);
         IRelmDataSet<T> Reference<S>(Expression<Func<T, S>> predicate);
@@ -20,12 +18,12 @@ namespace CoreRelm.Interfaces
         IRelmDataSet<T> Reference<S>(Expression<Func<T, ICollection<S>>> predicate, Expression<Func<S, object>> additionalConstraints);
         IRelmDataSet<T> Reference<S>(Expression<Func<T, S>> predicate, ICollection<Expression<Func<S, object>>> additionalConstraints);
         IRelmDataSet<T> Reference<S>(Expression<Func<T, ICollection<S>>> predicate, ICollection<Expression<Func<S, object>>> additionalConstraints);
-        T? Find(int ItemId);
-        T? Find(string ItemInternalId);
-        T? FirstOrDefault();
-        T? FirstOrDefault(bool LoadItems);
-        T? FirstOrDefault(Expression<Func<T, bool>> predicate);
-        T? FirstOrDefault(Expression<Func<T, bool>> predicate, bool LoadItems);
+        T Find(int ItemId);
+        T Find(string ItemInternalId);
+        T FirstOrDefault();
+        T FirstOrDefault(bool LoadItems);
+        T FirstOrDefault(Expression<Func<T, bool>> predicate);
+        T FirstOrDefault(Expression<Func<T, bool>> predicate, bool LoadItems);
         ICollection<T> Load();
         ICollection<T> Load(bool loadDataLoaders);
         IRelmDataSet<T> LoadAsDataSet();
@@ -40,7 +38,7 @@ namespace CoreRelm.Interfaces
         IRelmDataSet<T> DistinctBy(Expression<Func<T, object>> predicate);
         int Save(T Item);
         int Save();
-        T New();
+        T New(bool Persist = true);
         T New(dynamic NewObjectParameters, bool Persist = true);
         new int Add(T item);
         int Add(T item, bool Persist);

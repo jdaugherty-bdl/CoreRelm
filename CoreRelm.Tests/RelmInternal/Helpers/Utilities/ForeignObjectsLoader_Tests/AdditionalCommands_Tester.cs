@@ -10,6 +10,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using static CoreRelm.Enums.Commands;
 
 namespace CoreRelm.Tests.RelmInternal.Helpers.Utilities.ForeignObjectsLoader_Tests
 {
@@ -80,13 +81,13 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Utilities.ForeignObjectsLoader_Tes
         private Expression<Func<ComplexReferenceObject, object>> SetupReferenceDataLoader(Expression referencePredicate, bool useVariable)
         {
             var objectsLoader = new ForeignObjectsLoader<ComplexTestModel>(mockComplexTestModels, context);
-            var executionCommand = new RelmExecutionCommand(ExpressionEvaluator.Command.Reference, referencePredicate);
+            var executionCommand = new RelmExecutionCommand(Command.Reference, referencePredicate);
 
             Expression<Func<ComplexReferenceObject, object>> predicate2 = x => x.Active == true;
             if (useVariable)
-                executionCommand.AddAdditionalCommand(ExpressionEvaluator.Command.Reference, predicate2.Body);
+                executionCommand.AddAdditionalCommand(Command.Reference, predicate2.Body);
             else
-                executionCommand.AddAdditionalCommand<ComplexReferenceObject>(ExpressionEvaluator.Command.Reference, x => x.Active == false);
+                executionCommand.AddAdditionalCommand<ComplexReferenceObject>(Command.Reference, x => x.Active == false);
 
             var navigationOptions = executionCommand.GetForeignKeyNavigationOptions(mockComplexTestModels);
             containsLambda = objectsLoader.BuildLogicExpression(executionCommand, navigationOptions);
@@ -100,13 +101,13 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Utilities.ForeignObjectsLoader_Tes
         private Expression<Func<ComplexReferenceObject_NavigationProperty, object>> SetupNavigationDataLoader(Expression referencePredicate, bool useVariable)
         {
             var objectsLoader = new ForeignObjectsLoader<ComplexTestModel>(mockComplexTestModels, context);
-            var executionCommand = new RelmExecutionCommand(ExpressionEvaluator.Command.Reference, referencePredicate);
+            var executionCommand = new RelmExecutionCommand(Command.Reference, referencePredicate);
 
             Expression<Func<ComplexReferenceObject_NavigationProperty, object>> predicate2 = x => x.Active == true;
             if (useVariable)
-                executionCommand.AddAdditionalCommand(ExpressionEvaluator.Command.Reference, predicate2.Body);
+                executionCommand.AddAdditionalCommand(Command.Reference, predicate2.Body);
             else
-                executionCommand.AddAdditionalCommand<ComplexReferenceObject>(ExpressionEvaluator.Command.Reference, x => x.Active == false);
+                executionCommand.AddAdditionalCommand<ComplexReferenceObject>(Command.Reference, x => x.Active == false);
 
             var navigationOptions = executionCommand.GetForeignKeyNavigationOptions(mockComplexTestModels);
             containsLambda = objectsLoader.BuildLogicExpression(executionCommand, navigationOptions);
@@ -120,13 +121,13 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Utilities.ForeignObjectsLoader_Tes
         private Expression<Func<ComplexReferenceObject_PrincipalEntity, object>> SetupPrincipalDataLoader(Expression referencePredicate, bool useVariable)
         {
             var objectsLoader = new ForeignObjectsLoader<ComplexTestModel>(mockComplexTestModels, context);
-            var executionCommand = new RelmExecutionCommand(ExpressionEvaluator.Command.Reference, referencePredicate);
+            var executionCommand = new RelmExecutionCommand(Command.Reference, referencePredicate);
 
             Expression<Func<ComplexReferenceObject_PrincipalEntity, object>> predicate2 = x => x.Active == true;
             if (useVariable)
-                executionCommand.AddAdditionalCommand(ExpressionEvaluator.Command.Reference, predicate2.Body);
+                executionCommand.AddAdditionalCommand(Command.Reference, predicate2.Body);
             else
-                executionCommand.AddAdditionalCommand<ComplexReferenceObject>(ExpressionEvaluator.Command.Reference, x => x.Active == false);
+                executionCommand.AddAdditionalCommand<ComplexReferenceObject>(Command.Reference, x => x.Active == false);
 
             var navigationOptions = executionCommand.GetForeignKeyNavigationOptions(mockComplexTestModels);
             containsLambda = objectsLoader.BuildLogicExpression(executionCommand, navigationOptions);

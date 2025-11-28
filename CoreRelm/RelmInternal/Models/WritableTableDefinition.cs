@@ -1,16 +1,17 @@
-﻿using CoreRelm.Attributes;
+﻿using MoreLinq;
+using MySql.Data.MySqlClient;
+using CoreRelm.Attributes;
 using CoreRelm.Models;
 using CoreRelm.RelmInternal.Extensions;
 using CoreRelm.RelmInternal.Helpers.Utilities;
-using MoreLinq;
-using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using static CoreRelm.GlobalEnums;
+using static CoreRelm.Enums.Triggers;
 
 namespace CoreRelm.RelmInternal.Models
 {
@@ -18,9 +19,19 @@ namespace CoreRelm.RelmInternal.Models
     {
         private string _databaseName;
 
+        /// <summary>
+        /// Gets the name of the database table associated with this instance.
+        /// </summary>
         public string TableName { get; private set; }
+
+        /// <summary>
+        /// Gets the type of the table represented by this instance.
+        /// </summary>
         public Type TableType { get; private set; }
 
+        /// <summary>
+        /// Gets or sets the name of the database.
+        /// </summary>
         public string DatabaseName
         {
             get
@@ -32,9 +43,31 @@ namespace CoreRelm.RelmInternal.Models
                 _databaseName = value.MySqlObjectQuote();
             }
         }
+
+        /// <summary>
+        /// Gets or sets the collection of properties associated with the table.
+        /// </summary>
         public IEnumerable<DALPropertyType_MySQL> TableProperties { get; set; }
+
+        /// <summary>
+        /// Gets or sets the collection of triggers associated with their respective trigger types.
+        /// </summary>
+        /// <remarks>Use this property to manage and access triggers based on their types. The dictionary
+        /// allows for  efficient retrieval and modification of triggers. Ensure that the keys in the dictionary are
+        /// unique  and correspond to valid <see cref="TriggerTypes"/> values.</remarks>
         public Dictionary<TriggerTypes, RelmTrigger<T>> Triggers { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WritableTableDefinition"/> class.
+        /// </summary>
+        /// <remarks>This constructor initializes the table definition for a writable table based on the
+        /// specified generic type <c>T</c>. It validates that the type is decorated with the required <see
+        /// cref="RelmTable"/> attribute and that it contains at least one property marked with the <see
+        /// cref="RelmColumn"/> attribute. If these conditions are not met, an exception is thrown. Additionally, it
+        /// prepares the table's properties for use in database operations by converting property names to their
+        /// underscore equivalents and associating metadata such as column names and property types.</remarks>
+        /// <exception cref="CustomAttributeFormatException">Thrown if the generic type <c>T</c> does not have the <see cref="RelmTable"/> attribute or if none of its
+        /// properties are decorated with the <see cref="RelmColumn"/> attribute.</exception>
         internal WritableTableDefinition()
         {
             TableType = typeof(T);
@@ -54,7 +87,7 @@ namespace CoreRelm.RelmInternal.Models
 
             // get properties from object, convert to underscore names
             TableProperties = UnderscoreNamesHelper
-                .ConvertPropertiesToUnderscoreNames(TableType, ForceLowerCase: true, GetOnlyDalResolvables: true)
+                .ConvertPropertiesToUnderscoreNames(TableType, forceLowerCase: true, getOnlyRelmColumns: true)
                 .Select(x => new DALPropertyType_MySQL(x.Value.Item2.PropertyType)
                 {
                     ColumnName = x.Key.MySqlObjectQuote(),
@@ -64,6 +97,10 @@ namespace CoreRelm.RelmInternal.Models
                 });
         }
 
+        /// <summary>
+        /// Clears all triggers by resetting the internal collection.
+        /// </summary>
+        /// <returns><see langword="true"/> to indicate that the operation was successful.</returns>
         public bool ClearAllTriggers()
         {
             Triggers = new Dictionary<TriggerTypes, RelmTrigger<T>>();
@@ -71,38 +108,65 @@ namespace CoreRelm.RelmInternal.Models
             return true;
         }
 
-        public WritableTableDefinition<T> SetTrigger(TriggerTypes TriggerType, string TriggerBody)
+        /// <summary>
+        /// Sets a trigger for the table definition with the specified type and body.
+        /// </summary>
+        /// <remarks>This method replaces any existing trigger of the same type with the specified trigger
+        /// body. To append to an existing trigger body instead of replacing it, use an alternative method if
+        /// available.</remarks>
+        /// <param name="triggerType">The type of the trigger to set. This determines when the trigger will be executed.</param>
+        /// <param name="triggerBody">The body of the trigger, typically containing the logic or SQL statement to execute.</param>
+        /// <returns>A new <see cref="WritableTableDefinition{T}"/> instance with the specified trigger applied.</returns>
+        public WritableTableDefinition<T> SetTrigger(TriggerTypes triggerType, string triggerBody)
         {
-            return AppendTriggerData(TriggerType, TriggerBody, AppendTriggerBody: false);
+            return AppendTriggerData(triggerType, triggerBody, appendTriggerBody: false);
         }
 
-        public WritableTableDefinition<T> AppendTrigger(TriggerTypes TriggerType, string TriggerBody)
+        /// <summary>
+        /// Appends a trigger to the table definition.
+        /// </summary>
+        /// <remarks>Use this method to add a trigger to the table definition. The trigger type specifies
+        /// the event that activates the trigger,  such as an INSERT, UPDATE, or DELETE operation. The trigger body
+        /// should contain valid SQL defining the trigger's behavior.</remarks>
+        /// <param name="triggerType">The type of the trigger to append. This determines the event that will activate the trigger.</param>
+        /// <param name="triggerBody">The SQL body of the trigger, defining the actions to perform when the trigger is activated.</param>
+        /// <returns>A <see cref="WritableTableDefinition{T}"/> instance with the specified trigger appended.</returns>
+        public WritableTableDefinition<T> AppendTrigger(TriggerTypes triggerType, string triggerBody)
         {
-            return AppendTriggerData(TriggerType, TriggerBody, AppendTriggerBody: true);
+            return AppendTriggerData(triggerType, triggerBody, appendTriggerBody: true);
         }
 
-        private WritableTableDefinition<T> AppendTriggerData(TriggerTypes TriggerType, string TriggerBody, bool AppendTriggerBody = true)
+        private WritableTableDefinition<T> AppendTriggerData(TriggerTypes triggerType, string triggerBody, bool appendTriggerBody = true)
         {
-            var trigger = new RelmTrigger<T>(TriggerType, TriggerBody)
+            var trigger = new RelmTrigger<T>(triggerType, triggerBody)
             {
                 DatabaseName = this.DatabaseName
             };
 
             Triggers = Triggers ?? new Dictionary<TriggerTypes, RelmTrigger<T>>();
 
-            if (Triggers.ContainsKey(TriggerType))
+            if (Triggers.ContainsKey(triggerType))
             {
-                if (AppendTriggerBody)
-                    trigger.TriggerBody = $"{Triggers[TriggerType].TriggerBody};{Environment.NewLine}{trigger.TriggerBody}";
+                if (appendTriggerBody)
+                    trigger.TriggerBody = $"{Triggers[triggerType].TriggerBody};{Environment.NewLine}{trigger.TriggerBody}";
 
-                Triggers[TriggerType] = trigger;
+                Triggers[triggerType] = trigger;
             }
             else
-                Triggers.Add(TriggerType, trigger);
+                Triggers.Add(triggerType, trigger);
 
             return this;
         }
 
+        /// <summary>
+        /// Generates a string representation of the SQL statement required to create the table, including its columns,
+        /// primary key, indexes, and triggers.
+        /// </summary>
+        /// <remarks>The generated SQL statement includes the table name, column definitions, primary key,
+        /// and any indexes or triggers associated with the table. If the table or column definitions are invalid (e.g.,
+        /// missing required sizes for certain column types), an exception may be thrown.</remarks>
+        /// <returns>A string containing the SQL statement to create the table and its associated triggers.</returns>
+        /// <exception cref="ArgumentException">Thrown if a column definition is invalid, such as when a column type requires a size but none is provided.</exception>
         public override string ToString()
         {
             var createTableStatement = new StringBuilder();
@@ -117,7 +181,6 @@ namespace CoreRelm.RelmInternal.Models
             // do columns
             createTableStatement.Append(string
                 .Join(",", TableProperties
-                    //.Select(x => new KeyValuePair<string, Tuple<DALPropertyType, DALResolvable>>(x.Key, new Tuple<DALPropertyType, DALResolvable>(x.Value, x.Value.PropertyTypeInformation.GetCustomAttribute<DALResolvable>())))
                     .Select(x => new StringBuilder()
                         .AppendLine()
                         .Append("\t")

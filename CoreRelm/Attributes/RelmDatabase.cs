@@ -6,23 +6,30 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.Attributes
 {
+    /// <summary>
+    /// Specifies that a class or struct represents a database entity and associates it with a database name.
+    /// </summary>
+    /// <remarks>This attribute is used to annotate classes or structs that correspond to database entities. 
+    /// The <see cref="DatabaseName"/> property specifies the name of the database associated with the entity.</remarks>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
     public sealed class RelmDatabase : Attribute
     {
-        private string _databaseName;
+        /// <summary>
+        /// Gets or sets the name of the database.
+        /// </summary>
+        public string DatabaseName { get; private set; }
 
-        public string DatabaseName
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RelmDatabase"/> class with the specified database name.
+        /// </summary>
+        /// <param name="databaseName">The name of the database. This value cannot be null, empty, or consist only of white-space characters.</param>
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="databaseName"/> is null, empty, or consists only of white-space characters.</exception>
+        public RelmDatabase(string databaseName)
         {
-            get { return _databaseName; }
-            set { _databaseName = value; }
-        }
+            if (string.IsNullOrWhiteSpace(databaseName))
+                throw new ArgumentNullException(nameof(databaseName));
 
-        public RelmDatabase(string TableName)
-        {
-            if (string.IsNullOrWhiteSpace(TableName))
-                throw new ArgumentNullException(nameof(TableName));
-
-            _databaseName = TableName;
+            DatabaseName = databaseName;
         }
     }
 }

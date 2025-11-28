@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoreRelm.Interfaces.Internal
+namespace CoreRelm.Interfaces
 {
-    internal interface IDatabaseWorker
+    public interface IRelmDataSetBase
     {
     }
 }

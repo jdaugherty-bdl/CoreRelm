@@ -1,6 +1,6 @@
-﻿using CoreRelm.RelmInternal.Models;
-using MoreLinq;
+﻿using MoreLinq;
 using MySql.Data.MySqlClient;
+using CoreRelm.RelmInternal.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,7 +46,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         }
 
         private void SetupPropertyLists()
-        {
+        { 
             // get a list of all properties on T that are marked with the DALResolvable attribute
             underscoreProperties = DataNamingHelper.GetUnderscoreProperties<T>(true).ToDictionary(x => x.Value.Item1, x => x.Key);
 

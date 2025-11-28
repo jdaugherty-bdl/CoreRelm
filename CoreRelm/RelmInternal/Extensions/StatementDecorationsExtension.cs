@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.RelmInternal.Extensions
 {
-    public static class StatementDecorationsExtension
+    internal static class StatementDecorationsExtension
     {
         public static string MySqlObjectQuote(this string ObjectName)
         {

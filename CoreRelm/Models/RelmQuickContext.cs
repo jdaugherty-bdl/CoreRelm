@@ -1,11 +1,15 @@
-﻿using CoreRelm.Attributes;
+﻿using MySql.Data.MySqlClient;
+using CoreRelm.Attributes;
+using CoreRelm.Extensions;
 using CoreRelm.Interfaces;
-using CoreRelm.Interfaces.Internal;
 using CoreRelm.Interfaces.RelmQuick;
 using CoreRelm.Options;
-using MySql.Data.MySqlClient;
+using CoreRelm.Persistence;
+using CoreRelm.RelmInternal.Helpers.DataTransfer;
+using CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -24,49 +28,49 @@ namespace CoreRelm.Models
         private bool localOpenConnection = false;
         private bool localOpenTransaction = false;
 
-        public RelmQuickContext(RelmContextOptionsBuilder optionsBuilder, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false)
+        public RelmQuickContext(RelmContextOptionsBuilder optionsBuilder, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0)
         {
             ContextOptions = optionsBuilder ?? throw new ArgumentNullException(nameof(optionsBuilder), "RelmContextOptionsBuilder cannot be null.");
 
             ContextOptions.ValidateAllSettings();
 
-            InitializeContext(autoOpenConnection: autoOpenConnection, autoOpenTransaction: autoOpenTransaction, allowUserVariables: allowUserVariables);
+            InitializeContext(autoOpenConnection: autoOpenConnection, autoOpenTransaction: autoOpenTransaction, allowUserVariables: allowUserVariables, convertZeroDateTime: convertZeroDateTime, lockWaitTimeoutSeconds: lockWaitTimeoutSeconds);
         }
 
-        public RelmQuickContext(Enum connectionStringType, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false)
+        public RelmQuickContext(Enum connectionStringType, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0)
         {
             // set the options and allow user to override
             ContextOptions = new RelmContextOptionsBuilder(connectionStringType);
 
-            InitializeContext(autoOpenConnection: autoOpenConnection, autoOpenTransaction: autoOpenTransaction, allowUserVariables: allowUserVariables);
+            InitializeContext(autoOpenConnection: autoOpenConnection, autoOpenTransaction: autoOpenTransaction, allowUserVariables: allowUserVariables, convertZeroDateTime: convertZeroDateTime, lockWaitTimeoutSeconds: lockWaitTimeoutSeconds);
         }
 
-        public RelmQuickContext(string connectionDetails, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false)
+        public RelmQuickContext(string connectionDetails, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0)
         {
             // set the options and allow user to override
             ContextOptions = new RelmContextOptionsBuilder(connectionDetails);
 
-            InitializeContext(autoOpenConnection: autoOpenConnection, autoOpenTransaction: autoOpenTransaction, allowUserVariables: allowUserVariables);
+            InitializeContext(autoOpenConnection: autoOpenConnection, autoOpenTransaction: autoOpenTransaction, allowUserVariables: allowUserVariables, convertZeroDateTime: convertZeroDateTime, lockWaitTimeoutSeconds: lockWaitTimeoutSeconds);
         }
 
-        public RelmQuickContext(MySqlConnection connection, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false)
+        public RelmQuickContext(MySqlConnection connection, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0)
         {
             ContextOptions = new RelmContextOptionsBuilder(connection);
 
-            InitializeContext(autoOpenConnection: autoOpenConnection, autoOpenTransaction: autoOpenTransaction, allowUserVariables: allowUserVariables);
+            InitializeContext(autoOpenConnection: autoOpenConnection, autoOpenTransaction: autoOpenTransaction, allowUserVariables: allowUserVariables, convertZeroDateTime: convertZeroDateTime, lockWaitTimeoutSeconds: lockWaitTimeoutSeconds);
         }
 
-        public RelmQuickContext(MySqlConnection connection, MySqlTransaction transaction, bool autoOpenConnection = true, bool allowUserVariables = false)
+        public RelmQuickContext(MySqlConnection connection, MySqlTransaction transaction, bool autoOpenConnection = true, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0)
         {
             ContextOptions = new RelmContextOptionsBuilder(connection, transaction);
 
-            InitializeContext(autoOpenConnection: autoOpenConnection, autoOpenTransaction: false, allowUserVariables: allowUserVariables);
+            InitializeContext(autoOpenConnection: autoOpenConnection, autoOpenTransaction: false, allowUserVariables: allowUserVariables, convertZeroDateTime: convertZeroDateTime, lockWaitTimeoutSeconds: lockWaitTimeoutSeconds);
         }
 
-        private void InitializeContext(bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false)
+        private void InitializeContext(bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0)
         {
             if (ContextOptions.DatabaseConnection == null)
-                ContextOptions.SetDatabaseConnection(RelmHelper.GetConnectionFromConnectionString(ContextOptions.DatabaseConnectionString, allowUserVariables: allowUserVariables));
+                ContextOptions.SetDatabaseConnection(RelmHelper.GetConnectionFromConnectionString(ContextOptions.DatabaseConnectionString, allowUserVariables: allowUserVariables, convertZeroDateTime: convertZeroDateTime, lockWaitTimeoutSeconds: lockWaitTimeoutSeconds));
 
             if ((autoOpenConnection || autoOpenTransaction) && ContextOptions.DatabaseConnection != null)
                 StartConnection(autoOpenTransaction);
@@ -90,31 +94,75 @@ namespace CoreRelm.Models
 
             if (disposing)
             {
-                foreach (var attachedProperty in _attachedProperties)
+                if ((_attachedProperties?.Count() ?? 0) > 0)
                 {
-                    if (attachedProperty.GetValue(this) is IDisposable disposable)
-                        disposable.Dispose();
-                    else
-                        attachedProperty.SetValue(this, default);
+                    foreach (var attachedProperty in _attachedProperties)
+                    {
+                        if (attachedProperty.GetValue(this) is IDisposable disposable)
+                            disposable.Dispose();
+                        else
+                            attachedProperty.SetValue(this, default);
+                    }
                 }
             }
         }
 
-        public void StartConnection(bool autoOpenTransaction = false)
+        public MySqlTransaction BeginTransaction()
+        {
+            if (ContextOptions.DatabaseTransaction == null)
+                ContextOptions.SetDatabaseTransaction(ContextOptions.DatabaseConnection?.BeginTransaction());
+
+            return ContextOptions.DatabaseTransaction;
+        }
+
+        public void CommitTransaction()
+        {
+            ContextOptions.DatabaseTransaction?.Commit();
+
+            localOpenTransaction = false;
+            ContextOptions.SetDatabaseTransaction(null);
+        }
+
+        public void RollbackTransaction()
+        {
+            ContextOptions.DatabaseTransaction?.Rollback();
+
+            localOpenTransaction = false;
+            ContextOptions.SetDatabaseTransaction(null);
+        }
+
+        public void RollbackTransactions()
+            => RollbackTransaction();
+
+        public void StartConnection(bool autoOpenTransaction = false, int lockWaitTimeoutSeconds = 0)
         {
             if (ContextOptions.DatabaseConnection == null)
                 throw new InvalidOperationException("Cannot open a non-existent database connection.");
 
-            if (ContextOptions.DatabaseConnection.State == System.Data.ConnectionState.Closed)
+            if (ContextOptions.DatabaseConnection.State == ConnectionState.Closed)
             {
                 ContextOptions.DatabaseConnection.Open();
 
                 localOpenConnection = true;
+
+                if (lockWaitTimeoutSeconds > 0)
+                {
+                    // For true lock wait timeout, we need to execute a command immediately after opening
+                    using (var cmd = ContextOptions.DatabaseConnection.CreateCommand())
+                    {
+                        cmd.CommandText = $"SET SESSION innodb_lock_wait_timeout = {lockWaitTimeoutSeconds}";
+                        cmd.ExecuteNonQuery();
+
+                        // Also set transaction isolation level to help with locks
+                        cmd.CommandText = "SET SESSION transaction_isolation = 'READ-COMMITTED'";
+                        cmd.ExecuteNonQuery();
+                    }
+                }
             }
 
-            if (autoOpenTransaction && ContextOptions.DatabaseConnection.State == System.Data.ConnectionState.Open)
+            if (autoOpenTransaction && ContextOptions.DatabaseConnection.State == ConnectionState.Open)
             {
-                ContextOptions.SetDatabaseTransaction(ContextOptions.DatabaseConnection.BeginTransaction());
+                BeginTransaction();
 
                 localOpenTransaction = true;
             }
@@ -138,6 +186,14 @@ namespace CoreRelm.Models
                     localOpenConnection = false;
                 }
             }
+        }
+
+        public void SetDataLoader<T>(IRelmDataLoader<T> dataLoader) where T : RelmModel, new()
+        {
+            if (!HasDataSet<T>())
+                throw new InvalidOperationException("No such data set exists");
+
+            GetDataSetType<T>().SetDataLoader(dataLoader);
         }
 
         public IRelmDataSet<T> GetDataSet<T>() where T : IRelmModel, new()
@@ -313,29 +369,29 @@ namespace CoreRelm.Models
             return dataSetProperty?.GetValue(this) as IRelmDataSetBase;
         }
 
-        public ICollection<T> Get<T>() where T : IRelmModel, new()
+        public ICollection<T> Get<T>(bool loadDataLoaders = false) where T : IRelmModel, new()
         {
             var dataSet = GetDataSet<T>()
                 ?? throw new InvalidOperationException($"DataSet for type {typeof(T).Name} is not initialized.");
 
-            return dataSet.Load();
+            return dataSet.Load(loadDataLoaders: loadDataLoaders);
         }
 
-        public ICollection<T> Get<T>(Expression<Func<T, bool>> predicate) where T : IRelmModel, new()
+        public ICollection<T> Get<T>(Expression<Func<T, bool>> predicate, bool loadDataLoaders = false) where T : IRelmModel, new()
         {
-            return Where(predicate).Load();
+            return Where(predicate).Load(loadDataLoaders: loadDataLoaders);
         }
 
-        public T FirstOrDefault<T>(Expression<Func<T, bool>> predicate) where T : IRelmModel, new()
+        public T FirstOrDefault<T>(Expression<Func<T, bool>> predicate, bool loadDataLoaders = false) where T : IRelmModel, new()
         {
-            return Get(predicate).FirstOrDefault();
+            return Get(predicate, loadDataLoaders: loadDataLoaders).FirstOrDefault();
         }
 
         public IRelmDataSet<T> Where<T>(Expression<Func<T, bool>> predicate) where T : IRelmModel, new()
         {
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate), "Predicate cannot be null.");
-
+            
             var dataSet = GetDataSet<T>()
                 ?? throw new InvalidOperationException($"DataSet for type {typeof(T).Name} is not initialized.");
 
@@ -352,5 +408,53 @@ namespace CoreRelm.Models
 
             return runResults;
         }
+
+        public string GetLastInsertId()
+            => RowIdentityHelper.GetLastInsertId(this);
+
+        public string GetIdFromInternalId(string Table, string InternalId)
+            => RowIdentityHelper.GetIdFromInternalId(this, Table, InternalId);
+
+        public DataRow GetDataRow(string query, Dictionary<string, object> parameters = null, bool throwException = true)
+            => RefinedResultsHelper.GetDataRow(this, query, parameters, throwException: throwException);
+
+        public DataTable GetDataTable(string query, Dictionary<string, object> parameters = null, bool throwException = true)
+            => RefinedResultsHelper.GetDataTable(this, query, parameters, throwException: throwException);
+
+        public T GetDataObject<T>(string QueryString, Dictionary<string, object> Parameters = null, bool throwException = true) where T : IRelmModel, new()
+            => ObjectResultsHelper.GetDataObject<T>(this, QueryString, Parameters, throwException: throwException);
+
+        public IEnumerable<T> GetDataObjects<T>(string QueryString, Dictionary<string, object> Parameters = null, bool throwException = true) where T : IRelmModel, new()
+            => ObjectResultsHelper.GetDataObjects<T>(this, QueryString, Parameters, throwException: throwException);
+
+        public IEnumerable<T> GetDataList<T>(string QueryString, Dictionary<string, object> Parameters = null, bool throwException = true)
+            => ObjectResultsHelper.GetDataList<T>(this, QueryString, parameters: Parameters, throwException: throwException);
+
+        public T GetScalar<T>(string query, Dictionary<string, object> parameters = null, bool throwException = true)
+            => RefinedResultsHelper.GetScalar<T>(this, query, parameters: parameters, throwException: throwException);
+
+        public BulkTableWriter<T> GetBulkTableWriter<T>(string InsertQuery = null, bool useTransaction = false, bool throwException = true, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
+            => DataOutputOperations.GetBulkTableWriter<T>(this, insertQuery: InsertQuery, useTransaction: useTransaction, throwException: throwException, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns);
+
+        public int BulkTableWrite<T>(T SourceData, string TableName = null, MySqlTransaction sqlTransaction = null, Type ForceType = null, int BatchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
+            => DataOutputOperations.BulkTableWrite<T>(this, SourceData, TableName, ForceType, batchSize: BatchSize, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns);
+
+        public void DoDatabaseWork(string QueryString, Dictionary<string, object> Parameters = null, bool throwException = true, bool useTransaction = false)
+            => DatabaseWorkHelper.DoDatabaseWork(this, QueryString, Parameters, throwException: throwException, useTransaction: useTransaction);
+
+        public T DoDatabaseWork<T>(string QueryString, Dictionary<string, object> Parameters = null, bool throwException = true, bool useTransaction = false)
+         => DatabaseWorkHelper.DoDatabaseWork<T>(this, QueryString, Parameters, throwException, useTransaction);
+
+        public void DoDatabaseWork(string QueryString, Func<MySqlCommand, object> ActionCallback, bool throwException = true, bool useTransaction = false)
+            => DatabaseWorkHelper.DoDatabaseWork(this, QueryString, ActionCallback, throwException, useTransaction);
+
+        public T DoDatabaseWork<T>(string QueryString, Func<MySqlCommand, object> ActionCallback, bool throwException = true, bool useTransaction = false)
+            => DatabaseWorkHelper.DoDatabaseWork<T>(this, QueryString, ActionCallback, throwException, useTransaction);
+
+        public int WriteToDatabase(IRelmModel relmModel, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
+            => relmModel.WriteToDatabase(this, batchSize: batchSize, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
+
+        public int WriteToDatabase(IEnumerable<IRelmModel> relmModels, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
+            => relmModels.WriteToDatabase(this, batchSize: batchSize, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
     }
 }

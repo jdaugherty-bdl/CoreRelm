@@ -11,6 +11,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using static CoreRelm.Enums.Commands;
 
 namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTests
 {
@@ -53,9 +54,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             var containsCall = Expression.Lambda(funcType, containsExpression, parameter);
 
             // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
-                    ExpressionEvaluator.Command.Where, 
-                    [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, containsCall)])
+            var result = evaluator.EvaluateWhere(new KeyValuePair<Command, List<IRelmExecutionCommand?>>(
+                    Command.Where, 
+                    [new RelmExecutionCommand(Command.Where, containsCall)])
                 , queryParameters);
 
             // Assert
@@ -85,9 +86,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             var containsCall = Expression.Lambda(funcType, containsExpression, parameter);
 
             // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
-                    ExpressionEvaluator.Command.Where,
-                    [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, containsCall)])
+            var result = evaluator.EvaluateWhere(new KeyValuePair<Command, List<IRelmExecutionCommand?>>(
+                    Command.Where,
+                    [new RelmExecutionCommand(Command.Where, containsCall)])
                 , queryParameters);
 
             // Assert

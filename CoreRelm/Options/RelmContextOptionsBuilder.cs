@@ -1,12 +1,14 @@
 ﻿using MySql.Data.MySqlClient;
+using CoreRelm.RelmInternal.Helpers.Operations;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
-using static CoreRelm.RelmEnumHolder;
 
 namespace CoreRelm.Options
 {
@@ -136,7 +138,7 @@ namespace CoreRelm.Options
         }
 
         public void SetConnectionStringType(Type enumType, Enum connectionStringType)
-        {
+        { 
             if (!Enum.IsDefined(enumType, connectionStringType))
                 throw new ArgumentNullException("Invalid connection string type provided.", nameof(connectionStringType));
 

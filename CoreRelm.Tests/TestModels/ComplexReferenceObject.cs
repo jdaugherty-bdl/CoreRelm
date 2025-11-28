@@ -13,7 +13,7 @@ namespace CoreRelm.Tests.TestModels
     public class ComplexReferenceObject : RelmModel
     {
         [RelmColumn]
-        [RelmForeignKey(LocalKey: nameof(TestModel))]
+        [RelmForeignKey(localKey: nameof(TestModel))]
         public string? ComplexTestModelInternalId { get; set; }
 
         [RelmColumn]

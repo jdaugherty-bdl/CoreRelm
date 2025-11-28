@@ -17,7 +17,7 @@ namespace CoreRelm.RelmInternal.Helpers.EqualityComparers
                 return false;
             else if (x.GetType() != y.GetType())
                 return false;
-
+            
             return x.ConverterType == y.ConverterType;
         }
 

@@ -1,5 +1,5 @@
 ﻿using CoreRelm.Interfaces;
-using CoreRelm.Models;
+using CoreRelm.Interfaces.RelmQuick;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,42 +10,96 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
 {
     internal class RowIdentityHelper
     {
-        internal static string GetLastInsertId(Enum ConfigConnectionString)
+        /// <summary>
+        /// Retrieves the identifier of the last inserted row in the database for the specified connection.
+        /// </summary>
+        /// <remarks>This method relies on the database's LAST_INSERT_ID() function, which typically
+        /// returns the most recent auto-increment value generated during the current session.  Ensure that the database
+        /// supports this function and that the session context is consistent with the operation that generated the
+        /// ID.</remarks>
+        /// <param name="connectionName">An enumeration value representing the configuration connection string to use for the database query.</param>
+        /// <returns>A string containing the identifier of the last inserted row. The value is determined by the database's
+        /// LAST_INSERT_ID() function.</returns>
+        internal static string GetLastInsertId(Enum connectionName)
         {
-            using (IRelmContext context = new RelmContext(ConfigConnectionString))
-            {
-                return GetLastInsertId(context);
-            }
+            return RefinedResultsHelper.GetScalar<string>(connectionName, "SELECT LAST_INSERT_ID();");
         }
 
         /// <summary>
-        /// Use the MySql built in function to get the ID of the last row inserted.
+        /// Retrieves the identifier of the last inserted row in the current database session.
         /// </summary>
-        /// <param name="ConfigContext">The connection type to use when getting the last ID.</param>
-        /// <returns>A string representation of the ID.</returns>
-        internal static string GetLastInsertId(IRelmContext ConfigContext)
+        /// <remarks>This method relies on the database's LAST_INSERT_ID() function, which typically
+        /// returns the most recent auto-increment value generated during the current session.  Ensure that the database
+        /// supports this function and that the session context is consistent with the operation that generated the
+        /// ID.</remarks>
+        /// <param name="relmContext">The database context used to execute the query. This context must be properly initialized and connected to
+        /// the database.</param>
+        /// <returns>A string containing the identifier of the last inserted row. The value is determined by the database's
+        /// LAST_INSERT_ID() function.</returns>
+        internal static string GetLastInsertId(IRelmContext relmContext)
         {
-            return RefinedResultsHelper.GetScalar<string>(ConfigContext, "SELECT LAST_INSERT_ID();");
-        }
-
-        internal static string GetIdFromInternalId(Enum ConfigConnectionString, string Table, string InternalId)
-        {
-            using (IRelmContext context = new RelmContext(ConfigConnectionString))
-            {
-                return GetIdFromInternalId(context, Table, InternalId);
-            }
+            return RefinedResultsHelper.GetScalar<string>(relmContext, "SELECT LAST_INSERT_ID();");
         }
 
         /// <summary>
-        /// Converts an InternalId to an autonumbered row ID.
+        /// Retrieves the identifier of the last inserted row in the current database session.
         /// </summary>
-        /// <param name="ConfigContext">The connection type to use.</param>
-        /// <param name="Table">Table name to use for the conversion.</param>
-        /// <param name="InternalId">The GUID of the InternalId to convert.</param>
-        /// <returns>ID of the row matching the InternalId.</returns>
-        internal static string GetIdFromInternalId(IRelmContext ConfigContext, string Table, string InternalId)
+        /// <remarks>This method relies on the database's LAST_INSERT_ID() function, which typically
+        /// returns the most recent auto-increment value generated during the current session.  Ensure that the database
+        /// supports this function and that the session context is consistent with the operation that generated the
+        /// ID.</remarks>
+        /// <param name="relmQuickContext">The database quick context used to execute the query. This context must be properly initialized and connected to
+        /// the database.</param>
+        /// <returns>A string representing the identifier of the last inserted row. The value is determined by the database's
+        /// LAST_INSERT_ID() function.</returns>
+        internal static string GetLastInsertId(IRelmQuickContext relmQuickContext)
         {
-            return RefinedResultsHelper.GetScalar<string>(ConfigContext, $"SELECT ID FROM {Table} WHERE InternalId = @InternalId", new Dictionary<string, object> { { "@InternalId", InternalId } });
+            return RefinedResultsHelper.GetScalar<string>(relmQuickContext, "SELECT LAST_INSERT_ID();");
+        }
+
+        /// <summary>
+        /// Retrieves the ID associated with the specified internal ID from the given table.
+        /// </summary>
+        /// <remarks>This method executes a SQL query to retrieve the ID corresponding to the
+        /// provided internal ID. Ensure that the <paramref name="connectionName"/> corresponds to a valid database
+        /// connection and that the <paramref name="tableName"/> exists in the database schema.</remarks>
+        /// <param name="connectionName">The database connection identifier, represented as an enumeration value.</param>
+        /// <param name="tableName">The name of the database table to query. Must not be null or empty.</param>
+        /// <param name="InternalId">The internal ID to search for. Must not be null or empty.</param>
+        /// <returns>The ID as a string if a matching record is found; otherwise, <see langword="null"/>.</returns>
+        internal static string GetIdFromInternalId(Enum connectionName, string tableName, string InternalId)
+        {
+            return RefinedResultsHelper.GetScalar<string>(connectionName, $"SELECT ID FROM {tableName} WHERE InternalId = @InternalId", new Dictionary<string, object> { { "@InternalId", InternalId } });
+        }
+
+        /// <summary>
+        /// Retrieves the ID associated with the specified internal ID from the given table.
+        /// </summary>
+        /// <remarks>This method executes a SQL query to retrieve the ID corresponding to the
+        /// provided internal ID. Ensure that the table specified by <paramref name="tableName"/> contains columns named
+        /// "ID" and "InternalId".</remarks>
+        /// <param name="relmContext">The database context used to execute the query.</param>
+        /// <param name="tableName">The name of the table to query. Must not be null or empty.</param>
+        /// <param name="InternalId">The internal ID to search for. Must not be null or empty.</param>
+        /// <returns>The ID as a string if a matching record is found; otherwise, <see langword="null"/>.</returns>
+        internal static string GetIdFromInternalId(IRelmContext relmContext, string tableName, string InternalId)
+        {
+            return RefinedResultsHelper.GetScalar<string>(relmContext, $"SELECT ID FROM {tableName} WHERE InternalId = @InternalId", new Dictionary<string, object> { { "@InternalId", InternalId } });
+        }
+
+        /// <summary>
+        /// Retrieves the ID associated with the specified internal ID from the given table.
+        /// </summary>
+        /// <remarks>This method executes a SQL query to retrieve the external ID from the specified
+        /// table. Ensure that the table contains a column named "InternalId" and that the query is executed in a secure
+        /// and valid context.</remarks>
+        /// <param name="relmQuickContext">The database quick context used to execute the query.</param>
+        /// <param name="tableName">The name of the table to query. Must not be null or empty.</param>
+        /// <param name="InternalId">The internal ID to search for. Must not be null or empty.</param>
+        /// <returns>The ID corresponding to the specified internal ID, or <see langword="null"/> if no match is found.</returns>
+        internal static string GetIdFromInternalId(IRelmQuickContext relmQuickContext, string tableName, string InternalId)
+        {
+            return RefinedResultsHelper.GetScalar<string>(relmQuickContext, $"SELECT ID FROM {tableName} WHERE InternalId = @InternalId", new Dictionary<string, object> { { "@InternalId", InternalId } });
         }
     }
 }

@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoreRelm
+namespace CoreRelm.Quickstart.Enums
 {
-    public class RelmEnumHolder
+    internal class ConnectionStrings
     {
-        public enum DatabaseType
+        internal enum ConnectionStringTypes
         {
-            SQLite,
-            MySQL
+            ExampleContextDatabase
         }
     }
 }

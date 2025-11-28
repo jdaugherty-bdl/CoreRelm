@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Xunit;
+using static CoreRelm.Enums.Commands;
 
 namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTests
 {
@@ -54,9 +55,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
         {
             // Arrange
             Expression<Func<TestModel, bool>> expression = x => x.Id == 5;
-            var commandExpression = new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
-                ExpressionEvaluator.Command.Where,
-                [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, expression)]);
+            var commandExpression = new KeyValuePair<Command, List<IRelmExecutionCommand?>>(
+                Command.Where,
+                [new RelmExecutionCommand(Command.Where, expression)]);
 
             // Act
             var sql = evaluator.EvaluateWhere(commandExpression, queryParameters);
@@ -72,9 +73,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
         {
             // Arrange
             Expression<Func<TestModel, bool>> expression = x => x.Name == "Test" && x.Status == TestEnum.Active;
-            var commandExpression = new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
-                ExpressionEvaluator.Command.Where,
-                [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, expression)]);
+            var commandExpression = new KeyValuePair<Command, List<IRelmExecutionCommand?>>(
+                Command.Where,
+                [new RelmExecutionCommand(Command.Where, expression)]);
 
             // Act
             var sql = evaluator.EvaluateWhere(commandExpression, queryParameters);
@@ -92,9 +93,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
         {
             // Arrange
             Expression<Func<TestModel, bool>> expression = x => x.Name.Contains("Test");
-            var commandExpression = new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
-                ExpressionEvaluator.Command.Where,
-                [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, expression)]);
+            var commandExpression = new KeyValuePair<Command, List<IRelmExecutionCommand?>>(
+                Command.Where,
+                [new RelmExecutionCommand(Command.Where, expression)]);
 
             // Act
             var sql = evaluator.EvaluateWhere(commandExpression, queryParameters);
@@ -111,9 +112,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
         {
             // Arrange
             Expression<Func<TestModel, bool>> expression = x => !string.IsNullOrEmpty(x.Name);
-            var commandExpression = new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
-                ExpressionEvaluator.Command.Where,
-                [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, expression)]);
+            var commandExpression = new KeyValuePair<Command, List<IRelmExecutionCommand?>>(
+                Command.Where,
+                [new RelmExecutionCommand(Command.Where, expression)]);
 
             // Act
             var sql = evaluator.EvaluateWhere(commandExpression, queryParameters);
@@ -129,9 +130,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
         {
             // Arrange
             Expression<Func<TestModel, bool>> expression = x => x.Status == TestEnum.Inactive;
-            var commandExpression = new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
-                ExpressionEvaluator.Command.Where,
-                [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, expression)]);
+            var commandExpression = new KeyValuePair<Command, List<IRelmExecutionCommand?>>(
+                Command.Where,
+                [new RelmExecutionCommand(Command.Where, expression)]);
 
             // Act
             var sql = evaluator.EvaluateWhere(commandExpression, queryParameters);
@@ -148,9 +149,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
         {
             // Arrange
             Expression<Func<TestModel, object>> expression = x => x.Name;
-            var commandExpression = new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
-                ExpressionEvaluator.Command.OrderBy,
-                [new RelmExecutionCommand(ExpressionEvaluator.Command.OrderBy, expression)]);
+            var commandExpression = new KeyValuePair<Command, List<IRelmExecutionCommand?>>(
+                Command.OrderBy,
+                [new RelmExecutionCommand(Command.OrderBy, expression)]);
 
             // Act
             var sql = evaluator.EvaluateOrderBy(commandExpression, false);
@@ -165,9 +166,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
         {
             // Arrange
             Expression<Func<TestModel, object>> expression = x => x.Status;
-            var commandExpression = new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
-                ExpressionEvaluator.Command.GroupBy,
-                [new RelmExecutionCommand(ExpressionEvaluator.Command.GroupBy, expression)]);
+            var commandExpression = new KeyValuePair<Command, List<IRelmExecutionCommand?>>(
+                Command.GroupBy,
+                [new RelmExecutionCommand(Command.GroupBy, expression)]);
 
             // Act
             var sql = evaluator.EvaluateGroupBy(commandExpression);
@@ -182,9 +183,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
         {
             // Arrange
             var constantExpression = Expression.Constant(10);
-            var commandExpression = new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
-                ExpressionEvaluator.Command.Limit,
-                [new RelmExecutionCommand(ExpressionEvaluator.Command.Limit, constantExpression)]);
+            var commandExpression = new KeyValuePair<Command, List<IRelmExecutionCommand?>>(
+                Command.Limit,
+                [new RelmExecutionCommand(Command.Limit, constantExpression)]);
 
             // Act
             var sql = evaluator.EvaluateLimit(commandExpression);
@@ -198,9 +199,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
         {
             // Arrange
             Expression<Func<TestModel, bool>> expression = x => x.Name == "Test" || x.Id > 100;
-            var commandExpression = new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
-                ExpressionEvaluator.Command.Where,
-                [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, expression)]);
+            var commandExpression = new KeyValuePair<Command, List<IRelmExecutionCommand?>>(
+                Command.Where,
+                [new RelmExecutionCommand(Command.Where, expression)]);
 
             // Act
             var sql = evaluator.EvaluateWhere(commandExpression, queryParameters);
@@ -218,9 +219,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
         {
             // Arrange
             Expression<Func<TestModel, bool>> expression = x => (x.Name == "Test" && x.Id > 100) || x.Status == TestEnum.Active;
-            var commandExpression = new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
-                ExpressionEvaluator.Command.Where,
-                [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, expression)]);
+            var commandExpression = new KeyValuePair<Command, List<IRelmExecutionCommand?>>(
+                Command.Where,
+                [new RelmExecutionCommand(Command.Where, expression)]);
 
             // Act
             var sql = evaluator.EvaluateWhere(commandExpression, queryParameters);
@@ -243,9 +244,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
                 Expression.Bind(typeof(TestModel).GetProperty(nameof(TestModel.Name)), Expression.Constant("UpdatedName")),
                 Expression.Bind(typeof(TestModel).GetProperty(nameof(TestModel.Status)), Expression.Constant(TestEnum.Active))
             );
-            var commandExpression = new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
-                ExpressionEvaluator.Command.Set,
-                [new RelmExecutionCommand(ExpressionEvaluator.Command.Set, memberInitExpression)]);
+            var commandExpression = new KeyValuePair<Command, List<IRelmExecutionCommand?>>(
+                Command.Set,
+                [new RelmExecutionCommand(Command.Set, memberInitExpression)]);
 
             // Act
             var sql = evaluator.EvaluateSet(commandExpression, queryParameters);
@@ -263,9 +264,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
         {
             // Arrange
             Expression<Func<TestModel, object>> expression = x => x.Status;
-            var commandExpression = new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand>>(
-                ExpressionEvaluator.Command.DistinctBy,
-                [new RelmExecutionCommand(ExpressionEvaluator.Command.DistinctBy, expression)]);
+            var commandExpression = new KeyValuePair<Command, List<IRelmExecutionCommand>>(
+                Command.DistinctBy,
+                [new RelmExecutionCommand(Command.DistinctBy, expression)]);
 
             // Act
             var sql = evaluator.EvaluateDistinctBy(commandExpression);
@@ -281,9 +282,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             // Arrange
             var values = new List<int> { 1, 2, 3 };
             Expression<Func<TestModel, bool>> expression = x => values.Contains(x.Id);
-            var commandExpression = new KeyValuePair<ExpressionEvaluator.Command, List<IRelmExecutionCommand?>>(
-                ExpressionEvaluator.Command.Where,
-                [new RelmExecutionCommand(ExpressionEvaluator.Command.Where, expression)]);
+            var commandExpression = new KeyValuePair<Command, List<IRelmExecutionCommand?>>(
+                Command.Where,
+                [new RelmExecutionCommand(Command.Where, expression)]);
 
             // Act
             var sql = evaluator.EvaluateWhere(commandExpression, queryParameters);
