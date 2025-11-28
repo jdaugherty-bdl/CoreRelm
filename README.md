@@ -13,7 +13,7 @@ It’s especially aimed at **.NET Framework** apps and services that need someth
 
 > ⚠️ **Status:** CoreRelm is under active development. APIs and examples may evolve as features are added and real-world scenarios are covered. Feedback, issues, and PRs are welcome.
 
-> ❗ **For .NET Core 9+ ONLY** - For the .NET Framework 4.8 version of this library, please go to https://github.com/jdaugherty-bdl/SimpleRelm ❗
+> ❗ **.NET Core 9+ ONLY** ❗ For the .NET Framework 4.8 version of this library, please go to https://github.com/jdaugherty-bdl/SimpleRelm 
 
 Documentation: https://jdaugherty-bdl.github.io/CoreRelm/index.html
 
