@@ -1,6 +1,6 @@
-# SimpleRelm
+# CoreRelm
 
-**SimpleRelm** is a lightweight, attribute-based ORM / data access layer for C# and .NET Framework developers who want a small, predictable alternative to heavyweight ORMs.
+**CoreRelm** is a lightweight, attribute-based ORM / data access layer for C# and .NET Framework developers who want a small, predictable alternative to heavyweight ORMs.
 
 It sits close to ADO.NET, but gives you:
 
@@ -11,11 +11,11 @@ It sits close to ADO.NET, but gives you:
 
 It’s especially aimed at **.NET Framework** apps and services that need something quick and focused, but it also works from modern .NET projects.
 
-> ⚠️ **Status:** SimpleRelm is under active development. APIs and examples may evolve as features are added and real-world scenarios are covered. Feedback, issues, and PRs are welcome.
+> ⚠️ **Status:** CoreRelm is under active development. APIs and examples may evolve as features are added and real-world scenarios are covered. Feedback, issues, and PRs are welcome.
 
-> ❗ **.NET Framework 4.8** - For the .NET Framework 4.8 version of this library, please go to https://github.com/jdaugherty-bdl/SimpleRelm ❗
+> ❗ **For .NET Core 9+ ONLY** - For the .NET Framework 4.8 version of this library, please go to https://github.com/jdaugherty-bdl/SimpleRelm ❗
 
-Documentation: https://jdaugherty-bdl.github.io/SimpleRelm/index.html
+Documentation: https://jdaugherty-bdl.github.io/CoreRelm/index.html
 
 ---
 
@@ -43,7 +43,7 @@ Documentation: https://jdaugherty-bdl.github.io/SimpleRelm/index.html
 
 ## Key concepts
 
-SimpleRelm revolves around a few core pieces:
+CoreRelm revolves around a few core pieces:
 
 - **Models**  
   Inherit from `RelmModel` and decorate with attributes such as:
@@ -52,8 +52,8 @@ SimpleRelm revolves around a few core pieces:
   - `[RelmForeignKey(...)]`
 
   ```csharp
-  using SimpleRelm.Attributes;
-  using SimpleRelm.Models;
+  using CoreRelm.Attributes;
+  using CoreRelm.Models;
 
   [RelmTable("example_models")]
   internal class ExampleModel : RelmModel
@@ -127,7 +127,7 @@ SimpleRelm revolves around a few core pieces:
 
 ## Features
 
-From the Quickstart examples, SimpleRelm currently provides:
+From the Quickstart examples, CoreRelm currently provides:
 
 - **Attribute-based mapping**
   - `[RelmTable]`, `[RelmColumn]`, `[RelmForeignKey]` give you strongly-typed access to table and column names without scattering strings everywhere.
@@ -158,22 +158,22 @@ From the Quickstart examples, SimpleRelm currently provides:
 Concrete usage for all of these lives under:
 
 ```text
-examples/SimpleRelm.Quickstart
+examples/CoreRelm.Quickstart
 ```
 
 ---
 
 ## Getting started
 
-### 1. Add SimpleRelm to your solution
+### 1. Add CoreRelm to your solution
 
 Right now the library is consumed as a project reference:
 
 1. Clone this repository.
-2. Add the `SimpleRelm` project to your solution.
-3. Add a reference from your application to the `SimpleRelm` project.
+2. Add the `CoreRelm` project to your solution.
+3. Add a reference from your application to the `CoreRelm` project.
 
-(When/if a NuGet package is published, this can become a simple `dotnet add package SimpleRelm` step.)
+(When/if a NuGet package is published, this can become a simple `dotnet add package CoreRelm` step.)
 
 ### 2. Define a model and context
 
@@ -232,7 +232,7 @@ using (var relmQuickContext = new ExampleQuickContext())
 
 ### Recommended transaction pattern
 
-When you want SimpleRelm to manage a transaction for you, pass `autoOpenTransaction: true` and explicitly roll back on error:
+When you want CoreRelm to manage a transaction for you, pass `autoOpenTransaction: true` and explicitly roll back on error:
 
 ```csharp
 using (var relmContext = new ExampleContext(autoOpenTransaction: true))
@@ -261,7 +261,7 @@ The same pattern is also shown with `ExampleQuickContext` in the Quickstart.
 If you just need quick, one-off access to a connection/transaction without a full context, you can use:
 
 ```csharp
-using static SimpleRelm.Quickstart.Enums.ConnectionStrings;
+using static CoreRelm.Quickstart.Enums.ConnectionStrings;
 
 var result = RelmHelper.StandardConnectionWrapper(
     ConnectionStringTypes.ExampleContextDatabase,
@@ -281,5 +281,5 @@ var result = RelmHelper.StandardConnectionWrapper(
 For more detailed examples (DataRow/DataTable/DataObject/DataList, identity helpers, bulk writer, etc.), see the files under:
 
 ```text
-examples/SimpleRelm.Quickstart/Examples
+examples/CoreRelm.Quickstart/Examples
 ```
