@@ -22,7 +22,10 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             mockContext = new Mock<ComplexTestContext>("name=PortalCertDatabase");
             mockDataSet = new Mock<IRelmDataSet<ComplexTestModel>>();
 
-            predefinedList = [new() { Id = SearchedId }];
+            predefinedList = new List<ComplexTestModel>
+            {
+                new ComplexTestModel { Id = SearchedId }
+            };
 
             // Mock the GetDataObjects method to return the predefined list
             mockDataSet.Setup(x => x.Load()).Returns(predefinedList);

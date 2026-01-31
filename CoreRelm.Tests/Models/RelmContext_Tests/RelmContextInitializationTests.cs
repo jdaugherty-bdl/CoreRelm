@@ -17,7 +17,7 @@ namespace CoreRelm.Tests.Models.RelmContext_Tests
             string validConnectionString = "name=SimpleRelmMySql";
 
             // Act
-            var dataSet = new RelmContext(validConnectionString, autoOpenConnection: false);
+            var dataSet = new RelmContext(validConnectionString, autoOpenConnection: false, autoVerifyTables: false);
 
             // Assert
             Assert.NotNull(dataSet);
@@ -49,13 +49,14 @@ namespace CoreRelm.Tests.Models.RelmContext_Tests
         public void Should_Initialize_With_Valid_OptionsBuilder_ConnectionString()
         {
             // Arrange
-            var validOptions = new RelmContextOptionsBuilder();
-
-            validOptions.SetNamedConnection("SimpleRelmMySql");
-            validOptions.SetDatabaseConnectionString(RelmHelper.GetConnectionBuilderFromName("SimpleRelmMySql").ConnectionString);
+            var validOptions = new RelmContextOptionsBuilder()
+                .SetNamedConnection("SimpleRelmMySql")
+                .SetDatabaseConnectionString(RelmHelper.GetConnectionBuilderFromName("SimpleRelmMySql").ConnectionString)
+                .SetAutoOpenConnection(false)
+                .SetAutoVerifyTables(false);
 
             // Act
-            var dataSet = new RelmContext(validOptions, autoOpenConnection: false);
+            var dataSet = new RelmContext(validOptions);
 
             // Assert
             Assert.NotNull(dataSet);

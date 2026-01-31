@@ -1,5 +1,4 @@
 ﻿using CoreRelm.Interfaces;
-using CoreRelm.Models;
 using CoreRelm.RelmInternal.Helpers.Operations;
 using System;
 using System.Collections.Generic;
@@ -12,15 +11,16 @@ namespace CoreRelm.Tests.TestModels.DataLoaderModels
 {
     public class TestFieldBooleanFieldLoader : IRelmFieldLoader
     {
-        public IRelmContext RelmContext { get; } = new ComplexTestContext();
-
         private readonly string? _fieldName;
         public string? FieldName => _fieldName;
         private readonly string[]? _keyFields;
         public string[]? KeyFields => _keyFields;
 
-        public TestFieldBooleanFieldLoader(string fieldName, string[]? keyFields = null)
+        public IRelmContext RelmContext { get; }
+
+        public TestFieldBooleanFieldLoader(ComplexTestContext relmContext, string fieldName, string[]? keyFields = null)
         {
+            RelmContext = relmContext;
             _fieldName = fieldName;
             _keyFields = keyFields;
         }

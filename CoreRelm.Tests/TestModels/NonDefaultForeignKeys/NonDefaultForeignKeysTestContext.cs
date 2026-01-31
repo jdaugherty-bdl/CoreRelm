@@ -13,8 +13,8 @@ namespace CoreRelm.Tests.TestModels.NonDefaultForeignKeys
 {
     public class NonDefaultForeignKeysTestContext : RelmContext, IRelmContext_TESTING
     {
-        public NonDefaultForeignKeysTestContext(string? connectionString) : base(connectionString, autoOpenConnection: false) { }
-        public NonDefaultForeignKeysTestContext(RelmContextOptionsBuilder? options) : base(options, autoOpenConnection: false) { }
+        public NonDefaultForeignKeysTestContext(string? connectionString, bool autoInitializeDataSets = true, bool autoVerifyTables = true) : base(connectionString, autoOpenConnection: false, autoInitializeDataSets: autoInitializeDataSets, autoVerifyTables: autoVerifyTables) { }
+        public NonDefaultForeignKeysTestContext(RelmContextOptionsBuilder? options) : base(options?.SetAutoOpenConnection(false)) { }
 
         public virtual IRelmDataSet<NonDefaultForeignKeysTestObject>? NonDefaultForeignKeysTestObjects { get; set; }
         public virtual IRelmDataSet<NonDefaultForeignKeysReferenceObject_ForeignKey>? NonDefaultForeignKeysReferenceObject_ForeignKeys { get; set; }

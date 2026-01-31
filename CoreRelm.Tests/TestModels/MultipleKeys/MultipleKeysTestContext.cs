@@ -12,8 +12,8 @@ namespace CoreRelm.Tests.TestModels.MultipleKeys
 {
     public class MultipleKeysTestContext : RelmContext, IRelmContext_TESTING
     {
-        public MultipleKeysTestContext(string? connectionString) : base(connectionString, autoOpenConnection: false) { }
-        public MultipleKeysTestContext(RelmContextOptionsBuilder? options) : base(options, autoOpenConnection: false) { }
+        public MultipleKeysTestContext(string? connectionString, bool autoInitializeDataSets = true, bool autoVerifyTables = true) : base(connectionString, autoOpenConnection: false, autoInitializeDataSets: autoInitializeDataSets, autoVerifyTables: autoVerifyTables) { }
+        public MultipleKeysTestContext(RelmContextOptionsBuilder? options) : base(options?.SetAutoOpenConnection(false)) { }
 
         public virtual IRelmDataSet<MultipleKeysTestObject>? MultipleKeysTestObjects { get; set; }
         public virtual IRelmDataSet<MultipleKeysReferenceObject_ForeignKey>? MultipleKeysReferenceObject_ForeignKeys { get; set; }

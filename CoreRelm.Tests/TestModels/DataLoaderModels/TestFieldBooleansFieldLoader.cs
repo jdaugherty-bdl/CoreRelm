@@ -9,15 +9,16 @@ namespace CoreRelm.Tests.TestModels.DataLoaderModels
 {
     public class TestFieldBooleansFieldLoader : IRelmFieldLoader
     {
-        public IRelmContext RelmContext { get; } = new ComplexTestContext();
-
         private readonly string? _fieldName;
         public string? FieldName => _fieldName;
         private readonly string[]? _keyFields;
         public string[]? KeyFields => _keyFields;
 
-        public TestFieldBooleansFieldLoader(string fieldName, string[]? keyFields = null)
+        public IRelmContext RelmContext { get; }
+
+        public TestFieldBooleansFieldLoader(ComplexTestContext relmContext, string fieldName, string[]? keyFields = null)
         {
+            RelmContext = relmContext;
             _fieldName = fieldName;
             _keyFields = keyFields;
         }

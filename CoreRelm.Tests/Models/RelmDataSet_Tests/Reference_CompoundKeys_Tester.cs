@@ -15,14 +15,14 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
 {
     public class Reference_CompoundKeys_Tester
     {
-        private readonly MultipleKeysTestContext context;
+        private MultipleKeysTestContext context;
 
         public Reference_CompoundKeys_Tester() 
         {
             // dummy data
             var mockComplexTestModels = new List<MultipleKeysTestObject>
             {
-                new() 
+                new MultipleKeysTestObject
                 { 
                     InternalId = "ID1", 
                     MultipleKeysReferenceObjectLocalKey1 = "LOCALKEY1",
@@ -34,7 +34,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
                     MultipleKeysReferenceObject_PrincipalEntities = null,
                     MultipleKeysReferenceObject_PrincipalEntity_Item = null,
                 },
-                new() 
+                new MultipleKeysTestObject
                 { 
                     InternalId = "ID2",
                     MultipleKeysReferenceObjectLocalKey1 = "LOCALKEY3",
@@ -48,7 +48,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
                 },
             };
 
-            context = new MultipleKeysTestContext("name=SimpleRelmMySql");
+            context = new MultipleKeysTestContext("name=SimpleRelmMySql", autoVerifyTables: false);
 
             // create dummy data loaders for dummy data to be placed in both relevant data sets
             var modelDataLoader = new Mock<RelmDefaultDataLoader<MultipleKeysTestObject>>(); // { CallBase = true };
@@ -65,8 +65,8 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
         {
             var mockComplexReferenceObjects_ForeignKey = new List<MultipleKeysReferenceObject_ForeignKey>
             {
-                new() { ReferenceKey1 = "LOCALKEY1", ReferenceKey2 = "LOCALKEY2", MultipleKeysTestObject_Reference = null },
-                new() { ReferenceKey1 = "LOCALKEY3", ReferenceKey2 = "LOCALKEY4", MultipleKeysTestObject_Reference = null },
+                new MultipleKeysReferenceObject_ForeignKey { ReferenceKey1 = "LOCALKEY1", ReferenceKey2 = "LOCALKEY2", MultipleKeysTestObject_Reference = null },
+                new MultipleKeysReferenceObject_ForeignKey { ReferenceKey1 = "LOCALKEY3", ReferenceKey2 = "LOCALKEY4", MultipleKeysTestObject_Reference = null },
             };
 
             if (addSecondId)
@@ -84,8 +84,8 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
         {
             var mockComplexReferenceObjects_Navigation = new List<MultipleKeysReferenceObject_NavigationProperty>
             {
-                new() { ReferenceKey1 = "LOCALKEY1", ReferenceKey2 = "LOCALKEY2", MultipleKeysTestObject_Reference = null },
-                new() { ReferenceKey1 = "LOCALKEY3", ReferenceKey2 = "LOCALKEY4", MultipleKeysTestObject_Reference = null },
+                new MultipleKeysReferenceObject_NavigationProperty { ReferenceKey1 = "LOCALKEY1", ReferenceKey2 = "LOCALKEY2", MultipleKeysTestObject_Reference = null },
+                new MultipleKeysReferenceObject_NavigationProperty { ReferenceKey1 = "LOCALKEY3", ReferenceKey2 = "LOCALKEY4", MultipleKeysTestObject_Reference = null },
             };
 
             if (addSecondId)
@@ -103,8 +103,8 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
         {
             var mockComplexReferenceObjects_Principal = new List<MultipleKeysReferenceObject_PrincipalEntity>
             {
-                new() { ReferenceKey1 = "LOCALKEY1", ReferenceKey2 = "LOCALKEY2", MultipleKeysTestObject_Reference = null },
-                new() { ReferenceKey1 = "LOCALKEY3", ReferenceKey2 = "LOCALKEY4", MultipleKeysTestObject_Reference = null },
+                new MultipleKeysReferenceObject_PrincipalEntity { ReferenceKey1 = "LOCALKEY1", ReferenceKey2 = "LOCALKEY2", MultipleKeysTestObject_Reference = null },
+                new MultipleKeysReferenceObject_PrincipalEntity { ReferenceKey1 = "LOCALKEY3", ReferenceKey2 = "LOCALKEY4", MultipleKeysTestObject_Reference = null },
             };
 
             if (addSecondId)

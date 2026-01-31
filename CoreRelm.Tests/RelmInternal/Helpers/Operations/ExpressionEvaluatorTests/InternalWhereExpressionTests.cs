@@ -17,16 +17,16 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
 {
     public class InternalWhereExpressionTests
     {
-        private readonly ExpressionEvaluator evaluator;
+        private readonly ExpressionEvaluator<ComplexTestModel> evaluator;
         private readonly Dictionary<string, object> queryParameters;
-        private readonly Expression<Func<ComplexTestModel, bool>>? predicate;
+        private Expression<Func<ComplexTestModel, bool>>? predicate;
 
         public InternalWhereExpressionTests()
         {
             var tableName = typeof(ComplexTestModel).GetCustomAttribute<RelmTable>(false)?.TableName ?? throw new ArgumentNullException();
             var underscoreProperties = DataNamingHelper.GetUnderscoreProperties<ComplexTestModel>(true, false).ToDictionary(x => x.Value.Item1, x => x.Key);
 
-            evaluator = new ExpressionEvaluator(tableName, underscoreProperties, UsedTableAliases: new Dictionary<string, string> { [tableName] = "a" });
+            evaluator = new ExpressionEvaluator<ComplexTestModel>(tableName, underscoreProperties, UsedTableAliases: new Dictionary<string, string> { [tableName] = "a" });
 
             queryParameters = [];
         }
@@ -54,45 +54,13 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             var containsCall = Expression.Lambda(funcType, containsExpression, parameter);
 
             // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<Command, List<IRelmExecutionCommand?>>(
-                    Command.Where, 
-                    [new RelmExecutionCommand(Command.Where, containsCall)])
-                , queryParameters);
+            // evaluate: x => objectList.Contains(x.TestColumnInternalId);
+            var result = evaluator.EvaluateWhereNew(new List<IRelmExecutionCommand> { new RelmExecutionCommand(Command.Where, containsCall) }, 
+                queryParameters);
 
             // Assert
-            Assert.Equal(" WHERE ( FIND_IN_SET(a.`test_column_InternalId`, @_TestColumnInternalId_1_) )", result);
-        }
-
-        [Fact]
-        public void TestWhereParametersWithComplexConditions_BuildExpressionTree()
-        {
-            // Arrange
-            var objectList = new List<string>
-            {
-                "00000000-0000-0000-0000-000000000000",
-                "00000000-0000-0000-0000-000000000001"
-            };
-
-            var parameter = Expression.Parameter(typeof(ComplexTestModel), "x");
-
-            var memberExpression = Expression.Property(parameter, nameof(ComplexTestModel.TestColumnInternalId))
-                ?? throw new Exception("Property referenced by TestColumnInternalId could not be found.");
-
-            var containsMethod = objectList.GetType().GetMethod(nameof(List<object>.Contains))
-                ?? throw new Exception("Object list does not have property of type 'Contains'");
-
-            var containsExpression = Expression.Call(Expression.Constant(objectList), containsMethod, memberExpression);
-            var funcType = typeof(Func<,>).MakeGenericType(typeof(ComplexTestModel), typeof(bool));
-            var containsCall = Expression.Lambda(funcType, containsExpression, parameter);
-
-            // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<Command, List<IRelmExecutionCommand?>>(
-                    Command.Where,
-                    [new RelmExecutionCommand(Command.Where, containsCall)])
-                , queryParameters);
-
-            // Assert
-            Assert.Equal(queryParameters["@_TestColumnInternalId_1_"], "00000000-0000-0000-0000-000000000000,00000000-0000-0000-0000-000000000001");
+            Assert.Equal(" WHERE (  ( FIND_IN_SET(a.`test_column_InternalId`, @_TestColumnInternalId_1_) )  ) ", result);
+            Assert.Equal("00000000-0000-0000-0000-000000000000,00000000-0000-0000-0000-000000000001", queryParameters["@_TestColumnInternalId_1_"]);
         }
     }
 }

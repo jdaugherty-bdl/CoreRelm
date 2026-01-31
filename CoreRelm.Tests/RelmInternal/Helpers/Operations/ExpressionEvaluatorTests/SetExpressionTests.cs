@@ -17,7 +17,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
 {
     public class SetExpressionTests
     {
-        private readonly ExpressionEvaluator evaluator;
+        private readonly ExpressionEvaluator<ComplexTestModel> evaluator;
         private readonly Dictionary<string, object> queryParameters;
         private Expression<Func<ComplexTestModel, ComplexTestModel>>? predicate;
 
@@ -26,9 +26,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             var tableName = typeof(ComplexTestModel).GetCustomAttribute<RelmTable>(false)?.TableName ?? throw new ArgumentNullException();
             var underscoreProperties = DataNamingHelper.GetUnderscoreProperties<ComplexTestModel>(true, false).ToDictionary(x => x.Value.Item1, x => x.Key);
 
-            evaluator = new ExpressionEvaluator(tableName, underscoreProperties, UsedTableAliases: new Dictionary<string, string> { [tableName] = "a" });
+            evaluator = new ExpressionEvaluator<ComplexTestModel>(tableName, underscoreProperties, UsedTableAliases: new Dictionary<string, string> { [tableName] = "a" });
 
-            queryParameters = [];
+            queryParameters = new();
         }
 
         [Fact]
@@ -76,10 +76,8 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             predicate = x => new ComplexTestModel { TestColumnInternalId = "TEST_VALUE" };
 
             // Act
-            var result = evaluator.EvaluateWhere(new KeyValuePair<Command, List<IRelmExecutionCommand?>>(
-                    Command.Where,
-                    [new RelmExecutionCommand(Command.Where, wherePredicate)])
-                , queryParameters);
+            var result = evaluator.EvaluateWhereNew([new RelmExecutionCommand(Command.Where, wherePredicate)], 
+                queryParameters);
 
             result += evaluator.EvaluateSet(new KeyValuePair<Command, List<IRelmExecutionCommand?>>(
                     Command.Set,
@@ -87,7 +85,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
                 , queryParameters);
 
             // Assert
-            Assert.Equal(" WHERE ( a.`Active` = @_Active_1_ ) SET  a.`test_column_InternalId` = @_TestColumnInternalId_1_  ", result);
+            Assert.Equal(" WHERE (  ( a.`Active` = @_Active_1_ )  )  SET  a.`test_column_InternalId` = @_TestColumnInternalId_1_  ", result);
 
             Assert.IsType<int>(queryParameters["@_Active_1_"]);
             Assert.Equal(0, (int)queryParameters["@_Active_1_"]);

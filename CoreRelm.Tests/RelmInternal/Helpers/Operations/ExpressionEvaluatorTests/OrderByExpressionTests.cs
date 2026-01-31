@@ -17,15 +17,18 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
 {
     public class OrderByExpressionTests
     {
-        private readonly ExpressionEvaluator evaluator;
-        private Expression<Func<ComplexTestModel, object?>>? predicate;
+        private readonly ExpressionEvaluator<ComplexTestModel> evaluator;
+        private readonly Dictionary<string, object> queryParameters;
+        private Expression<Func<ComplexTestModel, object>>? predicate;
 
         public OrderByExpressionTests()
         {
             var tableName = typeof(ComplexTestModel).GetCustomAttribute<RelmTable>(false)?.TableName ?? throw new ArgumentNullException();
             var underscoreProperties = DataNamingHelper.GetUnderscoreProperties<ComplexTestModel>(true, false).ToDictionary(x => x.Value.Item1, x => x.Key);
 
-            evaluator = new ExpressionEvaluator(tableName, underscoreProperties, UsedTableAliases: new Dictionary<string, string> { [tableName] = "a" });
+            evaluator = new ExpressionEvaluator<ComplexTestModel>(tableName, underscoreProperties, UsedTableAliases: new Dictionary<string, string> { [tableName] = "a" });
+
+            queryParameters = new();
         }
 
         [Fact]

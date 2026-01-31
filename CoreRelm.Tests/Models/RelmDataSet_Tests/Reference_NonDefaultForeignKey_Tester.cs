@@ -19,7 +19,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             // dummy data
             var mockComplexTestModels = new List<NonDefaultForeignKeysTestObject>
             {
-                new() 
+                new NonDefaultForeignKeysTestObject
                 {
                     InternalId = "ID1",
                     NonDefaultForeignKeysReferenceObjectLocalKey = "LOCALKEY1",
@@ -30,7 +30,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
                     NonDefaultForeignKeysReferenceObject_PrincipalEntities = null,
                     NonDefaultForeignKeysReferenceObject_PrincipalEntity_Item = null,
                 },
-                new() 
+                new NonDefaultForeignKeysTestObject
                 {
                     InternalId = "ID1",
                     NonDefaultForeignKeysReferenceObjectLocalKey = "LOCALKEY2",
@@ -43,7 +43,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
                 },
             };
 
-            context = new NonDefaultForeignKeysTestContext("name=SimpleRelmMySql");
+            context = new NonDefaultForeignKeysTestContext("name=SimpleRelmMySql", autoVerifyTables: false);
 
             // create dummy data loaders for dummy data to be placed in both relevant data sets
             var modelDataLoader = new Mock<RelmDefaultDataLoader<NonDefaultForeignKeysTestObject>>(); // { CallBase = true };
@@ -60,8 +60,8 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
         {
             var mockComplexReferenceObjects_ForeignKey = new List<NonDefaultForeignKeysReferenceObject_ForeignKey>
             {
-                new() { ReferenceKey = "LOCALKEY1", NonDefaultForeignKeysTestObject_Reference= null },
-                new() { ReferenceKey = "LOCALKEY2", NonDefaultForeignKeysTestObject_Reference = null },
+                new NonDefaultForeignKeysReferenceObject_ForeignKey { ReferenceKey = "LOCALKEY1", NonDefaultForeignKeysTestObject_Reference= null },
+                new NonDefaultForeignKeysReferenceObject_ForeignKey { ReferenceKey = "LOCALKEY2", NonDefaultForeignKeysTestObject_Reference = null },
             };
 
             if (addSecondId)
@@ -79,8 +79,8 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
         {
             var mockComplexReferenceObjects_Navigation = new List<NonDefaultForeignKeysReferenceObject_NavigationProperty>
             {
-                new() { ReferenceKey = "LOCALKEY1", NonDefaultForeignKeysTestObject_Reference = null },
-                new() { ReferenceKey = "LOCALKEY2", NonDefaultForeignKeysTestObject_Reference = null },
+                new NonDefaultForeignKeysReferenceObject_NavigationProperty { ReferenceKey = "LOCALKEY1", NonDefaultForeignKeysTestObject_Reference = null },
+                new NonDefaultForeignKeysReferenceObject_NavigationProperty { ReferenceKey = "LOCALKEY2", NonDefaultForeignKeysTestObject_Reference = null },
             };
 
             if (addSecondId)
@@ -98,8 +98,8 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
         {
             var mockComplexReferenceObjects_Principal = new List<NonDefaultForeignKeysReferenceObject_PrincipalEntity>
             {
-                new() { ReferenceKey = "LOCALKEY1", NonDefaultForeignKeysTestObject_Reference = null },
-                new() { ReferenceKey = "LOCALKEY2", NonDefaultForeignKeysTestObject_Reference = null },
+                new NonDefaultForeignKeysReferenceObject_PrincipalEntity { ReferenceKey = "LOCALKEY1", NonDefaultForeignKeysTestObject_Reference = null },
+                new NonDefaultForeignKeysReferenceObject_PrincipalEntity { ReferenceKey = "LOCALKEY2", NonDefaultForeignKeysTestObject_Reference = null },
             };
 
             if (addSecondId)

@@ -12,20 +12,25 @@ using System.Text;
 using System.Threading.Tasks;
 using static CoreRelm.Enums.Commands;
 
-namespace CoreRelm.Tests.RelmInternal.Helpers.Utilities.ForeignObjectsLoader_Tests
+namespace CoreRelm.Tests.RelmInternal.Helpers.Utilities
 {
     public class ForeignObjectsLoader_Tester
     {
-        private readonly ComplexTestContext context;
-        private readonly List<ComplexTestModel> mockComplexTestModels;
-        private LambdaExpression? containsLambda;
+        private ComplexTestContext context;
+        private List<ComplexTestModel> mockComplexTestModels;
+        private LambdaExpression containsLambda;
 
         public ForeignObjectsLoader_Tester()
         {
+            context = SetupContext(true);
+        }
+
+        private ComplexTestContext SetupContext(bool haveTwoRoots = true)
+        {
             // dummy data
-            mockComplexTestModels =
-            [
-                new() 
+            mockComplexTestModels = new List<ComplexTestModel>
+            {
+                new ComplexTestModel
                 {
                     InternalId = "ID1",
                     ComplexReferenceObjectLocalKey = "LOCALKEY1",
@@ -44,7 +49,10 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Utilities.ForeignObjectsLoader_Tes
                     TestColumnNoAttributeArguments = null,
                     TestFieldBoolean = null,
                 },
-                new()
+            };
+
+            if (haveTwoRoots)
+                mockComplexTestModels.Add(new ComplexTestModel
                 {
                     InternalId = "ID2",
                     ComplexReferenceObjectLocalKey = "LOCALKEY2",
@@ -62,10 +70,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Utilities.ForeignObjectsLoader_Tes
                     TestColumnInternalId = null,
                     TestColumnNoAttributeArguments = null,
                     TestFieldBoolean = null,
-                }
-            ];
+                });
 
-            context = new ComplexTestContext("name=SimpleRelmMySql");
+            context = new ComplexTestContext("name=SimpleRelmMySql", autoVerifyTables: false);
 
             // create dummy data loaders for dummy data to be placed in both relevant data sets
             var modelDataLoader = new Mock<RelmDefaultDataLoader<ComplexTestModel>>(); // { CallBase = true };
@@ -76,6 +83,8 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Utilities.ForeignObjectsLoader_Tes
             modelDataLoader.Setup(x => x.PullData(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>())).Returns(mockComplexTestModels);
 
             context.ComplexTestModels!.SetDataLoader(modelDataLoader.Object);
+
+            return context;
         }
 
         private Expression<Func<ComplexReferenceObject, object>> SetupReferenceDataLoader(Expression referencePredicate, bool useVariable)

@@ -68,7 +68,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
                     TestFieldBoolean = null,
                 });
 
-            context = new ComplexTestContext("name=SimpleRelmMySql");
+            context = new ComplexTestContext("name=SimpleRelmMySql", autoVerifyTables: false);
 
             // create dummy data loaders for dummy data to be placed in both relevant data sets
             var modelDataLoader = new Mock<RelmDefaultDataLoader<ComplexTestModel>>(); // { CallBase = true };
@@ -187,7 +187,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             SetupPrincipalDataLoaderLocalKey(false);
 
             // Act
-            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject_PrincipalEntity_LocalKey, x => x.Active == true).Load();
+            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject_PrincipalEntity_LocalKey, x => x.Active == true).Load(loadDataLoaders: false);
 
             // Assert
             var firstModel = context.ComplexTestModels.First();
@@ -203,7 +203,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             SetupPrincipalDataLoaderLocalKey(false);
 
             // Act
-            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject_PrincipalEntity_LocalKey).Load();
+            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject_PrincipalEntity_LocalKey).Load(loadDataLoaders: false);
 
             // Assert
             var firstModel = context.ComplexTestModels.First();
@@ -219,7 +219,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             SetupPrincipalDataLoaderLocalKey(true);
 
             // Act
-            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject_PrincipalEntities_LocalKeys, x => x.Active == true).Load();
+            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject_PrincipalEntities_LocalKeys, x => x.Active == true).Load(loadDataLoaders: false);
 
             // Assert
             var firstModel = context.ComplexTestModels.First();
@@ -246,7 +246,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             SetupPrincipalDataLoaderLocalKey(true);
 
             // Act
-            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject_PrincipalEntities_LocalKeys).Load();
+            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject_PrincipalEntities_LocalKeys).Load(loadDataLoaders: false);
 
             // Assert
             var firstModel = context.ComplexTestModels.First();
@@ -273,7 +273,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             SetupReferenceDataLoader(false);
 
             // Act & Assert
-            var exception = Assert.Throws<MemberAccessException>(() => context.ComplexTestModels!.Reference(x => x.SimpleReferenceObjects).Load());
+            var exception = Assert.Throws<MemberAccessException>(() => context.ComplexTestModels!.Reference(x => x.SimpleReferenceObjects).Load(loadDataLoaders: false));
             Assert.Equal("Foreign key referenced by RelmForeignKey attribute could not be found.", exception.Message);
         }
 
@@ -284,7 +284,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             SetupReferenceDataLoader(true);
 
             // Act
-            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObjects, x => x.Active == true).Load();
+            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObjects, x => x.Active == true).Load(loadDataLoaders: false);
 
             // Assert
             var firstModel = context.ComplexTestModels.First();
@@ -311,7 +311,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             SetupReferenceDataLoader(true);
 
             // Act
-            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObjects).Load();
+            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObjects).Load(loadDataLoaders: false);
 
             // Assert
             var firstModel = context.ComplexTestModels.First();
@@ -338,7 +338,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             SetupReferenceDataLoader(false);
 
             // Act
-            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject, x => x.Active == true).Load();
+            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject, x => x.Active == true).Load(loadDataLoaders: false);
 
             // Assert
             var firstModel = context.ComplexTestModels.First();
@@ -354,7 +354,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             SetupReferenceDataLoader(false);
 
             // Act
-            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject).Load();
+            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject).Load(loadDataLoaders: false);
 
             // Assert
             var firstModel = context.ComplexTestModels.First();
@@ -371,7 +371,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             SetupSingleReturnReferenceDataLoader(true, false);
 
             // Act
-            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObjects, x => x.Active == true).Load();
+            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObjects, x => x.Active == true).Load(loadDataLoaders: false);
 
             // Assert
             var firstModel = context.ComplexTestModels.First();
@@ -394,7 +394,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             SetupSingleReturnReferenceDataLoader(true, false);
 
             // Act
-            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObjects).Load();
+            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObjects).Load(loadDataLoaders: false);
 
             // Assert
             var firstModel = context.ComplexTestModels.First();
@@ -417,7 +417,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             SetupSingleReturnReferenceDataLoader(false, false);
 
             // Act
-            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject, x => x.Active == true).Load();
+            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject, x => x.Active == true).Load(loadDataLoaders: false);
 
             // Assert
             var firstModel = context.ComplexTestModels.First();
@@ -434,7 +434,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             SetupSingleReturnReferenceDataLoader(false, false);
 
             // Act
-            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject).Load();
+            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject).Load(loadDataLoaders: false);
 
             // Assert
             var firstModel = context.ComplexTestModels.First();
@@ -450,7 +450,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             SetupNavigationDataLoader(true);
 
             // Act
-            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject_NavigationProperties, x => x.Active == true).Load();
+            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject_NavigationProperties, x => x.Active == true).Load(loadDataLoaders: false);
 
             // Assert
             var firstModel = context.ComplexTestModels.First();
@@ -477,7 +477,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             SetupNavigationDataLoader(true);
 
             // Act
-            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject_NavigationProperties).Load();
+            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject_NavigationProperties).Load(loadDataLoaders: false);
 
             // Assert
             var firstModel = context.ComplexTestModels.First();
@@ -504,7 +504,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             SetupNavigationDataLoader(false);
 
             // Act
-            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject_NavigationPropertyItem, x => x.Active == true).Load();
+            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject_NavigationPropertyItem, x => x.Active == true).Load(loadDataLoaders: false);
 
             // Assert
             var firstModel = context.ComplexTestModels.First();
@@ -520,7 +520,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             SetupNavigationDataLoader(false);
 
             // Act
-            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject_NavigationPropertyItem).Load();
+            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject_NavigationPropertyItem).Load(loadDataLoaders: false);
 
             // Assert
             var firstModel = context.ComplexTestModels.First();
@@ -536,7 +536,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             SetupPrincipalDataLoader(true);
 
             // Act
-            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject_PrincipalEntities, x => x.Active == true).Load();
+            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject_PrincipalEntities, x => x.Active == true).Load(loadDataLoaders: false);
 
             // Assert
             var firstModel = context.ComplexTestModels.First();
@@ -563,7 +563,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             SetupPrincipalDataLoader(true);
 
             // Act
-            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject_PrincipalEntities).Load();
+            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject_PrincipalEntities).Load(loadDataLoaders: false);
 
             // Assert
             var firstModel = context.ComplexTestModels.First();
@@ -590,7 +590,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             SetupPrincipalDataLoader(false);
 
             // Act
-            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject_PrincipalEntityItem, x => x.Active == true).Load();
+            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject_PrincipalEntityItem, x => x.Active == true).Load(loadDataLoaders: false);
 
             // Assert
             var firstModel = context.ComplexTestModels.First();
@@ -606,7 +606,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             SetupPrincipalDataLoader(false);
 
             // Act
-            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject_PrincipalEntityItem).Load();
+            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject_PrincipalEntityItem).Load(loadDataLoaders: false);
 
             // Assert
             var firstModel = context.ComplexTestModels.First();

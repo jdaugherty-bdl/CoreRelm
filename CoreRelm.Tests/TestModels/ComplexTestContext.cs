@@ -13,10 +13,10 @@ namespace CoreRelm.Tests.TestModels
 {
     public class ComplexTestContext : RelmContext, IRelmContext_TESTING
     {
-        public ComplexTestContext() : base("name=SimpleRelmMySql", autoOpenConnection: false) { }
-        public ComplexTestContext(string connectionString) : base(connectionString, autoOpenConnection: false) { }
-        public ComplexTestContext(RelmContextOptionsBuilder options) : base(options, autoOpenConnection: false) { }
-        public ComplexTestContext(MySqlConnection connection, bool autoOpenConnection = true, bool autoOpenTransaction = false) : base(connection, autoOpenConnection, autoOpenTransaction) { }
+        public ComplexTestContext(bool autoInitializeDataSets = true, bool autoVerifyTables = true) : base("name=SimpleRelmMySql", autoOpenConnection: false, autoInitializeDataSets: autoInitializeDataSets, autoVerifyTables: autoVerifyTables) { }
+        public ComplexTestContext(string? connectionString, bool autoInitializeDataSets = true, bool autoVerifyTables = true) : base(connectionString, autoOpenConnection: false, autoInitializeDataSets: autoInitializeDataSets, autoVerifyTables: autoVerifyTables) { }
+        public ComplexTestContext(RelmContextOptionsBuilder? options) : base(options) { }
+        public ComplexTestContext(MySqlConnection connection, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool autoInitializeDataSets = true, bool autoVerifyTables = true) : base(connection, autoOpenConnection, autoOpenTransaction, autoInitializeDataSets: autoInitializeDataSets, autoVerifyTables: autoVerifyTables) { }
 
         public virtual IRelmDataSet<ComplexTestModel>? ComplexTestModels { get; set; }
         public virtual IRelmDataSet<ComplexReferenceObject>? ComplexReferenceObjects { get; set; }

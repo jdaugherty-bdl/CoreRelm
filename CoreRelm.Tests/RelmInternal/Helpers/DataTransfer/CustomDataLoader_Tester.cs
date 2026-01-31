@@ -34,7 +34,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.DataTransfer
                 },
             };
 
-            context = new ComplexTestContext("name=SimpleRelmMySql");
+            context = new ComplexTestContext("name=SimpleRelmMySql", autoVerifyTables: false);
 
             // create dummy data loaders for dummy data to be placed in both relevant data sets
             var modelDataLoader = new Mock<RelmDefaultDataLoader<ComplexTestModel>>(); // { CallBase = true };

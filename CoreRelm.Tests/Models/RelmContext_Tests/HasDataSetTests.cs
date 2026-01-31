@@ -15,11 +15,14 @@ namespace CoreRelm.Tests.Models.RelmContext_Tests
         public void HasDataSet_ReturnsTrue_WhenDataSetTypeIsAttached()
         {
             // Arrange
-            var optionsBuilder = new RelmContextOptionsBuilder("x", "x", "x", "x");
+            var optionsBuilder = new RelmContextOptionsBuilder("x", "x", "x", "x")
+                .SetAutoOpenConnection(false)
+                .SetAutoVerifyTables(false);
             var context = new ComplexTestContext(optionsBuilder);
 
             // Act
-            bool result = context.HasDataSet<ComplexTestModel>();  // Replace YourDataSetType with the actual type
+            //context.GetDataSet<ComplexTestModel>(); // Ensure the dataset is attached
+            bool result = context.HasDataSet<ComplexTestModel>();
 
             // Assert
             Assert.True(result);
@@ -29,11 +32,14 @@ namespace CoreRelm.Tests.Models.RelmContext_Tests
         public void HasDataSet_ReturnsFalse_WhenDataSetTypeIsNotAttached()
         {
             // Arrange
-            var optionsBuilder = new RelmContextOptionsBuilder("x", "x", "x", "x");
-            var context = new RelmContext(optionsBuilder, autoOpenConnection: false);
+            var optionsBuilder = new RelmContextOptionsBuilder("x", "x", "x", "x")
+                .SetAutoOpenConnection(false)
+                .SetAutoInitializeDataSets(false)
+                .SetAutoVerifyTables(false);
+            var context = new RelmContext(optionsBuilder);
 
             // Act
-            bool result = context.HasDataSet<ComplexTestModel>(throwException: false);  // Replace YourOtherDataSetType with the actual type
+            bool result = context.HasDataSet<ComplexTestModel>(throwException: false);
 
             // Assert
             Assert.False(result);
@@ -43,12 +49,14 @@ namespace CoreRelm.Tests.Models.RelmContext_Tests
         public void HasDataSet_TypeOverload_ReturnsTrue_WhenDataSetTypeIsAttached()
         {
             // Arrange
-            var optionsBuilder = new RelmContextOptionsBuilder("x", "x", "x", "x");
+            var optionsBuilder = new RelmContextOptionsBuilder("x", "x", "x", "x")
+                .SetAutoOpenConnection(false)
+                .SetAutoVerifyTables(false);
             var context = new ComplexTestContext(optionsBuilder);
             // Assuming you have a way to attach a dataset of type "YourDataSetType"
 
             // Act
-            bool result = context.HasDataSet(typeof(ComplexTestModel));  // Replace YourDataSetType with the actual type
+            bool result = context.HasDataSet(typeof(ComplexTestModel));
 
             // Assert
             Assert.True(result);
@@ -58,11 +66,14 @@ namespace CoreRelm.Tests.Models.RelmContext_Tests
         public void HasDataSet_TypeOverload_ReturnsFalse_WhenDataSetTypeIsNotAttached()
         {
             // Arrange
-            var optionsBuilder = new RelmContextOptionsBuilder("x", "x", "x", "x");
-            var context = new RelmContext(optionsBuilder, autoOpenConnection: false);
+            var optionsBuilder = new RelmContextOptionsBuilder("x", "x", "x", "x")
+                .SetAutoOpenConnection(false)
+                .SetAutoInitializeDataSets(false)
+                .SetAutoVerifyTables(false);
+            var context = new RelmContext(optionsBuilder);
 
             // Act
-            bool result = context.HasDataSet(typeof(ComplexTestModel), throwException: false);  // Replace YourOtherDataSetType with the actual type
+            bool result = context.HasDataSet(typeof(ComplexTestModel), throwException: false);
 
             // Assert
             Assert.False(result);
