@@ -33,7 +33,7 @@ namespace CoreRelm.Quickstart.Examples.Data
             };
 
             var dataObject = RelmHelper.GetDataObject<ExampleModel>(exampleContext, parametersQuery, parameters: exampleParameters, throwException: true);
-            dataObject = exampleContext.GetDataObject<ExampleModel>(parametersQuery, Parameters: exampleParameters, throwException: true);
+            dataObject = exampleContext.GetDataObject<ExampleModel>(parametersQuery, parameters: exampleParameters, throwException: true);
 
             // Example usage to get multiple DataObjects using query only
             var multipleQueryOnly = $@"SELECT * FROM {RelmHelper.GetDalTable<ExampleModel>()}
@@ -52,7 +52,7 @@ namespace CoreRelm.Quickstart.Examples.Data
             };
 
             var dataObjects = RelmHelper.GetDataObjects<ExampleModel>(exampleContext, multipleParametersQuery, parameters: multipleExampleParameters, throwException: true);
-            dataObjects = exampleContext.GetDataObjects<ExampleModel>(multipleParametersQuery, Parameters: multipleExampleParameters, throwException: true);
+            dataObjects = exampleContext.GetDataObjects<ExampleModel>(multipleParametersQuery, parameters: multipleExampleParameters, throwException: true);
         }
 
         internal void RunExamples(ExampleQuickContext exampleQuickContext)
@@ -75,7 +75,7 @@ namespace CoreRelm.Quickstart.Examples.Data
             };
 
             var dataObject = RelmHelper.GetDataObject<ExampleModel>(exampleQuickContext, parametersQuery, parameters: exampleParameters, throwException: true);
-            dataObject = exampleQuickContext.GetDataObject<ExampleModel>(parametersQuery, Parameters: exampleParameters, throwException: true);
+            dataObject = exampleQuickContext.GetDataObject<ExampleModel>(parametersQuery, parameters: exampleParameters, throwException: true);
 
             // Example usage to get multiple DataObjects using query only
             var multipleQueryOnly = $@"SELECT * FROM {RelmHelper.GetDalTable<ExampleModel>()}
@@ -95,7 +95,7 @@ namespace CoreRelm.Quickstart.Examples.Data
             };
 
             var dataObjects = RelmHelper.GetDataObjects<ExampleModel>(exampleQuickContext, multipleParametersQuery, parameters: multipleExampleParameters, throwException: true);
-            dataObjects = exampleQuickContext.GetDataObjects<ExampleModel>(multipleParametersQuery, Parameters: multipleExampleParameters, throwException: true);
+            dataObjects = exampleQuickContext.GetDataObjects<ExampleModel>(multipleParametersQuery, parameters: multipleExampleParameters, throwException: true);
         }
     }
 }

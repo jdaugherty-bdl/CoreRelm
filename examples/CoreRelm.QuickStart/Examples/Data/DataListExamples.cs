@@ -30,7 +30,7 @@ namespace CoreRelm.Quickstart.Examples.Data
             };
 
             dataList = RelmHelper.GetDataList<int>(exampleContext, parametersQuery, parameters: exampleParameters, throwException: true);
-            dataList = exampleContext.GetDataList<int>(parametersQuery, Parameters: exampleParameters, throwException: true);
+            dataList = exampleContext.GetDataList<int>(parametersQuery, parameters: exampleParameters, throwException: true);
         }
 
         internal void RunExamples(ExampleQuickContext exampleQuickContext)
@@ -51,7 +51,7 @@ namespace CoreRelm.Quickstart.Examples.Data
             };
 
             dataList = RelmHelper.GetDataList<int>(exampleQuickContext, parametersQuery, parameters: exampleParameters, throwException: true);
-            dataList = exampleQuickContext.GetDataList<int>(parametersQuery, Parameters: exampleParameters, throwException: true);
+            dataList = exampleQuickContext.GetDataList<int>(parametersQuery, parameters: exampleParameters, throwException: true);
         }
     }
 }

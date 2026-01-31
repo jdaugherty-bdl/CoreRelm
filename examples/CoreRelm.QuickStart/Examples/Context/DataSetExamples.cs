@@ -21,7 +21,7 @@ namespace CoreRelm.Quickstart.Examples.Context
             // Example usage to create a new blank model with minimal identifiable information and persist it
             var blankModel = exampleContext
                 .ExampleModels
-                .New(Persist: true);
+                .New(persist: true);
 
             blankModel.ModelName = "New Model";
 
@@ -36,17 +36,17 @@ namespace CoreRelm.Quickstart.Examples.Context
                 .New(new ExampleModel
                 {
                     ModelName = "New Model",
-                }, Persist: true);
+                }, persist: true);
 
             // Example usage to find a model by ID
             var model = exampleContext
                 .ExampleModels
-                .Find(ItemId: 1);
+                .Find(itemId: 1);
 
             // Example usage to find a model by InternalId
             model = exampleContext
                 .ExampleModels
-                .Find(ItemInternalId: "some-guid-value");
+                .Find(itemInternalId: "some-guid-value");
 
             // Example usage to find a model by ModelIndex
             model = exampleContext
@@ -110,6 +110,17 @@ namespace CoreRelm.Quickstart.Examples.Context
                 .Limit(100)
                 .Load();
 
+            // Example usage to load 100 distinct models, offset by 50 rows from the beginning, by model name with a model index greater than 1000, grouped by group internal ID and ordered by model index
+            models = exampleContext
+                .ExampleModels
+                .Where(x => x.ModelIndex > 1000)
+                .DistinctBy(x => x.ModelName)
+                .GroupBy(x => x.GroupInternalId)
+                .OrderBy(x => x.ModelIndex)
+                .Limit(100)
+                .Offset(50)
+                .Load();
+
             // Example usage to load all models with their related groups
             models = exampleContext
                 .ExampleModels
@@ -133,7 +144,7 @@ namespace CoreRelm.Quickstart.Examples.Context
             // Example usage to add a single new model and persist it
             var itemsAdded = exampleContext
                 .ExampleModels
-                .Add(newModel, Persist: true);
+                .Add(newModel, persist: true);
 
             var newModels = new List<ExampleModel>
             {
@@ -156,7 +167,7 @@ namespace CoreRelm.Quickstart.Examples.Context
             // Example usage to add multiple new models and persist them
             itemsAdded = exampleContext
                 .ExampleModels
-                .Add(newModels, Persist: true);
+                .Add(newModels, persist: true);
 
             foreach (var updateModel in newModels)
             {
@@ -183,7 +194,7 @@ namespace CoreRelm.Quickstart.Examples.Context
             // Example usage to create a new blank model with minimal identifiable information and persist it
             var blankModel = exampleQuickContext
                 .ExampleModels
-                .New(Persist: true);
+                .New(persist: true);
 
             blankModel.ModelName = "New Model";
 
@@ -198,17 +209,17 @@ namespace CoreRelm.Quickstart.Examples.Context
                 .New(new ExampleModel
                 {
                     ModelName = "New Model",
-                }, Persist: true);
+                }, persist: true);
 
             // Example usage to find a model by ID
             var model = exampleQuickContext
                 .ExampleModels
-                .Find(ItemId: 1);
+                .Find(itemId: 1);
 
             // Example usage to find a model by InternalId
             model = exampleQuickContext
                 .ExampleModels
-                .Find(ItemInternalId: "some-guid-value");
+                .Find(itemInternalId: "some-guid-value");
 
             // Example usage to find a model by ModelIndex
             model = exampleQuickContext
@@ -295,7 +306,7 @@ namespace CoreRelm.Quickstart.Examples.Context
             // Example usage to add a single new model and persist it
             var itemsAdded = exampleQuickContext
                 .ExampleModels
-                .Add(newModel, Persist: true);
+                .Add(newModel, persist: true);
 
             var newModels = new List<ExampleModel>
             {
@@ -318,7 +329,7 @@ namespace CoreRelm.Quickstart.Examples.Context
             // Example usage to add multiple new models and persist them
             itemsAdded = exampleQuickContext
                 .ExampleModels
-                .Add(newModels, Persist: true);
+                .Add(newModels, persist: true);
 
             foreach (var updateModel in newModels)
             {
