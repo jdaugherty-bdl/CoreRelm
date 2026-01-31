@@ -1,12 +1,14 @@
 ﻿using CoreRelm.RelmInternal.Helpers.CustomVisitors;
+using CoreRelm.RelmInternal.Helpers.Expressions;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
-using static CoreRelm.RelmInternal.Helpers.Operations.ExpressionEvaluator;
 
 namespace CoreRelm.RelmInternal.Helpers.Utilities
 {
@@ -30,14 +32,85 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
             //return GetValue(expression, null, false);
         }
 
-        public static object GetValueUsingCompile(Expression expression)
+        public static object GetValueUsingCompile(Expression expression, List<object> argumentValues)
         {
-            var lambdaExpression = Expression.Lambda(expression);
+            LambdaExpression lambdaExpression;
+            if (expression is LambdaExpression le)
+            {
+                lambdaExpression = le;
+            }
+            else if (expression is ParameterExpression pe)
+            {
+                // Wrap the parameter as a lambda using the same ParameterExpression instance
+                lambdaExpression = Expression.Lambda(expression, pe);
+            }
+            else
+            {
+                // If the expression has parameters, extract them from the tree instead of recreating them
+                var parameters = new ParameterExtractor().Extract(expression); // implement to walk the tree
+                lambdaExpression = parameters.Any()
+                    ? Expression.Lambda(expression, parameters)
+                    : Expression.Lambda(expression);
+            }
+
             var dele = lambdaExpression.Compile();
-            return dele.DynamicInvoke();
-            /*
-            return GetValue(expression, null, false, true);
-            */
+            if (argumentValues == null || argumentValues.Count == 0)
+                return dele.DynamicInvoke();
+
+            // Execute over jagged sources instead of collapsing to the first inner array
+            if (TryExecuteOverJagged(lambdaExpression, argumentValues, dele, out var jaggedResult))
+                return jaggedResult;
+
+            var mappedArgs = MapArguments(lambdaExpression, argumentValues);
+            return dele.DynamicInvoke(mappedArgs);
+        }
+
+        // helper to execute a single-parameter lambda over a jagged source
+        private static bool TryExecuteOverJagged(LambdaExpression lambdaExpression, List<object> argumentValues, Delegate dele, out object result)
+        {
+            result = null;
+
+            // We only handle single-parameter lambdas of array type: T[]
+            if (lambdaExpression.Parameters.Count != 1)
+                return false;
+
+            var paramType = lambdaExpression.Parameters[0].Type;
+            if (!paramType.IsArray)
+                return false;
+
+            // Detect jagged inputs: T[][] or IEnumerable<T[]>
+            var jaggedArrayType = paramType.MakeArrayType();              // e.g. string[][]. Note: paramType is string[]
+            var enumerableOfArraysType = typeof(IEnumerable<>).MakeGenericType(paramType);
+
+            var source = argumentValues != null && argumentValues.Count > 0 ? argumentValues[0] : null;
+            IEnumerable<object> innerArrays = null;
+
+            if (source == null)
+                return false;
+
+            if (jaggedArrayType.IsInstanceOfType(source))
+            {
+                var array = (Array)source;
+                innerArrays = array.Cast<object>();
+            }
+            else if (enumerableOfArraysType.IsInstanceOfType(source))
+            {
+                innerArrays = ((IEnumerable)source).Cast<object>();
+            }
+            else
+            {
+                return false;
+            }
+
+            // Invoke the delegate for each inner array
+            var outputs = new List<object>();
+            foreach (var inner in innerArrays)
+            {
+                outputs.Add(dele.DynamicInvoke(new[] { inner }));
+            }
+
+            result = outputs;
+            return true;
         }
 
         /*
@@ -47,7 +120,147 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
             return getValue(expression, true, argumentValues);
         }
         */
-        
+        private static object[] MapArguments(LambdaExpression lambda, List<object> args)
+        {
+            var targetParams = lambda.Parameters;
+            var result = new object[targetParams.Count];
+
+            // If arg count matches, still coerce each arg; otherwise try to best-fit pull from the provided list.
+            for (int i = 0; i < targetParams.Count; i++)
+            {
+                var pType = targetParams[i].Type;
+                var source = i < args.Count ? args[i] : null;
+
+                result[i] = CoerceArgument(source, pType, args);
+            }
+
+            return result;
+        }
+
+        private static object CoerceArgument(object source, Type targetType, List<object> pool)
+        {
+            if (source == null)
+            {
+                // Try to find a candidate from pool that matches targetType
+                var candidate = pool.FirstOrDefault(o => IsAssignableTo(o, targetType));
+                if (candidate != null) return candidate;
+                return null;
+            }
+
+            // NEW: unwrap lists/collections by selecting a matching element
+            if (source is IEnumerable enumerable && targetType != typeof(string))
+            {
+                foreach (var item in enumerable.Cast<object>())
+                {
+                    if (IsAssignableTo(item, targetType))
+                        return item;
+                    else if (item != null)
+                    {
+                        // Try coercion on each item
+                        var coercedItem = CoerceArgument(item, targetType, pool);
+                        if (IsAssignableTo(coercedItem, targetType))
+                            return coercedItem;
+                    }
+                }
+            }
+
+            // Direct assignable
+            if (IsAssignableTo(source, targetType))
+                return source;
+
+            // Unwrap Delegate: try invoke without parameters if return type matches
+            if (source is Delegate del)
+            {
+                var method = del.Method;
+                if (method.GetParameters().Length == 0 && IsAssignableTo(method.ReturnType, targetType))
+                    return del.DynamicInvoke();
+            }
+
+            // If source is IEnumerable of elementType, and target is elementType[], take first or ToArray
+            if (TryCoerceEnumerableToArray(source, targetType, out var arrayCoerced))
+                return arrayCoerced;
+
+            // If source is jagged array and target is single-dimensional array element, take first
+            if (TryCoerceJaggedFirst(source, targetType, out var jaggedCoerced))
+                return jaggedCoerced;
+
+            // If target is string and source is not, use ToString
+            if (targetType == typeof(string) && source != null)
+                return source.ToString();
+
+            // Last resort: try ChangeType for primitives
+            try
+            {
+                if (source is IConvertible && typeof(IConvertible).IsAssignableFrom(targetType))
+                    return Convert.ChangeType(source, targetType);
+            }
+            catch { /* ignore */ }
+
+            // No safe coercion; return original to let DynamicInvoke surface a clear error
+            return source;
+        }
+
+        private static bool IsAssignableTo(object value, Type targetType)
+        {
+            if (value == null) return !targetType.IsValueType || (Nullable.GetUnderlyingType(targetType) != null);
+            return targetType.IsInstanceOfType(value);
+        }
+
+        private static bool TryCoerceEnumerableToArray(object source, Type targetType, out object result)
+        {
+            result = null;
+            var elemType = targetType.IsArray ? targetType.GetElementType() : null;
+            if (elemType == null) return false;
+
+            // IEnumerable<elemType> -> elemType[] (use FirstOrDefault if the lambda expects elemType and we have IEnumerable<elemType>)
+            var ienumOfElem = typeof(IEnumerable<>).MakeGenericType(elemType);
+            if (ienumOfElem.IsInstanceOfType(source))
+            {
+                var enumerable = (IEnumerable)source;
+                // If target is elemType[], return ToArray; else if target is elemType, return FirstOrDefault
+                if (targetType.IsArray)
+                {
+                    var toArray = typeof(Enumerable).GetMethod(nameof(Enumerable.ToArray))
+                        .MakeGenericMethod(elemType);
+                    result = toArray.Invoke(null, new object[] { source });
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool TryCoerceJaggedFirst(object source, Type targetType, out object result)
+        {
+            result = null;
+            if (!targetType.IsArray) return false;
+
+            var elemType = targetType.GetElementType();
+
+            // Handle string[][] -> string[] (take FirstOrDefault)
+            //var jaggedType = elemType.MakeArrayType();
+            var jaggedType = targetType.MakeArrayType();
+            if (jaggedType.IsInstanceOfType(source))
+            {
+                var array = (Array)source;
+                result = array.Length > 0 ? array.GetValue(0) : null;
+                return true;
+            }
+
+            // Handle IEnumerable<string[]> -> string[] (take FirstOrDefault)
+            var ienumOfElem = typeof(IEnumerable<>).MakeGenericType(elemType);
+            if (ienumOfElem.IsInstanceOfType(source))
+            {
+                var firstOrDefault = typeof(Enumerable).GetMethods(BindingFlags.Public | BindingFlags.Static)
+                    .First(m => m.Name == nameof(Enumerable.FirstOrDefault) && m.GetParameters().Length == 1)
+                    .MakeGenericMethod(elemType);
+                result = firstOrDefault.Invoke(null, new object[] { source });
+                return true;
+            }
+
+            return false;
+        }
+
         public static object GetValue(Expression expression, List<object> argumentValues, bool allowCompile, bool useDynamicInvoke = false)
         {
             // Implementation that uses argumentValues
@@ -116,8 +329,8 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
 
             if (allowCompile)
             {
-                return GetValueUsingCompile(expression);
-                //return GetValueUsingCompile(expression, argumentValues);
+                //return GetValueUsingCompile(expression);
+                return GetValueUsingCompile(expression, argumentValues);
             }
 
             throw new Exception("Couldn't evaluate Expression without compiling: " + expression);
@@ -185,10 +398,6 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
 
         public static MemberExpression GetReferencedMember(Tuple<Expression, ICollection<ParameterExpression>> command)
         {
-            //if (!(command.Item1 is MethodCallExpression methodCall))
-            //    return null;
-
-            //return GetReferencedMember(methodCall, command.Item2.FirstOrDefault());
             return GetReferencedMember((MethodCallExpression)command.Item1, command.Item2.FirstOrDefault());
         }
 
@@ -200,11 +409,19 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
             {
                 foreach (var arg in methodCall.Arguments)
                 {
-                    if (arg is MemberExpression memberExpression && memberExpression.Expression == parameter)
+                    if (arg is MemberExpression memberExpression)
                     {
-                        referencedMember = memberExpression;
+                        if (memberExpression.Expression == parameter)
+                        {
+                            referencedMember = memberExpression;
 
-                        break;
+                            break;
+                        }
+
+                        if (memberExpression.Expression is ConstantExpression constantExpression)
+                        {
+                            var ddd = GetValue(constantExpression);
+                        }
                     }
                     else if (arg is MethodCallExpression methodCallExpression)
                     {
@@ -222,12 +439,68 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
                             if (referencedMember != null)
                                 break;
                         }
+                        else if (lambdaExpression.Body is BinaryExpression binaryExpression)
+                        {
+                        }
                     }
                 }
             }
 
             return referencedMember;
         }
+        /*
+        public static List<MemberExpression> GetReferencedMember(Tuple<Expression, ICollection<ParameterExpression>> command)
+        {
+            return GetReferencedMember((MethodCallExpression)command.Item1, command.Item2.FirstOrDefault());
+        }
+
+        public static List<MemberExpression> GetReferencedMember(MethodCallExpression methodCall, ParameterExpression parameter)
+        {
+            var referencedMembers = methodCall.Arguments.Where(x => x is MemberExpression).Cast<MemberExpression>().ToList();
+
+            if (referencedMembers.All(x => (x?.Expression?.NodeType ?? ExpressionType.Not) == ExpressionType.Parameter))
+                return referencedMembers;
+
+            foreach (var arg in methodCall.Arguments)
+            {
+                if (arg is MemberExpression memberExpression)
+                {
+                    if (memberExpression.Expression == parameter)
+                    {
+                        referencedMembers.Add(memberExpression);
+
+                        //break;
+                    }
+                    else if (memberExpression.Expression is ConstantExpression constantExpression)
+                    {
+                        var ddd = GetValue(constantExpression);
+                    }
+                }
+                else if (arg is MethodCallExpression methodCallExpression)
+                {
+                    referencedMembers = GetReferencedMember(methodCallExpression, parameter);
+
+                    //if (referencedMembers != null)
+                        //break;
+                }
+                else if (arg is LambdaExpression lambdaExpression)
+                {
+                    if (lambdaExpression.Body is MethodCallExpression method)
+                    {
+                        referencedMembers = GetReferencedMember(method, parameter);
+
+                        //if (referencedMembers != null)
+                            //break;
+                    }
+                    else if (lambdaExpression.Body is BinaryExpression binaryExpression)
+                    {
+                    }
+                }
+            }
+
+            return referencedMembers;
+        }
+        */
 
         public static List<object> GetReferencedValues(MethodCallExpression methodCall)
         {
@@ -308,6 +581,44 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
             methodCallVisitor.Visit(lambdaExpression.Body);
 
             return methodCallVisitor.FoundRelevantMethodCall;
+        }
+
+        public static string GetSqlOperator(ExpressionType expressionType)
+        {
+            switch (expressionType)
+            {
+                case ExpressionType.Equal:
+                    return "=";
+                case ExpressionType.NotEqual:
+                    return "<>";
+                case ExpressionType.GreaterThan:
+                    return ">";
+                case ExpressionType.GreaterThanOrEqual:
+                    return ">=";
+                case ExpressionType.LessThan:
+                    return "<";
+                case ExpressionType.LessThanOrEqual:
+                    return "<=";
+                case ExpressionType.AndAlso:
+                    return "AND";
+                case ExpressionType.OrElse:
+                    return "OR";
+                case ExpressionType.Add:
+                case ExpressionType.AddChecked:
+                    return "+";
+                case ExpressionType.Subtract:
+                case ExpressionType.SubtractChecked:
+                    return "-";
+                case ExpressionType.Multiply:
+                case ExpressionType.MultiplyChecked:
+                    return "*";
+                case ExpressionType.Divide:
+                    return "/";
+                case ExpressionType.Modulo:
+                    return "%";
+                default:
+                    throw new NotSupportedException($"The expression type '{expressionType}' is not supported.");
+            }
         }
     }
 }

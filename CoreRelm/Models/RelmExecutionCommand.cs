@@ -1,4 +1,5 @@
-﻿using CoreRelm.Attributes;
+﻿using MoreLinq;
+using CoreRelm.Attributes;
 using CoreRelm.Interfaces;
 using CoreRelm.RelmInternal.Models;
 using System;
@@ -9,36 +10,96 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using static CoreRelm.Enums.Commands;
-using static CoreRelm.RelmInternal.Helpers.Operations.ExpressionEvaluator;
 
 namespace CoreRelm.Models
 {
+    /// <summary>
+    /// Represents a command and its associated expression for execution within the Relm framework, supporting
+    /// additional and child commands for complex execution scenarios.
+    /// </summary>
+    /// <remarks>A RelmExecutionCommand encapsulates a primary command and expression, and can aggregate
+    /// additional related commands to support batch or hierarchical execution patterns. This class is typically used to
+    /// construct and manage command trees or sequences for advanced data operations, such as those involving foreign
+    /// key navigation or entity relationships. Thread safety is not guaranteed; if used concurrently, external
+    /// synchronization is required.</remarks>
     public class RelmExecutionCommand : IRelmExecutionCommand
     {
-        public Command InitialCommand { get; private set; }
-        public Expression InitialExpression { get; private set; }
-        public int AdditionalCommandCount => _additionalCommands?.Count ?? 0;
+        /// <summary>
+        /// Gets the command that initiates execution for this operation.
+        /// </summary>
+        public Command ExecutionCommand { get; private set; }
 
-        private readonly List<RelmExecutionCommand> _additionalCommands = new List<RelmExecutionCommand>();
+        /// <summary>
+        /// Gets the command that is executed when the associated component is initialized.
+        /// </summary>
+        [Obsolete("InitialCommand is deprecated, please use ExecutionCommand instead.")]
+        public Command InitialCommand => ExecutionCommand;
 
+        /// <summary>
+        /// Gets the expression that represents the execution logic for this instance.
+        /// </summary>
+        public Expression ExecutionExpression { get; private set; }
+
+        /// <summary>
+        /// Gets the initial expression used to define the starting state or value for this instance.
+        /// </summary>
+        [Obsolete("InitialExpression is deprecated, please use ExecutionExpression instead.")]
+        public Expression InitialExpression => ExecutionExpression;
+
+        /// <summary>
+        /// Gets the number of child commands associated with this instance.
+        /// </summary>
+        public int ChildCommandCount => _childCommands?.Count ?? 0;
+
+        /// <summary>
+        /// Gets the number of additional commands associated with this instance.
+        /// </summary>
+        [Obsolete("AdditionalCommandCount is deprecated, please use ChildCommandCount instead.")]
+        public int AdditionalCommandCount => ChildCommandCount;
+
+        private readonly List<RelmExecutionCommand> _childCommands = new List<RelmExecutionCommand>();
+
+        /// <summary>
+        /// Initializes a new instance of the RelmExecutionCommand class.
+        /// </summary>
         public RelmExecutionCommand()
         {
-
         }
 
+        /// <summary>
+        /// Initializes a new instance of the RelmExecutionCommand class with the specified command and expression.
+        /// </summary>
+        /// <param name="command">The command to be executed as part of the execution command. Cannot be null.</param>
+        /// <param name="expression">The expression associated with the execution command. Cannot be null.</param>
         public RelmExecutionCommand(Command command, Expression expression)
         {
-            InitialCommand = command;
-            InitialExpression = expression;
+            ExecutionCommand = command;
+            ExecutionExpression = expression;
         }
 
+        /// <summary>
+        /// Adds an additional command and its associated expression to the current execution command sequence.
+        /// </summary>
+        /// <remarks>This method enables fluent chaining by returning the same instance after adding the
+        /// command and expression.</remarks>
+        /// <param name="command">The command to add to the execution sequence. Cannot be null.</param>
+        /// <param name="expression">The expression associated with the command. Cannot be null.</param>
+        /// <returns>The current <see cref="RelmExecutionCommand"/> instance with the additional command included.</returns>
         public RelmExecutionCommand AddAdditionalCommand(Command command, Expression expression)
         {
-            _additionalCommands.Add(new RelmExecutionCommand(command, expression));
+            _childCommands.Add(new RelmExecutionCommand(command, expression));
 
             return this;
         }
 
+        /// <summary>
+        /// Adds an additional command to the execution pipeline using a strongly typed expression to specify the target
+        /// property or member.
+        /// </summary>
+        /// <typeparam name="T">The type of the object that contains the member referenced by the expression.</typeparam>
+        /// <param name="command">The command to add to the execution pipeline.</param>
+        /// <param name="expression">An expression that identifies the property or member of type T to which the command applies.</param>
+        /// <returns>The current <see cref="RelmExecutionCommand"/> instance, enabling method chaining.</returns>
         public RelmExecutionCommand AddAdditionalCommand<T>(Command command, Expression<Func<T, object>> expression)
         {
             AddAdditionalCommand(command, expression.Body);
@@ -46,17 +107,38 @@ namespace CoreRelm.Models
             return this;
         }
 
+        /// <summary>
+        /// Gets the list of additional execution commands associated with this instance.
+        /// </summary>
+        /// <returns>A list of <see cref="RelmExecutionCommand"/> objects representing additional commands. The list may be empty
+        /// if no additional commands are present.</returns>
         public List<RelmExecutionCommand> GetAdditionalCommands()
         {
-            return _additionalCommands;
+            return _childCommands;
         }
 
+        /// <summary>
+        /// Retrieves navigation and foreign key mapping options for a collection of entities, enabling resolution of
+        /// relationships between the provided items and their related entities.
+        /// </summary>
+        /// <remarks>This method analyzes the provided collection and its type metadata to determine the
+        /// appropriate navigation and foreign key properties. It supports both principal and dependent entity
+        /// configurations, and will throw exceptions if required attributes or keys are missing. The returned options
+        /// can be used to facilitate relationship resolution in data access scenarios.</remarks>
+        /// <typeparam name="T">The type of the entities in the collection for which foreign key navigation options are to be determined.</typeparam>
+        /// <param name="_items">The collection of entities for which to resolve foreign key navigation options. Cannot be null.</param>
+        /// <returns>A ForeignKeyNavigationOptions instance containing metadata about the navigation properties, foreign key
+        /// properties, and primary key values for the specified collection.</returns>
+        /// <exception cref="InvalidOperationException">Thrown if the initial expression is not a lambda expression in the form of 'x => x.PropertyName'.</exception>
+        /// <exception cref="Exception">Thrown if no primary keys or reference keys are found for the provided collection.</exception>
+        /// <exception cref="MemberAccessException">Thrown if the foreign key referenced by the RelmForeignKey attribute cannot be found.</exception>
         public ForeignKeyNavigationOptions GetForeignKeyNavigationOptions<T>(ICollection<T> _items)
         {
-            var navigationOptions = new ForeignKeyNavigationOptions();
-
-            navigationOptions.ReferenceProperty = this.InitialExpression as MemberExpression
-                ?? throw new InvalidOperationException("Collection must be represented by a lambda expression in the form of 'x => x.PropertyName'.");
+            var navigationOptions = new ForeignKeyNavigationOptions
+            {
+                ReferenceProperty = this.InitialExpression as MemberExpression
+                    ?? throw new InvalidOperationException("Collection must be represented by a lambda expression in the form of 'x => x.PropertyName'.")
+            };
 
             // if foreign key attribute on the current item's property, then we have principal resolution
             var principalReslolutionForeignKey = navigationOptions.ReferenceProperty.Member.GetCustomAttribute<RelmForeignKey>();

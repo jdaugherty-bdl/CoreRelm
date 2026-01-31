@@ -1,6 +1,7 @@
 ﻿using CoreRelm.Attributes;
 using CoreRelm.Interfaces;
 using CoreRelm.Models;
+using CoreRelm.RelmInternal.Helpers.Expressions;
 using CoreRelm.RelmInternal.Helpers.Utilities;
 using System;
 using System.Collections;
@@ -8,16 +9,15 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using static CoreRelm.Enums.Commands;
 
 namespace CoreRelm.RelmInternal.Helpers.Operations
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    internal class ExpressionEvaluator
+    internal class ExpressionEvaluator<T> where T : IRelmModel, new()
     {
         private bool HasWhere = false;
         private bool HasOrderBy = false;
@@ -25,12 +25,21 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
 
         private readonly Dictionary<string, string> UnderscoreProperties;
         private readonly Dictionary<string, string> UsedTableAliases;
+        private readonly string _tableName;
 
-        internal ExpressionEvaluator(string TableName, Dictionary<string, string> UnderscoreProperties, Dictionary<string, string> UsedTableAliases = null)
+        internal ExpressionEvaluator(string TableName = null, Dictionary<string, string> UnderscoreProperties = null, Dictionary<string, string> UsedTableAliases = null)
         {
-            this.UnderscoreProperties = UnderscoreProperties;
+            if (string.IsNullOrWhiteSpace(TableName))
+                _tableName = typeof(T).GetCustomAttribute<RelmTable>(false)?.TableName ?? throw new ArgumentNullException();
+            else
+                _tableName = TableName;
 
-            this.UsedTableAliases = UsedTableAliases ?? new Dictionary<string, string> { [TableName] = "a" }; // reserve 'a' for the main table
+            if ((UnderscoreProperties?.Count ?? 0) == 0)
+                this.UnderscoreProperties = DataNamingHelper.GetUnderscoreProperties<T>(true, false).ToDictionary(x => x.Value.Item1, x => x.Key);
+            else
+                this.UnderscoreProperties = UnderscoreProperties;
+
+            this.UsedTableAliases = UsedTableAliases ?? new Dictionary<string, string> { [_tableName] = "a" }; // reserve 'a' for the main table
         }
 
         private string GetTableAlias(string PropertyName)
@@ -62,6 +71,34 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
                 throw new AccessViolationException($"Key {parameterName} already exists.");
 
             return parameterName;
+        }
+
+        internal string EvaluateWhereNew(List<IRelmExecutionCommand> executionCommands, Dictionary<string, object> parameters, bool giveCommandPrefix = true, ExpressionType nodeType = ExpressionType.And)
+        {
+            var query = $" WHERE ( ";
+
+            var expressionVisitor = new RelmExpressionVisitor<T>(_tableName, UnderscoreProperties, UsedTableAliases);
+
+            // resolve query commands
+            foreach (var command in executionCommands)
+            {
+                var commandResolution = expressionVisitor.Visit(command.ExecutionExpression);
+
+                query += $" ( {commandResolution.Query} ) ";
+            }
+
+            query += " ) ";
+
+            // copy query parameters
+            foreach (var key in expressionVisitor.QueryParameters.Keys.ToList())
+            {
+                if (!parameters.ContainsKey(key))
+                    parameters.Add(key, expressionVisitor.QueryParameters[key]);
+                else
+                    parameters[key] = expressionVisitor.QueryParameters[key];
+            }
+
+            return query;
         }
 
         internal string EvaluateWhere(KeyValuePair<Command, List<IRelmExecutionCommand>> CommandExpression, Dictionary<string, object> QueryParameters, bool GiveCommandPrefix = true, ExpressionType NodeType = ExpressionType.And)
@@ -598,6 +635,10 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
                     methodOperand = methodCall;
                 else if (commandExpression.InitialExpression is UnaryExpression unaryExpression)
                     methodOperand = unaryExpression.Operand as MemberExpression;
+                else if (commandExpression.InitialExpression is LambdaExpression lambdaExpression)
+                    methodOperand = lambdaExpression.Body is UnaryExpression lambdaUnary && lambdaUnary.NodeType == ExpressionType.Convert
+                        ? lambdaUnary.Operand as MemberExpression
+                        : lambdaExpression.Body as MemberExpression;
 
                 if (methodOperand == default)
                 {
@@ -660,9 +701,46 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         {
             var findQuery = string.Empty;
 
-            var count = CommandExpression.Value.Count;
+            var countItems = new List<string>();
+            foreach (var command in CommandExpression.Value)
+            {
+                if (command.InitialExpression == null)
+                    countItems.Add(" COUNT(*) AS `count_rows` ");
+                else
+                {
+                    var methodOperands = new List<MemberExpression>();
 
-            findQuery += $" COUNT(*) ";
+                    if (command.InitialExpression is MemberExpression methodCall)
+                        methodOperands.Add(methodCall);
+                    else if (command.InitialExpression is UnaryExpression unaryExpression)
+                        methodOperands.Add(unaryExpression.Operand as MemberExpression);
+                    else if (command.InitialExpression is NewExpression newExpression)
+                        methodOperands = newExpression.Arguments.Select(x => x as MemberExpression).ToList();
+                    else
+                        throw new InvalidCastException();
+
+                    foreach (var methodOperand in methodOperands)
+                    {
+                        var currentAlias = GetTableAlias(((RelmTable)methodOperand.Expression.Type.GetCustomAttributes(typeof(RelmTable), true).FirstOrDefault())?.TableName);
+
+                        if (string.IsNullOrWhiteSpace(currentAlias))
+                            throw new TypeAccessException($"Could not find 'RelmTable' custom attribute on type: [{methodOperand.Expression.Type.FullName}]");
+
+                        var countExpression = " COUNT(";
+                        countExpression += currentAlias;
+                        countExpression += ".`";
+                        countExpression += UnderscoreProperties[methodOperand.Member.Name];
+                        countExpression += "`) ";
+                        countExpression += "AS `count_";
+                        countExpression += UnderscoreProperties[methodOperand.Member.Name];
+                        countExpression += "` ";
+
+                        countItems.Add(countExpression);
+                    }
+                }
+            }
+
+            findQuery += string.Join(",", countItems);
 
             return findQuery;
         }
@@ -672,6 +750,11 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
             return $" LIMIT {(CommandExpression.Value[0].InitialExpression as ConstantExpression).Value} ";
         }
 
+        internal string EvaluateOffset(KeyValuePair<Command, List<IRelmExecutionCommand>> CommandExpression)
+        {
+            return $" OFFSET {(CommandExpression.Value[0].InitialExpression as ConstantExpression).Value} ";
+        }
+
         internal string EvaluateDistinctBy(KeyValuePair<Command, List<IRelmExecutionCommand>> CommandExpression)
         {
             MemberExpression methodOperand;
@@ -679,6 +762,10 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
                 methodOperand = methodCall;
             else if (CommandExpression.Value[0].InitialExpression is UnaryExpression unaryExpression)
                 methodOperand = unaryExpression.Operand as MemberExpression;
+            else if (CommandExpression.Value[0].InitialExpression is LambdaExpression lambdaExpression)
+                methodOperand = lambdaExpression.Body is UnaryExpression lambdaUnary && lambdaUnary.NodeType == ExpressionType.Convert
+                    ? lambdaUnary.Operand as MemberExpression
+                    : lambdaExpression.Body as MemberExpression;
             else
                 throw new InvalidCastException();
 

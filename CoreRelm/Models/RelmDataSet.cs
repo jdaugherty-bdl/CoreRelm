@@ -6,7 +6,6 @@ using CoreRelm.RelmInternal.Extensions;
 using CoreRelm.RelmInternal.Helpers.DataTransfer;
 using CoreRelm.RelmInternal.Helpers.Operations;
 using CoreRelm.RelmInternal.Helpers.Utilities;
-using Microsoft.AspNetCore.Routing;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,8 +16,9 @@ using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Routing;
+using System.Web.UI.WebControls;
 using static CoreRelm.Enums.Commands;
-using static CoreRelm.RelmInternal.Helpers.Operations.ExpressionEvaluator;
 
 namespace CoreRelm.Models
 {
@@ -44,7 +44,7 @@ namespace CoreRelm.Models
         /// <summary>
         /// Gets the number of items in the collection.
         /// </summary>
-        public int Count => _items?.Count ?? 0;
+        int ICollection<T>.Count => _items?.Count ?? 0;
 
         /// <summary>
         /// Gets a value indicating whether the collection is read-only.
@@ -633,6 +633,46 @@ namespace CoreRelm.Models
         }
 
         /// <summary>
+        /// Sets the offset value used for positioning or alignment.
+        /// </summary>
+        /// <param name="offsetCount">The offset value to apply. Must be a non-negative integer.</param>
+        /// <returns>The current dataset instance with the applied offset, allowing for further query chaining.</returns>
+        public IRelmDataSet<T> Offset(int offsetCount)
+        {
+            _dataLoader.AddSingleExpression(Command.Offset, Expression.Constant(offsetCount, offsetCount.GetType()));
+
+            return this;
+        }
+
+        /// <summary>
+        /// Adds a count operation to the current query expression.
+        /// </summary>
+        /// <remarks>This method modifies the query by appending a count operation, allowing further query
+        /// composition. The actual count is not executed until the query is evaluated.</remarks>
+        /// <returns>The current <see cref="IRelmDataSet{T}"/> instance with the count operation applied.</returns>
+        public IRelmDataSet<T> Count()
+        {             
+            _dataLoader.AddSingleExpression(Command.Count, null);
+
+            return this;
+        }
+
+        /// <summary>
+        /// Adds a count operation with the specified filter to the current query.
+        /// </summary>
+        /// <remarks>This method does not execute the count operation immediately. Instead, it adds the
+        /// count expression to the query, which will be executed when the query is materialized.</remarks>
+        /// <param name="predicate">An expression that defines the conditions that the data must satisfy to be included in the count operation.</param>
+        /// <returns>The current dataset instance with the count operation applied. This enables method chaining for building
+        /// complex queries.</returns>
+        public IRelmDataSet<T> Count(Expression<Func<T, bool>> predicate)
+        {             
+            _dataLoader.AddSingleExpression(Command.Count, predicate.Body);
+
+            return this;
+        }
+
+        /// <summary>
         /// Filters the dataset to include only distinct elements based on the specified key selector.
         /// </summary>
         /// <remarks>This method modifies the current dataset by adding a distinct operation to the query.
@@ -643,7 +683,6 @@ namespace CoreRelm.Models
         /// <returns>A dataset containing only distinct elements based on the specified key.</returns>
         public IRelmDataSet<T> DistinctBy(Expression<Func<T, object>> predicate)
         {
-            // adds a "distinct" command to the SQL query
             _dataLoader.AddSingleExpression(Command.DistinctBy, predicate.Body);
 
             return this;

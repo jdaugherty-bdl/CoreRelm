@@ -24,6 +24,7 @@ namespace CoreRelm.Interfaces.RelmQuick
     /// released  when the context is no longer needed.  Thread safety is not guaranteed unless explicitly stated by the
     /// implementation. Users should ensure proper  synchronization when accessing the context from multiple
     /// threads.</remarks>
+    [Obsolete("IRelmQuickContext is deprecated and will be removed in future versions. Please use IRelmContext(autoInitializeDataSets: false) instead.")]
     public interface IRelmQuickContext : IDisposable
     {
         /// <summary>

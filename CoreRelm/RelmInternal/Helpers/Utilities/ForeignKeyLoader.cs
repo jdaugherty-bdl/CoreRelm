@@ -12,10 +12,11 @@ using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using static CoreRelm.Enums.Commands;
-using static CoreRelm.RelmInternal.Helpers.Operations.ExpressionEvaluator;
 
 namespace CoreRelm.RelmInternal.Helpers.Utilities
 {
@@ -276,9 +277,31 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
             var relevantProperty = relevantDataSet.PropertyType.GetGenericArguments().FirstOrDefault().GetProperties().FirstOrDefault(x => x.PropertyType == typeof(T))
                 ?? relevantDataSet.PropertyType.GetGenericArguments().FirstOrDefault().GetProperties().FirstOrDefault(x => x.PropertyType.GenericTypeArguments.Any(y => y == typeof(T)));
 
+            var contextArgs = new List<object> { contextOptions };
+
+            // if we can't find a constructor with the builder by itself, look for one that has it plus other parameters
             var contextConstructor = relevantContext.GetConstructor(new Type[] { typeof(RelmContextOptionsBuilder) });
+            if (contextConstructor == null)
+            {
+                var allConstructors = relevantContext.GetConstructors();
+                contextConstructor = allConstructors.FirstOrDefault(x => x.GetParameters().Select(y => y.ParameterType).Contains(typeof(RelmContextOptionsBuilder)));
+
+                if (contextConstructor == null)
+                    throw new InvalidOperationException($"No valid constructor found for context type [{relevantContext.Name}] that accepts a RelmContextOptionsBuilder parameter.");
+                else
+                {
+                    foreach (var parameter in contextConstructor.GetParameters())
+                    {
+                        if (parameter.ParameterType != typeof(RelmContextOptionsBuilder))
+                        {
+                            contextArgs.Add(parameter.DefaultValue);
+                        }
+                    }
+                }
+            }
+
             var contextActivator = FastActivatorHelper.GetActivator<IRelmContext>(contextConstructor);
-            var currentContext = contextActivator(contextOptions);
+            var currentContext = contextActivator(contextArgs.ToArray());
 
             if (customDataLoader != null)
             {

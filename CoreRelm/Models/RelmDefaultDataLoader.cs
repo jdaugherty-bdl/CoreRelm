@@ -11,7 +11,6 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using static CoreRelm.Enums.Commands;
-using static CoreRelm.RelmInternal.Helpers.Operations.ExpressionEvaluator;
 
 namespace CoreRelm.Models
 {
@@ -49,7 +48,7 @@ namespace CoreRelm.Models
         private Dictionary<Command, List<IRelmExecutionCommand>> _commands;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RelmDefaultDataLoader"/> class.
+        /// Initializes a new instance of the <see cref="RelmDefaultDataLoader()"/> class.
         /// </summary>
         /// <remarks>This constructor performs the initial setup required for the data loader by invoking
         /// the <see cref="InitialSetup"/> method.</remarks>
@@ -59,7 +58,7 @@ namespace CoreRelm.Models
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RelmDefaultDataLoader"/> class with the specified context
+        /// Initializes a new instance of the <see cref="RelmDefaultDataLoader()"/> class with the specified context
         /// options builder.
         /// </summary>
         /// <param name="contextOptionsBuilder">The builder used to configure options for the <see cref="RelmContext"/>.</param>
@@ -276,7 +275,7 @@ namespace CoreRelm.Models
                 throw new Exception($"RelmTable attribute not found on type {typeof(T).Name}");
 
             // hardcode first table alias to 'a', and inject that into the expression evaluator
-            var expressionEvaluator = new ExpressionEvaluator(TableName, _columnRegistry.PropertyColumns.ToDictionary(x => x.Key, x => x.Value.Item1), UsedTableAliases: new Dictionary<string, string> { [TableName] = "a" });
+            var expressionEvaluator = new ExpressionEvaluator<T>(TableName, _columnRegistry.PropertyColumns.ToDictionary(x => x.Key, x => x.Value.Item1), UsedTableAliases: new Dictionary<string, string> { [TableName] = "a" });
 
             // evaluate all the pieces of the query
             var queryPieces = new Dictionary<Command, List<string>>();
@@ -291,7 +290,7 @@ namespace CoreRelm.Models
                     switch (command.Key)
                     {
                         case Command.Where:
-                            queryPieces[command.Key].Add(expressionEvaluator.EvaluateWhere(command, FindOptions));
+                            queryPieces[command.Key].Add(expressionEvaluator.EvaluateWhereNew(command.Value, FindOptions));
                             break;
                         case Command.OrderBy:
                         case Command.OrderByDescending:
@@ -302,6 +301,9 @@ namespace CoreRelm.Models
                             break;
                         case Command.Limit:
                             queryPieces[command.Key].Add(expressionEvaluator.EvaluateLimit(command));
+                            break;
+                        case Command.Offset:
+                            queryPieces[command.Key].Add(expressionEvaluator.EvaluateOffset(command));
                             break;
                         case Command.GroupBy:
                             queryPieces[command.Key].Add(expressionEvaluator.EvaluateGroupBy(command));
@@ -360,6 +362,9 @@ namespace CoreRelm.Models
 
             if (queryPieces.ContainsKey(Command.Limit))
                 findQuery += string.Join("\n", queryPieces[Command.Limit]);
+
+            if (queryPieces.ContainsKey(Command.Offset))
+                findQuery += string.Join("\n", queryPieces[Command.Offset]);
 
             LastCommandsExecuted = _commands;
             _commands = null;

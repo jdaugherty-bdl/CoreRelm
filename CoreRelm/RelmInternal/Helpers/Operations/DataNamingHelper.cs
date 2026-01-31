@@ -21,6 +21,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         /// </summary>
         /// <param name="TargetObject">The object to pull the properties from.</param>
         /// <param name="GetOnlyDbResolvables">Indicate to get only properties marked with the DALResolvable attribute.</param>
+        /// <param name="GetOnlyNonVirtualColumns">Indicate to get only non-virtual properties.</param>
         /// <returns>The full list of property info including underscore names.</returns>
         public static List<KeyValuePair<string, Tuple<string, PropertyInfo>>> GetUnderscoreProperties(object TargetObject, bool GetOnlyDbResolvables = true, bool GetOnlyNonVirtualColumns = true)
         {

@@ -250,6 +250,9 @@ namespace CoreRelm.Models
             else if (propertyValueType == typeof(char) && modelData[underscoreKey].GetType() == typeof(string))
                 valueData = modelData[underscoreKey].ToString()?[0];
 
+            else if (propertyValueType == typeof(string) && modelData[underscoreKey].GetType() == typeof(byte[]))
+                valueData = System.Text.Encoding.UTF8.GetString((byte[])modelData[underscoreKey]);
+
             // if none of those are true, then we have some serialized JSON data, so deserialize it
             else
             {

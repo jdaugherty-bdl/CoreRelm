@@ -18,6 +18,18 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.Persistence
 {
+    /// <summary>
+    /// Provides functionality for performing high-performance bulk insert operations into a database table with
+    /// configurable options for batching, transactions, error handling, and column mapping.
+    /// </summary>
+    /// <remarks>The <see cref="BulkTableWriter{T}"/> class is designed for efficient bulk data insertion
+    /// scenarios, such as importing large datasets or synchronizing data between sources. It supports customization of
+    /// batch size, transaction usage, and column inclusion rules, and allows mapping between object properties and
+    /// database columns. This class is intended for internal use and is typically instantiated via factory methods or
+    /// helper classes within the data access layer. Thread safety is not guaranteed; use separate instances for
+    /// concurrent operations.</remarks>
+    /// <typeparam name="T">The type of the data items to be written to the database table. Each instance of <typeparamref name="T"/>
+    /// represents a row in the target table.</typeparam>
     public class BulkTableWriter<T>
     {
         // config
@@ -52,10 +64,10 @@ namespace CoreRelm.Persistence
         private DataTable _outputTable;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BulkTableWriter"/> class.
+        /// Initializes a new instance of the <see cref="BulkTableWriter{T}"/> class.
         /// </summary>
         /// <remarks>This constructor is internal and is not intended to be used directly by consumers of
-        /// the API.  Instances of <see cref="BulkTableWriter"/> should be created using the factory pattern provided 
+        /// the API.  Instances of <see cref="BulkTableWriter{T}"/> should be created using the factory pattern provided 
         /// by the <c>RelmHelper</c> class.</remarks>
         internal BulkTableWriter() 
         {
@@ -63,7 +75,7 @@ namespace CoreRelm.Persistence
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BulkTableWriter"/> class, which facilitates bulk data insertion
+        /// Initializes a new instance of the <see cref="BulkTableWriter{T}"/> class, which facilitates bulk data insertion
         /// into a database table.
         /// </summary>
         /// <remarks>This constructor provides fine-grained control over the behavior of the bulk data
@@ -94,7 +106,7 @@ namespace CoreRelm.Persistence
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BulkTableWriter"/> class, which facilitates bulk data insertion
+        /// Initializes a new instance of the <see cref="BulkTableWriter{T}"/> class, which facilitates bulk data insertion
         /// into a MySQL database.
         /// </summary>
         /// <remarks>This constructor is intended for internal use and provides advanced configuration
@@ -127,7 +139,7 @@ namespace CoreRelm.Persistence
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BulkTableWriter"/> class, which provides functionality  for
+        /// Initializes a new instance of the <see cref="BulkTableWriter{T}"/> class, which provides functionality  for
         /// performing bulk insert operations into a database table with configurable options.
         /// </summary>
         /// <remarks>This constructor is intended for internal use and provides fine-grained control over
@@ -158,7 +170,7 @@ namespace CoreRelm.Persistence
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BulkTableWriter"/> class, which facilitates bulk data insertion
+        /// Initializes a new instance of the <see cref="BulkTableWriter{T}"/> class, which facilitates bulk data insertion
         /// into a database table.
         /// </summary>
         /// <remarks>This constructor is intended for internal use and is not accessible outside the
@@ -217,9 +229,9 @@ namespace CoreRelm.Persistence
         /// <summary>
         /// Writes data to the underlying output stream.
         /// </summary>
-        /// <remarks>This overload calls the <see cref="Write(object?)"/> method with a <see
+        /// <remarks>This overload calls the <see cref="Write(Func{string, T, object})"/> method with a <see
         /// langword="null"/> argument.</remarks>
-        /// <returns>The result of the write operation, as returned by the <see cref="Write(object?)"/> method.</returns>
+        /// <returns>The result of the write operation, as returned by the <see cref="Write(Func{string, T, object})"/> method.</returns>
         public int Write()
         {
             return Write(null);

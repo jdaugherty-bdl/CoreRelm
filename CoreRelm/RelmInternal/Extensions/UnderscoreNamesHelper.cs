@@ -17,7 +17,7 @@ namespace CoreRelm.RelmInternal.Extensions
         /// Gets the regular expression pattern used to identify uppercase letters  that are not preceded by an
         /// underscore, the start of a string, or the text "Internal".
         /// </summary>
-        public static string UppercaseSearchPattern => @"(?<!_|^|Internal)([A-Z])";
+        public static string UppercaseSearchPattern => @"(?<!_|^|Internal)([A-Z]|[0-9]+)";
 
         /// <summary>
         /// Gets the default replacement pattern used in string replacement operations.
