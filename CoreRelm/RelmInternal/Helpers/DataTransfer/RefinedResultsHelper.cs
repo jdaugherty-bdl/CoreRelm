@@ -33,7 +33,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <returns>The scalar value of type <typeparamref name="T"/> returned by the query.</returns>
         internal static T GetScalar<T>(Enum connectionName, string query, Dictionary<string, object> parameters = null, bool throwException = true, bool allowUserVariables = false)
         {
-            using (var conn = ConnectionHelper.GetConnectionFromType(connectionName, allowUserVariables))
+            using (var conn = RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName, allowUserVariables))
             {
                 return GetScalar<T>(conn, query, parameters, throwException: throwException);
             }
@@ -149,7 +149,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// are returned or if <paramref name="throwException"/> is <see langword="false"/> and an error occurs.</returns>
         internal static DataRow GetDataRow(Enum connectionName, string query, Dictionary<string, object> parameters = null, bool throwException = true, bool allowUserVariables = false)
         {
-            using (var conn = ConnectionHelper.GetConnectionFromType(connectionName, allowUserVariables))
+            using (var conn = RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName, allowUserVariables))
             {
                 return GetDataRow(conn, query, parameters, throwException: throwException);
             }
@@ -239,7 +239,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// no rows.</returns>
         internal static DataTable GetDataTable(Enum connectionName, string query, Dictionary<string, object> parameters = null, bool throwException = true, bool allowUserVariables = false)
         {
-            using (var conn = ConnectionHelper.GetConnectionFromType(connectionName, allowUserVariables))
+            using (var conn = RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName, allowUserVariables))
             {
                 return GetDataTable(conn, query, parameters, throwException: throwException);
             }

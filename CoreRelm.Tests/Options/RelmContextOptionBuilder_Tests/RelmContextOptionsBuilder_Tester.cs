@@ -1,4 +1,5 @@
 ﻿using CoreRelm.Options;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -9,8 +10,16 @@ using static CoreRelm.Options.RelmContextOptionsBuilder;
 
 namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
 {
-    public class RelmContextOptionsBuilder_Tester
+    [Collection("JsonConfiguration")]
+    public class RelmContextOptionsBuilder_Tester : IClassFixture<JsonConfigurationFixture>
     {
+        private readonly IConfiguration _configuration;
+
+        public RelmContextOptionsBuilder_Tester(JsonConfigurationFixture fixture)
+        {
+            _configuration = fixture.Configuration;
+        }
+
         [Fact]
         public void RelmContextOptionsBuilder_Constructor_Empty()
         {
@@ -39,7 +48,8 @@ namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
 
             // Assert
             Assert.Equal("SimpleRelmMySql", builder.NamedConnection);
-            Assert.Equal(ConfigurationManager.ConnectionStrings["SimpleRelmMySql"].ConnectionString, builder.DatabaseConnectionString);
+            //Assert.Equal(ConfigurationManager.ConnectionStrings["SimpleRelmMySql"].ConnectionString, builder.DatabaseConnectionString);
+            Assert.Equal(_configuration.GetConnectionString("SimpleRelmMySql"), builder.DatabaseConnectionString);
             Assert.Equal(OptionsBuilderTypes.NamedConnectionString, builder.OptionsBuilderType);
         }
 

@@ -19,7 +19,7 @@ namespace CoreRelm.Tests
         public RelmHelper_Tester(JsonConfigurationFixture fixture)
         {
             _configuration = fixture.Configuration;
-            RelmHelper.UseConfiguration(_configuration);
+            //RelmHelper.UseConfiguration(_configuration);
 
             SetupContext(true);
         }

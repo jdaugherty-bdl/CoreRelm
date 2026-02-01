@@ -17,16 +17,15 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
     internal class ConnectionHelper
     {
         // holds the application's configuration, if provided
-        internal static IConfiguration? Configuration { get; private set; }
+        internal IConfiguration? Configuration { get; private set; }
 
         // a pointer to the application's resolver instance
-        internal static IRelmResolver_MySQL DALResolver = GetResolverInstance(Configuration);
+        internal IRelmResolver_MySQL? RelmResolver { get; private set; } // = Instance?.GetResolverInstance(Configuration);
 
-        // public entry point (via RelmHelper) to supply IConfiguration from the host app
-        internal static void UseConfiguration(IConfiguration? configuration)
+        internal ConnectionHelper(IConfiguration configuration)
         {
             Configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
-            DALResolver = DALResolver ?? GetResolverInstance(Configuration);
+            RelmResolver = RelmResolver ?? GetResolverInstance(Configuration);
         }
 
         /// <summary>
@@ -34,7 +33,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         /// once it is found, then that object is loaded through Reflection to be used later on.
         /// </summary>
         /// <returns>The application's DALResolver instance.</returns>
-        internal static IRelmResolver_MySQL GetResolverInstance(IConfiguration? configuration)
+        internal IRelmResolver_MySQL? GetResolverInstance(IConfiguration? configuration)
         {
             //ArgumentNullException.ThrowIfNull(configuration, nameof(configuration));
             if (configuration == null)
@@ -124,6 +123,8 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
             foreach (var assembly in assemblies)
             {
                 var customAttributes = assembly.GetCustomAttributes(true);
+
+                // below hack for client (Bureau Veritas)
                 var hasAttributes = customAttributes.Any(y => y is AssemblyCompanyAttribute attribute
                         && (attribute.Company.StartsWith("BV", StringComparison.InvariantCultureIgnoreCase)
                             || attribute.Company.StartsWith("Bureau Veritas", StringComparison.InvariantCultureIgnoreCase)
@@ -189,43 +190,43 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         /// </summary>
         /// <param name="connectionType">A properly formatted database connection string</param>
         /// <returns>A connection string builder that can be used to establish connections</returns>
-        internal static MySqlConnectionStringBuilder GetConnectionBuilderFromType(Enum connectionType)
+        internal MySqlConnectionStringBuilder GetConnectionBuilderFromType(Enum connectionType)
         {
-            return DALResolver?.GetConnectionBuilderFromType(connectionType);
+            return RelmResolver?.GetConnectionBuilderFromType(connectionType);
         }
 
-        internal static MySqlConnectionStringBuilder GetConnectionBuilderFromName(string connectionName)
+        internal MySqlConnectionStringBuilder GetConnectionBuilderFromName(string connectionName)
         {
-            return DALResolver?.GetConnectionBuilderFromName(connectionName);
+            return RelmResolver?.GetConnectionBuilderFromName(connectionName);
         }
 
-        internal static MySqlConnectionStringBuilder GetConnectionBuilderFromConnectionString(string connectionString)
+        internal MySqlConnectionStringBuilder GetConnectionBuilderFromConnectionString(string connectionString)
         {
-            return DALResolver?.GetConnectionBuilderFromConnectionString(connectionString);
+            return RelmResolver?.GetConnectionBuilderFromConnectionString(connectionString);
         }
 
-        internal static MySqlConnection GetConnectionFromName(string connectionName, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0)
+        internal MySqlConnection GetConnectionFromName(string connectionName, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0)
         {
             var connectionBuilder = GetConnectionBuilderFromName(connectionName);
 
             return GetConnection(connectionBuilder, allowUserVariables: allowUserVariables, convertZeroDateTime: convertZeroDateTime, lockWaitTimeoutSeconds: lockWaitTimeoutSeconds);
         }
 
-        internal static MySqlConnection GetConnectionFromType(Enum connectionType, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0)
+        internal MySqlConnection GetConnectionFromType(Enum connectionType, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0)
         {
             var connectionBuilder = GetConnectionBuilderFromType(connectionType);
 
             return GetConnection(connectionBuilder, allowUserVariables: allowUserVariables, convertZeroDateTime: convertZeroDateTime, lockWaitTimeoutSeconds: lockWaitTimeoutSeconds);
         }
 
-        internal static MySqlConnection GetConnectionFromConnectionString(string connectionString, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0)
+        internal MySqlConnection GetConnectionFromConnectionString(string connectionString, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0)
         {
             var connectionBuilder = GetConnectionBuilderFromConnectionString(connectionString);
 
             return GetConnection(connectionBuilder, allowUserVariables: allowUserVariables, convertZeroDateTime: convertZeroDateTime, lockWaitTimeoutSeconds: lockWaitTimeoutSeconds);
         }
 
-        private static MySqlConnection GetConnection(MySqlConnectionStringBuilder connectionBuilder, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0)
+        private MySqlConnection GetConnection(MySqlConnectionStringBuilder connectionBuilder, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0)
         { 
             if (convertZeroDateTime)
                 connectionBuilder.ConvertZeroDateTime = true;

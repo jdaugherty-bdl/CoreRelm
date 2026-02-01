@@ -52,7 +52,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// user variables are permitted; otherwise, they are not.</param>
         internal static void DoDatabaseWork(Enum connectionName, string query, Dictionary<string, object> parameters = null, bool throwException = true, bool useTransaction = false, MySqlTransaction sqlTransaction = null, bool allowUserVariables = false)
         {
-            using (var conn = ConnectionHelper.GetConnectionFromType(connectionName, allowUserVariables))
+            using (var conn = RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName, allowUserVariables))
             {
                 DoDatabaseWork(conn, query, parameters: parameters, throwException: throwException, useTransaction: useTransaction || sqlTransaction != null, sqlTransaction: sqlTransaction);
             }
@@ -157,7 +157,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <returns>The result of the database operation, cast to the specified type <typeparamref name="T"/>.</returns>
         internal static T DoDatabaseWork<T>(Enum connectionName, string query, Dictionary<string, object> parameters = null, bool throwException = true, bool useTransaction = false, MySqlTransaction sqlTransaction = null, bool allowUserVariables = false)
         {
-            using (var conn = ConnectionHelper.GetConnectionFromType(connectionName, allowUserVariables))
+            using (var conn = RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName, allowUserVariables))
             {
                 return DoDatabaseWork<T>(conn, query, parameters: parameters, throwException: throwException, useTransaction: useTransaction || sqlTransaction != null, sqlTransaction: sqlTransaction);
             }
@@ -381,7 +381,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <returns>The result of the database operation, as defined by the <typeparamref name="T"/> type.</returns>
         internal static T DoDatabaseWork<T>(Enum connectionName, string query, Func<MySqlCommand, object> actionCallback, bool throwException = true, bool useTransaction = false, MySqlTransaction sqlTransaction = null, bool allowUserVariables = false)
         {
-            using (var conn = ConnectionHelper.GetConnectionFromType(connectionName, allowUserVariables))
+            using (var conn = RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName, allowUserVariables))
             {
                 return DoDatabaseWork<T>(conn, query, actionCallback, throwException: throwException, useTransaction: useTransaction || sqlTransaction != null, sqlTransaction: sqlTransaction);
             }

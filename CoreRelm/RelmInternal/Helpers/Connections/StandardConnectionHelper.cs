@@ -54,7 +54,7 @@ namespace CoreRelm.RelmInternal.Helpers.Connections
         /// <returns>The result of the operation defined by <paramref name="actionWrapper"/>.</returns>
         public static T StandardConnectionWrapper<T>(Enum connectionName, Func<MySqlConnection, MySqlTransaction, T> actionWrapper, Action<Exception, string> exceptionHandler = null)
         {
-            using (var conn = ConnectionHelper.GetConnectionFromType(connectionName))
+            using (var conn = RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName))
             {
                 conn.Open();
 

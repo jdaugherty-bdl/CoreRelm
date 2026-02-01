@@ -45,10 +45,10 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
             var funcType = typeof(Func<,>).MakeGenericType(navigationOptions.ReferenceType, typeof(bool));
 
             // create a Relm expression tree to execute on the where method of the target data set, handles compound keys
-            BinaryExpression orExpression = null;
+            BinaryExpression? orExpression = null;
             foreach (var itemPrimaryKey in navigationOptions.ItemPrimaryKeys)
             {
-                BinaryExpression andExpression = null;
+                BinaryExpression? andExpression = null;
                 for (var i = 0; i < itemPrimaryKey.Count; i++)
                 {
                     var memberExpression = Expression.Property(parameter, navigationOptions.ForeignKeyProperties[i].Name)
@@ -77,7 +77,7 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
             // add any additional constraints
             foreach (var additionalCommand in member.GetAdditionalCommands())
             {
-                var expression = additionalCommand.InitialExpression;
+                var expression = additionalCommand.ExecutionExpression;
 
                 if (expression is UnaryExpression unaryExpression)
                     expression = unaryExpression.Operand;

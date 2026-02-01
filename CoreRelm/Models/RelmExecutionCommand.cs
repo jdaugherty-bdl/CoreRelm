@@ -179,12 +179,8 @@ namespace CoreRelm.Models
                 var targetForeignKeyDecorators = targetProperties
                     .Where(x => x.GetCustomAttribute<RelmForeignKey>() != null)
                     .ToDictionary(x => x, x => x.GetCustomAttribute<RelmForeignKey>())
-                    /*
                     .Segment((prev, next, i) => !(prev.Value.LocalKeys ?? defaultLocalKeys).All(x => (next.Value.LocalKeys ?? defaultLocalKeys).Contains(x)))
                     .ToDictionary(x => x.FirstOrDefault().Value.LocalKeys ?? defaultLocalKeys, x => x.ToDictionary(y => y.Key, y => y.Value.ForeignKeys));
-                    */
-                    .GroupBy(x => x.Value.LocalKeys ?? defaultLocalKeys)
-                    .ToDictionary(x => x.Key, x => x.ToDictionary(y => y.Key, y => y.Value.ForeignKeys));
 
                 // find any navigation properties that are the same type as this data set
                 var navigationProps = targetPropertiesOfTypeT

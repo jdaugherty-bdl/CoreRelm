@@ -1,6 +1,7 @@
 ﻿using CoreRelm.Models;
 using CoreRelm.Options;
 using CoreRelm.Tests.TestModels;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,16 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.Tests.Models.RelmContext_Tests
 {
-    public class HasDataSetTests
+    [Collection("JsonConfiguration")]
+    public class HasDataSetTests : IClassFixture<JsonConfigurationFixture>
     {
+        private readonly IConfiguration _configuration;
+
+        public HasDataSetTests(JsonConfigurationFixture fixture)
+        {
+            _configuration = fixture.Configuration;
+        }
+
         [Fact]
         public void HasDataSet_ReturnsTrue_WhenDataSetTypeIsAttached()
         {

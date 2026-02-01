@@ -175,7 +175,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence
         /// <returns>The number of rows successfully written to the table.</returns>
         internal static int BulkTableWrite<T>(Enum connectionName, T sourceData, string tableName = null, Type forceType = null, bool allowUserVariables = false, int batchSize = 100, string databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
         {
-            using (var conn = ConnectionHelper.GetConnectionFromType(connectionName, allowUserVariables: allowUserVariables))
+            using (var conn = RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName, allowUserVariables: allowUserVariables))
             {
                 return BulkTableWrite<T>(conn, sourceData, tableName, null, forceType, batchSize, databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
             }
@@ -205,7 +205,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence
         /// <returns>The total number of rows successfully written to the database table.</returns>
         internal static int BulkTableWrite<T>(Enum connectionName, IEnumerable<T> sourceData, string tableName = null, Type forceType = null, bool allowUserVariables = false, int batchSize = 100, string databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
         {
-            using (var conn = ConnectionHelper.GetConnectionFromType(connectionName, allowUserVariables: allowUserVariables))
+            using (var conn = RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName, allowUserVariables: allowUserVariables))
             {
                 return BulkTableWrite<T>(conn, sourceData, tableName, null, forceType, batchSize, databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
             }

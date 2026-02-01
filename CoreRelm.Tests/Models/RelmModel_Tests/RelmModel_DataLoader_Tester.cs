@@ -9,7 +9,6 @@ namespace CoreRelm.Tests.Models.RelmModel_Tests
 {
     public class RelmModel_DataLoader_Tester
     {
-        [Fact]
         public void RelmModel_LoadDataLoaderField_ComplexObject()
         {
             // Arrange

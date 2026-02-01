@@ -64,7 +64,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         /// <returns><see langword="true"/> if the table was successfully truncated; otherwise, <see langword="false"/>.</returns>
         internal static bool TruncateTable(Enum connectionName, string tableName = null, Type forceType = null)
         {
-            using (var conn = ConnectionHelper.GetConnectionFromType(connectionName))
+            using (var conn = RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName))
             {
                 return TruncateTable(conn, tableName: tableName, forceType: forceType, sqlTransaction: null);
             }
@@ -231,7 +231,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         /// <returns><see langword="true"/> if the table was successfully created; otherwise, <see langword="false"/>.</returns>
         internal static bool CreateTable<T>(Enum connectionName, bool truncateIfExists = false)
         {
-            using (var conn = ConnectionHelper.GetConnectionFromType(connectionName))
+            using (var conn = RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName))
             {
                 return CreateTable<T>(conn, null, truncateIfExists: truncateIfExists);
             }
@@ -278,7 +278,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         /// <returns><see langword="true"/> if the table exists; otherwise, <see langword="false"/>.</returns>
         internal static bool TableExists(Enum connectionName, string tableName)
         {
-            using (var conn = ConnectionHelper.GetConnectionFromType(connectionName))
+            using (var conn = RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName))
             {
                 return TableExists(conn, tableName, null);
             }

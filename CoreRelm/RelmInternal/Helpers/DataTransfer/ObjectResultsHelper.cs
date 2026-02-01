@@ -34,7 +34,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <typeparamref name="T"/>.</returns>
         internal static IEnumerable<T> GetDataList<T>(Enum connectionName, string query, Dictionary<string, object> parameters = null, bool throwException = true, bool allowUserVariables = false)
         {
-            using (var conn = ConnectionHelper.GetConnectionFromType(connectionName, allowUserVariables))
+            using (var conn = RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName, allowUserVariables))
             {
                 return GetDataList<T>(conn, query, parameters: parameters, throwException: throwException);
             }
@@ -200,7 +200,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// empty if no matching data is found.</returns>
         internal static IEnumerable<T> GetDataObjects<T>(Enum connectionName, string query, Dictionary<string, object> parameters = null, bool throwException = true, bool allowUserVariables = false) where T : IRelmModel
         {
-            using (var conn = ConnectionHelper.GetConnectionFromType(connectionName, allowUserVariables))
+            using (var conn = RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName, allowUserVariables))
             {
                 return GetDataObjects<T>(conn, query, parameters: parameters, throwException: throwException);
             }

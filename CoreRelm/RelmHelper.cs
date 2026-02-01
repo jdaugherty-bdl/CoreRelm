@@ -61,9 +61,6 @@ namespace CoreRelm
         /// the context is properly initialized before accessing this property.</remarks>
         public static IRelmContext? CurrentContext { get; set; }
 
-        // holds the application's configuration, if provided
-        private static IConfiguration? _configuration;
-
         /// <summary>
         /// Gets the root directory where logging files are stored.
         /// </summary>
@@ -82,6 +79,21 @@ namespace CoreRelm
             }
         }
 
+        internal static ConnectionHelper? ConnectionHelper { get; private set; }
+
+        // holds the application's configuration, if provided
+        private static IConfiguration? _configuration;
+
+        static RelmHelper()
+        {
+            _configuration = new ConfigurationBuilder()
+                .SetBasePath(AppContext.BaseDirectory)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
+                .Build();
+
+            ConnectionHelper = new ConnectionHelper(_configuration);
+        }
+
         //***************** Connections *****************//
 
         /// <summary>
@@ -95,8 +107,8 @@ namespace CoreRelm
         /// settings applied to the returned connection string builder.</param>
         /// <returns>A <see cref="MySqlConnectionStringBuilder"/> instance configured based on the specified <paramref
         /// name="connectionName"/>.</returns>
-        public static MySqlConnectionStringBuilder GetConnectionBuilderFromConnectionType(Enum connectionName)
-            => ConnectionHelper.GetConnectionBuilderFromType(connectionName);
+        public static MySqlConnectionStringBuilder? GetConnectionBuilderFromConnectionType(Enum connectionName)
+            => ConnectionHelper?.GetConnectionBuilderFromType(connectionName);
 
         /// <summary>
         /// Retrieves a <see cref="MySqlConnectionStringBuilder"/> instance based on the specified connection name.
@@ -105,8 +117,8 @@ namespace CoreRelm
         /// in the application configuration.</param>
         /// <returns>A <see cref="MySqlConnectionStringBuilder"/> initialized with the connection string associated with the
         /// specified connection name.</returns>
-        public static MySqlConnectionStringBuilder GetConnectionBuilderFromName(string connectionName)
-            => ConnectionHelper.GetConnectionBuilderFromName(connectionName);
+        public static MySqlConnectionStringBuilder? GetConnectionBuilderFromName(string connectionName)
+            => ConnectionHelper?.GetConnectionBuilderFromName(connectionName);
 
         /// <summary>
         /// Creates and returns a <see cref="MySqlConnectionStringBuilder"/> initialized with the specified connection
@@ -115,8 +127,8 @@ namespace CoreRelm
         /// <param name="connectionString">The connection string used to configure the <see cref="MySqlConnectionStringBuilder"/>.</param>
         /// <returns>A <see cref="MySqlConnectionStringBuilder"/> instance populated with the settings from the provided
         /// connection string.</returns>
-        public static MySqlConnectionStringBuilder GetConnectionBuilderFromConnectionString(string connectionString)
-            => ConnectionHelper.GetConnectionBuilderFromConnectionString(connectionString);
+        public static MySqlConnectionStringBuilder? GetConnectionBuilderFromConnectionString(string connectionString)
+            => ConnectionHelper?.GetConnectionBuilderFromConnectionString(connectionString);
 
         /// <summary>
         /// Creates and returns a <see cref="MySqlConnection"/> based on the specified connection type and optional
@@ -136,8 +148,8 @@ namespace CoreRelm
         /// <param name="lockWaitTimeoutSeconds">An integer specifying the lock wait timeout duration, in seconds, for the connection.  A value of 0
         /// indicates that the default timeout will be used. Defaults to 0.</param>
         /// <returns>A <see cref="MySqlConnection"/> object configured based on the specified parameters.</returns>
-        public static MySqlConnection GetConnectionFromType(Enum connectionName, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0)
-            => ConnectionHelper.GetConnectionFromType(connectionName, allowUserVariables: allowUserVariables, convertZeroDateTime: convertZeroDateTime, lockWaitTimeoutSeconds: lockWaitTimeoutSeconds);
+        public static MySqlConnection? GetConnectionFromType(Enum connectionName, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0)
+            => ConnectionHelper?.GetConnectionFromType(connectionName, allowUserVariables: allowUserVariables, convertZeroDateTime: convertZeroDateTime, lockWaitTimeoutSeconds: lockWaitTimeoutSeconds);
 
         /// <summary>
         /// Retrieves a <see cref="MySqlConnection"/> instance based on the specified connection name.
@@ -151,8 +163,8 @@ namespace CoreRelm
         /// <param name="lockWaitTimeoutSeconds">The lock wait timeout, in seconds, to apply to the connection. A value of <c>0</c> indicates that the
         /// default timeout will be used.</param>
         /// <returns>A <see cref="MySqlConnection"/> instance configured with the specified options.</returns>
-        public static MySqlConnection GetConnectionFromName(string connectionName, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0)
-            => ConnectionHelper.GetConnectionFromName(connectionName, allowUserVariables: allowUserVariables, convertZeroDateTime: convertZeroDateTime, lockWaitTimeoutSeconds: lockWaitTimeoutSeconds);
+        public static MySqlConnection? GetConnectionFromName(string connectionName, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0)
+            => ConnectionHelper?.GetConnectionFromName(connectionName, allowUserVariables: allowUserVariables, convertZeroDateTime: convertZeroDateTime, lockWaitTimeoutSeconds: lockWaitTimeoutSeconds);
 
         /// <summary>
         /// Creates and returns a new <see cref="MySqlConnection"/> instance based on the specified connection string
@@ -171,8 +183,8 @@ namespace CoreRelm
         /// <param name="lockWaitTimeoutSeconds">The lock wait timeout duration, in seconds, to apply to the connection. A value of <c>0</c> indicates that
         /// the default timeout will be used.</param>
         /// <returns>A <see cref="MySqlConnection"/> instance configured with the specified connection string and options.</returns>
-        public static MySqlConnection GetConnectionFromConnectionString(string connectionString, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0)
-            => ConnectionHelper.GetConnectionFromConnectionString(connectionString, allowUserVariables: allowUserVariables, convertZeroDateTime: convertZeroDateTime, lockWaitTimeoutSeconds: lockWaitTimeoutSeconds);
+        public static MySqlConnection? GetConnectionFromConnectionString(string connectionString, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0)
+            => ConnectionHelper?.GetConnectionFromConnectionString(connectionString, allowUserVariables: allowUserVariables, convertZeroDateTime: convertZeroDateTime, lockWaitTimeoutSeconds: lockWaitTimeoutSeconds);
 
         //***************** Identity functions *****************//
 
@@ -1877,6 +1889,7 @@ namespace CoreRelm
         public static int WriteToDatabase(IRelmQuickContext relmQuickContext, IEnumerable<IRelmModel> relmModels, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
             => relmModels.WriteToDatabase(relmQuickContext, batchSize: batchSize, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
 
+        /*
         /// <summary>
         /// Configures the library to use the specified <see cref="IConfiguration"/> instance for application settings
         /// and options.
@@ -1891,6 +1904,6 @@ namespace CoreRelm
             _configuration = configuration;
             ConnectionHelper.UseConfiguration(_configuration);
         }
-
+        */
     }
 }

@@ -26,9 +26,9 @@ namespace CoreRelm.Tests.TestModels.MultipleKeys
         public virtual MultipleKeysReferenceObject_NavigationProperty? MultipleKeysReferenceObject_NavigationProperty_Item { get; set; }
 
         /**** PRINCIPAL ENTITY ****/
-        [RelmForeignKey(new string[] { nameof(MultipleKeysReferenceObject_PrincipalEntity.ReferenceKey1), nameof(MultipleKeysReferenceObject_PrincipalEntity.ReferenceKey2) }, new string[] { nameof(MultipleKeysReferenceObjectLocalKey1), nameof(MultipleKeysReferenceObjectLocalKey2) })]
+        [RelmForeignKey([nameof(MultipleKeysReferenceObject_PrincipalEntity.ReferenceKey1), nameof(MultipleKeysReferenceObject_PrincipalEntity.ReferenceKey2)], [nameof(MultipleKeysReferenceObjectLocalKey1), nameof(MultipleKeysReferenceObjectLocalKey2)])]
         public virtual ICollection<MultipleKeysReferenceObject_PrincipalEntity>? MultipleKeysReferenceObject_PrincipalEntities { get; set; }
-        [RelmForeignKey(new string[] { nameof(MultipleKeysReferenceObject_PrincipalEntity.ReferenceKey1), nameof(MultipleKeysReferenceObject_PrincipalEntity.ReferenceKey2) }, new string[] { nameof(MultipleKeysReferenceObjectLocalKey1), nameof(MultipleKeysReferenceObjectLocalKey2) })]
+        [RelmForeignKey([nameof(MultipleKeysReferenceObject_PrincipalEntity.ReferenceKey1), nameof(MultipleKeysReferenceObject_PrincipalEntity.ReferenceKey2)], [nameof(MultipleKeysReferenceObjectLocalKey1), nameof(MultipleKeysReferenceObjectLocalKey2)])]
         public virtual MultipleKeysReferenceObject_PrincipalEntity? MultipleKeysReferenceObject_PrincipalEntity_Item { get; set; }
     }
 }
