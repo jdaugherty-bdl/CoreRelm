@@ -7,11 +7,19 @@ using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 namespace CoreRelm.RelmInternal.Resolvers
 {
     internal class DefaultRelmResolver_MySQL : IRelmResolver_MySQL
     {
+        readonly IConfiguration config;
+
+        public DefaultRelmResolver_MySQL(IConfiguration configuration)
+        {
+            config = configuration;
+        }
+
         // if no other DAL Resolvers are specified in the client program, this one is used
         public MySqlConnectionStringBuilder GetConnectionBuilderFromType(Enum ConnectionType)
         {
@@ -21,7 +29,7 @@ namespace CoreRelm.RelmInternal.Resolvers
 
         public MySqlConnectionStringBuilder GetConnectionBuilderFromName(string ConfigConnectionString)
         {
-            return GetConnectionBuilderFromConnectionString(ConfigurationManager.ConnectionStrings[ConfigConnectionString].ConnectionString);
+            return GetConnectionBuilderFromConnectionString(config.GetConnectionString(ConfigConnectionString));
         }
 
         public MySqlConnectionStringBuilder GetConnectionBuilderFromConnectionString(string connectionString)

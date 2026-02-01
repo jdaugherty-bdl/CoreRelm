@@ -1,10 +1,12 @@
-﻿using MySql.Data.MySqlClient;
-using CoreRelm.Interfaces;
+﻿using CoreRelm.Interfaces;
 using CoreRelm.Interfaces.Resolvers;
 using CoreRelm.RelmInternal.Helpers.Utilities;
 using CoreRelm.RelmInternal.Resolvers;
+using Microsoft.Extensions.Configuration;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -14,16 +16,30 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
 {
     internal class ConnectionHelper
     {
+        // holds the application's configuration, if provided
+        internal static IConfiguration? Configuration { get; private set; }
+
         // a pointer to the application's resolver instance
-        internal static IRelmResolver_MySQL DALResolver = GetResolverInstance();
+        internal static IRelmResolver_MySQL DALResolver = GetResolverInstance(Configuration);
+
+        // public entry point (via RelmHelper) to supply IConfiguration from the host app
+        internal static void UseConfiguration(IConfiguration? configuration)
+        {
+            Configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+            DALResolver = DALResolver ?? GetResolverInstance(Configuration);
+        }
 
         /// <summary>
         /// find an object inheriting from IDALResolver, but only look in the entry assembly (where all your custom code is)
         /// once it is found, then that object is loaded through Reflection to be used later on.
         /// </summary>
         /// <returns>The application's DALResolver instance.</returns>
-        internal static IRelmResolver_MySQL GetResolverInstance()
+        internal static IRelmResolver_MySQL GetResolverInstance(IConfiguration? configuration)
         {
+            //ArgumentNullException.ThrowIfNull(configuration, nameof(configuration));
+            if (configuration == null)
+                return null;
+
             // try to get the resolver the standard way
             /*
             var entryAssembly = AppDomain
@@ -165,7 +181,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
             if (clientDalResolverType != null)
                 return (IRelmResolver_MySQL)Activator.CreateInstance(clientDalResolverType);
             else
-                return new DefaultRelmResolver();
+                return new DefaultRelmResolver(Configuration);
         }
 
         /// <summary>

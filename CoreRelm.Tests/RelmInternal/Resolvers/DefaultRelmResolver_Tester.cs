@@ -31,7 +31,7 @@ namespace CoreRelm.Tests.RelmInternal.Resolvers
         public void GetConnectionBuilder_ByString_ThrowsException()
         {
             // Arrange
-            var resolver = new DefaultRelmResolver();
+            var resolver = new DefaultRelmResolver(config);
 
             // Act
             var ex = Assert.Throws<ArgumentException>(() => resolver.GetConnectionBuilderFromConnectionString("INVALID CONNECTION STRING"));
@@ -44,7 +44,7 @@ namespace CoreRelm.Tests.RelmInternal.Resolvers
         public void GetConnectionBuilder_ByType_ThrowsException()
         {
             // Arrange
-            var resolver = new DefaultRelmResolver();
+            var resolver = new DefaultRelmResolver(config);
 
             // Act
             var ex = Assert.Throws<ArgumentException>(() => resolver.GetConnectionBuilderFromType(ConnectionType.InvalidConnectionString));
@@ -57,7 +57,7 @@ namespace CoreRelm.Tests.RelmInternal.Resolvers
         public void GetConnectionBuilder_ByString_MySql()
         {
             // Arrange
-            var resolver = new DefaultRelmResolver();
+            var resolver = new DefaultRelmResolver(config);
             var expected = new MySqlConnectionStringBuilder("server=localhost;database=simple_relm;uid=simplerelmuser;pwd=simplerelmpassword");
 
             // Act
@@ -71,7 +71,7 @@ namespace CoreRelm.Tests.RelmInternal.Resolvers
         public void GetConnectionBuilder_ByName_MySql()
         {
             // Arrange
-            var resolver = new DefaultRelmResolver();
+            var resolver = new DefaultRelmResolver(config);
             var expected = new MySqlConnectionStringBuilder("server=localhost;database=simple_relm;user id=simplerelmuser;password=simplerelmpassword");
 
             // Act
@@ -85,7 +85,7 @@ namespace CoreRelm.Tests.RelmInternal.Resolvers
         public void GetConnectionBuilder_ByType_MySql()
         {
             // Arrange
-            var resolver = new DefaultRelmResolver();
+            var resolver = new DefaultRelmResolver(config);
             var expected = new MySqlConnectionStringBuilder(config.GetConnectionString("SimpleRelmMySql"));
 
             // Act

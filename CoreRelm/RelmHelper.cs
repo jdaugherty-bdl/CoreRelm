@@ -1,27 +1,28 @@
-﻿using MySql.Data.MySqlClient;
+﻿using CoreRelm.Attributes;
+using CoreRelm.Extensions;
+using CoreRelm.Interfaces;
+using CoreRelm.Interfaces.RelmQuick;
+using CoreRelm.Interfaces.Resolvers;
+using CoreRelm.Models;
+using CoreRelm.Options;
 using CoreRelm.Persistence;
-using CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence;
+using CoreRelm.RelmInternal.Helpers.Connections;
 using CoreRelm.RelmInternal.Helpers.DataTransfer;
+using CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence;
 using CoreRelm.RelmInternal.Helpers.Operations;
+using CoreRelm.RelmInternal.Helpers.Utilities;
+using CoreRelm.RelmInternal.Resolvers;
+using Microsoft.Extensions.Configuration;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
+using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using CoreRelm.Interfaces;
-using CoreRelm.Interfaces.Resolvers;
-using CoreRelm.RelmInternal.Resolvers;
-using CoreRelm.RelmInternal.Helpers.Connections;
-using System.Configuration;
-using System.IO;
-using CoreRelm.RelmInternal.Helpers.Utilities;
-using CoreRelm.Models;
-using System.Linq.Expressions;
-using CoreRelm.Options;
-using CoreRelm.Attributes;
-using CoreRelm.Interfaces.RelmQuick;
-using CoreRelm.Extensions;
 
 namespace CoreRelm
 {
@@ -58,7 +59,10 @@ namespace CoreRelm
         /// </summary>
         /// <remarks>This property holds the active context used throughout the application.  Ensure that
         /// the context is properly initialized before accessing this property.</remarks>
-        public static IRelmContext CurrentContext { get; set; }
+        public static IRelmContext? CurrentContext { get; set; }
+
+        // holds the application's configuration, if provided
+        private static IConfiguration? _configuration;
 
         /// <summary>
         /// Gets the root directory where logging files are stored.
@@ -67,9 +71,14 @@ namespace CoreRelm
         {
             get
             {
+                /*
                 return ConfigurationManager.AppSettings.AllKeys.Contains("SimpleRelm_LoggingDir")
                     ? ConfigurationManager.AppSettings["SimpleRelm_LoggingDir"]
                     : Path.GetDirectoryName((new Uri(AssemblyHelper.GetEntryAssembly().Location)).AbsolutePath); // Assembly.GetExecutingAssembly()
+                */
+                return _configuration != null && _configuration.GetSection("SimpleRelm_LoggingDir").Exists()
+                    ? _configuration["SimpleRelm_LoggingDir"]!
+                    : Path.GetDirectoryName((new Uri(AssemblyHelper.GetEntryAssembly().Location)).AbsolutePath)!; // Assembly.GetExecutingAssembly()
             }
         }
 
@@ -1867,5 +1876,21 @@ namespace CoreRelm
         /// <returns>The total number of rows successfully written to the database.</returns>
         public static int WriteToDatabase(IRelmQuickContext relmQuickContext, IEnumerable<IRelmModel> relmModels, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
             => relmModels.WriteToDatabase(relmQuickContext, batchSize: batchSize, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
+
+        /// <summary>
+        /// Configures the library to use the specified <see cref="IConfiguration"/> instance for application settings
+        /// and options.
+        /// </summary>
+        /// <remarks>Call this method at application startup to ensure the library uses the correct
+        /// configuration source. This method should be invoked before performing any operations that depend on
+        /// configuration values.</remarks>
+        /// <param name="configuration">The <see cref="IConfiguration"/> instance that provides configuration values for the library. Cannot be
+        /// null.</param>
+        public static void UseConfiguration(IConfiguration configuration)
+        {
+            _configuration = configuration;
+            ConnectionHelper.UseConfiguration(_configuration);
+        }
+
     }
 }
