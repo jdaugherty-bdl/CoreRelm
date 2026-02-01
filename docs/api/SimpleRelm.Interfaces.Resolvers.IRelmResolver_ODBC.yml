@@ -1,0 +1,222 @@
+### YamlMime:ManagedReference
+items:
+- uid: SimpleRelm.Interfaces.Resolvers.IRelmResolver_ODBC
+  commentId: T:SimpleRelm.Interfaces.Resolvers.IRelmResolver_ODBC
+  id: IRelmResolver_ODBC
+  parent: SimpleRelm.Interfaces.Resolvers
+  children:
+  - SimpleRelm.Interfaces.Resolvers.IRelmResolver_ODBC.GetConnectionBuilder(System.Enum)
+  - SimpleRelm.Interfaces.Resolvers.IRelmResolver_ODBC.GetConnectionBuilder(System.String)
+  langs:
+  - csharp
+  - vb
+  name: IRelmResolver_ODBC
+  nameWithType: IRelmResolver_ODBC
+  fullName: SimpleRelm.Interfaces.Resolvers.IRelmResolver_ODBC
+  type: Interface
+  source:
+    remote:
+      path: SimpleRelm/Interfaces/Resolvers/IRelmResolver_ODBC.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: IRelmResolver_ODBC
+    path: ../SimpleRelm/Interfaces/Resolvers/IRelmResolver_ODBC.cs
+    startLine: 15
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Interfaces.Resolvers
+  summary: Defines methods for obtaining ODBC connection string builders based on connection type or connection string.
+  remarks: >-
+    This interface extends IRelmResolverBase to provide ODBC-specific connection string
+        resolution. Implementations are expected to return configured OdbcConnectionStringBuilder instances for use in
+        establishing ODBC database connections.
+  example: []
+  syntax:
+    content: 'public interface IRelmResolver_ODBC : IRelmResolverBase'
+    content.vb: Public Interface IRelmResolver_ODBC Inherits IRelmResolverBase
+- uid: SimpleRelm.Interfaces.Resolvers.IRelmResolver_ODBC.GetConnectionBuilder(System.Enum)
+  commentId: M:SimpleRelm.Interfaces.Resolvers.IRelmResolver_ODBC.GetConnectionBuilder(System.Enum)
+  id: GetConnectionBuilder(System.Enum)
+  parent: SimpleRelm.Interfaces.Resolvers.IRelmResolver_ODBC
+  langs:
+  - csharp
+  - vb
+  name: GetConnectionBuilder(Enum)
+  nameWithType: IRelmResolver_ODBC.GetConnectionBuilder(Enum)
+  fullName: SimpleRelm.Interfaces.Resolvers.IRelmResolver_ODBC.GetConnectionBuilder(System.Enum)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Interfaces/Resolvers/IRelmResolver_ODBC.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: GetConnectionBuilder
+    path: ../SimpleRelm/Interfaces/Resolvers/IRelmResolver_ODBC.cs
+    startLine: 23
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Interfaces.Resolvers
+  summary: Creates and returns a new <xref href="System.Data.Odbc.OdbcConnectionStringBuilder" data-throw-if-not-resolved="false"></xref> configured for the specified connection type.
+  example: []
+  syntax:
+    content: OdbcConnectionStringBuilder GetConnectionBuilder(Enum ConnectionType)
+    parameters:
+    - id: ConnectionType
+      type: System.Enum
+      description: >-
+        An enumeration value that specifies the type of connection for which to build the connection string. The
+            value must correspond to a supported connection type.
+    return:
+      type: System.Data.Odbc.OdbcConnectionStringBuilder
+      description: A new instance of <xref href="System.Data.Odbc.OdbcConnectionStringBuilder" data-throw-if-not-resolved="false"></xref> configured according to the specified connection type.
+    content.vb: Function GetConnectionBuilder(ConnectionType As [Enum]) As OdbcConnectionStringBuilder
+  overload: SimpleRelm.Interfaces.Resolvers.IRelmResolver_ODBC.GetConnectionBuilder*
+- uid: SimpleRelm.Interfaces.Resolvers.IRelmResolver_ODBC.GetConnectionBuilder(System.String)
+  commentId: M:SimpleRelm.Interfaces.Resolvers.IRelmResolver_ODBC.GetConnectionBuilder(System.String)
+  id: GetConnectionBuilder(System.String)
+  parent: SimpleRelm.Interfaces.Resolvers.IRelmResolver_ODBC
+  langs:
+  - csharp
+  - vb
+  name: GetConnectionBuilder(string)
+  nameWithType: IRelmResolver_ODBC.GetConnectionBuilder(string)
+  fullName: SimpleRelm.Interfaces.Resolvers.IRelmResolver_ODBC.GetConnectionBuilder(string)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Interfaces/Resolvers/IRelmResolver_ODBC.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: GetConnectionBuilder
+    path: ../SimpleRelm/Interfaces/Resolvers/IRelmResolver_ODBC.cs
+    startLine: 31
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Interfaces.Resolvers
+  summary: >-
+    Creates a new instance of the <xref href="System.Data.Odbc.OdbcConnectionStringBuilder" data-throw-if-not-resolved="false"></xref> class initialized with the specified
+
+    connection string.
+  example: []
+  syntax:
+    content: OdbcConnectionStringBuilder GetConnectionBuilder(string ConnectionString)
+    parameters:
+    - id: ConnectionString
+      type: System.String
+      description: The connection string to use for initializing the <xref href="System.Data.Odbc.OdbcConnectionStringBuilder" data-throw-if-not-resolved="false"></xref>. Cannot be null.
+    return:
+      type: System.Data.Odbc.OdbcConnectionStringBuilder
+      description: A new <xref href="System.Data.Odbc.OdbcConnectionStringBuilder" data-throw-if-not-resolved="false"></xref> initialized with the specified connection string.
+    content.vb: Function GetConnectionBuilder(ConnectionString As String) As OdbcConnectionStringBuilder
+  overload: SimpleRelm.Interfaces.Resolvers.IRelmResolver_ODBC.GetConnectionBuilder*
+  nameWithType.vb: IRelmResolver_ODBC.GetConnectionBuilder(String)
+  fullName.vb: SimpleRelm.Interfaces.Resolvers.IRelmResolver_ODBC.GetConnectionBuilder(String)
+  name.vb: GetConnectionBuilder(String)
+references:
+- uid: SimpleRelm.Interfaces.Resolvers
+  commentId: N:SimpleRelm.Interfaces.Resolvers
+  href: SimpleRelm.html
+  name: SimpleRelm.Interfaces.Resolvers
+  nameWithType: SimpleRelm.Interfaces.Resolvers
+  fullName: SimpleRelm.Interfaces.Resolvers
+  spec.csharp:
+  - uid: SimpleRelm
+    name: SimpleRelm
+    href: SimpleRelm.html
+  - name: .
+  - uid: SimpleRelm.Interfaces
+    name: Interfaces
+    href: SimpleRelm.Interfaces.html
+  - name: .
+  - uid: SimpleRelm.Interfaces.Resolvers
+    name: Resolvers
+    href: SimpleRelm.Interfaces.Resolvers.html
+  spec.vb:
+  - uid: SimpleRelm
+    name: SimpleRelm
+    href: SimpleRelm.html
+  - name: .
+  - uid: SimpleRelm.Interfaces
+    name: Interfaces
+    href: SimpleRelm.Interfaces.html
+  - name: .
+  - uid: SimpleRelm.Interfaces.Resolvers
+    name: Resolvers
+    href: SimpleRelm.Interfaces.Resolvers.html
+- uid: System.Data.Odbc.OdbcConnectionStringBuilder
+  commentId: T:System.Data.Odbc.OdbcConnectionStringBuilder
+  parent: System.Data.Odbc
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.odbc.odbcconnectionstringbuilder
+  name: OdbcConnectionStringBuilder
+  nameWithType: OdbcConnectionStringBuilder
+  fullName: System.Data.Odbc.OdbcConnectionStringBuilder
+- uid: SimpleRelm.Interfaces.Resolvers.IRelmResolver_ODBC.GetConnectionBuilder*
+  commentId: Overload:SimpleRelm.Interfaces.Resolvers.IRelmResolver_ODBC.GetConnectionBuilder
+  href: SimpleRelm.Interfaces.Resolvers.IRelmResolver_ODBC.html#SimpleRelm_Interfaces_Resolvers_IRelmResolver_ODBC_GetConnectionBuilder_System_Enum_
+  name: GetConnectionBuilder
+  nameWithType: IRelmResolver_ODBC.GetConnectionBuilder
+  fullName: SimpleRelm.Interfaces.Resolvers.IRelmResolver_ODBC.GetConnectionBuilder
+- uid: System.Enum
+  commentId: T:System.Enum
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.enum
+  name: Enum
+  nameWithType: Enum
+  fullName: System.Enum
+- uid: System.Data.Odbc
+  commentId: N:System.Data.Odbc
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Data.Odbc
+  nameWithType: System.Data.Odbc
+  fullName: System.Data.Odbc
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+  - name: .
+  - uid: System.Data.Odbc
+    name: Odbc
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.odbc
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+  - name: .
+  - uid: System.Data.Odbc
+    name: Odbc
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.odbc
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String

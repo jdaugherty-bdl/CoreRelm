@@ -1,0 +1,1866 @@
+### YamlMime:ManagedReference
+items:
+- uid: SimpleRelm.Persistence.BulkTableWriter`1
+  commentId: T:SimpleRelm.Persistence.BulkTableWriter`1
+  id: BulkTableWriter`1
+  parent: SimpleRelm.Persistence
+  children:
+  - SimpleRelm.Persistence.BulkTableWriter`1.AddColumn(System.String,MySql.Data.MySqlClient.MySqlDbType,System.Int32,System.String,System.String)
+  - SimpleRelm.Persistence.BulkTableWriter`1.AddColumns(System.Collections.Generic.IEnumerable{System.Tuple{System.String,MySql.Data.MySqlClient.MySqlDbType,System.Int32,System.String,System.String}})
+  - SimpleRelm.Persistence.BulkTableWriter`1.AddColumns(System.Collections.Generic.IEnumerable{System.Tuple{System.String,MySql.Data.MySqlClient.MySqlDbType,System.Int32}})
+  - SimpleRelm.Persistence.BulkTableWriter`1.AllowAutoDateColumns(System.Boolean)
+  - SimpleRelm.Persistence.BulkTableWriter`1.AllowAutoIncrementColumns(System.Boolean)
+  - SimpleRelm.Persistence.BulkTableWriter`1.AllowPrimaryKeyColumns(System.Boolean)
+  - SimpleRelm.Persistence.BulkTableWriter`1.AllowUniqueColumns(System.Boolean)
+  - SimpleRelm.Persistence.BulkTableWriter`1.AllowUserVariables(System.Boolean)
+  - SimpleRelm.Persistence.BulkTableWriter`1.RemoveColumn(System.String)
+  - SimpleRelm.Persistence.BulkTableWriter`1.ResetBatchSize
+  - SimpleRelm.Persistence.BulkTableWriter`1.SetBatchSize(System.Int32)
+  - SimpleRelm.Persistence.BulkTableWriter`1.SetDatabaseName(System.String)
+  - SimpleRelm.Persistence.BulkTableWriter`1.SetInsertQuery(System.String)
+  - SimpleRelm.Persistence.BulkTableWriter`1.SetSourceData(System.Collections.Generic.IEnumerable{`0})
+  - SimpleRelm.Persistence.BulkTableWriter`1.SetSourceData(`0)
+  - SimpleRelm.Persistence.BulkTableWriter`1.SetTableName(System.String)
+  - SimpleRelm.Persistence.BulkTableWriter`1.SetTransaction(MySql.Data.MySqlClient.MySqlTransaction)
+  - SimpleRelm.Persistence.BulkTableWriter`1.ThrowException(System.Boolean)
+  - SimpleRelm.Persistence.BulkTableWriter`1.UseTransaction(System.Boolean)
+  - SimpleRelm.Persistence.BulkTableWriter`1.Write
+  - SimpleRelm.Persistence.BulkTableWriter`1.Write(System.Func{System.String,`0,System.Object})
+  langs:
+  - csharp
+  - vb
+  name: BulkTableWriter<T>
+  nameWithType: BulkTableWriter<T>
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>
+  type: Class
+  source:
+    remote:
+      path: SimpleRelm/Persistence/BulkTableWriter.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: BulkTableWriter
+    path: ../SimpleRelm/Persistence/BulkTableWriter.cs
+    startLine: 32
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Persistence
+  summary: >-
+    Provides functionality for performing high-performance bulk insert operations into a database table with
+
+    configurable options for batching, transactions, error handling, and column mapping.
+  remarks: >-
+    The <xref href="SimpleRelm.Persistence.BulkTableWriter%601" data-throw-if-not-resolved="false"></xref> class is designed for efficient bulk data insertion
+        scenarios, such as importing large datasets or synchronizing data between sources. It supports customization of
+        batch size, transaction usage, and column inclusion rules, and allows mapping between object properties and
+        database columns. This class is intended for internal use and is typically instantiated via factory methods or
+        helper classes within the data access layer. Thread safety is not guaranteed; use separate instances for
+        concurrent operations.
+  example: []
+  syntax:
+    content: public class BulkTableWriter<T>
+    typeParameters:
+    - id: T
+      description: >-
+        The type of the data items to be written to the database table. Each instance of <code class="typeparamref">T</code>
+            represents a row in the target table.
+    content.vb: Public Class BulkTableWriter(Of T)
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  nameWithType.vb: BulkTableWriter(Of T)
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T)
+  name.vb: BulkTableWriter(Of T)
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.Write
+  commentId: M:SimpleRelm.Persistence.BulkTableWriter`1.Write
+  id: Write
+  parent: SimpleRelm.Persistence.BulkTableWriter`1
+  langs:
+  - csharp
+  - vb
+  name: Write()
+  nameWithType: BulkTableWriter<T>.Write()
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.Write()
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Persistence/BulkTableWriter.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: Write
+    path: ../SimpleRelm/Persistence/BulkTableWriter.cs
+    startLine: 234
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Persistence
+  summary: Writes data to the underlying output stream.
+  remarks: This overload calls the <xref href="SimpleRelm.Persistence.BulkTableWriter%601.Write(System.Func%7bSystem.String%2c%600%2cSystem.Object%7d)" data-throw-if-not-resolved="false"></xref> method with a <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> argument.
+  example: []
+  syntax:
+    content: public int Write()
+    return:
+      type: System.Int32
+      description: The result of the write operation, as returned by the <xref href="SimpleRelm.Persistence.BulkTableWriter%601.Write(System.Func%7bSystem.String%2c%600%2cSystem.Object%7d)" data-throw-if-not-resolved="false"></xref> method.
+    content.vb: Public Function Write() As Integer
+  overload: SimpleRelm.Persistence.BulkTableWriter`1.Write*
+  nameWithType.vb: BulkTableWriter(Of T).Write()
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).Write()
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.Write(System.Func{System.String,`0,System.Object})
+  commentId: M:SimpleRelm.Persistence.BulkTableWriter`1.Write(System.Func{System.String,`0,System.Object})
+  id: Write(System.Func{System.String,`0,System.Object})
+  parent: SimpleRelm.Persistence.BulkTableWriter`1
+  langs:
+  - csharp
+  - vb
+  name: Write(Func<string, T, object>)
+  nameWithType: BulkTableWriter<T>.Write(Func<string, T, object>)
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.Write(System.Func<string, T, object>)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Persistence/BulkTableWriter.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: Write
+    path: ../SimpleRelm/Persistence/BulkTableWriter.cs
+    startLine: 250
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Persistence
+  summary: >-
+    Executes a batch operation to process and insert data into a database using the specified function to
+
+    populate a data table.
+  remarks: >-
+    This method processes the source data in batches, determined by the configured batch
+        size, and inserts the data into the database. The method supports multiple database contexts and
+        connections, and it uses the appropriate one based on the current configuration.
+  example: []
+  syntax:
+    content: public int Write(Func<string, T, object> DataTableFunction)
+    parameters:
+    - id: DataTableFunction
+      type: System.Func{System.String,{T},System.Object}
+      description: >-
+        A function that takes a column name and a data item of type <code class="typeparamref">T</code> and returns the value
+            to be inserted into the data table.
+    return:
+      type: System.Int32
+      description: >-
+        The total number of records successfully inserted into the database. Returns 0 if there is no source data to
+            process.
+    content.vb: Public Function Write(DataTableFunction As Func(Of String, T, Object)) As Integer
+  overload: SimpleRelm.Persistence.BulkTableWriter`1.Write*
+  nameWithType.vb: BulkTableWriter(Of T).Write(Func(Of String, T, Object))
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).Write(System.Func(Of String, T, Object))
+  name.vb: Write(Func(Of String, T, Object))
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.UseTransaction(System.Boolean)
+  commentId: M:SimpleRelm.Persistence.BulkTableWriter`1.UseTransaction(System.Boolean)
+  id: UseTransaction(System.Boolean)
+  parent: SimpleRelm.Persistence.BulkTableWriter`1
+  langs:
+  - csharp
+  - vb
+  name: UseTransaction(bool)
+  nameWithType: BulkTableWriter<T>.UseTransaction(bool)
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.UseTransaction(bool)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Persistence/BulkTableWriter.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: UseTransaction
+    path: ../SimpleRelm/Persistence/BulkTableWriter.cs
+    startLine: 576
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Persistence
+  summary: Configures whether the bulk table writer should use a transaction during its operations.
+  example: []
+  syntax:
+    content: public BulkTableWriter<T> UseTransaction(bool useTransaction)
+    parameters:
+    - id: useTransaction
+      type: System.Boolean
+      description: >-
+        A value indicating whether to enable transaction usage.  <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to use a transaction;
+            otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    return:
+      type: SimpleRelm.Persistence.BulkTableWriter`1
+      description: The current instance of <xref href="SimpleRelm.Persistence.BulkTableWriter%601" data-throw-if-not-resolved="false"></xref>, allowing for method chaining.
+    content.vb: Public Function UseTransaction(useTransaction As Boolean) As BulkTableWriter(Of T)
+  overload: SimpleRelm.Persistence.BulkTableWriter`1.UseTransaction*
+  nameWithType.vb: BulkTableWriter(Of T).UseTransaction(Boolean)
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).UseTransaction(Boolean)
+  name.vb: UseTransaction(Boolean)
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.SetTransaction(MySql.Data.MySqlClient.MySqlTransaction)
+  commentId: M:SimpleRelm.Persistence.BulkTableWriter`1.SetTransaction(MySql.Data.MySqlClient.MySqlTransaction)
+  id: SetTransaction(MySql.Data.MySqlClient.MySqlTransaction)
+  parent: SimpleRelm.Persistence.BulkTableWriter`1
+  langs:
+  - csharp
+  - vb
+  name: SetTransaction(MySqlTransaction)
+  nameWithType: BulkTableWriter<T>.SetTransaction(MySqlTransaction)
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.SetTransaction(MySql.Data.MySqlClient.MySqlTransaction)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Persistence/BulkTableWriter.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: SetTransaction
+    path: ../SimpleRelm/Persistence/BulkTableWriter.cs
+    startLine: 589
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Persistence
+  summary: Sets the transaction to be used for the bulk table write operation.
+  example: []
+  syntax:
+    content: public BulkTableWriter<T> SetTransaction(MySqlTransaction sqlTransaction)
+    parameters:
+    - id: sqlTransaction
+      type: MySql.Data.MySqlClient.MySqlTransaction
+      description: >-
+        The <xref href="MySql.Data.MySqlClient.MySqlTransaction" data-throw-if-not-resolved="false"></xref> instance to associate with the bulk table writer. This transaction will
+            be used to execute the database operations.
+    return:
+      type: SimpleRelm.Persistence.BulkTableWriter`1
+      description: The current <xref href="SimpleRelm.Persistence.BulkTableWriter%601" data-throw-if-not-resolved="false"></xref> instance, allowing for method chaining.
+    content.vb: Public Function SetTransaction(sqlTransaction As MySqlTransaction) As BulkTableWriter(Of T)
+  overload: SimpleRelm.Persistence.BulkTableWriter`1.SetTransaction*
+  nameWithType.vb: BulkTableWriter(Of T).SetTransaction(MySqlTransaction)
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).SetTransaction(MySql.Data.MySqlClient.MySqlTransaction)
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.ThrowException(System.Boolean)
+  commentId: M:SimpleRelm.Persistence.BulkTableWriter`1.ThrowException(System.Boolean)
+  id: ThrowException(System.Boolean)
+  parent: SimpleRelm.Persistence.BulkTableWriter`1
+  langs:
+  - csharp
+  - vb
+  name: ThrowException(bool)
+  nameWithType: BulkTableWriter<T>.ThrowException(bool)
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.ThrowException(bool)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Persistence/BulkTableWriter.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: ThrowException
+    path: ../SimpleRelm/Persistence/BulkTableWriter.cs
+    startLine: 602
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Persistence
+  summary: Configures whether the writer should throw an exception when an error occurs during bulk writing.
+  example: []
+  syntax:
+    content: public BulkTableWriter<T> ThrowException(bool throwException)
+    parameters:
+    - id: throwException
+      type: System.Boolean
+      description: >-
+        A value indicating whether exceptions should be thrown.  <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to throw exceptions on
+            errors; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    return:
+      type: SimpleRelm.Persistence.BulkTableWriter`1
+      description: The current instance of <xref href="SimpleRelm.Persistence.BulkTableWriter%601" data-throw-if-not-resolved="false"></xref>, allowing for method chaining.
+    content.vb: Public Function ThrowException(throwException As Boolean) As BulkTableWriter(Of T)
+  overload: SimpleRelm.Persistence.BulkTableWriter`1.ThrowException*
+  nameWithType.vb: BulkTableWriter(Of T).ThrowException(Boolean)
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).ThrowException(Boolean)
+  name.vb: ThrowException(Boolean)
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.AllowUserVariables(System.Boolean)
+  commentId: M:SimpleRelm.Persistence.BulkTableWriter`1.AllowUserVariables(System.Boolean)
+  id: AllowUserVariables(System.Boolean)
+  parent: SimpleRelm.Persistence.BulkTableWriter`1
+  langs:
+  - csharp
+  - vb
+  name: AllowUserVariables(bool)
+  nameWithType: BulkTableWriter<T>.AllowUserVariables(bool)
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.AllowUserVariables(bool)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Persistence/BulkTableWriter.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: AllowUserVariables
+    path: ../SimpleRelm/Persistence/BulkTableWriter.cs
+    startLine: 615
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Persistence
+  summary: Enables or disables the use of user-defined variables in the bulk table writer.
+  example: []
+  syntax:
+    content: public BulkTableWriter<T> AllowUserVariables(bool allowUserVariables)
+    parameters:
+    - id: allowUserVariables
+      type: System.Boolean
+      description: >-
+        A value indicating whether user-defined variables are allowed.  <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to allow user-defined
+            variables; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    return:
+      type: SimpleRelm.Persistence.BulkTableWriter`1
+      description: The current instance of <xref href="SimpleRelm.Persistence.BulkTableWriter%601" data-throw-if-not-resolved="false"></xref>, allowing for method chaining.
+    content.vb: Public Function AllowUserVariables(allowUserVariables As Boolean) As BulkTableWriter(Of T)
+  overload: SimpleRelm.Persistence.BulkTableWriter`1.AllowUserVariables*
+  nameWithType.vb: BulkTableWriter(Of T).AllowUserVariables(Boolean)
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).AllowUserVariables(Boolean)
+  name.vb: AllowUserVariables(Boolean)
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.AllowAutoDateColumns(System.Boolean)
+  commentId: M:SimpleRelm.Persistence.BulkTableWriter`1.AllowAutoDateColumns(System.Boolean)
+  id: AllowAutoDateColumns(System.Boolean)
+  parent: SimpleRelm.Persistence.BulkTableWriter`1
+  langs:
+  - csharp
+  - vb
+  name: AllowAutoDateColumns(bool)
+  nameWithType: BulkTableWriter<T>.AllowAutoDateColumns(bool)
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.AllowAutoDateColumns(bool)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Persistence/BulkTableWriter.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: AllowAutoDateColumns
+    path: ../SimpleRelm/Persistence/BulkTableWriter.cs
+    startLine: 628
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Persistence
+  summary: Enables or disables the automatic inclusion of date columns in the bulk table writer.
+  example: []
+  syntax:
+    content: public BulkTableWriter<T> AllowAutoDateColumns(bool allowAutoDateColumns)
+    parameters:
+    - id: allowAutoDateColumns
+      type: System.Boolean
+      description: >-
+        A value indicating whether automatic date columns should be included.  <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to enable
+            automatic date columns; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    return:
+      type: SimpleRelm.Persistence.BulkTableWriter`1
+      description: The current instance of <xref href="SimpleRelm.Persistence.BulkTableWriter%601" data-throw-if-not-resolved="false"></xref>, allowing for method chaining.
+    content.vb: Public Function AllowAutoDateColumns(allowAutoDateColumns As Boolean) As BulkTableWriter(Of T)
+  overload: SimpleRelm.Persistence.BulkTableWriter`1.AllowAutoDateColumns*
+  nameWithType.vb: BulkTableWriter(Of T).AllowAutoDateColumns(Boolean)
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).AllowAutoDateColumns(Boolean)
+  name.vb: AllowAutoDateColumns(Boolean)
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.AllowAutoIncrementColumns(System.Boolean)
+  commentId: M:SimpleRelm.Persistence.BulkTableWriter`1.AllowAutoIncrementColumns(System.Boolean)
+  id: AllowAutoIncrementColumns(System.Boolean)
+  parent: SimpleRelm.Persistence.BulkTableWriter`1
+  langs:
+  - csharp
+  - vb
+  name: AllowAutoIncrementColumns(bool)
+  nameWithType: BulkTableWriter<T>.AllowAutoIncrementColumns(bool)
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.AllowAutoIncrementColumns(bool)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Persistence/BulkTableWriter.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: AllowAutoIncrementColumns
+    path: ../SimpleRelm/Persistence/BulkTableWriter.cs
+    startLine: 641
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Persistence
+  summary: Configures whether auto-increment columns are allowed during bulk table writing.
+  example: []
+  syntax:
+    content: public BulkTableWriter<T> AllowAutoIncrementColumns(bool allowAutoIncrementColumns)
+    parameters:
+    - id: allowAutoIncrementColumns
+      type: System.Boolean
+      description: >-
+        A value indicating whether auto-increment columns should be included.  Specify <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to
+            allow auto-increment columns; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    return:
+      type: SimpleRelm.Persistence.BulkTableWriter`1
+      description: The current <xref href="SimpleRelm.Persistence.BulkTableWriter%601" data-throw-if-not-resolved="false"></xref> instance, enabling method chaining.
+    content.vb: Public Function AllowAutoIncrementColumns(allowAutoIncrementColumns As Boolean) As BulkTableWriter(Of T)
+  overload: SimpleRelm.Persistence.BulkTableWriter`1.AllowAutoIncrementColumns*
+  nameWithType.vb: BulkTableWriter(Of T).AllowAutoIncrementColumns(Boolean)
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).AllowAutoIncrementColumns(Boolean)
+  name.vb: AllowAutoIncrementColumns(Boolean)
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.AllowPrimaryKeyColumns(System.Boolean)
+  commentId: M:SimpleRelm.Persistence.BulkTableWriter`1.AllowPrimaryKeyColumns(System.Boolean)
+  id: AllowPrimaryKeyColumns(System.Boolean)
+  parent: SimpleRelm.Persistence.BulkTableWriter`1
+  langs:
+  - csharp
+  - vb
+  name: AllowPrimaryKeyColumns(bool)
+  nameWithType: BulkTableWriter<T>.AllowPrimaryKeyColumns(bool)
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.AllowPrimaryKeyColumns(bool)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Persistence/BulkTableWriter.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: AllowPrimaryKeyColumns
+    path: ../SimpleRelm/Persistence/BulkTableWriter.cs
+    startLine: 657
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Persistence
+  summary: Configures whether primary key columns are allowed to be included in bulk write operations.
+  remarks: >-
+    By default, primary key columns are typically excluded from bulk write operations to
+        prevent  unintended modifications to primary keys. Use this method to explicitly allow their inclusion  if
+        required.
+  example: []
+  syntax:
+    content: public BulkTableWriter<T> AllowPrimaryKeyColumns(bool allowPrimaryKeyColumns)
+    parameters:
+    - id: allowPrimaryKeyColumns
+      type: System.Boolean
+      description: >-
+        A value indicating whether primary key columns should be included.  <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to allow primary
+            key columns; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    return:
+      type: SimpleRelm.Persistence.BulkTableWriter`1
+      description: The current <xref href="SimpleRelm.Persistence.BulkTableWriter%601" data-throw-if-not-resolved="false"></xref> instance, enabling method chaining.
+    content.vb: Public Function AllowPrimaryKeyColumns(allowPrimaryKeyColumns As Boolean) As BulkTableWriter(Of T)
+  overload: SimpleRelm.Persistence.BulkTableWriter`1.AllowPrimaryKeyColumns*
+  nameWithType.vb: BulkTableWriter(Of T).AllowPrimaryKeyColumns(Boolean)
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).AllowPrimaryKeyColumns(Boolean)
+  name.vb: AllowPrimaryKeyColumns(Boolean)
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.AllowUniqueColumns(System.Boolean)
+  commentId: M:SimpleRelm.Persistence.BulkTableWriter`1.AllowUniqueColumns(System.Boolean)
+  id: AllowUniqueColumns(System.Boolean)
+  parent: SimpleRelm.Persistence.BulkTableWriter`1
+  langs:
+  - csharp
+  - vb
+  name: AllowUniqueColumns(bool)
+  nameWithType: BulkTableWriter<T>.AllowUniqueColumns(bool)
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.AllowUniqueColumns(bool)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Persistence/BulkTableWriter.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: AllowUniqueColumns
+    path: ../SimpleRelm/Persistence/BulkTableWriter.cs
+    startLine: 670
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Persistence
+  summary: Configures whether unique columns are allowed during bulk table writing.
+  example: []
+  syntax:
+    content: public BulkTableWriter<T> AllowUniqueColumns(bool allowUniqueColumns)
+    parameters:
+    - id: allowUniqueColumns
+      type: System.Boolean
+      description: >-
+        A value indicating whether unique columns should be allowed.  <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to allow unique
+            columns; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    return:
+      type: SimpleRelm.Persistence.BulkTableWriter`1
+      description: The current <xref href="SimpleRelm.Persistence.BulkTableWriter%601" data-throw-if-not-resolved="false"></xref> instance, enabling method chaining.
+    content.vb: Public Function AllowUniqueColumns(allowUniqueColumns As Boolean) As BulkTableWriter(Of T)
+  overload: SimpleRelm.Persistence.BulkTableWriter`1.AllowUniqueColumns*
+  nameWithType.vb: BulkTableWriter(Of T).AllowUniqueColumns(Boolean)
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).AllowUniqueColumns(Boolean)
+  name.vb: AllowUniqueColumns(Boolean)
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.SetInsertQuery(System.String)
+  commentId: M:SimpleRelm.Persistence.BulkTableWriter`1.SetInsertQuery(System.String)
+  id: SetInsertQuery(System.String)
+  parent: SimpleRelm.Persistence.BulkTableWriter`1
+  langs:
+  - csharp
+  - vb
+  name: SetInsertQuery(string)
+  nameWithType: BulkTableWriter<T>.SetInsertQuery(string)
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.SetInsertQuery(string)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Persistence/BulkTableWriter.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: SetInsertQuery
+    path: ../SimpleRelm/Persistence/BulkTableWriter.cs
+    startLine: 683
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Persistence
+  summary: Sets the SQL insert query to be used for bulk data operations.
+  example: []
+  syntax:
+    content: public BulkTableWriter<T> SetInsertQuery(string insertQuery)
+    parameters:
+    - id: insertQuery
+      type: System.String
+      description: >-
+        The SQL insert query string to execute during bulk operations.  This query should be properly formatted and
+            compatible with the target database.
+    return:
+      type: SimpleRelm.Persistence.BulkTableWriter`1
+      description: The current instance of <xref href="SimpleRelm.Persistence.BulkTableWriter%601" data-throw-if-not-resolved="false"></xref>, allowing for method chaining.
+    content.vb: Public Function SetInsertQuery(insertQuery As String) As BulkTableWriter(Of T)
+  overload: SimpleRelm.Persistence.BulkTableWriter`1.SetInsertQuery*
+  nameWithType.vb: BulkTableWriter(Of T).SetInsertQuery(String)
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).SetInsertQuery(String)
+  name.vb: SetInsertQuery(String)
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.SetSourceData(System.Collections.Generic.IEnumerable{`0})
+  commentId: M:SimpleRelm.Persistence.BulkTableWriter`1.SetSourceData(System.Collections.Generic.IEnumerable{`0})
+  id: SetSourceData(System.Collections.Generic.IEnumerable{`0})
+  parent: SimpleRelm.Persistence.BulkTableWriter`1
+  langs:
+  - csharp
+  - vb
+  name: SetSourceData(IEnumerable<T>)
+  nameWithType: BulkTableWriter<T>.SetSourceData(IEnumerable<T>)
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.SetSourceData(System.Collections.Generic.IEnumerable<T>)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Persistence/BulkTableWriter.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: SetSourceData
+    path: ../SimpleRelm/Persistence/BulkTableWriter.cs
+    startLine: 695
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Persistence
+  summary: Sets the source data to be written in bulk operations.
+  example: []
+  syntax:
+    content: public BulkTableWriter<T> SetSourceData(IEnumerable<T> sourceData)
+    parameters:
+    - id: sourceData
+      type: System.Collections.Generic.IEnumerable{{T}}
+      description: The collection of data items to be used as the source for bulk writing. Cannot be null.
+    return:
+      type: SimpleRelm.Persistence.BulkTableWriter`1
+      description: The current instance of <xref href="SimpleRelm.Persistence.BulkTableWriter%601" data-throw-if-not-resolved="false"></xref> to allow method chaining.
+    content.vb: Public Function SetSourceData(sourceData As IEnumerable(Of T)) As BulkTableWriter(Of T)
+  overload: SimpleRelm.Persistence.BulkTableWriter`1.SetSourceData*
+  nameWithType.vb: BulkTableWriter(Of T).SetSourceData(IEnumerable(Of T))
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).SetSourceData(System.Collections.Generic.IEnumerable(Of T))
+  name.vb: SetSourceData(IEnumerable(Of T))
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.SetSourceData(`0)
+  commentId: M:SimpleRelm.Persistence.BulkTableWriter`1.SetSourceData(`0)
+  id: SetSourceData(`0)
+  parent: SimpleRelm.Persistence.BulkTableWriter`1
+  langs:
+  - csharp
+  - vb
+  name: SetSourceData(T)
+  nameWithType: BulkTableWriter<T>.SetSourceData(T)
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.SetSourceData(T)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Persistence/BulkTableWriter.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: SetSourceData
+    path: ../SimpleRelm/Persistence/BulkTableWriter.cs
+    startLine: 707
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Persistence
+  summary: Sets the source data for the bulk table writer.
+  example: []
+  syntax:
+    content: public BulkTableWriter<T> SetSourceData(T sourceData)
+    parameters:
+    - id: sourceData
+      type: '{T}'
+      description: The source data to be written, represented as an instance of type <code class="typeparamref">T</code>.
+    return:
+      type: SimpleRelm.Persistence.BulkTableWriter`1
+      description: The current instance of <xref href="SimpleRelm.Persistence.BulkTableWriter%601" data-throw-if-not-resolved="false"></xref>, allowing for method chaining.
+    content.vb: Public Function SetSourceData(sourceData As T) As BulkTableWriter(Of T)
+  overload: SimpleRelm.Persistence.BulkTableWriter`1.SetSourceData*
+  nameWithType.vb: BulkTableWriter(Of T).SetSourceData(T)
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).SetSourceData(T)
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.AddColumn(System.String,MySql.Data.MySqlClient.MySqlDbType,System.Int32,System.String,System.String)
+  commentId: M:SimpleRelm.Persistence.BulkTableWriter`1.AddColumn(System.String,MySql.Data.MySqlClient.MySqlDbType,System.Int32,System.String,System.String)
+  id: AddColumn(System.String,MySql.Data.MySqlClient.MySqlDbType,System.Int32,System.String,System.String)
+  parent: SimpleRelm.Persistence.BulkTableWriter`1
+  langs:
+  - csharp
+  - vb
+  name: AddColumn(string, MySqlDbType, int, string, string)
+  nameWithType: BulkTableWriter<T>.AddColumn(string, MySqlDbType, int, string, string)
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.AddColumn(string, MySql.Data.MySqlClient.MySqlDbType, int, string, string)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Persistence/BulkTableWriter.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: AddColumn
+    path: ../SimpleRelm/Persistence/BulkTableWriter.cs
+    startLine: 724
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Persistence
+  summary: Adds a column definition to the bulk table writer.
+  example: []
+  syntax:
+    content: public BulkTableWriter<T> AddColumn(string columnName, MySqlDbType dbType, int size, string alternatePropertyName = null, string columnDefault = null)
+    parameters:
+    - id: columnName
+      type: System.String
+      description: The name of the column to add. This value cannot be null or empty.
+    - id: dbType
+      type: MySql.Data.MySqlClient.MySqlDbType
+      description: The MySQL data type of the column.
+    - id: size
+      type: System.Int32
+      description: The maximum size of the column, in bytes. Must be a non-negative value.
+    - id: alternatePropertyName
+      type: System.String
+      description: >-
+        An optional alternate property name to map to this column. If null, the column will use the default property
+            mapping.
+    - id: columnDefault
+      type: System.String
+      description: An optional default value for the column. If null, no default value will be applied.
+    return:
+      type: SimpleRelm.Persistence.BulkTableWriter`1
+      description: The current <xref href="SimpleRelm.Persistence.BulkTableWriter%601" data-throw-if-not-resolved="false"></xref> instance, allowing for method chaining.
+    content.vb: Public Function AddColumn(columnName As String, dbType As MySqlDbType, size As Integer, alternatePropertyName As String = Nothing, columnDefault As String = Nothing) As BulkTableWriter(Of T)
+  overload: SimpleRelm.Persistence.BulkTableWriter`1.AddColumn*
+  nameWithType.vb: BulkTableWriter(Of T).AddColumn(String, MySqlDbType, Integer, String, String)
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).AddColumn(String, MySql.Data.MySqlClient.MySqlDbType, Integer, String, String)
+  name.vb: AddColumn(String, MySqlDbType, Integer, String, String)
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.AddColumns(System.Collections.Generic.IEnumerable{System.Tuple{System.String,MySql.Data.MySqlClient.MySqlDbType,System.Int32,System.String,System.String}})
+  commentId: M:SimpleRelm.Persistence.BulkTableWriter`1.AddColumns(System.Collections.Generic.IEnumerable{System.Tuple{System.String,MySql.Data.MySqlClient.MySqlDbType,System.Int32,System.String,System.String}})
+  id: AddColumns(System.Collections.Generic.IEnumerable{System.Tuple{System.String,MySql.Data.MySqlClient.MySqlDbType,System.Int32,System.String,System.String}})
+  parent: SimpleRelm.Persistence.BulkTableWriter`1
+  langs:
+  - csharp
+  - vb
+  name: AddColumns(IEnumerable<Tuple<string, MySqlDbType, int, string, string>>)
+  nameWithType: BulkTableWriter<T>.AddColumns(IEnumerable<Tuple<string, MySqlDbType, int, string, string>>)
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.AddColumns(System.Collections.Generic.IEnumerable<System.Tuple<string, MySql.Data.MySqlClient.MySqlDbType, int, string, string>>)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Persistence/BulkTableWriter.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: AddColumns
+    path: ../SimpleRelm/Persistence/BulkTableWriter.cs
+    startLine: 743
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Persistence
+  summary: Adds the specified columns to the current table schema for bulk writing operations.
+  remarks: >-
+    Columns with a null data type (<xref href="MySql.Data.MySqlClient.MySqlDbType" data-throw-if-not-resolved="false"></xref>) are ignored. If the
+        <code class="paramref">columns</code> parameter is null, no columns are added.
+  example: []
+  syntax:
+    content: public BulkTableWriter<T> AddColumns(IEnumerable<Tuple<string, MySqlDbType, int, string, string>> columns)
+    parameters:
+    - id: columns
+      type: System.Collections.Generic.IEnumerable{System.Tuple{System.String,MySql.Data.MySqlClient.MySqlDbType,System.Int32,System.String,System.String}}
+      description: >-
+        A collection of tuples representing the columns to add. Each tuple contains the following elements: <ul><li>The column name (<xref href="System.String" data-throw-if-not-resolved="false"></xref>).</li><li>The MySQL data type of the column (<xref href="MySql.Data.MySqlClient.MySqlDbType" data-throw-if-not-resolved="false"></xref>).</li><li>The column size (<xref href="System.Int32" data-throw-if-not-resolved="false"></xref>).</li><li>The column
+            collation (<xref href="System.String" data-throw-if-not-resolved="false"></xref>).</li><li>The column default value (<xref href="System.String" data-throw-if-not-resolved="false"></xref>).</li></ul>
+    return:
+      type: SimpleRelm.Persistence.BulkTableWriter`1
+      description: The current instance of <xref href="SimpleRelm.Persistence.BulkTableWriter%601" data-throw-if-not-resolved="false"></xref>, allowing for method chaining.
+    content.vb: Public Function AddColumns(columns As IEnumerable(Of Tuple(Of String, MySqlDbType, Integer, String, String))) As BulkTableWriter(Of T)
+  overload: SimpleRelm.Persistence.BulkTableWriter`1.AddColumns*
+  nameWithType.vb: BulkTableWriter(Of T).AddColumns(IEnumerable(Of Tuple(Of String, MySqlDbType, Integer, String, String)))
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).AddColumns(System.Collections.Generic.IEnumerable(Of System.Tuple(Of String, MySql.Data.MySqlClient.MySqlDbType, Integer, String, String)))
+  name.vb: AddColumns(IEnumerable(Of Tuple(Of String, MySqlDbType, Integer, String, String)))
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.AddColumns(System.Collections.Generic.IEnumerable{System.Tuple{System.String,MySql.Data.MySqlClient.MySqlDbType,System.Int32}})
+  commentId: M:SimpleRelm.Persistence.BulkTableWriter`1.AddColumns(System.Collections.Generic.IEnumerable{System.Tuple{System.String,MySql.Data.MySqlClient.MySqlDbType,System.Int32}})
+  id: AddColumns(System.Collections.Generic.IEnumerable{System.Tuple{System.String,MySql.Data.MySqlClient.MySqlDbType,System.Int32}})
+  parent: SimpleRelm.Persistence.BulkTableWriter`1
+  langs:
+  - csharp
+  - vb
+  name: AddColumns(IEnumerable<Tuple<string, MySqlDbType, int>>)
+  nameWithType: BulkTableWriter<T>.AddColumns(IEnumerable<Tuple<string, MySqlDbType, int>>)
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.AddColumns(System.Collections.Generic.IEnumerable<System.Tuple<string, MySql.Data.MySqlClient.MySqlDbType, int>>)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Persistence/BulkTableWriter.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: AddColumns
+    path: ../SimpleRelm/Persistence/BulkTableWriter.cs
+    startLine: 765
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Persistence
+  summary: Adds a collection of columns to the bulk table writer.
+  remarks: >-
+    This method allows you to define columns for the bulk table writer by providing their
+        names, data types, and sizes. The additional metadata for each column, such as default values or
+        constraints, is not specified in this overload.
+  example: []
+  syntax:
+    content: public BulkTableWriter<T> AddColumns(IEnumerable<Tuple<string, MySqlDbType, int>> columns)
+    parameters:
+    - id: columns
+      type: System.Collections.Generic.IEnumerable{System.Tuple{System.String,MySql.Data.MySqlClient.MySqlDbType,System.Int32}}
+      description: >-
+        A collection of tuples, where each tuple specifies the column name, the MySQL data type, and the column
+            size.
+    return:
+      type: SimpleRelm.Persistence.BulkTableWriter`1
+      description: The current instance of <xref href="SimpleRelm.Persistence.BulkTableWriter%601" data-throw-if-not-resolved="false"></xref> with the specified columns added.
+    content.vb: Public Function AddColumns(columns As IEnumerable(Of Tuple(Of String, MySqlDbType, Integer))) As BulkTableWriter(Of T)
+  overload: SimpleRelm.Persistence.BulkTableWriter`1.AddColumns*
+  nameWithType.vb: BulkTableWriter(Of T).AddColumns(IEnumerable(Of Tuple(Of String, MySqlDbType, Integer)))
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).AddColumns(System.Collections.Generic.IEnumerable(Of System.Tuple(Of String, MySql.Data.MySqlClient.MySqlDbType, Integer)))
+  name.vb: AddColumns(IEnumerable(Of Tuple(Of String, MySqlDbType, Integer)))
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.SetTableName(System.String)
+  commentId: M:SimpleRelm.Persistence.BulkTableWriter`1.SetTableName(System.String)
+  id: SetTableName(System.String)
+  parent: SimpleRelm.Persistence.BulkTableWriter`1
+  langs:
+  - csharp
+  - vb
+  name: SetTableName(string)
+  nameWithType: BulkTableWriter<T>.SetTableName(string)
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.SetTableName(string)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Persistence/BulkTableWriter.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: SetTableName
+    path: ../SimpleRelm/Persistence/BulkTableWriter.cs
+    startLine: 775
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Persistence
+  summary: Sets the name of the database table to which data will be written.
+  example: []
+  syntax:
+    content: public BulkTableWriter<T> SetTableName(string tableName)
+    parameters:
+    - id: tableName
+      type: System.String
+      description: The name of the table. Cannot be null or empty.
+    return:
+      type: SimpleRelm.Persistence.BulkTableWriter`1
+      description: The current <xref href="SimpleRelm.Persistence.BulkTableWriter%601" data-throw-if-not-resolved="false"></xref> instance, allowing for method chaining.
+    content.vb: Public Function SetTableName(tableName As String) As BulkTableWriter(Of T)
+  overload: SimpleRelm.Persistence.BulkTableWriter`1.SetTableName*
+  nameWithType.vb: BulkTableWriter(Of T).SetTableName(String)
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).SetTableName(String)
+  name.vb: SetTableName(String)
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.SetDatabaseName(System.String)
+  commentId: M:SimpleRelm.Persistence.BulkTableWriter`1.SetDatabaseName(System.String)
+  id: SetDatabaseName(System.String)
+  parent: SimpleRelm.Persistence.BulkTableWriter`1
+  langs:
+  - csharp
+  - vb
+  name: SetDatabaseName(string)
+  nameWithType: BulkTableWriter<T>.SetDatabaseName(string)
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.SetDatabaseName(string)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Persistence/BulkTableWriter.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: SetDatabaseName
+    path: ../SimpleRelm/Persistence/BulkTableWriter.cs
+    startLine: 787
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Persistence
+  summary: Sets the name of the database to be used for bulk table operations.
+  example: []
+  syntax:
+    content: public BulkTableWriter<T> SetDatabaseName(string databaseName)
+    parameters:
+    - id: databaseName
+      type: System.String
+      description: The name of the database. Cannot be null or empty.
+    return:
+      type: SimpleRelm.Persistence.BulkTableWriter`1
+      description: The current instance of <xref href="SimpleRelm.Persistence.BulkTableWriter%601" data-throw-if-not-resolved="false"></xref> to allow method chaining.
+    content.vb: Public Function SetDatabaseName(databaseName As String) As BulkTableWriter(Of T)
+  overload: SimpleRelm.Persistence.BulkTableWriter`1.SetDatabaseName*
+  nameWithType.vb: BulkTableWriter(Of T).SetDatabaseName(String)
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).SetDatabaseName(String)
+  name.vb: SetDatabaseName(String)
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.RemoveColumn(System.String)
+  commentId: M:SimpleRelm.Persistence.BulkTableWriter`1.RemoveColumn(System.String)
+  id: RemoveColumn(System.String)
+  parent: SimpleRelm.Persistence.BulkTableWriter`1
+  langs:
+  - csharp
+  - vb
+  name: RemoveColumn(string)
+  nameWithType: BulkTableWriter<T>.RemoveColumn(string)
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.RemoveColumn(string)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Persistence/BulkTableWriter.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: RemoveColumn
+    path: ../SimpleRelm/Persistence/BulkTableWriter.cs
+    startLine: 801
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Persistence
+  summary: Removes the specified column from the table writer.
+  remarks: >-
+    If the specified column does not exist in the table, the method performs no
+        action.
+  example: []
+  syntax:
+    content: public BulkTableWriter<T> RemoveColumn(string columnName)
+    parameters:
+    - id: columnName
+      type: System.String
+      description: The name of the column to remove. This parameter is case-sensitive.
+    return:
+      type: SimpleRelm.Persistence.BulkTableWriter`1
+      description: The current <xref href="SimpleRelm.Persistence.BulkTableWriter%601" data-throw-if-not-resolved="false"></xref> instance, allowing for method chaining.
+    content.vb: Public Function RemoveColumn(columnName As String) As BulkTableWriter(Of T)
+  overload: SimpleRelm.Persistence.BulkTableWriter`1.RemoveColumn*
+  nameWithType.vb: BulkTableWriter(Of T).RemoveColumn(String)
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).RemoveColumn(String)
+  name.vb: RemoveColumn(String)
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.SetBatchSize(System.Int32)
+  commentId: M:SimpleRelm.Persistence.BulkTableWriter`1.SetBatchSize(System.Int32)
+  id: SetBatchSize(System.Int32)
+  parent: SimpleRelm.Persistence.BulkTableWriter`1
+  langs:
+  - csharp
+  - vb
+  name: SetBatchSize(int)
+  nameWithType: BulkTableWriter<T>.SetBatchSize(int)
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.SetBatchSize(int)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Persistence/BulkTableWriter.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: SetBatchSize
+    path: ../SimpleRelm/Persistence/BulkTableWriter.cs
+    startLine: 817
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Persistence
+  summary: Sets the batch size for bulk write operations.
+  remarks: >-
+    The batch size determines how many items are processed together during a bulk write
+        operation.  Setting an appropriate batch size can help optimize performance based on the workload and system
+        resources.
+  example: []
+  syntax:
+    content: public BulkTableWriter<T> SetBatchSize(int batchSize)
+    parameters:
+    - id: batchSize
+      type: System.Int32
+      description: The number of items to include in each batch. Must be a positive integer.
+    return:
+      type: SimpleRelm.Persistence.BulkTableWriter`1
+      description: The current <xref href="SimpleRelm.Persistence.BulkTableWriter%601" data-throw-if-not-resolved="false"></xref> instance, allowing for method chaining.
+    content.vb: Public Function SetBatchSize(batchSize As Integer) As BulkTableWriter(Of T)
+  overload: SimpleRelm.Persistence.BulkTableWriter`1.SetBatchSize*
+  nameWithType.vb: BulkTableWriter(Of T).SetBatchSize(Integer)
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).SetBatchSize(Integer)
+  name.vb: SetBatchSize(Integer)
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.ResetBatchSize
+  commentId: M:SimpleRelm.Persistence.BulkTableWriter`1.ResetBatchSize
+  id: ResetBatchSize
+  parent: SimpleRelm.Persistence.BulkTableWriter`1
+  langs:
+  - csharp
+  - vb
+  name: ResetBatchSize()
+  nameWithType: BulkTableWriter<T>.ResetBatchSize()
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.ResetBatchSize()
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Persistence/BulkTableWriter.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: ResetBatchSize
+    path: ../SimpleRelm/Persistence/BulkTableWriter.cs
+    startLine: 830
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Persistence
+  summary: Resets the batch size to its default value.
+  remarks: >-
+    This method sets the batch size to the default value defined by the implementation.
+        It can be used to revert any custom batch size previously set.
+  example: []
+  syntax:
+    content: public BulkTableWriter<T> ResetBatchSize()
+    return:
+      type: SimpleRelm.Persistence.BulkTableWriter`1
+      description: The current <xref href="SimpleRelm.Persistence.BulkTableWriter%601" data-throw-if-not-resolved="false"></xref> instance with the batch size reset.
+    content.vb: Public Function ResetBatchSize() As BulkTableWriter(Of T)
+  overload: SimpleRelm.Persistence.BulkTableWriter`1.ResetBatchSize*
+  nameWithType.vb: BulkTableWriter(Of T).ResetBatchSize()
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).ResetBatchSize()
+references:
+- uid: SimpleRelm.Persistence.BulkTableWriter`1
+  commentId: T:SimpleRelm.Persistence.BulkTableWriter`1
+  parent: SimpleRelm.Persistence
+  href: SimpleRelm.Persistence.BulkTableWriter-1.html
+  name: BulkTableWriter<T>
+  nameWithType: BulkTableWriter<T>
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>
+  nameWithType.vb: BulkTableWriter(Of T)
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T)
+  name.vb: BulkTableWriter(Of T)
+  spec.csharp:
+  - uid: SimpleRelm.Persistence.BulkTableWriter`1
+    name: BulkTableWriter
+    href: SimpleRelm.Persistence.BulkTableWriter-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: SimpleRelm.Persistence.BulkTableWriter`1
+    name: BulkTableWriter
+    href: SimpleRelm.Persistence.BulkTableWriter-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: SimpleRelm.Persistence
+  commentId: N:SimpleRelm.Persistence
+  href: SimpleRelm.html
+  name: SimpleRelm.Persistence
+  nameWithType: SimpleRelm.Persistence
+  fullName: SimpleRelm.Persistence
+  spec.csharp:
+  - uid: SimpleRelm
+    name: SimpleRelm
+    href: SimpleRelm.html
+  - name: .
+  - uid: SimpleRelm.Persistence
+    name: Persistence
+    href: SimpleRelm.Persistence.html
+  spec.vb:
+  - uid: SimpleRelm
+    name: SimpleRelm
+    href: SimpleRelm.html
+  - name: .
+  - uid: SimpleRelm.Persistence
+    name: Persistence
+    href: SimpleRelm.Persistence.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.Write(System.Func{System.String,`0,System.Object})
+  commentId: M:SimpleRelm.Persistence.BulkTableWriter`1.Write(System.Func{System.String,`0,System.Object})
+  isExternal: true
+  href: SimpleRelm.Persistence.BulkTableWriter-1.html#SimpleRelm_Persistence_BulkTableWriter_1_Write_System_Func_System_String__0_System_Object__
+  name: Write(Func<string, T, object>)
+  nameWithType: BulkTableWriter<T>.Write(Func<string, T, object>)
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.Write(System.Func<string, T, object>)
+  nameWithType.vb: BulkTableWriter(Of T).Write(Func(Of String, T, Object))
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).Write(System.Func(Of String, T, Object))
+  name.vb: Write(Func(Of String, T, Object))
+  spec.csharp:
+  - uid: SimpleRelm.Persistence.BulkTableWriter`1.Write(System.Func{System.String,`0,System.Object})
+    name: Write
+    href: SimpleRelm.Persistence.BulkTableWriter-1.html#SimpleRelm_Persistence_BulkTableWriter_1_Write_System_Func_System_String__0_System_Object__
+  - name: (
+  - uid: System.Func`3
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-3
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: SimpleRelm.Persistence.BulkTableWriter`1.Write(System.Func{System.String,`0,System.Object})
+    name: Write
+    href: SimpleRelm.Persistence.BulkTableWriter-1.html#SimpleRelm_Persistence_BulkTableWriter_1_Write_System_Func_System_String__0_System_Object__
+  - name: (
+  - uid: System.Func`3
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-3
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  - name: )
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.Write*
+  commentId: Overload:SimpleRelm.Persistence.BulkTableWriter`1.Write
+  href: SimpleRelm.Persistence.BulkTableWriter-1.html#SimpleRelm_Persistence_BulkTableWriter_1_Write
+  name: Write
+  nameWithType: BulkTableWriter<T>.Write
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.Write
+  nameWithType.vb: BulkTableWriter(Of T).Write
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).Write
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Func{System.String,{T},System.Object}
+  commentId: T:System.Func{System.String,`0,System.Object}
+  parent: System
+  definition: System.Func`3
+  href: https://learn.microsoft.com/dotnet/api/system.func-3
+  name: Func<string, T, object>
+  nameWithType: Func<string, T, object>
+  fullName: System.Func<string, T, object>
+  nameWithType.vb: Func(Of String, T, Object)
+  fullName.vb: System.Func(Of String, T, Object)
+  name.vb: Func(Of String, T, Object)
+  spec.csharp:
+  - uid: System.Func`3
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-3
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`3
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-3
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Func`3
+  commentId: T:System.Func`3
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-3
+  name: Func<T1, T2, TResult>
+  nameWithType: Func<T1, T2, TResult>
+  fullName: System.Func<T1, T2, TResult>
+  nameWithType.vb: Func(Of T1, T2, TResult)
+  fullName.vb: System.Func(Of T1, T2, TResult)
+  name.vb: Func(Of T1, T2, TResult)
+  spec.csharp:
+  - uid: System.Func`3
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-3
+  - name: <
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`3
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-3
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.UseTransaction*
+  commentId: Overload:SimpleRelm.Persistence.BulkTableWriter`1.UseTransaction
+  href: SimpleRelm.Persistence.BulkTableWriter-1.html#SimpleRelm_Persistence_BulkTableWriter_1_UseTransaction_System_Boolean_
+  name: UseTransaction
+  nameWithType: BulkTableWriter<T>.UseTransaction
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.UseTransaction
+  nameWithType.vb: BulkTableWriter(Of T).UseTransaction
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).UseTransaction
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: MySql.Data.MySqlClient.MySqlTransaction
+  commentId: T:MySql.Data.MySqlClient.MySqlTransaction
+  parent: MySql.Data.MySqlClient
+  isExternal: true
+  name: MySqlTransaction
+  nameWithType: MySqlTransaction
+  fullName: MySql.Data.MySqlClient.MySqlTransaction
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.SetTransaction*
+  commentId: Overload:SimpleRelm.Persistence.BulkTableWriter`1.SetTransaction
+  href: SimpleRelm.Persistence.BulkTableWriter-1.html#SimpleRelm_Persistence_BulkTableWriter_1_SetTransaction_MySql_Data_MySqlClient_MySqlTransaction_
+  name: SetTransaction
+  nameWithType: BulkTableWriter<T>.SetTransaction
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.SetTransaction
+  nameWithType.vb: BulkTableWriter(Of T).SetTransaction
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).SetTransaction
+- uid: MySql.Data.MySqlClient
+  commentId: N:MySql.Data.MySqlClient
+  isExternal: true
+  name: MySql.Data.MySqlClient
+  nameWithType: MySql.Data.MySqlClient
+  fullName: MySql.Data.MySqlClient
+  spec.csharp:
+  - uid: MySql
+    name: MySql
+    isExternal: true
+  - name: .
+  - uid: MySql.Data
+    name: Data
+    isExternal: true
+  - name: .
+  - uid: MySql.Data.MySqlClient
+    name: MySqlClient
+    isExternal: true
+  spec.vb:
+  - uid: MySql
+    name: MySql
+    isExternal: true
+  - name: .
+  - uid: MySql.Data
+    name: Data
+    isExternal: true
+  - name: .
+  - uid: MySql.Data.MySqlClient
+    name: MySqlClient
+    isExternal: true
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.ThrowException*
+  commentId: Overload:SimpleRelm.Persistence.BulkTableWriter`1.ThrowException
+  href: SimpleRelm.Persistence.BulkTableWriter-1.html#SimpleRelm_Persistence_BulkTableWriter_1_ThrowException_System_Boolean_
+  name: ThrowException
+  nameWithType: BulkTableWriter<T>.ThrowException
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.ThrowException
+  nameWithType.vb: BulkTableWriter(Of T).ThrowException
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).ThrowException
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.AllowUserVariables*
+  commentId: Overload:SimpleRelm.Persistence.BulkTableWriter`1.AllowUserVariables
+  href: SimpleRelm.Persistence.BulkTableWriter-1.html#SimpleRelm_Persistence_BulkTableWriter_1_AllowUserVariables_System_Boolean_
+  name: AllowUserVariables
+  nameWithType: BulkTableWriter<T>.AllowUserVariables
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.AllowUserVariables
+  nameWithType.vb: BulkTableWriter(Of T).AllowUserVariables
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).AllowUserVariables
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.AllowAutoDateColumns*
+  commentId: Overload:SimpleRelm.Persistence.BulkTableWriter`1.AllowAutoDateColumns
+  href: SimpleRelm.Persistence.BulkTableWriter-1.html#SimpleRelm_Persistence_BulkTableWriter_1_AllowAutoDateColumns_System_Boolean_
+  name: AllowAutoDateColumns
+  nameWithType: BulkTableWriter<T>.AllowAutoDateColumns
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.AllowAutoDateColumns
+  nameWithType.vb: BulkTableWriter(Of T).AllowAutoDateColumns
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).AllowAutoDateColumns
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.AllowAutoIncrementColumns*
+  commentId: Overload:SimpleRelm.Persistence.BulkTableWriter`1.AllowAutoIncrementColumns
+  href: SimpleRelm.Persistence.BulkTableWriter-1.html#SimpleRelm_Persistence_BulkTableWriter_1_AllowAutoIncrementColumns_System_Boolean_
+  name: AllowAutoIncrementColumns
+  nameWithType: BulkTableWriter<T>.AllowAutoIncrementColumns
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.AllowAutoIncrementColumns
+  nameWithType.vb: BulkTableWriter(Of T).AllowAutoIncrementColumns
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).AllowAutoIncrementColumns
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.AllowPrimaryKeyColumns*
+  commentId: Overload:SimpleRelm.Persistence.BulkTableWriter`1.AllowPrimaryKeyColumns
+  href: SimpleRelm.Persistence.BulkTableWriter-1.html#SimpleRelm_Persistence_BulkTableWriter_1_AllowPrimaryKeyColumns_System_Boolean_
+  name: AllowPrimaryKeyColumns
+  nameWithType: BulkTableWriter<T>.AllowPrimaryKeyColumns
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.AllowPrimaryKeyColumns
+  nameWithType.vb: BulkTableWriter(Of T).AllowPrimaryKeyColumns
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).AllowPrimaryKeyColumns
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.AllowUniqueColumns*
+  commentId: Overload:SimpleRelm.Persistence.BulkTableWriter`1.AllowUniqueColumns
+  href: SimpleRelm.Persistence.BulkTableWriter-1.html#SimpleRelm_Persistence_BulkTableWriter_1_AllowUniqueColumns_System_Boolean_
+  name: AllowUniqueColumns
+  nameWithType: BulkTableWriter<T>.AllowUniqueColumns
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.AllowUniqueColumns
+  nameWithType.vb: BulkTableWriter(Of T).AllowUniqueColumns
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).AllowUniqueColumns
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.SetInsertQuery*
+  commentId: Overload:SimpleRelm.Persistence.BulkTableWriter`1.SetInsertQuery
+  href: SimpleRelm.Persistence.BulkTableWriter-1.html#SimpleRelm_Persistence_BulkTableWriter_1_SetInsertQuery_System_String_
+  name: SetInsertQuery
+  nameWithType: BulkTableWriter<T>.SetInsertQuery
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.SetInsertQuery
+  nameWithType.vb: BulkTableWriter(Of T).SetInsertQuery
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).SetInsertQuery
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.SetSourceData*
+  commentId: Overload:SimpleRelm.Persistence.BulkTableWriter`1.SetSourceData
+  href: SimpleRelm.Persistence.BulkTableWriter-1.html#SimpleRelm_Persistence_BulkTableWriter_1_SetSourceData_System_Collections_Generic_IEnumerable__0__
+  name: SetSourceData
+  nameWithType: BulkTableWriter<T>.SetSourceData
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.SetSourceData
+  nameWithType.vb: BulkTableWriter(Of T).SetSourceData
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).SetSourceData
+- uid: System.Collections.Generic.IEnumerable{{T}}
+  commentId: T:System.Collections.Generic.IEnumerable{``0}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.AddColumn*
+  commentId: Overload:SimpleRelm.Persistence.BulkTableWriter`1.AddColumn
+  href: SimpleRelm.Persistence.BulkTableWriter-1.html#SimpleRelm_Persistence_BulkTableWriter_1_AddColumn_System_String_MySql_Data_MySqlClient_MySqlDbType_System_Int32_System_String_System_String_
+  name: AddColumn
+  nameWithType: BulkTableWriter<T>.AddColumn
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.AddColumn
+  nameWithType.vb: BulkTableWriter(Of T).AddColumn
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).AddColumn
+- uid: MySql.Data.MySqlClient.MySqlDbType
+  commentId: T:MySql.Data.MySqlClient.MySqlDbType
+  parent: MySql.Data.MySqlClient
+  isExternal: true
+  name: MySqlDbType
+  nameWithType: MySqlDbType
+  fullName: MySql.Data.MySqlClient.MySqlDbType
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.AddColumns*
+  commentId: Overload:SimpleRelm.Persistence.BulkTableWriter`1.AddColumns
+  href: SimpleRelm.Persistence.BulkTableWriter-1.html#SimpleRelm_Persistence_BulkTableWriter_1_AddColumns_System_Collections_Generic_IEnumerable_System_Tuple_System_String_MySql_Data_MySqlClient_MySqlDbType_System_Int32_System_String_System_String___
+  name: AddColumns
+  nameWithType: BulkTableWriter<T>.AddColumns
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.AddColumns
+  nameWithType.vb: BulkTableWriter(Of T).AddColumns
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).AddColumns
+- uid: System.Collections.Generic.IEnumerable{System.Tuple{System.String,MySql.Data.MySqlClient.MySqlDbType,System.Int32,System.String,System.String}}
+  commentId: T:System.Collections.Generic.IEnumerable{System.Tuple{System.String,MySql.Data.MySqlClient.MySqlDbType,System.Int32,System.String,System.String}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<Tuple<string, MySqlDbType, int, string, string>>
+  nameWithType: IEnumerable<Tuple<string, MySqlDbType, int, string, string>>
+  fullName: System.Collections.Generic.IEnumerable<System.Tuple<string, MySql.Data.MySqlClient.MySqlDbType, int, string, string>>
+  nameWithType.vb: IEnumerable(Of Tuple(Of String, MySqlDbType, Integer, String, String))
+  fullName.vb: System.Collections.Generic.IEnumerable(Of System.Tuple(Of String, MySql.Data.MySqlClient.MySqlDbType, Integer, String, String))
+  name.vb: IEnumerable(Of Tuple(Of String, MySqlDbType, Integer, String, String))
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: System.Tuple`5
+    name: Tuple
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.tuple-5
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: MySql.Data.MySqlClient.MySqlDbType
+    name: MySqlDbType
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Tuple`5
+    name: Tuple
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.tuple-5
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: MySql.Data.MySqlClient.MySqlDbType
+    name: MySqlDbType
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.IEnumerable{System.Tuple{System.String,MySql.Data.MySqlClient.MySqlDbType,System.Int32}}
+  commentId: T:System.Collections.Generic.IEnumerable{System.Tuple{System.String,MySql.Data.MySqlClient.MySqlDbType,System.Int32}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<Tuple<string, MySqlDbType, int>>
+  nameWithType: IEnumerable<Tuple<string, MySqlDbType, int>>
+  fullName: System.Collections.Generic.IEnumerable<System.Tuple<string, MySql.Data.MySqlClient.MySqlDbType, int>>
+  nameWithType.vb: IEnumerable(Of Tuple(Of String, MySqlDbType, Integer))
+  fullName.vb: System.Collections.Generic.IEnumerable(Of System.Tuple(Of String, MySql.Data.MySqlClient.MySqlDbType, Integer))
+  name.vb: IEnumerable(Of Tuple(Of String, MySqlDbType, Integer))
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: System.Tuple`3
+    name: Tuple
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.tuple-3
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: MySql.Data.MySqlClient.MySqlDbType
+    name: MySqlDbType
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Tuple`3
+    name: Tuple
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.tuple-3
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: MySql.Data.MySqlClient.MySqlDbType
+    name: MySqlDbType
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  - name: )
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.SetTableName*
+  commentId: Overload:SimpleRelm.Persistence.BulkTableWriter`1.SetTableName
+  href: SimpleRelm.Persistence.BulkTableWriter-1.html#SimpleRelm_Persistence_BulkTableWriter_1_SetTableName_System_String_
+  name: SetTableName
+  nameWithType: BulkTableWriter<T>.SetTableName
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.SetTableName
+  nameWithType.vb: BulkTableWriter(Of T).SetTableName
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).SetTableName
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.SetDatabaseName*
+  commentId: Overload:SimpleRelm.Persistence.BulkTableWriter`1.SetDatabaseName
+  href: SimpleRelm.Persistence.BulkTableWriter-1.html#SimpleRelm_Persistence_BulkTableWriter_1_SetDatabaseName_System_String_
+  name: SetDatabaseName
+  nameWithType: BulkTableWriter<T>.SetDatabaseName
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.SetDatabaseName
+  nameWithType.vb: BulkTableWriter(Of T).SetDatabaseName
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).SetDatabaseName
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.RemoveColumn*
+  commentId: Overload:SimpleRelm.Persistence.BulkTableWriter`1.RemoveColumn
+  href: SimpleRelm.Persistence.BulkTableWriter-1.html#SimpleRelm_Persistence_BulkTableWriter_1_RemoveColumn_System_String_
+  name: RemoveColumn
+  nameWithType: BulkTableWriter<T>.RemoveColumn
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.RemoveColumn
+  nameWithType.vb: BulkTableWriter(Of T).RemoveColumn
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).RemoveColumn
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.SetBatchSize*
+  commentId: Overload:SimpleRelm.Persistence.BulkTableWriter`1.SetBatchSize
+  href: SimpleRelm.Persistence.BulkTableWriter-1.html#SimpleRelm_Persistence_BulkTableWriter_1_SetBatchSize_System_Int32_
+  name: SetBatchSize
+  nameWithType: BulkTableWriter<T>.SetBatchSize
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.SetBatchSize
+  nameWithType.vb: BulkTableWriter(Of T).SetBatchSize
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).SetBatchSize
+- uid: SimpleRelm.Persistence.BulkTableWriter`1.ResetBatchSize*
+  commentId: Overload:SimpleRelm.Persistence.BulkTableWriter`1.ResetBatchSize
+  href: SimpleRelm.Persistence.BulkTableWriter-1.html#SimpleRelm_Persistence_BulkTableWriter_1_ResetBatchSize
+  name: ResetBatchSize
+  nameWithType: BulkTableWriter<T>.ResetBatchSize
+  fullName: SimpleRelm.Persistence.BulkTableWriter<T>.ResetBatchSize
+  nameWithType.vb: BulkTableWriter(Of T).ResetBatchSize
+  fullName.vb: SimpleRelm.Persistence.BulkTableWriter(Of T).ResetBatchSize

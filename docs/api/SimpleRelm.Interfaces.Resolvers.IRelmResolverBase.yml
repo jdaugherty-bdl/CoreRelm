@@ -1,0 +1,224 @@
+### YamlMime:ManagedReference
+items:
+- uid: SimpleRelm.Interfaces.Resolvers.IRelmResolverBase
+  commentId: T:SimpleRelm.Interfaces.Resolvers.IRelmResolverBase
+  id: IRelmResolverBase
+  parent: SimpleRelm.Interfaces.Resolvers
+  children:
+  - SimpleRelm.Interfaces.Resolvers.IRelmResolverBase.GetConnectionBuilder(System.Enum)
+  - SimpleRelm.Interfaces.Resolvers.IRelmResolverBase.GetConnectionBuilder(System.String)
+  langs:
+  - csharp
+  - vb
+  name: IRelmResolverBase
+  nameWithType: IRelmResolverBase
+  fullName: SimpleRelm.Interfaces.Resolvers.IRelmResolverBase
+  type: Interface
+  source:
+    remote:
+      path: SimpleRelm/Interfaces/Resolvers/IRelmResolverBase.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: IRelmResolverBase
+    path: ../SimpleRelm/Interfaces/Resolvers/IRelmResolverBase.cs
+    startLine: 14
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Interfaces.Resolvers
+  summary: >-
+    Defines methods for obtaining a database connection string builder based on a specified connection type or
+
+    connection string.
+  example: []
+  syntax:
+    content: public interface IRelmResolverBase
+    content.vb: Public Interface IRelmResolverBase
+- uid: SimpleRelm.Interfaces.Resolvers.IRelmResolverBase.GetConnectionBuilder(System.Enum)
+  commentId: M:SimpleRelm.Interfaces.Resolvers.IRelmResolverBase.GetConnectionBuilder(System.Enum)
+  id: GetConnectionBuilder(System.Enum)
+  parent: SimpleRelm.Interfaces.Resolvers.IRelmResolverBase
+  langs:
+  - csharp
+  - vb
+  name: GetConnectionBuilder(Enum)
+  nameWithType: IRelmResolverBase.GetConnectionBuilder(Enum)
+  fullName: SimpleRelm.Interfaces.Resolvers.IRelmResolverBase.GetConnectionBuilder(System.Enum)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Interfaces/Resolvers/IRelmResolverBase.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: GetConnectionBuilder
+    path: ../SimpleRelm/Interfaces/Resolvers/IRelmResolverBase.cs
+    startLine: 23
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Interfaces.Resolvers
+  summary: >-
+    Creates and returns a new <xref href="System.Data.Common.DbConnectionStringBuilder" data-throw-if-not-resolved="false"></xref> instance configured for the specified
+
+    connection type.
+  example: []
+  syntax:
+    content: DbConnectionStringBuilder GetConnectionBuilder(Enum ConnectionType)
+    parameters:
+    - id: ConnectionType
+      type: System.Enum
+      description: >-
+        An enumeration value that specifies the type of database connection for which to create the connection
+            string builder. The value must correspond to a supported connection type.
+    return:
+      type: System.Data.Common.DbConnectionStringBuilder
+      description: A <xref href="System.Data.Common.DbConnectionStringBuilder" data-throw-if-not-resolved="false"></xref> instance preconfigured for the specified connection type.
+    content.vb: Function GetConnectionBuilder(ConnectionType As [Enum]) As DbConnectionStringBuilder
+  overload: SimpleRelm.Interfaces.Resolvers.IRelmResolverBase.GetConnectionBuilder*
+- uid: SimpleRelm.Interfaces.Resolvers.IRelmResolverBase.GetConnectionBuilder(System.String)
+  commentId: M:SimpleRelm.Interfaces.Resolvers.IRelmResolverBase.GetConnectionBuilder(System.String)
+  id: GetConnectionBuilder(System.String)
+  parent: SimpleRelm.Interfaces.Resolvers.IRelmResolverBase
+  langs:
+  - csharp
+  - vb
+  name: GetConnectionBuilder(string)
+  nameWithType: IRelmResolverBase.GetConnectionBuilder(string)
+  fullName: SimpleRelm.Interfaces.Resolvers.IRelmResolverBase.GetConnectionBuilder(string)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Interfaces/Resolvers/IRelmResolverBase.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: GetConnectionBuilder
+    path: ../SimpleRelm/Interfaces/Resolvers/IRelmResolverBase.cs
+    startLine: 31
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Interfaces.Resolvers
+  summary: >-
+    Creates and returns a new <xref href="System.Data.Common.DbConnectionStringBuilder" data-throw-if-not-resolved="false"></xref> instance initialized with the specified connection
+
+    string.
+  example: []
+  syntax:
+    content: DbConnectionStringBuilder GetConnectionBuilder(string ConnectionString)
+    parameters:
+    - id: ConnectionString
+      type: System.String
+      description: The connection string to use for initializing the DbConnectionStringBuilder. Cannot be null or empty.
+    return:
+      type: System.Data.Common.DbConnectionStringBuilder
+      description: A <xref href="System.Data.Common.DbConnectionStringBuilder" data-throw-if-not-resolved="false"></xref> initialized with the provided connection string.
+    content.vb: Function GetConnectionBuilder(ConnectionString As String) As DbConnectionStringBuilder
+  overload: SimpleRelm.Interfaces.Resolvers.IRelmResolverBase.GetConnectionBuilder*
+  nameWithType.vb: IRelmResolverBase.GetConnectionBuilder(String)
+  fullName.vb: SimpleRelm.Interfaces.Resolvers.IRelmResolverBase.GetConnectionBuilder(String)
+  name.vb: GetConnectionBuilder(String)
+references:
+- uid: SimpleRelm.Interfaces.Resolvers
+  commentId: N:SimpleRelm.Interfaces.Resolvers
+  href: SimpleRelm.html
+  name: SimpleRelm.Interfaces.Resolvers
+  nameWithType: SimpleRelm.Interfaces.Resolvers
+  fullName: SimpleRelm.Interfaces.Resolvers
+  spec.csharp:
+  - uid: SimpleRelm
+    name: SimpleRelm
+    href: SimpleRelm.html
+  - name: .
+  - uid: SimpleRelm.Interfaces
+    name: Interfaces
+    href: SimpleRelm.Interfaces.html
+  - name: .
+  - uid: SimpleRelm.Interfaces.Resolvers
+    name: Resolvers
+    href: SimpleRelm.Interfaces.Resolvers.html
+  spec.vb:
+  - uid: SimpleRelm
+    name: SimpleRelm
+    href: SimpleRelm.html
+  - name: .
+  - uid: SimpleRelm.Interfaces
+    name: Interfaces
+    href: SimpleRelm.Interfaces.html
+  - name: .
+  - uid: SimpleRelm.Interfaces.Resolvers
+    name: Resolvers
+    href: SimpleRelm.Interfaces.Resolvers.html
+- uid: System.Data.Common.DbConnectionStringBuilder
+  commentId: T:System.Data.Common.DbConnectionStringBuilder
+  parent: System.Data.Common
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.common.dbconnectionstringbuilder
+  name: DbConnectionStringBuilder
+  nameWithType: DbConnectionStringBuilder
+  fullName: System.Data.Common.DbConnectionStringBuilder
+- uid: SimpleRelm.Interfaces.Resolvers.IRelmResolverBase.GetConnectionBuilder*
+  commentId: Overload:SimpleRelm.Interfaces.Resolvers.IRelmResolverBase.GetConnectionBuilder
+  href: SimpleRelm.Interfaces.Resolvers.IRelmResolverBase.html#SimpleRelm_Interfaces_Resolvers_IRelmResolverBase_GetConnectionBuilder_System_Enum_
+  name: GetConnectionBuilder
+  nameWithType: IRelmResolverBase.GetConnectionBuilder
+  fullName: SimpleRelm.Interfaces.Resolvers.IRelmResolverBase.GetConnectionBuilder
+- uid: System.Enum
+  commentId: T:System.Enum
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.enum
+  name: Enum
+  nameWithType: Enum
+  fullName: System.Enum
+- uid: System.Data.Common
+  commentId: N:System.Data.Common
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Data.Common
+  nameWithType: System.Data.Common
+  fullName: System.Data.Common
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+  - name: .
+  - uid: System.Data.Common
+    name: Common
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.common
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+  - name: .
+  - uid: System.Data.Common
+    name: Common
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.common
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String

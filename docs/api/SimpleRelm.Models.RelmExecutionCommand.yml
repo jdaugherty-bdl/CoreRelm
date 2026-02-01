@@ -1,0 +1,1440 @@
+### YamlMime:ManagedReference
+items:
+- uid: SimpleRelm.Models.RelmExecutionCommand
+  commentId: T:SimpleRelm.Models.RelmExecutionCommand
+  id: RelmExecutionCommand
+  parent: SimpleRelm.Models
+  children:
+  - SimpleRelm.Models.RelmExecutionCommand.#ctor
+  - SimpleRelm.Models.RelmExecutionCommand.#ctor(SimpleRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+  - SimpleRelm.Models.RelmExecutionCommand.AddAdditionalCommand(SimpleRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+  - SimpleRelm.Models.RelmExecutionCommand.AddAdditionalCommand``1(SimpleRelm.Enums.Commands.Command,System.Linq.Expressions.Expression{System.Func{``0,System.Object}})
+  - SimpleRelm.Models.RelmExecutionCommand.AdditionalCommandCount
+  - SimpleRelm.Models.RelmExecutionCommand.ChildCommandCount
+  - SimpleRelm.Models.RelmExecutionCommand.ExecutionCommand
+  - SimpleRelm.Models.RelmExecutionCommand.ExecutionExpression
+  - SimpleRelm.Models.RelmExecutionCommand.GetAdditionalCommands
+  - SimpleRelm.Models.RelmExecutionCommand.GetForeignKeyNavigationOptions``1(System.Collections.Generic.ICollection{``0})
+  - SimpleRelm.Models.RelmExecutionCommand.InitialCommand
+  - SimpleRelm.Models.RelmExecutionCommand.InitialExpression
+  langs:
+  - csharp
+  - vb
+  name: RelmExecutionCommand
+  nameWithType: RelmExecutionCommand
+  fullName: SimpleRelm.Models.RelmExecutionCommand
+  type: Class
+  source:
+    remote:
+      path: SimpleRelm/Models/RelmExecutionCommand.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: RelmExecutionCommand
+    path: ../SimpleRelm/Models/RelmExecutionCommand.cs
+    startLine: 25
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Models
+  summary: >-
+    Represents a command and its associated expression for execution within the Relm framework, supporting
+
+    additional and child commands for complex execution scenarios.
+  remarks: >-
+    A RelmExecutionCommand encapsulates a primary command and expression, and can aggregate
+        additional related commands to support batch or hierarchical execution patterns. This class is typically used to
+        construct and manage command trees or sequences for advanced data operations, such as those involving foreign
+        key navigation or entity relationships. Thread safety is not guaranteed; if used concurrently, external
+        synchronization is required.
+  example: []
+  syntax:
+    content: 'public class RelmExecutionCommand : IRelmExecutionCommand'
+    content.vb: Public Class RelmExecutionCommand Implements IRelmExecutionCommand
+  inheritance:
+  - System.Object
+  implements:
+  - SimpleRelm.Interfaces.IRelmExecutionCommand
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: SimpleRelm.Models.RelmExecutionCommand.ExecutionCommand
+  commentId: P:SimpleRelm.Models.RelmExecutionCommand.ExecutionCommand
+  id: ExecutionCommand
+  parent: SimpleRelm.Models.RelmExecutionCommand
+  langs:
+  - csharp
+  - vb
+  name: ExecutionCommand
+  nameWithType: RelmExecutionCommand.ExecutionCommand
+  fullName: SimpleRelm.Models.RelmExecutionCommand.ExecutionCommand
+  type: Property
+  source:
+    remote:
+      path: SimpleRelm/Models/RelmExecutionCommand.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: ExecutionCommand
+    path: ../SimpleRelm/Models/RelmExecutionCommand.cs
+    startLine: 30
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Models
+  summary: Gets the command that initiates execution for this operation.
+  example: []
+  syntax:
+    content: public Commands.Command ExecutionCommand { get; }
+    parameters: []
+    return:
+      type: SimpleRelm.Enums.Commands.Command
+    content.vb: Public Property ExecutionCommand As Commands.Command
+  overload: SimpleRelm.Models.RelmExecutionCommand.ExecutionCommand*
+- uid: SimpleRelm.Models.RelmExecutionCommand.InitialCommand
+  commentId: P:SimpleRelm.Models.RelmExecutionCommand.InitialCommand
+  id: InitialCommand
+  parent: SimpleRelm.Models.RelmExecutionCommand
+  langs:
+  - csharp
+  - vb
+  name: InitialCommand
+  nameWithType: RelmExecutionCommand.InitialCommand
+  fullName: SimpleRelm.Models.RelmExecutionCommand.InitialCommand
+  type: Property
+  source:
+    remote:
+      path: SimpleRelm/Models/RelmExecutionCommand.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: InitialCommand
+    path: ../SimpleRelm/Models/RelmExecutionCommand.cs
+    startLine: 35
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Models
+  summary: Gets the command that is executed when the associated component is initialized.
+  example: []
+  syntax:
+    content: public Commands.Command InitialCommand { get; }
+    parameters: []
+    return:
+      type: SimpleRelm.Enums.Commands.Command
+    content.vb: Public ReadOnly Property InitialCommand As Commands.Command
+  overload: SimpleRelm.Models.RelmExecutionCommand.InitialCommand*
+  implements:
+  - SimpleRelm.Interfaces.IRelmExecutionCommand.InitialCommand
+- uid: SimpleRelm.Models.RelmExecutionCommand.ExecutionExpression
+  commentId: P:SimpleRelm.Models.RelmExecutionCommand.ExecutionExpression
+  id: ExecutionExpression
+  parent: SimpleRelm.Models.RelmExecutionCommand
+  langs:
+  - csharp
+  - vb
+  name: ExecutionExpression
+  nameWithType: RelmExecutionCommand.ExecutionExpression
+  fullName: SimpleRelm.Models.RelmExecutionCommand.ExecutionExpression
+  type: Property
+  source:
+    remote:
+      path: SimpleRelm/Models/RelmExecutionCommand.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: ExecutionExpression
+    path: ../SimpleRelm/Models/RelmExecutionCommand.cs
+    startLine: 40
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Models
+  summary: Gets the expression that represents the execution logic for this instance.
+  example: []
+  syntax:
+    content: public Expression ExecutionExpression { get; }
+    parameters: []
+    return:
+      type: System.Linq.Expressions.Expression
+    content.vb: Public Property ExecutionExpression As Expression
+  overload: SimpleRelm.Models.RelmExecutionCommand.ExecutionExpression*
+- uid: SimpleRelm.Models.RelmExecutionCommand.InitialExpression
+  commentId: P:SimpleRelm.Models.RelmExecutionCommand.InitialExpression
+  id: InitialExpression
+  parent: SimpleRelm.Models.RelmExecutionCommand
+  langs:
+  - csharp
+  - vb
+  name: InitialExpression
+  nameWithType: RelmExecutionCommand.InitialExpression
+  fullName: SimpleRelm.Models.RelmExecutionCommand.InitialExpression
+  type: Property
+  source:
+    remote:
+      path: SimpleRelm/Models/RelmExecutionCommand.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: InitialExpression
+    path: ../SimpleRelm/Models/RelmExecutionCommand.cs
+    startLine: 45
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Models
+  summary: Gets the initial expression used to define the starting state or value for this instance.
+  example: []
+  syntax:
+    content: public Expression InitialExpression { get; }
+    parameters: []
+    return:
+      type: System.Linq.Expressions.Expression
+    content.vb: Public ReadOnly Property InitialExpression As Expression
+  overload: SimpleRelm.Models.RelmExecutionCommand.InitialExpression*
+  implements:
+  - SimpleRelm.Interfaces.IRelmExecutionCommand.InitialExpression
+- uid: SimpleRelm.Models.RelmExecutionCommand.ChildCommandCount
+  commentId: P:SimpleRelm.Models.RelmExecutionCommand.ChildCommandCount
+  id: ChildCommandCount
+  parent: SimpleRelm.Models.RelmExecutionCommand
+  langs:
+  - csharp
+  - vb
+  name: ChildCommandCount
+  nameWithType: RelmExecutionCommand.ChildCommandCount
+  fullName: SimpleRelm.Models.RelmExecutionCommand.ChildCommandCount
+  type: Property
+  source:
+    remote:
+      path: SimpleRelm/Models/RelmExecutionCommand.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: ChildCommandCount
+    path: ../SimpleRelm/Models/RelmExecutionCommand.cs
+    startLine: 50
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Models
+  summary: Gets the number of child commands associated with this instance.
+  example: []
+  syntax:
+    content: public int ChildCommandCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property ChildCommandCount As Integer
+  overload: SimpleRelm.Models.RelmExecutionCommand.ChildCommandCount*
+- uid: SimpleRelm.Models.RelmExecutionCommand.AdditionalCommandCount
+  commentId: P:SimpleRelm.Models.RelmExecutionCommand.AdditionalCommandCount
+  id: AdditionalCommandCount
+  parent: SimpleRelm.Models.RelmExecutionCommand
+  langs:
+  - csharp
+  - vb
+  name: AdditionalCommandCount
+  nameWithType: RelmExecutionCommand.AdditionalCommandCount
+  fullName: SimpleRelm.Models.RelmExecutionCommand.AdditionalCommandCount
+  type: Property
+  source:
+    remote:
+      path: SimpleRelm/Models/RelmExecutionCommand.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: AdditionalCommandCount
+    path: ../SimpleRelm/Models/RelmExecutionCommand.cs
+    startLine: 55
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Models
+  summary: Gets the number of additional commands associated with this instance.
+  example: []
+  syntax:
+    content: public int AdditionalCommandCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property AdditionalCommandCount As Integer
+  overload: SimpleRelm.Models.RelmExecutionCommand.AdditionalCommandCount*
+  implements:
+  - SimpleRelm.Interfaces.IRelmExecutionCommand.AdditionalCommandCount
+- uid: SimpleRelm.Models.RelmExecutionCommand.#ctor
+  commentId: M:SimpleRelm.Models.RelmExecutionCommand.#ctor
+  id: '#ctor'
+  parent: SimpleRelm.Models.RelmExecutionCommand
+  langs:
+  - csharp
+  - vb
+  name: RelmExecutionCommand()
+  nameWithType: RelmExecutionCommand.RelmExecutionCommand()
+  fullName: SimpleRelm.Models.RelmExecutionCommand.RelmExecutionCommand()
+  type: Constructor
+  source:
+    remote:
+      path: SimpleRelm/Models/RelmExecutionCommand.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: .ctor
+    path: ../SimpleRelm/Models/RelmExecutionCommand.cs
+    startLine: 62
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Models
+  summary: Initializes a new instance of the RelmExecutionCommand class.
+  example: []
+  syntax:
+    content: public RelmExecutionCommand()
+    content.vb: Public Sub New()
+  overload: SimpleRelm.Models.RelmExecutionCommand.#ctor*
+  nameWithType.vb: RelmExecutionCommand.New()
+  fullName.vb: SimpleRelm.Models.RelmExecutionCommand.New()
+  name.vb: New()
+- uid: SimpleRelm.Models.RelmExecutionCommand.#ctor(SimpleRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+  commentId: M:SimpleRelm.Models.RelmExecutionCommand.#ctor(SimpleRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+  id: '#ctor(SimpleRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)'
+  parent: SimpleRelm.Models.RelmExecutionCommand
+  langs:
+  - csharp
+  - vb
+  name: RelmExecutionCommand(Command, Expression)
+  nameWithType: RelmExecutionCommand.RelmExecutionCommand(Commands.Command, Expression)
+  fullName: SimpleRelm.Models.RelmExecutionCommand.RelmExecutionCommand(SimpleRelm.Enums.Commands.Command, System.Linq.Expressions.Expression)
+  type: Constructor
+  source:
+    remote:
+      path: SimpleRelm/Models/RelmExecutionCommand.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: .ctor
+    path: ../SimpleRelm/Models/RelmExecutionCommand.cs
+    startLine: 71
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Models
+  summary: Initializes a new instance of the RelmExecutionCommand class with the specified command and expression.
+  example: []
+  syntax:
+    content: public RelmExecutionCommand(Commands.Command command, Expression expression)
+    parameters:
+    - id: command
+      type: SimpleRelm.Enums.Commands.Command
+      description: The command to be executed as part of the execution command. Cannot be null.
+    - id: expression
+      type: System.Linq.Expressions.Expression
+      description: The expression associated with the execution command. Cannot be null.
+    content.vb: Public Sub New(command As Commands.Command, expression As Expression)
+  overload: SimpleRelm.Models.RelmExecutionCommand.#ctor*
+  nameWithType.vb: RelmExecutionCommand.New(Commands.Command, Expression)
+  fullName.vb: SimpleRelm.Models.RelmExecutionCommand.New(SimpleRelm.Enums.Commands.Command, System.Linq.Expressions.Expression)
+  name.vb: New(Command, Expression)
+- uid: SimpleRelm.Models.RelmExecutionCommand.AddAdditionalCommand(SimpleRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+  commentId: M:SimpleRelm.Models.RelmExecutionCommand.AddAdditionalCommand(SimpleRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+  id: AddAdditionalCommand(SimpleRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+  parent: SimpleRelm.Models.RelmExecutionCommand
+  langs:
+  - csharp
+  - vb
+  name: AddAdditionalCommand(Command, Expression)
+  nameWithType: RelmExecutionCommand.AddAdditionalCommand(Commands.Command, Expression)
+  fullName: SimpleRelm.Models.RelmExecutionCommand.AddAdditionalCommand(SimpleRelm.Enums.Commands.Command, System.Linq.Expressions.Expression)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Models/RelmExecutionCommand.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: AddAdditionalCommand
+    path: ../SimpleRelm/Models/RelmExecutionCommand.cs
+    startLine: 85
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Models
+  summary: Adds an additional command and its associated expression to the current execution command sequence.
+  remarks: >-
+    This method enables fluent chaining by returning the same instance after adding the
+        command and expression.
+  example: []
+  syntax:
+    content: public RelmExecutionCommand AddAdditionalCommand(Commands.Command command, Expression expression)
+    parameters:
+    - id: command
+      type: SimpleRelm.Enums.Commands.Command
+      description: The command to add to the execution sequence. Cannot be null.
+    - id: expression
+      type: System.Linq.Expressions.Expression
+      description: The expression associated with the command. Cannot be null.
+    return:
+      type: SimpleRelm.Models.RelmExecutionCommand
+      description: The current <xref href="SimpleRelm.Models.RelmExecutionCommand" data-throw-if-not-resolved="false"></xref> instance with the additional command included.
+    content.vb: Public Function AddAdditionalCommand(command As Commands.Command, expression As Expression) As RelmExecutionCommand
+  overload: SimpleRelm.Models.RelmExecutionCommand.AddAdditionalCommand*
+  implements:
+  - SimpleRelm.Interfaces.IRelmExecutionCommand.AddAdditionalCommand(SimpleRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+- uid: SimpleRelm.Models.RelmExecutionCommand.AddAdditionalCommand``1(SimpleRelm.Enums.Commands.Command,System.Linq.Expressions.Expression{System.Func{``0,System.Object}})
+  commentId: M:SimpleRelm.Models.RelmExecutionCommand.AddAdditionalCommand``1(SimpleRelm.Enums.Commands.Command,System.Linq.Expressions.Expression{System.Func{``0,System.Object}})
+  id: AddAdditionalCommand``1(SimpleRelm.Enums.Commands.Command,System.Linq.Expressions.Expression{System.Func{``0,System.Object}})
+  parent: SimpleRelm.Models.RelmExecutionCommand
+  langs:
+  - csharp
+  - vb
+  name: AddAdditionalCommand<T>(Command, Expression<Func<T, object>>)
+  nameWithType: RelmExecutionCommand.AddAdditionalCommand<T>(Commands.Command, Expression<Func<T, object>>)
+  fullName: SimpleRelm.Models.RelmExecutionCommand.AddAdditionalCommand<T>(SimpleRelm.Enums.Commands.Command, System.Linq.Expressions.Expression<System.Func<T, object>>)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Models/RelmExecutionCommand.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: AddAdditionalCommand
+    path: ../SimpleRelm/Models/RelmExecutionCommand.cs
+    startLine: 100
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Models
+  summary: >-
+    Adds an additional command to the execution pipeline using a strongly typed expression to specify the target
+
+    property or member.
+  example: []
+  syntax:
+    content: public RelmExecutionCommand AddAdditionalCommand<T>(Commands.Command command, Expression<Func<T, object>> expression)
+    parameters:
+    - id: command
+      type: SimpleRelm.Enums.Commands.Command
+      description: The command to add to the execution pipeline.
+    - id: expression
+      type: System.Linq.Expressions.Expression{System.Func{{T},System.Object}}
+      description: An expression that identifies the property or member of type T to which the command applies.
+    typeParameters:
+    - id: T
+      description: The type of the object that contains the member referenced by the expression.
+    return:
+      type: SimpleRelm.Models.RelmExecutionCommand
+      description: The current <xref href="SimpleRelm.Models.RelmExecutionCommand" data-throw-if-not-resolved="false"></xref> instance, enabling method chaining.
+    content.vb: Public Function AddAdditionalCommand(Of T)(command As Commands.Command, expression As Expression(Of Func(Of T, Object))) As RelmExecutionCommand
+  overload: SimpleRelm.Models.RelmExecutionCommand.AddAdditionalCommand*
+  nameWithType.vb: RelmExecutionCommand.AddAdditionalCommand(Of T)(Commands.Command, Expression(Of Func(Of T, Object)))
+  fullName.vb: SimpleRelm.Models.RelmExecutionCommand.AddAdditionalCommand(Of T)(SimpleRelm.Enums.Commands.Command, System.Linq.Expressions.Expression(Of System.Func(Of T, Object)))
+  name.vb: AddAdditionalCommand(Of T)(Command, Expression(Of Func(Of T, Object)))
+- uid: SimpleRelm.Models.RelmExecutionCommand.GetAdditionalCommands
+  commentId: M:SimpleRelm.Models.RelmExecutionCommand.GetAdditionalCommands
+  id: GetAdditionalCommands
+  parent: SimpleRelm.Models.RelmExecutionCommand
+  langs:
+  - csharp
+  - vb
+  name: GetAdditionalCommands()
+  nameWithType: RelmExecutionCommand.GetAdditionalCommands()
+  fullName: SimpleRelm.Models.RelmExecutionCommand.GetAdditionalCommands()
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Models/RelmExecutionCommand.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: GetAdditionalCommands
+    path: ../SimpleRelm/Models/RelmExecutionCommand.cs
+    startLine: 112
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Models
+  summary: Gets the list of additional execution commands associated with this instance.
+  example: []
+  syntax:
+    content: public List<RelmExecutionCommand> GetAdditionalCommands()
+    return:
+      type: System.Collections.Generic.List{SimpleRelm.Models.RelmExecutionCommand}
+      description: >-
+        A list of <xref href="SimpleRelm.Models.RelmExecutionCommand" data-throw-if-not-resolved="false"></xref> objects representing additional commands. The list may be empty
+            if no additional commands are present.
+    content.vb: Public Function GetAdditionalCommands() As List(Of RelmExecutionCommand)
+  overload: SimpleRelm.Models.RelmExecutionCommand.GetAdditionalCommands*
+  implements:
+  - SimpleRelm.Interfaces.IRelmExecutionCommand.GetAdditionalCommands
+- uid: SimpleRelm.Models.RelmExecutionCommand.GetForeignKeyNavigationOptions``1(System.Collections.Generic.ICollection{``0})
+  commentId: M:SimpleRelm.Models.RelmExecutionCommand.GetForeignKeyNavigationOptions``1(System.Collections.Generic.ICollection{``0})
+  id: GetForeignKeyNavigationOptions``1(System.Collections.Generic.ICollection{``0})
+  parent: SimpleRelm.Models.RelmExecutionCommand
+  langs:
+  - csharp
+  - vb
+  name: GetForeignKeyNavigationOptions<T>(ICollection<T>)
+  nameWithType: RelmExecutionCommand.GetForeignKeyNavigationOptions<T>(ICollection<T>)
+  fullName: SimpleRelm.Models.RelmExecutionCommand.GetForeignKeyNavigationOptions<T>(System.Collections.Generic.ICollection<T>)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Models/RelmExecutionCommand.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: GetForeignKeyNavigationOptions
+    path: ../SimpleRelm/Models/RelmExecutionCommand.cs
+    startLine: 132
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Models
+  summary: >-
+    Retrieves navigation and foreign key mapping options for a collection of entities, enabling resolution of
+
+    relationships between the provided items and their related entities.
+  remarks: >-
+    This method analyzes the provided collection and its type metadata to determine the
+        appropriate navigation and foreign key properties. It supports both principal and dependent entity
+        configurations, and will throw exceptions if required attributes or keys are missing. The returned options
+        can be used to facilitate relationship resolution in data access scenarios.
+  example: []
+  syntax:
+    content: public ForeignKeyNavigationOptions GetForeignKeyNavigationOptions<T>(ICollection<T> _items)
+    parameters:
+    - id: _items
+      type: System.Collections.Generic.ICollection{{T}}
+      description: The collection of entities for which to resolve foreign key navigation options. Cannot be null.
+    typeParameters:
+    - id: T
+      description: The type of the entities in the collection for which foreign key navigation options are to be determined.
+    return:
+      type: SimpleRelm.RelmInternal.Models.ForeignKeyNavigationOptions
+      description: >-
+        A ForeignKeyNavigationOptions instance containing metadata about the navigation properties, foreign key
+            properties, and primary key values for the specified collection.
+    content.vb: Public Function GetForeignKeyNavigationOptions(Of T)(_items As ICollection(Of T)) As ForeignKeyNavigationOptions
+  overload: SimpleRelm.Models.RelmExecutionCommand.GetForeignKeyNavigationOptions*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown if the initial expression is not a lambda expression in the form of 'x =&gt; x.PropertyName'.
+  - type: System.Exception
+    commentId: T:System.Exception
+    description: Thrown if no primary keys or reference keys are found for the provided collection.
+  - type: System.MemberAccessException
+    commentId: T:System.MemberAccessException
+    description: Thrown if the foreign key referenced by the RelmForeignKey attribute cannot be found.
+  implements:
+  - SimpleRelm.Interfaces.IRelmExecutionCommand.GetForeignKeyNavigationOptions``1(System.Collections.Generic.ICollection{{T}})
+  nameWithType.vb: RelmExecutionCommand.GetForeignKeyNavigationOptions(Of T)(ICollection(Of T))
+  fullName.vb: SimpleRelm.Models.RelmExecutionCommand.GetForeignKeyNavigationOptions(Of T)(System.Collections.Generic.ICollection(Of T))
+  name.vb: GetForeignKeyNavigationOptions(Of T)(ICollection(Of T))
+references:
+- uid: SimpleRelm.Models
+  commentId: N:SimpleRelm.Models
+  href: SimpleRelm.html
+  name: SimpleRelm.Models
+  nameWithType: SimpleRelm.Models
+  fullName: SimpleRelm.Models
+  spec.csharp:
+  - uid: SimpleRelm
+    name: SimpleRelm
+    href: SimpleRelm.html
+  - name: .
+  - uid: SimpleRelm.Models
+    name: Models
+    href: SimpleRelm.Models.html
+  spec.vb:
+  - uid: SimpleRelm
+    name: SimpleRelm
+    href: SimpleRelm.html
+  - name: .
+  - uid: SimpleRelm.Models
+    name: Models
+    href: SimpleRelm.Models.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: SimpleRelm.Interfaces.IRelmExecutionCommand
+  commentId: T:SimpleRelm.Interfaces.IRelmExecutionCommand
+  parent: SimpleRelm.Interfaces
+  href: SimpleRelm.Interfaces.IRelmExecutionCommand.html
+  name: IRelmExecutionCommand
+  nameWithType: IRelmExecutionCommand
+  fullName: SimpleRelm.Interfaces.IRelmExecutionCommand
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SimpleRelm.Interfaces
+  commentId: N:SimpleRelm.Interfaces
+  href: SimpleRelm.html
+  name: SimpleRelm.Interfaces
+  nameWithType: SimpleRelm.Interfaces
+  fullName: SimpleRelm.Interfaces
+  spec.csharp:
+  - uid: SimpleRelm
+    name: SimpleRelm
+    href: SimpleRelm.html
+  - name: .
+  - uid: SimpleRelm.Interfaces
+    name: Interfaces
+    href: SimpleRelm.Interfaces.html
+  spec.vb:
+  - uid: SimpleRelm
+    name: SimpleRelm
+    href: SimpleRelm.html
+  - name: .
+  - uid: SimpleRelm.Interfaces
+    name: Interfaces
+    href: SimpleRelm.Interfaces.html
+- uid: SimpleRelm.Models.RelmExecutionCommand.ExecutionCommand*
+  commentId: Overload:SimpleRelm.Models.RelmExecutionCommand.ExecutionCommand
+  href: SimpleRelm.Models.RelmExecutionCommand.html#SimpleRelm_Models_RelmExecutionCommand_ExecutionCommand
+  name: ExecutionCommand
+  nameWithType: RelmExecutionCommand.ExecutionCommand
+  fullName: SimpleRelm.Models.RelmExecutionCommand.ExecutionCommand
+- uid: SimpleRelm.Enums.Commands.Command
+  commentId: T:SimpleRelm.Enums.Commands.Command
+  parent: SimpleRelm.Enums
+  href: SimpleRelm.Enums.Commands.html
+  name: Commands.Command
+  nameWithType: Commands.Command
+  fullName: SimpleRelm.Enums.Commands.Command
+  spec.csharp:
+  - uid: SimpleRelm.Enums.Commands
+    name: Commands
+    href: SimpleRelm.Enums.Commands.html
+  - name: .
+  - uid: SimpleRelm.Enums.Commands.Command
+    name: Command
+    href: SimpleRelm.Enums.Commands.Command.html
+  spec.vb:
+  - uid: SimpleRelm.Enums.Commands
+    name: Commands
+    href: SimpleRelm.Enums.Commands.html
+  - name: .
+  - uid: SimpleRelm.Enums.Commands.Command
+    name: Command
+    href: SimpleRelm.Enums.Commands.Command.html
+- uid: SimpleRelm.Enums
+  commentId: N:SimpleRelm.Enums
+  href: SimpleRelm.html
+  name: SimpleRelm.Enums
+  nameWithType: SimpleRelm.Enums
+  fullName: SimpleRelm.Enums
+  spec.csharp:
+  - uid: SimpleRelm
+    name: SimpleRelm
+    href: SimpleRelm.html
+  - name: .
+  - uid: SimpleRelm.Enums
+    name: Enums
+    href: SimpleRelm.Enums.html
+  spec.vb:
+  - uid: SimpleRelm
+    name: SimpleRelm
+    href: SimpleRelm.html
+  - name: .
+  - uid: SimpleRelm.Enums
+    name: Enums
+    href: SimpleRelm.Enums.html
+- uid: SimpleRelm.Models.RelmExecutionCommand.InitialCommand*
+  commentId: Overload:SimpleRelm.Models.RelmExecutionCommand.InitialCommand
+  href: SimpleRelm.Models.RelmExecutionCommand.html#SimpleRelm_Models_RelmExecutionCommand_InitialCommand
+  name: InitialCommand
+  nameWithType: RelmExecutionCommand.InitialCommand
+  fullName: SimpleRelm.Models.RelmExecutionCommand.InitialCommand
+- uid: SimpleRelm.Interfaces.IRelmExecutionCommand.InitialCommand
+  commentId: P:SimpleRelm.Interfaces.IRelmExecutionCommand.InitialCommand
+  parent: SimpleRelm.Interfaces.IRelmExecutionCommand
+  href: SimpleRelm.Interfaces.IRelmExecutionCommand.html#SimpleRelm_Interfaces_IRelmExecutionCommand_InitialCommand
+  name: InitialCommand
+  nameWithType: IRelmExecutionCommand.InitialCommand
+  fullName: SimpleRelm.Interfaces.IRelmExecutionCommand.InitialCommand
+- uid: SimpleRelm.Models.RelmExecutionCommand.ExecutionExpression*
+  commentId: Overload:SimpleRelm.Models.RelmExecutionCommand.ExecutionExpression
+  href: SimpleRelm.Models.RelmExecutionCommand.html#SimpleRelm_Models_RelmExecutionCommand_ExecutionExpression
+  name: ExecutionExpression
+  nameWithType: RelmExecutionCommand.ExecutionExpression
+  fullName: SimpleRelm.Models.RelmExecutionCommand.ExecutionExpression
+- uid: System.Linq.Expressions.Expression
+  commentId: T:System.Linq.Expressions.Expression
+  parent: System.Linq.Expressions
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression
+  name: Expression
+  nameWithType: Expression
+  fullName: System.Linq.Expressions.Expression
+- uid: System.Linq.Expressions
+  commentId: N:System.Linq.Expressions
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Linq.Expressions
+  nameWithType: System.Linq.Expressions
+  fullName: System.Linq.Expressions
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Linq
+    name: Linq
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq
+  - name: .
+  - uid: System.Linq.Expressions
+    name: Expressions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Linq
+    name: Linq
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq
+  - name: .
+  - uid: System.Linq.Expressions
+    name: Expressions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions
+- uid: SimpleRelm.Models.RelmExecutionCommand.InitialExpression*
+  commentId: Overload:SimpleRelm.Models.RelmExecutionCommand.InitialExpression
+  href: SimpleRelm.Models.RelmExecutionCommand.html#SimpleRelm_Models_RelmExecutionCommand_InitialExpression
+  name: InitialExpression
+  nameWithType: RelmExecutionCommand.InitialExpression
+  fullName: SimpleRelm.Models.RelmExecutionCommand.InitialExpression
+- uid: SimpleRelm.Interfaces.IRelmExecutionCommand.InitialExpression
+  commentId: P:SimpleRelm.Interfaces.IRelmExecutionCommand.InitialExpression
+  parent: SimpleRelm.Interfaces.IRelmExecutionCommand
+  href: SimpleRelm.Interfaces.IRelmExecutionCommand.html#SimpleRelm_Interfaces_IRelmExecutionCommand_InitialExpression
+  name: InitialExpression
+  nameWithType: IRelmExecutionCommand.InitialExpression
+  fullName: SimpleRelm.Interfaces.IRelmExecutionCommand.InitialExpression
+- uid: SimpleRelm.Models.RelmExecutionCommand.ChildCommandCount*
+  commentId: Overload:SimpleRelm.Models.RelmExecutionCommand.ChildCommandCount
+  href: SimpleRelm.Models.RelmExecutionCommand.html#SimpleRelm_Models_RelmExecutionCommand_ChildCommandCount
+  name: ChildCommandCount
+  nameWithType: RelmExecutionCommand.ChildCommandCount
+  fullName: SimpleRelm.Models.RelmExecutionCommand.ChildCommandCount
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: SimpleRelm.Models.RelmExecutionCommand.AdditionalCommandCount*
+  commentId: Overload:SimpleRelm.Models.RelmExecutionCommand.AdditionalCommandCount
+  href: SimpleRelm.Models.RelmExecutionCommand.html#SimpleRelm_Models_RelmExecutionCommand_AdditionalCommandCount
+  name: AdditionalCommandCount
+  nameWithType: RelmExecutionCommand.AdditionalCommandCount
+  fullName: SimpleRelm.Models.RelmExecutionCommand.AdditionalCommandCount
+- uid: SimpleRelm.Interfaces.IRelmExecutionCommand.AdditionalCommandCount
+  commentId: P:SimpleRelm.Interfaces.IRelmExecutionCommand.AdditionalCommandCount
+  parent: SimpleRelm.Interfaces.IRelmExecutionCommand
+  href: SimpleRelm.Interfaces.IRelmExecutionCommand.html#SimpleRelm_Interfaces_IRelmExecutionCommand_AdditionalCommandCount
+  name: AdditionalCommandCount
+  nameWithType: IRelmExecutionCommand.AdditionalCommandCount
+  fullName: SimpleRelm.Interfaces.IRelmExecutionCommand.AdditionalCommandCount
+- uid: SimpleRelm.Models.RelmExecutionCommand.#ctor*
+  commentId: Overload:SimpleRelm.Models.RelmExecutionCommand.#ctor
+  href: SimpleRelm.Models.RelmExecutionCommand.html#SimpleRelm_Models_RelmExecutionCommand__ctor
+  name: RelmExecutionCommand
+  nameWithType: RelmExecutionCommand.RelmExecutionCommand
+  fullName: SimpleRelm.Models.RelmExecutionCommand.RelmExecutionCommand
+  nameWithType.vb: RelmExecutionCommand.New
+  fullName.vb: SimpleRelm.Models.RelmExecutionCommand.New
+  name.vb: New
+- uid: SimpleRelm.Models.RelmExecutionCommand
+  commentId: T:SimpleRelm.Models.RelmExecutionCommand
+  parent: SimpleRelm.Models
+  href: SimpleRelm.Models.RelmExecutionCommand.html
+  name: RelmExecutionCommand
+  nameWithType: RelmExecutionCommand
+  fullName: SimpleRelm.Models.RelmExecutionCommand
+- uid: SimpleRelm.Models.RelmExecutionCommand.AddAdditionalCommand*
+  commentId: Overload:SimpleRelm.Models.RelmExecutionCommand.AddAdditionalCommand
+  href: SimpleRelm.Models.RelmExecutionCommand.html#SimpleRelm_Models_RelmExecutionCommand_AddAdditionalCommand_SimpleRelm_Enums_Commands_Command_System_Linq_Expressions_Expression_
+  name: AddAdditionalCommand
+  nameWithType: RelmExecutionCommand.AddAdditionalCommand
+  fullName: SimpleRelm.Models.RelmExecutionCommand.AddAdditionalCommand
+- uid: SimpleRelm.Interfaces.IRelmExecutionCommand.AddAdditionalCommand(SimpleRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+  commentId: M:SimpleRelm.Interfaces.IRelmExecutionCommand.AddAdditionalCommand(SimpleRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+  parent: SimpleRelm.Interfaces.IRelmExecutionCommand
+  isExternal: true
+  href: SimpleRelm.Interfaces.IRelmExecutionCommand.html#SimpleRelm_Interfaces_IRelmExecutionCommand_AddAdditionalCommand_SimpleRelm_Enums_Commands_Command_System_Linq_Expressions_Expression_
+  name: AddAdditionalCommand(Command, Expression)
+  nameWithType: IRelmExecutionCommand.AddAdditionalCommand(Commands.Command, Expression)
+  fullName: SimpleRelm.Interfaces.IRelmExecutionCommand.AddAdditionalCommand(SimpleRelm.Enums.Commands.Command, System.Linq.Expressions.Expression)
+  spec.csharp:
+  - uid: SimpleRelm.Interfaces.IRelmExecutionCommand.AddAdditionalCommand(SimpleRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+    name: AddAdditionalCommand
+    href: SimpleRelm.Interfaces.IRelmExecutionCommand.html#SimpleRelm_Interfaces_IRelmExecutionCommand_AddAdditionalCommand_SimpleRelm_Enums_Commands_Command_System_Linq_Expressions_Expression_
+  - name: (
+  - uid: SimpleRelm.Enums.Commands.Command
+    name: Command
+    href: SimpleRelm.Enums.Commands.Command.html
+  - name: ','
+  - name: " "
+  - uid: System.Linq.Expressions.Expression
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression
+  - name: )
+  spec.vb:
+  - uid: SimpleRelm.Interfaces.IRelmExecutionCommand.AddAdditionalCommand(SimpleRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+    name: AddAdditionalCommand
+    href: SimpleRelm.Interfaces.IRelmExecutionCommand.html#SimpleRelm_Interfaces_IRelmExecutionCommand_AddAdditionalCommand_SimpleRelm_Enums_Commands_Command_System_Linq_Expressions_Expression_
+  - name: (
+  - uid: SimpleRelm.Enums.Commands.Command
+    name: Command
+    href: SimpleRelm.Enums.Commands.Command.html
+  - name: ','
+  - name: " "
+  - uid: System.Linq.Expressions.Expression
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression
+  - name: )
+- uid: System.Linq.Expressions.Expression{System.Func{{T},System.Object}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{``0,System.Object}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  name: Expression<Func<T, object>>
+  nameWithType: Expression<Func<T, object>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T, object>>
+  nameWithType.vb: Expression(Of Func(Of T, Object))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T, Object))
+  name.vb: Expression(Of Func(Of T, Object))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  - name: )
+- uid: System.Linq.Expressions.Expression`1
+  commentId: T:System.Linq.Expressions.Expression`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  name: Expression<TDelegate>
+  nameWithType: Expression<TDelegate>
+  fullName: System.Linq.Expressions.Expression<TDelegate>
+  nameWithType.vb: Expression(Of TDelegate)
+  fullName.vb: System.Linq.Expressions.Expression(Of TDelegate)
+  name.vb: Expression(Of TDelegate)
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: <
+  - name: TDelegate
+  - name: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TDelegate
+  - name: )
+- uid: SimpleRelm.Models.RelmExecutionCommand.GetAdditionalCommands*
+  commentId: Overload:SimpleRelm.Models.RelmExecutionCommand.GetAdditionalCommands
+  href: SimpleRelm.Models.RelmExecutionCommand.html#SimpleRelm_Models_RelmExecutionCommand_GetAdditionalCommands
+  name: GetAdditionalCommands
+  nameWithType: RelmExecutionCommand.GetAdditionalCommands
+  fullName: SimpleRelm.Models.RelmExecutionCommand.GetAdditionalCommands
+- uid: SimpleRelm.Interfaces.IRelmExecutionCommand.GetAdditionalCommands
+  commentId: M:SimpleRelm.Interfaces.IRelmExecutionCommand.GetAdditionalCommands
+  parent: SimpleRelm.Interfaces.IRelmExecutionCommand
+  href: SimpleRelm.Interfaces.IRelmExecutionCommand.html#SimpleRelm_Interfaces_IRelmExecutionCommand_GetAdditionalCommands
+  name: GetAdditionalCommands()
+  nameWithType: IRelmExecutionCommand.GetAdditionalCommands()
+  fullName: SimpleRelm.Interfaces.IRelmExecutionCommand.GetAdditionalCommands()
+  spec.csharp:
+  - uid: SimpleRelm.Interfaces.IRelmExecutionCommand.GetAdditionalCommands
+    name: GetAdditionalCommands
+    href: SimpleRelm.Interfaces.IRelmExecutionCommand.html#SimpleRelm_Interfaces_IRelmExecutionCommand_GetAdditionalCommands
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: SimpleRelm.Interfaces.IRelmExecutionCommand.GetAdditionalCommands
+    name: GetAdditionalCommands
+    href: SimpleRelm.Interfaces.IRelmExecutionCommand.html#SimpleRelm_Interfaces_IRelmExecutionCommand_GetAdditionalCommands
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.List{SimpleRelm.Models.RelmExecutionCommand}
+  commentId: T:System.Collections.Generic.List{SimpleRelm.Models.RelmExecutionCommand}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<RelmExecutionCommand>
+  nameWithType: List<RelmExecutionCommand>
+  fullName: System.Collections.Generic.List<SimpleRelm.Models.RelmExecutionCommand>
+  nameWithType.vb: List(Of RelmExecutionCommand)
+  fullName.vb: System.Collections.Generic.List(Of SimpleRelm.Models.RelmExecutionCommand)
+  name.vb: List(Of RelmExecutionCommand)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: SimpleRelm.Models.RelmExecutionCommand
+    name: RelmExecutionCommand
+    href: SimpleRelm.Models.RelmExecutionCommand.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SimpleRelm.Models.RelmExecutionCommand
+    name: RelmExecutionCommand
+    href: SimpleRelm.Models.RelmExecutionCommand.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
+- uid: System.Exception
+  commentId: T:System.Exception
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.exception
+  name: Exception
+  nameWithType: Exception
+  fullName: System.Exception
+- uid: System.MemberAccessException
+  commentId: T:System.MemberAccessException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.memberaccessexception
+  name: MemberAccessException
+  nameWithType: MemberAccessException
+  fullName: System.MemberAccessException
+- uid: SimpleRelm.Models.RelmExecutionCommand.GetForeignKeyNavigationOptions*
+  commentId: Overload:SimpleRelm.Models.RelmExecutionCommand.GetForeignKeyNavigationOptions
+  href: SimpleRelm.Models.RelmExecutionCommand.html#SimpleRelm_Models_RelmExecutionCommand_GetForeignKeyNavigationOptions__1_System_Collections_Generic_ICollection___0__
+  name: GetForeignKeyNavigationOptions
+  nameWithType: RelmExecutionCommand.GetForeignKeyNavigationOptions
+  fullName: SimpleRelm.Models.RelmExecutionCommand.GetForeignKeyNavigationOptions
+- uid: SimpleRelm.Interfaces.IRelmExecutionCommand.GetForeignKeyNavigationOptions``1(System.Collections.Generic.ICollection{{T}})
+  commentId: M:SimpleRelm.Interfaces.IRelmExecutionCommand.GetForeignKeyNavigationOptions``1(System.Collections.Generic.ICollection{``0})
+  parent: SimpleRelm.Interfaces.IRelmExecutionCommand
+  definition: SimpleRelm.Interfaces.IRelmExecutionCommand.GetForeignKeyNavigationOptions``1(System.Collections.Generic.ICollection{``0})
+  href: SimpleRelm.Interfaces.IRelmExecutionCommand.html#SimpleRelm_Interfaces_IRelmExecutionCommand_GetForeignKeyNavigationOptions__1_System_Collections_Generic_ICollection___0__
+  name: GetForeignKeyNavigationOptions<T>(ICollection<T>)
+  nameWithType: IRelmExecutionCommand.GetForeignKeyNavigationOptions<T>(ICollection<T>)
+  fullName: SimpleRelm.Interfaces.IRelmExecutionCommand.GetForeignKeyNavigationOptions<T>(System.Collections.Generic.ICollection<T>)
+  nameWithType.vb: IRelmExecutionCommand.GetForeignKeyNavigationOptions(Of T)(ICollection(Of T))
+  fullName.vb: SimpleRelm.Interfaces.IRelmExecutionCommand.GetForeignKeyNavigationOptions(Of T)(System.Collections.Generic.ICollection(Of T))
+  name.vb: GetForeignKeyNavigationOptions(Of T)(ICollection(Of T))
+  spec.csharp:
+  - uid: SimpleRelm.Interfaces.IRelmExecutionCommand.GetForeignKeyNavigationOptions``1(System.Collections.Generic.ICollection{``0})
+    name: GetForeignKeyNavigationOptions
+    href: SimpleRelm.Interfaces.IRelmExecutionCommand.html#SimpleRelm_Interfaces_IRelmExecutionCommand_GetForeignKeyNavigationOptions__1_System_Collections_Generic_ICollection___0__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: SimpleRelm.Interfaces.IRelmExecutionCommand.GetForeignKeyNavigationOptions``1(System.Collections.Generic.ICollection{``0})
+    name: GetForeignKeyNavigationOptions
+    href: SimpleRelm.Interfaces.IRelmExecutionCommand.html#SimpleRelm_Interfaces_IRelmExecutionCommand_GetForeignKeyNavigationOptions__1_System_Collections_Generic_ICollection___0__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.ICollection{{T}}
+  commentId: T:System.Collections.Generic.ICollection{``0}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.ICollection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  name: ICollection<T>
+  nameWithType: ICollection<T>
+  fullName: System.Collections.Generic.ICollection<T>
+  nameWithType.vb: ICollection(Of T)
+  fullName.vb: System.Collections.Generic.ICollection(Of T)
+  name.vb: ICollection(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: SimpleRelm.RelmInternal.Models.ForeignKeyNavigationOptions
+  commentId: T:SimpleRelm.RelmInternal.Models.ForeignKeyNavigationOptions
+  parent: SimpleRelm.RelmInternal.Models
+  href: SimpleRelm.RelmInternal.Models.ForeignKeyNavigationOptions.html
+  name: ForeignKeyNavigationOptions
+  nameWithType: ForeignKeyNavigationOptions
+  fullName: SimpleRelm.RelmInternal.Models.ForeignKeyNavigationOptions
+- uid: SimpleRelm.Interfaces.IRelmExecutionCommand.GetForeignKeyNavigationOptions``1(System.Collections.Generic.ICollection{``0})
+  commentId: M:SimpleRelm.Interfaces.IRelmExecutionCommand.GetForeignKeyNavigationOptions``1(System.Collections.Generic.ICollection{``0})
+  isExternal: true
+  href: SimpleRelm.Interfaces.IRelmExecutionCommand.html#SimpleRelm_Interfaces_IRelmExecutionCommand_GetForeignKeyNavigationOptions__1_System_Collections_Generic_ICollection___0__
+  name: GetForeignKeyNavigationOptions<T>(ICollection<T>)
+  nameWithType: IRelmExecutionCommand.GetForeignKeyNavigationOptions<T>(ICollection<T>)
+  fullName: SimpleRelm.Interfaces.IRelmExecutionCommand.GetForeignKeyNavigationOptions<T>(System.Collections.Generic.ICollection<T>)
+  nameWithType.vb: IRelmExecutionCommand.GetForeignKeyNavigationOptions(Of T)(ICollection(Of T))
+  fullName.vb: SimpleRelm.Interfaces.IRelmExecutionCommand.GetForeignKeyNavigationOptions(Of T)(System.Collections.Generic.ICollection(Of T))
+  name.vb: GetForeignKeyNavigationOptions(Of T)(ICollection(Of T))
+  spec.csharp:
+  - uid: SimpleRelm.Interfaces.IRelmExecutionCommand.GetForeignKeyNavigationOptions``1(System.Collections.Generic.ICollection{``0})
+    name: GetForeignKeyNavigationOptions
+    href: SimpleRelm.Interfaces.IRelmExecutionCommand.html#SimpleRelm_Interfaces_IRelmExecutionCommand_GetForeignKeyNavigationOptions__1_System_Collections_Generic_ICollection___0__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: SimpleRelm.Interfaces.IRelmExecutionCommand.GetForeignKeyNavigationOptions``1(System.Collections.Generic.ICollection{``0})
+    name: GetForeignKeyNavigationOptions
+    href: SimpleRelm.Interfaces.IRelmExecutionCommand.html#SimpleRelm_Interfaces_IRelmExecutionCommand_GetForeignKeyNavigationOptions__1_System_Collections_Generic_ICollection___0__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.ICollection`1
+  commentId: T:System.Collections.Generic.ICollection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  name: ICollection<T>
+  nameWithType: ICollection<T>
+  fullName: System.Collections.Generic.ICollection<T>
+  nameWithType.vb: ICollection(Of T)
+  fullName.vb: System.Collections.Generic.ICollection(Of T)
+  name.vb: ICollection(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: SimpleRelm.RelmInternal.Models
+  commentId: N:SimpleRelm.RelmInternal.Models
+  href: SimpleRelm.html
+  name: SimpleRelm.RelmInternal.Models
+  nameWithType: SimpleRelm.RelmInternal.Models
+  fullName: SimpleRelm.RelmInternal.Models
+  spec.csharp:
+  - uid: SimpleRelm
+    name: SimpleRelm
+    href: SimpleRelm.html
+  - name: .
+  - uid: SimpleRelm.RelmInternal
+    name: RelmInternal
+    href: SimpleRelm.RelmInternal.html
+  - name: .
+  - uid: SimpleRelm.RelmInternal.Models
+    name: Models
+    href: SimpleRelm.RelmInternal.Models.html
+  spec.vb:
+  - uid: SimpleRelm
+    name: SimpleRelm
+    href: SimpleRelm.html
+  - name: .
+  - uid: SimpleRelm.RelmInternal
+    name: RelmInternal
+    href: SimpleRelm.RelmInternal.html
+  - name: .
+  - uid: SimpleRelm.RelmInternal.Models
+    name: Models
+    href: SimpleRelm.RelmInternal.Models.html

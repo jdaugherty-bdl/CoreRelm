@@ -1,0 +1,401 @@
+### YamlMime:ManagedReference
+items:
+- uid: SimpleRelm.Interfaces.IRelmFieldLoaderBase
+  commentId: T:SimpleRelm.Interfaces.IRelmFieldLoaderBase
+  id: IRelmFieldLoaderBase
+  parent: SimpleRelm.Interfaces
+  children:
+  - SimpleRelm.Interfaces.IRelmFieldLoaderBase.FieldName
+  - SimpleRelm.Interfaces.IRelmFieldLoaderBase.GetFieldData``1(System.Collections.Generic.ICollection{``0[]})
+  - SimpleRelm.Interfaces.IRelmFieldLoaderBase.KeyFields
+  langs:
+  - csharp
+  - vb
+  name: IRelmFieldLoaderBase
+  nameWithType: IRelmFieldLoaderBase
+  fullName: SimpleRelm.Interfaces.IRelmFieldLoaderBase
+  type: Interface
+  source:
+    remote:
+      path: SimpleRelm/Interfaces/IRelmFieldLoaderBase.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: IRelmFieldLoaderBase
+    path: ../SimpleRelm/Interfaces/IRelmFieldLoaderBase.cs
+    startLine: 14
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Interfaces
+  summary: Defines the contract for loading field data based on key values in a data source.
+  remarks: >-
+    Implementations of this interface provide mechanisms to retrieve field values using one or
+        more key fields. This interface is typically used in scenarios where fields are dynamically loaded or mapped
+        from external data sources based on composite keys.
+  example: []
+  syntax:
+    content: public interface IRelmFieldLoaderBase
+    content.vb: Public Interface IRelmFieldLoaderBase
+- uid: SimpleRelm.Interfaces.IRelmFieldLoaderBase.FieldName
+  commentId: P:SimpleRelm.Interfaces.IRelmFieldLoaderBase.FieldName
+  id: FieldName
+  parent: SimpleRelm.Interfaces.IRelmFieldLoaderBase
+  langs:
+  - csharp
+  - vb
+  name: FieldName
+  nameWithType: IRelmFieldLoaderBase.FieldName
+  fullName: SimpleRelm.Interfaces.IRelmFieldLoaderBase.FieldName
+  type: Property
+  source:
+    remote:
+      path: SimpleRelm/Interfaces/IRelmFieldLoaderBase.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: FieldName
+    path: ../SimpleRelm/Interfaces/IRelmFieldLoaderBase.cs
+    startLine: 19
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Interfaces
+  summary: Gets the name of the field represented by this member.
+  example: []
+  syntax:
+    content: string FieldName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property FieldName As String
+  overload: SimpleRelm.Interfaces.IRelmFieldLoaderBase.FieldName*
+- uid: SimpleRelm.Interfaces.IRelmFieldLoaderBase.KeyFields
+  commentId: P:SimpleRelm.Interfaces.IRelmFieldLoaderBase.KeyFields
+  id: KeyFields
+  parent: SimpleRelm.Interfaces.IRelmFieldLoaderBase
+  langs:
+  - csharp
+  - vb
+  name: KeyFields
+  nameWithType: IRelmFieldLoaderBase.KeyFields
+  fullName: SimpleRelm.Interfaces.IRelmFieldLoaderBase.KeyFields
+  type: Property
+  source:
+    remote:
+      path: SimpleRelm/Interfaces/IRelmFieldLoaderBase.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: KeyFields
+    path: ../SimpleRelm/Interfaces/IRelmFieldLoaderBase.cs
+    startLine: 24
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Interfaces
+  summary: Gets the names of the fields that uniquely identify an entity within the data source.
+  example: []
+  syntax:
+    content: string[] KeyFields { get; }
+    parameters: []
+    return:
+      type: System.String[]
+    content.vb: ReadOnly Property KeyFields As String()
+  overload: SimpleRelm.Interfaces.IRelmFieldLoaderBase.KeyFields*
+- uid: SimpleRelm.Interfaces.IRelmFieldLoaderBase.GetFieldData``1(System.Collections.Generic.ICollection{``0[]})
+  commentId: M:SimpleRelm.Interfaces.IRelmFieldLoaderBase.GetFieldData``1(System.Collections.Generic.ICollection{``0[]})
+  id: GetFieldData``1(System.Collections.Generic.ICollection{``0[]})
+  parent: SimpleRelm.Interfaces.IRelmFieldLoaderBase
+  langs:
+  - csharp
+  - vb
+  name: GetFieldData<S>(ICollection<S[]>)
+  nameWithType: IRelmFieldLoaderBase.GetFieldData<S>(ICollection<S[]>)
+  fullName: SimpleRelm.Interfaces.IRelmFieldLoaderBase.GetFieldData<S>(System.Collections.Generic.ICollection<S[]>)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Interfaces/IRelmFieldLoaderBase.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: GetFieldData
+    path: ../SimpleRelm/Interfaces/IRelmFieldLoaderBase.cs
+    startLine: 33
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Interfaces
+  summary: Retrieves field data for the specified collection of key arrays.
+  example: []
+  syntax:
+    content: Dictionary<S[], object> GetFieldData<S>(ICollection<S[]> keyData)
+    parameters:
+    - id: keyData
+      type: System.Collections.Generic.ICollection{{S}[]}
+      description: A collection of key arrays for which to retrieve associated field data. Cannot be null.
+    typeParameters:
+    - id: S
+      description: The type of the elements in each key array.
+    return:
+      type: System.Collections.Generic.Dictionary{{S}[],System.Object}
+      description: >-
+        A dictionary mapping each input key array to its corresponding field data. If a key array has no associated
+            data, it may be omitted from the dictionary.
+    content.vb: Function GetFieldData(Of S)(keyData As ICollection(Of S())) As Dictionary(Of S(), Object)
+  overload: SimpleRelm.Interfaces.IRelmFieldLoaderBase.GetFieldData*
+  nameWithType.vb: IRelmFieldLoaderBase.GetFieldData(Of S)(ICollection(Of S()))
+  fullName.vb: SimpleRelm.Interfaces.IRelmFieldLoaderBase.GetFieldData(Of S)(System.Collections.Generic.ICollection(Of S()))
+  name.vb: GetFieldData(Of S)(ICollection(Of S()))
+references:
+- uid: SimpleRelm.Interfaces
+  commentId: N:SimpleRelm.Interfaces
+  href: SimpleRelm.html
+  name: SimpleRelm.Interfaces
+  nameWithType: SimpleRelm.Interfaces
+  fullName: SimpleRelm.Interfaces
+  spec.csharp:
+  - uid: SimpleRelm
+    name: SimpleRelm
+    href: SimpleRelm.html
+  - name: .
+  - uid: SimpleRelm.Interfaces
+    name: Interfaces
+    href: SimpleRelm.Interfaces.html
+  spec.vb:
+  - uid: SimpleRelm
+    name: SimpleRelm
+    href: SimpleRelm.html
+  - name: .
+  - uid: SimpleRelm.Interfaces
+    name: Interfaces
+    href: SimpleRelm.Interfaces.html
+- uid: SimpleRelm.Interfaces.IRelmFieldLoaderBase.FieldName*
+  commentId: Overload:SimpleRelm.Interfaces.IRelmFieldLoaderBase.FieldName
+  href: SimpleRelm.Interfaces.IRelmFieldLoaderBase.html#SimpleRelm_Interfaces_IRelmFieldLoaderBase_FieldName
+  name: FieldName
+  nameWithType: IRelmFieldLoaderBase.FieldName
+  fullName: SimpleRelm.Interfaces.IRelmFieldLoaderBase.FieldName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SimpleRelm.Interfaces.IRelmFieldLoaderBase.KeyFields*
+  commentId: Overload:SimpleRelm.Interfaces.IRelmFieldLoaderBase.KeyFields
+  href: SimpleRelm.Interfaces.IRelmFieldLoaderBase.html#SimpleRelm_Interfaces_IRelmFieldLoaderBase_KeyFields
+  name: KeyFields
+  nameWithType: IRelmFieldLoaderBase.KeyFields
+  fullName: SimpleRelm.Interfaces.IRelmFieldLoaderBase.KeyFields
+- uid: System.String[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string[]
+  nameWithType: string[]
+  fullName: string[]
+  nameWithType.vb: String()
+  fullName.vb: String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: (
+  - name: )
+- uid: SimpleRelm.Interfaces.IRelmFieldLoaderBase.GetFieldData*
+  commentId: Overload:SimpleRelm.Interfaces.IRelmFieldLoaderBase.GetFieldData
+  href: SimpleRelm.Interfaces.IRelmFieldLoaderBase.html#SimpleRelm_Interfaces_IRelmFieldLoaderBase_GetFieldData__1_System_Collections_Generic_ICollection___0____
+  name: GetFieldData
+  nameWithType: IRelmFieldLoaderBase.GetFieldData
+  fullName: SimpleRelm.Interfaces.IRelmFieldLoaderBase.GetFieldData
+- uid: System.Collections.Generic.ICollection{{S}[]}
+  commentId: T:System.Collections.Generic.ICollection{``0[]}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.ICollection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  name: ICollection<S[]>
+  nameWithType: ICollection<S[]>
+  fullName: System.Collections.Generic.ICollection<S[]>
+  nameWithType.vb: ICollection(Of S())
+  fullName.vb: System.Collections.Generic.ICollection(Of S())
+  name.vb: ICollection(Of S())
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - name: S
+  - name: '['
+  - name: ']'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: S
+  - name: (
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.Dictionary{{S}[],System.Object}
+  commentId: T:System.Collections.Generic.Dictionary{``0[],System.Object}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<S[], object>
+  nameWithType: Dictionary<S[], object>
+  fullName: System.Collections.Generic.Dictionary<S[], object>
+  nameWithType.vb: Dictionary(Of S(), Object)
+  fullName.vb: System.Collections.Generic.Dictionary(Of S(), Object)
+  name.vb: Dictionary(Of S(), Object)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - name: S
+  - name: '['
+  - name: ']'
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: S
+  - name: (
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Collections.Generic.ICollection`1
+  commentId: T:System.Collections.Generic.ICollection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  name: ICollection<T>
+  nameWithType: ICollection<T>
+  fullName: System.Collections.Generic.ICollection<T>
+  nameWithType.vb: ICollection(Of T)
+  fullName.vb: System.Collections.Generic.ICollection(Of T)
+  name.vb: ICollection(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )

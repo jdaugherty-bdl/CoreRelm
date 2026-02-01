@@ -1,0 +1,50 @@
+{
+  "$schema": "https://raw.githubusercontent.com/dotnet/docfx/main/schemas/docfx.schema.json",
+  "metadata": [
+    {
+      "src": [
+        {
+          "src": "../SimpleRelm",
+          "files": [
+            "**/*.csproj"
+          ],
+          "exclude": [
+            "**/SimpleRelm.Tests.csproj",
+            "**/examples/SimpleRelm.Quickstart/SimpleRelm.Quickstart.csproj"
+          ]
+        }
+      ],
+      "dest": "api"
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [
+          "**/*.{md,yml}"
+        ],
+        "exclude": [
+          "_site/**"
+        ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "images/**"
+        ]
+      }
+    ],
+    "output": "./",
+    "template": [
+      "default",
+      "modern"
+    ],
+    "globalMetadata": {
+      "_appName": "SimpleRelm",
+      "_appTitle": "SimpleRelm",
+      "_enableSearch": true,
+      "pdf": true
+    }
+  }
+}

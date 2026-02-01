@@ -1,0 +1,671 @@
+### YamlMime:ManagedReference
+items:
+- uid: SimpleRelm.Interfaces.IRelmDataLoader`1
+  commentId: T:SimpleRelm.Interfaces.IRelmDataLoader`1
+  id: IRelmDataLoader`1
+  parent: SimpleRelm.Interfaces
+  children:
+  - SimpleRelm.Interfaces.IRelmDataLoader`1.AddExpression(SimpleRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+  - SimpleRelm.Interfaces.IRelmDataLoader`1.AddSingleExpression(SimpleRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+  - SimpleRelm.Interfaces.IRelmDataLoader`1.GetLoadData
+  - SimpleRelm.Interfaces.IRelmDataLoader`1.HasUnderscoreProperty(System.String)
+  - SimpleRelm.Interfaces.IRelmDataLoader`1.LastCommandsExecuted
+  - SimpleRelm.Interfaces.IRelmDataLoader`1.WriteData
+  langs:
+  - csharp
+  - vb
+  name: IRelmDataLoader<T>
+  nameWithType: IRelmDataLoader<T>
+  fullName: SimpleRelm.Interfaces.IRelmDataLoader<T>
+  type: Interface
+  source:
+    remote:
+      path: SimpleRelm/Interfaces/IRelmDataLoader.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: IRelmDataLoader
+    path: ../SimpleRelm/Interfaces/IRelmDataLoader.cs
+    startLine: 17
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Interfaces
+  summary: >-
+    Defines methods and properties for loading, writing, and managing data, as well as executing commands with
+
+    associated expressions.
+  example: []
+  syntax:
+    content: public interface IRelmDataLoader<T>
+    typeParameters:
+    - id: T
+      description: The type of data managed by the loader.
+    content.vb: Public Interface IRelmDataLoader(Of T)
+  nameWithType.vb: IRelmDataLoader(Of T)
+  fullName.vb: SimpleRelm.Interfaces.IRelmDataLoader(Of T)
+  name.vb: IRelmDataLoader(Of T)
+- uid: SimpleRelm.Interfaces.IRelmDataLoader`1.LastCommandsExecuted
+  commentId: P:SimpleRelm.Interfaces.IRelmDataLoader`1.LastCommandsExecuted
+  id: LastCommandsExecuted
+  parent: SimpleRelm.Interfaces.IRelmDataLoader`1
+  langs:
+  - csharp
+  - vb
+  name: LastCommandsExecuted
+  nameWithType: IRelmDataLoader<T>.LastCommandsExecuted
+  fullName: SimpleRelm.Interfaces.IRelmDataLoader<T>.LastCommandsExecuted
+  type: Property
+  source:
+    remote:
+      path: SimpleRelm/Interfaces/IRelmDataLoader.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: LastCommandsExecuted
+    path: ../SimpleRelm/Interfaces/IRelmDataLoader.cs
+    startLine: 24
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Interfaces
+  summary: Gets or sets the collection of the most recently executed commands and their associated execution details.
+  remarks: >-
+    This property provides a record of the last executed commands along with their
+        execution details.  It can be used to analyze or inspect the history of command executions.
+  example: []
+  syntax:
+    content: Dictionary<Commands.Command, List<IRelmExecutionCommand>> LastCommandsExecuted { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.Dictionary{SimpleRelm.Enums.Commands.Command,System.Collections.Generic.List{SimpleRelm.Interfaces.IRelmExecutionCommand}}
+    content.vb: Property LastCommandsExecuted As Dictionary(Of Commands.Command, List(Of IRelmExecutionCommand))
+  overload: SimpleRelm.Interfaces.IRelmDataLoader`1.LastCommandsExecuted*
+  nameWithType.vb: IRelmDataLoader(Of T).LastCommandsExecuted
+  fullName.vb: SimpleRelm.Interfaces.IRelmDataLoader(Of T).LastCommandsExecuted
+- uid: SimpleRelm.Interfaces.IRelmDataLoader`1.GetLoadData
+  commentId: M:SimpleRelm.Interfaces.IRelmDataLoader`1.GetLoadData
+  id: GetLoadData
+  parent: SimpleRelm.Interfaces.IRelmDataLoader`1
+  langs:
+  - csharp
+  - vb
+  name: GetLoadData()
+  nameWithType: IRelmDataLoader<T>.GetLoadData()
+  fullName: SimpleRelm.Interfaces.IRelmDataLoader<T>.GetLoadData()
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Interfaces/IRelmDataLoader.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: GetLoadData
+    path: ../SimpleRelm/Interfaces/IRelmDataLoader.cs
+    startLine: 33
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Interfaces
+  summary: Retrieves a collection of data items of type <code class="typeparamref">T</code>.
+  remarks: >-
+    The returned collection contains the data items that are to be loaded.  The
+        collection may be empty if no data is available.
+  example: []
+  syntax:
+    content: ICollection<T> GetLoadData()
+    return:
+      type: System.Collections.Generic.ICollection{{T}}
+      description: >-
+        A collection of data items of type <code class="typeparamref">T</code>. The collection will be empty if no data is
+            available.
+    content.vb: Function GetLoadData() As ICollection(Of T)
+  overload: SimpleRelm.Interfaces.IRelmDataLoader`1.GetLoadData*
+  nameWithType.vb: IRelmDataLoader(Of T).GetLoadData()
+  fullName.vb: SimpleRelm.Interfaces.IRelmDataLoader(Of T).GetLoadData()
+- uid: SimpleRelm.Interfaces.IRelmDataLoader`1.WriteData
+  commentId: M:SimpleRelm.Interfaces.IRelmDataLoader`1.WriteData
+  id: WriteData
+  parent: SimpleRelm.Interfaces.IRelmDataLoader`1
+  langs:
+  - csharp
+  - vb
+  name: WriteData()
+  nameWithType: IRelmDataLoader<T>.WriteData()
+  fullName: SimpleRelm.Interfaces.IRelmDataLoader<T>.WriteData()
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Interfaces/IRelmDataLoader.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: WriteData
+    path: ../SimpleRelm/Interfaces/IRelmDataLoader.cs
+    startLine: 39
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Interfaces
+  summary: Writes data to the underlying storage and returns the number of rows written.
+  example: []
+  syntax:
+    content: int WriteData()
+    return:
+      type: System.Int32
+      description: The number of rows successfully written to the storage.
+    content.vb: Function WriteData() As Integer
+  overload: SimpleRelm.Interfaces.IRelmDataLoader`1.WriteData*
+  nameWithType.vb: IRelmDataLoader(Of T).WriteData()
+  fullName.vb: SimpleRelm.Interfaces.IRelmDataLoader(Of T).WriteData()
+- uid: SimpleRelm.Interfaces.IRelmDataLoader`1.AddExpression(SimpleRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+  commentId: M:SimpleRelm.Interfaces.IRelmDataLoader`1.AddExpression(SimpleRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+  id: AddExpression(SimpleRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+  parent: SimpleRelm.Interfaces.IRelmDataLoader`1
+  langs:
+  - csharp
+  - vb
+  name: AddExpression(Command, Expression)
+  nameWithType: IRelmDataLoader<T>.AddExpression(Commands.Command, Expression)
+  fullName: SimpleRelm.Interfaces.IRelmDataLoader<T>.AddExpression(SimpleRelm.Enums.Commands.Command, System.Linq.Expressions.Expression)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Interfaces/IRelmDataLoader.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: AddExpression
+    path: ../SimpleRelm/Interfaces/IRelmDataLoader.cs
+    startLine: 47
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Interfaces
+  summary: Adds an expression to the specified command and returns the resulting execution command.
+  example: []
+  syntax:
+    content: IRelmExecutionCommand AddExpression(Commands.Command command, Expression expression)
+    parameters:
+    - id: command
+      type: SimpleRelm.Enums.Commands.Command
+      description: The command to which the expression will be added. Cannot be null.
+    - id: expression
+      type: System.Linq.Expressions.Expression
+      description: The expression to add to the command. Cannot be null.
+    return:
+      type: SimpleRelm.Interfaces.IRelmExecutionCommand
+      description: An <xref href="SimpleRelm.Interfaces.IRelmExecutionCommand" data-throw-if-not-resolved="false"></xref> representing the updated execution command with the added expression.
+    content.vb: Function AddExpression(command As Commands.Command, expression As Expression) As IRelmExecutionCommand
+  overload: SimpleRelm.Interfaces.IRelmDataLoader`1.AddExpression*
+  nameWithType.vb: IRelmDataLoader(Of T).AddExpression(Commands.Command, Expression)
+  fullName.vb: SimpleRelm.Interfaces.IRelmDataLoader(Of T).AddExpression(SimpleRelm.Enums.Commands.Command, System.Linq.Expressions.Expression)
+- uid: SimpleRelm.Interfaces.IRelmDataLoader`1.AddSingleExpression(SimpleRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+  commentId: M:SimpleRelm.Interfaces.IRelmDataLoader`1.AddSingleExpression(SimpleRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+  id: AddSingleExpression(SimpleRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+  parent: SimpleRelm.Interfaces.IRelmDataLoader`1
+  langs:
+  - csharp
+  - vb
+  name: AddSingleExpression(Command, Expression)
+  nameWithType: IRelmDataLoader<T>.AddSingleExpression(Commands.Command, Expression)
+  fullName: SimpleRelm.Interfaces.IRelmDataLoader<T>.AddSingleExpression(SimpleRelm.Enums.Commands.Command, System.Linq.Expressions.Expression)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Interfaces/IRelmDataLoader.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: AddSingleExpression
+    path: ../SimpleRelm/Interfaces/IRelmDataLoader.cs
+    startLine: 55
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Interfaces
+  summary: Adds a single expression to the specified command and returns the resulting execution command.
+  example: []
+  syntax:
+    content: IRelmExecutionCommand AddSingleExpression(Commands.Command command, Expression expression)
+    parameters:
+    - id: command
+      type: SimpleRelm.Enums.Commands.Command
+      description: The command to which the expression will be added. Cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+    - id: expression
+      type: System.Linq.Expressions.Expression
+      description: The expression to add to the command. Cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+    return:
+      type: SimpleRelm.Interfaces.IRelmExecutionCommand
+      description: An <xref href="SimpleRelm.Interfaces.IRelmExecutionCommand" data-throw-if-not-resolved="false"></xref> representing the updated command with the added expression.
+    content.vb: Function AddSingleExpression(command As Commands.Command, expression As Expression) As IRelmExecutionCommand
+  overload: SimpleRelm.Interfaces.IRelmDataLoader`1.AddSingleExpression*
+  nameWithType.vb: IRelmDataLoader(Of T).AddSingleExpression(Commands.Command, Expression)
+  fullName.vb: SimpleRelm.Interfaces.IRelmDataLoader(Of T).AddSingleExpression(SimpleRelm.Enums.Commands.Command, System.Linq.Expressions.Expression)
+- uid: SimpleRelm.Interfaces.IRelmDataLoader`1.HasUnderscoreProperty(System.String)
+  commentId: M:SimpleRelm.Interfaces.IRelmDataLoader`1.HasUnderscoreProperty(System.String)
+  id: HasUnderscoreProperty(System.String)
+  parent: SimpleRelm.Interfaces.IRelmDataLoader`1
+  langs:
+  - csharp
+  - vb
+  name: HasUnderscoreProperty(string)
+  nameWithType: IRelmDataLoader<T>.HasUnderscoreProperty(string)
+  fullName: SimpleRelm.Interfaces.IRelmDataLoader<T>.HasUnderscoreProperty(string)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Interfaces/IRelmDataLoader.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: HasUnderscoreProperty
+    path: ../SimpleRelm/Interfaces/IRelmDataLoader.cs
+    startLine: 63
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Interfaces
+  summary: Determines whether the specified property key contains an underscore.
+  example: []
+  syntax:
+    content: bool HasUnderscoreProperty(string propertyKey)
+    parameters:
+    - id: propertyKey
+      type: System.String
+      description: The property key to check. Cannot be null or empty.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the property key contains at least one underscore; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Function HasUnderscoreProperty(propertyKey As String) As Boolean
+  overload: SimpleRelm.Interfaces.IRelmDataLoader`1.HasUnderscoreProperty*
+  nameWithType.vb: IRelmDataLoader(Of T).HasUnderscoreProperty(String)
+  fullName.vb: SimpleRelm.Interfaces.IRelmDataLoader(Of T).HasUnderscoreProperty(String)
+  name.vb: HasUnderscoreProperty(String)
+references:
+- uid: SimpleRelm.Interfaces
+  commentId: N:SimpleRelm.Interfaces
+  href: SimpleRelm.html
+  name: SimpleRelm.Interfaces
+  nameWithType: SimpleRelm.Interfaces
+  fullName: SimpleRelm.Interfaces
+  spec.csharp:
+  - uid: SimpleRelm
+    name: SimpleRelm
+    href: SimpleRelm.html
+  - name: .
+  - uid: SimpleRelm.Interfaces
+    name: Interfaces
+    href: SimpleRelm.Interfaces.html
+  spec.vb:
+  - uid: SimpleRelm
+    name: SimpleRelm
+    href: SimpleRelm.html
+  - name: .
+  - uid: SimpleRelm.Interfaces
+    name: Interfaces
+    href: SimpleRelm.Interfaces.html
+- uid: SimpleRelm.Interfaces.IRelmDataLoader`1.LastCommandsExecuted*
+  commentId: Overload:SimpleRelm.Interfaces.IRelmDataLoader`1.LastCommandsExecuted
+  href: SimpleRelm.Interfaces.IRelmDataLoader-1.html#SimpleRelm_Interfaces_IRelmDataLoader_1_LastCommandsExecuted
+  name: LastCommandsExecuted
+  nameWithType: IRelmDataLoader<T>.LastCommandsExecuted
+  fullName: SimpleRelm.Interfaces.IRelmDataLoader<T>.LastCommandsExecuted
+  nameWithType.vb: IRelmDataLoader(Of T).LastCommandsExecuted
+  fullName.vb: SimpleRelm.Interfaces.IRelmDataLoader(Of T).LastCommandsExecuted
+- uid: System.Collections.Generic.Dictionary{SimpleRelm.Enums.Commands.Command,System.Collections.Generic.List{SimpleRelm.Interfaces.IRelmExecutionCommand}}
+  commentId: T:System.Collections.Generic.Dictionary{SimpleRelm.Enums.Commands.Command,System.Collections.Generic.List{SimpleRelm.Interfaces.IRelmExecutionCommand}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<Commands.Command, List<IRelmExecutionCommand>>
+  nameWithType: Dictionary<Commands.Command, List<IRelmExecutionCommand>>
+  fullName: System.Collections.Generic.Dictionary<SimpleRelm.Enums.Commands.Command, System.Collections.Generic.List<SimpleRelm.Interfaces.IRelmExecutionCommand>>
+  nameWithType.vb: Dictionary(Of Commands.Command, List(Of IRelmExecutionCommand))
+  fullName.vb: System.Collections.Generic.Dictionary(Of SimpleRelm.Enums.Commands.Command, System.Collections.Generic.List(Of SimpleRelm.Interfaces.IRelmExecutionCommand))
+  name.vb: Dictionary(Of Commands.Command, List(Of IRelmExecutionCommand))
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - uid: SimpleRelm.Enums.Commands
+    name: Commands
+    href: SimpleRelm.Enums.Commands.html
+  - name: .
+  - uid: SimpleRelm.Enums.Commands.Command
+    name: Command
+    href: SimpleRelm.Enums.Commands.Command.html
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: SimpleRelm.Interfaces.IRelmExecutionCommand
+    name: IRelmExecutionCommand
+    href: SimpleRelm.Interfaces.IRelmExecutionCommand.html
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SimpleRelm.Enums.Commands
+    name: Commands
+    href: SimpleRelm.Enums.Commands.html
+  - name: .
+  - uid: SimpleRelm.Enums.Commands.Command
+    name: Command
+    href: SimpleRelm.Enums.Commands.Command.html
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SimpleRelm.Interfaces.IRelmExecutionCommand
+    name: IRelmExecutionCommand
+    href: SimpleRelm.Interfaces.IRelmExecutionCommand.html
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: SimpleRelm.Interfaces.IRelmDataLoader`1.GetLoadData*
+  commentId: Overload:SimpleRelm.Interfaces.IRelmDataLoader`1.GetLoadData
+  href: SimpleRelm.Interfaces.IRelmDataLoader-1.html#SimpleRelm_Interfaces_IRelmDataLoader_1_GetLoadData
+  name: GetLoadData
+  nameWithType: IRelmDataLoader<T>.GetLoadData
+  fullName: SimpleRelm.Interfaces.IRelmDataLoader<T>.GetLoadData
+  nameWithType.vb: IRelmDataLoader(Of T).GetLoadData
+  fullName.vb: SimpleRelm.Interfaces.IRelmDataLoader(Of T).GetLoadData
+- uid: System.Collections.Generic.ICollection{{T}}
+  commentId: T:System.Collections.Generic.ICollection{``0}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.ICollection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  name: ICollection<T>
+  nameWithType: ICollection<T>
+  fullName: System.Collections.Generic.ICollection<T>
+  nameWithType.vb: ICollection(Of T)
+  fullName.vb: System.Collections.Generic.ICollection(Of T)
+  name.vb: ICollection(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic.ICollection`1
+  commentId: T:System.Collections.Generic.ICollection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  name: ICollection<T>
+  nameWithType: ICollection<T>
+  fullName: System.Collections.Generic.ICollection<T>
+  nameWithType.vb: ICollection(Of T)
+  fullName.vb: System.Collections.Generic.ICollection(Of T)
+  name.vb: ICollection(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: SimpleRelm.Interfaces.IRelmDataLoader`1.WriteData*
+  commentId: Overload:SimpleRelm.Interfaces.IRelmDataLoader`1.WriteData
+  href: SimpleRelm.Interfaces.IRelmDataLoader-1.html#SimpleRelm_Interfaces_IRelmDataLoader_1_WriteData
+  name: WriteData
+  nameWithType: IRelmDataLoader<T>.WriteData
+  fullName: SimpleRelm.Interfaces.IRelmDataLoader<T>.WriteData
+  nameWithType.vb: IRelmDataLoader(Of T).WriteData
+  fullName.vb: SimpleRelm.Interfaces.IRelmDataLoader(Of T).WriteData
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SimpleRelm.Interfaces.IRelmExecutionCommand
+  commentId: T:SimpleRelm.Interfaces.IRelmExecutionCommand
+  parent: SimpleRelm.Interfaces
+  href: SimpleRelm.Interfaces.IRelmExecutionCommand.html
+  name: IRelmExecutionCommand
+  nameWithType: IRelmExecutionCommand
+  fullName: SimpleRelm.Interfaces.IRelmExecutionCommand
+- uid: SimpleRelm.Interfaces.IRelmDataLoader`1.AddExpression*
+  commentId: Overload:SimpleRelm.Interfaces.IRelmDataLoader`1.AddExpression
+  href: SimpleRelm.Interfaces.IRelmDataLoader-1.html#SimpleRelm_Interfaces_IRelmDataLoader_1_AddExpression_SimpleRelm_Enums_Commands_Command_System_Linq_Expressions_Expression_
+  name: AddExpression
+  nameWithType: IRelmDataLoader<T>.AddExpression
+  fullName: SimpleRelm.Interfaces.IRelmDataLoader<T>.AddExpression
+  nameWithType.vb: IRelmDataLoader(Of T).AddExpression
+  fullName.vb: SimpleRelm.Interfaces.IRelmDataLoader(Of T).AddExpression
+- uid: SimpleRelm.Enums.Commands.Command
+  commentId: T:SimpleRelm.Enums.Commands.Command
+  parent: SimpleRelm.Enums
+  href: SimpleRelm.Enums.Commands.html
+  name: Commands.Command
+  nameWithType: Commands.Command
+  fullName: SimpleRelm.Enums.Commands.Command
+  spec.csharp:
+  - uid: SimpleRelm.Enums.Commands
+    name: Commands
+    href: SimpleRelm.Enums.Commands.html
+  - name: .
+  - uid: SimpleRelm.Enums.Commands.Command
+    name: Command
+    href: SimpleRelm.Enums.Commands.Command.html
+  spec.vb:
+  - uid: SimpleRelm.Enums.Commands
+    name: Commands
+    href: SimpleRelm.Enums.Commands.html
+  - name: .
+  - uid: SimpleRelm.Enums.Commands.Command
+    name: Command
+    href: SimpleRelm.Enums.Commands.Command.html
+- uid: System.Linq.Expressions.Expression
+  commentId: T:System.Linq.Expressions.Expression
+  parent: System.Linq.Expressions
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression
+  name: Expression
+  nameWithType: Expression
+  fullName: System.Linq.Expressions.Expression
+- uid: SimpleRelm.Enums
+  commentId: N:SimpleRelm.Enums
+  href: SimpleRelm.html
+  name: SimpleRelm.Enums
+  nameWithType: SimpleRelm.Enums
+  fullName: SimpleRelm.Enums
+  spec.csharp:
+  - uid: SimpleRelm
+    name: SimpleRelm
+    href: SimpleRelm.html
+  - name: .
+  - uid: SimpleRelm.Enums
+    name: Enums
+    href: SimpleRelm.Enums.html
+  spec.vb:
+  - uid: SimpleRelm
+    name: SimpleRelm
+    href: SimpleRelm.html
+  - name: .
+  - uid: SimpleRelm.Enums
+    name: Enums
+    href: SimpleRelm.Enums.html
+- uid: System.Linq.Expressions
+  commentId: N:System.Linq.Expressions
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Linq.Expressions
+  nameWithType: System.Linq.Expressions
+  fullName: System.Linq.Expressions
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Linq
+    name: Linq
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq
+  - name: .
+  - uid: System.Linq.Expressions
+    name: Expressions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Linq
+    name: Linq
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq
+  - name: .
+  - uid: System.Linq.Expressions
+    name: Expressions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions
+- uid: SimpleRelm.Interfaces.IRelmDataLoader`1.AddSingleExpression*
+  commentId: Overload:SimpleRelm.Interfaces.IRelmDataLoader`1.AddSingleExpression
+  href: SimpleRelm.Interfaces.IRelmDataLoader-1.html#SimpleRelm_Interfaces_IRelmDataLoader_1_AddSingleExpression_SimpleRelm_Enums_Commands_Command_System_Linq_Expressions_Expression_
+  name: AddSingleExpression
+  nameWithType: IRelmDataLoader<T>.AddSingleExpression
+  fullName: SimpleRelm.Interfaces.IRelmDataLoader<T>.AddSingleExpression
+  nameWithType.vb: IRelmDataLoader(Of T).AddSingleExpression
+  fullName.vb: SimpleRelm.Interfaces.IRelmDataLoader(Of T).AddSingleExpression
+- uid: SimpleRelm.Interfaces.IRelmDataLoader`1.HasUnderscoreProperty*
+  commentId: Overload:SimpleRelm.Interfaces.IRelmDataLoader`1.HasUnderscoreProperty
+  href: SimpleRelm.Interfaces.IRelmDataLoader-1.html#SimpleRelm_Interfaces_IRelmDataLoader_1_HasUnderscoreProperty_System_String_
+  name: HasUnderscoreProperty
+  nameWithType: IRelmDataLoader<T>.HasUnderscoreProperty
+  fullName: SimpleRelm.Interfaces.IRelmDataLoader<T>.HasUnderscoreProperty
+  nameWithType.vb: IRelmDataLoader(Of T).HasUnderscoreProperty
+  fullName.vb: SimpleRelm.Interfaces.IRelmDataLoader(Of T).HasUnderscoreProperty
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean

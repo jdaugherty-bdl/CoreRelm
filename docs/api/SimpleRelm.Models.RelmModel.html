@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class RelmModel | SimpleRelm </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class RelmModel | SimpleRelm ">
+      
+      <meta name="description" content="Represents a base model for entities in the Relm framework, providing core attributes and functionality for data manipulation, database operations, and DTO generation.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/jdaugherty-bdl/SimpleRelm/new/master/apiSpec/new?filename=SimpleRelm_Models_RelmModel.md&amp;value=---%0Auid%3A%20SimpleRelm.Models.RelmModel%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="SimpleRelm">
+            SimpleRelm
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="SimpleRelm.Models.RelmModel">
+
+
+
+  <h1 id="SimpleRelm_Models_RelmModel" data-uid="SimpleRelm.Models.RelmModel" class="text-break">
+Class RelmModel  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Models/RelmModel.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="SimpleRelm.html">SimpleRelm</a>.<a class="xref" href="SimpleRelm.Models.html">Models</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>SimpleRelm.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Represents a base model for entities in the Relm framework, providing core attributes and functionality for data
+manipulation, database operations, and DTO generation.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class RelmModel : IRelmModel</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">RelmModel</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="SimpleRelm.Interfaces.IRelmModel.html">IRelmModel</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="SimpleRelm.Models.RelmModelApartment.html">RelmModelApartment</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="SimpleRelm.Extensions.ModelExtensions.html#SimpleRelm_Extensions_ModelExtensions_LoadDataLoaderField__2___0_SimpleRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___">ModelExtensions.LoadDataLoaderField&lt;T, S&gt;(T, IRelmContext, Expression&lt;Func&lt;T, S&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SimpleRelm.Extensions.ModelExtensions.html#SimpleRelm_Extensions_ModelExtensions_LoadDataLoaderField__2___0_SimpleRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___">ModelExtensions.LoadDataLoaderField&lt;T, S&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, S&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SimpleRelm.Extensions.ModelExtensions.html#SimpleRelm_Extensions_ModelExtensions_LoadDataLoaderField__2___0_SimpleRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___">ModelExtensions.LoadDataLoaderField&lt;T, S&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, S&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SimpleRelm.Extensions.ModelExtensions.html#SimpleRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_SimpleRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, IRelmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SimpleRelm.Extensions.ModelExtensions.html#SimpleRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_SimpleRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, IRelmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SimpleRelm.Extensions.ModelExtensions.html#SimpleRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_SimpleRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, IRelmContext, Expression&lt;Func&lt;T, R&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SimpleRelm.Extensions.ModelExtensions.html#SimpleRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_SimpleRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, IRelmContext, Expression&lt;Func&lt;T, R&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SimpleRelm.Extensions.ModelExtensions.html#SimpleRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_SimpleRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SimpleRelm.Extensions.ModelExtensions.html#SimpleRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_SimpleRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SimpleRelm.Extensions.ModelExtensions.html#SimpleRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_SimpleRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, R&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SimpleRelm.Extensions.ModelExtensions.html#SimpleRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_SimpleRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, R&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SimpleRelm.Extensions.ModelExtensions.html#SimpleRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_SimpleRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SimpleRelm.Extensions.ModelExtensions.html#SimpleRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_SimpleRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SimpleRelm.Extensions.ModelExtensions.html#SimpleRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_SimpleRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SimpleRelm.Extensions.ModelExtensions.html#SimpleRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_SimpleRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SimpleRelm.Extensions.ModelExtensions.html#SimpleRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_SimpleRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____SimpleRelm_Interfaces_IRelmDataLoader___2__">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SimpleRelm.Extensions.ModelExtensions.html#SimpleRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_SimpleRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____SimpleRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SimpleRelm.Extensions.ModelExtensions.html#SimpleRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_SimpleRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___SimpleRelm_Interfaces_IRelmDataLoader___2__">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmContext, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SimpleRelm.Extensions.ModelExtensions.html#SimpleRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_SimpleRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___SimpleRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmContext, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SimpleRelm.Extensions.ModelExtensions.html#SimpleRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_SimpleRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____SimpleRelm_Interfaces_IRelmDataLoader___2__">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SimpleRelm.Extensions.ModelExtensions.html#SimpleRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_SimpleRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____SimpleRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SimpleRelm.Extensions.ModelExtensions.html#SimpleRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_SimpleRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___SimpleRelm_Interfaces_IRelmDataLoader___2__">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SimpleRelm.Extensions.ModelExtensions.html#SimpleRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_SimpleRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___SimpleRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SimpleRelm.Extensions.ModelExtensions.html#SimpleRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_SimpleRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____SimpleRelm_Interfaces_IRelmDataLoader___2__">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SimpleRelm.Extensions.ModelExtensions.html#SimpleRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_SimpleRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____SimpleRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SimpleRelm.Extensions.ModelExtensions.html#SimpleRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_SimpleRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___SimpleRelm_Interfaces_IRelmDataLoader___2__">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SimpleRelm.Extensions.ModelExtensions.html#SimpleRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_SimpleRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___SimpleRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  </dd></dl>
+
+
+
+  <h2 id="SimpleRelm_Models_RelmModel_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>The <a class="xref" href="SimpleRelm.Models.RelmModel.html">RelmModel</a> class serves as a foundational class for entities, offering
+features such as: <ul><li>Core attributes like <a class="xref" href="SimpleRelm.Models.RelmModel.html#SimpleRelm_Models_RelmModel_Id">Id</a>, <a class="xref" href="SimpleRelm.Models.RelmModel.html#SimpleRelm_Models_RelmModel_Active">Active</a>, <a class="xref" href="SimpleRelm.Models.RelmModel.html#SimpleRelm_Models_RelmModel_InternalId">InternalId</a>, <a class="xref" href="SimpleRelm.Models.RelmModel.html#SimpleRelm_Models_RelmModel_CreateDate">CreateDate</a>, and <a class="xref" href="SimpleRelm.Models.RelmModel.html#SimpleRelm_Models_RelmModel_LastUpdated">LastUpdated</a>.</li><li>Support for resetting
+attributes to default values using <a class="xref" href="SimpleRelm.Models.RelmModel.html#SimpleRelm_Models_RelmModel_ResetCoreAttributes_System_Boolean_System_Boolean_">ResetCoreAttributes(bool, bool)</a>.</li><li>Data population from database
+rows via <a class="xref" href="SimpleRelm.Models.RelmModel.html#SimpleRelm_Models_RelmModel_ResetWithData_System_Data_DataRow_System_String_">ResetWithData(DataRow, string)</a>.</li><li>Bulk database write operations through various
+<code>WriteToDatabase</code> overloads.</li><li>Dynamic Data Transfer Object (DTO) generation with <a class="xref" href="SimpleRelm.Models.RelmModel.html#SimpleRelm_Models_RelmModel_GenerateDTO_System_Collections_Generic_IEnumerable_System_String__System_Collections_Generic_IEnumerable_System_String__System_String_System_Func_SimpleRelm_Interfaces_IRelmModel_System_Collections_Generic_Dictionary_System_String_System_Object___System_Int32_">GenerateDTO(IEnumerable&lt;string&gt;, IEnumerable&lt;string&gt;, string, Func&lt;IRelmModel, Dictionary&lt;string, object&gt;&gt;, int)</a>.</li></ul> This class is designed to be extended by specific entity types and provides
+a flexible foundation for working with relational data in the Relm framework.
+</div>
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="SimpleRelm_Models_RelmModel__ctor_" data-uid="SimpleRelm.Models.RelmModel.#ctor*"></a>
+
+  <h3 id="SimpleRelm_Models_RelmModel__ctor" data-uid="SimpleRelm.Models.RelmModel.#ctor">
+  RelmModel()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Models/RelmModel.cs/#L109"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="SimpleRelm.Models.RelmModel.html">RelmModel</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RelmModel()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="SimpleRelm_Models_RelmModel__ctor_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This constructor initializes the core attributes of the model by invoking the <a class="xref" href="SimpleRelm.Models.RelmModel.html#SimpleRelm_Models_RelmModel_ResetCoreAttributes_System_Boolean_System_Boolean_">ResetCoreAttributes(bool, bool)</a> method.</p>
+</div>
+
+
+
+
+  <a id="SimpleRelm_Models_RelmModel__ctor_" data-uid="SimpleRelm.Models.RelmModel.#ctor*"></a>
+
+  <h3 id="SimpleRelm_Models_RelmModel__ctor_SimpleRelm_Interfaces_IRelmModel_" data-uid="SimpleRelm.Models.RelmModel.#ctor(SimpleRelm.Interfaces.IRelmModel)">
+  RelmModel(IRelmModel)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Models/RelmModel.cs/#L124"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="SimpleRelm.Models.RelmModel.html">RelmModel</a> class by copying all writable properties  from the
+specified source model.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RelmModel(IRelmModel fromModel)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>fromModel</code> <a class="xref" href="SimpleRelm.Interfaces.IRelmModel.html">IRelmModel</a></dt>
+    <dd><p>The source model from which to copy property values. Must not be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="SimpleRelm_Models_RelmModel__ctor_SimpleRelm_Interfaces_IRelmModel__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This constructor performs a shallow copy of all writable properties from the
+specified source model  to the new instance. Only properties with matching names and compatible types
+between the source  and target models are copied. Properties that are read-only or do not exist in the
+target model  are ignored.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown if <code class="paramref">fromModel</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="SimpleRelm_Models_RelmModel__ctor_" data-uid="SimpleRelm.Models.RelmModel.#ctor*"></a>
+
+  <h3 id="SimpleRelm_Models_RelmModel__ctor_System_Data_DataRow_System_String_" data-uid="SimpleRelm.Models.RelmModel.#ctor(System.Data.DataRow,System.String)">
+  RelmModel(DataRow, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Models/RelmModel.cs/#L158"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="SimpleRelm.Models.RelmModel.html">RelmModel</a> class and populates its properties  using data
+from the specified database row.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RelmModel(DataRow modelData, string alternateTableName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>modelData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.datarow">DataRow</a></dt>
+    <dd><p>A <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.datarow">DataRow</a> containing the data to populate the model. The column names in the  <code class="paramref">modelData</code> must match the property names of the model for successful mapping.</p>
+</dd>
+    <dt><code>alternateTableName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>An optional alternate table name to use when searching for data in the <code class="paramref">modelData</code>.  If not
+specified, the default table name is used.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="SimpleRelm_Models_RelmModel__ctor_System_Data_DataRow_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This constructor automatically maps the data from the provided <code class="paramref">modelData</code> to the  properties of the model based on naming conventions. Ensure that the column names
+in the  <code class="paramref">modelData</code> match the property names of the model for accurate mapping.</p>
+</div>
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="SimpleRelm_Models_RelmModel_Active_" data-uid="SimpleRelm.Models.RelmModel.Active*"></a>
+
+  <h3 id="SimpleRelm_Models_RelmModel_Active" data-uid="SimpleRelm.Models.RelmModel.Active">
+  Active
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Models/RelmModel.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets a value indicating whether the entity is active.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, -1, null, false, false, false, false, &quot;1&quot;, null, false, false, false)]
+public bool Active { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="SimpleRelm_Models_RelmModel_CreateDate_" data-uid="SimpleRelm.Models.RelmModel.CreateDate*"></a>
+
+  <h3 id="SimpleRelm_Models_RelmModel_CreateDate" data-uid="SimpleRelm.Models.RelmModel.CreateDate">
+  CreateDate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Models/RelmModel.cs/#L72"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the creation date and time of the entity.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, -1, null, false, false, false, false, &quot;CURRENT_TIMESTAMP&quot;, null, false, false, false)]
+public DateTime CreateDate { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="SimpleRelm_Models_RelmModel_Id_" data-uid="SimpleRelm.Models.RelmModel.Id*"></a>
+
+  <h3 id="SimpleRelm_Models_RelmModel_Id" data-uid="SimpleRelm.Models.RelmModel.Id">
+  Id
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Models/RelmModel.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the unique auto-number row identifier for the entity.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, -1, null, false, true, true, false, null, null, false, false, false)]
+public long? Id { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="SimpleRelm_Models_RelmModel_InternalId_" data-uid="SimpleRelm.Models.RelmModel.InternalId*"></a>
+
+  <h3 id="SimpleRelm_Models_RelmModel_InternalId" data-uid="SimpleRelm.Models.RelmModel.InternalId">
+  InternalId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Models/RelmModel.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the unique internal identifier for the entity.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, -1, null, false, false, false, true, null, null, false, false, false)]
+public string InternalId { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="SimpleRelm_Models_RelmModel_LastUpdated_" data-uid="SimpleRelm.Models.RelmModel.LastUpdated*"></a>
+
+  <h3 id="SimpleRelm_Models_RelmModel_LastUpdated" data-uid="SimpleRelm.Models.RelmModel.LastUpdated">
+  LastUpdated
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Models/RelmModel.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the timestamp of the last update.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, -1, null, false, false, false, false, &quot;CURRENT_TIMESTAMP&quot;, null, false, false, false)]
+public DateTime LastUpdated { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="SimpleRelm_Models_RelmModel_CopyFromSource_" data-uid="SimpleRelm.Models.RelmModel.CopyFromSource*"></a>
+
+  <h3 id="SimpleRelm_Models_RelmModel_CopyFromSource__1___0_" data-uid="SimpleRelm.Models.RelmModel.CopyFromSource``1(``0)">
+  CopyFromSource&lt;T&gt;(T)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Models/RelmModel.cs/#L420"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new instance of the specified type <code class="typeparamref">T</code> and copies all public properties and
+fields  from the specified <code class="paramref">source</code> object to the new instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T CopyFromSource&lt;T&gt;(T source) where T : RelmModel, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <span class="xref">T</span></dt>
+    <dd><p>The source object from which to copy property and field values. Cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd><p>A new instance of type <code class="typeparamref">T</code> with all public properties and fields copied from the
+<code class="paramref">source</code> object.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the object to create and copy values to. Must be a class that derives from <a class="xref" href="SimpleRelm.Models.RelmModel.html">RelmModel</a>  and has a parameterless constructor.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="SimpleRelm_Models_RelmModel_CopyFromSource__1___0__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method performs a shallow copy of all public properties and fields. Only
+properties that are writable  and not indexed are copied. Fields are copied regardless of their
+accessibility.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown if <code class="paramref">source</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="SimpleRelm_Models_RelmModel_Duplicate_" data-uid="SimpleRelm.Models.RelmModel.Duplicate*"></a>
+
+  <h3 id="SimpleRelm_Models_RelmModel_Duplicate" data-uid="SimpleRelm.Models.RelmModel.Duplicate">
+  Duplicate()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Models/RelmModel.cs/#L657"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a shallow copy of the current <a class="xref" href="SimpleRelm.Models.RelmModel.html">RelmModel</a> instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RelmModel Duplicate()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SimpleRelm.Models.RelmModel.html">RelmModel</a></dt>
+    <dd><p>A new <a class="xref" href="SimpleRelm.Models.RelmModel.html">RelmModel</a> instance that is a shallow copy of the current instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="SimpleRelm_Models_RelmModel_Duplicate_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The returned object is a shallow copy, meaning that only the top-level fields of the
+object are duplicated.  References to other objects within the instance are not deeply copied.</p>
+</div>
+
+
+
+
+  <a id="SimpleRelm_Models_RelmModel_GenerateDTO_" data-uid="SimpleRelm.Models.RelmModel.GenerateDTO*"></a>
+
+  <h3 id="SimpleRelm_Models_RelmModel_GenerateDTO_System_Collections_Generic_IEnumerable_System_String__System_Collections_Generic_IEnumerable_System_String__System_String_System_Func_SimpleRelm_Interfaces_IRelmModel_System_Collections_Generic_Dictionary_System_String_System_Object___System_Int32_" data-uid="SimpleRelm.Models.RelmModel.GenerateDTO(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String,System.Func{SimpleRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}},System.Int32)">
+  GenerateDTO(IEnumerable&lt;string&gt;, IEnumerable&lt;string&gt;, string, Func&lt;IRelmModel, Dictionary&lt;string, object&gt;&gt;, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Models/RelmModel.cs/#L463"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Generates a dynamic Data Transfer Object (DTO) containing properties from the current object based on
+specific inclusion and exclusion criteria.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public dynamic GenerateDTO(IEnumerable&lt;string&gt; includeProperties = null, IEnumerable&lt;string&gt; excludeProperties = null, string sourceObjectName = null, Func&lt;IRelmModel, Dictionary&lt;string, object&gt;&gt; getAdditionalObjectProperties = null, int iteration = 0)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>includeProperties</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>A collection of property names to explicitly include in the DTO, even if they are not marked with the <a class="xref" href="SimpleRelm.Attributes.RelmDto.html">RelmDto</a> attribute.</p>
+</dd>
+    <dt><code>excludeProperties</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>A collection of property names to explicitly exclude from the DTO, even if they are marked with the <a class="xref" href="SimpleRelm.Attributes.RelmDto.html">RelmDto</a> attribute.</p>
+</dd>
+    <dt><code>sourceObjectName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>An optional string representing the source object name, used to resolve nested property paths.</p>
+</dd>
+    <dt><code>getAdditionalObjectProperties</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="SimpleRelm.Interfaces.IRelmModel.html">IRelmModel</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</dt>
+    <dd><p>A function that provides additional properties to include in the DTO. The function takes the current object
+as input and returns a dictionary of property names and values.</p>
+</dd>
+    <dt><code>iteration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The current recursion depth, used internally to track nested object processing. Defaults to 0.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">dynamic</span></dt>
+    <dd><p>A dynamic object containing the selected properties from the current object. The resulting object includes
+properties marked with the <a class="xref" href="SimpleRelm.Attributes.RelmDto.html">RelmDto</a> attribute,  explicitly included properties, and additional
+properties provided by the <code class="paramref">getAdditionalObjectProperties</code> function, while excluding
+explicitly excluded properties.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="SimpleRelm_Models_RelmModel_GenerateDTO_System_Collections_Generic_IEnumerable_System_String__System_Collections_Generic_IEnumerable_System_String__System_String_System_Func_SimpleRelm_Interfaces_IRelmModel_System_Collections_Generic_Dictionary_System_String_System_Object___System_Int32__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method supports recursive generation of DTOs for nested objects. If a property
+is a collection of objects, each item in the collection is processed recursively. Properties not marked with
+the <a class="xref" href="SimpleRelm.Attributes.RelmDto.html">RelmDto</a> attribute are included only if explicitly specified in <code class="paramref">includeProperties</code>.</p>
+</div>
+
+
+
+
+  <a id="SimpleRelm_Models_RelmModel_GetUnderscoreProperties_" data-uid="SimpleRelm.Models.RelmModel.GetUnderscoreProperties*"></a>
+
+  <h3 id="SimpleRelm_Models_RelmModel_GetUnderscoreProperties_System_Boolean_" data-uid="SimpleRelm.Models.RelmModel.GetUnderscoreProperties(System.Boolean)">
+  GetUnderscoreProperties(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Models/RelmModel.cs/#L276"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves a list of properties for the current object, with their names converted to underscore-separated
+format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;KeyValuePair&lt;string, Tuple&lt;string, PropertyInfo&gt;&gt;&gt; GetUnderscoreProperties(bool getOnlyRelmColumns = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>getOnlyRelmColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether to include only properties marked with the <code>RelmColumn</code> attribute.  If
+<a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, only such properties are included; otherwise, all properties are included.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.tuple-2">Tuple</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.propertyinfo">PropertyInfo</a>&gt;&gt;&gt;</dt>
+    <dd><p>A list of key-value pairs where the key is the underscore-separated name of the property,  and the value is
+a tuple containing the original property name and its <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.propertyinfo">PropertyInfo</a> metadata.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SimpleRelm_Models_RelmModel_ResetCoreAttributes_" data-uid="SimpleRelm.Models.RelmModel.ResetCoreAttributes*"></a>
+
+  <h3 id="SimpleRelm_Models_RelmModel_ResetCoreAttributes_System_Boolean_System_Boolean_" data-uid="SimpleRelm.Models.RelmModel.ResetCoreAttributes(System.Boolean,System.Boolean)">
+  ResetCoreAttributes(bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Models/RelmModel.cs/#L88"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Resets the core attributes of the model to their default values.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IRelmModel ResetCoreAttributes(bool nullInternalId = false, bool resetCreateDate = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>nullInternalId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, sets the internal ID to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>; otherwise, generates a new unique
+identifier.</p>
+</dd>
+    <dt><code>resetCreateDate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, resets the creation date to the current date and time.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SimpleRelm.Interfaces.IRelmModel.html">IRelmModel</a></dt>
+    <dd><p>The current instance of the model with updated core attributes.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SimpleRelm_Models_RelmModel_ResetWithData_" data-uid="SimpleRelm.Models.RelmModel.ResetWithData*"></a>
+
+  <h3 id="SimpleRelm_Models_RelmModel_ResetWithData_System_Data_DataRow_System_String_" data-uid="SimpleRelm.Models.RelmModel.ResetWithData(System.Data.DataRow,System.String)">
+  ResetWithData(DataRow, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Models/RelmModel.cs/#L175"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Resets the current model instance with data from the specified <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.datarow">DataRow</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IRelmModel ResetWithData(DataRow modelData, string alternateTableName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>modelData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.datarow">DataRow</a></dt>
+    <dd><p>The <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.datarow">DataRow</a> containing the data to populate the model. The column names in the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.datarow">DataRow</a> should match the model's property names, using underscore naming conventions.</p>
+</dd>
+    <dt><code>alternateTableName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>An optional alternate table name used to match column names in the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.datarow">DataRow</a>. If not provided,
+the model's type name is used as the table name.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SimpleRelm.Interfaces.IRelmModel.html">IRelmModel</a></dt>
+    <dd><p>The current model instance, updated with the data from the specified <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.datarow">DataRow</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="SimpleRelm_Models_RelmModel_ResetWithData_System_Data_DataRow_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method maps the columns in the provided <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.datarow">DataRow</a> to the model's
+properties based on underscore naming conventions. If a property has a <span class="xref">Newtonsoft.Json.JsonConverterAttribute</span>,
+the data is deserialized using the specified JSON converter. The method supports both default column names
+and column names suffixed with the table name.</p>
+</div>
+
+
+
+
+  <a id="SimpleRelm_Models_RelmModel_WriteToDatabase_" data-uid="SimpleRelm.Models.RelmModel.WriteToDatabase*"></a>
+
+  <h3 id="SimpleRelm_Models_RelmModel_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="SimpleRelm.Models.RelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+  WriteToDatabase(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Models/RelmModel.cs/#L324"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Writes the current object to the database using the table specified in the <code>RelmTable</code> attribute.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int WriteToDatabase(MySqlConnection existingConnection, MySqlTransaction sqlTransaction = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>existingConnection</code> <span class="xref">MySqlConnection</span></dt>
+    <dd><p>An existing and open <span class="xref">MySql.Data.MySqlClient.MySqlConnection</span> to use for writing the data. The connection must remain
+open for the duration of the operation.</p>
+</dd>
+    <dt><code>sqlTransaction</code> <span class="xref">MySqlTransaction</span></dt>
+    <dd><p>An optional <span class="xref">MySql.Data.MySqlClient.MySqlTransaction</span> under which the data will be written. If not provided, the
+operation will execute outside of a transaction.</p>
+</dd>
+    <dt><code>batchSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of rows to write to the database in each batch. Must be greater than zero. Defaults to 100.</p>
+</dd>
+    <dt><code>allowAutoIncrementColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether auto-increment columns should be included in the write operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, auto-increment columns will be written; otherwise, they will be excluded.</p>
+</dd>
+    <dt><code>allowPrimaryKeyColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether primary key columns should be included in the write operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, primary key columns will be written; otherwise, they will be excluded.</p>
+</dd>
+    <dt><code>allowUniqueColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether unique columns should be included in the write operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, unique columns will be written; otherwise, they will be excluded.</p>
+</dd>
+    <dt><code>allowAutoDateColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether auto-generated date columns (e.g., timestamps) should be included in the write
+operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, auto-date columns will be written; otherwise, they will be excluded.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of rows successfully written to the database.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="SimpleRelm_Models_RelmModel_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method performs a bulk write operation to the database. The table to which the
+data is written is determined by the <code>RelmTable</code> attribute applied to the object's type. Ensure that the
+database schema matches the structure of the object being written.</p>
+</div>
+
+
+
+
+  <a id="SimpleRelm_Models_RelmModel_WriteToDatabase_" data-uid="SimpleRelm.Models.RelmModel.WriteToDatabase*"></a>
+
+  <h3 id="SimpleRelm_Models_RelmModel_WriteToDatabase_SimpleRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="SimpleRelm.Models.RelmModel.WriteToDatabase(SimpleRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+  WriteToDatabase(IRelmContext, int, bool, bool, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Models/RelmModel.cs/#L352"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Writes the current object to the database using the table specified in the <code>RelmTable</code> attribute.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int WriteToDatabase(IRelmContext relmContext, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>relmContext</code> <a class="xref" href="SimpleRelm.Interfaces.IRelmContext.html">IRelmContext</a></dt>
+    <dd><p>An <a class="xref" href="SimpleRelm.Interfaces.IRelmContext.html">IRelmContext</a> instance that provides an open connection and transaction for database
+operations.</p>
+</dd>
+    <dt><code>batchSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of items to write to the database in each batch. Must be greater than zero. The default value is
+100.</p>
+</dd>
+    <dt><code>allowAutoIncrementColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether columns marked as auto-increment are allowed to be written. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, auto-increment columns will be included in the write operation; otherwise, they will be
+excluded.</p>
+</dd>
+    <dt><code>allowPrimaryKeyColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether primary key columns are allowed to be written. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, primary
+key columns will be included in the write operation; otherwise, they will be excluded.</p>
+</dd>
+    <dt><code>allowUniqueColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether columns with unique constraints are allowed to be written. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, unique columns will be included in the write operation; otherwise, they will be excluded.</p>
+</dd>
+    <dt><code>allowAutoDateColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether columns with automatic date generation (e.g., timestamps) are allowed to be
+written. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, such columns will be included in the write operation; otherwise, they
+will be excluded.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of rows successfully written to the database.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="SimpleRelm_Models_RelmModel_WriteToDatabase_SimpleRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method performs a bulk write operation to the database. The behavior of the
+write operation can be customized using the optional parameters to control whether specific types of columns
+(e.g., auto-increment, primary key, unique, or auto-date columns) are included in the operation. The table
+to which the object is written is determined by the <code>RelmTable</code> attribute applied to the object's
+type.</p>
+</div>
+
+
+
+
+  <a id="SimpleRelm_Models_RelmModel_WriteToDatabase_" data-uid="SimpleRelm.Models.RelmModel.WriteToDatabase*"></a>
+
+  <h3 id="SimpleRelm_Models_RelmModel_WriteToDatabase_SimpleRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="SimpleRelm.Models.RelmModel.WriteToDatabase(SimpleRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+  WriteToDatabase(IRelmQuickContext, int, bool, bool, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Models/RelmModel.cs/#L380"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Writes the current object to the database using the table specified in the <code>RelmTable</code> attribute.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int WriteToDatabase(IRelmQuickContext relmContext, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>relmContext</code> <a class="xref" href="SimpleRelm.Interfaces.RelmQuick.IRelmQuickContext.html">IRelmQuickContext</a></dt>
+    <dd><p>The database context used to perform the write operation. This context must be properly configured<br>
+to connect to the target database.</p>
+</dd>
+    <dt><code>batchSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of records to include in each batch during the bulk write operation. The default value is 100.</p>
+</dd>
+    <dt><code>allowAutoIncrementColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether columns with auto-increment constraints are allowed to be written. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>,         auto-increment columns will be included in the write operation; otherwise, they
+will be excluded. The default value is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>allowPrimaryKeyColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether primary key columns are allowed to be written. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>,<br>
+primary key columns will be included in the write operation; otherwise, they will be excluded. The default
+value is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>allowUniqueColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether columns with unique constraints are allowed to be written. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>,         unique columns will be included in the write operation; otherwise, they will be
+excluded. The default value is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>allowAutoDateColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether columns with automatic date constraints (e.g., timestamps) are allowed to be
+written.         If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, such columns will be included in the write operation; otherwise,
+they will be excluded.         The default value is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of records successfully written to the database.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="SimpleRelm_Models_RelmModel_WriteToDatabase_SimpleRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method performs a bulk write operation, which can improve performance when
+writing large amounts of data. Ensure that the provided <code class="paramref">relmContext</code> is properly
+configured and that the database schema matches the structure of the data being written. The behavior of the
+write operation can be customized using the provided options.</p>
+</div>
+
+
+
+
+  <a id="SimpleRelm_Models_RelmModel_WriteToDatabase_" data-uid="SimpleRelm.Models.RelmModel.WriteToDatabase*"></a>
+
+  <h3 id="SimpleRelm_Models_RelmModel_WriteToDatabase_SimpleRelm_Options_RelmContextOptionsBuilder_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="SimpleRelm.Models.RelmModel.WriteToDatabase(SimpleRelm.Options.RelmContextOptionsBuilder,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+  WriteToDatabase(RelmContextOptionsBuilder, int, bool, bool, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Models/RelmModel.cs/#L402"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Writes the current object to the database using the table specified in the <code>RelmTable</code> attribute.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int WriteToDatabase(RelmContextOptionsBuilder relmContextOptions, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>relmContextOptions</code> <a class="xref" href="SimpleRelm.Options.RelmContextOptionsBuilder.html">RelmContextOptionsBuilder</a></dt>
+    <dd><p>The options used to configure the database context.</p>
+</dd>
+    <dt><code>batchSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of records to process in each batch. Defaults to 100.</p>
+</dd>
+    <dt><code>allowAutoIncrementColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether columns with auto-increment constraints are allowed to be written. Defaults to
+<a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>allowPrimaryKeyColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether primary key columns are allowed to be written. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>allowUniqueColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether columns with unique constraints are allowed to be written. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>allowAutoDateColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether columns with automatic date generation (e.g., timestamps) are allowed to be
+written. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of records successfully written to the database.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="SimpleRelm_Models_RelmModel_WriteToDatabase_SimpleRelm_Options_RelmContextOptionsBuilder_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method performs a bulk write operation, which can improve performance when
+writing large datasets. Ensure that the specified options and constraints align with the database schema to
+avoid runtime errors.</p>
+</div>
+
+
+
+
+  <a id="SimpleRelm_Models_RelmModel_WriteToDatabase_" data-uid="SimpleRelm.Models.RelmModel.WriteToDatabase*"></a>
+
+  <h3 id="SimpleRelm_Models_RelmModel_WriteToDatabase_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="SimpleRelm.Models.RelmModel.WriteToDatabase(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+  WriteToDatabase(Enum, int, bool, bool, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Models/RelmModel.cs/#L299"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Writes the current object to the database using the table specified in the <code>RelmTable</code> attribute.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int WriteToDatabase(Enum connectionStringType, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>connectionStringType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.enum">Enum</a></dt>
+    <dd><p>The type of connection to use for the database operation.</p>
+</dd>
+    <dt><code>batchSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of items to write to the database per batch. Must be a positive integer. Defaults to 100.</p>
+</dd>
+    <dt><code>allowAutoIncrementColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether columns with auto-increment constraints are allowed to be written.  Set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to allow writing to such columns; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>allowPrimaryKeyColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether primary key columns are allowed to be written.  Set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to
+allow writing to primary key columns; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>allowUniqueColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether unique constraint columns are allowed to be written.  Set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to allow writing to such columns; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>allowAutoDateColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether columns with automatic date generation (e.g., timestamps) are allowed to be
+written.  Set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to allow writing to such columns; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of rows successfully written to the database.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="SimpleRelm_Models_RelmModel_WriteToDatabase_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method performs a bulk write operation to the database. The table to which the
+data is written  is determined by the <code>RelmTable</code> attribute applied to the current object's type.
+Ensure that the database schema matches the structure of the object being written.</p>
+</div>
+
+
+
+
+  <h2 class="section" id="events">Events
+</h2>
+
+
+
+  <h3 id="SimpleRelm_Models_RelmModel_DtoTypeProcessor" data-uid="SimpleRelm.Models.RelmModel.DtoTypeProcessor">
+  DtoTypeProcessor
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Models/RelmModel.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a DTO (Data Transfer Object) is processed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;DtoEventArgs&gt; DtoTypeProcessor</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="SimpleRelm.Models.EventArguments.DtoEventArgs.html">DtoEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <h4 class="section" id="SimpleRelm_Models_RelmModel_DtoTypeProcessor_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This event is triggered after a DTO has been processed, providing the processed DTO
+as part of the event data. Subscribers can use this event to perform additional actions or handle the
+processed DTO as needed.</p>
+</div>
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Models/RelmModel.cs/#L39" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

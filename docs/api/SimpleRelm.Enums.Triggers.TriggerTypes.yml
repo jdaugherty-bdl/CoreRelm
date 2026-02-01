@@ -1,0 +1,277 @@
+### YamlMime:ManagedReference
+items:
+- uid: SimpleRelm.Enums.Triggers.TriggerTypes
+  commentId: T:SimpleRelm.Enums.Triggers.TriggerTypes
+  id: Triggers.TriggerTypes
+  parent: SimpleRelm.Enums
+  children:
+  - SimpleRelm.Enums.Triggers.TriggerTypes.AfterDelete
+  - SimpleRelm.Enums.Triggers.TriggerTypes.AfterInsert
+  - SimpleRelm.Enums.Triggers.TriggerTypes.AfterUpdate
+  - SimpleRelm.Enums.Triggers.TriggerTypes.BeforeDelete
+  - SimpleRelm.Enums.Triggers.TriggerTypes.BeforeInsert
+  - SimpleRelm.Enums.Triggers.TriggerTypes.BeforeUpdate
+  langs:
+  - csharp
+  - vb
+  name: Triggers.TriggerTypes
+  nameWithType: Triggers.TriggerTypes
+  fullName: SimpleRelm.Enums.Triggers.TriggerTypes
+  type: Enum
+  source:
+    remote:
+      path: SimpleRelm/Enums/Triggers.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: TriggerTypes
+    path: ../SimpleRelm/Enums/Triggers.cs
+    startLine: 23
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Enums
+  summary: Specifies the types of triggers that can be executed in response to database operations.
+  remarks: >-
+    This enumeration defines trigger types that correspond to specific stages of database
+        operations,  such as inserts, updates, and deletes. Triggers can be executed either before or after the
+        operation.
+  example: []
+  syntax:
+    content: public enum Triggers.TriggerTypes
+    content.vb: Public Enum Triggers.TriggerTypes
+- uid: SimpleRelm.Enums.Triggers.TriggerTypes.BeforeInsert
+  commentId: F:SimpleRelm.Enums.Triggers.TriggerTypes.BeforeInsert
+  id: BeforeInsert
+  parent: SimpleRelm.Enums.Triggers.TriggerTypes
+  langs:
+  - csharp
+  - vb
+  name: BeforeInsert
+  nameWithType: Triggers.TriggerTypes.BeforeInsert
+  fullName: SimpleRelm.Enums.Triggers.TriggerTypes.BeforeInsert
+  type: Field
+  source:
+    remote:
+      path: SimpleRelm/Enums/Triggers.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: BeforeInsert
+    path: ../SimpleRelm/Enums/Triggers.cs
+    startLine: 31
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Enums
+  summary: Occurs before an item is inserted into the collection.
+  remarks: >-
+    This event allows subscribers to perform custom logic or validation before an
+        item is added to the collection. If the operation should be canceled, the event handler can throw an
+        exception or modify the state as needed.
+  example: []
+  syntax:
+    content: BeforeInsert = 0
+    return:
+      type: SimpleRelm.Enums.Triggers.TriggerTypes
+- uid: SimpleRelm.Enums.Triggers.TriggerTypes.AfterInsert
+  commentId: F:SimpleRelm.Enums.Triggers.TriggerTypes.AfterInsert
+  id: AfterInsert
+  parent: SimpleRelm.Enums.Triggers.TriggerTypes
+  langs:
+  - csharp
+  - vb
+  name: AfterInsert
+  nameWithType: Triggers.TriggerTypes.AfterInsert
+  fullName: SimpleRelm.Enums.Triggers.TriggerTypes.AfterInsert
+  type: Field
+  source:
+    remote:
+      path: SimpleRelm/Enums/Triggers.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: AfterInsert
+    path: ../SimpleRelm/Enums/Triggers.cs
+    startLine: 37
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Enums
+  summary: Occurs after an item has been inserted into the collection or data store.
+  remarks: >-
+    This event allows subscribers to perform additional actions or processing
+        after an item has been successfully inserted.
+  example: []
+  syntax:
+    content: AfterInsert = 1
+    return:
+      type: SimpleRelm.Enums.Triggers.TriggerTypes
+- uid: SimpleRelm.Enums.Triggers.TriggerTypes.BeforeUpdate
+  commentId: F:SimpleRelm.Enums.Triggers.TriggerTypes.BeforeUpdate
+  id: BeforeUpdate
+  parent: SimpleRelm.Enums.Triggers.TriggerTypes
+  langs:
+  - csharp
+  - vb
+  name: BeforeUpdate
+  nameWithType: Triggers.TriggerTypes.BeforeUpdate
+  fullName: SimpleRelm.Enums.Triggers.TriggerTypes.BeforeUpdate
+  type: Field
+  source:
+    remote:
+      path: SimpleRelm/Enums/Triggers.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: BeforeUpdate
+    path: ../SimpleRelm/Enums/Triggers.cs
+    startLine: 44
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Enums
+  summary: Occurs before an update operation is performed.
+  remarks: >-
+    This event allows subscribers to execute custom logic or validate data  prior
+        to the update operation. If the operation should be canceled,  subscribers can throw an exception or
+        modify the state as needed.
+  example: []
+  syntax:
+    content: BeforeUpdate = 2
+    return:
+      type: SimpleRelm.Enums.Triggers.TriggerTypes
+- uid: SimpleRelm.Enums.Triggers.TriggerTypes.AfterUpdate
+  commentId: F:SimpleRelm.Enums.Triggers.TriggerTypes.AfterUpdate
+  id: AfterUpdate
+  parent: SimpleRelm.Enums.Triggers.TriggerTypes
+  langs:
+  - csharp
+  - vb
+  name: AfterUpdate
+  nameWithType: Triggers.TriggerTypes.AfterUpdate
+  fullName: SimpleRelm.Enums.Triggers.TriggerTypes.AfterUpdate
+  type: Field
+  source:
+    remote:
+      path: SimpleRelm/Enums/Triggers.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: AfterUpdate
+    path: ../SimpleRelm/Enums/Triggers.cs
+    startLine: 51
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Enums
+  summary: Occurs after an update operation has been completed.
+  remarks: >-
+    This event is triggered once the update process finishes successfully. 
+        Subscribers can use this event to perform any post-update actions, such as refreshing data or
+        logging.
+  example: []
+  syntax:
+    content: AfterUpdate = 3
+    return:
+      type: SimpleRelm.Enums.Triggers.TriggerTypes
+- uid: SimpleRelm.Enums.Triggers.TriggerTypes.BeforeDelete
+  commentId: F:SimpleRelm.Enums.Triggers.TriggerTypes.BeforeDelete
+  id: BeforeDelete
+  parent: SimpleRelm.Enums.Triggers.TriggerTypes
+  langs:
+  - csharp
+  - vb
+  name: BeforeDelete
+  nameWithType: Triggers.TriggerTypes.BeforeDelete
+  fullName: SimpleRelm.Enums.Triggers.TriggerTypes.BeforeDelete
+  type: Field
+  source:
+    remote:
+      path: SimpleRelm/Enums/Triggers.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: BeforeDelete
+    path: ../SimpleRelm/Enums/Triggers.cs
+    startLine: 58
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Enums
+  summary: Occurs before an item is deleted.
+  remarks: >-
+    This event allows subscribers to perform any necessary actions or validations
+        prior to the deletion of the item. If the operation should be canceled,  subscribers can throw an
+        exception or use a specific cancellation mechanism  provided by the implementation.
+  example: []
+  syntax:
+    content: BeforeDelete = 4
+    return:
+      type: SimpleRelm.Enums.Triggers.TriggerTypes
+- uid: SimpleRelm.Enums.Triggers.TriggerTypes.AfterDelete
+  commentId: F:SimpleRelm.Enums.Triggers.TriggerTypes.AfterDelete
+  id: AfterDelete
+  parent: SimpleRelm.Enums.Triggers.TriggerTypes
+  langs:
+  - csharp
+  - vb
+  name: AfterDelete
+  nameWithType: Triggers.TriggerTypes.AfterDelete
+  fullName: SimpleRelm.Enums.Triggers.TriggerTypes.AfterDelete
+  type: Field
+  source:
+    remote:
+      path: SimpleRelm/Enums/Triggers.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: AfterDelete
+    path: ../SimpleRelm/Enums/Triggers.cs
+    startLine: 65
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Enums
+  summary: Occurs after an item has been deleted.
+  remarks: >-
+    This event is triggered once the deletion process is completed successfully. 
+        Subscribers can use this event to perform any post-deletion operations, such as cleanup or
+        logging.
+  example: []
+  syntax:
+    content: AfterDelete = 5
+    return:
+      type: SimpleRelm.Enums.Triggers.TriggerTypes
+references:
+- uid: SimpleRelm.Enums
+  commentId: N:SimpleRelm.Enums
+  href: SimpleRelm.html
+  name: SimpleRelm.Enums
+  nameWithType: SimpleRelm.Enums
+  fullName: SimpleRelm.Enums
+  spec.csharp:
+  - uid: SimpleRelm
+    name: SimpleRelm
+    href: SimpleRelm.html
+  - name: .
+  - uid: SimpleRelm.Enums
+    name: Enums
+    href: SimpleRelm.Enums.html
+  spec.vb:
+  - uid: SimpleRelm
+    name: SimpleRelm
+    href: SimpleRelm.html
+  - name: .
+  - uid: SimpleRelm.Enums
+    name: Enums
+    href: SimpleRelm.Enums.html
+- uid: SimpleRelm.Enums.Triggers.TriggerTypes
+  commentId: T:SimpleRelm.Enums.Triggers.TriggerTypes
+  parent: SimpleRelm.Enums
+  href: SimpleRelm.Enums.Triggers.html
+  name: Triggers.TriggerTypes
+  nameWithType: Triggers.TriggerTypes
+  fullName: SimpleRelm.Enums.Triggers.TriggerTypes
+  spec.csharp:
+  - uid: SimpleRelm.Enums.Triggers
+    name: Triggers
+    href: SimpleRelm.Enums.Triggers.html
+  - name: .
+  - uid: SimpleRelm.Enums.Triggers.TriggerTypes
+    name: TriggerTypes
+    href: SimpleRelm.Enums.Triggers.TriggerTypes.html
+  spec.vb:
+  - uid: SimpleRelm.Enums.Triggers
+    name: Triggers
+    href: SimpleRelm.Enums.Triggers.html
+  - name: .
+  - uid: SimpleRelm.Enums.Triggers.TriggerTypes
+    name: TriggerTypes
+    href: SimpleRelm.Enums.Triggers.TriggerTypes.html

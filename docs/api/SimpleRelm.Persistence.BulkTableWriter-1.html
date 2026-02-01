@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class BulkTableWriter&lt;T&gt; | SimpleRelm </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class BulkTableWriter&lt;T&gt; | SimpleRelm ">
+      
+      <meta name="description" content="Provides functionality for performing high-performance bulk insert operations into a database table with configurable options for batching, transactions, error handling, and column mapping.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/jdaugherty-bdl/SimpleRelm/new/master/apiSpec/new?filename=SimpleRelm_Persistence_BulkTableWriter_1.md&amp;value=---%0Auid%3A%20SimpleRelm.Persistence.BulkTableWriter%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="SimpleRelm">
+            SimpleRelm
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="SimpleRelm.Persistence.BulkTableWriter`1">
+
+
+
+  <h1 id="SimpleRelm_Persistence_BulkTableWriter_1" data-uid="SimpleRelm.Persistence.BulkTableWriter`1" class="text-break">
+Class BulkTableWriter&lt;T&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Persistence/BulkTableWriter.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="SimpleRelm.html">SimpleRelm</a>.<a class="xref" href="SimpleRelm.Persistence.html">Persistence</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>SimpleRelm.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Provides functionality for performing high-performance bulk insert operations into a database table with
+configurable options for batching, transactions, error handling, and column mapping.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class BulkTableWriter&lt;T&gt;</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the data items to be written to the database table. Each instance of <code class="typeparamref">T</code>
+represents a row in the target table.</p>
+</dd>
+  </dl>
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">BulkTableWriter&lt;T&gt;</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="SimpleRelm_Persistence_BulkTableWriter_1_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>The <a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter&lt;T&gt;</a> class is designed for efficient bulk data insertion
+scenarios, such as importing large datasets or synchronizing data between sources. It supports customization of
+batch size, transaction usage, and column inclusion rules, and allows mapping between object properties and
+database columns. This class is intended for internal use and is typically instantiated via factory methods or
+helper classes within the data access layer. Thread safety is not guaranteed; use separate instances for
+concurrent operations.</p>
+</div>
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="SimpleRelm_Persistence_BulkTableWriter_1_AddColumn_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.AddColumn*"></a>
+
+  <h3 id="SimpleRelm_Persistence_BulkTableWriter_1_AddColumn_System_String_MySql_Data_MySqlClient_MySqlDbType_System_Int32_System_String_System_String_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.AddColumn(System.String,MySql.Data.MySqlClient.MySqlDbType,System.Int32,System.String,System.String)">
+  AddColumn(string, MySqlDbType, int, string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Persistence/BulkTableWriter.cs/#L725"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a column definition to the bulk table writer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BulkTableWriter&lt;T&gt; AddColumn(string columnName, MySqlDbType dbType, int size, string alternatePropertyName = null, string columnDefault = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>columnName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the column to add. This value cannot be null or empty.</p>
+</dd>
+    <dt><code>dbType</code> <span class="xref">MySqlDbType</span></dt>
+    <dd><p>The MySQL data type of the column.</p>
+</dd>
+    <dt><code>size</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The maximum size of the column, in bytes. Must be a non-negative value.</p>
+</dd>
+    <dt><code>alternatePropertyName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>An optional alternate property name to map to this column. If null, the column will use the default property
+mapping.</p>
+</dd>
+    <dt><code>columnDefault</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>An optional default value for the column. If null, no default value will be applied.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter</a>&lt;T&gt;</dt>
+    <dd><p>The current <a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter&lt;T&gt;</a> instance, allowing for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SimpleRelm_Persistence_BulkTableWriter_1_AddColumns_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.AddColumns*"></a>
+
+  <h3 id="SimpleRelm_Persistence_BulkTableWriter_1_AddColumns_System_Collections_Generic_IEnumerable_System_Tuple_System_String_MySql_Data_MySqlClient_MySqlDbType_System_Int32_System_String_System_String___" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.AddColumns(System.Collections.Generic.IEnumerable{System.Tuple{System.String,MySql.Data.MySqlClient.MySqlDbType,System.Int32,System.String,System.String}})">
+  AddColumns(IEnumerable&lt;Tuple&lt;string, MySqlDbType, int, string, string&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Persistence/BulkTableWriter.cs/#L744"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the specified columns to the current table schema for bulk writing operations.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BulkTableWriter&lt;T&gt; AddColumns(IEnumerable&lt;Tuple&lt;string, MySqlDbType, int, string, string&gt;&gt; columns)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>columns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.tuple-5">Tuple</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <span class="xref">MySqlDbType</span>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;&gt;</dt>
+    <dd><p>A collection of tuples representing the columns to add. Each tuple contains the following elements: <ul><li>The column name (<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>).</li><li>The MySQL data type of the column (<span class="xref">MySql.Data.MySqlClient.MySqlDbType</span>).</li><li>The column size (<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>).</li><li>The column
+collation (<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>).</li><li>The column default value (<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>).</li></ul>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter</a>&lt;T&gt;</dt>
+    <dd><p>The current instance of <a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter&lt;T&gt;</a>, allowing for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="SimpleRelm_Persistence_BulkTableWriter_1_AddColumns_System_Collections_Generic_IEnumerable_System_Tuple_System_String_MySql_Data_MySqlClient_MySqlDbType_System_Int32_System_String_System_String____remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Columns with a null data type (<span class="xref">MySql.Data.MySqlClient.MySqlDbType</span>) are ignored. If the
+<code class="paramref">columns</code> parameter is null, no columns are added.</p>
+</div>
+
+
+
+
+  <a id="SimpleRelm_Persistence_BulkTableWriter_1_AddColumns_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.AddColumns*"></a>
+
+  <h3 id="SimpleRelm_Persistence_BulkTableWriter_1_AddColumns_System_Collections_Generic_IEnumerable_System_Tuple_System_String_MySql_Data_MySqlClient_MySqlDbType_System_Int32___" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.AddColumns(System.Collections.Generic.IEnumerable{System.Tuple{System.String,MySql.Data.MySqlClient.MySqlDbType,System.Int32}})">
+  AddColumns(IEnumerable&lt;Tuple&lt;string, MySqlDbType, int&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Persistence/BulkTableWriter.cs/#L766"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a collection of columns to the bulk table writer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BulkTableWriter&lt;T&gt; AddColumns(IEnumerable&lt;Tuple&lt;string, MySqlDbType, int&gt;&gt; columns)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>columns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.tuple-3">Tuple</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <span class="xref">MySqlDbType</span>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;&gt;</dt>
+    <dd><p>A collection of tuples, where each tuple specifies the column name, the MySQL data type, and the column
+size.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter</a>&lt;T&gt;</dt>
+    <dd><p>The current instance of <a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter&lt;T&gt;</a> with the specified columns added.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="SimpleRelm_Persistence_BulkTableWriter_1_AddColumns_System_Collections_Generic_IEnumerable_System_Tuple_System_String_MySql_Data_MySqlClient_MySqlDbType_System_Int32____remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method allows you to define columns for the bulk table writer by providing their
+names, data types, and sizes. The additional metadata for each column, such as default values or
+constraints, is not specified in this overload.</p>
+</div>
+
+
+
+
+  <a id="SimpleRelm_Persistence_BulkTableWriter_1_AllowAutoDateColumns_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.AllowAutoDateColumns*"></a>
+
+  <h3 id="SimpleRelm_Persistence_BulkTableWriter_1_AllowAutoDateColumns_System_Boolean_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.AllowAutoDateColumns(System.Boolean)">
+  AllowAutoDateColumns(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Persistence/BulkTableWriter.cs/#L629"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Enables or disables the automatic inclusion of date columns in the bulk table writer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BulkTableWriter&lt;T&gt; AllowAutoDateColumns(bool allowAutoDateColumns)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>allowAutoDateColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether automatic date columns should be included.  <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to enable
+automatic date columns; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter</a>&lt;T&gt;</dt>
+    <dd><p>The current instance of <a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter&lt;T&gt;</a>, allowing for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SimpleRelm_Persistence_BulkTableWriter_1_AllowAutoIncrementColumns_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.AllowAutoIncrementColumns*"></a>
+
+  <h3 id="SimpleRelm_Persistence_BulkTableWriter_1_AllowAutoIncrementColumns_System_Boolean_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.AllowAutoIncrementColumns(System.Boolean)">
+  AllowAutoIncrementColumns(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Persistence/BulkTableWriter.cs/#L642"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Configures whether auto-increment columns are allowed during bulk table writing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BulkTableWriter&lt;T&gt; AllowAutoIncrementColumns(bool allowAutoIncrementColumns)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>allowAutoIncrementColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether auto-increment columns should be included.  Specify <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to
+allow auto-increment columns; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter</a>&lt;T&gt;</dt>
+    <dd><p>The current <a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter&lt;T&gt;</a> instance, enabling method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SimpleRelm_Persistence_BulkTableWriter_1_AllowPrimaryKeyColumns_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.AllowPrimaryKeyColumns*"></a>
+
+  <h3 id="SimpleRelm_Persistence_BulkTableWriter_1_AllowPrimaryKeyColumns_System_Boolean_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.AllowPrimaryKeyColumns(System.Boolean)">
+  AllowPrimaryKeyColumns(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Persistence/BulkTableWriter.cs/#L658"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Configures whether primary key columns are allowed to be included in bulk write operations.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BulkTableWriter&lt;T&gt; AllowPrimaryKeyColumns(bool allowPrimaryKeyColumns)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>allowPrimaryKeyColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether primary key columns should be included.  <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to allow primary
+key columns; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter</a>&lt;T&gt;</dt>
+    <dd><p>The current <a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter&lt;T&gt;</a> instance, enabling method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="SimpleRelm_Persistence_BulkTableWriter_1_AllowPrimaryKeyColumns_System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>By default, primary key columns are typically excluded from bulk write operations to
+prevent  unintended modifications to primary keys. Use this method to explicitly allow their inclusion  if
+required.</p>
+</div>
+
+
+
+
+  <a id="SimpleRelm_Persistence_BulkTableWriter_1_AllowUniqueColumns_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.AllowUniqueColumns*"></a>
+
+  <h3 id="SimpleRelm_Persistence_BulkTableWriter_1_AllowUniqueColumns_System_Boolean_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.AllowUniqueColumns(System.Boolean)">
+  AllowUniqueColumns(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Persistence/BulkTableWriter.cs/#L671"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Configures whether unique columns are allowed during bulk table writing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BulkTableWriter&lt;T&gt; AllowUniqueColumns(bool allowUniqueColumns)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>allowUniqueColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether unique columns should be allowed.  <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to allow unique
+columns; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter</a>&lt;T&gt;</dt>
+    <dd><p>The current <a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter&lt;T&gt;</a> instance, enabling method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SimpleRelm_Persistence_BulkTableWriter_1_AllowUserVariables_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.AllowUserVariables*"></a>
+
+  <h3 id="SimpleRelm_Persistence_BulkTableWriter_1_AllowUserVariables_System_Boolean_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.AllowUserVariables(System.Boolean)">
+  AllowUserVariables(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Persistence/BulkTableWriter.cs/#L616"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Enables or disables the use of user-defined variables in the bulk table writer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BulkTableWriter&lt;T&gt; AllowUserVariables(bool allowUserVariables)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>allowUserVariables</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether user-defined variables are allowed.  <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to allow user-defined
+variables; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter</a>&lt;T&gt;</dt>
+    <dd><p>The current instance of <a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter&lt;T&gt;</a>, allowing for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SimpleRelm_Persistence_BulkTableWriter_1_RemoveColumn_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.RemoveColumn*"></a>
+
+  <h3 id="SimpleRelm_Persistence_BulkTableWriter_1_RemoveColumn_System_String_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.RemoveColumn(System.String)">
+  RemoveColumn(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Persistence/BulkTableWriter.cs/#L802"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes the specified column from the table writer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BulkTableWriter&lt;T&gt; RemoveColumn(string columnName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>columnName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the column to remove. This parameter is case-sensitive.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter</a>&lt;T&gt;</dt>
+    <dd><p>The current <a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter&lt;T&gt;</a> instance, allowing for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="SimpleRelm_Persistence_BulkTableWriter_1_RemoveColumn_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>If the specified column does not exist in the table, the method performs no
+action.</p>
+</div>
+
+
+
+
+  <a id="SimpleRelm_Persistence_BulkTableWriter_1_ResetBatchSize_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.ResetBatchSize*"></a>
+
+  <h3 id="SimpleRelm_Persistence_BulkTableWriter_1_ResetBatchSize" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.ResetBatchSize">
+  ResetBatchSize()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Persistence/BulkTableWriter.cs/#L831"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Resets the batch size to its default value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BulkTableWriter&lt;T&gt; ResetBatchSize()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter</a>&lt;T&gt;</dt>
+    <dd><p>The current <a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter&lt;T&gt;</a> instance with the batch size reset.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="SimpleRelm_Persistence_BulkTableWriter_1_ResetBatchSize_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method sets the batch size to the default value defined by the implementation.
+It can be used to revert any custom batch size previously set.</p>
+</div>
+
+
+
+
+  <a id="SimpleRelm_Persistence_BulkTableWriter_1_SetBatchSize_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.SetBatchSize*"></a>
+
+  <h3 id="SimpleRelm_Persistence_BulkTableWriter_1_SetBatchSize_System_Int32_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.SetBatchSize(System.Int32)">
+  SetBatchSize(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Persistence/BulkTableWriter.cs/#L818"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the batch size for bulk write operations.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BulkTableWriter&lt;T&gt; SetBatchSize(int batchSize)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>batchSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of items to include in each batch. Must be a positive integer.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter</a>&lt;T&gt;</dt>
+    <dd><p>The current <a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter&lt;T&gt;</a> instance, allowing for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="SimpleRelm_Persistence_BulkTableWriter_1_SetBatchSize_System_Int32__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The batch size determines how many items are processed together during a bulk write
+operation.  Setting an appropriate batch size can help optimize performance based on the workload and system
+resources.</p>
+</div>
+
+
+
+
+  <a id="SimpleRelm_Persistence_BulkTableWriter_1_SetDatabaseName_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.SetDatabaseName*"></a>
+
+  <h3 id="SimpleRelm_Persistence_BulkTableWriter_1_SetDatabaseName_System_String_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.SetDatabaseName(System.String)">
+  SetDatabaseName(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Persistence/BulkTableWriter.cs/#L788"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the name of the database to be used for bulk table operations.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BulkTableWriter&lt;T&gt; SetDatabaseName(string databaseName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>databaseName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the database. Cannot be null or empty.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter</a>&lt;T&gt;</dt>
+    <dd><p>The current instance of <a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter&lt;T&gt;</a> to allow method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SimpleRelm_Persistence_BulkTableWriter_1_SetInsertQuery_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.SetInsertQuery*"></a>
+
+  <h3 id="SimpleRelm_Persistence_BulkTableWriter_1_SetInsertQuery_System_String_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.SetInsertQuery(System.String)">
+  SetInsertQuery(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Persistence/BulkTableWriter.cs/#L684"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the SQL insert query to be used for bulk data operations.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BulkTableWriter&lt;T&gt; SetInsertQuery(string insertQuery)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>insertQuery</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The SQL insert query string to execute during bulk operations.  This query should be properly formatted and
+compatible with the target database.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter</a>&lt;T&gt;</dt>
+    <dd><p>The current instance of <a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter&lt;T&gt;</a>, allowing for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SimpleRelm_Persistence_BulkTableWriter_1_SetSourceData_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.SetSourceData*"></a>
+
+  <h3 id="SimpleRelm_Persistence_BulkTableWriter_1_SetSourceData_System_Collections_Generic_IEnumerable__0__" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.SetSourceData(System.Collections.Generic.IEnumerable{`0})">
+  SetSourceData(IEnumerable&lt;T&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Persistence/BulkTableWriter.cs/#L696"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the source data to be written in bulk operations.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BulkTableWriter&lt;T&gt; SetSourceData(IEnumerable&lt;T&gt; sourceData)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sourceData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</dt>
+    <dd><p>The collection of data items to be used as the source for bulk writing. Cannot be null.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter</a>&lt;T&gt;</dt>
+    <dd><p>The current instance of <a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter&lt;T&gt;</a> to allow method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SimpleRelm_Persistence_BulkTableWriter_1_SetSourceData_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.SetSourceData*"></a>
+
+  <h3 id="SimpleRelm_Persistence_BulkTableWriter_1_SetSourceData__0_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.SetSourceData(`0)">
+  SetSourceData(T)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Persistence/BulkTableWriter.cs/#L708"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the source data for the bulk table writer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BulkTableWriter&lt;T&gt; SetSourceData(T sourceData)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sourceData</code> <span class="xref">T</span></dt>
+    <dd><p>The source data to be written, represented as an instance of type <code class="typeparamref">T</code>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter</a>&lt;T&gt;</dt>
+    <dd><p>The current instance of <a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter&lt;T&gt;</a>, allowing for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SimpleRelm_Persistence_BulkTableWriter_1_SetTableName_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.SetTableName*"></a>
+
+  <h3 id="SimpleRelm_Persistence_BulkTableWriter_1_SetTableName_System_String_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.SetTableName(System.String)">
+  SetTableName(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Persistence/BulkTableWriter.cs/#L776"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the name of the database table to which data will be written.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BulkTableWriter&lt;T&gt; SetTableName(string tableName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tableName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the table. Cannot be null or empty.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter</a>&lt;T&gt;</dt>
+    <dd><p>The current <a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter&lt;T&gt;</a> instance, allowing for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SimpleRelm_Persistence_BulkTableWriter_1_SetTransaction_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.SetTransaction*"></a>
+
+  <h3 id="SimpleRelm_Persistence_BulkTableWriter_1_SetTransaction_MySql_Data_MySqlClient_MySqlTransaction_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.SetTransaction(MySql.Data.MySqlClient.MySqlTransaction)">
+  SetTransaction(MySqlTransaction)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Persistence/BulkTableWriter.cs/#L590"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the transaction to be used for the bulk table write operation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BulkTableWriter&lt;T&gt; SetTransaction(MySqlTransaction sqlTransaction)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sqlTransaction</code> <span class="xref">MySqlTransaction</span></dt>
+    <dd><p>The <span class="xref">MySql.Data.MySqlClient.MySqlTransaction</span> instance to associate with the bulk table writer. This transaction will
+be used to execute the database operations.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter</a>&lt;T&gt;</dt>
+    <dd><p>The current <a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter&lt;T&gt;</a> instance, allowing for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SimpleRelm_Persistence_BulkTableWriter_1_ThrowException_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.ThrowException*"></a>
+
+  <h3 id="SimpleRelm_Persistence_BulkTableWriter_1_ThrowException_System_Boolean_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.ThrowException(System.Boolean)">
+  ThrowException(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Persistence/BulkTableWriter.cs/#L603"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Configures whether the writer should throw an exception when an error occurs during bulk writing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BulkTableWriter&lt;T&gt; ThrowException(bool throwException)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>throwException</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether exceptions should be thrown.  <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to throw exceptions on
+errors; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter</a>&lt;T&gt;</dt>
+    <dd><p>The current instance of <a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter&lt;T&gt;</a>, allowing for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SimpleRelm_Persistence_BulkTableWriter_1_UseTransaction_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.UseTransaction*"></a>
+
+  <h3 id="SimpleRelm_Persistence_BulkTableWriter_1_UseTransaction_System_Boolean_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.UseTransaction(System.Boolean)">
+  UseTransaction(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Persistence/BulkTableWriter.cs/#L577"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Configures whether the bulk table writer should use a transaction during its operations.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BulkTableWriter&lt;T&gt; UseTransaction(bool useTransaction)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>useTransaction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether to enable transaction usage.  <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to use a transaction;
+otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter</a>&lt;T&gt;</dt>
+    <dd><p>The current instance of <a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter&lt;T&gt;</a>, allowing for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SimpleRelm_Persistence_BulkTableWriter_1_Write_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.Write*"></a>
+
+  <h3 id="SimpleRelm_Persistence_BulkTableWriter_1_Write" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.Write">
+  Write()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Persistence/BulkTableWriter.cs/#L235"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Writes data to the underlying output stream.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Write()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The result of the write operation, as returned by the <a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html#SimpleRelm_Persistence_BulkTableWriter_1_Write_System_Func_System_String__0_System_Object__">Write(Func&lt;string, T, object&gt;)</a> method.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="SimpleRelm_Persistence_BulkTableWriter_1_Write_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This overload calls the <a class="xref" href="SimpleRelm.Persistence.BulkTableWriter-1.html#SimpleRelm_Persistence_BulkTableWriter_1_Write_System_Func_System_String__0_System_Object__">Write(Func&lt;string, T, object&gt;)</a> method with a <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> argument.</p>
+</div>
+
+
+
+
+  <a id="SimpleRelm_Persistence_BulkTableWriter_1_Write_" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.Write*"></a>
+
+  <h3 id="SimpleRelm_Persistence_BulkTableWriter_1_Write_System_Func_System_String__0_System_Object__" data-uid="SimpleRelm.Persistence.BulkTableWriter`1.Write(System.Func{System.String,`0,System.Object})">
+  Write(Func&lt;string, T, object&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Persistence/BulkTableWriter.cs/#L251"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Executes a batch operation to process and insert data into a database using the specified function to
+populate a data table.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Write(Func&lt;string, T, object&gt; DataTableFunction)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>DataTableFunction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
+    <dd><p>A function that takes a column name and a data item of type <code class="typeparamref">T</code> and returns the value
+to be inserted into the data table.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The total number of records successfully inserted into the database. Returns 0 if there is no source data to
+process.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="SimpleRelm_Persistence_BulkTableWriter_1_Write_System_Func_System_String__0_System_Object___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method processes the source data in batches, determined by the configured batch
+size, and inserts the data into the database. The method supports multiple database contexts and
+connections, and it uses the appropriate one based on the current configuration.</p>
+</div>
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/jdaugherty-bdl/SimpleRelm/blob/master/SimpleRelm/Persistence/BulkTableWriter.cs/#L33" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

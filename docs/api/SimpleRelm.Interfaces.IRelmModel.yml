@@ -1,0 +1,1345 @@
+### YamlMime:ManagedReference
+items:
+- uid: SimpleRelm.Interfaces.IRelmModel
+  commentId: T:SimpleRelm.Interfaces.IRelmModel
+  id: IRelmModel
+  parent: SimpleRelm.Interfaces
+  children:
+  - SimpleRelm.Interfaces.IRelmModel.Active
+  - SimpleRelm.Interfaces.IRelmModel.CreateDate
+  - SimpleRelm.Interfaces.IRelmModel.GenerateDTO(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String,System.Func{SimpleRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}},System.Int32)
+  - SimpleRelm.Interfaces.IRelmModel.GetUnderscoreProperties(System.Boolean)
+  - SimpleRelm.Interfaces.IRelmModel.Id
+  - SimpleRelm.Interfaces.IRelmModel.InternalId
+  - SimpleRelm.Interfaces.IRelmModel.LastUpdated
+  - SimpleRelm.Interfaces.IRelmModel.ResetCoreAttributes(System.Boolean,System.Boolean)
+  - SimpleRelm.Interfaces.IRelmModel.ResetWithData(System.Data.DataRow,System.String)
+  - SimpleRelm.Interfaces.IRelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  - SimpleRelm.Interfaces.IRelmModel.WriteToDatabase(SimpleRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  - SimpleRelm.Interfaces.IRelmModel.WriteToDatabase(SimpleRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  - SimpleRelm.Interfaces.IRelmModel.WriteToDatabase(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  langs:
+  - csharp
+  - vb
+  name: IRelmModel
+  nameWithType: IRelmModel
+  fullName: SimpleRelm.Interfaces.IRelmModel
+  type: Interface
+  source:
+    remote:
+      path: SimpleRelm/Interfaces/IRelmModel.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: IRelmModel
+    path: ../SimpleRelm/Interfaces/IRelmModel.cs
+    startLine: 22
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Interfaces
+  summary: >-
+    Defines the contract for a Relm-compatible model, providing properties and methods for managing entity state,
+
+    database interactions, and data transfer object (DTO) generation.
+  remarks: >-
+    This interface is designed to represent a database entity with common attributes such as
+        identifiers, timestamps, and active state. It also includes methods for resetting attributes, writing data to
+        the database, and generating dynamic DTOs. Implementations of this interface are expected to handle
+        database-specific operations and provide fine-grained control over column constraints during write
+        operations.
+  example: []
+  syntax:
+    content: public interface IRelmModel
+    content.vb: Public Interface IRelmModel
+- uid: SimpleRelm.Interfaces.IRelmModel.Id
+  commentId: P:SimpleRelm.Interfaces.IRelmModel.Id
+  id: Id
+  parent: SimpleRelm.Interfaces.IRelmModel
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: IRelmModel.Id
+  fullName: SimpleRelm.Interfaces.IRelmModel.Id
+  type: Property
+  source:
+    remote:
+      path: SimpleRelm/Interfaces/IRelmModel.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: Id
+    path: ../SimpleRelm/Interfaces/IRelmModel.cs
+    startLine: 28
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Interfaces
+  summary: Gets or sets the database row identifier for the entity.
+  remarks: This ID corresponds to the primary key in the database table.
+  example: []
+  syntax:
+    content: long? Id { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int64}
+    content.vb: Property Id As Long?
+  overload: SimpleRelm.Interfaces.IRelmModel.Id*
+- uid: SimpleRelm.Interfaces.IRelmModel.Active
+  commentId: P:SimpleRelm.Interfaces.IRelmModel.Active
+  id: Active
+  parent: SimpleRelm.Interfaces.IRelmModel
+  langs:
+  - csharp
+  - vb
+  name: Active
+  nameWithType: IRelmModel.Active
+  fullName: SimpleRelm.Interfaces.IRelmModel.Active
+  type: Property
+  source:
+    remote:
+      path: SimpleRelm/Interfaces/IRelmModel.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: Active
+    path: ../SimpleRelm/Interfaces/IRelmModel.cs
+    startLine: 33
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Interfaces
+  summary: Gets or sets a value indicating whether the entity is active.
+  example: []
+  syntax:
+    content: bool Active { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Property Active As Boolean
+  overload: SimpleRelm.Interfaces.IRelmModel.Active*
+- uid: SimpleRelm.Interfaces.IRelmModel.InternalId
+  commentId: P:SimpleRelm.Interfaces.IRelmModel.InternalId
+  id: InternalId
+  parent: SimpleRelm.Interfaces.IRelmModel
+  langs:
+  - csharp
+  - vb
+  name: InternalId
+  nameWithType: IRelmModel.InternalId
+  fullName: SimpleRelm.Interfaces.IRelmModel.InternalId
+  type: Property
+  source:
+    remote:
+      path: SimpleRelm/Interfaces/IRelmModel.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: InternalId
+    path: ../SimpleRelm/Interfaces/IRelmModel.cs
+    startLine: 40
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Interfaces
+  summary: Gets or sets the internal identifier for the entity.
+  remarks: >-
+    This GUID identifier is globally unique and is intended to uniquely identify this entity across
+        all platforms.
+  example: []
+  syntax:
+    content: string InternalId { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Property InternalId As String
+  overload: SimpleRelm.Interfaces.IRelmModel.InternalId*
+- uid: SimpleRelm.Interfaces.IRelmModel.CreateDate
+  commentId: P:SimpleRelm.Interfaces.IRelmModel.CreateDate
+  id: CreateDate
+  parent: SimpleRelm.Interfaces.IRelmModel
+  langs:
+  - csharp
+  - vb
+  name: CreateDate
+  nameWithType: IRelmModel.CreateDate
+  fullName: SimpleRelm.Interfaces.IRelmModel.CreateDate
+  type: Property
+  source:
+    remote:
+      path: SimpleRelm/Interfaces/IRelmModel.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: CreateDate
+    path: ../SimpleRelm/Interfaces/IRelmModel.cs
+    startLine: 45
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Interfaces
+  summary: Gets or sets the date and time when the entity was created.
+  example: []
+  syntax:
+    content: DateTime CreateDate { get; set; }
+    parameters: []
+    return:
+      type: System.DateTime
+    content.vb: Property CreateDate As Date
+  overload: SimpleRelm.Interfaces.IRelmModel.CreateDate*
+- uid: SimpleRelm.Interfaces.IRelmModel.LastUpdated
+  commentId: P:SimpleRelm.Interfaces.IRelmModel.LastUpdated
+  id: LastUpdated
+  parent: SimpleRelm.Interfaces.IRelmModel
+  langs:
+  - csharp
+  - vb
+  name: LastUpdated
+  nameWithType: IRelmModel.LastUpdated
+  fullName: SimpleRelm.Interfaces.IRelmModel.LastUpdated
+  type: Property
+  source:
+    remote:
+      path: SimpleRelm/Interfaces/IRelmModel.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: LastUpdated
+    path: ../SimpleRelm/Interfaces/IRelmModel.cs
+    startLine: 50
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Interfaces
+  summary: Gets or sets the date and time when the object was last updated.
+  example: []
+  syntax:
+    content: DateTime LastUpdated { get; set; }
+    parameters: []
+    return:
+      type: System.DateTime
+    content.vb: Property LastUpdated As Date
+  overload: SimpleRelm.Interfaces.IRelmModel.LastUpdated*
+- uid: SimpleRelm.Interfaces.IRelmModel.ResetCoreAttributes(System.Boolean,System.Boolean)
+  commentId: M:SimpleRelm.Interfaces.IRelmModel.ResetCoreAttributes(System.Boolean,System.Boolean)
+  id: ResetCoreAttributes(System.Boolean,System.Boolean)
+  parent: SimpleRelm.Interfaces.IRelmModel
+  langs:
+  - csharp
+  - vb
+  name: ResetCoreAttributes(bool, bool)
+  nameWithType: IRelmModel.ResetCoreAttributes(bool, bool)
+  fullName: SimpleRelm.Interfaces.IRelmModel.ResetCoreAttributes(bool, bool)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Interfaces/IRelmModel.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: ResetCoreAttributes
+    path: ../SimpleRelm/Interfaces/IRelmModel.cs
+    startLine: 61
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Interfaces
+  summary: Resets the core attributes of the model to their default values.
+  remarks: Resets fields <xref href="SimpleRelm.Interfaces.IRelmModel.Id" data-throw-if-not-resolved="false"></xref>, <xref href="SimpleRelm.Interfaces.IRelmModel.Active" data-throw-if-not-resolved="false"></xref>, <xref href="SimpleRelm.Interfaces.IRelmModel.InternalId" data-throw-if-not-resolved="false"></xref>, and <xref href="SimpleRelm.Interfaces.IRelmModel.CreateDate" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: IRelmModel ResetCoreAttributes(bool nullInternalId = false, bool resetCreateDate = true)
+    parameters:
+    - id: nullInternalId
+      type: System.Boolean
+      description: A value indicating whether the internal ID should be set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.  Pass <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to nullify the internal ID; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    - id: resetCreateDate
+      type: System.Boolean
+      description: A value indicating whether the creation date should be reset to the current date and time.  Pass <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to reset the creation date; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    return:
+      type: SimpleRelm.Interfaces.IRelmModel
+      description: The updated model instance with the core attributes reset.
+    content.vb: Function ResetCoreAttributes(nullInternalId As Boolean = False, resetCreateDate As Boolean = True) As IRelmModel
+  overload: SimpleRelm.Interfaces.IRelmModel.ResetCoreAttributes*
+  nameWithType.vb: IRelmModel.ResetCoreAttributes(Boolean, Boolean)
+  fullName.vb: SimpleRelm.Interfaces.IRelmModel.ResetCoreAttributes(Boolean, Boolean)
+  name.vb: ResetCoreAttributes(Boolean, Boolean)
+- uid: SimpleRelm.Interfaces.IRelmModel.ResetWithData(System.Data.DataRow,System.String)
+  commentId: M:SimpleRelm.Interfaces.IRelmModel.ResetWithData(System.Data.DataRow,System.String)
+  id: ResetWithData(System.Data.DataRow,System.String)
+  parent: SimpleRelm.Interfaces.IRelmModel
+  langs:
+  - csharp
+  - vb
+  name: ResetWithData(DataRow, string)
+  nameWithType: IRelmModel.ResetWithData(DataRow, string)
+  fullName: SimpleRelm.Interfaces.IRelmModel.ResetWithData(System.Data.DataRow, string)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Interfaces/IRelmModel.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: ResetWithData
+    path: ../SimpleRelm/Interfaces/IRelmModel.cs
+    startLine: 70
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Interfaces
+  summary: Resets the current model's state using the specified data and optionally sets an alternate table name.
+  example: []
+  syntax:
+    content: IRelmModel ResetWithData(DataRow modelData, string alternateTableName = null)
+    parameters:
+    - id: modelData
+      type: System.Data.DataRow
+      description: The <xref href="System.Data.DataRow" data-throw-if-not-resolved="false"></xref> containing the data to reset the model with. Cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+    - id: alternateTableName
+      type: System.String
+      description: >-
+        An optional alternate table name to associate with the model. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, the default table
+            name is used.
+    return:
+      type: SimpleRelm.Interfaces.IRelmModel
+      description: An updated instance of the model implementing <xref href="SimpleRelm.Interfaces.IRelmModel" data-throw-if-not-resolved="false"></xref> with the new data applied.
+    content.vb: Function ResetWithData(modelData As DataRow, alternateTableName As String = Nothing) As IRelmModel
+  overload: SimpleRelm.Interfaces.IRelmModel.ResetWithData*
+  nameWithType.vb: IRelmModel.ResetWithData(DataRow, String)
+  fullName.vb: SimpleRelm.Interfaces.IRelmModel.ResetWithData(System.Data.DataRow, String)
+  name.vb: ResetWithData(DataRow, String)
+- uid: SimpleRelm.Interfaces.IRelmModel.GetUnderscoreProperties(System.Boolean)
+  commentId: M:SimpleRelm.Interfaces.IRelmModel.GetUnderscoreProperties(System.Boolean)
+  id: GetUnderscoreProperties(System.Boolean)
+  parent: SimpleRelm.Interfaces.IRelmModel
+  langs:
+  - csharp
+  - vb
+  name: GetUnderscoreProperties(bool)
+  nameWithType: IRelmModel.GetUnderscoreProperties(bool)
+  fullName: SimpleRelm.Interfaces.IRelmModel.GetUnderscoreProperties(bool)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Interfaces/IRelmModel.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: GetUnderscoreProperties
+    path: ../SimpleRelm/Interfaces/IRelmModel.cs
+    startLine: 80
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Interfaces
+  summary: Retrieves a list of properties with each name converted to underscore case.
+  example: []
+  syntax:
+    content: List<KeyValuePair<string, Tuple<string, PropertyInfo>>> GetUnderscoreProperties(bool getOnlyRelmColumns = true)
+    parameters:
+    - id: getOnlyRelmColumns
+      type: System.Boolean
+      description: >-
+        A boolean value indicating whether to include only properties marked as Relm columns.  If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, only Realm column properties are included; otherwise, all underscore-prefixed properties
+            are included.
+    return:
+      type: System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.Tuple{System.String,System.Reflection.PropertyInfo}}}
+      description: >-
+        A list of key-value pairs where the key is the property name, and the value is a tuple containing the
+            property's metadata string and its <xref href="System.Reflection.PropertyInfo" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Function GetUnderscoreProperties(getOnlyRelmColumns As Boolean = True) As List(Of KeyValuePair(Of String, Tuple(Of String, PropertyInfo)))
+  overload: SimpleRelm.Interfaces.IRelmModel.GetUnderscoreProperties*
+  nameWithType.vb: IRelmModel.GetUnderscoreProperties(Boolean)
+  fullName.vb: SimpleRelm.Interfaces.IRelmModel.GetUnderscoreProperties(Boolean)
+  name.vb: GetUnderscoreProperties(Boolean)
+- uid: SimpleRelm.Interfaces.IRelmModel.WriteToDatabase(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  commentId: M:SimpleRelm.Interfaces.IRelmModel.WriteToDatabase(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  id: WriteToDatabase(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  parent: SimpleRelm.Interfaces.IRelmModel
+  langs:
+  - csharp
+  - vb
+  name: WriteToDatabase(Enum, int, bool, bool, bool, bool)
+  nameWithType: IRelmModel.WriteToDatabase(Enum, int, bool, bool, bool, bool)
+  fullName: SimpleRelm.Interfaces.IRelmModel.WriteToDatabase(System.Enum, int, bool, bool, bool, bool)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Interfaces/IRelmModel.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: WriteToDatabase
+    path: ../SimpleRelm/Interfaces/IRelmModel.cs
+    startLine: 99
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Interfaces
+  summary: Writes data to the specified database connection in batches.
+  remarks: >-
+    This method writes data to the database in batches to optimize performance.  Ensure
+        that the specified connection is valid and that the data conforms to the constraints  specified by the
+        parameter flags. If any of the flags are set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>,  the corresponding column types will
+        be allowed in the data being written.
+  example: []
+  syntax:
+    content: int WriteToDatabase(Enum connectionName, int batchSize = 10, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
+    parameters:
+    - id: connectionName
+      type: System.Enum
+      description: The name of the database connection to use. Must be a valid connection identifier.
+    - id: batchSize
+      type: System.Int32
+      description: The number of records to write in each batch. Defaults to 10. Must be greater than 0.
+    - id: allowAutoIncrementColumns
+      type: System.Boolean
+      description: Indicates whether auto-increment columns are allowed in the data being written. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    - id: allowPrimaryKeyColumns
+      type: System.Boolean
+      description: Indicates whether primary key columns are allowed in the data being written. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    - id: allowUniqueColumns
+      type: System.Boolean
+      description: Indicates whether unique columns are allowed in the data being written. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    - id: allowAutoDateColumns
+      type: System.Boolean
+      description: Indicates whether auto-generated date columns are allowed in the data being written. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    return:
+      type: System.Int32
+      description: The number of records successfully written to the database.
+    content.vb: Function WriteToDatabase(connectionName As [Enum], batchSize As Integer = 10, allowAutoIncrementColumns As Boolean = False, allowPrimaryKeyColumns As Boolean = False, allowUniqueColumns As Boolean = False, allowAutoDateColumns As Boolean = False) As Integer
+  overload: SimpleRelm.Interfaces.IRelmModel.WriteToDatabase*
+  nameWithType.vb: IRelmModel.WriteToDatabase(Enum, Integer, Boolean, Boolean, Boolean, Boolean)
+  fullName.vb: SimpleRelm.Interfaces.IRelmModel.WriteToDatabase(System.Enum, Integer, Boolean, Boolean, Boolean, Boolean)
+  name.vb: WriteToDatabase(Enum, Integer, Boolean, Boolean, Boolean, Boolean)
+- uid: SimpleRelm.Interfaces.IRelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  commentId: M:SimpleRelm.Interfaces.IRelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  id: WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  parent: SimpleRelm.Interfaces.IRelmModel
+  langs:
+  - csharp
+  - vb
+  name: WriteToDatabase(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool)
+  nameWithType: IRelmModel.WriteToDatabase(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool)
+  fullName: SimpleRelm.Interfaces.IRelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, int, bool, bool, bool, bool)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Interfaces/IRelmModel.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: WriteToDatabase
+    path: ../SimpleRelm/Interfaces/IRelmModel.cs
+    startLine: 118
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Interfaces
+  summary: Writes data to the database using the specified connection and optional transaction.
+  example: []
+  syntax:
+    content: int WriteToDatabase(MySqlConnection existingConnection, MySqlTransaction sqlTransaction = null, int BatchSize = 10, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
+    parameters:
+    - id: existingConnection
+      type: MySql.Data.MySqlClient.MySqlConnection
+      description: >-
+        An open <xref href="MySql.Data.MySqlClient.MySqlConnection" data-throw-if-not-resolved="false"></xref> to the database where the data will be written. The connection must
+            remain open for the duration of the operation.
+    - id: sqlTransaction
+      type: MySql.Data.MySqlClient.MySqlTransaction
+      description: >-
+        An optional <xref href="MySql.Data.MySqlClient.MySqlTransaction" data-throw-if-not-resolved="false"></xref> to use for the operation. If null, the operation will not be part
+            of a transaction.
+    - id: BatchSize
+      type: System.Int32
+      description: The number of rows to write in each batch. Must be greater than zero. Defaults to 10.
+    - id: allowAutoIncrementColumns
+      type: System.Boolean
+      description: A value indicating whether columns with auto-increment constraints are allowed to be written. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, auto-increment columns will be included; otherwise, they will be excluded.
+    - id: allowPrimaryKeyColumns
+      type: System.Boolean
+      description: >-
+        A value indicating whether primary key columns are allowed to be written. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, primary
+            key columns will be included; otherwise, they will be excluded.
+    - id: allowUniqueColumns
+      type: System.Boolean
+      description: >-
+        A value indicating whether unique columns are allowed to be written. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, unique
+            columns will be included; otherwise, they will be excluded.
+    - id: allowAutoDateColumns
+      type: System.Boolean
+      description: >-
+        A value indicating whether columns with automatic date generation constraints are allowed to be written. If
+            <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, such columns will be included; otherwise, they will be excluded.
+    return:
+      type: System.Int32
+      description: The number of rows successfully written to the database.
+    content.vb: Function WriteToDatabase(existingConnection As MySqlConnection, sqlTransaction As MySqlTransaction = Nothing, BatchSize As Integer = 10, allowAutoIncrementColumns As Boolean = False, allowPrimaryKeyColumns As Boolean = False, allowUniqueColumns As Boolean = False, allowAutoDateColumns As Boolean = False) As Integer
+  overload: SimpleRelm.Interfaces.IRelmModel.WriteToDatabase*
+  nameWithType.vb: IRelmModel.WriteToDatabase(MySqlConnection, MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean)
+  fullName.vb: SimpleRelm.Interfaces.IRelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean)
+  name.vb: WriteToDatabase(MySqlConnection, MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean)
+- uid: SimpleRelm.Interfaces.IRelmModel.WriteToDatabase(SimpleRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  commentId: M:SimpleRelm.Interfaces.IRelmModel.WriteToDatabase(SimpleRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  id: WriteToDatabase(SimpleRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  parent: SimpleRelm.Interfaces.IRelmModel
+  langs:
+  - csharp
+  - vb
+  name: WriteToDatabase(IRelmContext, int, bool, bool, bool, bool)
+  nameWithType: IRelmModel.WriteToDatabase(IRelmContext, int, bool, bool, bool, bool)
+  fullName: SimpleRelm.Interfaces.IRelmModel.WriteToDatabase(SimpleRelm.Interfaces.IRelmContext, int, bool, bool, bool, bool)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Interfaces/IRelmModel.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: WriteToDatabase
+    path: ../SimpleRelm/Interfaces/IRelmModel.cs
+    startLine: 137
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Interfaces
+  summary: >-
+    Writes data to the database using the specified context and batch size, with options to control column
+
+    behavior.
+  remarks: >-
+    This method provides fine-grained control over how data is written to the database by
+        allowing or disallowing writes to specific types of columns. Use the optional parameters to customize the
+        behavior based on the constraints of your database schema.
+  example: []
+  syntax:
+    content: int WriteToDatabase(IRelmContext relmContext, int batchSize = 10, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
+    parameters:
+    - id: relmContext
+      type: SimpleRelm.Interfaces.IRelmContext
+      description: The database context used to perform the write operation. This cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+    - id: batchSize
+      type: System.Int32
+      description: The number of records to write in each batch. Must be greater than 0. The default value is 10.
+    - id: allowAutoIncrementColumns
+      type: System.Boolean
+      description: >-
+        If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, allows writing to columns with auto-increment constraints; otherwise, these
+            columns are ignored.
+    - id: allowPrimaryKeyColumns
+      type: System.Boolean
+      description: If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, allows writing to primary key columns; otherwise, these columns are ignored.
+    - id: allowUniqueColumns
+      type: System.Boolean
+      description: >-
+        If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, allows writing to columns with unique constraints; otherwise, these columns are
+            ignored.
+    - id: allowAutoDateColumns
+      type: System.Boolean
+      description: >-
+        If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, allows writing to columns with automatic date generation constraints; otherwise,
+            these columns are ignored.
+    return:
+      type: System.Int32
+      description: The number of records successfully written to the database.
+    content.vb: Function WriteToDatabase(relmContext As IRelmContext, batchSize As Integer = 10, allowAutoIncrementColumns As Boolean = False, allowPrimaryKeyColumns As Boolean = False, allowUniqueColumns As Boolean = False, allowAutoDateColumns As Boolean = False) As Integer
+  overload: SimpleRelm.Interfaces.IRelmModel.WriteToDatabase*
+  nameWithType.vb: IRelmModel.WriteToDatabase(IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean)
+  fullName.vb: SimpleRelm.Interfaces.IRelmModel.WriteToDatabase(SimpleRelm.Interfaces.IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean)
+  name.vb: WriteToDatabase(IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean)
+- uid: SimpleRelm.Interfaces.IRelmModel.WriteToDatabase(SimpleRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  commentId: M:SimpleRelm.Interfaces.IRelmModel.WriteToDatabase(SimpleRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  id: WriteToDatabase(SimpleRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  parent: SimpleRelm.Interfaces.IRelmModel
+  langs:
+  - csharp
+  - vb
+  name: WriteToDatabase(IRelmQuickContext, int, bool, bool, bool, bool)
+  nameWithType: IRelmModel.WriteToDatabase(IRelmQuickContext, int, bool, bool, bool, bool)
+  fullName: SimpleRelm.Interfaces.IRelmModel.WriteToDatabase(SimpleRelm.Interfaces.RelmQuick.IRelmQuickContext, int, bool, bool, bool, bool)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Interfaces/IRelmModel.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: WriteToDatabase
+    path: ../SimpleRelm/Interfaces/IRelmModel.cs
+    startLine: 158
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Interfaces
+  summary: >-
+    Writes data to the database using the specified context and batch size, with options to control column
+
+    constraints.
+  remarks: >-
+    This method provides fine-grained control over which types of columns are included
+        during the write operation. Use the boolean parameters to enable or disable specific column constraints as
+        needed.
+  example: []
+  syntax:
+    content: int WriteToDatabase(IRelmQuickContext relmQuickContext, int batchSize = 10, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
+    parameters:
+    - id: relmQuickContext
+      type: SimpleRelm.Interfaces.RelmQuick.IRelmQuickContext
+      description: >-
+        The database context used to perform the write operation. This context must be properly initialized before
+            calling this method.
+    - id: batchSize
+      type: System.Int32
+      description: The number of records to write in each batch. Must be greater than zero. The default value is 10.
+    - id: allowAutoIncrementColumns
+      type: System.Boolean
+      description: A value indicating whether auto-increment columns are allowed during the write operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, auto-increment columns will be included; otherwise, they will be excluded.
+    - id: allowPrimaryKeyColumns
+      type: System.Boolean
+      description: A value indicating whether primary key columns are allowed during the write operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, primary key columns will be included; otherwise, they will be excluded.
+    - id: allowUniqueColumns
+      type: System.Boolean
+      description: >-
+        A value indicating whether unique columns are allowed during the write operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>,
+            unique columns will be included; otherwise, they will be excluded.
+    - id: allowAutoDateColumns
+      type: System.Boolean
+      description: A value indicating whether auto-date columns are allowed during the write operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, auto-date columns will be included; otherwise, they will be excluded.
+    return:
+      type: System.Int32
+      description: The total number of records successfully written to the database.
+    content.vb: Function WriteToDatabase(relmQuickContext As IRelmQuickContext, batchSize As Integer = 10, allowAutoIncrementColumns As Boolean = False, allowPrimaryKeyColumns As Boolean = False, allowUniqueColumns As Boolean = False, allowAutoDateColumns As Boolean = False) As Integer
+  overload: SimpleRelm.Interfaces.IRelmModel.WriteToDatabase*
+  nameWithType.vb: IRelmModel.WriteToDatabase(IRelmQuickContext, Integer, Boolean, Boolean, Boolean, Boolean)
+  fullName.vb: SimpleRelm.Interfaces.IRelmModel.WriteToDatabase(SimpleRelm.Interfaces.RelmQuick.IRelmQuickContext, Integer, Boolean, Boolean, Boolean, Boolean)
+  name.vb: WriteToDatabase(IRelmQuickContext, Integer, Boolean, Boolean, Boolean, Boolean)
+- uid: SimpleRelm.Interfaces.IRelmModel.GenerateDTO(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String,System.Func{SimpleRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}},System.Int32)
+  commentId: M:SimpleRelm.Interfaces.IRelmModel.GenerateDTO(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String,System.Func{SimpleRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}},System.Int32)
+  id: GenerateDTO(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String,System.Func{SimpleRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}},System.Int32)
+  parent: SimpleRelm.Interfaces.IRelmModel
+  langs:
+  - csharp
+  - vb
+  name: GenerateDTO(IEnumerable<string>, IEnumerable<string>, string, Func<IRelmModel, Dictionary<string, object>>, int)
+  nameWithType: IRelmModel.GenerateDTO(IEnumerable<string>, IEnumerable<string>, string, Func<IRelmModel, Dictionary<string, object>>, int)
+  fullName: SimpleRelm.Interfaces.IRelmModel.GenerateDTO(System.Collections.Generic.IEnumerable<string>, System.Collections.Generic.IEnumerable<string>, string, System.Func<SimpleRelm.Interfaces.IRelmModel, System.Collections.Generic.Dictionary<string, object>>, int)
+  type: Method
+  source:
+    remote:
+      path: SimpleRelm/Interfaces/IRelmModel.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: GenerateDTO
+    path: ../SimpleRelm/Interfaces/IRelmModel.cs
+    startLine: 178
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Interfaces
+  summary: >-
+    Generates a dynamic Data Transfer Object (DTO) based on the specified properties and additional
+
+    configuration.
+  remarks: >-
+    The method allows fine-grained control over the properties included in the DTO by
+        specifying inclusion and exclusion lists. If both <code class="paramref">includeProperties</code> and <code class="paramref">excludeProperties</code> are provided, the exclusion list takes precedence.
+  example: []
+  syntax:
+    content: dynamic GenerateDTO(IEnumerable<string> includeProperties = null, IEnumerable<string> excludeProperties = null, string sourceObjectName = null, Func<IRelmModel, Dictionary<string, object>> getAdditionalObjectProperties = null, int iteration = 0)
+    parameters:
+    - id: includeProperties
+      type: System.Collections.Generic.IEnumerable{System.String}
+      description: >-
+        A collection of property names to include in the generated DTO. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, all properties
+            are included by default.
+    - id: excludeProperties
+      type: System.Collections.Generic.IEnumerable{System.String}
+      description: >-
+        A collection of property names to exclude from the generated DTO. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, no properties
+            are excluded.
+    - id: sourceObjectName
+      type: System.String
+      description: >-
+        The name of the source object from which the DTO is generated. Can be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if the source
+            object name is not required.
+    - id: getAdditionalObjectProperties
+      type: System.Func{SimpleRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}}
+      description: >-
+        A function that takes an <xref href="SimpleRelm.Interfaces.IRelmModel" data-throw-if-not-resolved="false"></xref> instance and returns a dictionary of additional properties
+            to include in the DTO. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, no additional properties are added.
+    - id: iteration
+      type: System.Int32
+      description: The current iteration count, used to track recursive or iterative calls. Defaults to 0.
+    return:
+      type: dynamic
+      description: >-
+        A dynamic object representing the generated DTO, including the specified properties and any additional
+            properties provided.
+    content.vb: Function GenerateDTO(includeProperties As IEnumerable(Of String) = Nothing, excludeProperties As IEnumerable(Of String) = Nothing, sourceObjectName As String = Nothing, getAdditionalObjectProperties As Func(Of IRelmModel, Dictionary(Of String, Object)) = Nothing, iteration As Integer = 0) As Object
+  overload: SimpleRelm.Interfaces.IRelmModel.GenerateDTO*
+  nameWithType.vb: IRelmModel.GenerateDTO(IEnumerable(Of String), IEnumerable(Of String), String, Func(Of IRelmModel, Dictionary(Of String, Object)), Integer)
+  fullName.vb: SimpleRelm.Interfaces.IRelmModel.GenerateDTO(System.Collections.Generic.IEnumerable(Of String), System.Collections.Generic.IEnumerable(Of String), String, System.Func(Of SimpleRelm.Interfaces.IRelmModel, System.Collections.Generic.Dictionary(Of String, Object)), Integer)
+  name.vb: GenerateDTO(IEnumerable(Of String), IEnumerable(Of String), String, Func(Of IRelmModel, Dictionary(Of String, Object)), Integer)
+references:
+- uid: SimpleRelm.Interfaces
+  commentId: N:SimpleRelm.Interfaces
+  href: SimpleRelm.html
+  name: SimpleRelm.Interfaces
+  nameWithType: SimpleRelm.Interfaces
+  fullName: SimpleRelm.Interfaces
+  spec.csharp:
+  - uid: SimpleRelm
+    name: SimpleRelm
+    href: SimpleRelm.html
+  - name: .
+  - uid: SimpleRelm.Interfaces
+    name: Interfaces
+    href: SimpleRelm.Interfaces.html
+  spec.vb:
+  - uid: SimpleRelm
+    name: SimpleRelm
+    href: SimpleRelm.html
+  - name: .
+  - uid: SimpleRelm.Interfaces
+    name: Interfaces
+    href: SimpleRelm.Interfaces.html
+- uid: SimpleRelm.Interfaces.IRelmModel.Id*
+  commentId: Overload:SimpleRelm.Interfaces.IRelmModel.Id
+  href: SimpleRelm.Interfaces.IRelmModel.html#SimpleRelm_Interfaces_IRelmModel_Id
+  name: Id
+  nameWithType: IRelmModel.Id
+  fullName: SimpleRelm.Interfaces.IRelmModel.Id
+- uid: System.Nullable{System.Int64}
+  commentId: T:System.Nullable{System.Int64}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long?
+  nameWithType: long?
+  fullName: long?
+  nameWithType.vb: Long?
+  fullName.vb: Long?
+  name.vb: Long?
+  spec.csharp:
+  - uid: System.Int64
+    name: long
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int64
+  - name: '?'
+  spec.vb:
+  - uid: System.Int64
+    name: Long
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int64
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SimpleRelm.Interfaces.IRelmModel.Active*
+  commentId: Overload:SimpleRelm.Interfaces.IRelmModel.Active
+  href: SimpleRelm.Interfaces.IRelmModel.html#SimpleRelm_Interfaces_IRelmModel_Active
+  name: Active
+  nameWithType: IRelmModel.Active
+  fullName: SimpleRelm.Interfaces.IRelmModel.Active
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: SimpleRelm.Interfaces.IRelmModel.InternalId*
+  commentId: Overload:SimpleRelm.Interfaces.IRelmModel.InternalId
+  href: SimpleRelm.Interfaces.IRelmModel.html#SimpleRelm_Interfaces_IRelmModel_InternalId
+  name: InternalId
+  nameWithType: IRelmModel.InternalId
+  fullName: SimpleRelm.Interfaces.IRelmModel.InternalId
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: SimpleRelm.Interfaces.IRelmModel.CreateDate*
+  commentId: Overload:SimpleRelm.Interfaces.IRelmModel.CreateDate
+  href: SimpleRelm.Interfaces.IRelmModel.html#SimpleRelm_Interfaces_IRelmModel_CreateDate
+  name: CreateDate
+  nameWithType: IRelmModel.CreateDate
+  fullName: SimpleRelm.Interfaces.IRelmModel.CreateDate
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+  nameWithType.vb: Date
+  fullName.vb: Date
+  name.vb: Date
+- uid: SimpleRelm.Interfaces.IRelmModel.LastUpdated*
+  commentId: Overload:SimpleRelm.Interfaces.IRelmModel.LastUpdated
+  href: SimpleRelm.Interfaces.IRelmModel.html#SimpleRelm_Interfaces_IRelmModel_LastUpdated
+  name: LastUpdated
+  nameWithType: IRelmModel.LastUpdated
+  fullName: SimpleRelm.Interfaces.IRelmModel.LastUpdated
+- uid: SimpleRelm.Interfaces.IRelmModel.Id
+  commentId: P:SimpleRelm.Interfaces.IRelmModel.Id
+  parent: SimpleRelm.Interfaces.IRelmModel
+  href: SimpleRelm.Interfaces.IRelmModel.html#SimpleRelm_Interfaces_IRelmModel_Id
+  name: Id
+  nameWithType: IRelmModel.Id
+  fullName: SimpleRelm.Interfaces.IRelmModel.Id
+- uid: SimpleRelm.Interfaces.IRelmModel.Active
+  commentId: P:SimpleRelm.Interfaces.IRelmModel.Active
+  parent: SimpleRelm.Interfaces.IRelmModel
+  href: SimpleRelm.Interfaces.IRelmModel.html#SimpleRelm_Interfaces_IRelmModel_Active
+  name: Active
+  nameWithType: IRelmModel.Active
+  fullName: SimpleRelm.Interfaces.IRelmModel.Active
+- uid: SimpleRelm.Interfaces.IRelmModel.InternalId
+  commentId: P:SimpleRelm.Interfaces.IRelmModel.InternalId
+  parent: SimpleRelm.Interfaces.IRelmModel
+  href: SimpleRelm.Interfaces.IRelmModel.html#SimpleRelm_Interfaces_IRelmModel_InternalId
+  name: InternalId
+  nameWithType: IRelmModel.InternalId
+  fullName: SimpleRelm.Interfaces.IRelmModel.InternalId
+- uid: SimpleRelm.Interfaces.IRelmModel.CreateDate
+  commentId: P:SimpleRelm.Interfaces.IRelmModel.CreateDate
+  parent: SimpleRelm.Interfaces.IRelmModel
+  href: SimpleRelm.Interfaces.IRelmModel.html#SimpleRelm_Interfaces_IRelmModel_CreateDate
+  name: CreateDate
+  nameWithType: IRelmModel.CreateDate
+  fullName: SimpleRelm.Interfaces.IRelmModel.CreateDate
+- uid: SimpleRelm.Interfaces.IRelmModel.ResetCoreAttributes*
+  commentId: Overload:SimpleRelm.Interfaces.IRelmModel.ResetCoreAttributes
+  href: SimpleRelm.Interfaces.IRelmModel.html#SimpleRelm_Interfaces_IRelmModel_ResetCoreAttributes_System_Boolean_System_Boolean_
+  name: ResetCoreAttributes
+  nameWithType: IRelmModel.ResetCoreAttributes
+  fullName: SimpleRelm.Interfaces.IRelmModel.ResetCoreAttributes
+- uid: SimpleRelm.Interfaces.IRelmModel
+  commentId: T:SimpleRelm.Interfaces.IRelmModel
+  parent: SimpleRelm.Interfaces
+  href: SimpleRelm.Interfaces.IRelmModel.html
+  name: IRelmModel
+  nameWithType: IRelmModel
+  fullName: SimpleRelm.Interfaces.IRelmModel
+- uid: System.Data.DataRow
+  commentId: T:System.Data.DataRow
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datarow
+  name: DataRow
+  nameWithType: DataRow
+  fullName: System.Data.DataRow
+- uid: SimpleRelm.Interfaces.IRelmModel.ResetWithData*
+  commentId: Overload:SimpleRelm.Interfaces.IRelmModel.ResetWithData
+  href: SimpleRelm.Interfaces.IRelmModel.html#SimpleRelm_Interfaces_IRelmModel_ResetWithData_System_Data_DataRow_System_String_
+  name: ResetWithData
+  nameWithType: IRelmModel.ResetWithData
+  fullName: SimpleRelm.Interfaces.IRelmModel.ResetWithData
+- uid: System.Data
+  commentId: N:System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Data
+  nameWithType: System.Data
+  fullName: System.Data
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+- uid: System.Reflection.PropertyInfo
+  commentId: T:System.Reflection.PropertyInfo
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.reflection.propertyinfo
+  name: PropertyInfo
+  nameWithType: PropertyInfo
+  fullName: System.Reflection.PropertyInfo
+- uid: SimpleRelm.Interfaces.IRelmModel.GetUnderscoreProperties*
+  commentId: Overload:SimpleRelm.Interfaces.IRelmModel.GetUnderscoreProperties
+  href: SimpleRelm.Interfaces.IRelmModel.html#SimpleRelm_Interfaces_IRelmModel_GetUnderscoreProperties_System_Boolean_
+  name: GetUnderscoreProperties
+  nameWithType: IRelmModel.GetUnderscoreProperties
+  fullName: SimpleRelm.Interfaces.IRelmModel.GetUnderscoreProperties
+- uid: System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.Tuple{System.String,System.Reflection.PropertyInfo}}}
+  commentId: T:System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.Tuple{System.String,System.Reflection.PropertyInfo}}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<KeyValuePair<string, Tuple<string, PropertyInfo>>>
+  nameWithType: List<KeyValuePair<string, Tuple<string, PropertyInfo>>>
+  fullName: System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<string, System.Tuple<string, System.Reflection.PropertyInfo>>>
+  nameWithType.vb: List(Of KeyValuePair(Of String, Tuple(Of String, PropertyInfo)))
+  fullName.vb: System.Collections.Generic.List(Of System.Collections.Generic.KeyValuePair(Of String, System.Tuple(Of String, System.Reflection.PropertyInfo)))
+  name.vb: List(Of KeyValuePair(Of String, Tuple(Of String, PropertyInfo)))
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Tuple`2
+    name: Tuple
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.tuple-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.PropertyInfo
+    name: PropertyInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.propertyinfo
+  - name: '>'
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Tuple`2
+    name: Tuple
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.tuple-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.PropertyInfo
+    name: PropertyInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.propertyinfo
+  - name: )
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: SimpleRelm.Interfaces.IRelmModel.WriteToDatabase*
+  commentId: Overload:SimpleRelm.Interfaces.IRelmModel.WriteToDatabase
+  href: SimpleRelm.Interfaces.IRelmModel.html#SimpleRelm_Interfaces_IRelmModel_WriteToDatabase_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  name: WriteToDatabase
+  nameWithType: IRelmModel.WriteToDatabase
+  fullName: SimpleRelm.Interfaces.IRelmModel.WriteToDatabase
+- uid: System.Enum
+  commentId: T:System.Enum
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.enum
+  name: Enum
+  nameWithType: Enum
+  fullName: System.Enum
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: MySql.Data.MySqlClient.MySqlConnection
+  commentId: T:MySql.Data.MySqlClient.MySqlConnection
+  parent: MySql.Data.MySqlClient
+  isExternal: true
+  name: MySqlConnection
+  nameWithType: MySqlConnection
+  fullName: MySql.Data.MySqlClient.MySqlConnection
+- uid: MySql.Data.MySqlClient.MySqlTransaction
+  commentId: T:MySql.Data.MySqlClient.MySqlTransaction
+  parent: MySql.Data.MySqlClient
+  isExternal: true
+  name: MySqlTransaction
+  nameWithType: MySqlTransaction
+  fullName: MySql.Data.MySqlClient.MySqlTransaction
+- uid: MySql.Data.MySqlClient
+  commentId: N:MySql.Data.MySqlClient
+  isExternal: true
+  name: MySql.Data.MySqlClient
+  nameWithType: MySql.Data.MySqlClient
+  fullName: MySql.Data.MySqlClient
+  spec.csharp:
+  - uid: MySql
+    name: MySql
+    isExternal: true
+  - name: .
+  - uid: MySql.Data
+    name: Data
+    isExternal: true
+  - name: .
+  - uid: MySql.Data.MySqlClient
+    name: MySqlClient
+    isExternal: true
+  spec.vb:
+  - uid: MySql
+    name: MySql
+    isExternal: true
+  - name: .
+  - uid: MySql.Data
+    name: Data
+    isExternal: true
+  - name: .
+  - uid: MySql.Data.MySqlClient
+    name: MySqlClient
+    isExternal: true
+- uid: SimpleRelm.Interfaces.IRelmContext
+  commentId: T:SimpleRelm.Interfaces.IRelmContext
+  parent: SimpleRelm.Interfaces
+  href: SimpleRelm.Interfaces.IRelmContext.html
+  name: IRelmContext
+  nameWithType: IRelmContext
+  fullName: SimpleRelm.Interfaces.IRelmContext
+- uid: SimpleRelm.Interfaces.RelmQuick.IRelmQuickContext
+  commentId: T:SimpleRelm.Interfaces.RelmQuick.IRelmQuickContext
+  parent: SimpleRelm.Interfaces.RelmQuick
+  href: SimpleRelm.Interfaces.RelmQuick.IRelmQuickContext.html
+  name: IRelmQuickContext
+  nameWithType: IRelmQuickContext
+  fullName: SimpleRelm.Interfaces.RelmQuick.IRelmQuickContext
+- uid: SimpleRelm.Interfaces.RelmQuick
+  commentId: N:SimpleRelm.Interfaces.RelmQuick
+  href: SimpleRelm.html
+  name: SimpleRelm.Interfaces.RelmQuick
+  nameWithType: SimpleRelm.Interfaces.RelmQuick
+  fullName: SimpleRelm.Interfaces.RelmQuick
+  spec.csharp:
+  - uid: SimpleRelm
+    name: SimpleRelm
+    href: SimpleRelm.html
+  - name: .
+  - uid: SimpleRelm.Interfaces
+    name: Interfaces
+    href: SimpleRelm.Interfaces.html
+  - name: .
+  - uid: SimpleRelm.Interfaces.RelmQuick
+    name: RelmQuick
+    href: SimpleRelm.Interfaces.RelmQuick.html
+  spec.vb:
+  - uid: SimpleRelm
+    name: SimpleRelm
+    href: SimpleRelm.html
+  - name: .
+  - uid: SimpleRelm.Interfaces
+    name: Interfaces
+    href: SimpleRelm.Interfaces.html
+  - name: .
+  - uid: SimpleRelm.Interfaces.RelmQuick
+    name: RelmQuick
+    href: SimpleRelm.Interfaces.RelmQuick.html
+- uid: SimpleRelm.Interfaces.IRelmModel.GenerateDTO*
+  commentId: Overload:SimpleRelm.Interfaces.IRelmModel.GenerateDTO
+  href: SimpleRelm.Interfaces.IRelmModel.html#SimpleRelm_Interfaces_IRelmModel_GenerateDTO_System_Collections_Generic_IEnumerable_System_String__System_Collections_Generic_IEnumerable_System_String__System_String_System_Func_SimpleRelm_Interfaces_IRelmModel_System_Collections_Generic_Dictionary_System_String_System_Object___System_Int32_
+  name: GenerateDTO
+  nameWithType: IRelmModel.GenerateDTO
+  fullName: SimpleRelm.Interfaces.IRelmModel.GenerateDTO
+- uid: System.Collections.Generic.IEnumerable{System.String}
+  commentId: T:System.Collections.Generic.IEnumerable{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<string>
+  nameWithType: IEnumerable<string>
+  fullName: System.Collections.Generic.IEnumerable<string>
+  nameWithType.vb: IEnumerable(Of String)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of String)
+  name.vb: IEnumerable(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Func{SimpleRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}}
+  commentId: T:System.Func{SimpleRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}}
+  parent: System
+  definition: System.Func`2
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<IRelmModel, Dictionary<string, object>>
+  nameWithType: Func<IRelmModel, Dictionary<string, object>>
+  fullName: System.Func<SimpleRelm.Interfaces.IRelmModel, System.Collections.Generic.Dictionary<string, object>>
+  nameWithType.vb: Func(Of IRelmModel, Dictionary(Of String, Object))
+  fullName.vb: System.Func(Of SimpleRelm.Interfaces.IRelmModel, System.Collections.Generic.Dictionary(Of String, Object))
+  name.vb: Func(Of IRelmModel, Dictionary(Of String, Object))
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: SimpleRelm.Interfaces.IRelmModel
+    name: IRelmModel
+    href: SimpleRelm.Interfaces.IRelmModel.html
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SimpleRelm.Interfaces.IRelmModel
+    name: IRelmModel
+    href: SimpleRelm.Interfaces.IRelmModel.html
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  - name: )
+- uid: dynamic
+  commentId: T:System.Object
+  isExternal: true
+  name: dynamic
+  nameWithType: dynamic
+  fullName: dynamic
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )

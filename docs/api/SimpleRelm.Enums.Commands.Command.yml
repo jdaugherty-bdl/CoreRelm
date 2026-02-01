@@ -1,0 +1,504 @@
+### YamlMime:ManagedReference
+items:
+- uid: SimpleRelm.Enums.Commands.Command
+  commentId: T:SimpleRelm.Enums.Commands.Command
+  id: Commands.Command
+  parent: SimpleRelm.Enums
+  children:
+  - SimpleRelm.Enums.Commands.Command.Count
+  - SimpleRelm.Enums.Commands.Command.DistinctBy
+  - SimpleRelm.Enums.Commands.Command.GroupBy
+  - SimpleRelm.Enums.Commands.Command.Limit
+  - SimpleRelm.Enums.Commands.Command.Offset
+  - SimpleRelm.Enums.Commands.Command.OrderBy
+  - SimpleRelm.Enums.Commands.Command.OrderByDescending
+  - SimpleRelm.Enums.Commands.Command.Reference
+  - SimpleRelm.Enums.Commands.Command.Set
+  - SimpleRelm.Enums.Commands.Command.SetPostfix
+  - SimpleRelm.Enums.Commands.Command.Where
+  langs:
+  - csharp
+  - vb
+  name: Commands.Command
+  nameWithType: Commands.Command
+  fullName: SimpleRelm.Enums.Commands.Command
+  type: Enum
+  source:
+    remote:
+      path: SimpleRelm/Enums/Commands.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: Command
+    path: ../SimpleRelm/Enums/Commands.cs
+    startLine: 22
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Enums
+  summary: Represents the set of commands that can be used to define and manipulate query operations.
+  remarks: >-
+    This enumeration provides a collection of commands commonly used in query-building
+        scenarios,  such as filtering, sorting, grouping, and limiting results. Each command corresponds to a
+        specific  operation that can be applied to a query.
+  example: []
+  syntax:
+    content: public enum Commands.Command
+    content.vb: Public Enum Commands.Command
+- uid: SimpleRelm.Enums.Commands.Command.Where
+  commentId: F:SimpleRelm.Enums.Commands.Command.Where
+  id: Where
+  parent: SimpleRelm.Enums.Commands.Command
+  langs:
+  - csharp
+  - vb
+  name: Where
+  nameWithType: Commands.Command.Where
+  fullName: SimpleRelm.Enums.Commands.Command.Where
+  type: Field
+  source:
+    remote:
+      path: SimpleRelm/Enums/Commands.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: Where
+    path: ../SimpleRelm/Enums/Commands.cs
+    startLine: 29
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Enums
+  summary: Filters a sequence of values based on a predicate.
+  remarks: >-
+    This method uses deferred execution. The query represented by this method is
+        not executed until the resulting sequence is enumerated.
+  example: []
+  syntax:
+    content: Where = 0
+    return:
+      type: SimpleRelm.Enums.Commands.Command
+- uid: SimpleRelm.Enums.Commands.Command.Reference
+  commentId: F:SimpleRelm.Enums.Commands.Command.Reference
+  id: Reference
+  parent: SimpleRelm.Enums.Commands.Command
+  langs:
+  - csharp
+  - vb
+  name: Reference
+  nameWithType: Commands.Command.Reference
+  fullName: SimpleRelm.Enums.Commands.Command.Reference
+  type: Field
+  source:
+    remote:
+      path: SimpleRelm/Enums/Commands.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: Reference
+    path: ../SimpleRelm/Enums/Commands.cs
+    startLine: 36
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Enums
+  summary: Represents a reference to an object or entity.
+  remarks: >-
+    This class is typically used to store and manage references to other objects
+        or entities. It may include additional metadata or functionality depending on the specific
+        implementation.
+  example: []
+  syntax:
+    content: Reference = 1
+    return:
+      type: SimpleRelm.Enums.Commands.Command
+- uid: SimpleRelm.Enums.Commands.Command.OrderBy
+  commentId: F:SimpleRelm.Enums.Commands.Command.OrderBy
+  id: OrderBy
+  parent: SimpleRelm.Enums.Commands.Command
+  langs:
+  - csharp
+  - vb
+  name: OrderBy
+  nameWithType: Commands.Command.OrderBy
+  fullName: SimpleRelm.Enums.Commands.Command.OrderBy
+  type: Field
+  source:
+    remote:
+      path: SimpleRelm/Enums/Commands.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: OrderBy
+    path: ../SimpleRelm/Enums/Commands.cs
+    startLine: 44
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Enums
+  summary: Sorts the elements of a sequence in ascending order according to a specified key.
+  remarks: >-
+    This method performs a stable sort, meaning that if two elements have the
+        same key, their original order in the sequence is preserved. To perform a descending sort, use the <xref href="System.Linq.Enumerable.OrderByDescending%60%602(System.Collections.Generic.IEnumerable%7b%60%600%7d%2cSystem.Func%7b%60%600%2c%60%601%7d)" data-throw-if-not-resolved="false"></xref>
+        method.
+  example: []
+  syntax:
+    content: OrderBy = 2
+    return:
+      type: SimpleRelm.Enums.Commands.Command
+- uid: SimpleRelm.Enums.Commands.Command.OrderByDescending
+  commentId: F:SimpleRelm.Enums.Commands.Command.OrderByDescending
+  id: OrderByDescending
+  parent: SimpleRelm.Enums.Commands.Command
+  langs:
+  - csharp
+  - vb
+  name: OrderByDescending
+  nameWithType: Commands.Command.OrderByDescending
+  fullName: SimpleRelm.Enums.Commands.Command.OrderByDescending
+  type: Field
+  source:
+    remote:
+      path: SimpleRelm/Enums/Commands.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: OrderByDescending
+    path: ../SimpleRelm/Enums/Commands.cs
+    startLine: 50
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Enums
+  summary: Sorts the elements of a sequence in descending order according to a specified key.
+  remarks: >-
+    This method performs a stable sort; that is, if two elements have the same
+        key, their original order is preserved in the returned sequence.
+  example: []
+  syntax:
+    content: OrderByDescending = 3
+    return:
+      type: SimpleRelm.Enums.Commands.Command
+- uid: SimpleRelm.Enums.Commands.Command.Set
+  commentId: F:SimpleRelm.Enums.Commands.Command.Set
+  id: Set
+  parent: SimpleRelm.Enums.Commands.Command
+  langs:
+  - csharp
+  - vb
+  name: Set
+  nameWithType: Commands.Command.Set
+  fullName: SimpleRelm.Enums.Commands.Command.Set
+  type: Field
+  source:
+    remote:
+      path: SimpleRelm/Enums/Commands.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: Set
+    path: ../SimpleRelm/Enums/Commands.cs
+    startLine: 56
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Enums
+  summary: Sets the value of the specified property or field.
+  remarks: >-
+    This method allows dynamic assignment of values to properties or fields by
+        name. Ensure that the property or field exists and is accessible in the current context.
+  example: []
+  syntax:
+    content: Set = 4
+    return:
+      type: SimpleRelm.Enums.Commands.Command
+- uid: SimpleRelm.Enums.Commands.Command.SetPostfix
+  commentId: F:SimpleRelm.Enums.Commands.Command.SetPostfix
+  id: SetPostfix
+  parent: SimpleRelm.Enums.Commands.Command
+  langs:
+  - csharp
+  - vb
+  name: SetPostfix
+  nameWithType: Commands.Command.SetPostfix
+  fullName: SimpleRelm.Enums.Commands.Command.SetPostfix
+  type: Field
+  source:
+    remote:
+      path: SimpleRelm/Enums/Commands.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: SetPostfix
+    path: ../SimpleRelm/Enums/Commands.cs
+    startLine: 60
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Enums
+  summary: Sets the postfix string that will be appended to the output of the operation.
+  example: []
+  syntax:
+    content: SetPostfix = 5
+    return:
+      type: SimpleRelm.Enums.Commands.Command
+- uid: SimpleRelm.Enums.Commands.Command.GroupBy
+  commentId: F:SimpleRelm.Enums.Commands.Command.GroupBy
+  id: GroupBy
+  parent: SimpleRelm.Enums.Commands.Command
+  langs:
+  - csharp
+  - vb
+  name: GroupBy
+  nameWithType: Commands.Command.GroupBy
+  fullName: SimpleRelm.Enums.Commands.Command.GroupBy
+  type: Field
+  source:
+    remote:
+      path: SimpleRelm/Enums/Commands.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: GroupBy
+    path: ../SimpleRelm/Enums/Commands.cs
+    startLine: 66
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Enums
+  summary: Groups the elements of a sequence according to a specified key selector function.
+  remarks: >-
+    This method uses deferred execution. The query is not executed until the
+        resulting collection is enumerated.
+  example: []
+  syntax:
+    content: GroupBy = 6
+    return:
+      type: SimpleRelm.Enums.Commands.Command
+- uid: SimpleRelm.Enums.Commands.Command.Limit
+  commentId: F:SimpleRelm.Enums.Commands.Command.Limit
+  id: Limit
+  parent: SimpleRelm.Enums.Commands.Command
+  langs:
+  - csharp
+  - vb
+  name: Limit
+  nameWithType: Commands.Command.Limit
+  fullName: SimpleRelm.Enums.Commands.Command.Limit
+  type: Field
+  source:
+    remote:
+      path: SimpleRelm/Enums/Commands.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: Limit
+    path: ../SimpleRelm/Enums/Commands.cs
+    startLine: 70
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Enums
+  summary: Gets or sets the maximum allowable limit result for the operation.
+  example: []
+  syntax:
+    content: Limit = 7
+    return:
+      type: SimpleRelm.Enums.Commands.Command
+- uid: SimpleRelm.Enums.Commands.Command.Offset
+  commentId: F:SimpleRelm.Enums.Commands.Command.Offset
+  id: Offset
+  parent: SimpleRelm.Enums.Commands.Command
+  langs:
+  - csharp
+  - vb
+  name: Offset
+  nameWithType: Commands.Command.Offset
+  fullName: SimpleRelm.Enums.Commands.Command.Offset
+  type: Field
+  source:
+    remote:
+      path: SimpleRelm/Enums/Commands.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: Offset
+    path: ../SimpleRelm/Enums/Commands.cs
+    startLine: 74
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Enums
+  summary: Gets or sets the offset value used for positioning or alignment.
+  example: []
+  syntax:
+    content: Offset = 8
+    return:
+      type: SimpleRelm.Enums.Commands.Command
+- uid: SimpleRelm.Enums.Commands.Command.DistinctBy
+  commentId: F:SimpleRelm.Enums.Commands.Command.DistinctBy
+  id: DistinctBy
+  parent: SimpleRelm.Enums.Commands.Command
+  langs:
+  - csharp
+  - vb
+  name: DistinctBy
+  nameWithType: Commands.Command.DistinctBy
+  fullName: SimpleRelm.Enums.Commands.Command.DistinctBy
+  type: Field
+  source:
+    remote:
+      path: SimpleRelm/Enums/Commands.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: DistinctBy
+    path: ../SimpleRelm/Enums/Commands.cs
+    startLine: 82
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Enums
+  summary: Returns a collection of distinct elements from the input sequence based on a specified key selector.
+  remarks: >-
+    This method uses deferred execution. The distinctness of elements is
+        determined by comparing the keys returned by <code class="paramref">keySelector</code>. The order of the elements
+        in the returned collection is preserved based on their first occurrence in the source
+        sequence.
+  example: []
+  syntax:
+    content: DistinctBy = 9
+    return:
+      type: SimpleRelm.Enums.Commands.Command
+- uid: SimpleRelm.Enums.Commands.Command.Count
+  commentId: F:SimpleRelm.Enums.Commands.Command.Count
+  id: Count
+  parent: SimpleRelm.Enums.Commands.Command
+  langs:
+  - csharp
+  - vb
+  name: Count
+  nameWithType: Commands.Command.Count
+  fullName: SimpleRelm.Enums.Commands.Command.Count
+  type: Field
+  source:
+    remote:
+      path: SimpleRelm/Enums/Commands.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/SimpleRelm.git
+    id: Count
+    path: ../SimpleRelm/Enums/Commands.cs
+    startLine: 86
+  assemblies:
+  - SimpleRelm
+  namespace: SimpleRelm.Enums
+  summary: Gets the number of elements contained in the collection.
+  example: []
+  syntax:
+    content: Count = 10
+    return:
+      type: SimpleRelm.Enums.Commands.Command
+references:
+- uid: SimpleRelm.Enums
+  commentId: N:SimpleRelm.Enums
+  href: SimpleRelm.html
+  name: SimpleRelm.Enums
+  nameWithType: SimpleRelm.Enums
+  fullName: SimpleRelm.Enums
+  spec.csharp:
+  - uid: SimpleRelm
+    name: SimpleRelm
+    href: SimpleRelm.html
+  - name: .
+  - uid: SimpleRelm.Enums
+    name: Enums
+    href: SimpleRelm.Enums.html
+  spec.vb:
+  - uid: SimpleRelm
+    name: SimpleRelm
+    href: SimpleRelm.html
+  - name: .
+  - uid: SimpleRelm.Enums
+    name: Enums
+    href: SimpleRelm.Enums.html
+- uid: SimpleRelm.Enums.Commands.Command
+  commentId: T:SimpleRelm.Enums.Commands.Command
+  parent: SimpleRelm.Enums
+  href: SimpleRelm.Enums.Commands.html
+  name: Commands.Command
+  nameWithType: Commands.Command
+  fullName: SimpleRelm.Enums.Commands.Command
+  spec.csharp:
+  - uid: SimpleRelm.Enums.Commands
+    name: Commands
+    href: SimpleRelm.Enums.Commands.html
+  - name: .
+  - uid: SimpleRelm.Enums.Commands.Command
+    name: Command
+    href: SimpleRelm.Enums.Commands.Command.html
+  spec.vb:
+  - uid: SimpleRelm.Enums.Commands
+    name: Commands
+    href: SimpleRelm.Enums.Commands.html
+  - name: .
+  - uid: SimpleRelm.Enums.Commands.Command
+    name: Command
+    href: SimpleRelm.Enums.Commands.Command.html
+- uid: System.Linq.Enumerable.OrderByDescending``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})
+  commentId: M:System.Linq.Enumerable.OrderByDescending``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.linq.enumerable.orderbydescending#system-linq-enumerable-orderbydescending-2(system-collections-generic-ienumerable((-0))-system-func((-0-1)))
+  name: OrderByDescending<TSource, TKey>(IEnumerable<TSource>, Func<TSource, TKey>)
+  nameWithType: Enumerable.OrderByDescending<TSource, TKey>(IEnumerable<TSource>, Func<TSource, TKey>)
+  fullName: System.Linq.Enumerable.OrderByDescending<TSource, TKey>(System.Collections.Generic.IEnumerable<TSource>, System.Func<TSource, TKey>)
+  nameWithType.vb: Enumerable.OrderByDescending(Of TSource, TKey)(IEnumerable(Of TSource), Func(Of TSource, TKey))
+  fullName.vb: System.Linq.Enumerable.OrderByDescending(Of TSource, TKey)(System.Collections.Generic.IEnumerable(Of TSource), System.Func(Of TSource, TKey))
+  name.vb: OrderByDescending(Of TSource, TKey)(IEnumerable(Of TSource), Func(Of TSource, TKey))
+  spec.csharp:
+  - uid: System.Linq.Enumerable.OrderByDescending``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})
+    name: OrderByDescending
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.enumerable.orderbydescending#system-linq-enumerable-orderbydescending-2(system-collections-generic-ienumerable((-0))-system-func((-0-1)))
+  - name: <
+  - name: TSource
+  - name: ','
+  - name: " "
+  - name: TKey
+  - name: '>'
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: TSource
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: TSource
+  - name: ','
+  - name: " "
+  - name: TKey
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: System.Linq.Enumerable.OrderByDescending``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})
+    name: OrderByDescending
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.enumerable.orderbydescending#system-linq-enumerable-orderbydescending-2(system-collections-generic-ienumerable((-0))-system-func((-0-1)))
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TSource
+  - name: ','
+  - name: " "
+  - name: TKey
+  - name: )
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TSource
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TSource
+  - name: ','
+  - name: " "
+  - name: TKey
+  - name: )
+  - name: )
