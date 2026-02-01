@@ -1,0 +1,2582 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class RelmQuickContext | CoreRelm </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class RelmQuickContext | CoreRelm ">
+      
+      <meta name="description" content="Provides a quick-start context for working with Relm data models and MySQL database connections, supporting configuration, data set management, and transactional operations.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/jdaugherty-bdl/CoreRelm/new/master/apiSpec/new?filename=CoreRelm_Models_RelmQuickContext.md&amp;value=---%0Auid%3A%20CoreRelm.Models.RelmQuickContext%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="CoreRelm">
+            CoreRelm
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="CoreRelm.Models.RelmQuickContext">
+
+
+
+  <h1 id="CoreRelm_Models_RelmQuickContext" data-uid="CoreRelm.Models.RelmQuickContext" class="text-break">
+Class RelmQuickContext  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="CoreRelm.html">CoreRelm</a>.<a class="xref" href="CoreRelm.Models.html">Models</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>CoreRelm.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Provides a quick-start context for working with Relm data models and MySQL database connections, supporting
+configuration, data set management, and transactional operations.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;RelmQuickContext is deprecated and will be removed in future versions. Please use RelmContext(autoInitializeDataSets: false) instead.&quot;)]
+public class RelmQuickContext : IRelmQuickContext, IDisposable</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">RelmQuickContext</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html">IRelmQuickContext</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="CoreRelm_Models_RelmQuickContext_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>RelmQuickContext simplifies the setup and management of database contexts for Relm-based
+applications. It supports multiple initialization patterns, including connection strings, MySqlConnection
+objects, and configuration builders. The context manages the lifecycle of database connections and transactions,
+and provides methods for accessing, querying, and writing data sets. This class is not thread-safe; each
+instance should be used by a single thread at a time. Dispose the context when finished to ensure all resources
+are released.</p>
+</div>
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="CoreRelm_Models_RelmQuickContext__ctor_" data-uid="CoreRelm.Models.RelmQuickContext.#ctor*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext__ctor_CoreRelm_Options_RelmContextOptionsBuilder_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Int32_" data-uid="CoreRelm.Models.RelmQuickContext.#ctor(CoreRelm.Options.RelmContextOptionsBuilder,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)">
+  RelmQuickContext(RelmContextOptionsBuilder, bool, bool, bool, bool, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L77"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the RelmQuickContext class with the specified context options and
+configuration settings.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RelmQuickContext(RelmContextOptionsBuilder optionsBuilder, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>optionsBuilder</code> <a class="xref" href="CoreRelm.Options.RelmContextOptionsBuilder.html">RelmContextOptionsBuilder</a></dt>
+    <dd><p>The options builder used to configure the context. Cannot be null.</p>
+</dd>
+    <dt><code>autoOpenConnection</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether the database connection should be automatically opened when the context is created. The
+default is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>.</p>
+</dd>
+    <dt><code>autoOpenTransaction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether a database transaction should be automatically started when the context is created. The
+default is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>allowUserVariables</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether user-defined variables are allowed in SQL statements executed by the context. The default
+is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>convertZeroDateTime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether zero date/time values should be converted to null when reading from the database. The
+default is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>lockWaitTimeoutSeconds</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of seconds to wait for a database lock before timing out. The default is 0, which uses the
+server's default lock wait timeout.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Models_RelmQuickContext__ctor_CoreRelm_Options_RelmContextOptionsBuilder_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Int32__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>All configuration settings are validated before the context is initialized. This
+constructor allows fine-grained control over connection and transaction behavior, as well as SQL
+compatibility options.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown if <code class="paramref">optionsBuilder</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext__ctor_" data-uid="CoreRelm.Models.RelmQuickContext.#ctor*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext__ctor_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Boolean_System_Boolean_System_Boolean_System_Int32_" data-uid="CoreRelm.Models.RelmQuickContext.#ctor(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Boolean,System.Boolean,System.Boolean,System.Int32)">
+  RelmQuickContext(MySqlConnection, MySqlTransaction, bool, bool, bool, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L167"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the RelmQuickContext class using the specified MySQL connection, transaction,
+and context options.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RelmQuickContext(MySqlConnection connection, MySqlTransaction transaction, bool autoOpenConnection = true, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>connection</code> <span class="xref">MySqlConnection</span></dt>
+    <dd><p>The MySqlConnection to use for database operations. Must not be null and should be open or capable of being
+opened if <code class="paramref">autoOpenConnection</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>.</p>
+</dd>
+    <dt><code>transaction</code> <span class="xref">MySqlTransaction</span></dt>
+    <dd><p>The MySqlTransaction to associate with the context. Can be null if no transaction is required.</p>
+</dd>
+    <dt><code>autoOpenConnection</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether the context should automatically open the connection if it is not already open. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, the connection will be opened as needed.</p>
+</dd>
+    <dt><code>allowUserVariables</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Indicates whether user-defined variables are allowed in SQL statements executed by the context. Set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to enable support for user variables.</p>
+</dd>
+    <dt><code>convertZeroDateTime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether zero date/time values from the database should be converted to DateTime.MinValue instead
+of throwing an exception. Set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to enable conversion.</p>
+</dd>
+    <dt><code>lockWaitTimeoutSeconds</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The maximum number of seconds to wait for a database lock before timing out. Specify 0 to use the default
+server setting.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext__ctor_" data-uid="CoreRelm.Models.RelmQuickContext.#ctor*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext__ctor_MySql_Data_MySqlClient_MySqlConnection_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Int32_" data-uid="CoreRelm.Models.RelmQuickContext.#ctor(MySql.Data.MySqlClient.MySqlConnection,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)">
+  RelmQuickContext(MySqlConnection, bool, bool, bool, bool, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L145"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the RelmQuickContext class using the specified MySQL connection and
+configuration options.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RelmQuickContext(MySqlConnection connection, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>connection</code> <span class="xref">MySqlConnection</span></dt>
+    <dd><p>The MySqlConnection to use for database operations. Cannot be null.</p>
+</dd>
+    <dt><code>autoOpenConnection</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether the database connection should be automatically opened when the context is created. If
+<a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, the connection is opened; otherwise, it remains closed until explicitly opened.</p>
+</dd>
+    <dt><code>autoOpenTransaction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether a database transaction should be automatically started when the context is created. If
+<a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, a transaction is started; otherwise, no transaction is started by default.</p>
+</dd>
+    <dt><code>allowUserVariables</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether user-defined variables are allowed in SQL statements executed by this context. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, user variables are permitted.</p>
+</dd>
+    <dt><code>convertZeroDateTime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether zero date/time values from the database should be converted to DateTime.MinValue. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, zero date/time values are converted; otherwise, they are not.</p>
+</dd>
+    <dt><code>lockWaitTimeoutSeconds</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of seconds to wait for a database lock before timing out. Specify 0 to use the default server
+setting.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext__ctor_" data-uid="CoreRelm.Models.RelmQuickContext.#ctor*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext__ctor_System_Enum_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Int32_" data-uid="CoreRelm.Models.RelmQuickContext.#ctor(System.Enum,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)">
+  RelmQuickContext(Enum, bool, bool, bool, bool, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L104"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the RelmQuickContext class with the specified connection options and behavior
+settings.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RelmQuickContext(Enum connectionStringType, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>connectionStringType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.enum">Enum</a></dt>
+    <dd><p>The type of connection string to use for configuring the database context. Determines how the context
+connects to the underlying data source.</p>
+</dd>
+    <dt><code>autoOpenConnection</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>true to automatically open the database connection when the context is created; otherwise, false. The
+default is true.</p>
+</dd>
+    <dt><code>autoOpenTransaction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>true to automatically begin a transaction when the context is created; otherwise, false. The default is
+false.</p>
+</dd>
+    <dt><code>allowUserVariables</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>true to allow user-defined variables in database queries; otherwise, false. The default is false.</p>
+</dd>
+    <dt><code>convertZeroDateTime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>true to convert zero date/time values from the database to DateTime.MinValue; otherwise, false. The default
+is false.</p>
+</dd>
+    <dt><code>lockWaitTimeoutSeconds</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The maximum number of seconds to wait for a database lock before timing out. Specify 0 to use the default
+timeout.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Models_RelmQuickContext__ctor_System_Enum_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Int32__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Use this constructor to customize context behavior such as connection management,
+transaction handling, and query options. These settings affect how the context interacts with the database
+and may impact performance or compatibility depending on the database provider.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext__ctor_" data-uid="CoreRelm.Models.RelmQuickContext.#ctor*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext__ctor_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Int32_" data-uid="CoreRelm.Models.RelmQuickContext.#ctor(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)">
+  RelmQuickContext(string, bool, bool, bool, bool, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L122"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the RelmQuickContext class with the specified connection details and
+configuration options.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RelmQuickContext(string connectionDetails, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>connectionDetails</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The connection string or details used to establish a database connection.</p>
+</dd>
+    <dt><code>autoOpenConnection</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>true to automatically open the database connection upon context initialization; otherwise, false.</p>
+</dd>
+    <dt><code>autoOpenTransaction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>true to automatically begin a transaction when the context is initialized; otherwise, false.</p>
+</dd>
+    <dt><code>allowUserVariables</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>true to allow the use of user-defined variables in database queries; otherwise, false.</p>
+</dd>
+    <dt><code>convertZeroDateTime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>true to convert zero date/time values to null when reading from the database; otherwise, false.</p>
+</dd>
+    <dt><code>lockWaitTimeoutSeconds</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of seconds to wait for a database lock before timing out. Specify 0 to use the default timeout.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_ContextOptions_" data-uid="CoreRelm.Models.RelmQuickContext.ContextOptions*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_ContextOptions" data-uid="CoreRelm.Models.RelmQuickContext.ContextOptions">
+  ContextOptions
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the options builder used to configure the context.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RelmContextOptionsBuilder ContextOptions { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Options.RelmContextOptionsBuilder.html">RelmContextOptionsBuilder</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="CoreRelm_Models_RelmQuickContext_ContextOptions_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Use this property to customize context-specific settings before building or
+initializing the context. Changes to the options should be made prior to finalizing the context
+configuration.</p>
+</div>
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_BeginTransaction_" data-uid="CoreRelm.Models.RelmQuickContext.BeginTransaction*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_BeginTransaction" data-uid="CoreRelm.Models.RelmQuickContext.BeginTransaction">
+  BeginTransaction()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L246"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Begins a database transaction on the current MySQL connection and returns a transaction object for managing
+the transaction lifecycle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MySqlTransaction BeginTransaction()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">MySqlTransaction</span></dt>
+    <dd><p>A <span class="xref">MySql.Data.MySqlClient.MySqlTransaction</span> object representing the started transaction. If a transaction is already
+active, returns the existing transaction.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Models_RelmQuickContext_BeginTransaction_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>If a transaction is already in progress, this method returns the existing transaction
+rather than starting a new one. The returned transaction must be committed or rolled back to complete the
+operation. Ensure that the underlying database connection is open before calling this method.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_BulkTableWrite_" data-uid="CoreRelm.Models.RelmQuickContext.BulkTableWrite*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_BulkTableWrite__1___0_System_String_MySql_Data_MySqlClient_MySqlTransaction_System_Type_System_Int32_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Models.RelmQuickContext.BulkTableWrite``1(``0,System.String,MySql.Data.MySqlClient.MySqlTransaction,System.Type,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
+  BulkTableWrite&lt;T&gt;(T, string, MySqlTransaction, Type, int, bool, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L959"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Writes a collection of data to a database table in bulk, optionally using batching and transaction support.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int BulkTableWrite&lt;T&gt;(T source, string table = null, MySqlTransaction sqlTransaction = null, Type forceType = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <span class="xref">T</span></dt>
+    <dd><p>The source data to write to the table. This can be a collection or a single object of type <code class="typeparamref">T</code>.</p>
+</dd>
+    <dt><code>table</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the target database table. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, the table name is inferred from the type
+<code class="typeparamref">T</code>.</p>
+</dd>
+    <dt><code>sqlTransaction</code> <span class="xref">MySqlTransaction</span></dt>
+    <dd><p>An optional <span class="xref">MySql.Data.MySqlClient.MySqlTransaction</span> to use for the bulk write operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+the operation is executed without an explicit transaction.</p>
+</dd>
+    <dt><code>forceType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd><p>An optional type to override the inferred type of <code class="typeparamref">T</code> when mapping columns. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, the type of <code class="typeparamref">T</code> is used.</p>
+</dd>
+    <dt><code>batchSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The maximum number of rows to write in each batch. Must be greater than zero.</p>
+</dd>
+    <dt><code>allowAutoIncrementColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Indicates whether auto-increment columns are included in the write operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>,
+auto-increment columns are written; otherwise, they are excluded.</p>
+</dd>
+    <dt><code>allowPrimaryKeyColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Indicates whether primary key columns are included in the write operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>,
+primary key columns are written; otherwise, they are excluded.</p>
+</dd>
+    <dt><code>allowUniqueColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Indicates whether unique columns are included in the write operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, unique
+columns are written; otherwise, they are excluded.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of rows successfully written to the database table.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the data objects to be written to the table.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Models_RelmQuickContext_BulkTableWrite__1___0_System_String_MySql_Data_MySqlClient_MySqlTransaction_System_Type_System_Int32_System_Boolean_System_Boolean_System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method is optimized for high-performance bulk inserts and can be used with or
+without an explicit transaction. Adjusting batch size may affect performance and resource usage. Column
+inclusion options allow fine-grained control over which table columns are written, which can be useful for
+tables with auto-increment, primary key, or unique constraints.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_CommitTransaction_" data-uid="CoreRelm.Models.RelmQuickContext.CommitTransaction*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_CommitTransaction" data-uid="CoreRelm.Models.RelmQuickContext.CommitTransaction">
+  CommitTransaction()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L260"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Commits the current database transaction, finalizing all changes made during the transaction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CommitTransaction()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Models_RelmQuickContext_CommitTransaction_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>If no active transaction exists, this method has no effect. After committing, the
+transaction is considered complete and cannot be rolled back. This method should be called only after all
+intended changes have been made within the transaction scope.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_Dispose_" data-uid="CoreRelm.Models.RelmQuickContext.Dispose*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_Dispose" data-uid="CoreRelm.Models.RelmQuickContext.Dispose">
+  Dispose()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L204"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Releases all resources used by the current instance of the class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Models_RelmQuickContext_Dispose_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Call this method when you are finished using the object to free unmanaged resources
+and perform other cleanup operations. After calling Dispose, the object should not be used
+further.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_Dispose_" data-uid="CoreRelm.Models.RelmQuickContext.Dispose*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_Dispose_System_Boolean_" data-uid="CoreRelm.Models.RelmQuickContext.Dispose(System.Boolean)">
+  Dispose(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L218"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Releases the unmanaged resources used by the object and optionally releases the managed resources.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>disposing</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>true to release both managed and unmanaged resources; false to release only unmanaged resources.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Models_RelmQuickContext_Dispose_System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method is called by both the public Dispose() method and the finalizer. When
+disposing is true, this method disposes of managed resources such as attached properties that implement
+IDisposable. Override this method in a derived class to release additional resources.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_DoDatabaseWork_" data-uid="CoreRelm.Models.RelmQuickContext.DoDatabaseWork*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_DoDatabaseWork_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Boolean_" data-uid="CoreRelm.Models.RelmQuickContext.DoDatabaseWork(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)">
+  DoDatabaseWork(string, Dictionary&lt;string, object&gt;, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L977"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Executes a database operation using the specified SQL query and parameters, with optional exception handling
+and transaction support.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DoDatabaseWork(string query, Dictionary&lt;string, object&gt; parameters = null, bool throwException = true, bool useTransaction = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The SQL query to execute against the database. Cannot be null or empty.</p>
+</dd>
+    <dt><code>parameters</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
+    <dd><p>An optional dictionary containing parameter names and values to be used with the query. If null, the query
+is executed without parameters.</p>
+</dd>
+    <dt><code>throwException</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether to throw an exception if the database operation fails. Set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to
+throw exceptions; otherwise, errors are suppressed.</p>
+</dd>
+    <dt><code>useTransaction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether to execute the operation within a database transaction. Set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to
+use a transaction; otherwise, the operation is executed without transactional support.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Models_RelmQuickContext_DoDatabaseWork_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>If <code class="paramref">useTransaction</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, the operation is
+performed within a transaction, which is committed if successful or rolled back on failure. When <code class="paramref">throwException</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>, errors are suppressed and no exception is thrown, but
+the operation may not complete as expected.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_DoDatabaseWork_" data-uid="CoreRelm.Models.RelmQuickContext.DoDatabaseWork*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_DoDatabaseWork_System_String_System_Func_MySql_Data_MySqlClient_MySqlCommand_System_Object__System_Boolean_System_Boolean_" data-uid="CoreRelm.Models.RelmQuickContext.DoDatabaseWork(System.String,System.Func{MySql.Data.MySqlClient.MySqlCommand,System.Object},System.Boolean,System.Boolean)">
+  DoDatabaseWork(string, Func&lt;MySqlCommand, object&gt;, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L1015"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Executes a database operation using the specified SQL query and callback, with optional exception handling
+and transaction support.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DoDatabaseWork(string query, Func&lt;MySqlCommand, object&gt; actionCallback, bool throwException = true, bool useTransaction = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The SQL query to execute against the database. Cannot be null or empty.</p>
+</dd>
+    <dt><code>actionCallback</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<span class="xref">MySqlCommand</span>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
+    <dd><p>A callback function that receives the prepared <span class="xref">MySql.Data.MySqlClient.MySqlCommand</span> and performs custom logic. The
+function should return an object representing the result of the operation.</p>
+</dd>
+    <dt><code>throwException</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether to throw an exception if the database operation fails. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>,
+exceptions are propagated; otherwise, errors are suppressed.</p>
+</dd>
+    <dt><code>useTransaction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether the database operation should be executed within a transaction. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>,
+the operation is wrapped in a transaction.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Models_RelmQuickContext_DoDatabaseWork_System_String_System_Func_MySql_Data_MySqlClient_MySqlCommand_System_Object__System_Boolean_System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Use this method to perform custom database work, such as executing queries or
+commands, with control over error handling and transactional behavior. The <code class="paramref">actionCallback</code>
+allows you to define how the <span class="xref">MySql.Data.MySqlClient.MySqlCommand</span> is used, such as reading results or executing
+non-query commands.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_DoDatabaseWork_" data-uid="CoreRelm.Models.RelmQuickContext.DoDatabaseWork*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_DoDatabaseWork__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Boolean_" data-uid="CoreRelm.Models.RelmQuickContext.DoDatabaseWork``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)">
+  DoDatabaseWork&lt;T&gt;(string, Dictionary&lt;string, object&gt;, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L997"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Executes a database query and returns the result as the specified type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T DoDatabaseWork&lt;T&gt;(string query, Dictionary&lt;string, object&gt; parameters = null, bool throwException = true, bool useTransaction = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The SQL query to execute against the database. Cannot be null or empty.</p>
+</dd>
+    <dt><code>parameters</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
+    <dd><p>An optional dictionary of parameter names and values to be used with the query. If null, no parameters are
+applied.</p>
+</dd>
+    <dt><code>throwException</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether to throw an exception if the query fails. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, an exception is
+thrown on error; otherwise, the method returns the default value of <code class="typeparamref">T</code>.</p>
+</dd>
+    <dt><code>useTransaction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether to execute the query within a database transaction. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, the query
+is executed in a transaction.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd><p>The result of the query cast to the specified type <code class="typeparamref">T</code>. Returns the default value of
+<code class="typeparamref">T</code> if the query fails and <code class="paramref">throwException</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the result to return. Must be compatible with the query result.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Models_RelmQuickContext_DoDatabaseWork__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>If <code class="paramref">useTransaction</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, the query is executed
+within a transaction, which may impact performance and rollback behavior. Ensure that <code class="paramref">query</code> and <code class="paramref">parameters</code> are valid for the target database.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_DoDatabaseWork_" data-uid="CoreRelm.Models.RelmQuickContext.DoDatabaseWork*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_DoDatabaseWork__1_System_String_System_Func_MySql_Data_MySqlClient_MySqlCommand_System_Object__System_Boolean_System_Boolean_" data-uid="CoreRelm.Models.RelmQuickContext.DoDatabaseWork``1(System.String,System.Func{MySql.Data.MySqlClient.MySqlCommand,System.Object},System.Boolean,System.Boolean)">
+  DoDatabaseWork&lt;T&gt;(string, Func&lt;MySqlCommand, object&gt;, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L1034"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Executes a database operation using the specified query and callback, optionally within a transaction, and
+returns the result as the specified type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T DoDatabaseWork&lt;T&gt;(string query, Func&lt;MySqlCommand, object&gt; actionCallback, bool throwException = true, bool useTransaction = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The SQL query to execute against the database. Cannot be null or empty.</p>
+</dd>
+    <dt><code>actionCallback</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<span class="xref">MySqlCommand</span>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
+    <dd><p>A callback that receives the prepared <span class="xref">MySql.Data.MySqlClient.MySqlCommand</span> and performs the desired operation. The
+result of this callback is returned as type <code class="typeparamref">T</code>.</p>
+</dd>
+    <dt><code>throwException</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether to throw an exception if the database operation fails. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>,
+exceptions are thrown; otherwise, failures are handled silently.</p>
+</dd>
+    <dt><code>useTransaction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether to execute the database operation within a transaction. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, the
+operation is performed in a transaction; otherwise, no transaction is used.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd><p>The result of the database operation as type <code class="typeparamref">T</code>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the result returned by the database operation.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Models_RelmQuickContext_DoDatabaseWork__1_System_String_System_Func_MySql_Data_MySqlClient_MySqlCommand_System_Object__System_Boolean_System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>If <code class="paramref">useTransaction</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, the operation is
+executed within a transaction, which is committed if successful or rolled back on failure. The behavior when
+an error occurs depends on the value of <code class="paramref">throwException</code>.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_EndConnection_" data-uid="CoreRelm.Models.RelmQuickContext.EndConnection*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_EndConnection_System_Boolean_" data-uid="CoreRelm.Models.RelmQuickContext.EndConnection(System.Boolean)">
+  EndConnection(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L341"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Ends the current database connection and optionally commits the active transaction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EndConnection(bool commitTransaction = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>commitTransaction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether to commit the active transaction before closing the connection. Set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to commit; otherwise, the transaction will not be committed.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Models_RelmQuickContext_EndConnection_System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>If a transaction is active and <code class="paramref">commitTransaction</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, the transaction is committed before the connection is closed. If no connection is open,
+this method has no effect.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_Finalize_" data-uid="CoreRelm.Models.RelmQuickContext.Finalize*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_Finalize" data-uid="CoreRelm.Models.RelmQuickContext.Finalize">
+  ~RelmQuickContext()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L193"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Finalizes the RelmQuickContext instance and releases unmanaged resources before the object is reclaimed by
+garbage collection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ~RelmQuickContext()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Models_RelmQuickContext_Finalize_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This destructor is called automatically by the garbage collector when the object is
+no longer accessible. It ensures that any unmanaged resources held by the RelmQuickContext are properly
+released. If you have already called Dispose, the finalizer will not release resources again.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_FirstOrDefault_" data-uid="CoreRelm.Models.RelmQuickContext.FirstOrDefault*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_FirstOrDefault__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Boolean_" data-uid="CoreRelm.Models.RelmQuickContext.FirstOrDefault``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Boolean)">
+  FirstOrDefault&lt;T&gt;(Expression&lt;Func&lt;T, bool&gt;&gt;, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L747"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the first element of type T that matches the specified predicate, or the default value if no such
+element is found.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T FirstOrDefault&lt;T&gt;(Expression&lt;Func&lt;T, bool&gt;&gt; predicate, bool loadDataLoaders = false) where T : IRelmModel, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</dt>
+    <dd><p>An expression that defines the conditions the returned element must satisfy.</p>
+</dd>
+    <dt><code>loadDataLoaders</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>true to load related data loaders for the returned element; otherwise, false. The default is false.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd><p>The first element of type T that matches the predicate, or default(T) if no match is found.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of model to query. Must implement IRelmModel and have a parameterless constructor.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_GetBulkTableWriter_" data-uid="CoreRelm.Models.RelmQuickContext.GetBulkTableWriter*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_GetBulkTableWriter__1_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Models.RelmQuickContext.GetBulkTableWriter``1(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+  GetBulkTableWriter&lt;T&gt;(string, bool, bool, bool, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L932"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates and returns a bulk table writer for efficiently inserting multiple records of type T into the
+database.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BulkTableWriter&lt;T&gt; GetBulkTableWriter&lt;T&gt;(string insertQuery = null, bool useTransaction = false, bool throwException = true, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>insertQuery</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>An optional custom SQL insert query to use for bulk operations. If null, a default query is generated based
+on the type T.</p>
+</dd>
+    <dt><code>useTransaction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether the bulk insert operation should be performed within a database transaction. Set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to ensure atomicity; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>throwException</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether exceptions encountered during the bulk operation should be thrown. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, exceptions are propagated; otherwise, errors are suppressed.</p>
+</dd>
+    <dt><code>allowAutoIncrementColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Indicates whether auto-increment columns are included in the insert operation. Set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>
+to allow explicit values for such columns.</p>
+</dd>
+    <dt><code>allowPrimaryKeyColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Indicates whether primary key columns are included in the insert operation. Set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to
+allow explicit values for primary keys.</p>
+</dd>
+    <dt><code>allowUniqueColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Indicates whether unique columns are included in the insert operation. Set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to
+allow explicit values for unique columns.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter</a>&lt;T&gt;</dt>
+    <dd><p>A <a class="xref" href="CoreRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter&lt;T&gt;</a> instance configured for bulk insertion of entities of type T into the database.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of entities to be written to the database table.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Models_RelmQuickContext_GetBulkTableWriter__1_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Use this method to optimize large-scale data insertions. The returned
+<a class="xref" href="CoreRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter&lt;T&gt;</a> provides methods for writing batches of data efficiently. Ensure that the configuration
+flags match your table schema and insertion requirements.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_GetDataList_" data-uid="CoreRelm.Models.RelmQuickContext.GetDataList*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_GetDataList__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_" data-uid="CoreRelm.Models.RelmQuickContext.GetDataList``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)">
+  GetDataList&lt;T&gt;(string, Dictionary&lt;string, object&gt;, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L890"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Executes the specified query and returns a collection of results mapped to the specified type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;T&gt; GetDataList&lt;T&gt;(string query, Dictionary&lt;string, object&gt; parameters = null, bool throwException = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The SQL query to execute against the data source.</p>
+</dd>
+    <dt><code>parameters</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
+    <dd><p>An optional dictionary of parameter names and values to be applied to the query. If null, the query is
+executed without parameters.</p>
+</dd>
+    <dt><code>throwException</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>true to throw an exception if the query fails; otherwise, false to suppress exceptions and return an empty
+collection.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</dt>
+    <dd><p>An enumerable collection of objects of type T representing the query results. Returns an empty collection if
+no results are found or if an error occurs and throwException is false.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type to which each result row will be mapped.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Models_RelmQuickContext_GetDataList__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The method maps each row in the result set to an instance of type T. If
+throwException is false and an error occurs during query execution, the method returns an empty collection
+instead of throwing an exception.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_GetDataObject_" data-uid="CoreRelm.Models.RelmQuickContext.GetDataObject*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_GetDataObject__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_" data-uid="CoreRelm.Models.RelmQuickContext.GetDataObject``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)">
+  GetDataObject&lt;T&gt;(string, Dictionary&lt;string, object&gt;, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L856"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves a data object of the specified type by executing the provided query string with optional
+parameters.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T GetDataObject&lt;T&gt;(string query, Dictionary&lt;string, object&gt; parameters = null, bool throwException = true) where T : IRelmModel, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The query string used to select the data object. Cannot be null or empty.</p>
+</dd>
+    <dt><code>parameters</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
+    <dd><p>An optional dictionary of parameter names and values to be used in the query. If null, no parameters are
+applied.</p>
+</dd>
+    <dt><code>throwException</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether to throw an exception if the query fails. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, an exception is
+thrown on failure; otherwise, the method returns the default value of <code class="typeparamref">T</code>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd><p>An instance of <code class="typeparamref">T</code> representing the retrieved data object. Returns the default value of
+<code class="typeparamref">T</code> if no data is found and <code class="paramref">throwException</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of data object to retrieve. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a> and have a parameterless
+constructor.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_GetDataObjects_" data-uid="CoreRelm.Models.RelmQuickContext.GetDataObjects*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_GetDataObjects__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_" data-uid="CoreRelm.Models.RelmQuickContext.GetDataObjects``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)">
+  GetDataObjects&lt;T&gt;(string, Dictionary&lt;string, object&gt;, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L873"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Executes the specified query and returns a collection of data objects of type <code class="typeparamref">T</code> that
+match the query criteria.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;T&gt; GetDataObjects&lt;T&gt;(string query, Dictionary&lt;string, object&gt; parameters = null, bool throwException = true) where T : IRelmModel, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The query string used to select data objects. Must be a valid query for the underlying data source.</p>
+</dd>
+    <dt><code>parameters</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
+    <dd><p>An optional dictionary of parameter names and values to be used in the query. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, no
+parameters are applied.</p>
+</dd>
+    <dt><code>throwException</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether to throw an exception if the query fails. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, an exception is
+thrown on error; otherwise, the method returns an empty collection.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</dt>
+    <dd><p>An enumerable collection of data objects of type <code class="typeparamref">T</code> that satisfy the query. Returns an
+empty collection if no matching objects are found or if the query fails and <code class="paramref">throwException</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of data object to return. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a> and have a parameterless
+constructor.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_GetDataRow_" data-uid="CoreRelm.Models.RelmQuickContext.GetDataRow*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_GetDataRow_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_" data-uid="CoreRelm.Models.RelmQuickContext.GetDataRow(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)">
+  GetDataRow(string, Dictionary&lt;string, object&gt;, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L823"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Executes the specified SQL query and returns the first matching data row from the result set.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DataRow GetDataRow(string query, Dictionary&lt;string, object&gt; parameters = null, bool throwException = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The SQL query to execute. Must be a valid statement that returns at least one row.</p>
+</dd>
+    <dt><code>parameters</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
+    <dd><p>An optional dictionary of parameter names and values to be applied to the query. If null, the query is
+executed without parameters.</p>
+</dd>
+    <dt><code>throwException</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>true to throw an exception if no matching row is found; otherwise, false to return null.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.datarow">DataRow</a></dt>
+    <dd><p>A DataRow containing the first result of the query if found; otherwise, null if no matching row exists and
+throwException is false.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_GetDataSet_" data-uid="CoreRelm.Models.RelmQuickContext.GetDataSet*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_GetDataSet_System_Type_" data-uid="CoreRelm.Models.RelmQuickContext.GetDataSet(System.Type)">
+  GetDataSet(Type)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L415"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves an instance of a data set of the specified type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IRelmDataSetBase GetDataSet(Type dataSetType)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>dataSetType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd><p>The type of the data set to retrieve. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmDataSetBase.html">IRelmDataSetBase</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSetBase.html">IRelmDataSetBase</a></dt>
+    <dd><p>An instance of <a class="xref" href="CoreRelm.Interfaces.IRelmDataSetBase.html">IRelmDataSetBase</a> corresponding to the specified type.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_GetDataSet_" data-uid="CoreRelm.Models.RelmQuickContext.GetDataSet*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_GetDataSet_System_Type_System_Boolean_" data-uid="CoreRelm.Models.RelmQuickContext.GetDataSet(System.Type,System.Boolean)">
+  GetDataSet(Type, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L438"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves the data set instance associated with the specified entity type. If the data set is not
+initialized, it can be created automatically or an exception can be thrown based on the provided option.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IRelmDataSetBase GetDataSet(Type dataSetType, bool throwException)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>dataSetType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd><p>The type of the entity for which to retrieve the data set. Must correspond to a table that exists in the
+current database.</p>
+</dd>
+    <dt><code>throwException</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether to throw an exception if the data set for the specified type is not initialized. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, an exception is thrown; otherwise, a new data set is created if possible.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSetBase.html">IRelmDataSetBase</a></dt>
+    <dd><p>An instance of <a class="xref" href="CoreRelm.Interfaces.IRelmDataSetBase.html">IRelmDataSetBase</a> representing the data set for the specified entity type.
+Returns a newly created instance if the data set was not previously initialized and <code class="paramref">throwException</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Models_RelmQuickContext_GetDataSet_System_Type_System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>If the data set for the specified type is not already initialized and <code class="paramref">throwException</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>, a default data loader is used to create and initialize
+the data set. This method only operates on types that are mapped to existing tables in the current
+database.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>Thrown if the specified type does not correspond to a table in the current database, if no attached property
+is found for the type, or if the data set cannot be initialized and <code class="paramref">throwException</code> is
+<a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_GetDataSetType_" data-uid="CoreRelm.Models.RelmQuickContext.GetDataSetType*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_GetDataSetType_System_Type_" data-uid="CoreRelm.Models.RelmQuickContext.GetDataSetType(System.Type)">
+  GetDataSetType(Type)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L674"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves an instance of a data set corresponding to the specified type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IRelmDataSetBase GetDataSetType(Type dataSetType)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>dataSetType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd><p>The type of the data set to retrieve. Must be a valid type that implements the required data set interface.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSetBase.html">IRelmDataSetBase</a></dt>
+    <dd><p>An object representing the data set of the specified type.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_GetDataSetType_" data-uid="CoreRelm.Models.RelmQuickContext.GetDataSetType*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_GetDataSetType_System_Type_System_Boolean_" data-uid="CoreRelm.Models.RelmQuickContext.GetDataSetType(System.Type,System.Boolean)">
+  GetDataSetType(Type, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L686"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the dataset of the given type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IRelmDataSetBase GetDataSetType(Type dataSetType, bool throwException)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>dataSetType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd><p>Type of the dataset.</p>
+</dd>
+    <dt><code>throwException</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Whether to throw an exception if the dataset is not found.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSetBase.html">IRelmDataSetBase</a></dt>
+    <dd><p>An IDALDataSetBase instance of the given type.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>Thrown when no matching dataset is found.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_GetDataSetType_" data-uid="CoreRelm.Models.RelmQuickContext.GetDataSetType*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_GetDataSetType__1" data-uid="CoreRelm.Models.RelmQuickContext.GetDataSetType``1">
+  GetDataSetType&lt;T&gt;()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L652"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves a data set instance for the specified model type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IRelmDataSet&lt;T&gt; GetDataSetType&lt;T&gt;() where T : IRelmModel, new()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet</a>&lt;T&gt;</dt>
+    <dd><p>An <a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet&lt;T&gt;</a> instance associated with the specified model type.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of model for which to retrieve the data set. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a> and have a
+parameterless constructor.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_GetDataSetType_" data-uid="CoreRelm.Models.RelmQuickContext.GetDataSetType*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_GetDataSetType__1_System_Boolean_" data-uid="CoreRelm.Models.RelmQuickContext.GetDataSetType``1(System.Boolean)">
+  GetDataSetType&lt;T&gt;(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L664"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the dataset of the given type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IRelmDataSet&lt;T&gt; GetDataSetType&lt;T&gt;(bool throwException) where T : IRelmModel, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>throwException</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Whether to throw an exception if the dataset is not found.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet</a>&lt;T&gt;</dt>
+    <dd><p>An instance of IDALDataSet of the specified type.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the dataset, which should inherit from CS_DbModel.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>Thrown when no matching dataset is found.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_GetDataSet_" data-uid="CoreRelm.Models.RelmQuickContext.GetDataSet*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_GetDataSet__1" data-uid="CoreRelm.Models.RelmQuickContext.GetDataSet``1">
+  GetDataSet&lt;T&gt;()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L390"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves a data set for the specified model type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IRelmDataSet&lt;T&gt; GetDataSet&lt;T&gt;() where T : IRelmModel, new()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet</a>&lt;T&gt;</dt>
+    <dd><p>An <a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet&lt;T&gt;</a> instance for the specified model type <code class="typeparamref">T</code>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of model to retrieve. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a> and have a parameterless constructor.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_GetDataSet_" data-uid="CoreRelm.Models.RelmQuickContext.GetDataSet*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_GetDataSet__1_System_Boolean_" data-uid="CoreRelm.Models.RelmQuickContext.GetDataSet``1(System.Boolean)">
+  GetDataSet&lt;T&gt;(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L405"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves a strongly typed data set for the specified model type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IRelmDataSet&lt;T&gt; GetDataSet&lt;T&gt;(bool throwException) where T : IRelmModel, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>throwException</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether to throw an exception if the data set cannot be retrieved. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, an
+exception is thrown on failure; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> is returned.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet</a>&lt;T&gt;</dt>
+    <dd><p>An <a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet&lt;T&gt;</a> instance representing the data set for the specified model type, or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if the data set cannot be retrieved and <code class="paramref">throwException</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of model for which to retrieve the data set. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a> and have a
+parameterless constructor.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_GetDataTable_" data-uid="CoreRelm.Models.RelmQuickContext.GetDataTable*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_GetDataTable_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_" data-uid="CoreRelm.Models.RelmQuickContext.GetDataTable(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)">
+  GetDataTable(string, Dictionary&lt;string, object&gt;, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L839"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Executes the specified SQL query and returns the results as a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.datatable">DataTable</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DataTable GetDataTable(string query, Dictionary&lt;string, object&gt; parameters = null, bool throwException = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The SQL query to execute against the database. Must be a valid query string.</p>
+</dd>
+    <dt><code>parameters</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
+    <dd><p>An optional dictionary containing parameter names and values to be used in the query. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, no parameters are applied.</p>
+</dd>
+    <dt><code>throwException</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether to throw an exception if the query fails. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, an exception is
+thrown on error; otherwise, the method returns <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.datatable">DataTable</a></dt>
+    <dd><p>A <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.datatable">DataTable</a> containing the results of the query, or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if the query fails
+and <code class="paramref">throwException</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Models_RelmQuickContext_GetDataTable_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The returned <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.datatable">DataTable</a> will contain all rows and columns produced by
+the query. If the query does not return any results, the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.datatable">DataTable</a> will be empty. Ensure that
+the query and parameters are properly formatted to avoid runtime errors.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_GetIdFromInternalId_" data-uid="CoreRelm.Models.RelmQuickContext.GetIdFromInternalId*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_GetIdFromInternalId_System_String_System_String_" data-uid="CoreRelm.Models.RelmQuickContext.GetIdFromInternalId(System.String,System.String)">
+  GetIdFromInternalId(string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L811"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves the external identifier associated with the specified internal identifier for a given table.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetIdFromInternalId(string table, string InternalId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>table</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the table in which to look up the identifier. Cannot be null or empty.</p>
+</dd>
+    <dt><code>InternalId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The internal identifier whose corresponding external identifier is to be retrieved. Cannot be null or empty.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>A string containing the external identifier corresponding to the specified internal identifier. Returns null
+if no matching identifier is found.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_GetLastInsertId_" data-uid="CoreRelm.Models.RelmQuickContext.GetLastInsertId*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_GetLastInsertId" data-uid="CoreRelm.Models.RelmQuickContext.GetLastInsertId">
+  GetLastInsertId()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L801"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves the identifier of the most recently inserted row for the current context.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetLastInsertId()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>A string containing the last inserted row identifier. Returns an empty string if no row has been inserted.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_GetScalar_" data-uid="CoreRelm.Models.RelmQuickContext.GetScalar*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_GetScalar__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_" data-uid="CoreRelm.Models.RelmQuickContext.GetScalar``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)">
+  GetScalar&lt;T&gt;(string, Dictionary&lt;string, object&gt;, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L908"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Executes the specified SQL query and returns the first column of the first row in the result set, cast to
+the specified type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T GetScalar&lt;T&gt;(string query, Dictionary&lt;string, object&gt; parameters = null, bool throwException = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The SQL query to execute. Must be a valid statement that returns a single value.</p>
+</dd>
+    <dt><code>parameters</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
+    <dd><p>An optional dictionary of parameter names and values to be applied to the query. If null, the query is
+executed without parameters.</p>
+</dd>
+    <dt><code>throwException</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>true to throw an exception if the query fails or returns no result; otherwise, false to return the default
+value of type T.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd><p>The value of the first column of the first row in the result set, cast to type T. Returns the default value
+of T if no result is found and throwException is false.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type to which the scalar result will be cast.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Models_RelmQuickContext_GetScalar__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Use this method to efficiently retrieve a single value from the database, such as a
+count or aggregate. If throwException is set to true and the query fails or returns no result, an exception
+will be thrown.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_Get_" data-uid="CoreRelm.Models.RelmQuickContext.Get*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_Get__1_System_Boolean_" data-uid="CoreRelm.Models.RelmQuickContext.Get``1(System.Boolean)">
+  Get&lt;T&gt;(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L718"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves a collection of entities of type <code class="typeparamref">T</code> from the associated data set.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICollection&lt;T&gt; Get&lt;T&gt;(bool loadDataLoaders = false) where T : IRelmModel, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>loadDataLoaders</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether to load associated data loaders for each entity. Set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to include
+related data loaders; otherwise, only the entities are loaded.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;</dt>
+    <dd><p>A collection containing all entities of type <code class="typeparamref">T</code> from the data set. The collection is
+empty if no entities are present.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of model to retrieve. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a> and have a parameterless constructor.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>Thrown if the data set for type <code class="typeparamref">T</code> is not initialized.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_Get_" data-uid="CoreRelm.Models.RelmQuickContext.Get*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_Get__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Boolean_" data-uid="CoreRelm.Models.RelmQuickContext.Get``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Boolean)">
+  Get&lt;T&gt;(Expression&lt;Func&lt;T, bool&gt;&gt;, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L734"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves a collection of entities of type T that satisfy the specified predicate.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICollection&lt;T&gt; Get&lt;T&gt;(Expression&lt;Func&lt;T, bool&gt;&gt; predicate, bool loadDataLoaders = false) where T : IRelmModel, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</dt>
+    <dd><p>An expression that defines the conditions each entity must satisfy to be included in the result.</p>
+</dd>
+    <dt><code>loadDataLoaders</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>true to load related data loaders for each entity; otherwise, false. The default is false.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;</dt>
+    <dd><p>A collection of entities of type T that match the specified predicate. The collection will be empty if no
+entities satisfy the predicate.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of entity to retrieve. Must implement IRelmModel and have a parameterless constructor.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_HasDataSet_" data-uid="CoreRelm.Models.RelmQuickContext.HasDataSet*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_HasDataSet_System_Type_System_Boolean_" data-uid="CoreRelm.Models.RelmQuickContext.HasDataSet(System.Type,System.Boolean)">
+  HasDataSet(Type, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L641"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Checks if the DALDataSet of a specific type is attached to the current DALContext instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasDataSet(Type dataSetType, bool throwException = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>dataSetType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd><p>The System.Type of the dataset to check.</p>
+</dd>
+    <dt><code>throwException</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Whether to throw an exception if the dataset is not found.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>True if the dataset exists, otherwise false.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_HasDataSet_" data-uid="CoreRelm.Models.RelmQuickContext.HasDataSet*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_HasDataSet__1_System_Boolean_" data-uid="CoreRelm.Models.RelmQuickContext.HasDataSet``1(System.Boolean)">
+  HasDataSet&lt;T&gt;(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L630"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Checks if the DALDataSet of a specific type is attached to the current DALContext instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasDataSet&lt;T&gt;(bool throwException = true) where T : IRelmModel, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>throwException</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>True if the dataset exists, otherwise false.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the dataset, which should inherit from CS_DbModel.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_HasTransaction_" data-uid="CoreRelm.Models.RelmQuickContext.HasTransaction*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_HasTransaction" data-uid="CoreRelm.Models.RelmQuickContext.HasTransaction">
+  HasTransaction()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L365"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines whether there is an active database transaction associated with the current context.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasTransaction()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>true if a database transaction is currently active; otherwise, false.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_OnConfigure_" data-uid="CoreRelm.Models.RelmQuickContext.OnConfigure*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_OnConfigure_CoreRelm_Options_RelmContextOptionsBuilder_" data-uid="CoreRelm.Models.RelmQuickContext.OnConfigure(CoreRelm.Options.RelmContextOptionsBuilder)">
+  OnConfigure(RelmContextOptionsBuilder)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Configures a triggerable event for after the database options are set, the connection is
+open, and any transations have been started.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnConfigure(RelmContextOptionsBuilder OptionsBuilder)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>OptionsBuilder</code> <a class="xref" href="CoreRelm.Options.RelmContextOptionsBuilder.html">RelmContextOptionsBuilder</a></dt>
+    <dd><p>A builder used to configure options for the context. Cannot be null.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Models_RelmQuickContext_OnConfigure_CoreRelm_Options_RelmContextOptionsBuilder__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Override this method to customize how the context is configured, such as specifying
+database providers or additional options. This method is typically called by the framework during context
+initialization.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_RollbackTransaction_" data-uid="CoreRelm.Models.RelmQuickContext.RollbackTransaction*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_RollbackTransaction" data-uid="CoreRelm.Models.RelmQuickContext.RollbackTransaction">
+  RollbackTransaction()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L273"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Rolls back the current database transaction, reverting all changes made during the transaction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RollbackTransaction()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Models_RelmQuickContext_RollbackTransaction_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>If no active transaction exists, this method has no effect. After calling this
+method, the transaction is considered closed and cannot be committed.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_RollbackTransactions_" data-uid="CoreRelm.Models.RelmQuickContext.RollbackTransactions*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_RollbackTransactions" data-uid="CoreRelm.Models.RelmQuickContext.RollbackTransactions">
+  RollbackTransactions()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L286"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Rolls back the current database transaction, reverting all changes made during the transaction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RollbackTransactions()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Models_RelmQuickContext_RollbackTransactions_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>If no active transaction exists, this method has no effect. After calling this
+method, the transaction is considered closed and cannot be committed.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_Run_" data-uid="CoreRelm.Models.RelmQuickContext.Run*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_Run__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="CoreRelm.Models.RelmQuickContext.Run``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+  Run&lt;T&gt;(string, Dictionary&lt;string, object&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L786"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Executes the specified query and returns a collection of data objects of type T that match the query
+criteria.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICollection&lt;T&gt; Run&lt;T&gt;(string query, Dictionary&lt;string, object&gt; parameters = null) where T : IRelmModel, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The query string to execute. Cannot be null or empty.</p>
+</dd>
+    <dt><code>parameters</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
+    <dd><p>An optional dictionary of parameters to be used with the query. If null, the query is executed without
+parameters.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;</dt>
+    <dd><p>A collection of objects of type T that satisfy the query. The collection will be empty if no matching
+objects are found.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of data object to return. Must implement IRelmModel and have a parameterless constructor.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown if query is null or empty.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_SetDataLoader_" data-uid="CoreRelm.Models.RelmQuickContext.SetDataLoader*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_SetDataLoader__1_CoreRelm_Interfaces_IRelmDataLoader___0__" data-uid="CoreRelm.Models.RelmQuickContext.SetDataLoader``1(CoreRelm.Interfaces.IRelmDataLoader{``0})">
+  SetDataLoader&lt;T&gt;(IRelmDataLoader&lt;T&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L377"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the data loader to be used for the specified data set type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetDataLoader&lt;T&gt;(IRelmDataLoader&lt;T&gt; dataLoader) where T : RelmModel, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>dataLoader</code> <a class="xref" href="CoreRelm.Interfaces.IRelmDataLoader-1.html">IRelmDataLoader</a>&lt;T&gt;</dt>
+    <dd><p>The data loader instance that will be associated with the data set of type <code class="typeparamref">T</code>.</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of model for which the data loader is being set. Must inherit from RelmModel and have a
+parameterless constructor.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>Thrown if a data set for type <code class="typeparamref">T</code> does not exist.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_StartConnection_" data-uid="CoreRelm.Models.RelmQuickContext.StartConnection*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_StartConnection_System_Boolean_System_Int32_" data-uid="CoreRelm.Models.RelmQuickContext.StartConnection(System.Boolean,System.Int32)">
+  StartConnection(bool, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L299"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Opens the database connection if it is not already open and optionally begins a new transaction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void StartConnection(bool autoOpenTransaction = false, int lockWaitTimeoutSeconds = 0)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>autoOpenTransaction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>true to automatically begin a new transaction after opening the connection; otherwise, false.</p>
+</dd>
+    <dt><code>lockWaitTimeoutSeconds</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The lock wait timeout, in seconds, to set for the session. Specify a positive value to configure the
+timeout; otherwise, no change is made.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Models_RelmQuickContext_StartConnection_System_Boolean_System_Int32__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>If the connection is opened and lockWaitTimeoutSeconds is greater than zero, the
+session's lock wait timeout and transaction isolation level are set. If autoOpenTransaction is true and the
+connection is open, a new transaction is started automatically.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>Thrown if the database connection does not exist.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_Where_" data-uid="CoreRelm.Models.RelmQuickContext.Where*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_Where__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___" data-uid="CoreRelm.Models.RelmQuickContext.Where``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+  Where&lt;T&gt;(Expression&lt;Func&lt;T, bool&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L764"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Filters the elements of the data set based on a specified predicate.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IRelmDataSet&lt;T&gt; Where&lt;T&gt;(Expression&lt;Func&lt;T, bool&gt;&gt; predicate) where T : IRelmModel, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</dt>
+    <dd><p>An expression that defines the conditions each element must satisfy to be included in the result. Cannot be
+null.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet</a>&lt;T&gt;</dt>
+    <dd><p>An <a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet&lt;T&gt;</a> containing elements that match the specified predicate.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of model contained in the data set. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a> and have a
+parameterless constructor.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Models_RelmQuickContext_Where__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean____remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The returned data set is filtered according to the provided predicate and may be
+further queried or enumerated. This method does not modify the original data set.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown if <code class="paramref">predicate</code> is null.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>Thrown if the data set for type <code class="typeparamref">T</code> is not initialized.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_WriteToDatabase_" data-uid="CoreRelm.Models.RelmQuickContext.WriteToDatabase*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_WriteToDatabase_CoreRelm_Interfaces_IRelmModel_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Models.RelmQuickContext.WriteToDatabase(CoreRelm.Interfaces.IRelmModel,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+  WriteToDatabase(IRelmModel, int, bool, bool, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L1056"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Writes the specified data model to the database using configurable options for batch size and column
+handling.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int WriteToDatabase(IRelmModel relmModel, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>relmModel</code> <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a></dt>
+    <dd><p>The data model to be written to the database. Cannot be null.</p>
+</dd>
+    <dt><code>batchSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The maximum number of records to write in each batch operation. Must be greater than zero. The default is
+100.</p>
+</dd>
+    <dt><code>allowAutoIncrementColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether columns with auto-increment attributes are included in the write operation. Set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to allow writing to auto-increment columns; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>allowPrimaryKeyColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether primary key columns are included in the write operation. Set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to
+allow writing to primary key columns; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>allowUniqueColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether unique columns are included in the write operation. Set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to allow
+writing to unique columns; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>allowAutoDateColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether columns with automatic date attributes are included in the write operation. Set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to allow writing to auto-date columns; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of records successfully written to the database.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Models_RelmQuickContext_WriteToDatabase_CoreRelm_Interfaces_IRelmModel_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Adjusting the batch size can impact performance, especially for large data sets.
+Enabling writing to auto-increment, primary key, unique, or auto-date columns may result in constraint
+violations depending on the database schema.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Models_RelmQuickContext_WriteToDatabase_" data-uid="CoreRelm.Models.RelmQuickContext.WriteToDatabase*"></a>
+
+  <h3 id="CoreRelm_Models_RelmQuickContext_WriteToDatabase_System_Collections_Generic_IEnumerable_CoreRelm_Interfaces_IRelmModel__System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Models.RelmQuickContext.WriteToDatabase(System.Collections.Generic.IEnumerable{CoreRelm.Interfaces.IRelmModel},System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+  WriteToDatabase(IEnumerable&lt;IRelmModel&gt;, int, bool, bool, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L1078"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Writes the specified collection of Relm models to the database in batches, with options to control how
+certain column types are handled during insertion.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int WriteToDatabase(IEnumerable&lt;IRelmModel&gt; relmModels, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>relmModels</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>&gt;</dt>
+    <dd><p>The collection of Relm models to be written to the database. Cannot be null.</p>
+</dd>
+    <dt><code>batchSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The maximum number of models to include in each batch write operation. Must be greater than zero.</p>
+</dd>
+    <dt><code>allowAutoIncrementColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether columns marked as auto-increment are included in the write operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, auto-increment columns are written; otherwise, they are excluded.</p>
+</dd>
+    <dt><code>allowPrimaryKeyColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether primary key columns are included in the write operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>,
+primary key columns are written; otherwise, they are excluded.</p>
+</dd>
+    <dt><code>allowUniqueColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether unique columns are included in the write operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, unique
+columns are written; otherwise, they are excluded.</p>
+</dd>
+    <dt><code>allowAutoDateColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Specifies whether columns with automatic date values are included in the write operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, auto-date columns are written; otherwise, they are excluded.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of models successfully written to the database.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Models_RelmQuickContext_WriteToDatabase_System_Collections_Generic_IEnumerable_CoreRelm_Interfaces_IRelmModel__System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>If the collection contains more models than the specified batch size, the write
+operation is performed in multiple batches. The behavior of column inclusion is determined by the
+corresponding boolean parameters. This method does not guarantee transactional integrity across
+batches.</p>
+</div>
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmQuickContext.cs/#L31" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

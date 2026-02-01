@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>SimpleRelm | SimpleRelm </title>
+      <title>CoreRelm | CoreRelm </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="SimpleRelm | SimpleRelm ">
+      <meta name="title" content="CoreRelm | CoreRelm ">
       
       
       <link rel="icon" href="favicon.ico">
@@ -44,8 +44,8 @@
       <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
         <div class="container-xxl flex-nowrap">
           <a class="navbar-brand" href="index.html">
-            <img id="logo" class="svg" src="logo.svg" alt="SimpleRelm">
-            SimpleRelm
+            <img id="logo" class="svg" src="logo.svg" alt="CoreRelm">
+            CoreRelm
           </a>
           <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
             <i class="bi bi-three-dots"></i>
@@ -71,9 +71,9 @@
         </div>
 
         <article data-uid="">
-<h1 id="simplerelm">SimpleRelm</h1>
+<h1 id="corerelm">CoreRelm</h1>
 
-<p><strong>SimpleRelm</strong> is a lightweight, attribute-based ORM / data access layer for C# and .NET Framework developers who want a small, predictable alternative to heavyweight ORMs.</p>
+<p><strong>CoreRelm</strong> is a lightweight, attribute-based ORM / data access layer for C# and .NET Framework developers who want a small, predictable alternative to heavyweight ORMs.</p>
 <p>It sits close to ADO.NET, but gives you:</p>
 <ul>
 <li>Strongly-typed table/column access via attributes and expressions</li>
@@ -81,11 +81,14 @@
 <li>Helper methods for the common database shapes you actually use</li>
 <li>A clean, explicit pattern for transactions and error handling</li>
 </ul>
-<p>It’s especially aimed at <strong>.NET Framework</strong> apps and services that need something quick and focused, but it also works from modern .NET projects.</p>
+<p>It’s especially aimed at <strong>.NET Core</strong> apps and services that need something quick and focused, but it also works from modern .NET projects.</p>
 <blockquote>
-<p>⚠️ <strong>Status:</strong> SimpleRelm is under active development. APIs and examples may evolve as features are added and real-world scenarios are covered. Feedback, issues, and PRs are welcome.</p>
+<p>⚠️ <strong>Status:</strong> CoreRelm is under active development. APIs and examples may evolve as features are added and real-world scenarios are covered. Feedback, issues, and PRs are welcome.</p>
 </blockquote>
-<p>Documentation: <a href="https://jdaugherty-bdl.github.io/SimpleRelm/index.html">https://jdaugherty-bdl.github.io/SimpleRelm/index.html</a></p>
+<blockquote>
+<p>❗ <strong>.NET Core 9+ ONLY</strong> ❗ For the .NET Framework 4.8 version of this library, please go to <a href="https://github.com/jdaugherty-bdl/SimpleRelm">https://github.com/jdaugherty-bdl/SimpleRelm</a></p>
+</blockquote>
+<p>Documentation: <a href="https://jdaugherty-bdl.github.io/CoreRelm/index.html">https://jdaugherty-bdl.github.io/CoreRelm/index.html</a></p>
 <hr>
 <h2 id="features">Features</h2>
 <ul>
@@ -108,233 +111,6 @@ Built with traditional .NET Framework apps in mind, but usable from modern .NET 
 New features and refinements are being added as the library is used in real projects.</p>
 </li>
 </ul>
-<hr>
-<h2 id="key-concepts">Key concepts</h2>
-<p>SimpleRelm revolves around a few core pieces:</p>
-<ul>
-<li><p><strong>Models</strong><br>
-Inherit from <code>RelmModel</code> and decorate with attributes such as:</p>
-<ul>
-<li><code>[RelmTable(&quot;example_models&quot;)]</code></li>
-<li><code>[RelmColumn]</code> / <code>[RelmColumn(&quot;actual_column_name&quot;)]</code></li>
-<li><code>[RelmForeignKey(...)]</code></li>
-</ul>
-<pre><code class="lang-csharp">using SimpleRelm.Attributes;
-using SimpleRelm.Models;
-
-[RelmTable(&quot;example_models&quot;)]
-internal class ExampleModel : RelmModel
-{
-    [RelmColumn]
-    public string GroupInternalId { get; set; }   // group_InternalId
-
-    [RelmColumn]
-    public string ModelName { get; set; }         // model_name
-
-    [RelmColumn]
-    public int ModelIndex { get; set; }           // model_index
-
-    [RelmColumn(&quot;bool_column&quot;)]
-    public bool IsBoolColumn { get; set; }        // bool_column
-
-    [RelmForeignKey(
-        ForeignKey: nameof(ExampleGroup.InternalId),
-        LocalKey: nameof(GroupInternalId))]
-    public virtual ExampleGroup Group { get; set; }
-}
-</code></pre>
-</li>
-<li><p><strong>Contexts</strong><br>
-You create your own context classes that inherit from:</p>
-<ul>
-<li><code>RelmContext</code> – <strong>eager</strong>: preloads table metadata up-front</li>
-<li><code>RelmQuickContext</code> – <strong>lazy</strong>: loads metadata on first use</li>
-</ul>
-<p>and expose your datasets as <code>IRelmDataSet</code> properties:</p>
-<pre><code class="lang-csharp">internal class ExampleContext : RelmContext
-{
-    public ExampleContext(
-        bool autoOpenConnection = true,
-        bool autoOpenTransaction = false,
-        bool allowUserVariables = false,
-        bool convertZeroDateTime = false,
-        int  lockWaitTimeoutSeconds = 0)
-        : base(&quot;name=ExampleContextDatabase&quot;,
-               autoOpenConnection:  autoOpenConnection,
-               autoOpenTransaction: autoOpenTransaction,
-               allowUserVariables:  allowUserVariables,
-               convertZeroDateTime: convertZeroDateTime,
-               lockWaitTimeoutSeconds: lockWaitTimeoutSeconds)
-    {
-    }
-
-    public IRelmDataSet ExampleModels { get; set; }
-    public IRelmDataSet ExampleGroups { get; set; }
-}
-</code></pre>
-</li>
-<li><p><strong>Helpers &amp; interfaces</strong><br>
-The <code>RelmHelper</code> static class and <code>IRelmContext</code> / <code>IRelmQuickContext</code>
-interfaces provide the main API surface:</p>
-<ul>
-<li><code>RelmHelper.GetDalTable()</code></li>
-<li><code>RelmHelper.GetColumnName(x =&gt; x.SomeProperty)</code></li>
-<li><code>RelmHelper.StandardConnectionWrapper(...)</code></li>
-<li><code>RelmHelper.DoDatabaseWork(...)</code></li>
-<li><code>RelmHelper.GetDataObject(...) / GetDataObjects(...)</code></li>
-<li><code>RelmHelper.GetLastInsertId(...)</code></li>
-<li><code>RelmHelper.GetIdFromInternalId(...)</code></li>
-</ul>
-<p>Most of these also exist as instance methods on <code>IRelmContext</code>
-and <code>IRelmQuickContext</code> (<code>relmContext.DoDatabaseWork(...)</code>, etc.).</p>
-</li>
-</ul>
-<hr>
-<h2 id="features-1">Features</h2>
-<p>From the Quickstart examples, SimpleRelm currently provides:</p>
-<ul>
-<li><p><strong>Attribute-based mapping</strong></p>
-<ul>
-<li><code>[RelmTable]</code>, <code>[RelmColumn]</code>, <code>[RelmForeignKey]</code> give you strongly-typed access to table and column names without scattering strings everywhere.</li>
-<li><code>RelmHelper.GetDalTable()</code> and <code>RelmHelper.GetColumnName(...)</code> use those attributes.</li>
-</ul>
-</li>
-<li><p><strong>Two context modes</strong></p>
-<ul>
-<li><code>RelmContext</code> – reads the database and preloads datasets/metadata when created (slightly heavier startup, faster subsequent operations).</li>
-<li><code>RelmQuickContext</code> – lazy-loads metadata as needed (faster startup, first operations may be slower).</li>
-</ul>
-</li>
-<li><p><strong>Standard connection wrapper</strong></p>
-<ul>
-<li><code>RelmHelper.StandardConnectionWrapper(...)</code> lets you run a lambda with a raw <code>connection</code> and <code>transaction</code> without manually wiring up boilerplate.</li>
-</ul>
-</li>
-<li><p><strong>Data access helpers</strong></p>
-<ul>
-<li><code>DoDatabaseWork</code> for command/query execution (with or without parameters, with or without return values).</li>
-<li><code>GetDataObject</code> / <code>GetDataObjects</code> for object-shaped results.</li>
-<li>Additional examples show DataRow/DataTable/DataList usage.</li>
-</ul>
-</li>
-<li><p><strong>Identity helpers</strong></p>
-<ul>
-<li><code>GetLastInsertId</code> to retrieve the last auto-increment ID.</li>
-<li><code>GetIdFromInternalId</code> to resolve IDs from internal GUIDs.</li>
-</ul>
-</li>
-<li><p><strong>Bulk operations</strong></p>
-<ul>
-<li><code>BulkTableWriterExamples</code> demonstrates writing multiple rows efficiently via the bulk writer helpers.</li>
-</ul>
-</li>
-<li><p><strong>Explicit transaction handling</strong></p>
-<ul>
-<li><code>autoOpenTransaction: true</code> plus a <code>try/catch</code> pattern where you explicitly call <code>RollbackTransactions()</code> on failure.</li>
-</ul>
-</li>
-</ul>
-<p>Concrete usage for all of these lives under:</p>
-<pre><code class="lang-text">examples/SimpleRelm.Quickstart
-</code></pre>
-<hr>
-<h2 id="getting-started">Getting started</h2>
-<h3 id="1-add-simplerelm-to-your-solution">1. Add SimpleRelm to your solution</h3>
-<p>Right now the library is consumed as a project reference:</p>
-<ol>
-<li>Clone this repository.</li>
-<li>Add the <code>SimpleRelm</code> project to your solution.</li>
-<li>Add a reference from your application to the <code>SimpleRelm</code> project.</li>
-</ol>
-<p>(When/if a NuGet package is published, this can become a simple <code>dotnet add package SimpleRelm</code> step.)</p>
-<h3 id="2-define-a-model-and-context">2. Define a model and context</h3>
-<p>Use attributes on your models and expose <code>IRelmDataSet</code> properties on a context that inherits from <code>RelmContext</code> or <code>RelmQuickContext</code>.</p>
-<p>The Quickstart project includes:</p>
-<ul>
-<li><code>Models/ExampleModel.cs</code></li>
-<li><code>Models/ExampleGroup.cs</code></li>
-<li><code>Contexts/ExampleContext.cs</code></li>
-<li><code>Contexts/ExampleQuickContext.cs</code></li>
-</ul>
-<p>These show the expected pattern end-to-end.</p>
-<hr>
-<h2 id="usage-patterns">Usage patterns</h2>
-<h3 id="using-relmcontext-vs-relmquickcontext">Using RelmContext vs RelmQuickContext</h3>
-<p>The Quickstart <code>Program.cs</code> demonstrates both:</p>
-<pre><code class="lang-csharp">// Relm Context: preloads datasets and metadata
-using (var relmContext = new ExampleContext())
-{
-    var identityExamples   = new Examples.Identity.IdentityExamples();
-    var dataRowExamples    = new Examples.Data.DataRowExamples();
-    var dataTableExamples  = new Examples.Data.DataTableExamples();
-    var dataObjectExamples = new Examples.Data.DataObjectExamples();
-    var dataListExamples   = new Examples.Data.DataListExamples();
-
-    identityExamples.RunExamples(relmContext);
-    dataRowExamples.RunExamples(relmContext);
-    dataTableExamples.RunExamples(relmContext);
-    dataObjectExamples.RunExamples(relmContext);
-    dataListExamples.RunExamples(relmContext);
-}
-
-// Relm Quick Context: lazy-loads metadata on first use
-using (var relmQuickContext = new ExampleQuickContext())
-{
-    var identityExamples   = new Examples.Identity.IdentityExamples();
-    var dataRowExamples    = new Examples.Data.DataRowExamples();
-    var dataTableExamples  = new Examples.Data.DataTableExamples();
-    var dataObjectExamples = new Examples.Data.DataObjectExamples();
-    var dataListExamples   = new Examples.Data.DataListExamples();
-
-    identityExamples.RunExamples(relmQuickContext);
-    dataRowExamples.RunExamples(relmQuickContext);
-    dataTableExamples.RunExamples(relmQuickContext);
-    dataObjectExamples.RunExamples(relmQuickContext);
-    dataListExamples.RunExamples(relmQuickContext);
-}
-</code></pre>
-<h3 id="recommended-transaction-pattern">Recommended transaction pattern</h3>
-<p>When you want SimpleRelm to manage a transaction for you, pass <code>autoOpenTransaction: true</code> and explicitly roll back on error:</p>
-<pre><code class="lang-csharp">using (var relmContext = new ExampleContext(autoOpenTransaction: true))
-{
-    try
-    {
-        var databaseWorkExamples    = new Examples.Data.DatabaseWorkExamples();
-        var bulkTableWriteExamples  = new Examples.BulkWriter.BulkTableWriterExamples();
-
-        databaseWorkExamples.RunExamples(relmContext);
-        bulkTableWriteExamples.RunExamples(relmContext);
-        // On success, the transaction is allowed to complete normally.
-    }
-    catch (Exception ex)
-    {
-        // On failure, explicitly roll back any open transactions.
-        relmContext.RollbackTransactions();
-        Console.WriteLine($&quot;An error occurred: {ex.Message}&quot;);
-        throw;
-    }
-}
-</code></pre>
-<p>The same pattern is also shown with <code>ExampleQuickContext</code> in the Quickstart.</p>
-<p>If you just need quick, one-off access to a connection/transaction without a full context, you can use:</p>
-<pre><code class="lang-csharp">using static SimpleRelm.Quickstart.Enums.ConnectionStrings;
-
-var result = RelmHelper.StandardConnectionWrapper(
-    ConnectionStringTypes.ExampleContextDatabase,
-    (connection, transaction) =&gt;
-    {
-        // Use the connection and transaction as needed
-        return true;
-    },
-    ExceptionHandler: (exception, st) =&gt;
-    {
-        Console.WriteLine($&quot;An error occurred: {exception.Message}&quot;);
-    });
-</code></pre>
-<hr>
-<p>For more detailed examples (DataRow/DataTable/DataObject/DataList, identity helpers, bulk writer, etc.), see the files under:</p>
-<pre><code class="lang-text">examples/SimpleRelm.Quickstart/Examples
-</code></pre>
 
 </article>
 

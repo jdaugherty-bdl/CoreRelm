@@ -1,0 +1,718 @@
+### YamlMime:ManagedReference
+items:
+- uid: CoreRelm.Interfaces.IRelmExecutionCommand
+  commentId: T:CoreRelm.Interfaces.IRelmExecutionCommand
+  id: IRelmExecutionCommand
+  parent: CoreRelm.Interfaces
+  children:
+  - CoreRelm.Interfaces.IRelmExecutionCommand.AddAdditionalCommand(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+  - CoreRelm.Interfaces.IRelmExecutionCommand.AdditionalCommandCount
+  - CoreRelm.Interfaces.IRelmExecutionCommand.ExecutionCommand
+  - CoreRelm.Interfaces.IRelmExecutionCommand.ExecutionExpression
+  - CoreRelm.Interfaces.IRelmExecutionCommand.GetAdditionalCommands
+  - CoreRelm.Interfaces.IRelmExecutionCommand.GetForeignKeyNavigationOptions``1(System.Collections.Generic.ICollection{``0})
+  - CoreRelm.Interfaces.IRelmExecutionCommand.InitialCommand
+  - CoreRelm.Interfaces.IRelmExecutionCommand.InitialExpression
+  langs:
+  - csharp
+  - vb
+  name: IRelmExecutionCommand
+  nameWithType: IRelmExecutionCommand
+  fullName: CoreRelm.Interfaces.IRelmExecutionCommand
+  type: Interface
+  source:
+    remote:
+      path: CoreRelm/Interfaces/IRelmExecutionCommand.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: IRelmExecutionCommand
+    path: ../CoreRelm/Interfaces/IRelmExecutionCommand.cs
+    startLine: 20
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces
+  summary: >-
+    Defines the contract for an execution command within the Relm framework, providing access to the initial command
+
+    and expression, management of additional commands, and options for foreign key navigation.
+  remarks: >-
+    Implementations of this interface allow for the composition and extension of execution
+        commands, supporting scenarios where multiple related commands and expressions are processed together. The
+        interface also facilitates navigation of foreign key relationships for collections of items, which can be useful
+        in data access or object-relational mapping contexts.
+  example: []
+  syntax:
+    content: public interface IRelmExecutionCommand
+    content.vb: Public Interface IRelmExecutionCommand
+- uid: CoreRelm.Interfaces.IRelmExecutionCommand.ExecutionCommand
+  commentId: P:CoreRelm.Interfaces.IRelmExecutionCommand.ExecutionCommand
+  id: ExecutionCommand
+  parent: CoreRelm.Interfaces.IRelmExecutionCommand
+  langs:
+  - csharp
+  - vb
+  name: ExecutionCommand
+  nameWithType: IRelmExecutionCommand.ExecutionCommand
+  fullName: CoreRelm.Interfaces.IRelmExecutionCommand.ExecutionCommand
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Interfaces/IRelmExecutionCommand.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: ExecutionCommand
+    path: ../CoreRelm/Interfaces/IRelmExecutionCommand.cs
+    startLine: 25
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces
+  summary: Gets the initial command that was associated with this execution command.
+  example: []
+  syntax:
+    content: Commands.Command ExecutionCommand { get; }
+    parameters: []
+    return:
+      type: CoreRelm.Enums.Commands.Command
+    content.vb: ReadOnly Property ExecutionCommand As Commands.Command
+  overload: CoreRelm.Interfaces.IRelmExecutionCommand.ExecutionCommand*
+- uid: CoreRelm.Interfaces.IRelmExecutionCommand.ExecutionExpression
+  commentId: P:CoreRelm.Interfaces.IRelmExecutionCommand.ExecutionExpression
+  id: ExecutionExpression
+  parent: CoreRelm.Interfaces.IRelmExecutionCommand
+  langs:
+  - csharp
+  - vb
+  name: ExecutionExpression
+  nameWithType: IRelmExecutionCommand.ExecutionExpression
+  fullName: CoreRelm.Interfaces.IRelmExecutionCommand.ExecutionExpression
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Interfaces/IRelmExecutionCommand.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: ExecutionExpression
+    path: ../CoreRelm/Interfaces/IRelmExecutionCommand.cs
+    startLine: 30
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces
+  summary: Gets the initial expression associated with this execution command.
+  example: []
+  syntax:
+    content: Expression ExecutionExpression { get; }
+    parameters: []
+    return:
+      type: System.Linq.Expressions.Expression
+    content.vb: ReadOnly Property ExecutionExpression As Expression
+  overload: CoreRelm.Interfaces.IRelmExecutionCommand.ExecutionExpression*
+- uid: CoreRelm.Interfaces.IRelmExecutionCommand.InitialCommand
+  commentId: P:CoreRelm.Interfaces.IRelmExecutionCommand.InitialCommand
+  id: InitialCommand
+  parent: CoreRelm.Interfaces.IRelmExecutionCommand
+  langs:
+  - csharp
+  - vb
+  name: InitialCommand
+  nameWithType: IRelmExecutionCommand.InitialCommand
+  fullName: CoreRelm.Interfaces.IRelmExecutionCommand.InitialCommand
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Interfaces/IRelmExecutionCommand.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: InitialCommand
+    path: ../CoreRelm/Interfaces/IRelmExecutionCommand.cs
+    startLine: 35
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces
+  summary: Gets the initial command that was associated with this execution command.
+  example: []
+  syntax:
+    content: Commands.Command InitialCommand { get; }
+    parameters: []
+    return:
+      type: CoreRelm.Enums.Commands.Command
+    content.vb: ReadOnly Property InitialCommand As Commands.Command
+  overload: CoreRelm.Interfaces.IRelmExecutionCommand.InitialCommand*
+- uid: CoreRelm.Interfaces.IRelmExecutionCommand.InitialExpression
+  commentId: P:CoreRelm.Interfaces.IRelmExecutionCommand.InitialExpression
+  id: InitialExpression
+  parent: CoreRelm.Interfaces.IRelmExecutionCommand
+  langs:
+  - csharp
+  - vb
+  name: InitialExpression
+  nameWithType: IRelmExecutionCommand.InitialExpression
+  fullName: CoreRelm.Interfaces.IRelmExecutionCommand.InitialExpression
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Interfaces/IRelmExecutionCommand.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: InitialExpression
+    path: ../CoreRelm/Interfaces/IRelmExecutionCommand.cs
+    startLine: 40
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces
+  summary: Gets the initial expression associated with this execution command.
+  example: []
+  syntax:
+    content: Expression InitialExpression { get; }
+    parameters: []
+    return:
+      type: System.Linq.Expressions.Expression
+    content.vb: ReadOnly Property InitialExpression As Expression
+  overload: CoreRelm.Interfaces.IRelmExecutionCommand.InitialExpression*
+- uid: CoreRelm.Interfaces.IRelmExecutionCommand.AdditionalCommandCount
+  commentId: P:CoreRelm.Interfaces.IRelmExecutionCommand.AdditionalCommandCount
+  id: AdditionalCommandCount
+  parent: CoreRelm.Interfaces.IRelmExecutionCommand
+  langs:
+  - csharp
+  - vb
+  name: AdditionalCommandCount
+  nameWithType: IRelmExecutionCommand.AdditionalCommandCount
+  fullName: CoreRelm.Interfaces.IRelmExecutionCommand.AdditionalCommandCount
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Interfaces/IRelmExecutionCommand.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: AdditionalCommandCount
+    path: ../CoreRelm/Interfaces/IRelmExecutionCommand.cs
+    startLine: 45
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces
+  summary: Gets the number of additional commands associated with the current context.
+  example: []
+  syntax:
+    content: int AdditionalCommandCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property AdditionalCommandCount As Integer
+  overload: CoreRelm.Interfaces.IRelmExecutionCommand.AdditionalCommandCount*
+- uid: CoreRelm.Interfaces.IRelmExecutionCommand.AddAdditionalCommand(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+  commentId: M:CoreRelm.Interfaces.IRelmExecutionCommand.AddAdditionalCommand(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+  id: AddAdditionalCommand(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+  parent: CoreRelm.Interfaces.IRelmExecutionCommand
+  langs:
+  - csharp
+  - vb
+  name: AddAdditionalCommand(Command, Expression)
+  nameWithType: IRelmExecutionCommand.AddAdditionalCommand(Commands.Command, Expression)
+  fullName: CoreRelm.Interfaces.IRelmExecutionCommand.AddAdditionalCommand(CoreRelm.Enums.Commands.Command, System.Linq.Expressions.Expression)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Interfaces/IRelmExecutionCommand.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: AddAdditionalCommand
+    path: ../CoreRelm/Interfaces/IRelmExecutionCommand.cs
+    startLine: 54
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces
+  summary: >-
+    Adds an additional execution command to the current context using the specified command and associated
+
+    expression.
+  example: []
+  syntax:
+    content: RelmExecutionCommand AddAdditionalCommand(Commands.Command command, Expression expression)
+    parameters:
+    - id: command
+      type: CoreRelm.Enums.Commands.Command
+      description: The command to be added to the execution context. Cannot be null.
+    - id: expression
+      type: System.Linq.Expressions.Expression
+      description: The expression associated with the command. Cannot be null.
+    return:
+      type: CoreRelm.Models.RelmExecutionCommand
+      description: A <xref href="CoreRelm.Models.RelmExecutionCommand" data-throw-if-not-resolved="false"></xref> representing the newly added command and its associated expression.
+    content.vb: Function AddAdditionalCommand(command As Commands.Command, expression As Expression) As RelmExecutionCommand
+  overload: CoreRelm.Interfaces.IRelmExecutionCommand.AddAdditionalCommand*
+- uid: CoreRelm.Interfaces.IRelmExecutionCommand.GetAdditionalCommands
+  commentId: M:CoreRelm.Interfaces.IRelmExecutionCommand.GetAdditionalCommands
+  id: GetAdditionalCommands
+  parent: CoreRelm.Interfaces.IRelmExecutionCommand
+  langs:
+  - csharp
+  - vb
+  name: GetAdditionalCommands()
+  nameWithType: IRelmExecutionCommand.GetAdditionalCommands()
+  fullName: CoreRelm.Interfaces.IRelmExecutionCommand.GetAdditionalCommands()
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Interfaces/IRelmExecutionCommand.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: GetAdditionalCommands
+    path: ../CoreRelm/Interfaces/IRelmExecutionCommand.cs
+    startLine: 61
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces
+  summary: Retrieves a list of additional execution commands to be processed.
+  example: []
+  syntax:
+    content: List<RelmExecutionCommand> GetAdditionalCommands()
+    return:
+      type: System.Collections.Generic.List{CoreRelm.Models.RelmExecutionCommand}
+      description: >-
+        A list of <xref href="CoreRelm.Models.RelmExecutionCommand" data-throw-if-not-resolved="false"></xref> objects representing additional commands. The list may be empty
+            if there are no additional commands to process.
+    content.vb: Function GetAdditionalCommands() As List(Of RelmExecutionCommand)
+  overload: CoreRelm.Interfaces.IRelmExecutionCommand.GetAdditionalCommands*
+- uid: CoreRelm.Interfaces.IRelmExecutionCommand.GetForeignKeyNavigationOptions``1(System.Collections.Generic.ICollection{``0})
+  commentId: M:CoreRelm.Interfaces.IRelmExecutionCommand.GetForeignKeyNavigationOptions``1(System.Collections.Generic.ICollection{``0})
+  id: GetForeignKeyNavigationOptions``1(System.Collections.Generic.ICollection{``0})
+  parent: CoreRelm.Interfaces.IRelmExecutionCommand
+  langs:
+  - csharp
+  - vb
+  name: GetForeignKeyNavigationOptions<T>(ICollection<T>)
+  nameWithType: IRelmExecutionCommand.GetForeignKeyNavigationOptions<T>(ICollection<T>)
+  fullName: CoreRelm.Interfaces.IRelmExecutionCommand.GetForeignKeyNavigationOptions<T>(System.Collections.Generic.ICollection<T>)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Interfaces/IRelmExecutionCommand.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: GetForeignKeyNavigationOptions
+    path: ../CoreRelm/Interfaces/IRelmExecutionCommand.cs
+    startLine: 70
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces
+  summary: Retrieves navigation options for foreign key relationships based on the provided collection of items.
+  example: []
+  syntax:
+    content: ForeignKeyNavigationOptions GetForeignKeyNavigationOptions<T>(ICollection<T> _items)
+    parameters:
+    - id: _items
+      type: System.Collections.Generic.ICollection{{T}}
+      description: The collection of items used to determine the available foreign key navigation options. Cannot be null.
+    typeParameters:
+    - id: T
+      description: The type of elements contained in the collection for which to retrieve navigation options.
+    return:
+      type: CoreRelm.RelmInternal.Models.ForeignKeyNavigationOptions
+      description: >-
+        A <xref href="CoreRelm.RelmInternal.Models.ForeignKeyNavigationOptions" data-throw-if-not-resolved="false"></xref> instance representing the available navigation options for the
+            specified items.
+    content.vb: Function GetForeignKeyNavigationOptions(Of T)(_items As ICollection(Of T)) As ForeignKeyNavigationOptions
+  overload: CoreRelm.Interfaces.IRelmExecutionCommand.GetForeignKeyNavigationOptions*
+  nameWithType.vb: IRelmExecutionCommand.GetForeignKeyNavigationOptions(Of T)(ICollection(Of T))
+  fullName.vb: CoreRelm.Interfaces.IRelmExecutionCommand.GetForeignKeyNavigationOptions(Of T)(System.Collections.Generic.ICollection(Of T))
+  name.vb: GetForeignKeyNavigationOptions(Of T)(ICollection(Of T))
+references:
+- uid: CoreRelm.Interfaces
+  commentId: N:CoreRelm.Interfaces
+  href: CoreRelm.html
+  name: CoreRelm.Interfaces
+  nameWithType: CoreRelm.Interfaces
+  fullName: CoreRelm.Interfaces
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+- uid: CoreRelm.Interfaces.IRelmExecutionCommand.ExecutionCommand*
+  commentId: Overload:CoreRelm.Interfaces.IRelmExecutionCommand.ExecutionCommand
+  href: CoreRelm.Interfaces.IRelmExecutionCommand.html#CoreRelm_Interfaces_IRelmExecutionCommand_ExecutionCommand
+  name: ExecutionCommand
+  nameWithType: IRelmExecutionCommand.ExecutionCommand
+  fullName: CoreRelm.Interfaces.IRelmExecutionCommand.ExecutionCommand
+- uid: CoreRelm.Enums.Commands.Command
+  commentId: T:CoreRelm.Enums.Commands.Command
+  parent: CoreRelm.Enums
+  href: CoreRelm.Enums.Commands.html
+  name: Commands.Command
+  nameWithType: Commands.Command
+  fullName: CoreRelm.Enums.Commands.Command
+  spec.csharp:
+  - uid: CoreRelm.Enums.Commands
+    name: Commands
+    href: CoreRelm.Enums.Commands.html
+  - name: .
+  - uid: CoreRelm.Enums.Commands.Command
+    name: Command
+    href: CoreRelm.Enums.Commands.Command.html
+  spec.vb:
+  - uid: CoreRelm.Enums.Commands
+    name: Commands
+    href: CoreRelm.Enums.Commands.html
+  - name: .
+  - uid: CoreRelm.Enums.Commands.Command
+    name: Command
+    href: CoreRelm.Enums.Commands.Command.html
+- uid: CoreRelm.Enums
+  commentId: N:CoreRelm.Enums
+  href: CoreRelm.html
+  name: CoreRelm.Enums
+  nameWithType: CoreRelm.Enums
+  fullName: CoreRelm.Enums
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Enums
+    name: Enums
+    href: CoreRelm.Enums.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Enums
+    name: Enums
+    href: CoreRelm.Enums.html
+- uid: CoreRelm.Interfaces.IRelmExecutionCommand.ExecutionExpression*
+  commentId: Overload:CoreRelm.Interfaces.IRelmExecutionCommand.ExecutionExpression
+  href: CoreRelm.Interfaces.IRelmExecutionCommand.html#CoreRelm_Interfaces_IRelmExecutionCommand_ExecutionExpression
+  name: ExecutionExpression
+  nameWithType: IRelmExecutionCommand.ExecutionExpression
+  fullName: CoreRelm.Interfaces.IRelmExecutionCommand.ExecutionExpression
+- uid: System.Linq.Expressions.Expression
+  commentId: T:System.Linq.Expressions.Expression
+  parent: System.Linq.Expressions
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression
+  name: Expression
+  nameWithType: Expression
+  fullName: System.Linq.Expressions.Expression
+- uid: System.Linq.Expressions
+  commentId: N:System.Linq.Expressions
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Linq.Expressions
+  nameWithType: System.Linq.Expressions
+  fullName: System.Linq.Expressions
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Linq
+    name: Linq
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq
+  - name: .
+  - uid: System.Linq.Expressions
+    name: Expressions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Linq
+    name: Linq
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq
+  - name: .
+  - uid: System.Linq.Expressions
+    name: Expressions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions
+- uid: CoreRelm.Interfaces.IRelmExecutionCommand.InitialCommand*
+  commentId: Overload:CoreRelm.Interfaces.IRelmExecutionCommand.InitialCommand
+  href: CoreRelm.Interfaces.IRelmExecutionCommand.html#CoreRelm_Interfaces_IRelmExecutionCommand_InitialCommand
+  name: InitialCommand
+  nameWithType: IRelmExecutionCommand.InitialCommand
+  fullName: CoreRelm.Interfaces.IRelmExecutionCommand.InitialCommand
+- uid: CoreRelm.Interfaces.IRelmExecutionCommand.InitialExpression*
+  commentId: Overload:CoreRelm.Interfaces.IRelmExecutionCommand.InitialExpression
+  href: CoreRelm.Interfaces.IRelmExecutionCommand.html#CoreRelm_Interfaces_IRelmExecutionCommand_InitialExpression
+  name: InitialExpression
+  nameWithType: IRelmExecutionCommand.InitialExpression
+  fullName: CoreRelm.Interfaces.IRelmExecutionCommand.InitialExpression
+- uid: CoreRelm.Interfaces.IRelmExecutionCommand.AdditionalCommandCount*
+  commentId: Overload:CoreRelm.Interfaces.IRelmExecutionCommand.AdditionalCommandCount
+  href: CoreRelm.Interfaces.IRelmExecutionCommand.html#CoreRelm_Interfaces_IRelmExecutionCommand_AdditionalCommandCount
+  name: AdditionalCommandCount
+  nameWithType: IRelmExecutionCommand.AdditionalCommandCount
+  fullName: CoreRelm.Interfaces.IRelmExecutionCommand.AdditionalCommandCount
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CoreRelm.Models.RelmExecutionCommand
+  commentId: T:CoreRelm.Models.RelmExecutionCommand
+  parent: CoreRelm.Models
+  href: CoreRelm.Models.RelmExecutionCommand.html
+  name: RelmExecutionCommand
+  nameWithType: RelmExecutionCommand
+  fullName: CoreRelm.Models.RelmExecutionCommand
+- uid: CoreRelm.Interfaces.IRelmExecutionCommand.AddAdditionalCommand*
+  commentId: Overload:CoreRelm.Interfaces.IRelmExecutionCommand.AddAdditionalCommand
+  href: CoreRelm.Interfaces.IRelmExecutionCommand.html#CoreRelm_Interfaces_IRelmExecutionCommand_AddAdditionalCommand_CoreRelm_Enums_Commands_Command_System_Linq_Expressions_Expression_
+  name: AddAdditionalCommand
+  nameWithType: IRelmExecutionCommand.AddAdditionalCommand
+  fullName: CoreRelm.Interfaces.IRelmExecutionCommand.AddAdditionalCommand
+- uid: CoreRelm.Models
+  commentId: N:CoreRelm.Models
+  href: CoreRelm.html
+  name: CoreRelm.Models
+  nameWithType: CoreRelm.Models
+  fullName: CoreRelm.Models
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+- uid: CoreRelm.Interfaces.IRelmExecutionCommand.GetAdditionalCommands*
+  commentId: Overload:CoreRelm.Interfaces.IRelmExecutionCommand.GetAdditionalCommands
+  href: CoreRelm.Interfaces.IRelmExecutionCommand.html#CoreRelm_Interfaces_IRelmExecutionCommand_GetAdditionalCommands
+  name: GetAdditionalCommands
+  nameWithType: IRelmExecutionCommand.GetAdditionalCommands
+  fullName: CoreRelm.Interfaces.IRelmExecutionCommand.GetAdditionalCommands
+- uid: System.Collections.Generic.List{CoreRelm.Models.RelmExecutionCommand}
+  commentId: T:System.Collections.Generic.List{CoreRelm.Models.RelmExecutionCommand}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<RelmExecutionCommand>
+  nameWithType: List<RelmExecutionCommand>
+  fullName: System.Collections.Generic.List<CoreRelm.Models.RelmExecutionCommand>
+  nameWithType.vb: List(Of RelmExecutionCommand)
+  fullName.vb: System.Collections.Generic.List(Of CoreRelm.Models.RelmExecutionCommand)
+  name.vb: List(Of RelmExecutionCommand)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: CoreRelm.Models.RelmExecutionCommand
+    name: RelmExecutionCommand
+    href: CoreRelm.Models.RelmExecutionCommand.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.Models.RelmExecutionCommand
+    name: RelmExecutionCommand
+    href: CoreRelm.Models.RelmExecutionCommand.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: CoreRelm.RelmInternal.Models.ForeignKeyNavigationOptions
+  commentId: T:CoreRelm.RelmInternal.Models.ForeignKeyNavigationOptions
+  parent: CoreRelm.RelmInternal.Models
+  href: CoreRelm.RelmInternal.Models.ForeignKeyNavigationOptions.html
+  name: ForeignKeyNavigationOptions
+  nameWithType: ForeignKeyNavigationOptions
+  fullName: CoreRelm.RelmInternal.Models.ForeignKeyNavigationOptions
+- uid: CoreRelm.Interfaces.IRelmExecutionCommand.GetForeignKeyNavigationOptions*
+  commentId: Overload:CoreRelm.Interfaces.IRelmExecutionCommand.GetForeignKeyNavigationOptions
+  href: CoreRelm.Interfaces.IRelmExecutionCommand.html#CoreRelm_Interfaces_IRelmExecutionCommand_GetForeignKeyNavigationOptions__1_System_Collections_Generic_ICollection___0__
+  name: GetForeignKeyNavigationOptions
+  nameWithType: IRelmExecutionCommand.GetForeignKeyNavigationOptions
+  fullName: CoreRelm.Interfaces.IRelmExecutionCommand.GetForeignKeyNavigationOptions
+- uid: System.Collections.Generic.ICollection{{T}}
+  commentId: T:System.Collections.Generic.ICollection{``0}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.ICollection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  name: ICollection<T>
+  nameWithType: ICollection<T>
+  fullName: System.Collections.Generic.ICollection<T>
+  nameWithType.vb: ICollection(Of T)
+  fullName.vb: System.Collections.Generic.ICollection(Of T)
+  name.vb: ICollection(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: CoreRelm.RelmInternal.Models
+  commentId: N:CoreRelm.RelmInternal.Models
+  href: CoreRelm.html
+  name: CoreRelm.RelmInternal.Models
+  nameWithType: CoreRelm.RelmInternal.Models
+  fullName: CoreRelm.RelmInternal.Models
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.RelmInternal
+    name: RelmInternal
+    href: CoreRelm.RelmInternal.html
+  - name: .
+  - uid: CoreRelm.RelmInternal.Models
+    name: Models
+    href: CoreRelm.RelmInternal.Models.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.RelmInternal
+    name: RelmInternal
+    href: CoreRelm.RelmInternal.html
+  - name: .
+  - uid: CoreRelm.RelmInternal.Models
+    name: Models
+    href: CoreRelm.RelmInternal.Models.html
+- uid: System.Collections.Generic.ICollection`1
+  commentId: T:System.Collections.Generic.ICollection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  name: ICollection<T>
+  nameWithType: ICollection<T>
+  fullName: System.Collections.Generic.ICollection<T>
+  nameWithType.vb: ICollection(Of T)
+  fullName.vb: System.Collections.Generic.ICollection(Of T)
+  name.vb: ICollection(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )

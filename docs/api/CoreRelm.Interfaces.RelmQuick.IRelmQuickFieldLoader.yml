@@ -1,0 +1,266 @@
+### YamlMime:ManagedReference
+items:
+- uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickFieldLoader
+  commentId: T:CoreRelm.Interfaces.RelmQuick.IRelmQuickFieldLoader
+  id: IRelmQuickFieldLoader
+  parent: CoreRelm.Interfaces.RelmQuick
+  children:
+  - CoreRelm.Interfaces.RelmQuick.IRelmQuickFieldLoader.RelmContext
+  langs:
+  - csharp
+  - vb
+  name: IRelmQuickFieldLoader
+  nameWithType: IRelmQuickFieldLoader
+  fullName: CoreRelm.Interfaces.RelmQuick.IRelmQuickFieldLoader
+  type: Interface
+  source:
+    remote:
+      path: CoreRelm/Interfaces/RelmQuick/IRelmQuickFieldLoader.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: IRelmQuickFieldLoader
+    path: ../CoreRelm/Interfaces/RelmQuick/IRelmQuickFieldLoader.cs
+    startLine: 11
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces.RelmQuick
+  summary: Provides access to the field loading quick context for use with RELM field loaders.
+  example: []
+  syntax:
+    content: >-
+      [Obsolete("IRelmQuickFieldLoader is deprecated. Please use the IRelmFieldLoader with IRelmContext.")]
+
+      public interface IRelmQuickFieldLoader : IRelmFieldLoaderBase
+    content.vb: >-
+      <Obsolete("IRelmQuickFieldLoader is deprecated. Please use the IRelmFieldLoader with IRelmContext.")>
+
+      Public Interface IRelmQuickFieldLoader Inherits IRelmFieldLoaderBase
+  inheritedMembers:
+  - CoreRelm.Interfaces.IRelmFieldLoaderBase.FieldName
+  - CoreRelm.Interfaces.IRelmFieldLoaderBase.KeyFields
+  - CoreRelm.Interfaces.IRelmFieldLoaderBase.GetFieldData``1(System.Collections.Generic.ICollection{{S}[]})
+  attributes:
+  - type: System.ObsoleteAttribute
+    ctor: System.ObsoleteAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: IRelmQuickFieldLoader is deprecated. Please use the IRelmFieldLoader with IRelmContext.
+- uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickFieldLoader.RelmContext
+  commentId: P:CoreRelm.Interfaces.RelmQuick.IRelmQuickFieldLoader.RelmContext
+  id: RelmContext
+  parent: CoreRelm.Interfaces.RelmQuick.IRelmQuickFieldLoader
+  langs:
+  - csharp
+  - vb
+  name: RelmContext
+  nameWithType: IRelmQuickFieldLoader.RelmContext
+  fullName: CoreRelm.Interfaces.RelmQuick.IRelmQuickFieldLoader.RelmContext
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Interfaces/RelmQuick/IRelmQuickFieldLoader.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: RelmContext
+    path: ../CoreRelm/Interfaces/RelmQuick/IRelmQuickFieldLoader.cs
+    startLine: 17
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces.RelmQuick
+  summary: Gets the current quick context for Relm operations.
+  example: []
+  syntax:
+    content: IRelmQuickContext RelmContext { get; }
+    parameters: []
+    return:
+      type: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
+    content.vb: ReadOnly Property RelmContext As IRelmQuickContext
+  overload: CoreRelm.Interfaces.RelmQuick.IRelmQuickFieldLoader.RelmContext*
+references:
+- uid: CoreRelm.Interfaces.RelmQuick
+  commentId: N:CoreRelm.Interfaces.RelmQuick
+  href: CoreRelm.html
+  name: CoreRelm.Interfaces.RelmQuick
+  nameWithType: CoreRelm.Interfaces.RelmQuick
+  fullName: CoreRelm.Interfaces.RelmQuick
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.RelmQuick
+    name: RelmQuick
+    href: CoreRelm.Interfaces.RelmQuick.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.RelmQuick
+    name: RelmQuick
+    href: CoreRelm.Interfaces.RelmQuick.html
+- uid: CoreRelm.Interfaces.IRelmFieldLoaderBase.FieldName
+  commentId: P:CoreRelm.Interfaces.IRelmFieldLoaderBase.FieldName
+  parent: CoreRelm.Interfaces.IRelmFieldLoaderBase
+  href: CoreRelm.Interfaces.IRelmFieldLoaderBase.html#CoreRelm_Interfaces_IRelmFieldLoaderBase_FieldName
+  name: FieldName
+  nameWithType: IRelmFieldLoaderBase.FieldName
+  fullName: CoreRelm.Interfaces.IRelmFieldLoaderBase.FieldName
+- uid: CoreRelm.Interfaces.IRelmFieldLoaderBase.KeyFields
+  commentId: P:CoreRelm.Interfaces.IRelmFieldLoaderBase.KeyFields
+  parent: CoreRelm.Interfaces.IRelmFieldLoaderBase
+  href: CoreRelm.Interfaces.IRelmFieldLoaderBase.html#CoreRelm_Interfaces_IRelmFieldLoaderBase_KeyFields
+  name: KeyFields
+  nameWithType: IRelmFieldLoaderBase.KeyFields
+  fullName: CoreRelm.Interfaces.IRelmFieldLoaderBase.KeyFields
+- uid: CoreRelm.Interfaces.IRelmFieldLoaderBase.GetFieldData``1(System.Collections.Generic.ICollection{{S}[]})
+  commentId: M:CoreRelm.Interfaces.IRelmFieldLoaderBase.GetFieldData``1(System.Collections.Generic.ICollection{``0[]})
+  parent: CoreRelm.Interfaces.IRelmFieldLoaderBase
+  definition: CoreRelm.Interfaces.IRelmFieldLoaderBase.GetFieldData``1(System.Collections.Generic.ICollection{``0[]})
+  href: CoreRelm.Interfaces.IRelmFieldLoaderBase.html#CoreRelm_Interfaces_IRelmFieldLoaderBase_GetFieldData__1_System_Collections_Generic_ICollection___0____
+  name: GetFieldData<S>(ICollection<S[]>)
+  nameWithType: IRelmFieldLoaderBase.GetFieldData<S>(ICollection<S[]>)
+  fullName: CoreRelm.Interfaces.IRelmFieldLoaderBase.GetFieldData<S>(System.Collections.Generic.ICollection<S[]>)
+  nameWithType.vb: IRelmFieldLoaderBase.GetFieldData(Of S)(ICollection(Of S()))
+  fullName.vb: CoreRelm.Interfaces.IRelmFieldLoaderBase.GetFieldData(Of S)(System.Collections.Generic.ICollection(Of S()))
+  name.vb: GetFieldData(Of S)(ICollection(Of S()))
+  spec.csharp:
+  - uid: CoreRelm.Interfaces.IRelmFieldLoaderBase.GetFieldData``1(System.Collections.Generic.ICollection{``0[]})
+    name: GetFieldData
+    href: CoreRelm.Interfaces.IRelmFieldLoaderBase.html#CoreRelm_Interfaces_IRelmFieldLoaderBase_GetFieldData__1_System_Collections_Generic_ICollection___0____
+  - name: <
+  - name: S
+  - name: '>'
+  - name: (
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - name: S
+  - name: '['
+  - name: ']'
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Interfaces.IRelmFieldLoaderBase.GetFieldData``1(System.Collections.Generic.ICollection{``0[]})
+    name: GetFieldData
+    href: CoreRelm.Interfaces.IRelmFieldLoaderBase.html#CoreRelm_Interfaces_IRelmFieldLoaderBase_GetFieldData__1_System_Collections_Generic_ICollection___0____
+  - name: (
+  - name: Of
+  - name: " "
+  - name: S
+  - name: )
+  - name: (
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: S
+  - name: (
+  - name: )
+  - name: )
+  - name: )
+- uid: CoreRelm.Interfaces.IRelmFieldLoaderBase
+  commentId: T:CoreRelm.Interfaces.IRelmFieldLoaderBase
+  parent: CoreRelm.Interfaces
+  href: CoreRelm.Interfaces.IRelmFieldLoaderBase.html
+  name: IRelmFieldLoaderBase
+  nameWithType: IRelmFieldLoaderBase
+  fullName: CoreRelm.Interfaces.IRelmFieldLoaderBase
+- uid: CoreRelm.Interfaces.IRelmFieldLoaderBase.GetFieldData``1(System.Collections.Generic.ICollection{``0[]})
+  commentId: M:CoreRelm.Interfaces.IRelmFieldLoaderBase.GetFieldData``1(System.Collections.Generic.ICollection{``0[]})
+  isExternal: true
+  href: CoreRelm.Interfaces.IRelmFieldLoaderBase.html#CoreRelm_Interfaces_IRelmFieldLoaderBase_GetFieldData__1_System_Collections_Generic_ICollection___0____
+  name: GetFieldData<S>(ICollection<S[]>)
+  nameWithType: IRelmFieldLoaderBase.GetFieldData<S>(ICollection<S[]>)
+  fullName: CoreRelm.Interfaces.IRelmFieldLoaderBase.GetFieldData<S>(System.Collections.Generic.ICollection<S[]>)
+  nameWithType.vb: IRelmFieldLoaderBase.GetFieldData(Of S)(ICollection(Of S()))
+  fullName.vb: CoreRelm.Interfaces.IRelmFieldLoaderBase.GetFieldData(Of S)(System.Collections.Generic.ICollection(Of S()))
+  name.vb: GetFieldData(Of S)(ICollection(Of S()))
+  spec.csharp:
+  - uid: CoreRelm.Interfaces.IRelmFieldLoaderBase.GetFieldData``1(System.Collections.Generic.ICollection{``0[]})
+    name: GetFieldData
+    href: CoreRelm.Interfaces.IRelmFieldLoaderBase.html#CoreRelm_Interfaces_IRelmFieldLoaderBase_GetFieldData__1_System_Collections_Generic_ICollection___0____
+  - name: <
+  - name: S
+  - name: '>'
+  - name: (
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - name: S
+  - name: '['
+  - name: ']'
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Interfaces.IRelmFieldLoaderBase.GetFieldData``1(System.Collections.Generic.ICollection{``0[]})
+    name: GetFieldData
+    href: CoreRelm.Interfaces.IRelmFieldLoaderBase.html#CoreRelm_Interfaces_IRelmFieldLoaderBase_GetFieldData__1_System_Collections_Generic_ICollection___0____
+  - name: (
+  - name: Of
+  - name: " "
+  - name: S
+  - name: )
+  - name: (
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: S
+  - name: (
+  - name: )
+  - name: )
+  - name: )
+- uid: CoreRelm.Interfaces
+  commentId: N:CoreRelm.Interfaces
+  href: CoreRelm.html
+  name: CoreRelm.Interfaces
+  nameWithType: CoreRelm.Interfaces
+  fullName: CoreRelm.Interfaces
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+- uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickFieldLoader.RelmContext*
+  commentId: Overload:CoreRelm.Interfaces.RelmQuick.IRelmQuickFieldLoader.RelmContext
+  href: CoreRelm.Interfaces.RelmQuick.IRelmQuickFieldLoader.html#CoreRelm_Interfaces_RelmQuick_IRelmQuickFieldLoader_RelmContext
+  name: RelmContext
+  nameWithType: IRelmQuickFieldLoader.RelmContext
+  fullName: CoreRelm.Interfaces.RelmQuick.IRelmQuickFieldLoader.RelmContext
+- uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
+  commentId: T:CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
+  parent: CoreRelm.Interfaces.RelmQuick
+  href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
+  name: IRelmQuickContext
+  nameWithType: IRelmQuickContext
+  fullName: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext

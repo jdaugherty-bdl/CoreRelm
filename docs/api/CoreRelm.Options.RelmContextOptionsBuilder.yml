@@ -1,0 +1,2292 @@
+### YamlMime:ManagedReference
+items:
+- uid: CoreRelm.Options.RelmContextOptionsBuilder
+  commentId: T:CoreRelm.Options.RelmContextOptionsBuilder
+  id: RelmContextOptionsBuilder
+  parent: CoreRelm.Options
+  children:
+  - CoreRelm.Options.RelmContextOptionsBuilder.#ctor
+  - CoreRelm.Options.RelmContextOptionsBuilder.#ctor(MySql.Data.MySqlClient.MySqlConnection)
+  - CoreRelm.Options.RelmContextOptionsBuilder.#ctor(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction)
+  - CoreRelm.Options.RelmContextOptionsBuilder.#ctor(System.Enum)
+  - CoreRelm.Options.RelmContextOptionsBuilder.#ctor(System.String)
+  - CoreRelm.Options.RelmContextOptionsBuilder.#ctor(System.String,System.String,System.String,System.String)
+  - CoreRelm.Options.RelmContextOptionsBuilder.AllowUserVariables
+  - CoreRelm.Options.RelmContextOptionsBuilder.AutoInitializeDataSets
+  - CoreRelm.Options.RelmContextOptionsBuilder.AutoOpenConnection
+  - CoreRelm.Options.RelmContextOptionsBuilder.AutoOpenTransaction
+  - CoreRelm.Options.RelmContextOptionsBuilder.AutoVerifyTables
+  - CoreRelm.Options.RelmContextOptionsBuilder.ConnectionStringType
+  - CoreRelm.Options.RelmContextOptionsBuilder.ConvertZeroDateTime
+  - CoreRelm.Options.RelmContextOptionsBuilder.DatabaseConnection
+  - CoreRelm.Options.RelmContextOptionsBuilder.DatabaseConnectionString
+  - CoreRelm.Options.RelmContextOptionsBuilder.DatabaseName
+  - CoreRelm.Options.RelmContextOptionsBuilder.DatabasePassword
+  - CoreRelm.Options.RelmContextOptionsBuilder.DatabaseServer
+  - CoreRelm.Options.RelmContextOptionsBuilder.DatabaseTransaction
+  - CoreRelm.Options.RelmContextOptionsBuilder.DatabaseUser
+  - CoreRelm.Options.RelmContextOptionsBuilder.LockWaitTimeoutSeconds
+  - CoreRelm.Options.RelmContextOptionsBuilder.NamedConnection
+  - CoreRelm.Options.RelmContextOptionsBuilder.OptionsBuilderType
+  - CoreRelm.Options.RelmContextOptionsBuilder.ParseConnectionDetails(System.String)
+  - CoreRelm.Options.RelmContextOptionsBuilder.SetAllowUserVariables(System.Boolean)
+  - CoreRelm.Options.RelmContextOptionsBuilder.SetAutoInitializeDataSets(System.Boolean)
+  - CoreRelm.Options.RelmContextOptionsBuilder.SetAutoOpenConnection(System.Boolean)
+  - CoreRelm.Options.RelmContextOptionsBuilder.SetAutoOpenTransaction(System.Boolean)
+  - CoreRelm.Options.RelmContextOptionsBuilder.SetAutoVerifyTables(System.Boolean)
+  - CoreRelm.Options.RelmContextOptionsBuilder.SetConnectionStringType(System.Enum)
+  - CoreRelm.Options.RelmContextOptionsBuilder.SetConnectionStringType(System.Type,System.Enum)
+  - CoreRelm.Options.RelmContextOptionsBuilder.SetConvertZeroDateTime(System.Boolean)
+  - CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseConnection(MySql.Data.MySqlClient.MySqlConnection)
+  - CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseConnectionString(System.String)
+  - CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseName(System.String)
+  - CoreRelm.Options.RelmContextOptionsBuilder.SetDatabasePassword(System.String)
+  - CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseServer(System.String)
+  - CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseTransaction(MySql.Data.MySqlClient.MySqlTransaction)
+  - CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseUser(System.String)
+  - CoreRelm.Options.RelmContextOptionsBuilder.SetLockWaitTimeoutSeconds(System.Int32)
+  - CoreRelm.Options.RelmContextOptionsBuilder.SetNamedConnection(System.String)
+  - CoreRelm.Options.RelmContextOptionsBuilder.ValidateAllSettings(System.Boolean)
+  langs:
+  - csharp
+  - vb
+  name: RelmContextOptionsBuilder
+  nameWithType: RelmContextOptionsBuilder
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder
+  type: Class
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: RelmContextOptionsBuilder
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 23
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: >-
+    Provides a builder for configuring options required to establish a connection to a relational database context.
+
+    Supports multiple initialization patterns, including connection strings, named connections, and open MySQL
+
+    connections.
+  remarks: >-
+    Use this class to specify database connection details such as server, database name, user
+        credentials, or to provide an existing MySqlConnection or named connection. The builder validates configuration
+        based on the selected connection method. Once configured, the options can be used to initialize a database
+        context. This class is not thread-safe.
+  example: []
+  syntax:
+    content: public class RelmContextOptionsBuilder
+    content.vb: Public Class RelmContextOptionsBuilder
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.DatabaseServer
+  commentId: P:CoreRelm.Options.RelmContextOptionsBuilder.DatabaseServer
+  id: DatabaseServer
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: DatabaseServer
+  nameWithType: RelmContextOptionsBuilder.DatabaseServer
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.DatabaseServer
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: DatabaseServer
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 50
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Gets the name or network address of the database server to which the application is connected.
+  example: []
+  syntax:
+    content: public string DatabaseServer { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property DatabaseServer As String
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.DatabaseServer*
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.DatabaseName
+  commentId: P:CoreRelm.Options.RelmContextOptionsBuilder.DatabaseName
+  id: DatabaseName
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: DatabaseName
+  nameWithType: RelmContextOptionsBuilder.DatabaseName
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.DatabaseName
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: DatabaseName
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 55
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Gets the name of the database associated with this instance.
+  example: []
+  syntax:
+    content: public string DatabaseName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property DatabaseName As String
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.DatabaseName*
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.DatabaseUser
+  commentId: P:CoreRelm.Options.RelmContextOptionsBuilder.DatabaseUser
+  id: DatabaseUser
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: DatabaseUser
+  nameWithType: RelmContextOptionsBuilder.DatabaseUser
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.DatabaseUser
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: DatabaseUser
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 60
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Gets the user name used to connect to the database.
+  example: []
+  syntax:
+    content: public string DatabaseUser { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property DatabaseUser As String
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.DatabaseUser*
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.DatabasePassword
+  commentId: P:CoreRelm.Options.RelmContextOptionsBuilder.DatabasePassword
+  id: DatabasePassword
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: DatabasePassword
+  nameWithType: RelmContextOptionsBuilder.DatabasePassword
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.DatabasePassword
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: DatabasePassword
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 65
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Gets the password used to connect to the database.
+  example: []
+  syntax:
+    content: public string DatabasePassword { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property DatabasePassword As String
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.DatabasePassword*
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.DatabaseConnectionString
+  commentId: P:CoreRelm.Options.RelmContextOptionsBuilder.DatabaseConnectionString
+  id: DatabaseConnectionString
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: DatabaseConnectionString
+  nameWithType: RelmContextOptionsBuilder.DatabaseConnectionString
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.DatabaseConnectionString
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: DatabaseConnectionString
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 70
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Gets the connection string used to connect to the database.
+  example: []
+  syntax:
+    content: public string DatabaseConnectionString { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property DatabaseConnectionString As String
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.DatabaseConnectionString*
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.NamedConnection
+  commentId: P:CoreRelm.Options.RelmContextOptionsBuilder.NamedConnection
+  id: NamedConnection
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: NamedConnection
+  nameWithType: RelmContextOptionsBuilder.NamedConnection
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.NamedConnection
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: NamedConnection
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 75
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Gets or sets the name of the connection to use for database operations.
+  example: []
+  syntax:
+    content: public string NamedConnection { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property NamedConnection As String
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.NamedConnection*
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.DatabaseConnection
+  commentId: P:CoreRelm.Options.RelmContextOptionsBuilder.DatabaseConnection
+  id: DatabaseConnection
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: DatabaseConnection
+  nameWithType: RelmContextOptionsBuilder.DatabaseConnection
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.DatabaseConnection
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: DatabaseConnection
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 80
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Gets the active MySQL database connection used by the application.
+  example: []
+  syntax:
+    content: public MySqlConnection DatabaseConnection { get; }
+    parameters: []
+    return:
+      type: MySql.Data.MySqlClient.MySqlConnection
+    content.vb: Public Property DatabaseConnection As MySqlConnection
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.DatabaseConnection*
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.DatabaseTransaction
+  commentId: P:CoreRelm.Options.RelmContextOptionsBuilder.DatabaseTransaction
+  id: DatabaseTransaction
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: DatabaseTransaction
+  nameWithType: RelmContextOptionsBuilder.DatabaseTransaction
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.DatabaseTransaction
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: DatabaseTransaction
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 87
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Gets the current database transaction associated with the connection.
+  remarks: >-
+    Use this property to access the active MySQL transaction for executing commands
+        within a transactional context. The property is null if no transaction is in progress.
+  example: []
+  syntax:
+    content: public MySqlTransaction DatabaseTransaction { get; }
+    parameters: []
+    return:
+      type: MySql.Data.MySqlClient.MySqlTransaction
+    content.vb: Public Property DatabaseTransaction As MySqlTransaction
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.DatabaseTransaction*
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.AutoOpenConnection
+  commentId: P:CoreRelm.Options.RelmContextOptionsBuilder.AutoOpenConnection
+  id: AutoOpenConnection
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: AutoOpenConnection
+  nameWithType: RelmContextOptionsBuilder.AutoOpenConnection
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.AutoOpenConnection
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: AutoOpenConnection
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 92
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Gets a value indicating whether the connection should be automatically opened when required.
+  example: []
+  syntax:
+    content: public bool AutoOpenConnection { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property AutoOpenConnection As Boolean
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.AutoOpenConnection*
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.AutoOpenTransaction
+  commentId: P:CoreRelm.Options.RelmContextOptionsBuilder.AutoOpenTransaction
+  id: AutoOpenTransaction
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: AutoOpenTransaction
+  nameWithType: RelmContextOptionsBuilder.AutoOpenTransaction
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.AutoOpenTransaction
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: AutoOpenTransaction
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 98
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: >-
+    Gets a value indicating whether a transaction is automatically opened when a database connection is
+
+    established.
+  example: []
+  syntax:
+    content: public bool AutoOpenTransaction { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property AutoOpenTransaction As Boolean
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.AutoOpenTransaction*
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.AllowUserVariables
+  commentId: P:CoreRelm.Options.RelmContextOptionsBuilder.AllowUserVariables
+  id: AllowUserVariables
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: AllowUserVariables
+  nameWithType: RelmContextOptionsBuilder.AllowUserVariables
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.AllowUserVariables
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: AllowUserVariables
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 103
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Gets a value indicating whether user-defined variables are permitted in SQL statements.
+  example: []
+  syntax:
+    content: public bool AllowUserVariables { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property AllowUserVariables As Boolean
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.AllowUserVariables*
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.ConvertZeroDateTime
+  commentId: P:CoreRelm.Options.RelmContextOptionsBuilder.ConvertZeroDateTime
+  id: ConvertZeroDateTime
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: ConvertZeroDateTime
+  nameWithType: RelmContextOptionsBuilder.ConvertZeroDateTime
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.ConvertZeroDateTime
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: ConvertZeroDateTime
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 112
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: >-
+    Gets a value indicating whether date and time values of zero are converted to DateTime.MinValue when
+
+    retrieved from the database.
+  remarks: >-
+    When enabled, date and time fields with a value of '0000-00-00' or '0000-00-00
+        00:00:00' are returned as DateTime.MinValue instead of causing an exception or being treated as invalid.
+        This option is useful when working with databases that allow zero date values.
+  example: []
+  syntax:
+    content: public bool ConvertZeroDateTime { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property ConvertZeroDateTime As Boolean
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.ConvertZeroDateTime*
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.LockWaitTimeoutSeconds
+  commentId: P:CoreRelm.Options.RelmContextOptionsBuilder.LockWaitTimeoutSeconds
+  id: LockWaitTimeoutSeconds
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: LockWaitTimeoutSeconds
+  nameWithType: RelmContextOptionsBuilder.LockWaitTimeoutSeconds
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.LockWaitTimeoutSeconds
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: LockWaitTimeoutSeconds
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 117
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Gets the maximum number of seconds to wait for a lock to be acquired before timing out.
+  example: []
+  syntax:
+    content: public int LockWaitTimeoutSeconds { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property LockWaitTimeoutSeconds As Integer
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.LockWaitTimeoutSeconds*
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.AutoInitializeDataSets
+  commentId: P:CoreRelm.Options.RelmContextOptionsBuilder.AutoInitializeDataSets
+  id: AutoInitializeDataSets
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: AutoInitializeDataSets
+  nameWithType: RelmContextOptionsBuilder.AutoInitializeDataSets
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.AutoInitializeDataSets
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: AutoInitializeDataSets
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 122
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Gets a value indicating whether data sets are automatically initialized when the component is created.
+  example: []
+  syntax:
+    content: public bool AutoInitializeDataSets { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property AutoInitializeDataSets As Boolean
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.AutoInitializeDataSets*
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.AutoVerifyTables
+  commentId: P:CoreRelm.Options.RelmContextOptionsBuilder.AutoVerifyTables
+  id: AutoVerifyTables
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: AutoVerifyTables
+  nameWithType: RelmContextOptionsBuilder.AutoVerifyTables
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.AutoVerifyTables
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: AutoVerifyTables
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 127
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Gets a value indicating whether table verification is performed automatically before database operations.
+  example: []
+  syntax:
+    content: public bool AutoVerifyTables { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property AutoVerifyTables As Boolean
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.AutoVerifyTables*
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.OptionsBuilderType
+  commentId: P:CoreRelm.Options.RelmContextOptionsBuilder.OptionsBuilderType
+  id: OptionsBuilderType
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: OptionsBuilderType
+  nameWithType: RelmContextOptionsBuilder.OptionsBuilderType
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.OptionsBuilderType
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: OptionsBuilderType
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 132
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Gets the type of options builder used to configure options for this instance.
+  example: []
+  syntax:
+    content: public RelmContextOptionsBuilder.OptionsBuilderTypes OptionsBuilderType { get; }
+    parameters: []
+    return:
+      type: CoreRelm.Options.RelmContextOptionsBuilder.OptionsBuilderTypes
+    content.vb: Public ReadOnly Property OptionsBuilderType As RelmContextOptionsBuilder.OptionsBuilderTypes
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.OptionsBuilderType*
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.ConnectionStringType
+  commentId: P:CoreRelm.Options.RelmContextOptionsBuilder.ConnectionStringType
+  id: ConnectionStringType
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: ConnectionStringType
+  nameWithType: RelmContextOptionsBuilder.ConnectionStringType
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.ConnectionStringType
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: ConnectionStringType
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 138
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Gets the type of the connection string used by the data source.
+  example: []
+  syntax:
+    content: public Enum ConnectionStringType { get; }
+    parameters: []
+    return:
+      type: System.Enum
+    content.vb: Public ReadOnly Property ConnectionStringType As [Enum]
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.ConnectionStringType*
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.#ctor
+  commentId: M:CoreRelm.Options.RelmContextOptionsBuilder.#ctor
+  id: '#ctor'
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: RelmContextOptionsBuilder()
+  nameWithType: RelmContextOptionsBuilder.RelmContextOptionsBuilder()
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.RelmContextOptionsBuilder()
+  type: Constructor
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: .ctor
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 146
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Initializes a new instance of the RelmContextOptionsBuilder class.
+  example: []
+  syntax:
+    content: public RelmContextOptionsBuilder()
+    content.vb: Public Sub New()
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.#ctor*
+  nameWithType.vb: RelmContextOptionsBuilder.New()
+  fullName.vb: CoreRelm.Options.RelmContextOptionsBuilder.New()
+  name.vb: New()
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.#ctor(System.String)
+  commentId: M:CoreRelm.Options.RelmContextOptionsBuilder.#ctor(System.String)
+  id: '#ctor(System.String)'
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: RelmContextOptionsBuilder(string)
+  nameWithType: RelmContextOptionsBuilder.RelmContextOptionsBuilder(string)
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.RelmContextOptionsBuilder(string)
+  type: Constructor
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: .ctor
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 153
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Initializes a new instance of the RelmContextOptionsBuilder class using the specified connection string.
+  example: []
+  syntax:
+    content: public RelmContextOptionsBuilder(string connectionString)
+    parameters:
+    - id: connectionString
+      type: System.String
+      description: The connection string used to configure the context options. Cannot be null or empty.
+    content.vb: Public Sub New(connectionString As String)
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.#ctor*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown if the connectionString parameter is null or empty.
+  nameWithType.vb: RelmContextOptionsBuilder.New(String)
+  fullName.vb: CoreRelm.Options.RelmContextOptionsBuilder.New(String)
+  name.vb: New(String)
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.#ctor(System.String,System.String,System.String,System.String)
+  commentId: M:CoreRelm.Options.RelmContextOptionsBuilder.#ctor(System.String,System.String,System.String,System.String)
+  id: '#ctor(System.String,System.String,System.String,System.String)'
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: RelmContextOptionsBuilder(string, string, string, string)
+  nameWithType: RelmContextOptionsBuilder.RelmContextOptionsBuilder(string, string, string, string)
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.RelmContextOptionsBuilder(string, string, string, string)
+  type: Constructor
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: .ctor
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 169
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: >-
+    Initializes a new instance of the RelmContextOptionsBuilder class with the specified database connection
+
+    settings.
+  example: []
+  syntax:
+    content: public RelmContextOptionsBuilder(string databaseServer, string databaseName, string databaseUser, string databasePassword)
+    parameters:
+    - id: databaseServer
+      type: System.String
+      description: The name or network address of the database server to connect to. Cannot be null or empty.
+    - id: databaseName
+      type: System.String
+      description: The name of the database to use. Cannot be null or empty.
+    - id: databaseUser
+      type: System.String
+      description: The username to use when connecting to the database. Cannot be null or empty.
+    - id: databasePassword
+      type: System.String
+      description: The password associated with the specified database user. Cannot be null or empty.
+    content.vb: Public Sub New(databaseServer As String, databaseName As String, databaseUser As String, databasePassword As String)
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.#ctor*
+  nameWithType.vb: RelmContextOptionsBuilder.New(String, String, String, String)
+  fullName.vb: CoreRelm.Options.RelmContextOptionsBuilder.New(String, String, String, String)
+  name.vb: New(String, String, String, String)
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.#ctor(System.Enum)
+  commentId: M:CoreRelm.Options.RelmContextOptionsBuilder.#ctor(System.Enum)
+  id: '#ctor(System.Enum)'
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: RelmContextOptionsBuilder(Enum)
+  nameWithType: RelmContextOptionsBuilder.RelmContextOptionsBuilder(Enum)
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.RelmContextOptionsBuilder(System.Enum)
+  type: Constructor
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: .ctor
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 183
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: >-
+    Initializes a new instance of the RelmContextOptionsBuilder class using the specified connection string
+
+    type.
+  example: []
+  syntax:
+    content: public RelmContextOptionsBuilder(Enum connectionStringType)
+    parameters:
+    - id: connectionStringType
+      type: System.Enum
+      description: >-
+        An enumeration value that specifies the type of connection string to use. Must be a valid enum representing
+            a supported connection string type.
+    content.vb: Public Sub New(connectionStringType As [Enum])
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.#ctor*
+  nameWithType.vb: RelmContextOptionsBuilder.New(Enum)
+  fullName.vb: CoreRelm.Options.RelmContextOptionsBuilder.New(System.Enum)
+  name.vb: New(Enum)
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.#ctor(MySql.Data.MySqlClient.MySqlConnection)
+  commentId: M:CoreRelm.Options.RelmContextOptionsBuilder.#ctor(MySql.Data.MySqlClient.MySqlConnection)
+  id: '#ctor(MySql.Data.MySqlClient.MySqlConnection)'
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: RelmContextOptionsBuilder(MySqlConnection)
+  nameWithType: RelmContextOptionsBuilder.RelmContextOptionsBuilder(MySqlConnection)
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.RelmContextOptionsBuilder(MySql.Data.MySqlClient.MySqlConnection)
+  type: Constructor
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: .ctor
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 193
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: >-
+    Initializes a new instance of the RelmContextOptionsBuilder class using the specified MySQL database
+
+    connection.
+  example: []
+  syntax:
+    content: public RelmContextOptionsBuilder(MySqlConnection connection)
+    parameters:
+    - id: connection
+      type: MySql.Data.MySqlClient.MySqlConnection
+      description: The MySqlConnection to use for configuring the context options. Cannot be null.
+    content.vb: Public Sub New(connection As MySqlConnection)
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.#ctor*
+  nameWithType.vb: RelmContextOptionsBuilder.New(MySqlConnection)
+  fullName.vb: CoreRelm.Options.RelmContextOptionsBuilder.New(MySql.Data.MySqlClient.MySqlConnection)
+  name.vb: New(MySqlConnection)
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.#ctor(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction)
+  commentId: M:CoreRelm.Options.RelmContextOptionsBuilder.#ctor(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction)
+  id: '#ctor(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction)'
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: RelmContextOptionsBuilder(MySqlConnection, MySqlTransaction)
+  nameWithType: RelmContextOptionsBuilder.RelmContextOptionsBuilder(MySqlConnection, MySqlTransaction)
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.RelmContextOptionsBuilder(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction)
+  type: Constructor
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: .ctor
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 207
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: >-
+    Initializes a new instance of the RelmContextOptionsBuilder class using the specified MySqlConnection and
+
+    MySqlTransaction.
+  remarks: >-
+    Use this constructor to configure the context to operate within an existing MySQL
+        connection and transaction. This is useful when managing connection and transaction lifetimes
+        externally.
+  example: []
+  syntax:
+    content: public RelmContextOptionsBuilder(MySqlConnection connection, MySqlTransaction transaction)
+    parameters:
+    - id: connection
+      type: MySql.Data.MySqlClient.MySqlConnection
+      description: The MySqlConnection to be used for database operations. Cannot be null.
+    - id: transaction
+      type: MySql.Data.MySqlClient.MySqlTransaction
+      description: The MySqlTransaction to associate with the context. Cannot be null.
+    content.vb: Public Sub New(connection As MySqlConnection, transaction As MySqlTransaction)
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.#ctor*
+  nameWithType.vb: RelmContextOptionsBuilder.New(MySqlConnection, MySqlTransaction)
+  fullName.vb: CoreRelm.Options.RelmContextOptionsBuilder.New(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction)
+  name.vb: New(MySqlConnection, MySqlTransaction)
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseConnection(MySql.Data.MySqlClient.MySqlConnection)
+  commentId: M:CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseConnection(MySql.Data.MySqlClient.MySqlConnection)
+  id: SetDatabaseConnection(MySql.Data.MySqlClient.MySqlConnection)
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: SetDatabaseConnection(MySqlConnection)
+  nameWithType: RelmContextOptionsBuilder.SetDatabaseConnection(MySqlConnection)
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseConnection(MySql.Data.MySqlClient.MySqlConnection)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: SetDatabaseConnection
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 222
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Sets the database connection to be used by the current instance.
+  remarks: >-
+    After calling this method, the instance will use the provided connection for all
+        subsequent database operations. The caller is responsible for managing the lifetime of the
+        connection.
+  example: []
+  syntax:
+    content: public RelmContextOptionsBuilder SetDatabaseConnection(MySqlConnection connection)
+    parameters:
+    - id: connection
+      type: MySql.Data.MySqlClient.MySqlConnection
+      description: The open <xref href="MySql.Data.MySqlClient.MySqlConnection" data-throw-if-not-resolved="false"></xref> to associate with this instance. The connection must not be null.
+    return:
+      type: CoreRelm.Options.RelmContextOptionsBuilder
+      description: The current instance of the <xref href="CoreRelm.Options.RelmContextOptionsBuilder" data-throw-if-not-resolved="false"></xref> class.
+    content.vb: Public Function SetDatabaseConnection(connection As MySqlConnection) As RelmContextOptionsBuilder
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseConnection*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown if <code class="paramref">connection</code> is null.
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseTransaction(MySql.Data.MySqlClient.MySqlTransaction)
+  commentId: M:CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseTransaction(MySql.Data.MySqlClient.MySqlTransaction)
+  id: SetDatabaseTransaction(MySql.Data.MySqlClient.MySqlTransaction)
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: SetDatabaseTransaction(MySqlTransaction)
+  nameWithType: RelmContextOptionsBuilder.SetDatabaseTransaction(MySqlTransaction)
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseTransaction(MySql.Data.MySqlClient.MySqlTransaction)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: SetDatabaseTransaction
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 240
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Sets the database transaction to be used for subsequent database operations.
+  remarks: >-
+    Use this method to specify an existing transaction for database commands. If a
+        transaction is set, all subsequent operations will be executed within the context of that transaction until
+        it is cleared or replaced.
+  example: []
+  syntax:
+    content: public RelmContextOptionsBuilder SetDatabaseTransaction(MySqlTransaction transaction)
+    parameters:
+    - id: transaction
+      type: MySql.Data.MySqlClient.MySqlTransaction
+      description: >-
+        The MySqlTransaction instance to associate with database operations. Can be null to clear the current
+            transaction.
+    return:
+      type: CoreRelm.Options.RelmContextOptionsBuilder
+      description: The current instance of the <xref href="CoreRelm.Options.RelmContextOptionsBuilder" data-throw-if-not-resolved="false"></xref> class.
+    content.vb: Public Function SetDatabaseTransaction(transaction As MySqlTransaction) As RelmContextOptionsBuilder
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseTransaction*
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseServer(System.String)
+  commentId: M:CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseServer(System.String)
+  id: SetDatabaseServer(System.String)
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: SetDatabaseServer(string)
+  nameWithType: RelmContextOptionsBuilder.SetDatabaseServer(string)
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseServer(string)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: SetDatabaseServer
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 255
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Sets the database server to use for establishing connections.
+  example: []
+  syntax:
+    content: public RelmContextOptionsBuilder SetDatabaseServer(string databaseServer)
+    parameters:
+    - id: databaseServer
+      type: System.String
+      description: The name or address of the database server. Cannot be null or empty.
+    return:
+      type: CoreRelm.Options.RelmContextOptionsBuilder
+      description: The current instance of the <xref href="CoreRelm.Options.RelmContextOptionsBuilder" data-throw-if-not-resolved="false"></xref> class.
+    content.vb: Public Function SetDatabaseServer(databaseServer As String) As RelmContextOptionsBuilder
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseServer*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown if <code class="paramref">databaseServer</code> is null or empty.
+  nameWithType.vb: RelmContextOptionsBuilder.SetDatabaseServer(String)
+  fullName.vb: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseServer(String)
+  name.vb: SetDatabaseServer(String)
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseName(System.String)
+  commentId: M:CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseName(System.String)
+  id: SetDatabaseName(System.String)
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: SetDatabaseName(string)
+  nameWithType: RelmContextOptionsBuilder.SetDatabaseName(string)
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseName(string)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: SetDatabaseName
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 276
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Sets the name of the database to be used for the connection.
+  example: []
+  syntax:
+    content: public RelmContextOptionsBuilder SetDatabaseName(string databaseName)
+    parameters:
+    - id: databaseName
+      type: System.String
+      description: >-
+        The name of the database. Must be a non-empty string containing only alphanumeric characters, underscores
+            (_), dollar signs ($), or Unicode characters in the range U+0080 to U+FFFF.
+    return:
+      type: CoreRelm.Options.RelmContextOptionsBuilder
+      description: The current instance of the <xref href="CoreRelm.Options.RelmContextOptionsBuilder" data-throw-if-not-resolved="false"></xref> class.
+    content.vb: Public Function SetDatabaseName(databaseName As String) As RelmContextOptionsBuilder
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseName*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown if the databaseName parameter is null or an empty string.
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: >-
+      Thrown if databaseName contains invalid characters. The name must be alphanumeric and may include
+          underscores (_), dollar signs ($), or Unicode characters in the range U+0080 to U+FFFF.
+  nameWithType.vb: RelmContextOptionsBuilder.SetDatabaseName(String)
+  fullName.vb: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseName(String)
+  name.vb: SetDatabaseName(String)
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseUser(System.String)
+  commentId: M:CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseUser(System.String)
+  id: SetDatabaseUser(System.String)
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: SetDatabaseUser(string)
+  nameWithType: RelmContextOptionsBuilder.SetDatabaseUser(string)
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseUser(string)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: SetDatabaseUser
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 299
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Sets the database user name to be used for the connection.
+  example: []
+  syntax:
+    content: public RelmContextOptionsBuilder SetDatabaseUser(string databaseUser)
+    parameters:
+    - id: databaseUser
+      type: System.String
+      description: The user name to associate with the database connection. Cannot be null or empty.
+    return:
+      type: CoreRelm.Options.RelmContextOptionsBuilder
+      description: The current instance of the <xref href="CoreRelm.Options.RelmContextOptionsBuilder" data-throw-if-not-resolved="false"></xref> class.
+    content.vb: Public Function SetDatabaseUser(databaseUser As String) As RelmContextOptionsBuilder
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseUser*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown if <code class="paramref">databaseUser</code> is null or empty.
+  nameWithType.vb: RelmContextOptionsBuilder.SetDatabaseUser(String)
+  fullName.vb: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseUser(String)
+  name.vb: SetDatabaseUser(String)
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabasePassword(System.String)
+  commentId: M:CoreRelm.Options.RelmContextOptionsBuilder.SetDatabasePassword(System.String)
+  id: SetDatabasePassword(System.String)
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: SetDatabasePassword(string)
+  nameWithType: RelmContextOptionsBuilder.SetDatabasePassword(string)
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabasePassword(string)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: SetDatabasePassword
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 317
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Sets the password used to connect to the database.
+  example: []
+  syntax:
+    content: public RelmContextOptionsBuilder SetDatabasePassword(string databasePassword)
+    parameters:
+    - id: databasePassword
+      type: System.String
+      description: The password to use for authenticating the database connection. Cannot be null or empty.
+    return:
+      type: CoreRelm.Options.RelmContextOptionsBuilder
+      description: The current instance of the <xref href="CoreRelm.Options.RelmContextOptionsBuilder" data-throw-if-not-resolved="false"></xref> class.
+    content.vb: Public Function SetDatabasePassword(databasePassword As String) As RelmContextOptionsBuilder
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabasePassword*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown if <code class="paramref">databasePassword</code> is null or empty.
+  nameWithType.vb: RelmContextOptionsBuilder.SetDatabasePassword(String)
+  fullName.vb: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabasePassword(String)
+  name.vb: SetDatabasePassword(String)
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetConnectionStringType(System.Enum)
+  commentId: M:CoreRelm.Options.RelmContextOptionsBuilder.SetConnectionStringType(System.Enum)
+  id: SetConnectionStringType(System.Enum)
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: SetConnectionStringType(Enum)
+  nameWithType: RelmContextOptionsBuilder.SetConnectionStringType(Enum)
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetConnectionStringType(System.Enum)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: SetConnectionStringType
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 334
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Sets the type of the connection string using the specified enumeration value.
+  example: []
+  syntax:
+    content: public RelmContextOptionsBuilder SetConnectionStringType(Enum connectionStringType)
+    parameters:
+    - id: connectionStringType
+      type: System.Enum
+      description: An enumeration value that specifies the type of connection string to use. Must not be null.
+    return:
+      type: CoreRelm.Options.RelmContextOptionsBuilder
+      description: The current instance of the <xref href="CoreRelm.Options.RelmContextOptionsBuilder" data-throw-if-not-resolved="false"></xref> class.
+    content.vb: Public Function SetConnectionStringType(connectionStringType As [Enum]) As RelmContextOptionsBuilder
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.SetConnectionStringType*
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetConnectionStringType(System.Type,System.Enum)
+  commentId: M:CoreRelm.Options.RelmContextOptionsBuilder.SetConnectionStringType(System.Type,System.Enum)
+  id: SetConnectionStringType(System.Type,System.Enum)
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: SetConnectionStringType(Type, Enum)
+  nameWithType: RelmContextOptionsBuilder.SetConnectionStringType(Type, Enum)
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetConnectionStringType(System.Type, System.Enum)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: SetConnectionStringType
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 348
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Sets the type of the connection string to use for database operations.
+  example: []
+  syntax:
+    content: public RelmContextOptionsBuilder SetConnectionStringType(Type enumType, Enum connectionStringType)
+    parameters:
+    - id: enumType
+      type: System.Type
+      description: The enumeration type that defines the valid connection string types. Must be an enum type.
+    - id: connectionStringType
+      type: System.Enum
+      description: The specific connection string type to set. Must be a defined value of <code class="paramref">enumType</code>.
+    return:
+      type: CoreRelm.Options.RelmContextOptionsBuilder
+      description: The current instance of the <xref href="CoreRelm.Options.RelmContextOptionsBuilder" data-throw-if-not-resolved="false"></xref> class.
+    content.vb: Public Function SetConnectionStringType(enumType As Type, connectionStringType As [Enum]) As RelmContextOptionsBuilder
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.SetConnectionStringType*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown if <code class="paramref">connectionStringType</code> is not a defined value of <code class="paramref">enumType</code>.
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetNamedConnection(System.String)
+  commentId: M:CoreRelm.Options.RelmContextOptionsBuilder.SetNamedConnection(System.String)
+  id: SetNamedConnection(System.String)
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: SetNamedConnection(string)
+  nameWithType: RelmContextOptionsBuilder.SetNamedConnection(string)
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetNamedConnection(string)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: SetNamedConnection
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 368
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Sets the current database connection using the specified named connection string.
+  example: []
+  syntax:
+    content: public RelmContextOptionsBuilder SetNamedConnection(string namedConnection)
+    parameters:
+    - id: namedConnection
+      type: System.String
+      description: The name of the connection string to use. Cannot be null or empty.
+    return:
+      type: CoreRelm.Options.RelmContextOptionsBuilder
+      description: The current instance of the <xref href="CoreRelm.Options.RelmContextOptionsBuilder" data-throw-if-not-resolved="false"></xref> class.
+    content.vb: Public Function SetNamedConnection(namedConnection As String) As RelmContextOptionsBuilder
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.SetNamedConnection*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown if the namedConnection parameter is null or empty.
+  nameWithType.vb: RelmContextOptionsBuilder.SetNamedConnection(String)
+  fullName.vb: CoreRelm.Options.RelmContextOptionsBuilder.SetNamedConnection(String)
+  name.vb: SetNamedConnection(String)
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseConnectionString(System.String)
+  commentId: M:CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseConnectionString(System.String)
+  id: SetDatabaseConnectionString(System.String)
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: SetDatabaseConnectionString(string)
+  nameWithType: RelmContextOptionsBuilder.SetDatabaseConnectionString(string)
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseConnectionString(string)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: SetDatabaseConnectionString
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 392
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Sets the connection string used to connect to the database.
+  example: []
+  syntax:
+    content: public RelmContextOptionsBuilder SetDatabaseConnectionString(string DatabaseConnectionString)
+    parameters:
+    - id: DatabaseConnectionString
+      type: System.String
+      description: The connection string to use for database connections. Cannot be null or empty.
+    return:
+      type: CoreRelm.Options.RelmContextOptionsBuilder
+      description: The current instance of the <xref href="CoreRelm.Options.RelmContextOptionsBuilder" data-throw-if-not-resolved="false"></xref> class.
+    content.vb: Public Function SetDatabaseConnectionString(DatabaseConnectionString As String) As RelmContextOptionsBuilder
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseConnectionString*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown if <code class="paramref">DatabaseConnectionString</code> is null or empty.
+  nameWithType.vb: RelmContextOptionsBuilder.SetDatabaseConnectionString(String)
+  fullName.vb: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseConnectionString(String)
+  name.vb: SetDatabaseConnectionString(String)
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.ValidateAllSettings(System.Boolean)
+  commentId: M:CoreRelm.Options.RelmContextOptionsBuilder.ValidateAllSettings(System.Boolean)
+  id: ValidateAllSettings(System.Boolean)
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: ValidateAllSettings(bool)
+  nameWithType: RelmContextOptionsBuilder.ValidateAllSettings(bool)
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.ValidateAllSettings(bool)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: ValidateAllSettings
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 415
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Validates all required database connection settings based on the configured options builder type.
+  remarks: >-
+    The required settings depend on the options builder type. For example, a named
+        connection string requires DatabaseConnectionString, an open connection requires DatabaseConnection, and a
+        standard connection string requires DatabaseServer, DatabaseName, DatabaseUser, and
+        DatabasePassword.
+  example: []
+  syntax:
+    content: public bool ValidateAllSettings(bool throwExceptions = true)
+    parameters:
+    - id: throwExceptions
+      type: System.Boolean
+      description: >-
+        true to throw an exception if a required setting is missing; false to return false instead of throwing an
+            exception. The default is true.
+    return:
+      type: System.Boolean
+      description: >-
+        true if all required settings are valid; otherwise, false if a required setting is missing and
+            throwExceptions is false.
+    content.vb: Public Function ValidateAllSettings(throwExceptions As Boolean = True) As Boolean
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.ValidateAllSettings*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown if a required setting is missing and throwExceptions is true.
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Thrown if the configured connection string type is invalid.
+  nameWithType.vb: RelmContextOptionsBuilder.ValidateAllSettings(Boolean)
+  fullName.vb: CoreRelm.Options.RelmContextOptionsBuilder.ValidateAllSettings(Boolean)
+  name.vb: ValidateAllSettings(Boolean)
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.ParseConnectionDetails(System.String)
+  commentId: M:CoreRelm.Options.RelmContextOptionsBuilder.ParseConnectionDetails(System.String)
+  id: ParseConnectionDetails(System.String)
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: ParseConnectionDetails(string)
+  nameWithType: RelmContextOptionsBuilder.ParseConnectionDetails(string)
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.ParseConnectionDetails(string)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: ParseConnectionDetails
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 496
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Parses the specified connection details string and configures the database connection settings accordingly.
+  remarks: >-
+    The method supports two formats for specifying connection details: a named connection
+        (e.g., 'name=MyConnection') or explicit connection parameters (e.g.,
+        'server=localhost;database=MyDb;user=admin;password=secret'). Only one format may be used at a time.
+        Additional or missing parameters will result in an exception.
+  example: []
+  syntax:
+    content: public void ParseConnectionDetails(string connectionDetails)
+    parameters:
+    - id: connectionDetails
+      type: System.String
+      description: >-
+        A string containing the connection details. Must be in the format 'name=connectionString' to use a named
+            connection, or 'server=serverName;database=databaseName;user=userName;password=password' to specify
+            individual connection parameters.
+    content.vb: Public Sub ParseConnectionDetails(connectionDetails As String)
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.ParseConnectionDetails*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown if the connectionDetails parameter is null, empty, or consists only of white-space characters.
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: >-
+      Thrown if the connectionDetails parameter does not match the required format or is missing required
+          connection parameters.
+  nameWithType.vb: RelmContextOptionsBuilder.ParseConnectionDetails(String)
+  fullName.vb: CoreRelm.Options.RelmContextOptionsBuilder.ParseConnectionDetails(String)
+  name.vb: ParseConnectionDetails(String)
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetAutoOpenConnection(System.Boolean)
+  commentId: M:CoreRelm.Options.RelmContextOptionsBuilder.SetAutoOpenConnection(System.Boolean)
+  id: SetAutoOpenConnection(System.Boolean)
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: SetAutoOpenConnection(bool)
+  nameWithType: RelmContextOptionsBuilder.SetAutoOpenConnection(bool)
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetAutoOpenConnection(bool)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: SetAutoOpenConnection
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 571
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Enables or disables automatic opening of the connection when required by operations.
+  remarks: >-
+    When automatic connection opening is enabled, the connection will be opened as needed
+        by operations that require it. If disabled, the caller is responsible for ensuring the connection is open
+        before performing such operations.
+  example: []
+  syntax:
+    content: public RelmContextOptionsBuilder SetAutoOpenConnection(bool autoOpenConnection)
+    parameters:
+    - id: autoOpenConnection
+      type: System.Boolean
+      description: true to enable automatic opening of the connection; false to require manual connection management.
+    return:
+      type: CoreRelm.Options.RelmContextOptionsBuilder
+      description: The current instance of the <xref href="CoreRelm.Options.RelmContextOptionsBuilder" data-throw-if-not-resolved="false"></xref> class.
+    content.vb: Public Function SetAutoOpenConnection(autoOpenConnection As Boolean) As RelmContextOptionsBuilder
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.SetAutoOpenConnection*
+  nameWithType.vb: RelmContextOptionsBuilder.SetAutoOpenConnection(Boolean)
+  fullName.vb: CoreRelm.Options.RelmContextOptionsBuilder.SetAutoOpenConnection(Boolean)
+  name.vb: SetAutoOpenConnection(Boolean)
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetAutoOpenTransaction(System.Boolean)
+  commentId: M:CoreRelm.Options.RelmContextOptionsBuilder.SetAutoOpenTransaction(System.Boolean)
+  id: SetAutoOpenTransaction(System.Boolean)
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: SetAutoOpenTransaction(bool)
+  nameWithType: RelmContextOptionsBuilder.SetAutoOpenTransaction(bool)
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetAutoOpenTransaction(bool)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: SetAutoOpenTransaction
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 583
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Enables or disables automatic opening of a transaction when executing database operations.
+  example: []
+  syntax:
+    content: public RelmContextOptionsBuilder SetAutoOpenTransaction(bool autoOpenTransaction)
+    parameters:
+    - id: autoOpenTransaction
+      type: System.Boolean
+      description: true to automatically open a transaction for each operation; otherwise, false.
+    return:
+      type: CoreRelm.Options.RelmContextOptionsBuilder
+      description: The current instance of the <xref href="CoreRelm.Options.RelmContextOptionsBuilder" data-throw-if-not-resolved="false"></xref> class.
+    content.vb: Public Function SetAutoOpenTransaction(autoOpenTransaction As Boolean) As RelmContextOptionsBuilder
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.SetAutoOpenTransaction*
+  nameWithType.vb: RelmContextOptionsBuilder.SetAutoOpenTransaction(Boolean)
+  fullName.vb: CoreRelm.Options.RelmContextOptionsBuilder.SetAutoOpenTransaction(Boolean)
+  name.vb: SetAutoOpenTransaction(Boolean)
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetAllowUserVariables(System.Boolean)
+  commentId: M:CoreRelm.Options.RelmContextOptionsBuilder.SetAllowUserVariables(System.Boolean)
+  id: SetAllowUserVariables(System.Boolean)
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: SetAllowUserVariables(bool)
+  nameWithType: RelmContextOptionsBuilder.SetAllowUserVariables(bool)
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetAllowUserVariables(bool)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: SetAllowUserVariables
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 595
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Enables or disables the use of user-defined variables in SQL statements.
+  example: []
+  syntax:
+    content: public RelmContextOptionsBuilder SetAllowUserVariables(bool allowUserVariables)
+    parameters:
+    - id: allowUserVariables
+      type: System.Boolean
+      description: true to allow user-defined variables in SQL statements; otherwise, false.
+    return:
+      type: CoreRelm.Options.RelmContextOptionsBuilder
+      description: The current instance of the <xref href="CoreRelm.Options.RelmContextOptionsBuilder" data-throw-if-not-resolved="false"></xref> class.
+    content.vb: Public Function SetAllowUserVariables(allowUserVariables As Boolean) As RelmContextOptionsBuilder
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.SetAllowUserVariables*
+  nameWithType.vb: RelmContextOptionsBuilder.SetAllowUserVariables(Boolean)
+  fullName.vb: CoreRelm.Options.RelmContextOptionsBuilder.SetAllowUserVariables(Boolean)
+  name.vb: SetAllowUserVariables(Boolean)
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetConvertZeroDateTime(System.Boolean)
+  commentId: M:CoreRelm.Options.RelmContextOptionsBuilder.SetConvertZeroDateTime(System.Boolean)
+  id: SetConvertZeroDateTime(System.Boolean)
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: SetConvertZeroDateTime(bool)
+  nameWithType: RelmContextOptionsBuilder.SetConvertZeroDateTime(bool)
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetConvertZeroDateTime(bool)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: SetConvertZeroDateTime
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 610
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Specifies whether zero date values should be converted to DateTime.MinValue when retrieving data.
+  remarks: >-
+    Zero date values are commonly used in some databases to represent an undefined or
+        missing date. Enabling this option allows such values to be mapped to DateTime.MinValue in .NET, which may
+        simplify handling of missing dates in application code.
+  example: []
+  syntax:
+    content: public RelmContextOptionsBuilder SetConvertZeroDateTime(bool convertZeroDateTime)
+    parameters:
+    - id: convertZeroDateTime
+      type: System.Boolean
+      description: true to convert zero date values to DateTime.MinValue; otherwise, false.
+    return:
+      type: CoreRelm.Options.RelmContextOptionsBuilder
+      description: The current instance of the <xref href="CoreRelm.Options.RelmContextOptionsBuilder" data-throw-if-not-resolved="false"></xref> class.
+    content.vb: Public Function SetConvertZeroDateTime(convertZeroDateTime As Boolean) As RelmContextOptionsBuilder
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.SetConvertZeroDateTime*
+  nameWithType.vb: RelmContextOptionsBuilder.SetConvertZeroDateTime(Boolean)
+  fullName.vb: CoreRelm.Options.RelmContextOptionsBuilder.SetConvertZeroDateTime(Boolean)
+  name.vb: SetConvertZeroDateTime(Boolean)
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetLockWaitTimeoutSeconds(System.Int32)
+  commentId: M:CoreRelm.Options.RelmContextOptionsBuilder.SetLockWaitTimeoutSeconds(System.Int32)
+  id: SetLockWaitTimeoutSeconds(System.Int32)
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: SetLockWaitTimeoutSeconds(int)
+  nameWithType: RelmContextOptionsBuilder.SetLockWaitTimeoutSeconds(int)
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetLockWaitTimeoutSeconds(int)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: SetLockWaitTimeoutSeconds
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 625
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Sets the lock wait timeout period, in seconds, for acquiring a lock.
+  remarks: >-
+    If the timeout is set to zero, the method will not wait and will attempt to acquire
+        the lock immediately. Setting an appropriate timeout can help prevent deadlocks in concurrent
+        scenarios.
+  example: []
+  syntax:
+    content: public RelmContextOptionsBuilder SetLockWaitTimeoutSeconds(int lockWaitTimeoutSeconds)
+    parameters:
+    - id: lockWaitTimeoutSeconds
+      type: System.Int32
+      description: The maximum number of seconds to wait for a lock to be acquired. Must be a non-negative value.
+    return:
+      type: CoreRelm.Options.RelmContextOptionsBuilder
+      description: The current instance of the <xref href="CoreRelm.Options.RelmContextOptionsBuilder" data-throw-if-not-resolved="false"></xref> class.
+    content.vb: Public Function SetLockWaitTimeoutSeconds(lockWaitTimeoutSeconds As Integer) As RelmContextOptionsBuilder
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.SetLockWaitTimeoutSeconds*
+  nameWithType.vb: RelmContextOptionsBuilder.SetLockWaitTimeoutSeconds(Integer)
+  fullName.vb: CoreRelm.Options.RelmContextOptionsBuilder.SetLockWaitTimeoutSeconds(Integer)
+  name.vb: SetLockWaitTimeoutSeconds(Integer)
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetAutoInitializeDataSets(System.Boolean)
+  commentId: M:CoreRelm.Options.RelmContextOptionsBuilder.SetAutoInitializeDataSets(System.Boolean)
+  id: SetAutoInitializeDataSets(System.Boolean)
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: SetAutoInitializeDataSets(bool)
+  nameWithType: RelmContextOptionsBuilder.SetAutoInitializeDataSets(bool)
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetAutoInitializeDataSets(bool)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: SetAutoInitializeDataSets
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 637
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Enables or disables automatic initialization of data sets.
+  example: []
+  syntax:
+    content: public RelmContextOptionsBuilder SetAutoInitializeDataSets(bool autoInitializeDataSets)
+    parameters:
+    - id: autoInitializeDataSets
+      type: System.Boolean
+      description: true to enable automatic initialization of data sets; otherwise, false.
+    return:
+      type: CoreRelm.Options.RelmContextOptionsBuilder
+      description: The current instance of the <xref href="CoreRelm.Options.RelmContextOptionsBuilder" data-throw-if-not-resolved="false"></xref> class.
+    content.vb: Public Function SetAutoInitializeDataSets(autoInitializeDataSets As Boolean) As RelmContextOptionsBuilder
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.SetAutoInitializeDataSets*
+  nameWithType.vb: RelmContextOptionsBuilder.SetAutoInitializeDataSets(Boolean)
+  fullName.vb: CoreRelm.Options.RelmContextOptionsBuilder.SetAutoInitializeDataSets(Boolean)
+  name.vb: SetAutoInitializeDataSets(Boolean)
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetAutoVerifyTables(System.Boolean)
+  commentId: M:CoreRelm.Options.RelmContextOptionsBuilder.SetAutoVerifyTables(System.Boolean)
+  id: SetAutoVerifyTables(System.Boolean)
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: SetAutoVerifyTables(bool)
+  nameWithType: RelmContextOptionsBuilder.SetAutoVerifyTables(bool)
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetAutoVerifyTables(bool)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: SetAutoVerifyTables
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 649
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: Enables or disables automatic verification of tables before performing operations.
+  example: []
+  syntax:
+    content: public RelmContextOptionsBuilder SetAutoVerifyTables(bool autoVerifyTables)
+    parameters:
+    - id: autoVerifyTables
+      type: System.Boolean
+      description: true to enable automatic table verification; false to disable it.
+    return:
+      type: CoreRelm.Options.RelmContextOptionsBuilder
+      description: The current instance of the <xref href="CoreRelm.Options.RelmContextOptionsBuilder" data-throw-if-not-resolved="false"></xref> class.
+    content.vb: Public Function SetAutoVerifyTables(autoVerifyTables As Boolean) As RelmContextOptionsBuilder
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.SetAutoVerifyTables*
+  nameWithType.vb: RelmContextOptionsBuilder.SetAutoVerifyTables(Boolean)
+  fullName.vb: CoreRelm.Options.RelmContextOptionsBuilder.SetAutoVerifyTables(Boolean)
+  name.vb: SetAutoVerifyTables(Boolean)
+references:
+- uid: CoreRelm.Options
+  commentId: N:CoreRelm.Options
+  href: CoreRelm.html
+  name: CoreRelm.Options
+  nameWithType: CoreRelm.Options
+  fullName: CoreRelm.Options
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Options
+    name: Options
+    href: CoreRelm.Options.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Options
+    name: Options
+    href: CoreRelm.Options.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.DatabaseServer*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.DatabaseServer
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_DatabaseServer
+  name: DatabaseServer
+  nameWithType: RelmContextOptionsBuilder.DatabaseServer
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.DatabaseServer
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.DatabaseName*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.DatabaseName
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_DatabaseName
+  name: DatabaseName
+  nameWithType: RelmContextOptionsBuilder.DatabaseName
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.DatabaseName
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.DatabaseUser*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.DatabaseUser
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_DatabaseUser
+  name: DatabaseUser
+  nameWithType: RelmContextOptionsBuilder.DatabaseUser
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.DatabaseUser
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.DatabasePassword*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.DatabasePassword
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_DatabasePassword
+  name: DatabasePassword
+  nameWithType: RelmContextOptionsBuilder.DatabasePassword
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.DatabasePassword
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.DatabaseConnectionString*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.DatabaseConnectionString
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_DatabaseConnectionString
+  name: DatabaseConnectionString
+  nameWithType: RelmContextOptionsBuilder.DatabaseConnectionString
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.DatabaseConnectionString
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.NamedConnection*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.NamedConnection
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_NamedConnection
+  name: NamedConnection
+  nameWithType: RelmContextOptionsBuilder.NamedConnection
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.NamedConnection
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.DatabaseConnection*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.DatabaseConnection
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_DatabaseConnection
+  name: DatabaseConnection
+  nameWithType: RelmContextOptionsBuilder.DatabaseConnection
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.DatabaseConnection
+- uid: MySql.Data.MySqlClient.MySqlConnection
+  commentId: T:MySql.Data.MySqlClient.MySqlConnection
+  parent: MySql.Data.MySqlClient
+  isExternal: true
+  name: MySqlConnection
+  nameWithType: MySqlConnection
+  fullName: MySql.Data.MySqlClient.MySqlConnection
+- uid: MySql.Data.MySqlClient
+  commentId: N:MySql.Data.MySqlClient
+  isExternal: true
+  name: MySql.Data.MySqlClient
+  nameWithType: MySql.Data.MySqlClient
+  fullName: MySql.Data.MySqlClient
+  spec.csharp:
+  - uid: MySql
+    name: MySql
+    isExternal: true
+  - name: .
+  - uid: MySql.Data
+    name: Data
+    isExternal: true
+  - name: .
+  - uid: MySql.Data.MySqlClient
+    name: MySqlClient
+    isExternal: true
+  spec.vb:
+  - uid: MySql
+    name: MySql
+    isExternal: true
+  - name: .
+  - uid: MySql.Data
+    name: Data
+    isExternal: true
+  - name: .
+  - uid: MySql.Data.MySqlClient
+    name: MySqlClient
+    isExternal: true
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.DatabaseTransaction*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.DatabaseTransaction
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_DatabaseTransaction
+  name: DatabaseTransaction
+  nameWithType: RelmContextOptionsBuilder.DatabaseTransaction
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.DatabaseTransaction
+- uid: MySql.Data.MySqlClient.MySqlTransaction
+  commentId: T:MySql.Data.MySqlClient.MySqlTransaction
+  parent: MySql.Data.MySqlClient
+  isExternal: true
+  name: MySqlTransaction
+  nameWithType: MySqlTransaction
+  fullName: MySql.Data.MySqlClient.MySqlTransaction
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.AutoOpenConnection*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.AutoOpenConnection
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_AutoOpenConnection
+  name: AutoOpenConnection
+  nameWithType: RelmContextOptionsBuilder.AutoOpenConnection
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.AutoOpenConnection
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.AutoOpenTransaction*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.AutoOpenTransaction
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_AutoOpenTransaction
+  name: AutoOpenTransaction
+  nameWithType: RelmContextOptionsBuilder.AutoOpenTransaction
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.AutoOpenTransaction
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.AllowUserVariables*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.AllowUserVariables
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_AllowUserVariables
+  name: AllowUserVariables
+  nameWithType: RelmContextOptionsBuilder.AllowUserVariables
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.AllowUserVariables
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.ConvertZeroDateTime*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.ConvertZeroDateTime
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_ConvertZeroDateTime
+  name: ConvertZeroDateTime
+  nameWithType: RelmContextOptionsBuilder.ConvertZeroDateTime
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.ConvertZeroDateTime
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.LockWaitTimeoutSeconds*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.LockWaitTimeoutSeconds
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_LockWaitTimeoutSeconds
+  name: LockWaitTimeoutSeconds
+  nameWithType: RelmContextOptionsBuilder.LockWaitTimeoutSeconds
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.LockWaitTimeoutSeconds
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.AutoInitializeDataSets*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.AutoInitializeDataSets
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_AutoInitializeDataSets
+  name: AutoInitializeDataSets
+  nameWithType: RelmContextOptionsBuilder.AutoInitializeDataSets
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.AutoInitializeDataSets
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.AutoVerifyTables*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.AutoVerifyTables
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_AutoVerifyTables
+  name: AutoVerifyTables
+  nameWithType: RelmContextOptionsBuilder.AutoVerifyTables
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.AutoVerifyTables
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.OptionsBuilderType*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.OptionsBuilderType
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_OptionsBuilderType
+  name: OptionsBuilderType
+  nameWithType: RelmContextOptionsBuilder.OptionsBuilderType
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.OptionsBuilderType
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.OptionsBuilderTypes
+  commentId: T:CoreRelm.Options.RelmContextOptionsBuilder.OptionsBuilderTypes
+  parent: CoreRelm.Options
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  name: RelmContextOptionsBuilder.OptionsBuilderTypes
+  nameWithType: RelmContextOptionsBuilder.OptionsBuilderTypes
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.OptionsBuilderTypes
+  spec.csharp:
+  - uid: CoreRelm.Options.RelmContextOptionsBuilder
+    name: RelmContextOptionsBuilder
+    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - name: .
+  - uid: CoreRelm.Options.RelmContextOptionsBuilder.OptionsBuilderTypes
+    name: OptionsBuilderTypes
+    href: CoreRelm.Options.RelmContextOptionsBuilder.OptionsBuilderTypes.html
+  spec.vb:
+  - uid: CoreRelm.Options.RelmContextOptionsBuilder
+    name: RelmContextOptionsBuilder
+    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - name: .
+  - uid: CoreRelm.Options.RelmContextOptionsBuilder.OptionsBuilderTypes
+    name: OptionsBuilderTypes
+    href: CoreRelm.Options.RelmContextOptionsBuilder.OptionsBuilderTypes.html
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.ConnectionStringType*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.ConnectionStringType
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_ConnectionStringType
+  name: ConnectionStringType
+  nameWithType: RelmContextOptionsBuilder.ConnectionStringType
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.ConnectionStringType
+- uid: System.Enum
+  commentId: T:System.Enum
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.enum
+  name: Enum
+  nameWithType: Enum
+  fullName: System.Enum
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.#ctor*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.#ctor
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder__ctor
+  name: RelmContextOptionsBuilder
+  nameWithType: RelmContextOptionsBuilder.RelmContextOptionsBuilder
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.RelmContextOptionsBuilder
+  nameWithType.vb: RelmContextOptionsBuilder.New
+  fullName.vb: CoreRelm.Options.RelmContextOptionsBuilder.New
+  name.vb: New
+- uid: System.ArgumentNullException
+  commentId: T:System.ArgumentNullException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentnullexception
+  name: ArgumentNullException
+  nameWithType: ArgumentNullException
+  fullName: System.ArgumentNullException
+- uid: CoreRelm.Options.RelmContextOptionsBuilder
+  commentId: T:CoreRelm.Options.RelmContextOptionsBuilder
+  parent: CoreRelm.Options
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  name: RelmContextOptionsBuilder
+  nameWithType: RelmContextOptionsBuilder
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseConnection*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseConnection
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_SetDatabaseConnection_MySql_Data_MySqlClient_MySqlConnection_
+  name: SetDatabaseConnection
+  nameWithType: RelmContextOptionsBuilder.SetDatabaseConnection
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseConnection
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseTransaction*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseTransaction
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_SetDatabaseTransaction_MySql_Data_MySqlClient_MySqlTransaction_
+  name: SetDatabaseTransaction
+  nameWithType: RelmContextOptionsBuilder.SetDatabaseTransaction
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseTransaction
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseServer*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseServer
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_SetDatabaseServer_System_String_
+  name: SetDatabaseServer
+  nameWithType: RelmContextOptionsBuilder.SetDatabaseServer
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseServer
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseName*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseName
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_SetDatabaseName_System_String_
+  name: SetDatabaseName
+  nameWithType: RelmContextOptionsBuilder.SetDatabaseName
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseName
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseUser*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseUser
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_SetDatabaseUser_System_String_
+  name: SetDatabaseUser
+  nameWithType: RelmContextOptionsBuilder.SetDatabaseUser
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseUser
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabasePassword*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.SetDatabasePassword
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_SetDatabasePassword_System_String_
+  name: SetDatabasePassword
+  nameWithType: RelmContextOptionsBuilder.SetDatabasePassword
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabasePassword
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetConnectionStringType*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.SetConnectionStringType
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_SetConnectionStringType_System_Enum_
+  name: SetConnectionStringType
+  nameWithType: RelmContextOptionsBuilder.SetConnectionStringType
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetConnectionStringType
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.type
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetNamedConnection*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.SetNamedConnection
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_SetNamedConnection_System_String_
+  name: SetNamedConnection
+  nameWithType: RelmContextOptionsBuilder.SetNamedConnection
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetNamedConnection
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseConnectionString*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseConnectionString
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_SetDatabaseConnectionString_System_String_
+  name: SetDatabaseConnectionString
+  nameWithType: RelmContextOptionsBuilder.SetDatabaseConnectionString
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseConnectionString
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.ValidateAllSettings*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.ValidateAllSettings
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_ValidateAllSettings_System_Boolean_
+  name: ValidateAllSettings
+  nameWithType: RelmContextOptionsBuilder.ValidateAllSettings
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.ValidateAllSettings
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.ParseConnectionDetails*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.ParseConnectionDetails
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_ParseConnectionDetails_System_String_
+  name: ParseConnectionDetails
+  nameWithType: RelmContextOptionsBuilder.ParseConnectionDetails
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.ParseConnectionDetails
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetAutoOpenConnection*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.SetAutoOpenConnection
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_SetAutoOpenConnection_System_Boolean_
+  name: SetAutoOpenConnection
+  nameWithType: RelmContextOptionsBuilder.SetAutoOpenConnection
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetAutoOpenConnection
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetAutoOpenTransaction*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.SetAutoOpenTransaction
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_SetAutoOpenTransaction_System_Boolean_
+  name: SetAutoOpenTransaction
+  nameWithType: RelmContextOptionsBuilder.SetAutoOpenTransaction
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetAutoOpenTransaction
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetAllowUserVariables*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.SetAllowUserVariables
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_SetAllowUserVariables_System_Boolean_
+  name: SetAllowUserVariables
+  nameWithType: RelmContextOptionsBuilder.SetAllowUserVariables
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetAllowUserVariables
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetConvertZeroDateTime*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.SetConvertZeroDateTime
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_SetConvertZeroDateTime_System_Boolean_
+  name: SetConvertZeroDateTime
+  nameWithType: RelmContextOptionsBuilder.SetConvertZeroDateTime
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetConvertZeroDateTime
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetLockWaitTimeoutSeconds*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.SetLockWaitTimeoutSeconds
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_SetLockWaitTimeoutSeconds_System_Int32_
+  name: SetLockWaitTimeoutSeconds
+  nameWithType: RelmContextOptionsBuilder.SetLockWaitTimeoutSeconds
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetLockWaitTimeoutSeconds
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetAutoInitializeDataSets*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.SetAutoInitializeDataSets
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_SetAutoInitializeDataSets_System_Boolean_
+  name: SetAutoInitializeDataSets
+  nameWithType: RelmContextOptionsBuilder.SetAutoInitializeDataSets
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetAutoInitializeDataSets
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.SetAutoVerifyTables*
+  commentId: Overload:CoreRelm.Options.RelmContextOptionsBuilder.SetAutoVerifyTables
+  href: CoreRelm.Options.RelmContextOptionsBuilder.html#CoreRelm_Options_RelmContextOptionsBuilder_SetAutoVerifyTables_System_Boolean_
+  name: SetAutoVerifyTables
+  nameWithType: RelmContextOptionsBuilder.SetAutoVerifyTables
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetAutoVerifyTables

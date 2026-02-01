@@ -1,0 +1,277 @@
+### YamlMime:ManagedReference
+items:
+- uid: CoreRelm.Enums.Triggers.TriggerTypes
+  commentId: T:CoreRelm.Enums.Triggers.TriggerTypes
+  id: Triggers.TriggerTypes
+  parent: CoreRelm.Enums
+  children:
+  - CoreRelm.Enums.Triggers.TriggerTypes.AfterDelete
+  - CoreRelm.Enums.Triggers.TriggerTypes.AfterInsert
+  - CoreRelm.Enums.Triggers.TriggerTypes.AfterUpdate
+  - CoreRelm.Enums.Triggers.TriggerTypes.BeforeDelete
+  - CoreRelm.Enums.Triggers.TriggerTypes.BeforeInsert
+  - CoreRelm.Enums.Triggers.TriggerTypes.BeforeUpdate
+  langs:
+  - csharp
+  - vb
+  name: Triggers.TriggerTypes
+  nameWithType: Triggers.TriggerTypes
+  fullName: CoreRelm.Enums.Triggers.TriggerTypes
+  type: Enum
+  source:
+    remote:
+      path: CoreRelm/Enums/Triggers.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: TriggerTypes
+    path: ../CoreRelm/Enums/Triggers.cs
+    startLine: 23
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Enums
+  summary: Specifies the types of triggers that can be executed in response to database operations.
+  remarks: >-
+    This enumeration defines trigger types that correspond to specific stages of database
+        operations,  such as inserts, updates, and deletes. Triggers can be executed either before or after the
+        operation.
+  example: []
+  syntax:
+    content: public enum Triggers.TriggerTypes
+    content.vb: Public Enum Triggers.TriggerTypes
+- uid: CoreRelm.Enums.Triggers.TriggerTypes.BeforeInsert
+  commentId: F:CoreRelm.Enums.Triggers.TriggerTypes.BeforeInsert
+  id: BeforeInsert
+  parent: CoreRelm.Enums.Triggers.TriggerTypes
+  langs:
+  - csharp
+  - vb
+  name: BeforeInsert
+  nameWithType: Triggers.TriggerTypes.BeforeInsert
+  fullName: CoreRelm.Enums.Triggers.TriggerTypes.BeforeInsert
+  type: Field
+  source:
+    remote:
+      path: CoreRelm/Enums/Triggers.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: BeforeInsert
+    path: ../CoreRelm/Enums/Triggers.cs
+    startLine: 31
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Enums
+  summary: Occurs before an item is inserted into the collection.
+  remarks: >-
+    This event allows subscribers to perform custom logic or validation before an
+        item is added to the collection. If the operation should be canceled, the event handler can throw an
+        exception or modify the state as needed.
+  example: []
+  syntax:
+    content: BeforeInsert = 0
+    return:
+      type: CoreRelm.Enums.Triggers.TriggerTypes
+- uid: CoreRelm.Enums.Triggers.TriggerTypes.AfterInsert
+  commentId: F:CoreRelm.Enums.Triggers.TriggerTypes.AfterInsert
+  id: AfterInsert
+  parent: CoreRelm.Enums.Triggers.TriggerTypes
+  langs:
+  - csharp
+  - vb
+  name: AfterInsert
+  nameWithType: Triggers.TriggerTypes.AfterInsert
+  fullName: CoreRelm.Enums.Triggers.TriggerTypes.AfterInsert
+  type: Field
+  source:
+    remote:
+      path: CoreRelm/Enums/Triggers.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: AfterInsert
+    path: ../CoreRelm/Enums/Triggers.cs
+    startLine: 37
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Enums
+  summary: Occurs after an item has been inserted into the collection or data store.
+  remarks: >-
+    This event allows subscribers to perform additional actions or processing
+        after an item has been successfully inserted.
+  example: []
+  syntax:
+    content: AfterInsert = 1
+    return:
+      type: CoreRelm.Enums.Triggers.TriggerTypes
+- uid: CoreRelm.Enums.Triggers.TriggerTypes.BeforeUpdate
+  commentId: F:CoreRelm.Enums.Triggers.TriggerTypes.BeforeUpdate
+  id: BeforeUpdate
+  parent: CoreRelm.Enums.Triggers.TriggerTypes
+  langs:
+  - csharp
+  - vb
+  name: BeforeUpdate
+  nameWithType: Triggers.TriggerTypes.BeforeUpdate
+  fullName: CoreRelm.Enums.Triggers.TriggerTypes.BeforeUpdate
+  type: Field
+  source:
+    remote:
+      path: CoreRelm/Enums/Triggers.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: BeforeUpdate
+    path: ../CoreRelm/Enums/Triggers.cs
+    startLine: 44
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Enums
+  summary: Occurs before an update operation is performed.
+  remarks: >-
+    This event allows subscribers to execute custom logic or validate data  prior
+        to the update operation. If the operation should be canceled,  subscribers can throw an exception or
+        modify the state as needed.
+  example: []
+  syntax:
+    content: BeforeUpdate = 2
+    return:
+      type: CoreRelm.Enums.Triggers.TriggerTypes
+- uid: CoreRelm.Enums.Triggers.TriggerTypes.AfterUpdate
+  commentId: F:CoreRelm.Enums.Triggers.TriggerTypes.AfterUpdate
+  id: AfterUpdate
+  parent: CoreRelm.Enums.Triggers.TriggerTypes
+  langs:
+  - csharp
+  - vb
+  name: AfterUpdate
+  nameWithType: Triggers.TriggerTypes.AfterUpdate
+  fullName: CoreRelm.Enums.Triggers.TriggerTypes.AfterUpdate
+  type: Field
+  source:
+    remote:
+      path: CoreRelm/Enums/Triggers.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: AfterUpdate
+    path: ../CoreRelm/Enums/Triggers.cs
+    startLine: 51
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Enums
+  summary: Occurs after an update operation has been completed.
+  remarks: >-
+    This event is triggered once the update process finishes successfully. 
+        Subscribers can use this event to perform any post-update actions, such as refreshing data or
+        logging.
+  example: []
+  syntax:
+    content: AfterUpdate = 3
+    return:
+      type: CoreRelm.Enums.Triggers.TriggerTypes
+- uid: CoreRelm.Enums.Triggers.TriggerTypes.BeforeDelete
+  commentId: F:CoreRelm.Enums.Triggers.TriggerTypes.BeforeDelete
+  id: BeforeDelete
+  parent: CoreRelm.Enums.Triggers.TriggerTypes
+  langs:
+  - csharp
+  - vb
+  name: BeforeDelete
+  nameWithType: Triggers.TriggerTypes.BeforeDelete
+  fullName: CoreRelm.Enums.Triggers.TriggerTypes.BeforeDelete
+  type: Field
+  source:
+    remote:
+      path: CoreRelm/Enums/Triggers.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: BeforeDelete
+    path: ../CoreRelm/Enums/Triggers.cs
+    startLine: 58
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Enums
+  summary: Occurs before an item is deleted.
+  remarks: >-
+    This event allows subscribers to perform any necessary actions or validations
+        prior to the deletion of the item. If the operation should be canceled,  subscribers can throw an
+        exception or use a specific cancellation mechanism  provided by the implementation.
+  example: []
+  syntax:
+    content: BeforeDelete = 4
+    return:
+      type: CoreRelm.Enums.Triggers.TriggerTypes
+- uid: CoreRelm.Enums.Triggers.TriggerTypes.AfterDelete
+  commentId: F:CoreRelm.Enums.Triggers.TriggerTypes.AfterDelete
+  id: AfterDelete
+  parent: CoreRelm.Enums.Triggers.TriggerTypes
+  langs:
+  - csharp
+  - vb
+  name: AfterDelete
+  nameWithType: Triggers.TriggerTypes.AfterDelete
+  fullName: CoreRelm.Enums.Triggers.TriggerTypes.AfterDelete
+  type: Field
+  source:
+    remote:
+      path: CoreRelm/Enums/Triggers.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: AfterDelete
+    path: ../CoreRelm/Enums/Triggers.cs
+    startLine: 65
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Enums
+  summary: Occurs after an item has been deleted.
+  remarks: >-
+    This event is triggered once the deletion process is completed successfully. 
+        Subscribers can use this event to perform any post-deletion operations, such as cleanup or
+        logging.
+  example: []
+  syntax:
+    content: AfterDelete = 5
+    return:
+      type: CoreRelm.Enums.Triggers.TriggerTypes
+references:
+- uid: CoreRelm.Enums
+  commentId: N:CoreRelm.Enums
+  href: CoreRelm.html
+  name: CoreRelm.Enums
+  nameWithType: CoreRelm.Enums
+  fullName: CoreRelm.Enums
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Enums
+    name: Enums
+    href: CoreRelm.Enums.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Enums
+    name: Enums
+    href: CoreRelm.Enums.html
+- uid: CoreRelm.Enums.Triggers.TriggerTypes
+  commentId: T:CoreRelm.Enums.Triggers.TriggerTypes
+  parent: CoreRelm.Enums
+  href: CoreRelm.Enums.Triggers.html
+  name: Triggers.TriggerTypes
+  nameWithType: Triggers.TriggerTypes
+  fullName: CoreRelm.Enums.Triggers.TriggerTypes
+  spec.csharp:
+  - uid: CoreRelm.Enums.Triggers
+    name: Triggers
+    href: CoreRelm.Enums.Triggers.html
+  - name: .
+  - uid: CoreRelm.Enums.Triggers.TriggerTypes
+    name: TriggerTypes
+    href: CoreRelm.Enums.Triggers.TriggerTypes.html
+  spec.vb:
+  - uid: CoreRelm.Enums.Triggers
+    name: Triggers
+    href: CoreRelm.Enums.Triggers.html
+  - name: .
+  - uid: CoreRelm.Enums.Triggers.TriggerTypes
+    name: TriggerTypes
+    href: CoreRelm.Enums.Triggers.TriggerTypes.html

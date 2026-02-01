@@ -1,0 +1,671 @@
+### YamlMime:ManagedReference
+items:
+- uid: CoreRelm.Interfaces.IRelmDataLoader`1
+  commentId: T:CoreRelm.Interfaces.IRelmDataLoader`1
+  id: IRelmDataLoader`1
+  parent: CoreRelm.Interfaces
+  children:
+  - CoreRelm.Interfaces.IRelmDataLoader`1.AddExpression(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+  - CoreRelm.Interfaces.IRelmDataLoader`1.AddSingleExpression(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+  - CoreRelm.Interfaces.IRelmDataLoader`1.GetLoadData
+  - CoreRelm.Interfaces.IRelmDataLoader`1.HasUnderscoreProperty(System.String)
+  - CoreRelm.Interfaces.IRelmDataLoader`1.LastCommandsExecuted
+  - CoreRelm.Interfaces.IRelmDataLoader`1.WriteData
+  langs:
+  - csharp
+  - vb
+  name: IRelmDataLoader<T>
+  nameWithType: IRelmDataLoader<T>
+  fullName: CoreRelm.Interfaces.IRelmDataLoader<T>
+  type: Interface
+  source:
+    remote:
+      path: CoreRelm/Interfaces/IRelmDataLoader.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: IRelmDataLoader
+    path: ../CoreRelm/Interfaces/IRelmDataLoader.cs
+    startLine: 16
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces
+  summary: >-
+    Defines methods and properties for loading, writing, and managing data, as well as executing commands with
+
+    associated expressions.
+  example: []
+  syntax:
+    content: public interface IRelmDataLoader<T>
+    typeParameters:
+    - id: T
+      description: The type of data managed by the loader.
+    content.vb: Public Interface IRelmDataLoader(Of T)
+  nameWithType.vb: IRelmDataLoader(Of T)
+  fullName.vb: CoreRelm.Interfaces.IRelmDataLoader(Of T)
+  name.vb: IRelmDataLoader(Of T)
+- uid: CoreRelm.Interfaces.IRelmDataLoader`1.LastCommandsExecuted
+  commentId: P:CoreRelm.Interfaces.IRelmDataLoader`1.LastCommandsExecuted
+  id: LastCommandsExecuted
+  parent: CoreRelm.Interfaces.IRelmDataLoader`1
+  langs:
+  - csharp
+  - vb
+  name: LastCommandsExecuted
+  nameWithType: IRelmDataLoader<T>.LastCommandsExecuted
+  fullName: CoreRelm.Interfaces.IRelmDataLoader<T>.LastCommandsExecuted
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Interfaces/IRelmDataLoader.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: LastCommandsExecuted
+    path: ../CoreRelm/Interfaces/IRelmDataLoader.cs
+    startLine: 23
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces
+  summary: Gets or sets the collection of the most recently executed commands and their associated execution details.
+  remarks: >-
+    This property provides a record of the last executed commands along with their
+        execution details.  It can be used to analyze or inspect the history of command executions.
+  example: []
+  syntax:
+    content: Dictionary<Commands.Command, List<IRelmExecutionCommand>> LastCommandsExecuted { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.Dictionary{CoreRelm.Enums.Commands.Command,System.Collections.Generic.List{CoreRelm.Interfaces.IRelmExecutionCommand}}
+    content.vb: Property LastCommandsExecuted As Dictionary(Of Commands.Command, List(Of IRelmExecutionCommand))
+  overload: CoreRelm.Interfaces.IRelmDataLoader`1.LastCommandsExecuted*
+  nameWithType.vb: IRelmDataLoader(Of T).LastCommandsExecuted
+  fullName.vb: CoreRelm.Interfaces.IRelmDataLoader(Of T).LastCommandsExecuted
+- uid: CoreRelm.Interfaces.IRelmDataLoader`1.GetLoadData
+  commentId: M:CoreRelm.Interfaces.IRelmDataLoader`1.GetLoadData
+  id: GetLoadData
+  parent: CoreRelm.Interfaces.IRelmDataLoader`1
+  langs:
+  - csharp
+  - vb
+  name: GetLoadData()
+  nameWithType: IRelmDataLoader<T>.GetLoadData()
+  fullName: CoreRelm.Interfaces.IRelmDataLoader<T>.GetLoadData()
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Interfaces/IRelmDataLoader.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: GetLoadData
+    path: ../CoreRelm/Interfaces/IRelmDataLoader.cs
+    startLine: 32
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces
+  summary: Retrieves a collection of data items of type <code class="typeparamref">T</code>.
+  remarks: >-
+    The returned collection contains the data items that are to be loaded.  The
+        collection may be empty if no data is available.
+  example: []
+  syntax:
+    content: ICollection<T> GetLoadData()
+    return:
+      type: System.Collections.Generic.ICollection{{T}}
+      description: >-
+        A collection of data items of type <code class="typeparamref">T</code>. The collection will be empty if no data is
+            available.
+    content.vb: Function GetLoadData() As ICollection(Of T)
+  overload: CoreRelm.Interfaces.IRelmDataLoader`1.GetLoadData*
+  nameWithType.vb: IRelmDataLoader(Of T).GetLoadData()
+  fullName.vb: CoreRelm.Interfaces.IRelmDataLoader(Of T).GetLoadData()
+- uid: CoreRelm.Interfaces.IRelmDataLoader`1.WriteData
+  commentId: M:CoreRelm.Interfaces.IRelmDataLoader`1.WriteData
+  id: WriteData
+  parent: CoreRelm.Interfaces.IRelmDataLoader`1
+  langs:
+  - csharp
+  - vb
+  name: WriteData()
+  nameWithType: IRelmDataLoader<T>.WriteData()
+  fullName: CoreRelm.Interfaces.IRelmDataLoader<T>.WriteData()
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Interfaces/IRelmDataLoader.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: WriteData
+    path: ../CoreRelm/Interfaces/IRelmDataLoader.cs
+    startLine: 38
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces
+  summary: Writes data to the underlying storage and returns the number of rows written.
+  example: []
+  syntax:
+    content: int WriteData()
+    return:
+      type: System.Int32
+      description: The number of rows successfully written to the storage.
+    content.vb: Function WriteData() As Integer
+  overload: CoreRelm.Interfaces.IRelmDataLoader`1.WriteData*
+  nameWithType.vb: IRelmDataLoader(Of T).WriteData()
+  fullName.vb: CoreRelm.Interfaces.IRelmDataLoader(Of T).WriteData()
+- uid: CoreRelm.Interfaces.IRelmDataLoader`1.AddExpression(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+  commentId: M:CoreRelm.Interfaces.IRelmDataLoader`1.AddExpression(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+  id: AddExpression(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+  parent: CoreRelm.Interfaces.IRelmDataLoader`1
+  langs:
+  - csharp
+  - vb
+  name: AddExpression(Command, Expression)
+  nameWithType: IRelmDataLoader<T>.AddExpression(Commands.Command, Expression)
+  fullName: CoreRelm.Interfaces.IRelmDataLoader<T>.AddExpression(CoreRelm.Enums.Commands.Command, System.Linq.Expressions.Expression)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Interfaces/IRelmDataLoader.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: AddExpression
+    path: ../CoreRelm/Interfaces/IRelmDataLoader.cs
+    startLine: 46
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces
+  summary: Adds an expression to the specified command and returns the resulting execution command.
+  example: []
+  syntax:
+    content: IRelmExecutionCommand AddExpression(Commands.Command command, Expression expression)
+    parameters:
+    - id: command
+      type: CoreRelm.Enums.Commands.Command
+      description: The command to which the expression will be added. Cannot be null.
+    - id: expression
+      type: System.Linq.Expressions.Expression
+      description: The expression to add to the command. Cannot be null.
+    return:
+      type: CoreRelm.Interfaces.IRelmExecutionCommand
+      description: An <xref href="CoreRelm.Interfaces.IRelmExecutionCommand" data-throw-if-not-resolved="false"></xref> representing the updated execution command with the added expression.
+    content.vb: Function AddExpression(command As Commands.Command, expression As Expression) As IRelmExecutionCommand
+  overload: CoreRelm.Interfaces.IRelmDataLoader`1.AddExpression*
+  nameWithType.vb: IRelmDataLoader(Of T).AddExpression(Commands.Command, Expression)
+  fullName.vb: CoreRelm.Interfaces.IRelmDataLoader(Of T).AddExpression(CoreRelm.Enums.Commands.Command, System.Linq.Expressions.Expression)
+- uid: CoreRelm.Interfaces.IRelmDataLoader`1.AddSingleExpression(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+  commentId: M:CoreRelm.Interfaces.IRelmDataLoader`1.AddSingleExpression(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+  id: AddSingleExpression(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+  parent: CoreRelm.Interfaces.IRelmDataLoader`1
+  langs:
+  - csharp
+  - vb
+  name: AddSingleExpression(Command, Expression)
+  nameWithType: IRelmDataLoader<T>.AddSingleExpression(Commands.Command, Expression)
+  fullName: CoreRelm.Interfaces.IRelmDataLoader<T>.AddSingleExpression(CoreRelm.Enums.Commands.Command, System.Linq.Expressions.Expression)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Interfaces/IRelmDataLoader.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: AddSingleExpression
+    path: ../CoreRelm/Interfaces/IRelmDataLoader.cs
+    startLine: 54
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces
+  summary: Adds a single expression to the specified command and returns the resulting execution command.
+  example: []
+  syntax:
+    content: IRelmExecutionCommand AddSingleExpression(Commands.Command command, Expression expression)
+    parameters:
+    - id: command
+      type: CoreRelm.Enums.Commands.Command
+      description: The command to which the expression will be added. Cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+    - id: expression
+      type: System.Linq.Expressions.Expression
+      description: The expression to add to the command. Cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+    return:
+      type: CoreRelm.Interfaces.IRelmExecutionCommand
+      description: An <xref href="CoreRelm.Interfaces.IRelmExecutionCommand" data-throw-if-not-resolved="false"></xref> representing the updated command with the added expression.
+    content.vb: Function AddSingleExpression(command As Commands.Command, expression As Expression) As IRelmExecutionCommand
+  overload: CoreRelm.Interfaces.IRelmDataLoader`1.AddSingleExpression*
+  nameWithType.vb: IRelmDataLoader(Of T).AddSingleExpression(Commands.Command, Expression)
+  fullName.vb: CoreRelm.Interfaces.IRelmDataLoader(Of T).AddSingleExpression(CoreRelm.Enums.Commands.Command, System.Linq.Expressions.Expression)
+- uid: CoreRelm.Interfaces.IRelmDataLoader`1.HasUnderscoreProperty(System.String)
+  commentId: M:CoreRelm.Interfaces.IRelmDataLoader`1.HasUnderscoreProperty(System.String)
+  id: HasUnderscoreProperty(System.String)
+  parent: CoreRelm.Interfaces.IRelmDataLoader`1
+  langs:
+  - csharp
+  - vb
+  name: HasUnderscoreProperty(string)
+  nameWithType: IRelmDataLoader<T>.HasUnderscoreProperty(string)
+  fullName: CoreRelm.Interfaces.IRelmDataLoader<T>.HasUnderscoreProperty(string)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Interfaces/IRelmDataLoader.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: HasUnderscoreProperty
+    path: ../CoreRelm/Interfaces/IRelmDataLoader.cs
+    startLine: 62
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces
+  summary: Determines whether the specified property key contains an underscore.
+  example: []
+  syntax:
+    content: bool HasUnderscoreProperty(string propertyKey)
+    parameters:
+    - id: propertyKey
+      type: System.String
+      description: The property key to check. Cannot be null or empty.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the property key contains at least one underscore; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Function HasUnderscoreProperty(propertyKey As String) As Boolean
+  overload: CoreRelm.Interfaces.IRelmDataLoader`1.HasUnderscoreProperty*
+  nameWithType.vb: IRelmDataLoader(Of T).HasUnderscoreProperty(String)
+  fullName.vb: CoreRelm.Interfaces.IRelmDataLoader(Of T).HasUnderscoreProperty(String)
+  name.vb: HasUnderscoreProperty(String)
+references:
+- uid: CoreRelm.Interfaces
+  commentId: N:CoreRelm.Interfaces
+  href: CoreRelm.html
+  name: CoreRelm.Interfaces
+  nameWithType: CoreRelm.Interfaces
+  fullName: CoreRelm.Interfaces
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+- uid: CoreRelm.Interfaces.IRelmDataLoader`1.LastCommandsExecuted*
+  commentId: Overload:CoreRelm.Interfaces.IRelmDataLoader`1.LastCommandsExecuted
+  href: CoreRelm.Interfaces.IRelmDataLoader-1.html#CoreRelm_Interfaces_IRelmDataLoader_1_LastCommandsExecuted
+  name: LastCommandsExecuted
+  nameWithType: IRelmDataLoader<T>.LastCommandsExecuted
+  fullName: CoreRelm.Interfaces.IRelmDataLoader<T>.LastCommandsExecuted
+  nameWithType.vb: IRelmDataLoader(Of T).LastCommandsExecuted
+  fullName.vb: CoreRelm.Interfaces.IRelmDataLoader(Of T).LastCommandsExecuted
+- uid: System.Collections.Generic.Dictionary{CoreRelm.Enums.Commands.Command,System.Collections.Generic.List{CoreRelm.Interfaces.IRelmExecutionCommand}}
+  commentId: T:System.Collections.Generic.Dictionary{CoreRelm.Enums.Commands.Command,System.Collections.Generic.List{CoreRelm.Interfaces.IRelmExecutionCommand}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<Commands.Command, List<IRelmExecutionCommand>>
+  nameWithType: Dictionary<Commands.Command, List<IRelmExecutionCommand>>
+  fullName: System.Collections.Generic.Dictionary<CoreRelm.Enums.Commands.Command, System.Collections.Generic.List<CoreRelm.Interfaces.IRelmExecutionCommand>>
+  nameWithType.vb: Dictionary(Of Commands.Command, List(Of IRelmExecutionCommand))
+  fullName.vb: System.Collections.Generic.Dictionary(Of CoreRelm.Enums.Commands.Command, System.Collections.Generic.List(Of CoreRelm.Interfaces.IRelmExecutionCommand))
+  name.vb: Dictionary(Of Commands.Command, List(Of IRelmExecutionCommand))
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - uid: CoreRelm.Enums.Commands
+    name: Commands
+    href: CoreRelm.Enums.Commands.html
+  - name: .
+  - uid: CoreRelm.Enums.Commands.Command
+    name: Command
+    href: CoreRelm.Enums.Commands.Command.html
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: CoreRelm.Interfaces.IRelmExecutionCommand
+    name: IRelmExecutionCommand
+    href: CoreRelm.Interfaces.IRelmExecutionCommand.html
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.Enums.Commands
+    name: Commands
+    href: CoreRelm.Enums.Commands.html
+  - name: .
+  - uid: CoreRelm.Enums.Commands.Command
+    name: Command
+    href: CoreRelm.Enums.Commands.Command.html
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.Interfaces.IRelmExecutionCommand
+    name: IRelmExecutionCommand
+    href: CoreRelm.Interfaces.IRelmExecutionCommand.html
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: CoreRelm.Interfaces.IRelmDataLoader`1.GetLoadData*
+  commentId: Overload:CoreRelm.Interfaces.IRelmDataLoader`1.GetLoadData
+  href: CoreRelm.Interfaces.IRelmDataLoader-1.html#CoreRelm_Interfaces_IRelmDataLoader_1_GetLoadData
+  name: GetLoadData
+  nameWithType: IRelmDataLoader<T>.GetLoadData
+  fullName: CoreRelm.Interfaces.IRelmDataLoader<T>.GetLoadData
+  nameWithType.vb: IRelmDataLoader(Of T).GetLoadData
+  fullName.vb: CoreRelm.Interfaces.IRelmDataLoader(Of T).GetLoadData
+- uid: System.Collections.Generic.ICollection{{T}}
+  commentId: T:System.Collections.Generic.ICollection{``0}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.ICollection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  name: ICollection<T>
+  nameWithType: ICollection<T>
+  fullName: System.Collections.Generic.ICollection<T>
+  nameWithType.vb: ICollection(Of T)
+  fullName.vb: System.Collections.Generic.ICollection(Of T)
+  name.vb: ICollection(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic.ICollection`1
+  commentId: T:System.Collections.Generic.ICollection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  name: ICollection<T>
+  nameWithType: ICollection<T>
+  fullName: System.Collections.Generic.ICollection<T>
+  nameWithType.vb: ICollection(Of T)
+  fullName.vb: System.Collections.Generic.ICollection(Of T)
+  name.vb: ICollection(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: CoreRelm.Interfaces.IRelmDataLoader`1.WriteData*
+  commentId: Overload:CoreRelm.Interfaces.IRelmDataLoader`1.WriteData
+  href: CoreRelm.Interfaces.IRelmDataLoader-1.html#CoreRelm_Interfaces_IRelmDataLoader_1_WriteData
+  name: WriteData
+  nameWithType: IRelmDataLoader<T>.WriteData
+  fullName: CoreRelm.Interfaces.IRelmDataLoader<T>.WriteData
+  nameWithType.vb: IRelmDataLoader(Of T).WriteData
+  fullName.vb: CoreRelm.Interfaces.IRelmDataLoader(Of T).WriteData
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CoreRelm.Interfaces.IRelmExecutionCommand
+  commentId: T:CoreRelm.Interfaces.IRelmExecutionCommand
+  parent: CoreRelm.Interfaces
+  href: CoreRelm.Interfaces.IRelmExecutionCommand.html
+  name: IRelmExecutionCommand
+  nameWithType: IRelmExecutionCommand
+  fullName: CoreRelm.Interfaces.IRelmExecutionCommand
+- uid: CoreRelm.Interfaces.IRelmDataLoader`1.AddExpression*
+  commentId: Overload:CoreRelm.Interfaces.IRelmDataLoader`1.AddExpression
+  href: CoreRelm.Interfaces.IRelmDataLoader-1.html#CoreRelm_Interfaces_IRelmDataLoader_1_AddExpression_CoreRelm_Enums_Commands_Command_System_Linq_Expressions_Expression_
+  name: AddExpression
+  nameWithType: IRelmDataLoader<T>.AddExpression
+  fullName: CoreRelm.Interfaces.IRelmDataLoader<T>.AddExpression
+  nameWithType.vb: IRelmDataLoader(Of T).AddExpression
+  fullName.vb: CoreRelm.Interfaces.IRelmDataLoader(Of T).AddExpression
+- uid: CoreRelm.Enums.Commands.Command
+  commentId: T:CoreRelm.Enums.Commands.Command
+  parent: CoreRelm.Enums
+  href: CoreRelm.Enums.Commands.html
+  name: Commands.Command
+  nameWithType: Commands.Command
+  fullName: CoreRelm.Enums.Commands.Command
+  spec.csharp:
+  - uid: CoreRelm.Enums.Commands
+    name: Commands
+    href: CoreRelm.Enums.Commands.html
+  - name: .
+  - uid: CoreRelm.Enums.Commands.Command
+    name: Command
+    href: CoreRelm.Enums.Commands.Command.html
+  spec.vb:
+  - uid: CoreRelm.Enums.Commands
+    name: Commands
+    href: CoreRelm.Enums.Commands.html
+  - name: .
+  - uid: CoreRelm.Enums.Commands.Command
+    name: Command
+    href: CoreRelm.Enums.Commands.Command.html
+- uid: System.Linq.Expressions.Expression
+  commentId: T:System.Linq.Expressions.Expression
+  parent: System.Linq.Expressions
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression
+  name: Expression
+  nameWithType: Expression
+  fullName: System.Linq.Expressions.Expression
+- uid: CoreRelm.Enums
+  commentId: N:CoreRelm.Enums
+  href: CoreRelm.html
+  name: CoreRelm.Enums
+  nameWithType: CoreRelm.Enums
+  fullName: CoreRelm.Enums
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Enums
+    name: Enums
+    href: CoreRelm.Enums.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Enums
+    name: Enums
+    href: CoreRelm.Enums.html
+- uid: System.Linq.Expressions
+  commentId: N:System.Linq.Expressions
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Linq.Expressions
+  nameWithType: System.Linq.Expressions
+  fullName: System.Linq.Expressions
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Linq
+    name: Linq
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq
+  - name: .
+  - uid: System.Linq.Expressions
+    name: Expressions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Linq
+    name: Linq
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq
+  - name: .
+  - uid: System.Linq.Expressions
+    name: Expressions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions
+- uid: CoreRelm.Interfaces.IRelmDataLoader`1.AddSingleExpression*
+  commentId: Overload:CoreRelm.Interfaces.IRelmDataLoader`1.AddSingleExpression
+  href: CoreRelm.Interfaces.IRelmDataLoader-1.html#CoreRelm_Interfaces_IRelmDataLoader_1_AddSingleExpression_CoreRelm_Enums_Commands_Command_System_Linq_Expressions_Expression_
+  name: AddSingleExpression
+  nameWithType: IRelmDataLoader<T>.AddSingleExpression
+  fullName: CoreRelm.Interfaces.IRelmDataLoader<T>.AddSingleExpression
+  nameWithType.vb: IRelmDataLoader(Of T).AddSingleExpression
+  fullName.vb: CoreRelm.Interfaces.IRelmDataLoader(Of T).AddSingleExpression
+- uid: CoreRelm.Interfaces.IRelmDataLoader`1.HasUnderscoreProperty*
+  commentId: Overload:CoreRelm.Interfaces.IRelmDataLoader`1.HasUnderscoreProperty
+  href: CoreRelm.Interfaces.IRelmDataLoader-1.html#CoreRelm_Interfaces_IRelmDataLoader_1_HasUnderscoreProperty_System_String_
+  name: HasUnderscoreProperty
+  nameWithType: IRelmDataLoader<T>.HasUnderscoreProperty
+  fullName: CoreRelm.Interfaces.IRelmDataLoader<T>.HasUnderscoreProperty
+  nameWithType.vb: IRelmDataLoader(Of T).HasUnderscoreProperty
+  fullName.vb: CoreRelm.Interfaces.IRelmDataLoader(Of T).HasUnderscoreProperty
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean

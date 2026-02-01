@@ -1,0 +1,1823 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface IRelmDataSet&lt;T&gt; | CoreRelm </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface IRelmDataSet&lt;T&gt; | CoreRelm ">
+      
+      <meta name="description" content="Represents a strongly-typed, queryable, and updatable collection of data model entities, providing advanced data loading, filtering, and manipulation capabilities.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/jdaugherty-bdl/CoreRelm/new/master/apiSpec/new?filename=CoreRelm_Interfaces_IRelmDataSet_1.md&amp;value=---%0Auid%3A%20CoreRelm.Interfaces.IRelmDataSet%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="CoreRelm">
+            CoreRelm
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="CoreRelm.Interfaces.IRelmDataSet`1">
+
+
+
+  <h1 id="CoreRelm_Interfaces_IRelmDataSet_1" data-uid="CoreRelm.Interfaces.IRelmDataSet`1" class="text-break">
+Interface IRelmDataSet&lt;T&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="CoreRelm.html">CoreRelm</a>.<a class="xref" href="CoreRelm.Interfaces.html">Interfaces</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>CoreRelm.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Represents a strongly-typed, queryable, and updatable collection of data model entities, providing advanced data
+loading, filtering, and manipulation capabilities.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IRelmDataSet&lt;T&gt; : ICollection&lt;T&gt;, IEnumerable&lt;T&gt;, IEnumerable, IRelmDataSetBase where T : IRelmModel, new()</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of data model entities contained in the data set. Must implement IRelmModel and have a parameterless
+constructor.</p>
+</dd>
+  </dl>
+
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.clear">ICollection&lt;T&gt;.Clear()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.contains">ICollection&lt;T&gt;.Contains(T)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.copyto">ICollection&lt;T&gt;.CopyTo(T[], int)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.remove">ICollection&lt;T&gt;.Remove(T)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.isreadonly">ICollection&lt;T&gt;.IsReadOnly</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator">IEnumerable&lt;T&gt;.GetEnumerator()</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadDataLoaderField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___">ListExtensions.LoadDataLoaderField&lt;T, R&gt;(ICollection&lt;T&gt;, IRelmContext, Expression&lt;Func&lt;T, R&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadDataLoaderField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___">ListExtensions.LoadDataLoaderField&lt;T, R&gt;(ICollection&lt;T&gt;, IRelmQuickContext, Expression&lt;Func&lt;T, R&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadDataLoaderField__2_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___">ListExtensions.LoadDataLoaderField&lt;T, R&gt;(ICollection&lt;T&gt;, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____">ListExtensions.LoadForeignKeyField&lt;T, R&gt;(ICollection&lt;T&gt;, IRelmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___">ListExtensions.LoadForeignKeyField&lt;T, R&gt;(ICollection&lt;T&gt;, IRelmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___">ListExtensions.LoadForeignKeyField&lt;T, R&gt;(ICollection&lt;T&gt;, IRelmContext, Expression&lt;Func&lt;T, R&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___">ListExtensions.LoadForeignKeyField&lt;T, R&gt;(ICollection&lt;T&gt;, IRelmContext, Expression&lt;Func&lt;T, R&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____">ListExtensions.LoadForeignKeyField&lt;T, R&gt;(ICollection&lt;T&gt;, IRelmQuickContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___">ListExtensions.LoadForeignKeyField&lt;T, R&gt;(ICollection&lt;T&gt;, IRelmQuickContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___">ListExtensions.LoadForeignKeyField&lt;T, R&gt;(ICollection&lt;T&gt;, IRelmQuickContext, Expression&lt;Func&lt;T, R&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___">ListExtensions.LoadForeignKeyField&lt;T, R&gt;(ICollection&lt;T&gt;, IRelmQuickContext, Expression&lt;Func&lt;T, R&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____">ListExtensions.LoadForeignKeyField&lt;T, R&gt;(ICollection&lt;T&gt;, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___">ListExtensions.LoadForeignKeyField&lt;T, R&gt;(ICollection&lt;T&gt;, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___">ListExtensions.LoadForeignKeyField&lt;T, R&gt;(ICollection&lt;T&gt;, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___">ListExtensions.LoadForeignKeyField&lt;T, R&gt;(ICollection&lt;T&gt;, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__">ListExtensions.LoadForeignKeyField&lt;T, R, S&gt;(ICollection&lt;T&gt;, IRelmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___">ListExtensions.LoadForeignKeyField&lt;T, R, S&gt;(ICollection&lt;T&gt;, IRelmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__">ListExtensions.LoadForeignKeyField&lt;T, R, S&gt;(ICollection&lt;T&gt;, IRelmContext, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___">ListExtensions.LoadForeignKeyField&lt;T, R, S&gt;(ICollection&lt;T&gt;, IRelmContext, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__">ListExtensions.LoadForeignKeyField&lt;T, R, S&gt;(ICollection&lt;T&gt;, IRelmQuickContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___">ListExtensions.LoadForeignKeyField&lt;T, R, S&gt;(ICollection&lt;T&gt;, IRelmQuickContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__">ListExtensions.LoadForeignKeyField&lt;T, R, S&gt;(ICollection&lt;T&gt;, IRelmQuickContext, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___">ListExtensions.LoadForeignKeyField&lt;T, R, S&gt;(ICollection&lt;T&gt;, IRelmQuickContext, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__">ListExtensions.LoadForeignKeyField&lt;T, R, S&gt;(ICollection&lt;T&gt;, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___">ListExtensions.LoadForeignKeyField&lt;T, R, S&gt;(ICollection&lt;T&gt;, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__">ListExtensions.LoadForeignKeyField&lt;T, R, S&gt;(ICollection&lt;T&gt;, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___">ListExtensions.LoadForeignKeyField&lt;T, R, S&gt;(ICollection&lt;T&gt;, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_FlattenTreeObject__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Collections_Generic_ICollection___0___">ListExtensions.FlattenTreeObject&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, ICollection&lt;T&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_GenerateDTO__1_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_ICollection_System_String__System_Collections_Generic_ICollection_System_String__System_String_System_Func_CoreRelm_Interfaces_IRelmModel_System_Collections_Generic_Dictionary_System_String_System_Object___">ListExtensions.GenerateDTO&lt;T&gt;(IEnumerable&lt;T&gt;, ICollection&lt;string&gt;, ICollection&lt;string&gt;, string, Func&lt;IRelmModel, Dictionary&lt;string, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_WriteToDatabase__1_System_Collections_Generic_IEnumerable___0__CoreRelm_Interfaces_IRelmContext_System_String_System_Type_System_Int32_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">ListExtensions.WriteToDatabase&lt;T&gt;(IEnumerable&lt;T&gt;, IRelmContext, string, Type, int, string, bool, bool, bool, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_WriteToDatabase__1_System_Collections_Generic_IEnumerable___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_String_System_Type_System_Int32_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">ListExtensions.WriteToDatabase&lt;T&gt;(IEnumerable&lt;T&gt;, IRelmQuickContext, string, Type, int, string, bool, bool, bool, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_WriteToDatabase__1_System_Collections_Generic_IEnumerable___0__MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_String_System_Type_System_Int32_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">ListExtensions.WriteToDatabase&lt;T&gt;(IEnumerable&lt;T&gt;, MySqlConnection, MySqlTransaction, string, Type, int, string, bool, bool, bool, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_WriteToDatabase__1_System_Collections_Generic_IEnumerable___0__System_Enum_System_String_System_Type_System_Boolean_System_Int32_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">ListExtensions.WriteToDatabase&lt;T&gt;(IEnumerable&lt;T&gt;, Enum, string, Type, bool, int, string, bool, bool, bool, bool)</a>
+  </div>
+  </dd></dl>
+
+
+
+  <h2 id="CoreRelm_Interfaces_IRelmDataSet_1_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>The <a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet&lt;T&gt;</a> interface extends standard collection functionality with methods for
+querying, loading, and persisting data entities. It supports fluent query composition, including filtering,
+ordering, grouping, and referencing related entities. Implementations may provide deferred execution and
+optimized data access patterns. This interface is typically used in data access layers to manage and interact
+with sets of domain models.</p>
+</div>
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_Add_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Add*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_Add_System_Collections_Generic_ICollection__0__" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Add(System.Collections.Generic.ICollection{`0})">
+  Add(ICollection&lt;T&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L332"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the elements of the specified collection to the current collection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int Add(ICollection&lt;T&gt; items)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>items</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;</dt>
+    <dd><p>The collection of items to add. Cannot be null. All elements in the collection will be added in enumeration
+order.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of items successfully added to the collection.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_Add_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Add*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_Add_System_Collections_Generic_ICollection__0__System_Boolean_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Add(System.Collections.Generic.ICollection{`0},System.Boolean)">
+  Add(ICollection&lt;T&gt;, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L341"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the specified collection of items to the underlying store, optionally persisting the changes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int Add(ICollection&lt;T&gt; items, bool persist)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>items</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;</dt>
+    <dd><p>The collection of items to add. Cannot be null or contain null elements.</p>
+</dd>
+    <dt><code>persist</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether the changes should be persisted immediately. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, the items
+are saved to the store; otherwise, the changes remain in memory until persisted.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of items successfully added to the store.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_Add_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Add*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_Add__0_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Add(`0)">
+  Add(T)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L315"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the specified item to the data set and returns its identifier.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int Add(T item)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>item</code> <span class="xref">T</span></dt>
+    <dd><p>The item to add to the data set.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The identifier of the added item.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_Add_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Add*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_Add__0_System_Boolean_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Add(`0,System.Boolean)">
+  Add(T, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L324"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the specified item to the collection and optionally persists the change.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int Add(T item, bool persist)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>item</code> <span class="xref">T</span></dt>
+    <dd><p>The item to add to the collection. Cannot be null.</p>
+</dd>
+    <dt><code>persist</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether the addition should be persisted. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, the change is saved;
+otherwise, it is not.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The zero-based index at which the item was added.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_Count_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Count*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_Count" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Count">
+  Count()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L261"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets a &quot;COUNT(*)&quot; return column on the data set.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IRelmDataSet&lt;T&gt; Count()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet</a>&lt;T&gt;</dt>
+    <dd><p>The current data set with the &quot;count&quot; operation added.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_Count_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Count*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_Count_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Count(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+  Count(Expression&lt;Func&lt;T, bool&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L268"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets a &quot;COUNT&quot; return column on the data set with a specified predicate.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IRelmDataSet&lt;T&gt; Count(Expression&lt;Func&lt;T, bool&gt;&gt; predicate)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</dt>
+    <dd><p>An expression that defines the criteria for counting items.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet</a>&lt;T&gt;</dt>
+    <dd><p>The current data set with the &quot;count&quot; operation added.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_DistinctBy_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.DistinctBy*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_DistinctBy_System_Linq_Expressions_Expression_System_Func__0_System_Object___" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.DistinctBy(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+  DistinctBy(Expression&lt;Func&lt;T, object&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L275"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets a &quot;DISTINCT&quot; return column on the data set with a specified key selector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IRelmDataSet&lt;T&gt; DistinctBy(Expression&lt;Func&lt;T, object&gt;&gt; predicate)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</dt>
+    <dd><p>An expression that defines the key by which to filter distinct items.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet</a>&lt;T&gt;</dt>
+    <dd><p>The current data set with the &quot;distinct&quot; operation added.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_Entry_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Entry*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_Entry__0_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Entry(`0)">
+  Entry(T)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L199"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates an entry in the data set for the specified item.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IRelmDataSet&lt;T&gt; Entry(T item)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>item</code> <span class="xref">T</span></dt>
+    <dd><p>The item to create an entry for.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet</a>&lt;T&gt;</dt>
+    <dd><p>An <a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet&lt;T&gt;</a> holding the created entry.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_Entry_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Entry*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_Entry__0_System_Boolean_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Entry(`0,System.Boolean)">
+  Entry(T, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L208"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates an entry in the data set for the specified item.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IRelmDataSet&lt;T&gt; Entry(T item, bool persist = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>item</code> <span class="xref">T</span></dt>
+    <dd><p>The item to create an entry for.</p>
+</dd>
+    <dt><code>persist</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether the entry should be persisted. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, the entry is saved to
+the underlying data store; otherwise, it is not persisted.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet</a>&lt;T&gt;</dt>
+    <dd><p>An <a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet&lt;T&gt;</a> holding the created entry.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_Find_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Find*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_Find_System_Int32_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Find(System.Int32)">
+  Find(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L123"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves an item of type T with the specified identifier.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">T Find(int itemId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>itemId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The unique identifier of the item to locate.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd><p>The item of type T that matches the specified identifier, or the default value for type T if no matching
+item is found.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_Find_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Find*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_Find_System_String_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Find(System.String)">
+  Find(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L130"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves an item of type T that matches the specified internal identifier.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">T Find(string itemInternalId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>itemInternalId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The unique internal identifier of the item to locate. Cannot be null or empty.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd><p>The item of type T that matches the specified internal identifier, or null if no matching item is found.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_FirstOrDefault_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.FirstOrDefault*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_FirstOrDefault" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.FirstOrDefault">
+  FirstOrDefault()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L137"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the first element of a sequence, or a default value if the sequence contains no elements.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">T FirstOrDefault()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd><p>The first element in the sequence, or the default value for type <code class="typeparamref">T</code> if the sequence is
+empty.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_FirstOrDefault_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.FirstOrDefault*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_FirstOrDefault_System_Boolean_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.FirstOrDefault(System.Boolean)">
+  FirstOrDefault(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L146"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the first element of the sequence, or the default value for type T if the sequence contains no
+elements.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">T FirstOrDefault(bool loadItems)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>loadItems</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>true to load items before retrieving the first element; otherwise, false to use the current state of the
+sequence.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd><p>The first element of the sequence if it exists; otherwise, the default value for type T.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_FirstOrDefault_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.FirstOrDefault*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_FirstOrDefault_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.FirstOrDefault(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+  FirstOrDefault(Expression&lt;Func&lt;T, bool&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L155"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the first element that satisfies the specified condition, or the default value for the type if no
+such element is found.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">T FirstOrDefault(Expression&lt;Func&lt;T, bool&gt;&gt; predicate)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</dt>
+    <dd><p>An expression that defines the condition to test each element for. Cannot be null.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd><p>The first element that matches the specified predicate; or the default value for type T if no such element
+is found.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_FirstOrDefault_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.FirstOrDefault*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_FirstOrDefault_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___System_Boolean_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.FirstOrDefault(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">
+  FirstOrDefault(Expression&lt;Func&lt;T, bool&gt;&gt;, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L166"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the first element that matches the specified predicate, or the default value for type T if no such
+element is found.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">T FirstOrDefault(Expression&lt;Func&lt;T, bool&gt;&gt; predicate, bool loadItems)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</dt>
+    <dd><p>An expression that defines the condition to test each element for. Cannot be null.</p>
+</dd>
+    <dt><code>loadItems</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>true to load items before retrieving the first element; otherwise, false to use the current state of the
+sequence.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd><p>The first element that matches the predicate, or the default value for type T if no matching element is
+found.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_GroupBy_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.GroupBy*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_GroupBy_System_Linq_Expressions_Expression_System_Func__0_System_Object___" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.GroupBy(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+  GroupBy(Expression&lt;Func&lt;T, object&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L240"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the &quot;group by&quot; clause for the data set based on the specified key selector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IRelmDataSet&lt;T&gt; GroupBy(Expression&lt;Func&lt;T, object&gt;&gt; predicate)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</dt>
+    <dd><p>An expression that defines the key by which to group the elements.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet</a>&lt;T&gt;</dt>
+    <dd><p>The current data set with the &quot;group by&quot; clause added.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_Limit_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Limit*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_Limit_System_Int32_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Limit(System.Int32)">
+  Limit(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L247"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the &quot;limit&quot; clause for the data set, restricting the number of items returned.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IRelmDataSet&lt;T&gt; Limit(int limitCount)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>limitCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The maximum number of items to include in the result set. Must be greater than zero.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet</a>&lt;T&gt;</dt>
+    <dd><p>The current data set with the &quot;limit&quot; clause added.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_Load_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Load*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_Load" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Load">
+  Load()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L172"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Loads the items in the data set.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ICollection&lt;T&gt; Load()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;</dt>
+    <dd><p>A collection of all items in the data set.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_Load_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Load*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_Load_System_Boolean_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Load(System.Boolean)">
+  Load(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L179"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Loads a collection of items of type T, optionally including data loaders based on the specified flag.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ICollection&lt;T&gt; Load(bool loadDataLoaders)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>loadDataLoaders</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>true to include data loaders in the returned collection; otherwise, false to exclude them.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;</dt>
+    <dd><p>A collection of items of type T. The collection may include data loaders if loadDataLoaders is set to true.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_LoadAsDataSet_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.LoadAsDataSet*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_LoadAsDataSet" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.LoadAsDataSet">
+  LoadAsDataSet()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L186"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Loads the current data as an <a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet&lt;T&gt;</a> instance for querying and manipulation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IRelmDataSet&lt;T&gt; LoadAsDataSet()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet</a>&lt;T&gt;</dt>
+    <dd><p>An <a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet&lt;T&gt;</a> containing the loaded data. The returned data set reflects the current
+state of the underlying source at the time of the call.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_New_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.New*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_New_System_Boolean_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.New(System.Boolean)">
+  New(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L296"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new instance of type T, optionally persisting it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">T New(bool persist = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>persist</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>true to persist the new instance; otherwise, false. The default is true.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd><p>A new instance of type T. The instance may be persisted depending on the value of the persist parameter.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_New_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.New*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_New_System_Object_System_Boolean_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.New(System.Object,System.Boolean)">
+  New(dynamic, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L308"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new instance of type T using the specified parameters.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">T New(dynamic newObjectParameters, bool persist = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>newObjectParameters</code> <span class="xref">dynamic</span></dt>
+    <dd><p>An object containing the parameters required to initialize the new instance. The structure and required
+properties depend on the type T.</p>
+</dd>
+    <dt><code>persist</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>true to persist the new instance immediately; otherwise, false. The default is true.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd><p>A new instance of type T initialized with the provided parameters.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Interfaces_IRelmDataSet_1_New_System_Object_System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>If persist is set to false, the new instance will not be saved or committed to any
+underlying data store. The caller is responsible for ensuring that newObjectParameters contains all
+necessary information for constructing a valid instance of T.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_Offset_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Offset*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_Offset_System_Int32_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Offset(System.Int32)">
+  Offset(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L255"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the &quot;offset&quot; clause for the data set, specifying the number of items to skip before starting to
+return items.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IRelmDataSet&lt;T&gt; Offset(int offsetCount)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>offsetCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of items to skip. Must be greater than or equal to zero.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet</a>&lt;T&gt;</dt>
+    <dd><p>The current data set with the &quot;offset&quot; clause added.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_OrderBy_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.OrderBy*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_OrderBy_System_Linq_Expressions_Expression_System_Func__0_System_Object___" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.OrderBy(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+  OrderBy(Expression&lt;Func&lt;T, object&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L218"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sorts the elements of the data set in ascending order according to a specified key.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IRelmDataSet&lt;T&gt; OrderBy(Expression&lt;Func&lt;T, object&gt;&gt; predicate)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</dt>
+    <dd><p>An expression that specifies the key by which to order the elements. The expression should select a property
+or value from each element to use as the sort key.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet</a>&lt;T&gt;</dt>
+    <dd><p>A new data set with the elements ordered in ascending order according to the specified key.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Interfaces_IRelmDataSet_1_OrderBy_System_Linq_Expressions_Expression_System_Func__0_System_Object____remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The ordering is stable; elements with equal keys maintain their original relative
+order. To perform a descending sort, use the corresponding OrderByDescending method.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_OrderByDescending_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.OrderByDescending*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_OrderByDescending_System_Linq_Expressions_Expression_System_Func__0_System_Object___" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.OrderByDescending(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+  OrderByDescending(Expression&lt;Func&lt;T, object&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L226"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sorts the elements of the data set in descending order according to a specified key.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IRelmDataSet&lt;T&gt; OrderByDescending(Expression&lt;Func&lt;T, object&gt;&gt; predicate)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</dt>
+    <dd><p>An expression that selects the key to order the elements by. The key is extracted from each element in the
+data set.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet</a>&lt;T&gt;</dt>
+    <dd><p>A new data set with the elements sorted in descending order based on the specified key.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_Reference_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Reference*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_Reference__1_System_Linq_Expressions_Expression_System_Func__0_System_Collections_Generic_ICollection___0____System_Collections_Generic_ICollection_System_Linq_Expressions_Expression_System_Func___0_System_Object____" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Reference``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.ICollection{``0}}},System.Collections.Generic.ICollection{System.Linq.Expressions.Expression{System.Func{``0,System.Object}}})">
+  Reference&lt;S&gt;(Expression&lt;Func&lt;T, ICollection&lt;S&gt;&gt;&gt;, ICollection&lt;Expression&lt;Func&lt;S, object&gt;&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L115"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a reference to a related collection of entities based on the specified navigation property and
+applies additional constraints to the referenced entities.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IRelmDataSet&lt;T&gt; Reference&lt;S&gt;(Expression&lt;Func&lt;T, ICollection&lt;S&gt;&gt;&gt; predicate, ICollection&lt;Expression&lt;Func&lt;S, object&gt;&gt;&gt; additionalConstraints)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;S&gt;&gt;&gt;</dt>
+    <dd><p>An expression that specifies the navigation property representing the collection of related entities to
+reference.</p>
+</dd>
+    <dt><code>additionalConstraints</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;S, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;&gt;</dt>
+    <dd><p>A collection of expressions that define additional constraints to apply to the referenced entities. Each
+expression specifies a property or condition to filter or shape the referenced collection.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet</a>&lt;T&gt;</dt>
+    <dd><p>An <a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet&lt;T&gt;</a> that represents the current data set with the specified reference and constraints
+applied.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>S</code></dt>
+    <dd><p>The type of the related entities in the referenced collection.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Interfaces_IRelmDataSet_1_Reference__1_System_Linq_Expressions_Expression_System_Func__0_System_Collections_Generic_ICollection___0____System_Collections_Generic_ICollection_System_Linq_Expressions_Expression_System_Func___0_System_Object_____remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Use this method to include and constrain related collections when querying or
+manipulating the data set. This is useful for eager loading or applying filters to related entities in
+complex queries.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_Reference_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Reference*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_Reference__1_System_Linq_Expressions_Expression_System_Func__0_System_Collections_Generic_ICollection___0____System_Linq_Expressions_Expression_System_Func___0_System_Object___" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Reference``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.ICollection{``0}}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+  Reference&lt;S&gt;(Expression&lt;Func&lt;T, ICollection&lt;S&gt;&gt;&gt;, Expression&lt;Func&lt;S, object&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L99"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a reference to a related collection of entities, applying additional constraints to the referenced
+items.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IRelmDataSet&lt;T&gt; Reference&lt;S&gt;(Expression&lt;Func&lt;T, ICollection&lt;S&gt;&gt;&gt; predicate, Expression&lt;Func&lt;S, object&gt;&gt; additionalConstraints)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;S&gt;&gt;&gt;</dt>
+    <dd><p>An expression that specifies the collection navigation property on the source entity to reference.</p>
+</dd>
+    <dt><code>additionalConstraints</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;S, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</dt>
+    <dd><p>An expression that defines additional constraints or filters to apply to the referenced entities.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet</a>&lt;T&gt;</dt>
+    <dd><p>An <a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet&lt;T&gt;</a> representing the referenced collection with the specified constraints
+applied.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>S</code></dt>
+    <dd><p>The type of the entities in the referenced collection.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Interfaces_IRelmDataSet_1_Reference__1_System_Linq_Expressions_Expression_System_Func__0_System_Collections_Generic_ICollection___0____System_Linq_Expressions_Expression_System_Func___0_System_Object____remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Use this method to navigate and filter related collections in a type-safe manner. The
+returned data set reflects the specified navigation and constraints, enabling further query
+composition.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_Reference_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Reference*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_Reference__1_System_Linq_Expressions_Expression_System_Func__0___0___" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Reference``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+  Reference&lt;S&gt;(Expression&lt;Func&lt;T, S&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a reference to a related data set based on the specified property expression.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IRelmDataSet&lt;T&gt; Reference&lt;S&gt;(Expression&lt;Func&lt;T, S&gt;&gt; predicate)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, S&gt;&gt;</dt>
+    <dd><p>An expression that specifies the property of type T to use as the reference. Typically a lambda expression
+selecting a navigation property.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet</a>&lt;T&gt;</dt>
+    <dd><p>An <a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet&lt;T&gt;</a> representing the related data set identified by the specified property expression.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>S</code></dt>
+    <dd><p>The type of the property referenced by the expression.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Interfaces_IRelmDataSet_1_Reference__1_System_Linq_Expressions_Expression_System_Func__0___0____remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Use this method to navigate relationships between data sets, such as foreign key
+associations. The returned data set allows further querying or operations on the related entities.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_Reference_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Reference*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_Reference__1_System_Linq_Expressions_Expression_System_Func__0___0___System_Collections_Generic_ICollection_System_Linq_Expressions_Expression_System_Func___0_System_Object____" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Reference``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Collections.Generic.ICollection{System.Linq.Expressions.Expression{System.Func{``0,System.Object}}})">
+  Reference&lt;S&gt;(Expression&lt;Func&lt;T, S&gt;&gt;, ICollection&lt;Expression&lt;Func&lt;S, object&gt;&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a reference to a related data set based on the specified navigation property and applies additional
+constraints to the referenced entities.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IRelmDataSet&lt;T&gt; Reference&lt;S&gt;(Expression&lt;Func&lt;T, S&gt;&gt; predicate, ICollection&lt;Expression&lt;Func&lt;S, object&gt;&gt;&gt; additionalConstraints)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, S&gt;&gt;</dt>
+    <dd><p>An expression that specifies the navigation property from the current entity to the related entity.</p>
+</dd>
+    <dt><code>additionalConstraints</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;S, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;&gt;</dt>
+    <dd><p>A collection of expressions that define additional constraints to apply to the referenced entities. Each
+expression specifies a property of the related entity and a constraint to filter the results.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet</a>&lt;T&gt;</dt>
+    <dd><p>An <a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet&lt;T&gt;</a> representing the referenced data set with the applied constraints.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>S</code></dt>
+    <dd><p>The type of the related entity to reference.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Interfaces_IRelmDataSet_1_Reference__1_System_Linq_Expressions_Expression_System_Func__0___0___System_Collections_Generic_ICollection_System_Linq_Expressions_Expression_System_Func___0_System_Object_____remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Use this method to navigate relationships between entities and to further filter the
+referenced data set using additional property constraints. This is useful for scenarios where related data
+must be accessed with specific filtering criteria.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_Reference_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Reference*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_Reference__1_System_Linq_Expressions_Expression_System_Func__0___0___System_Linq_Expressions_Expression_System_Func___0_System_Object___" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Reference``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+  Reference&lt;S&gt;(Expression&lt;Func&lt;T, S&gt;&gt;, Expression&lt;Func&lt;S, object&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a reference to a related data set based on the specified navigation property and applies additional
+constraints to the referenced set.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IRelmDataSet&lt;T&gt; Reference&lt;S&gt;(Expression&lt;Func&lt;T, S&gt;&gt; predicate, Expression&lt;Func&lt;S, object&gt;&gt; additionalConstraints)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, S&gt;&gt;</dt>
+    <dd><p>An expression that specifies the navigation property used to reference the related entity.</p>
+</dd>
+    <dt><code>additionalConstraints</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;S, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</dt>
+    <dd><p>An expression that defines additional constraints to apply to the referenced data set.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet</a>&lt;T&gt;</dt>
+    <dd><p>An <a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet&lt;T&gt;</a> representing the related data set with the specified constraints applied.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>S</code></dt>
+    <dd><p>The type of the related entity to reference.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Interfaces_IRelmDataSet_1_Reference__1_System_Linq_Expressions_Expression_System_Func__0___0___System_Linq_Expressions_Expression_System_Func___0_System_Object____remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Use this method to navigate relationships between entities and further filter the
+referenced data set. This is useful for querying related data with custom constraints in a type-safe
+manner.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_Save_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Save*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_Save" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Save">
+  Save()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L289"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Saves the current changes to the underlying data store.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int Save()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of objects that were saved to the data store. Returns 0 if no changes were detected.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_Save_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Save*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_Save__0_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Save(`0)">
+  Save(T)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L283"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Saves the specified item to the underlying data store.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int Save(T item)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>item</code> <span class="xref">T</span></dt>
+    <dd><p>The item to be saved. Cannot be null.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of records affected by the save operation. Typically returns 1 if the item was saved
+successfully; otherwise, returns 0.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_Set_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Set*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_Set_System_Linq_Expressions_Expression_System_Func__0__0___" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Set(System.Linq.Expressions.Expression{System.Func{`0,`0}})">
+  Set(Expression&lt;Func&lt;T, T&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L233"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the value of the specified property for all elements in the data set.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IRelmDataSet&lt;T&gt; Set(Expression&lt;Func&lt;T, T&gt;&gt; predicate)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, T&gt;&gt;</dt>
+    <dd><p>An expression that specifies the property to set and the value to assign.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet</a>&lt;T&gt;</dt>
+    <dd><p>The current data set with the updated elements.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_SetDataLoader_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.SetDataLoader*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_SetDataLoader_CoreRelm_Interfaces_IRelmDataLoader__0__" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.SetDataLoader(CoreRelm.Interfaces.IRelmDataLoader{`0})">
+  SetDataLoader(IRelmDataLoader&lt;T&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the data loader to be used for retrieving data in this dataset.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IRelmDataLoader&lt;T&gt; SetDataLoader(IRelmDataLoader&lt;T&gt; dataLoader)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>dataLoader</code> <a class="xref" href="CoreRelm.Interfaces.IRelmDataLoader-1.html">IRelmDataLoader</a>&lt;T&gt;</dt>
+    <dd><p>The data loader instance that will be used to load data. Cannot be null.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataLoader-1.html">IRelmDataLoader</a>&lt;T&gt;</dt>
+    <dd><p>The data loader instance that was set.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_SetFieldLoader_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.SetFieldLoader*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_SetFieldLoader_System_String_CoreRelm_Interfaces_IRelmFieldLoader_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.SetFieldLoader(System.String,CoreRelm.Interfaces.IRelmFieldLoader)">
+  SetFieldLoader(string, IRelmFieldLoader)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Associates a custom field loader with the specified field name.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IRelmFieldLoader SetFieldLoader(string fieldName, IRelmFieldLoader dataLoader)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>fieldName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the field for which to set the data loader. Cannot be null or empty.</p>
+</dd>
+    <dt><code>dataLoader</code> <a class="xref" href="CoreRelm.Interfaces.IRelmFieldLoader.html">IRelmFieldLoader</a></dt>
+    <dd><p>The field loader to associate with the specified field. Cannot be null.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmFieldLoader.html">IRelmFieldLoader</a></dt>
+    <dd><p>The updated field loader associated with the specified field name.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_Where_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Where*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_Where_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Where(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+  Where(Expression&lt;Func&lt;T, bool&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Filters the data set based on a specified predicate expression.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IRelmDataSet&lt;T&gt; Where(Expression&lt;Func&lt;T, bool&gt;&gt; predicate)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</dt>
+    <dd><p>An expression that defines the conditions each element must satisfy to be included in the returned data set.
+Cannot be null.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet</a>&lt;T&gt;</dt>
+    <dd><p>A new data set containing elements that satisfy the specified predicate.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Interfaces_IRelmDataSet_1_Where_System_Linq_Expressions_Expression_System_Func__0_System_Boolean____remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The returned data set is not materialized until it is enumerated. Multiple calls to
+this method can be chained to apply additional filters.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmDataSet_1_Write_" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Write*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmDataSet_1_Write" data-uid="CoreRelm.Interfaces.IRelmDataSet`1.Write">
+  Write()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L192"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Writes data to the underlying destination.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int Write()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of rows written to the destination.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmDataSet.cs/#L22" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

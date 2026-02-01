@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface IRelmModel | CoreRelm </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface IRelmModel | CoreRelm ">
+      
+      <meta name="description" content="Defines the contract for a Relm-compatible model, providing properties and methods for managing entity state, database interactions, and data transfer object (DTO) generation.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/jdaugherty-bdl/CoreRelm/new/master/apiSpec/new?filename=CoreRelm_Interfaces_IRelmModel.md&amp;value=---%0Auid%3A%20CoreRelm.Interfaces.IRelmModel%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="CoreRelm">
+            CoreRelm
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="CoreRelm.Interfaces.IRelmModel">
+
+
+
+  <h1 id="CoreRelm_Interfaces_IRelmModel" data-uid="CoreRelm.Interfaces.IRelmModel" class="text-break">
+Interface IRelmModel  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmModel.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="CoreRelm.html">CoreRelm</a>.<a class="xref" href="CoreRelm.Interfaces.html">Interfaces</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>CoreRelm.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Defines the contract for a Relm-compatible model, providing properties and methods for managing entity state,
+database interactions, and data transfer object (DTO) generation.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IRelmModel</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="CoreRelm_Interfaces_IRelmModel_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>This interface is designed to represent a database entity with common attributes such as
+identifiers, timestamps, and active state. It also includes methods for resetting attributes, writing data to
+the database, and generating dynamic DTOs. Implementations of this interface are expected to handle
+database-specific operations and provide fine-grained control over column constraints during write
+operations.</p>
+</div>
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="CoreRelm_Interfaces_IRelmModel_Active_" data-uid="CoreRelm.Interfaces.IRelmModel.Active*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmModel_Active" data-uid="CoreRelm.Interfaces.IRelmModel.Active">
+  Active
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmModel.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets a value indicating whether the entity is active.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool Active { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmModel_CreateDate_" data-uid="CoreRelm.Interfaces.IRelmModel.CreateDate*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmModel_CreateDate" data-uid="CoreRelm.Interfaces.IRelmModel.CreateDate">
+  CreateDate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmModel.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the date and time when the entity was created.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">DateTime CreateDate { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmModel_Id_" data-uid="CoreRelm.Interfaces.IRelmModel.Id*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmModel_Id" data-uid="CoreRelm.Interfaces.IRelmModel.Id">
+  Id
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmModel.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the database row identifier for the entity.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">long? Id { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="CoreRelm_Interfaces_IRelmModel_Id_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This ID corresponds to the primary key in the database table.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmModel_InternalId_" data-uid="CoreRelm.Interfaces.IRelmModel.InternalId*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmModel_InternalId" data-uid="CoreRelm.Interfaces.IRelmModel.InternalId">
+  InternalId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmModel.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the internal identifier for the entity.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string InternalId { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="CoreRelm_Interfaces_IRelmModel_InternalId_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This GUID identifier is globally unique and is intended to uniquely identify this entity across
+all platforms.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmModel_LastUpdated_" data-uid="CoreRelm.Interfaces.IRelmModel.LastUpdated*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmModel_LastUpdated" data-uid="CoreRelm.Interfaces.IRelmModel.LastUpdated">
+  LastUpdated
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmModel.cs/#L51"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the date and time when the object was last updated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">DateTime LastUpdated { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="CoreRelm_Interfaces_IRelmModel_GenerateDTO_" data-uid="CoreRelm.Interfaces.IRelmModel.GenerateDTO*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmModel_GenerateDTO_System_Collections_Generic_IEnumerable_System_String__System_Collections_Generic_IEnumerable_System_String__System_String_System_Func_CoreRelm_Interfaces_IRelmModel_System_Collections_Generic_Dictionary_System_String_System_Object___System_Int32_" data-uid="CoreRelm.Interfaces.IRelmModel.GenerateDTO(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String,System.Func{CoreRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}},System.Int32)">
+  GenerateDTO(IEnumerable&lt;string&gt;, IEnumerable&lt;string&gt;, string, Func&lt;IRelmModel, Dictionary&lt;string, object&gt;&gt;, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmModel.cs/#L179"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Generates a dynamic Data Transfer Object (DTO) based on the specified properties and additional
+configuration.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">dynamic GenerateDTO(IEnumerable&lt;string&gt; includeProperties = null, IEnumerable&lt;string&gt; excludeProperties = null, string sourceObjectName = null, Func&lt;IRelmModel, Dictionary&lt;string, object&gt;&gt; getAdditionalObjectProperties = null, int iteration = 0)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>includeProperties</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>A collection of property names to include in the generated DTO. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, all properties
+are included by default.</p>
+</dd>
+    <dt><code>excludeProperties</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>A collection of property names to exclude from the generated DTO. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, no properties
+are excluded.</p>
+</dd>
+    <dt><code>sourceObjectName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the source object from which the DTO is generated. Can be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if the source
+object name is not required.</p>
+</dd>
+    <dt><code>getAdditionalObjectProperties</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</dt>
+    <dd><p>A function that takes an <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a> instance and returns a dictionary of additional properties
+to include in the DTO. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, no additional properties are added.</p>
+</dd>
+    <dt><code>iteration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The current iteration count, used to track recursive or iterative calls. Defaults to 0.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">dynamic</span></dt>
+    <dd><p>A dynamic object representing the generated DTO, including the specified properties and any additional
+properties provided.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Interfaces_IRelmModel_GenerateDTO_System_Collections_Generic_IEnumerable_System_String__System_Collections_Generic_IEnumerable_System_String__System_String_System_Func_CoreRelm_Interfaces_IRelmModel_System_Collections_Generic_Dictionary_System_String_System_Object___System_Int32__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The method allows fine-grained control over the properties included in the DTO by
+specifying inclusion and exclusion lists. If both <code class="paramref">includeProperties</code> and <code class="paramref">excludeProperties</code> are provided, the exclusion list takes precedence.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmModel_GetUnderscoreProperties_" data-uid="CoreRelm.Interfaces.IRelmModel.GetUnderscoreProperties*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmModel_GetUnderscoreProperties_System_Boolean_" data-uid="CoreRelm.Interfaces.IRelmModel.GetUnderscoreProperties(System.Boolean)">
+  GetUnderscoreProperties(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmModel.cs/#L81"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves a list of properties with each name converted to underscore case.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">List&lt;KeyValuePair&lt;string, Tuple&lt;string, PropertyInfo&gt;&gt;&gt; GetUnderscoreProperties(bool getOnlyRelmColumns = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>getOnlyRelmColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A boolean value indicating whether to include only properties marked as Relm columns.  If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, only Realm column properties are included; otherwise, all underscore-prefixed properties
+are included.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.tuple-2">Tuple</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.propertyinfo">PropertyInfo</a>&gt;&gt;&gt;</dt>
+    <dd><p>A list of key-value pairs where the key is the property name, and the value is a tuple containing the
+property's metadata string and its <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.propertyinfo">PropertyInfo</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmModel_ResetCoreAttributes_" data-uid="CoreRelm.Interfaces.IRelmModel.ResetCoreAttributes*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmModel_ResetCoreAttributes_System_Boolean_System_Boolean_" data-uid="CoreRelm.Interfaces.IRelmModel.ResetCoreAttributes(System.Boolean,System.Boolean)">
+  ResetCoreAttributes(bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmModel.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Resets the core attributes of the model to their default values.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IRelmModel ResetCoreAttributes(bool nullInternalId = false, bool resetCreateDate = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>nullInternalId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether the internal ID should be set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.  Pass <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to nullify the internal ID; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>resetCreateDate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether the creation date should be reset to the current date and time.  Pass <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to reset the creation date; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a></dt>
+    <dd><p>The updated model instance with the core attributes reset.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Interfaces_IRelmModel_ResetCoreAttributes_System_Boolean_System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Resets fields <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html#CoreRelm_Interfaces_IRelmModel_Id">Id</a>, <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html#CoreRelm_Interfaces_IRelmModel_Active">Active</a>, <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html#CoreRelm_Interfaces_IRelmModel_InternalId">InternalId</a>, and <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html#CoreRelm_Interfaces_IRelmModel_CreateDate">CreateDate</a>.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmModel_ResetWithData_" data-uid="CoreRelm.Interfaces.IRelmModel.ResetWithData*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmModel_ResetWithData_System_Data_DataRow_System_String_" data-uid="CoreRelm.Interfaces.IRelmModel.ResetWithData(System.Data.DataRow,System.String)">
+  ResetWithData(DataRow, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmModel.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Resets the current model's state using the specified data and optionally sets an alternate table name.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IRelmModel ResetWithData(DataRow modelData, string alternateTableName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>modelData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.datarow">DataRow</a></dt>
+    <dd><p>The <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.datarow">DataRow</a> containing the data to reset the model with. Cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+    <dt><code>alternateTableName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>An optional alternate table name to associate with the model. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, the default table
+name is used.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a></dt>
+    <dd><p>An updated instance of the model implementing <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a> with the new data applied.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmModel_WriteToDatabase_" data-uid="CoreRelm.Interfaces.IRelmModel.WriteToDatabase*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmModel_WriteToDatabase_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Interfaces.IRelmModel.WriteToDatabase(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+  WriteToDatabase(IRelmContext, int, bool, bool, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmModel.cs/#L138"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Writes data to the database using the specified context and batch size, with options to control column
+behavior.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int WriteToDatabase(IRelmContext relmContext, int batchSize = 10, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>relmContext</code> <a class="xref" href="CoreRelm.Interfaces.IRelmContext.html">IRelmContext</a></dt>
+    <dd><p>The database context used to perform the write operation. This cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+    <dt><code>batchSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of records to write in each batch. Must be greater than 0. The default value is 10.</p>
+</dd>
+    <dt><code>allowAutoIncrementColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, allows writing to columns with auto-increment constraints; otherwise, these
+columns are ignored.</p>
+</dd>
+    <dt><code>allowPrimaryKeyColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, allows writing to primary key columns; otherwise, these columns are ignored.</p>
+</dd>
+    <dt><code>allowUniqueColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, allows writing to columns with unique constraints; otherwise, these columns are
+ignored.</p>
+</dd>
+    <dt><code>allowAutoDateColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, allows writing to columns with automatic date generation constraints; otherwise,
+these columns are ignored.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of records successfully written to the database.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Interfaces_IRelmModel_WriteToDatabase_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method provides fine-grained control over how data is written to the database by
+allowing or disallowing writes to specific types of columns. Use the optional parameters to customize the
+behavior based on the constraints of your database schema.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmModel_WriteToDatabase_" data-uid="CoreRelm.Interfaces.IRelmModel.WriteToDatabase*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmModel_WriteToDatabase_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Interfaces.IRelmModel.WriteToDatabase(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+  WriteToDatabase(IRelmQuickContext, int, bool, bool, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmModel.cs/#L159"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Writes data to the database using the specified context and batch size, with options to control column
+constraints.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int WriteToDatabase(IRelmQuickContext relmQuickContext, int batchSize = 10, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>relmQuickContext</code> <a class="xref" href="CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html">IRelmQuickContext</a></dt>
+    <dd><p>The database context used to perform the write operation. This context must be properly initialized before
+calling this method.</p>
+</dd>
+    <dt><code>batchSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of records to write in each batch. Must be greater than zero. The default value is 10.</p>
+</dd>
+    <dt><code>allowAutoIncrementColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether auto-increment columns are allowed during the write operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, auto-increment columns will be included; otherwise, they will be excluded.</p>
+</dd>
+    <dt><code>allowPrimaryKeyColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether primary key columns are allowed during the write operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, primary key columns will be included; otherwise, they will be excluded.</p>
+</dd>
+    <dt><code>allowUniqueColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether unique columns are allowed during the write operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>,
+unique columns will be included; otherwise, they will be excluded.</p>
+</dd>
+    <dt><code>allowAutoDateColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether auto-date columns are allowed during the write operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, auto-date columns will be included; otherwise, they will be excluded.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The total number of records successfully written to the database.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Interfaces_IRelmModel_WriteToDatabase_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method provides fine-grained control over which types of columns are included
+during the write operation. Use the boolean parameters to enable or disable specific column constraints as
+needed.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmModel_WriteToDatabase_" data-uid="CoreRelm.Interfaces.IRelmModel.WriteToDatabase*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmModel_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Interfaces.IRelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+  WriteToDatabase(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmModel.cs/#L119"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Writes data to the database using the specified connection and optional transaction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int WriteToDatabase(MySqlConnection existingConnection, MySqlTransaction sqlTransaction = null, int BatchSize = 10, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>existingConnection</code> <span class="xref">MySqlConnection</span></dt>
+    <dd><p>An open <span class="xref">MySql.Data.MySqlClient.MySqlConnection</span> to the database where the data will be written. The connection must
+remain open for the duration of the operation.</p>
+</dd>
+    <dt><code>sqlTransaction</code> <span class="xref">MySqlTransaction</span></dt>
+    <dd><p>An optional <span class="xref">MySql.Data.MySqlClient.MySqlTransaction</span> to use for the operation. If null, the operation will not be part
+of a transaction.</p>
+</dd>
+    <dt><code>BatchSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of rows to write in each batch. Must be greater than zero. Defaults to 10.</p>
+</dd>
+    <dt><code>allowAutoIncrementColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether columns with auto-increment constraints are allowed to be written. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, auto-increment columns will be included; otherwise, they will be excluded.</p>
+</dd>
+    <dt><code>allowPrimaryKeyColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether primary key columns are allowed to be written. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, primary
+key columns will be included; otherwise, they will be excluded.</p>
+</dd>
+    <dt><code>allowUniqueColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether unique columns are allowed to be written. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, unique
+columns will be included; otherwise, they will be excluded.</p>
+</dd>
+    <dt><code>allowAutoDateColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether columns with automatic date generation constraints are allowed to be written. If
+<a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, such columns will be included; otherwise, they will be excluded.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of rows successfully written to the database.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmModel_WriteToDatabase_" data-uid="CoreRelm.Interfaces.IRelmModel.WriteToDatabase*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmModel_WriteToDatabase_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Interfaces.IRelmModel.WriteToDatabase(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+  WriteToDatabase(Enum, int, bool, bool, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmModel.cs/#L100"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Writes data to the specified database connection in batches.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int WriteToDatabase(Enum connectionName, int batchSize = 10, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>connectionName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.enum">Enum</a></dt>
+    <dd><p>The name of the database connection to use. Must be a valid connection identifier.</p>
+</dd>
+    <dt><code>batchSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of records to write in each batch. Defaults to 10. Must be greater than 0.</p>
+</dd>
+    <dt><code>allowAutoIncrementColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Indicates whether auto-increment columns are allowed in the data being written. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>allowPrimaryKeyColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Indicates whether primary key columns are allowed in the data being written. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>allowUniqueColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Indicates whether unique columns are allowed in the data being written. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>allowAutoDateColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Indicates whether auto-generated date columns are allowed in the data being written. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of records successfully written to the database.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Interfaces_IRelmModel_WriteToDatabase_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method writes data to the database in batches to optimize performance.  Ensure
+that the specified connection is valid and that the data conforms to the constraints  specified by the
+parameter flags. If any of the flags are set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>,  the corresponding column types will
+be allowed in the data being written.</p>
+</div>
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmModel.cs/#L23" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

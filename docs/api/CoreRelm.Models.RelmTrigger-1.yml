@@ -1,0 +1,703 @@
+### YamlMime:ManagedReference
+items:
+- uid: CoreRelm.Models.RelmTrigger`1
+  commentId: T:CoreRelm.Models.RelmTrigger`1
+  id: RelmTrigger`1
+  parent: CoreRelm.Models
+  children:
+  - CoreRelm.Models.RelmTrigger`1.DatabaseName
+  - CoreRelm.Models.RelmTrigger`1.DefinerUser
+  - CoreRelm.Models.RelmTrigger`1.StatementDelimiter
+  - CoreRelm.Models.RelmTrigger`1.TableName
+  - CoreRelm.Models.RelmTrigger`1.ToString
+  - CoreRelm.Models.RelmTrigger`1.TriggerBody
+  - CoreRelm.Models.RelmTrigger`1.TriggerType
+  langs:
+  - csharp
+  - vb
+  name: RelmTrigger<T>
+  nameWithType: RelmTrigger<T>
+  fullName: CoreRelm.Models.RelmTrigger<T>
+  type: Class
+  source:
+    remote:
+      path: CoreRelm/Models/RelmTrigger.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: RelmTrigger
+    path: ../CoreRelm/Models/RelmTrigger.cs
+    startLine: 23
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models
+  summary: Represents a database trigger associated with a specific table and operation type.
+  remarks: >-
+    The <xref href="CoreRelm.Models.RelmTrigger%601" data-throw-if-not-resolved="false"></xref> class is used to define and manage database triggers for a
+        table represented by the type <code class="typeparamref">T</code>. It provides properties to configure the trigger's
+        behavior, such as the trigger type, body, and associated database details. The table name is derived from the
+        <xref href="CoreRelm.Attributes.RelmTable" data-throw-if-not-resolved="false"></xref> attribute applied to the type.
+  example: []
+  syntax:
+    content: public class RelmTrigger<T>
+    typeParameters:
+    - id: T
+      description: >-
+        The type representing the database table. The type must have a <xref href="CoreRelm.Attributes.RelmTable" data-throw-if-not-resolved="false"></xref> attribute to define the
+            table name.
+    content.vb: Public Class RelmTrigger(Of T)
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  nameWithType.vb: RelmTrigger(Of T)
+  fullName.vb: CoreRelm.Models.RelmTrigger(Of T)
+  name.vb: RelmTrigger(Of T)
+- uid: CoreRelm.Models.RelmTrigger`1.TableName
+  commentId: P:CoreRelm.Models.RelmTrigger`1.TableName
+  id: TableName
+  parent: CoreRelm.Models.RelmTrigger`1
+  langs:
+  - csharp
+  - vb
+  name: TableName
+  nameWithType: RelmTrigger<T>.TableName
+  fullName: CoreRelm.Models.RelmTrigger<T>.TableName
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/RelmTrigger.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: TableName
+    path: ../CoreRelm/Models/RelmTrigger.cs
+    startLine: 28
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models
+  summary: Gets the name of the database table associated with this instance.
+  example: []
+  syntax:
+    content: public string TableName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property TableName As String
+  overload: CoreRelm.Models.RelmTrigger`1.TableName*
+  nameWithType.vb: RelmTrigger(Of T).TableName
+  fullName.vb: CoreRelm.Models.RelmTrigger(Of T).TableName
+- uid: CoreRelm.Models.RelmTrigger`1.TriggerType
+  commentId: P:CoreRelm.Models.RelmTrigger`1.TriggerType
+  id: TriggerType
+  parent: CoreRelm.Models.RelmTrigger`1
+  langs:
+  - csharp
+  - vb
+  name: TriggerType
+  nameWithType: RelmTrigger<T>.TriggerType
+  fullName: CoreRelm.Models.RelmTrigger<T>.TriggerType
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/RelmTrigger.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: TriggerType
+    path: ../CoreRelm/Models/RelmTrigger.cs
+    startLine: 33
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models
+  summary: Gets the type of trigger associated with the current operation.
+  example: []
+  syntax:
+    content: public Triggers.TriggerTypes TriggerType { get; }
+    parameters: []
+    return:
+      type: CoreRelm.Enums.Triggers.TriggerTypes
+    content.vb: Public Property TriggerType As Triggers.TriggerTypes
+  overload: CoreRelm.Models.RelmTrigger`1.TriggerType*
+  nameWithType.vb: RelmTrigger(Of T).TriggerType
+  fullName.vb: CoreRelm.Models.RelmTrigger(Of T).TriggerType
+- uid: CoreRelm.Models.RelmTrigger`1.TriggerBody
+  commentId: P:CoreRelm.Models.RelmTrigger`1.TriggerBody
+  id: TriggerBody
+  parent: CoreRelm.Models.RelmTrigger`1
+  langs:
+  - csharp
+  - vb
+  name: TriggerBody
+  nameWithType: RelmTrigger<T>.TriggerBody
+  fullName: CoreRelm.Models.RelmTrigger<T>.TriggerBody
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/RelmTrigger.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: TriggerBody
+    path: ../CoreRelm/Models/RelmTrigger.cs
+    startLine: 38
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models
+  summary: Gets or sets the body of the trigger event.
+  example: []
+  syntax:
+    content: public string TriggerBody { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property TriggerBody As String
+  overload: CoreRelm.Models.RelmTrigger`1.TriggerBody*
+  nameWithType.vb: RelmTrigger(Of T).TriggerBody
+  fullName.vb: CoreRelm.Models.RelmTrigger(Of T).TriggerBody
+- uid: CoreRelm.Models.RelmTrigger`1.DefinerUser
+  commentId: P:CoreRelm.Models.RelmTrigger`1.DefinerUser
+  id: DefinerUser
+  parent: CoreRelm.Models.RelmTrigger`1
+  langs:
+  - csharp
+  - vb
+  name: DefinerUser
+  nameWithType: RelmTrigger<T>.DefinerUser
+  fullName: CoreRelm.Models.RelmTrigger<T>.DefinerUser
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/RelmTrigger.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: DefinerUser
+    path: ../CoreRelm/Models/RelmTrigger.cs
+    startLine: 43
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models
+  summary: Gets or sets the name of the user who defined the current entity or operation.
+  example: []
+  syntax:
+    content: public string DefinerUser { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property DefinerUser As String
+  overload: CoreRelm.Models.RelmTrigger`1.DefinerUser*
+  nameWithType.vb: RelmTrigger(Of T).DefinerUser
+  fullName.vb: CoreRelm.Models.RelmTrigger(Of T).DefinerUser
+- uid: CoreRelm.Models.RelmTrigger`1.StatementDelimiter
+  commentId: P:CoreRelm.Models.RelmTrigger`1.StatementDelimiter
+  id: StatementDelimiter
+  parent: CoreRelm.Models.RelmTrigger`1
+  langs:
+  - csharp
+  - vb
+  name: StatementDelimiter
+  nameWithType: RelmTrigger<T>.StatementDelimiter
+  fullName: CoreRelm.Models.RelmTrigger<T>.StatementDelimiter
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/RelmTrigger.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: StatementDelimiter
+    path: ../CoreRelm/Models/RelmTrigger.cs
+    startLine: 51
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models
+  summary: Gets or sets the delimiter used to separate individual statements in a batch.
+  remarks: >-
+    This property is typically used in scenarios where multiple statements are processed
+        together, such as in database scripts or command batches. Ensure the delimiter matches the expected syntax
+        of the target system.
+  example: []
+  syntax:
+    content: public string StatementDelimiter { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property StatementDelimiter As String
+  overload: CoreRelm.Models.RelmTrigger`1.StatementDelimiter*
+  nameWithType.vb: RelmTrigger(Of T).StatementDelimiter
+  fullName.vb: CoreRelm.Models.RelmTrigger(Of T).StatementDelimiter
+- uid: CoreRelm.Models.RelmTrigger`1.DatabaseName
+  commentId: P:CoreRelm.Models.RelmTrigger`1.DatabaseName
+  id: DatabaseName
+  parent: CoreRelm.Models.RelmTrigger`1
+  langs:
+  - csharp
+  - vb
+  name: DatabaseName
+  nameWithType: RelmTrigger<T>.DatabaseName
+  fullName: CoreRelm.Models.RelmTrigger<T>.DatabaseName
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/RelmTrigger.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: DatabaseName
+    path: ../CoreRelm/Models/RelmTrigger.cs
+    startLine: 58
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models
+  summary: Gets or sets the name of the database.
+  example: []
+  syntax:
+    content: public string DatabaseName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property DatabaseName As String
+  overload: CoreRelm.Models.RelmTrigger`1.DatabaseName*
+  nameWithType.vb: RelmTrigger(Of T).DatabaseName
+  fullName.vb: CoreRelm.Models.RelmTrigger(Of T).DatabaseName
+- uid: CoreRelm.Models.RelmTrigger`1.ToString
+  commentId: M:CoreRelm.Models.RelmTrigger`1.ToString
+  id: ToString
+  parent: CoreRelm.Models.RelmTrigger`1
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: RelmTrigger<T>.ToString()
+  fullName: CoreRelm.Models.RelmTrigger<T>.ToString()
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Models/RelmTrigger.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: ToString
+    path: ../CoreRelm/Models/RelmTrigger.cs
+    startLine: 111
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models
+  summary: Generates a string representation of the SQL statement required to create a database trigger.
+  remarks: >-
+    The generated SQL includes the necessary statements to drop an existing trigger, set
+        the delimiter,  specify the definer, and create the trigger with the provided body and configuration. The
+        output  string is formatted to include the database name (if specified), the trigger name, and the trigger 
+        body. This method is useful for dynamically generating SQL scripts for database triggers.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: A string containing the complete SQL script to create the database trigger.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.Object.ToString
+  overload: CoreRelm.Models.RelmTrigger`1.ToString*
+  nameWithType.vb: RelmTrigger(Of T).ToString()
+  fullName.vb: CoreRelm.Models.RelmTrigger(Of T).ToString()
+references:
+- uid: CoreRelm.Models.RelmTrigger`1
+  commentId: T:CoreRelm.Models.RelmTrigger`1
+  href: CoreRelm.Models.RelmTrigger-1.html
+  name: RelmTrigger<T>
+  nameWithType: RelmTrigger<T>
+  fullName: CoreRelm.Models.RelmTrigger<T>
+  nameWithType.vb: RelmTrigger(Of T)
+  fullName.vb: CoreRelm.Models.RelmTrigger(Of T)
+  name.vb: RelmTrigger(Of T)
+  spec.csharp:
+  - uid: CoreRelm.Models.RelmTrigger`1
+    name: RelmTrigger
+    href: CoreRelm.Models.RelmTrigger-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: CoreRelm.Models.RelmTrigger`1
+    name: RelmTrigger
+    href: CoreRelm.Models.RelmTrigger-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: CoreRelm.Attributes.RelmTable
+  commentId: T:CoreRelm.Attributes.RelmTable
+  href: CoreRelm.Attributes.RelmTable.html
+  name: RelmTable
+  nameWithType: RelmTable
+  fullName: CoreRelm.Attributes.RelmTable
+- uid: CoreRelm.Models
+  commentId: N:CoreRelm.Models
+  href: CoreRelm.html
+  name: CoreRelm.Models
+  nameWithType: CoreRelm.Models
+  fullName: CoreRelm.Models
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CoreRelm.Models.RelmTrigger`1.TableName*
+  commentId: Overload:CoreRelm.Models.RelmTrigger`1.TableName
+  href: CoreRelm.Models.RelmTrigger-1.html#CoreRelm_Models_RelmTrigger_1_TableName
+  name: TableName
+  nameWithType: RelmTrigger<T>.TableName
+  fullName: CoreRelm.Models.RelmTrigger<T>.TableName
+  nameWithType.vb: RelmTrigger(Of T).TableName
+  fullName.vb: CoreRelm.Models.RelmTrigger(Of T).TableName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: CoreRelm.Models.RelmTrigger`1.TriggerType*
+  commentId: Overload:CoreRelm.Models.RelmTrigger`1.TriggerType
+  href: CoreRelm.Models.RelmTrigger-1.html#CoreRelm_Models_RelmTrigger_1_TriggerType
+  name: TriggerType
+  nameWithType: RelmTrigger<T>.TriggerType
+  fullName: CoreRelm.Models.RelmTrigger<T>.TriggerType
+  nameWithType.vb: RelmTrigger(Of T).TriggerType
+  fullName.vb: CoreRelm.Models.RelmTrigger(Of T).TriggerType
+- uid: CoreRelm.Enums.Triggers.TriggerTypes
+  commentId: T:CoreRelm.Enums.Triggers.TriggerTypes
+  parent: CoreRelm.Enums
+  href: CoreRelm.Enums.Triggers.html
+  name: Triggers.TriggerTypes
+  nameWithType: Triggers.TriggerTypes
+  fullName: CoreRelm.Enums.Triggers.TriggerTypes
+  spec.csharp:
+  - uid: CoreRelm.Enums.Triggers
+    name: Triggers
+    href: CoreRelm.Enums.Triggers.html
+  - name: .
+  - uid: CoreRelm.Enums.Triggers.TriggerTypes
+    name: TriggerTypes
+    href: CoreRelm.Enums.Triggers.TriggerTypes.html
+  spec.vb:
+  - uid: CoreRelm.Enums.Triggers
+    name: Triggers
+    href: CoreRelm.Enums.Triggers.html
+  - name: .
+  - uid: CoreRelm.Enums.Triggers.TriggerTypes
+    name: TriggerTypes
+    href: CoreRelm.Enums.Triggers.TriggerTypes.html
+- uid: CoreRelm.Enums
+  commentId: N:CoreRelm.Enums
+  href: CoreRelm.html
+  name: CoreRelm.Enums
+  nameWithType: CoreRelm.Enums
+  fullName: CoreRelm.Enums
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Enums
+    name: Enums
+    href: CoreRelm.Enums.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Enums
+    name: Enums
+    href: CoreRelm.Enums.html
+- uid: CoreRelm.Models.RelmTrigger`1.TriggerBody*
+  commentId: Overload:CoreRelm.Models.RelmTrigger`1.TriggerBody
+  href: CoreRelm.Models.RelmTrigger-1.html#CoreRelm_Models_RelmTrigger_1_TriggerBody
+  name: TriggerBody
+  nameWithType: RelmTrigger<T>.TriggerBody
+  fullName: CoreRelm.Models.RelmTrigger<T>.TriggerBody
+  nameWithType.vb: RelmTrigger(Of T).TriggerBody
+  fullName.vb: CoreRelm.Models.RelmTrigger(Of T).TriggerBody
+- uid: CoreRelm.Models.RelmTrigger`1.DefinerUser*
+  commentId: Overload:CoreRelm.Models.RelmTrigger`1.DefinerUser
+  href: CoreRelm.Models.RelmTrigger-1.html#CoreRelm_Models_RelmTrigger_1_DefinerUser
+  name: DefinerUser
+  nameWithType: RelmTrigger<T>.DefinerUser
+  fullName: CoreRelm.Models.RelmTrigger<T>.DefinerUser
+  nameWithType.vb: RelmTrigger(Of T).DefinerUser
+  fullName.vb: CoreRelm.Models.RelmTrigger(Of T).DefinerUser
+- uid: CoreRelm.Models.RelmTrigger`1.StatementDelimiter*
+  commentId: Overload:CoreRelm.Models.RelmTrigger`1.StatementDelimiter
+  href: CoreRelm.Models.RelmTrigger-1.html#CoreRelm_Models_RelmTrigger_1_StatementDelimiter
+  name: StatementDelimiter
+  nameWithType: RelmTrigger<T>.StatementDelimiter
+  fullName: CoreRelm.Models.RelmTrigger<T>.StatementDelimiter
+  nameWithType.vb: RelmTrigger(Of T).StatementDelimiter
+  fullName.vb: CoreRelm.Models.RelmTrigger(Of T).StatementDelimiter
+- uid: CoreRelm.Models.RelmTrigger`1.DatabaseName*
+  commentId: Overload:CoreRelm.Models.RelmTrigger`1.DatabaseName
+  href: CoreRelm.Models.RelmTrigger-1.html#CoreRelm_Models_RelmTrigger_1_DatabaseName
+  name: DatabaseName
+  nameWithType: RelmTrigger<T>.DatabaseName
+  fullName: CoreRelm.Models.RelmTrigger<T>.DatabaseName
+  nameWithType.vb: RelmTrigger(Of T).DatabaseName
+  fullName.vb: CoreRelm.Models.RelmTrigger(Of T).DatabaseName
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: CoreRelm.Models.RelmTrigger`1.ToString*
+  commentId: Overload:CoreRelm.Models.RelmTrigger`1.ToString
+  href: CoreRelm.Models.RelmTrigger-1.html#CoreRelm_Models_RelmTrigger_1_ToString
+  name: ToString
+  nameWithType: RelmTrigger<T>.ToString
+  fullName: CoreRelm.Models.RelmTrigger<T>.ToString
+  nameWithType.vb: RelmTrigger(Of T).ToString
+  fullName.vb: CoreRelm.Models.RelmTrigger(Of T).ToString

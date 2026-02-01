@@ -1,0 +1,336 @@
+### YamlMime:ManagedReference
+items:
+- uid: CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL
+  commentId: T:CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL
+  id: IRelmResolver_MySQL
+  parent: CoreRelm.Interfaces.Resolvers
+  children:
+  - CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL.GetConnectionBuilderFromConnectionString(System.String)
+  - CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL.GetConnectionBuilderFromName(System.String)
+  - CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL.GetConnectionBuilderFromType(System.Enum)
+  langs:
+  - csharp
+  - vb
+  name: IRelmResolver_MySQL
+  nameWithType: IRelmResolver_MySQL
+  fullName: CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL
+  type: Interface
+  source:
+    remote:
+      path: CoreRelm/Interfaces/Resolvers/IRelmResolver_MySQL.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: IRelmResolver_MySQL
+    path: ../CoreRelm/Interfaces/Resolvers/IRelmResolver_MySQL.cs
+    startLine: 16
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces.Resolvers
+  summary: >-
+    Defines methods for obtaining MySQL connection string builders based on connection type, name, or raw connection
+
+    string.
+  remarks: >-
+    This interface extends IRelmResolverBase to provide MySQL-specific connection string
+        resolution. Implementations are expected to return configured MySQLConnectionStringBuilder instances for use in
+        establishing MySQL database connections.
+  example: []
+  syntax:
+    content: 'public interface IRelmResolver_MySQL : IRelmResolverBase'
+    content.vb: Public Interface IRelmResolver_MySQL Inherits IRelmResolverBase
+  inheritedMembers:
+  - CoreRelm.Interfaces.Resolvers.IRelmResolverBase.GetConnectionBuilder(System.Enum)
+  - CoreRelm.Interfaces.Resolvers.IRelmResolverBase.GetConnectionBuilder(System.String)
+- uid: CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL.GetConnectionBuilderFromType(System.Enum)
+  commentId: M:CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL.GetConnectionBuilderFromType(System.Enum)
+  id: GetConnectionBuilderFromType(System.Enum)
+  parent: CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL
+  langs:
+  - csharp
+  - vb
+  name: GetConnectionBuilderFromType(Enum)
+  nameWithType: IRelmResolver_MySQL.GetConnectionBuilderFromType(Enum)
+  fullName: CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL.GetConnectionBuilderFromType(System.Enum)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Interfaces/Resolvers/IRelmResolver_MySQL.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: GetConnectionBuilderFromType
+    path: ../CoreRelm/Interfaces/Resolvers/IRelmResolver_MySQL.cs
+    startLine: 24
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces.Resolvers
+  summary: Creates a new <xref href="MySql.Data.MySqlClient.MySqlConnectionStringBuilder" data-throw-if-not-resolved="false"></xref> instance configured for the specified connection type.
+  example: []
+  syntax:
+    content: MySqlConnectionStringBuilder GetConnectionBuilderFromType(Enum ConnectionType)
+    parameters:
+    - id: ConnectionType
+      type: System.Enum
+      description: >-
+        An enumeration value that specifies the type of connection for which to create the connection string
+            builder. Must be a valid value recognized by the method.
+    return:
+      type: MySql.Data.MySqlClient.MySqlConnectionStringBuilder
+      description: A <xref href="MySql.Data.MySqlClient.MySqlConnectionStringBuilder" data-throw-if-not-resolved="false"></xref> instance configured according to the specified connection type.
+    content.vb: Function GetConnectionBuilderFromType(ConnectionType As [Enum]) As MySqlConnectionStringBuilder
+  overload: CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL.GetConnectionBuilderFromType*
+- uid: CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL.GetConnectionBuilderFromName(System.String)
+  commentId: M:CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL.GetConnectionBuilderFromName(System.String)
+  id: GetConnectionBuilderFromName(System.String)
+  parent: CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL
+  langs:
+  - csharp
+  - vb
+  name: GetConnectionBuilderFromName(string)
+  nameWithType: IRelmResolver_MySQL.GetConnectionBuilderFromName(string)
+  fullName: CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL.GetConnectionBuilderFromName(string)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Interfaces/Resolvers/IRelmResolver_MySQL.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: GetConnectionBuilderFromName
+    path: ../CoreRelm/Interfaces/Resolvers/IRelmResolver_MySQL.cs
+    startLine: 32
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces.Resolvers
+  summary: Retrieves a new <xref href="MySql.Data.MySqlClient.MySqlConnectionStringBuilder" data-throw-if-not-resolved="false"></xref> instance initialized with the specified connection string.
+  example: []
+  syntax:
+    content: MySqlConnectionStringBuilder GetConnectionBuilderFromName(string ConnectionString)
+    parameters:
+    - id: ConnectionString
+      type: System.String
+      description: >-
+        The name or value of the connection string to use for initializing the connection string builder. Cannot be
+            null or empty.
+    return:
+      type: MySql.Data.MySqlClient.MySqlConnectionStringBuilder
+      description: A <xref href="MySql.Data.MySqlClient.MySqlConnectionStringBuilder" data-throw-if-not-resolved="false"></xref> configured with the provided connection string.
+    content.vb: Function GetConnectionBuilderFromName(ConnectionString As String) As MySqlConnectionStringBuilder
+  overload: CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL.GetConnectionBuilderFromName*
+  nameWithType.vb: IRelmResolver_MySQL.GetConnectionBuilderFromName(String)
+  fullName.vb: CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL.GetConnectionBuilderFromName(String)
+  name.vb: GetConnectionBuilderFromName(String)
+- uid: CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL.GetConnectionBuilderFromConnectionString(System.String)
+  commentId: M:CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL.GetConnectionBuilderFromConnectionString(System.String)
+  id: GetConnectionBuilderFromConnectionString(System.String)
+  parent: CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL
+  langs:
+  - csharp
+  - vb
+  name: GetConnectionBuilderFromConnectionString(string)
+  nameWithType: IRelmResolver_MySQL.GetConnectionBuilderFromConnectionString(string)
+  fullName: CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL.GetConnectionBuilderFromConnectionString(string)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Interfaces/Resolvers/IRelmResolver_MySQL.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: GetConnectionBuilderFromConnectionString
+    path: ../CoreRelm/Interfaces/Resolvers/IRelmResolver_MySQL.cs
+    startLine: 39
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces.Resolvers
+  summary: Creates a new <xref href="MySql.Data.MySqlClient.MySqlConnectionStringBuilder" data-throw-if-not-resolved="false"></xref> instance based on the specified connection string.
+  example: []
+  syntax:
+    content: MySqlConnectionStringBuilder GetConnectionBuilderFromConnectionString(string connectionString)
+    parameters:
+    - id: connectionString
+      type: System.String
+      description: The connection string to parse. Must be a valid MySQL connection string.
+    return:
+      type: MySql.Data.MySqlClient.MySqlConnectionStringBuilder
+      description: A <xref href="MySql.Data.MySqlClient.MySqlConnectionStringBuilder" data-throw-if-not-resolved="false"></xref> initialized with the values from the specified connection string.
+    content.vb: Function GetConnectionBuilderFromConnectionString(connectionString As String) As MySqlConnectionStringBuilder
+  overload: CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL.GetConnectionBuilderFromConnectionString*
+  nameWithType.vb: IRelmResolver_MySQL.GetConnectionBuilderFromConnectionString(String)
+  fullName.vb: CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL.GetConnectionBuilderFromConnectionString(String)
+  name.vb: GetConnectionBuilderFromConnectionString(String)
+references:
+- uid: CoreRelm.Interfaces.Resolvers
+  commentId: N:CoreRelm.Interfaces.Resolvers
+  href: CoreRelm.html
+  name: CoreRelm.Interfaces.Resolvers
+  nameWithType: CoreRelm.Interfaces.Resolvers
+  fullName: CoreRelm.Interfaces.Resolvers
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Resolvers
+    name: Resolvers
+    href: CoreRelm.Interfaces.Resolvers.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Resolvers
+    name: Resolvers
+    href: CoreRelm.Interfaces.Resolvers.html
+- uid: CoreRelm.Interfaces.Resolvers.IRelmResolverBase.GetConnectionBuilder(System.Enum)
+  commentId: M:CoreRelm.Interfaces.Resolvers.IRelmResolverBase.GetConnectionBuilder(System.Enum)
+  parent: CoreRelm.Interfaces.Resolvers.IRelmResolverBase
+  isExternal: true
+  href: CoreRelm.Interfaces.Resolvers.IRelmResolverBase.html#CoreRelm_Interfaces_Resolvers_IRelmResolverBase_GetConnectionBuilder_System_Enum_
+  name: GetConnectionBuilder(Enum)
+  nameWithType: IRelmResolverBase.GetConnectionBuilder(Enum)
+  fullName: CoreRelm.Interfaces.Resolvers.IRelmResolverBase.GetConnectionBuilder(System.Enum)
+  spec.csharp:
+  - uid: CoreRelm.Interfaces.Resolvers.IRelmResolverBase.GetConnectionBuilder(System.Enum)
+    name: GetConnectionBuilder
+    href: CoreRelm.Interfaces.Resolvers.IRelmResolverBase.html#CoreRelm_Interfaces_Resolvers_IRelmResolverBase_GetConnectionBuilder_System_Enum_
+  - name: (
+  - uid: System.Enum
+    name: Enum
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.enum
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Interfaces.Resolvers.IRelmResolverBase.GetConnectionBuilder(System.Enum)
+    name: GetConnectionBuilder
+    href: CoreRelm.Interfaces.Resolvers.IRelmResolverBase.html#CoreRelm_Interfaces_Resolvers_IRelmResolverBase_GetConnectionBuilder_System_Enum_
+  - name: (
+  - uid: System.Enum
+    name: Enum
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.enum
+  - name: )
+- uid: CoreRelm.Interfaces.Resolvers.IRelmResolverBase.GetConnectionBuilder(System.String)
+  commentId: M:CoreRelm.Interfaces.Resolvers.IRelmResolverBase.GetConnectionBuilder(System.String)
+  parent: CoreRelm.Interfaces.Resolvers.IRelmResolverBase
+  isExternal: true
+  href: CoreRelm.Interfaces.Resolvers.IRelmResolverBase.html#CoreRelm_Interfaces_Resolvers_IRelmResolverBase_GetConnectionBuilder_System_String_
+  name: GetConnectionBuilder(string)
+  nameWithType: IRelmResolverBase.GetConnectionBuilder(string)
+  fullName: CoreRelm.Interfaces.Resolvers.IRelmResolverBase.GetConnectionBuilder(string)
+  nameWithType.vb: IRelmResolverBase.GetConnectionBuilder(String)
+  fullName.vb: CoreRelm.Interfaces.Resolvers.IRelmResolverBase.GetConnectionBuilder(String)
+  name.vb: GetConnectionBuilder(String)
+  spec.csharp:
+  - uid: CoreRelm.Interfaces.Resolvers.IRelmResolverBase.GetConnectionBuilder(System.String)
+    name: GetConnectionBuilder
+    href: CoreRelm.Interfaces.Resolvers.IRelmResolverBase.html#CoreRelm_Interfaces_Resolvers_IRelmResolverBase_GetConnectionBuilder_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Interfaces.Resolvers.IRelmResolverBase.GetConnectionBuilder(System.String)
+    name: GetConnectionBuilder
+    href: CoreRelm.Interfaces.Resolvers.IRelmResolverBase.html#CoreRelm_Interfaces_Resolvers_IRelmResolverBase_GetConnectionBuilder_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: CoreRelm.Interfaces.Resolvers.IRelmResolverBase
+  commentId: T:CoreRelm.Interfaces.Resolvers.IRelmResolverBase
+  parent: CoreRelm.Interfaces.Resolvers
+  href: CoreRelm.Interfaces.Resolvers.IRelmResolverBase.html
+  name: IRelmResolverBase
+  nameWithType: IRelmResolverBase
+  fullName: CoreRelm.Interfaces.Resolvers.IRelmResolverBase
+- uid: MySql.Data.MySqlClient.MySqlConnectionStringBuilder
+  commentId: T:MySql.Data.MySqlClient.MySqlConnectionStringBuilder
+  parent: MySql.Data.MySqlClient
+  isExternal: true
+  name: MySqlConnectionStringBuilder
+  nameWithType: MySqlConnectionStringBuilder
+  fullName: MySql.Data.MySqlClient.MySqlConnectionStringBuilder
+- uid: CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL.GetConnectionBuilderFromType*
+  commentId: Overload:CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL.GetConnectionBuilderFromType
+  href: CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL.html#CoreRelm_Interfaces_Resolvers_IRelmResolver_MySQL_GetConnectionBuilderFromType_System_Enum_
+  name: GetConnectionBuilderFromType
+  nameWithType: IRelmResolver_MySQL.GetConnectionBuilderFromType
+  fullName: CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL.GetConnectionBuilderFromType
+- uid: System.Enum
+  commentId: T:System.Enum
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.enum
+  name: Enum
+  nameWithType: Enum
+  fullName: System.Enum
+- uid: MySql.Data.MySqlClient
+  commentId: N:MySql.Data.MySqlClient
+  isExternal: true
+  name: MySql.Data.MySqlClient
+  nameWithType: MySql.Data.MySqlClient
+  fullName: MySql.Data.MySqlClient
+  spec.csharp:
+  - uid: MySql
+    name: MySql
+    isExternal: true
+  - name: .
+  - uid: MySql.Data
+    name: Data
+    isExternal: true
+  - name: .
+  - uid: MySql.Data.MySqlClient
+    name: MySqlClient
+    isExternal: true
+  spec.vb:
+  - uid: MySql
+    name: MySql
+    isExternal: true
+  - name: .
+  - uid: MySql.Data
+    name: Data
+    isExternal: true
+  - name: .
+  - uid: MySql.Data.MySqlClient
+    name: MySqlClient
+    isExternal: true
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL.GetConnectionBuilderFromName*
+  commentId: Overload:CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL.GetConnectionBuilderFromName
+  href: CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL.html#CoreRelm_Interfaces_Resolvers_IRelmResolver_MySQL_GetConnectionBuilderFromName_System_String_
+  name: GetConnectionBuilderFromName
+  nameWithType: IRelmResolver_MySQL.GetConnectionBuilderFromName
+  fullName: CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL.GetConnectionBuilderFromName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL.GetConnectionBuilderFromConnectionString*
+  commentId: Overload:CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL.GetConnectionBuilderFromConnectionString
+  href: CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL.html#CoreRelm_Interfaces_Resolvers_IRelmResolver_MySQL_GetConnectionBuilderFromConnectionString_System_String_
+  name: GetConnectionBuilderFromConnectionString
+  nameWithType: IRelmResolver_MySQL.GetConnectionBuilderFromConnectionString
+  fullName: CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL.GetConnectionBuilderFromConnectionString
