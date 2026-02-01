@@ -18,7 +18,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
 {
     public class CountExpressionTests
     {
-        private ComplexTestQuickContext context;
+        private ComplexTestContext context;
         private readonly ExpressionEvaluator<ComplexTestModel> evaluator;
 
         public CountExpressionTests()
@@ -30,7 +30,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
                 new ComplexTestModel { InternalId = "ID2" },
             };
 
-            context = new ComplexTestQuickContext("name=SimpleRelmMySql");
+            context = new ComplexTestContext("name=SimpleRelmMySql", autoVerifyTables: false);
 
             // create dummy data loaders for dummy data to be placed in both relevant data sets
             var modelDataLoader = new Mock<RelmDefaultDataLoader<ComplexTestModel>>(); // { CallBase = true };
