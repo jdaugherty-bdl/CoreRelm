@@ -84,16 +84,6 @@ namespace CoreRelm
         // holds the application's configuration, if provided
         private static IConfiguration? _configuration;
 
-        static RelmHelper()
-        {
-            _configuration = new ConfigurationBuilder()
-                .SetBasePath(AppContext.BaseDirectory)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
-                .Build();
-
-            ConnectionHelper = new ConnectionHelper(_configuration);
-        }
-
         //***************** Connections *****************//
 
         /// <summary>
@@ -1889,7 +1879,6 @@ namespace CoreRelm
         public static int WriteToDatabase(IRelmQuickContext relmQuickContext, IEnumerable<IRelmModel> relmModels, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
             => relmModels.WriteToDatabase(relmQuickContext, batchSize: batchSize, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
 
-        /*
         /// <summary>
         /// Configures the library to use the specified <see cref="IConfiguration"/> instance for application settings
         /// and options.
@@ -1902,8 +1891,7 @@ namespace CoreRelm
         public static void UseConfiguration(IConfiguration configuration)
         {
             _configuration = configuration;
-            ConnectionHelper.UseConfiguration(_configuration);
+            ConnectionHelper = new ConnectionHelper(_configuration);
         }
-        */
     }
 }

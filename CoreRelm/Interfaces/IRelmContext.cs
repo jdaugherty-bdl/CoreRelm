@@ -326,7 +326,7 @@ namespace CoreRelm.Interfaces
         /// <returns>An <see cref="IEnumerable{T}"/> containing the data objects retrieved by the query. Returns an empty
         /// collection if no data is found or if <paramref name="throwException"/> is <see langword="false"/> and the
         /// query fails.</returns>
-        IEnumerable<T> GetDataObjects<T>(string query, Dictionary<string, object> parameters = null, bool throwException = true) where T : IRelmModel, new();
+        IEnumerable<T> GetDataObjects<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new();
 
         /// <summary>
         /// Executes the specified query and retrieves a collection of data mapped to the specified type.
