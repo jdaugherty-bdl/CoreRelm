@@ -78,11 +78,11 @@ items:
   example: []
   syntax:
     content: >-
-      [Obsolete("IRelmQuickContext is deprecated and will be removed in future versions. Please use IRelmContext(autoInitializeDataSets: false) instead.")]
+      [Obsolete("IRelmQuickContext is deprecated and will be removed in future versions. Please use IRelmContext(autoInitializeDataSets: false, autoVerifyTables: false) instead.")]
 
       public interface IRelmQuickContext : IDisposable
     content.vb: >-
-      <Obsolete("IRelmQuickContext is deprecated and will be removed in future versions. Please use IRelmContext(autoInitializeDataSets: false) instead.")>
+      <Obsolete("IRelmQuickContext is deprecated and will be removed in future versions. Please use IRelmContext(autoInitializeDataSets: false, autoVerifyTables: false) instead.")>
 
       Public Interface IRelmQuickContext Inherits IDisposable
   inheritedMembers:
@@ -92,7 +92,7 @@ items:
     ctor: System.ObsoleteAttribute.#ctor(System.String)
     arguments:
     - type: System.String
-      value: 'IRelmQuickContext is deprecated and will be removed in future versions. Please use IRelmContext(autoInitializeDataSets: false) instead.'
+      value: 'IRelmQuickContext is deprecated and will be removed in future versions. Please use IRelmContext(autoInitializeDataSets: false, autoVerifyTables: false) instead.'
 - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.ContextOptions
   commentId: P:CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.ContextOptions
   id: ContextOptions

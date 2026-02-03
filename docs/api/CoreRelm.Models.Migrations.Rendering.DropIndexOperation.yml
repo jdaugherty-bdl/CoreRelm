@@ -1,0 +1,563 @@
+### YamlMime:ManagedReference
+items:
+- uid: CoreRelm.Models.Migrations.Rendering.DropIndexOperation
+  commentId: T:CoreRelm.Models.Migrations.Rendering.DropIndexOperation
+  id: DropIndexOperation
+  parent: CoreRelm.Models.Migrations.Rendering
+  children:
+  - CoreRelm.Models.Migrations.Rendering.DropIndexOperation.#ctor(System.String,System.String)
+  - CoreRelm.Models.Migrations.Rendering.DropIndexOperation.Description
+  - CoreRelm.Models.Migrations.Rendering.DropIndexOperation.IndexName
+  - CoreRelm.Models.Migrations.Rendering.DropIndexOperation.TableName
+  langs:
+  - csharp
+  - vb
+  name: DropIndexOperation
+  nameWithType: DropIndexOperation
+  fullName: CoreRelm.Models.Migrations.Rendering.DropIndexOperation
+  type: Class
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: DropIndexOperation
+    path: ../CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
+    startLine: 25
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Rendering
+  syntax:
+    content: 'public sealed record DropIndexOperation : IMigrationOperation, IEquatable<DropIndexOperation>'
+    content.vb: Public NotInheritable Class DropIndexOperation Implements IMigrationOperation, IEquatable(Of DropIndexOperation)
+  inheritance:
+  - System.Object
+  implements:
+  - CoreRelm.Interfaces.Migrations.IMigrationOperation
+  - System.IEquatable{CoreRelm.Models.Migrations.Rendering.DropIndexOperation}
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.#ctor(System.String,System.String)
+  commentId: M:CoreRelm.Models.Migrations.Rendering.DropIndexOperation.#ctor(System.String,System.String)
+  id: '#ctor(System.String,System.String)'
+  parent: CoreRelm.Models.Migrations.Rendering.DropIndexOperation
+  langs:
+  - csharp
+  - vb
+  name: DropIndexOperation(string, string)
+  nameWithType: DropIndexOperation.DropIndexOperation(string, string)
+  fullName: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.DropIndexOperation(string, string)
+  type: Constructor
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: .ctor
+    path: ../CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
+    startLine: 25
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Rendering
+  syntax:
+    content: public DropIndexOperation(string TableName, string IndexName)
+    parameters:
+    - id: TableName
+      type: System.String
+    - id: IndexName
+      type: System.String
+    content.vb: Public Sub New(TableName As String, IndexName As String)
+  overload: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.#ctor*
+  nameWithType.vb: DropIndexOperation.New(String, String)
+  fullName.vb: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.New(String, String)
+  name.vb: New(String, String)
+- uid: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.TableName
+  commentId: P:CoreRelm.Models.Migrations.Rendering.DropIndexOperation.TableName
+  id: TableName
+  parent: CoreRelm.Models.Migrations.Rendering.DropIndexOperation
+  langs:
+  - csharp
+  - vb
+  name: TableName
+  nameWithType: DropIndexOperation.TableName
+  fullName: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.TableName
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: TableName
+    path: ../CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
+    startLine: 25
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Rendering
+  syntax:
+    content: public string TableName { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property TableName As String
+  overload: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.TableName*
+- uid: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.IndexName
+  commentId: P:CoreRelm.Models.Migrations.Rendering.DropIndexOperation.IndexName
+  id: IndexName
+  parent: CoreRelm.Models.Migrations.Rendering.DropIndexOperation
+  langs:
+  - csharp
+  - vb
+  name: IndexName
+  nameWithType: DropIndexOperation.IndexName
+  fullName: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.IndexName
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: IndexName
+    path: ../CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
+    startLine: 25
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Rendering
+  syntax:
+    content: public string IndexName { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property IndexName As String
+  overload: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.IndexName*
+- uid: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.Description
+  commentId: P:CoreRelm.Models.Migrations.Rendering.DropIndexOperation.Description
+  id: Description
+  parent: CoreRelm.Models.Migrations.Rendering.DropIndexOperation
+  langs:
+  - csharp
+  - vb
+  name: Description
+  nameWithType: DropIndexOperation.Description
+  fullName: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.Description
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: Description
+    path: ../CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
+    startLine: 27
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Rendering
+  example: []
+  syntax:
+    content: public string Description { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property Description As String
+  overload: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.Description*
+  implements:
+  - CoreRelm.Interfaces.Migrations.IMigrationOperation.Description
+references:
+- uid: CoreRelm.Models.Migrations.Rendering
+  commentId: N:CoreRelm.Models.Migrations.Rendering
+  href: CoreRelm.html
+  name: CoreRelm.Models.Migrations.Rendering
+  nameWithType: CoreRelm.Models.Migrations.Rendering
+  fullName: CoreRelm.Models.Migrations.Rendering
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Rendering
+    name: Rendering
+    href: CoreRelm.Models.Migrations.Rendering.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Rendering
+    name: Rendering
+    href: CoreRelm.Models.Migrations.Rendering.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: CoreRelm.Interfaces.Migrations.IMigrationOperation
+  commentId: T:CoreRelm.Interfaces.Migrations.IMigrationOperation
+  parent: CoreRelm.Interfaces.Migrations
+  href: CoreRelm.Interfaces.Migrations.IMigrationOperation.html
+  name: IMigrationOperation
+  nameWithType: IMigrationOperation
+  fullName: CoreRelm.Interfaces.Migrations.IMigrationOperation
+- uid: System.IEquatable{CoreRelm.Models.Migrations.Rendering.DropIndexOperation}
+  commentId: T:System.IEquatable{CoreRelm.Models.Migrations.Rendering.DropIndexOperation}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<DropIndexOperation>
+  nameWithType: IEquatable<DropIndexOperation>
+  fullName: System.IEquatable<CoreRelm.Models.Migrations.Rendering.DropIndexOperation>
+  nameWithType.vb: IEquatable(Of DropIndexOperation)
+  fullName.vb: System.IEquatable(Of CoreRelm.Models.Migrations.Rendering.DropIndexOperation)
+  name.vb: IEquatable(Of DropIndexOperation)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: CoreRelm.Models.Migrations.Rendering.DropIndexOperation
+    name: DropIndexOperation
+    href: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.Rendering.DropIndexOperation
+    name: DropIndexOperation
+    href: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CoreRelm.Interfaces.Migrations
+  commentId: N:CoreRelm.Interfaces.Migrations
+  href: CoreRelm.html
+  name: CoreRelm.Interfaces.Migrations
+  nameWithType: CoreRelm.Interfaces.Migrations
+  fullName: CoreRelm.Interfaces.Migrations
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations
+    name: Migrations
+    href: CoreRelm.Interfaces.Migrations.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations
+    name: Migrations
+    href: CoreRelm.Interfaces.Migrations.html
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.#ctor*
+  commentId: Overload:CoreRelm.Models.Migrations.Rendering.DropIndexOperation.#ctor
+  href: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.html#CoreRelm_Models_Migrations_Rendering_DropIndexOperation__ctor_System_String_System_String_
+  name: DropIndexOperation
+  nameWithType: DropIndexOperation.DropIndexOperation
+  fullName: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.DropIndexOperation
+  nameWithType.vb: DropIndexOperation.New
+  fullName.vb: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.New
+  name.vb: New
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.TableName*
+  commentId: Overload:CoreRelm.Models.Migrations.Rendering.DropIndexOperation.TableName
+  href: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.html#CoreRelm_Models_Migrations_Rendering_DropIndexOperation_TableName
+  name: TableName
+  nameWithType: DropIndexOperation.TableName
+  fullName: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.TableName
+- uid: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.IndexName*
+  commentId: Overload:CoreRelm.Models.Migrations.Rendering.DropIndexOperation.IndexName
+  href: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.html#CoreRelm_Models_Migrations_Rendering_DropIndexOperation_IndexName
+  name: IndexName
+  nameWithType: DropIndexOperation.IndexName
+  fullName: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.IndexName
+- uid: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.Description*
+  commentId: Overload:CoreRelm.Models.Migrations.Rendering.DropIndexOperation.Description
+  href: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.html#CoreRelm_Models_Migrations_Rendering_DropIndexOperation_Description
+  name: Description
+  nameWithType: DropIndexOperation.Description
+  fullName: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.Description
+- uid: CoreRelm.Interfaces.Migrations.IMigrationOperation.Description
+  commentId: P:CoreRelm.Interfaces.Migrations.IMigrationOperation.Description
+  parent: CoreRelm.Interfaces.Migrations.IMigrationOperation
+  href: CoreRelm.Interfaces.Migrations.IMigrationOperation.html#CoreRelm_Interfaces_Migrations_IMigrationOperation_Description
+  name: Description
+  nameWithType: IMigrationOperation.Description
+  fullName: CoreRelm.Interfaces.Migrations.IMigrationOperation.Description

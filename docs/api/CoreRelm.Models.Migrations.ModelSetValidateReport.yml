@@ -1,0 +1,798 @@
+### YamlMime:ManagedReference
+items:
+- uid: CoreRelm.Models.Migrations.ModelSetValidateReport
+  commentId: T:CoreRelm.Models.Migrations.ModelSetValidateReport
+  id: ModelSetValidateReport
+  parent: CoreRelm.Models.Migrations
+  children:
+  - CoreRelm.Models.Migrations.ModelSetValidateReport.#ctor(System.String,System.String,System.String,System.String,System.String,CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics,System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ModelSetValidatedModel}})
+  - CoreRelm.Models.Migrations.ModelSetValidateReport.Command
+  - CoreRelm.Models.Migrations.ModelSetValidateReport.DatabaseFilter
+  - CoreRelm.Models.Migrations.ModelSetValidateReport.Diagnostics
+  - CoreRelm.Models.Migrations.ModelSetValidateReport.GeneratedUtc
+  - CoreRelm.Models.Migrations.ModelSetValidateReport.ModelsByDatabase
+  - CoreRelm.Models.Migrations.ModelSetValidateReport.SetName
+  - CoreRelm.Models.Migrations.ModelSetValidateReport.Tool
+  langs:
+  - csharp
+  - vb
+  name: ModelSetValidateReport
+  nameWithType: ModelSetValidateReport
+  fullName: CoreRelm.Models.Migrations.ModelSetValidateReport
+  type: Class
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/ModelSetValidateReport.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: ModelSetValidateReport
+    path: ../CoreRelm/Models/Migrations/ModelSetValidateReport.cs
+    startLine: 8
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations
+  syntax:
+    content: 'public sealed record ModelSetValidateReport : IEquatable<ModelSetValidateReport>'
+    content.vb: Public NotInheritable Class ModelSetValidateReport Implements IEquatable(Of ModelSetValidateReport)
+  inheritance:
+  - System.Object
+  implements:
+  - System.IEquatable{CoreRelm.Models.Migrations.ModelSetValidateReport}
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: CoreRelm.Models.Migrations.ModelSetValidateReport.#ctor(System.String,System.String,System.String,System.String,System.String,CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics,System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ModelSetValidatedModel}})
+  commentId: M:CoreRelm.Models.Migrations.ModelSetValidateReport.#ctor(System.String,System.String,System.String,System.String,System.String,CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics,System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ModelSetValidatedModel}})
+  id: '#ctor(System.String,System.String,System.String,System.String,System.String,CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics,System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ModelSetValidatedModel}})'
+  parent: CoreRelm.Models.Migrations.ModelSetValidateReport
+  langs:
+  - csharp
+  - vb
+  name: ModelSetValidateReport(string, string, string, string, string?, ResolvedModelSetDiagnostics, IReadOnlyDictionary<string, List<ModelSetValidatedModel>>)
+  nameWithType: ModelSetValidateReport.ModelSetValidateReport(string, string, string, string, string?, ResolvedModelSetDiagnostics, IReadOnlyDictionary<string, List<ModelSetValidatedModel>>)
+  fullName: CoreRelm.Models.Migrations.ModelSetValidateReport.ModelSetValidateReport(string, string, string, string, string?, CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.List<CoreRelm.Models.Migrations.ModelSetValidatedModel>>)
+  type: Constructor
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/ModelSetValidateReport.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: .ctor
+    path: ../CoreRelm/Models/Migrations/ModelSetValidateReport.cs
+    startLine: 8
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations
+  syntax:
+    content: public ModelSetValidateReport(string Tool, string Command, string GeneratedUtc, string SetName, string? DatabaseFilter, ResolvedModelSetDiagnostics Diagnostics, IReadOnlyDictionary<string, List<ModelSetValidatedModel>> ModelsByDatabase)
+    parameters:
+    - id: Tool
+      type: System.String
+    - id: Command
+      type: System.String
+    - id: GeneratedUtc
+      type: System.String
+    - id: SetName
+      type: System.String
+    - id: DatabaseFilter
+      type: System.String
+    - id: Diagnostics
+      type: CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics
+    - id: ModelsByDatabase
+      type: System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ModelSetValidatedModel}}
+    content.vb: Public Sub New(Tool As String, Command As String, GeneratedUtc As String, SetName As String, DatabaseFilter As String, Diagnostics As ResolvedModelSetDiagnostics, ModelsByDatabase As IReadOnlyDictionary(Of String, List(Of ModelSetValidatedModel)))
+  overload: CoreRelm.Models.Migrations.ModelSetValidateReport.#ctor*
+  nameWithType.vb: ModelSetValidateReport.New(String, String, String, String, String, ResolvedModelSetDiagnostics, IReadOnlyDictionary(Of String, List(Of ModelSetValidatedModel)))
+  fullName.vb: CoreRelm.Models.Migrations.ModelSetValidateReport.New(String, String, String, String, String, CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics, System.Collections.Generic.IReadOnlyDictionary(Of String, System.Collections.Generic.List(Of CoreRelm.Models.Migrations.ModelSetValidatedModel)))
+  name.vb: New(String, String, String, String, String, ResolvedModelSetDiagnostics, IReadOnlyDictionary(Of String, List(Of ModelSetValidatedModel)))
+- uid: CoreRelm.Models.Migrations.ModelSetValidateReport.Tool
+  commentId: P:CoreRelm.Models.Migrations.ModelSetValidateReport.Tool
+  id: Tool
+  parent: CoreRelm.Models.Migrations.ModelSetValidateReport
+  langs:
+  - csharp
+  - vb
+  name: Tool
+  nameWithType: ModelSetValidateReport.Tool
+  fullName: CoreRelm.Models.Migrations.ModelSetValidateReport.Tool
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/ModelSetValidateReport.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: Tool
+    path: ../CoreRelm/Models/Migrations/ModelSetValidateReport.cs
+    startLine: 9
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations
+  syntax:
+    content: public string Tool { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Tool As String
+  overload: CoreRelm.Models.Migrations.ModelSetValidateReport.Tool*
+- uid: CoreRelm.Models.Migrations.ModelSetValidateReport.Command
+  commentId: P:CoreRelm.Models.Migrations.ModelSetValidateReport.Command
+  id: Command
+  parent: CoreRelm.Models.Migrations.ModelSetValidateReport
+  langs:
+  - csharp
+  - vb
+  name: Command
+  nameWithType: ModelSetValidateReport.Command
+  fullName: CoreRelm.Models.Migrations.ModelSetValidateReport.Command
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/ModelSetValidateReport.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: Command
+    path: ../CoreRelm/Models/Migrations/ModelSetValidateReport.cs
+    startLine: 10
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations
+  syntax:
+    content: public string Command { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Command As String
+  overload: CoreRelm.Models.Migrations.ModelSetValidateReport.Command*
+- uid: CoreRelm.Models.Migrations.ModelSetValidateReport.GeneratedUtc
+  commentId: P:CoreRelm.Models.Migrations.ModelSetValidateReport.GeneratedUtc
+  id: GeneratedUtc
+  parent: CoreRelm.Models.Migrations.ModelSetValidateReport
+  langs:
+  - csharp
+  - vb
+  name: GeneratedUtc
+  nameWithType: ModelSetValidateReport.GeneratedUtc
+  fullName: CoreRelm.Models.Migrations.ModelSetValidateReport.GeneratedUtc
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/ModelSetValidateReport.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: GeneratedUtc
+    path: ../CoreRelm/Models/Migrations/ModelSetValidateReport.cs
+    startLine: 11
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations
+  syntax:
+    content: public string GeneratedUtc { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property GeneratedUtc As String
+  overload: CoreRelm.Models.Migrations.ModelSetValidateReport.GeneratedUtc*
+- uid: CoreRelm.Models.Migrations.ModelSetValidateReport.SetName
+  commentId: P:CoreRelm.Models.Migrations.ModelSetValidateReport.SetName
+  id: SetName
+  parent: CoreRelm.Models.Migrations.ModelSetValidateReport
+  langs:
+  - csharp
+  - vb
+  name: SetName
+  nameWithType: ModelSetValidateReport.SetName
+  fullName: CoreRelm.Models.Migrations.ModelSetValidateReport.SetName
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/ModelSetValidateReport.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: SetName
+    path: ../CoreRelm/Models/Migrations/ModelSetValidateReport.cs
+    startLine: 12
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations
+  syntax:
+    content: public string SetName { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property SetName As String
+  overload: CoreRelm.Models.Migrations.ModelSetValidateReport.SetName*
+- uid: CoreRelm.Models.Migrations.ModelSetValidateReport.DatabaseFilter
+  commentId: P:CoreRelm.Models.Migrations.ModelSetValidateReport.DatabaseFilter
+  id: DatabaseFilter
+  parent: CoreRelm.Models.Migrations.ModelSetValidateReport
+  langs:
+  - csharp
+  - vb
+  name: DatabaseFilter
+  nameWithType: ModelSetValidateReport.DatabaseFilter
+  fullName: CoreRelm.Models.Migrations.ModelSetValidateReport.DatabaseFilter
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/ModelSetValidateReport.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: DatabaseFilter
+    path: ../CoreRelm/Models/Migrations/ModelSetValidateReport.cs
+    startLine: 13
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations
+  syntax:
+    content: public string? DatabaseFilter { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property DatabaseFilter As String
+  overload: CoreRelm.Models.Migrations.ModelSetValidateReport.DatabaseFilter*
+- uid: CoreRelm.Models.Migrations.ModelSetValidateReport.Diagnostics
+  commentId: P:CoreRelm.Models.Migrations.ModelSetValidateReport.Diagnostics
+  id: Diagnostics
+  parent: CoreRelm.Models.Migrations.ModelSetValidateReport
+  langs:
+  - csharp
+  - vb
+  name: Diagnostics
+  nameWithType: ModelSetValidateReport.Diagnostics
+  fullName: CoreRelm.Models.Migrations.ModelSetValidateReport.Diagnostics
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/ModelSetValidateReport.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: Diagnostics
+    path: ../CoreRelm/Models/Migrations/ModelSetValidateReport.cs
+    startLine: 14
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations
+  syntax:
+    content: public ResolvedModelSetDiagnostics Diagnostics { get; init; }
+    parameters: []
+    return:
+      type: CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics
+    content.vb: Public Property Diagnostics As ResolvedModelSetDiagnostics
+  overload: CoreRelm.Models.Migrations.ModelSetValidateReport.Diagnostics*
+- uid: CoreRelm.Models.Migrations.ModelSetValidateReport.ModelsByDatabase
+  commentId: P:CoreRelm.Models.Migrations.ModelSetValidateReport.ModelsByDatabase
+  id: ModelsByDatabase
+  parent: CoreRelm.Models.Migrations.ModelSetValidateReport
+  langs:
+  - csharp
+  - vb
+  name: ModelsByDatabase
+  nameWithType: ModelSetValidateReport.ModelsByDatabase
+  fullName: CoreRelm.Models.Migrations.ModelSetValidateReport.ModelsByDatabase
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/ModelSetValidateReport.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: ModelsByDatabase
+    path: ../CoreRelm/Models/Migrations/ModelSetValidateReport.cs
+    startLine: 15
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations
+  syntax:
+    content: public IReadOnlyDictionary<string, List<ModelSetValidatedModel>> ModelsByDatabase { get; init; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ModelSetValidatedModel}}
+    content.vb: Public Property ModelsByDatabase As IReadOnlyDictionary(Of String, List(Of ModelSetValidatedModel))
+  overload: CoreRelm.Models.Migrations.ModelSetValidateReport.ModelsByDatabase*
+references:
+- uid: CoreRelm.Models.Migrations
+  commentId: N:CoreRelm.Models.Migrations
+  href: CoreRelm.html
+  name: CoreRelm.Models.Migrations
+  nameWithType: CoreRelm.Models.Migrations
+  fullName: CoreRelm.Models.Migrations
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IEquatable{CoreRelm.Models.Migrations.ModelSetValidateReport}
+  commentId: T:System.IEquatable{CoreRelm.Models.Migrations.ModelSetValidateReport}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<ModelSetValidateReport>
+  nameWithType: IEquatable<ModelSetValidateReport>
+  fullName: System.IEquatable<CoreRelm.Models.Migrations.ModelSetValidateReport>
+  nameWithType.vb: IEquatable(Of ModelSetValidateReport)
+  fullName.vb: System.IEquatable(Of CoreRelm.Models.Migrations.ModelSetValidateReport)
+  name.vb: IEquatable(Of ModelSetValidateReport)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: CoreRelm.Models.Migrations.ModelSetValidateReport
+    name: ModelSetValidateReport
+    href: CoreRelm.Models.Migrations.ModelSetValidateReport.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.ModelSetValidateReport
+    name: ModelSetValidateReport
+    href: CoreRelm.Models.Migrations.ModelSetValidateReport.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: CoreRelm.Models.Migrations.ModelSetValidateReport.#ctor*
+  commentId: Overload:CoreRelm.Models.Migrations.ModelSetValidateReport.#ctor
+  href: CoreRelm.Models.Migrations.ModelSetValidateReport.html#CoreRelm_Models_Migrations_ModelSetValidateReport__ctor_System_String_System_String_System_String_System_String_System_String_CoreRelm_Models_Migrations_ResolvedModelSetDiagnostics_System_Collections_Generic_IReadOnlyDictionary_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ModelSetValidatedModel___
+  name: ModelSetValidateReport
+  nameWithType: ModelSetValidateReport.ModelSetValidateReport
+  fullName: CoreRelm.Models.Migrations.ModelSetValidateReport.ModelSetValidateReport
+  nameWithType.vb: ModelSetValidateReport.New
+  fullName.vb: CoreRelm.Models.Migrations.ModelSetValidateReport.New
+  name.vb: New
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics
+  commentId: T:CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics
+  parent: CoreRelm.Models.Migrations
+  href: CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics.html
+  name: ResolvedModelSetDiagnostics
+  nameWithType: ResolvedModelSetDiagnostics
+  fullName: CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics
+- uid: System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ModelSetValidatedModel}}
+  commentId: T:System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ModelSetValidatedModel}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyDictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  name: IReadOnlyDictionary<string, List<ModelSetValidatedModel>>
+  nameWithType: IReadOnlyDictionary<string, List<ModelSetValidatedModel>>
+  fullName: System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.List<CoreRelm.Models.Migrations.ModelSetValidatedModel>>
+  nameWithType.vb: IReadOnlyDictionary(Of String, List(Of ModelSetValidatedModel))
+  fullName.vb: System.Collections.Generic.IReadOnlyDictionary(Of String, System.Collections.Generic.List(Of CoreRelm.Models.Migrations.ModelSetValidatedModel))
+  name.vb: IReadOnlyDictionary(Of String, List(Of ModelSetValidatedModel))
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: CoreRelm.Models.Migrations.ModelSetValidatedModel
+    name: ModelSetValidatedModel
+    href: CoreRelm.Models.Migrations.ModelSetValidatedModel.html
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.ModelSetValidatedModel
+    name: ModelSetValidatedModel
+    href: CoreRelm.Models.Migrations.ModelSetValidatedModel.html
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyDictionary`2
+  commentId: T:System.Collections.Generic.IReadOnlyDictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  name: IReadOnlyDictionary<TKey, TValue>
+  nameWithType: IReadOnlyDictionary<TKey, TValue>
+  fullName: System.Collections.Generic.IReadOnlyDictionary<TKey, TValue>
+  nameWithType.vb: IReadOnlyDictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.IReadOnlyDictionary(Of TKey, TValue)
+  name.vb: IReadOnlyDictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: CoreRelm.Models.Migrations.ModelSetValidateReport.Tool*
+  commentId: Overload:CoreRelm.Models.Migrations.ModelSetValidateReport.Tool
+  href: CoreRelm.Models.Migrations.ModelSetValidateReport.html#CoreRelm_Models_Migrations_ModelSetValidateReport_Tool
+  name: Tool
+  nameWithType: ModelSetValidateReport.Tool
+  fullName: CoreRelm.Models.Migrations.ModelSetValidateReport.Tool
+- uid: CoreRelm.Models.Migrations.ModelSetValidateReport.Command*
+  commentId: Overload:CoreRelm.Models.Migrations.ModelSetValidateReport.Command
+  href: CoreRelm.Models.Migrations.ModelSetValidateReport.html#CoreRelm_Models_Migrations_ModelSetValidateReport_Command
+  name: Command
+  nameWithType: ModelSetValidateReport.Command
+  fullName: CoreRelm.Models.Migrations.ModelSetValidateReport.Command
+- uid: CoreRelm.Models.Migrations.ModelSetValidateReport.GeneratedUtc*
+  commentId: Overload:CoreRelm.Models.Migrations.ModelSetValidateReport.GeneratedUtc
+  href: CoreRelm.Models.Migrations.ModelSetValidateReport.html#CoreRelm_Models_Migrations_ModelSetValidateReport_GeneratedUtc
+  name: GeneratedUtc
+  nameWithType: ModelSetValidateReport.GeneratedUtc
+  fullName: CoreRelm.Models.Migrations.ModelSetValidateReport.GeneratedUtc
+- uid: CoreRelm.Models.Migrations.ModelSetValidateReport.SetName*
+  commentId: Overload:CoreRelm.Models.Migrations.ModelSetValidateReport.SetName
+  href: CoreRelm.Models.Migrations.ModelSetValidateReport.html#CoreRelm_Models_Migrations_ModelSetValidateReport_SetName
+  name: SetName
+  nameWithType: ModelSetValidateReport.SetName
+  fullName: CoreRelm.Models.Migrations.ModelSetValidateReport.SetName
+- uid: CoreRelm.Models.Migrations.ModelSetValidateReport.DatabaseFilter*
+  commentId: Overload:CoreRelm.Models.Migrations.ModelSetValidateReport.DatabaseFilter
+  href: CoreRelm.Models.Migrations.ModelSetValidateReport.html#CoreRelm_Models_Migrations_ModelSetValidateReport_DatabaseFilter
+  name: DatabaseFilter
+  nameWithType: ModelSetValidateReport.DatabaseFilter
+  fullName: CoreRelm.Models.Migrations.ModelSetValidateReport.DatabaseFilter
+- uid: CoreRelm.Models.Migrations.ModelSetValidateReport.Diagnostics*
+  commentId: Overload:CoreRelm.Models.Migrations.ModelSetValidateReport.Diagnostics
+  href: CoreRelm.Models.Migrations.ModelSetValidateReport.html#CoreRelm_Models_Migrations_ModelSetValidateReport_Diagnostics
+  name: Diagnostics
+  nameWithType: ModelSetValidateReport.Diagnostics
+  fullName: CoreRelm.Models.Migrations.ModelSetValidateReport.Diagnostics
+- uid: CoreRelm.Models.Migrations.ModelSetValidateReport.ModelsByDatabase*
+  commentId: Overload:CoreRelm.Models.Migrations.ModelSetValidateReport.ModelsByDatabase
+  href: CoreRelm.Models.Migrations.ModelSetValidateReport.html#CoreRelm_Models_Migrations_ModelSetValidateReport_ModelsByDatabase
+  name: ModelsByDatabase
+  nameWithType: ModelSetValidateReport.ModelsByDatabase
+  fullName: CoreRelm.Models.Migrations.ModelSetValidateReport.ModelsByDatabase

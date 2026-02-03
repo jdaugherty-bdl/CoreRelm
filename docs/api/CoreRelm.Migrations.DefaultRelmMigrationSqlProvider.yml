@@ -1,0 +1,829 @@
+### YamlMime:ManagedReference
+items:
+- uid: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider
+  commentId: T:CoreRelm.Migrations.DefaultRelmMigrationSqlProvider
+  id: DefaultRelmMigrationSqlProvider
+  parent: CoreRelm.Migrations
+  children:
+  - CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate(System.String,System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},System.Boolean,System.Threading.CancellationToken,System.Boolean,System.Boolean,CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
+  langs:
+  - csharp
+  - vb
+  name: DefaultRelmMigrationSqlProvider
+  nameWithType: DefaultRelmMigrationSqlProvider
+  fullName: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider
+  type: Class
+  source:
+    remote:
+      path: CoreRelm/Migrations/DefaultRelmMigrationSqlProvider.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: DefaultRelmMigrationSqlProvider
+    path: ../CoreRelm/Migrations/DefaultRelmMigrationSqlProvider.cs
+    startLine: 13
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Migrations
+  syntax:
+    content: 'public sealed class DefaultRelmMigrationSqlProvider : IMigrationSqlProvider'
+    content.vb: Public NotInheritable Class DefaultRelmMigrationSqlProvider Implements IMigrationSqlProvider
+  inheritance:
+  - System.Object
+  implements:
+  - CoreRelm.Interfaces.Migrations.IMigrationSqlProvider
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate(System.String,System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},System.Boolean,System.Threading.CancellationToken,System.Boolean,System.Boolean,CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
+  commentId: M:CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate(System.String,System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},System.Boolean,System.Threading.CancellationToken,System.Boolean,System.Boolean,CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
+  id: Generate(System.String,System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},System.Boolean,System.Threading.CancellationToken,System.Boolean,System.Boolean,CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
+  parent: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider
+  langs:
+  - csharp
+  - vb
+  name: Generate(string, string, string, string, List<ValidatedModelType>, bool, CancellationToken, bool, bool, MySqlDatabaseProvisioner)
+  nameWithType: DefaultRelmMigrationSqlProvider.Generate(string, string, string, string, List<ValidatedModelType>, bool, CancellationToken, bool, bool, MySqlDatabaseProvisioner)
+  fullName: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate(string, string, string, string, System.Collections.Generic.List<CoreRelm.Models.Migrations.ValidatedModelType>, bool, System.Threading.CancellationToken, bool, bool, CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Migrations/DefaultRelmMigrationSqlProvider.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: Generate
+    path: ../CoreRelm/Migrations/DefaultRelmMigrationSqlProvider.cs
+    startLine: 15
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Migrations
+  example: []
+  syntax:
+    content: public Task<MigrationGenerateResult> Generate(string migrationName, string stampUtc, string setName, string dbName, List<ValidatedModelType> modelsForDb, bool destructive, CancellationToken cancellationToken, bool quiet, bool doApply, MySqlDatabaseProvisioner provisioner)
+    parameters:
+    - id: migrationName
+      type: System.String
+    - id: stampUtc
+      type: System.String
+    - id: setName
+      type: System.String
+    - id: dbName
+      type: System.String
+    - id: modelsForDb
+      type: System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType}
+    - id: destructive
+      type: System.Boolean
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+    - id: quiet
+      type: System.Boolean
+    - id: doApply
+      type: System.Boolean
+    - id: provisioner
+      type: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner
+    return:
+      type: System.Threading.Tasks.Task{CoreRelm.Models.Migrations.MigrationGenerateResult}
+    content.vb: Public Function Generate(migrationName As String, stampUtc As String, setName As String, dbName As String, modelsForDb As List(Of ValidatedModelType), destructive As Boolean, cancellationToken As CancellationToken, quiet As Boolean, doApply As Boolean, provisioner As MySqlDatabaseProvisioner) As Task(Of MigrationGenerateResult)
+  overload: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate*
+  implements:
+  - CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(System.String,System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},System.Boolean,System.Threading.CancellationToken,System.Boolean,System.Boolean,CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
+  nameWithType.vb: DefaultRelmMigrationSqlProvider.Generate(String, String, String, String, List(Of ValidatedModelType), Boolean, CancellationToken, Boolean, Boolean, MySqlDatabaseProvisioner)
+  fullName.vb: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate(String, String, String, String, System.Collections.Generic.List(Of CoreRelm.Models.Migrations.ValidatedModelType), Boolean, System.Threading.CancellationToken, Boolean, Boolean, CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
+  name.vb: Generate(String, String, String, String, List(Of ValidatedModelType), Boolean, CancellationToken, Boolean, Boolean, MySqlDatabaseProvisioner)
+references:
+- uid: CoreRelm.Migrations
+  commentId: N:CoreRelm.Migrations
+  href: CoreRelm.html
+  name: CoreRelm.Migrations
+  nameWithType: CoreRelm.Migrations
+  fullName: CoreRelm.Migrations
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Migrations
+    name: Migrations
+    href: CoreRelm.Migrations.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Migrations
+    name: Migrations
+    href: CoreRelm.Migrations.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider
+  commentId: T:CoreRelm.Interfaces.Migrations.IMigrationSqlProvider
+  parent: CoreRelm.Interfaces.Migrations
+  href: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.html
+  name: IMigrationSqlProvider
+  nameWithType: IMigrationSqlProvider
+  fullName: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CoreRelm.Interfaces.Migrations
+  commentId: N:CoreRelm.Interfaces.Migrations
+  href: CoreRelm.html
+  name: CoreRelm.Interfaces.Migrations
+  nameWithType: CoreRelm.Interfaces.Migrations
+  fullName: CoreRelm.Interfaces.Migrations
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations
+    name: Migrations
+    href: CoreRelm.Interfaces.Migrations.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations
+    name: Migrations
+    href: CoreRelm.Interfaces.Migrations.html
+- uid: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate*
+  commentId: Overload:CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate
+  href: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.html#CoreRelm_Migrations_DefaultRelmMigrationSqlProvider_Generate_System_String_System_String_System_String_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__System_Boolean_System_Threading_CancellationToken_System_Boolean_System_Boolean_CoreRelm_RelmInternal_Helpers_Migrations_Provisioning_MySqlDatabaseProvisioner_
+  name: Generate
+  nameWithType: DefaultRelmMigrationSqlProvider.Generate
+  fullName: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate
+- uid: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(System.String,System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},System.Boolean,System.Threading.CancellationToken,System.Boolean,System.Boolean,CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
+  commentId: M:CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(System.String,System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},System.Boolean,System.Threading.CancellationToken,System.Boolean,System.Boolean,CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
+  parent: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider
+  isExternal: true
+  href: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.html#CoreRelm_Interfaces_Migrations_IMigrationSqlProvider_Generate_System_String_System_String_System_String_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__System_Boolean_System_Threading_CancellationToken_System_Boolean_System_Boolean_CoreRelm_RelmInternal_Helpers_Migrations_Provisioning_MySqlDatabaseProvisioner_
+  name: Generate(string, string, string, string, List<ValidatedModelType>, bool, CancellationToken, bool, bool, MySqlDatabaseProvisioner)
+  nameWithType: IMigrationSqlProvider.Generate(string, string, string, string, List<ValidatedModelType>, bool, CancellationToken, bool, bool, MySqlDatabaseProvisioner)
+  fullName: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(string, string, string, string, System.Collections.Generic.List<CoreRelm.Models.Migrations.ValidatedModelType>, bool, System.Threading.CancellationToken, bool, bool, CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
+  nameWithType.vb: IMigrationSqlProvider.Generate(String, String, String, String, List(Of ValidatedModelType), Boolean, CancellationToken, Boolean, Boolean, MySqlDatabaseProvisioner)
+  fullName.vb: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(String, String, String, String, System.Collections.Generic.List(Of CoreRelm.Models.Migrations.ValidatedModelType), Boolean, System.Threading.CancellationToken, Boolean, Boolean, CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
+  name.vb: Generate(String, String, String, String, List(Of ValidatedModelType), Boolean, CancellationToken, Boolean, Boolean, MySqlDatabaseProvisioner)
+  spec.csharp:
+  - uid: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(System.String,System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},System.Boolean,System.Threading.CancellationToken,System.Boolean,System.Boolean,CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
+    name: Generate
+    href: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.html#CoreRelm_Interfaces_Migrations_IMigrationSqlProvider_Generate_System_String_System_String_System_String_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__System_Boolean_System_Threading_CancellationToken_System_Boolean_System_Boolean_CoreRelm_RelmInternal_Helpers_Migrations_Provisioning_MySqlDatabaseProvisioner_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: CoreRelm.Models.Migrations.ValidatedModelType
+    name: ValidatedModelType
+    href: CoreRelm.Models.Migrations.ValidatedModelType.html
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner
+    name: MySqlDatabaseProvisioner
+    href: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.html
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(System.String,System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},System.Boolean,System.Threading.CancellationToken,System.Boolean,System.Boolean,CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
+    name: Generate
+    href: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.html#CoreRelm_Interfaces_Migrations_IMigrationSqlProvider_Generate_System_String_System_String_System_String_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__System_Boolean_System_Threading_CancellationToken_System_Boolean_System_Boolean_CoreRelm_RelmInternal_Helpers_Migrations_Provisioning_MySqlDatabaseProvisioner_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.ValidatedModelType
+    name: ValidatedModelType
+    href: CoreRelm.Models.Migrations.ValidatedModelType.html
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner
+    name: MySqlDatabaseProvisioner
+    href: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.html
+  - name: )
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType}
+  commentId: T:System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<ValidatedModelType>
+  nameWithType: List<ValidatedModelType>
+  fullName: System.Collections.Generic.List<CoreRelm.Models.Migrations.ValidatedModelType>
+  nameWithType.vb: List(Of ValidatedModelType)
+  fullName.vb: System.Collections.Generic.List(Of CoreRelm.Models.Migrations.ValidatedModelType)
+  name.vb: List(Of ValidatedModelType)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: CoreRelm.Models.Migrations.ValidatedModelType
+    name: ValidatedModelType
+    href: CoreRelm.Models.Migrations.ValidatedModelType.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.ValidatedModelType
+    name: ValidatedModelType
+    href: CoreRelm.Models.Migrations.ValidatedModelType.html
+  - name: )
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner
+  commentId: T:CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner
+  parent: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
+  href: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.html
+  name: MySqlDatabaseProvisioner
+  nameWithType: MySqlDatabaseProvisioner
+  fullName: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner
+- uid: System.Threading.Tasks.Task{CoreRelm.Models.Migrations.MigrationGenerateResult}
+  commentId: T:System.Threading.Tasks.Task{CoreRelm.Models.Migrations.MigrationGenerateResult}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<MigrationGenerateResult>
+  nameWithType: Task<MigrationGenerateResult>
+  fullName: System.Threading.Tasks.Task<CoreRelm.Models.Migrations.MigrationGenerateResult>
+  nameWithType.vb: Task(Of MigrationGenerateResult)
+  fullName.vb: System.Threading.Tasks.Task(Of CoreRelm.Models.Migrations.MigrationGenerateResult)
+  name.vb: Task(Of MigrationGenerateResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: CoreRelm.Models.Migrations.MigrationGenerateResult
+    name: MigrationGenerateResult
+    href: CoreRelm.Models.Migrations.MigrationGenerateResult.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.MigrationGenerateResult
+    name: MigrationGenerateResult
+    href: CoreRelm.Models.Migrations.MigrationGenerateResult.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+- uid: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
+  commentId: N:CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
+  href: CoreRelm.html
+  name: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
+  nameWithType: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
+  fullName: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.RelmInternal
+    name: RelmInternal
+    href: CoreRelm.RelmInternal.html
+  - name: .
+  - uid: CoreRelm.RelmInternal.Helpers
+    name: Helpers
+    href: CoreRelm.RelmInternal.Helpers.html
+  - name: .
+  - uid: CoreRelm.RelmInternal.Helpers.Migrations
+    name: Migrations
+    href: CoreRelm.RelmInternal.Helpers.Migrations.html
+  - name: .
+  - uid: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
+    name: Provisioning
+    href: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.RelmInternal
+    name: RelmInternal
+    href: CoreRelm.RelmInternal.html
+  - name: .
+  - uid: CoreRelm.RelmInternal.Helpers
+    name: Helpers
+    href: CoreRelm.RelmInternal.Helpers.html
+  - name: .
+  - uid: CoreRelm.RelmInternal.Helpers.Migrations
+    name: Migrations
+    href: CoreRelm.RelmInternal.Helpers.Migrations.html
+  - name: .
+  - uid: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
+    name: Provisioning
+    href: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.html
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks

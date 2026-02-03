@@ -1235,9 +1235,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataObjects<T>(string, Dictionary<string, object>, bool)
-  nameWithType: IRelmContext.GetDataObjects<T>(string, Dictionary<string, object>, bool)
-  fullName: CoreRelm.Interfaces.IRelmContext.GetDataObjects<T>(string, System.Collections.Generic.Dictionary<string, object>, bool)
+  name: GetDataObjects<T>(string, Dictionary<string, object>?, bool)
+  nameWithType: IRelmContext.GetDataObjects<T>(string, Dictionary<string, object>?, bool)
+  fullName: CoreRelm.Interfaces.IRelmContext.GetDataObjects<T>(string, System.Collections.Generic.Dictionary<string, object>?, bool)
   type: Method
   source:
     remote:
@@ -1253,7 +1253,7 @@ items:
   summary: Executes a query and retrieves a collection of data objects of the specified type.
   example: []
   syntax:
-    content: 'IEnumerable<T> GetDataObjects<T>(string query, Dictionary<string, object> parameters = null, bool throwException = true) where T : IRelmModel, new()'
+    content: 'IEnumerable<T> GetDataObjects<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new()'
     parameters:
     - id: query
       type: System.String

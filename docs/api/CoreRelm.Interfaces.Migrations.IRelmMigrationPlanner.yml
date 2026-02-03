@@ -1,0 +1,198 @@
+### YamlMime:ManagedReference
+items:
+- uid: CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner
+  commentId: T:CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner
+  id: IRelmMigrationPlanner
+  parent: CoreRelm.Interfaces.Migrations
+  children:
+  - CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner.Plan(CoreRelm.Models.Migrations.Introspection.SchemaSnapshot,CoreRelm.Models.Migrations.Introspection.SchemaSnapshot,CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions)
+  langs:
+  - csharp
+  - vb
+  name: IRelmMigrationPlanner
+  nameWithType: IRelmMigrationPlanner
+  fullName: CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner
+  type: Interface
+  source:
+    remote:
+      path: CoreRelm/Interfaces/Migrations/IRelmMigrationPlanner.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: IRelmMigrationPlanner
+    path: ../CoreRelm/Interfaces/Migrations/IRelmMigrationPlanner.cs
+    startLine: 11
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces.Migrations
+  syntax:
+    content: public interface IRelmMigrationPlanner
+    content.vb: Public Interface IRelmMigrationPlanner
+- uid: CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner.Plan(CoreRelm.Models.Migrations.Introspection.SchemaSnapshot,CoreRelm.Models.Migrations.Introspection.SchemaSnapshot,CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions)
+  commentId: M:CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner.Plan(CoreRelm.Models.Migrations.Introspection.SchemaSnapshot,CoreRelm.Models.Migrations.Introspection.SchemaSnapshot,CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions)
+  id: Plan(CoreRelm.Models.Migrations.Introspection.SchemaSnapshot,CoreRelm.Models.Migrations.Introspection.SchemaSnapshot,CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions)
+  parent: CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner
+  langs:
+  - csharp
+  - vb
+  name: Plan(SchemaSnapshot, SchemaSnapshot, MigrationPlanOptions)
+  nameWithType: IRelmMigrationPlanner.Plan(SchemaSnapshot, SchemaSnapshot, MigrationPlanOptions)
+  fullName: CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner.Plan(CoreRelm.Models.Migrations.Introspection.SchemaSnapshot, CoreRelm.Models.Migrations.Introspection.SchemaSnapshot, CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Interfaces/Migrations/IRelmMigrationPlanner.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: Plan
+    path: ../CoreRelm/Interfaces/Migrations/IRelmMigrationPlanner.cs
+    startLine: 13
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces.Migrations
+  syntax:
+    content: MigrationPlan Plan(SchemaSnapshot desired, SchemaSnapshot actual, MigrationPlanOptions options)
+    parameters:
+    - id: desired
+      type: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot
+    - id: actual
+      type: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot
+    - id: options
+      type: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions
+    return:
+      type: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan
+    content.vb: Function Plan(desired As SchemaSnapshot, actual As SchemaSnapshot, options As MigrationPlanOptions) As MigrationPlan
+  overload: CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner.Plan*
+references:
+- uid: CoreRelm.Interfaces.Migrations
+  commentId: N:CoreRelm.Interfaces.Migrations
+  href: CoreRelm.html
+  name: CoreRelm.Interfaces.Migrations
+  nameWithType: CoreRelm.Interfaces.Migrations
+  fullName: CoreRelm.Interfaces.Migrations
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations
+    name: Migrations
+    href: CoreRelm.Interfaces.Migrations.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations
+    name: Migrations
+    href: CoreRelm.Interfaces.Migrations.html
+- uid: CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner.Plan*
+  commentId: Overload:CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner.Plan
+  href: CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner.html#CoreRelm_Interfaces_Migrations_IRelmMigrationPlanner_Plan_CoreRelm_Models_Migrations_Introspection_SchemaSnapshot_CoreRelm_Models_Migrations_Introspection_SchemaSnapshot_CoreRelm_Models_Migrations_MigrationPlans_MigrationPlanOptions_
+  name: Plan
+  nameWithType: IRelmMigrationPlanner.Plan
+  fullName: CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner.Plan
+- uid: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot
+  commentId: T:CoreRelm.Models.Migrations.Introspection.SchemaSnapshot
+  parent: CoreRelm.Models.Migrations.Introspection
+  href: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.html
+  name: SchemaSnapshot
+  nameWithType: SchemaSnapshot
+  fullName: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot
+- uid: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions
+  commentId: T:CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions
+  parent: CoreRelm.Models.Migrations.MigrationPlans
+  href: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.html
+  name: MigrationPlanOptions
+  nameWithType: MigrationPlanOptions
+  fullName: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions
+- uid: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan
+  commentId: T:CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan
+  parent: CoreRelm.Models.Migrations.MigrationPlans
+  href: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.html
+  name: MigrationPlan
+  nameWithType: MigrationPlan
+  fullName: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan
+- uid: CoreRelm.Models.Migrations.Introspection
+  commentId: N:CoreRelm.Models.Migrations.Introspection
+  href: CoreRelm.html
+  name: CoreRelm.Models.Migrations.Introspection
+  nameWithType: CoreRelm.Models.Migrations.Introspection
+  fullName: CoreRelm.Models.Migrations.Introspection
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Introspection
+    name: Introspection
+    href: CoreRelm.Models.Migrations.Introspection.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Introspection
+    name: Introspection
+    href: CoreRelm.Models.Migrations.Introspection.html
+- uid: CoreRelm.Models.Migrations.MigrationPlans
+  commentId: N:CoreRelm.Models.Migrations.MigrationPlans
+  href: CoreRelm.html
+  name: CoreRelm.Models.Migrations.MigrationPlans
+  nameWithType: CoreRelm.Models.Migrations.MigrationPlans
+  fullName: CoreRelm.Models.Migrations.MigrationPlans
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.MigrationPlans
+    name: MigrationPlans
+    href: CoreRelm.Models.Migrations.MigrationPlans.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.MigrationPlans
+    name: MigrationPlans
+    href: CoreRelm.Models.Migrations.MigrationPlans.html

@@ -1,0 +1,678 @@
+### YamlMime:ManagedReference
+items:
+- uid: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot
+  commentId: T:CoreRelm.Models.Migrations.Introspection.SchemaSnapshot
+  id: SchemaSnapshot
+  parent: CoreRelm.Models.Migrations.Introspection
+  children:
+  - CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.#ctor(System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,CoreRelm.Models.Migrations.Introspection.TableSchema},System.Collections.Generic.IReadOnlyDictionary{System.String,CoreRelm.Models.Migrations.Introspection.FunctionSchema})
+  - CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.DatabaseName
+  - CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.Functions
+  - CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.Tables
+  langs:
+  - csharp
+  - vb
+  name: SchemaSnapshot
+  nameWithType: SchemaSnapshot
+  fullName: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot
+  type: Class
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Introspection/SchemaSnapshot.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: SchemaSnapshot
+    path: ../CoreRelm/Models/Migrations/Introspection/SchemaSnapshot.cs
+    startLine: 8
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Introspection
+  syntax:
+    content: 'public sealed record SchemaSnapshot : IEquatable<SchemaSnapshot>'
+    content.vb: Public NotInheritable Class SchemaSnapshot Implements IEquatable(Of SchemaSnapshot)
+  inheritance:
+  - System.Object
+  implements:
+  - System.IEquatable{CoreRelm.Models.Migrations.Introspection.SchemaSnapshot}
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.#ctor(System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,CoreRelm.Models.Migrations.Introspection.TableSchema},System.Collections.Generic.IReadOnlyDictionary{System.String,CoreRelm.Models.Migrations.Introspection.FunctionSchema})
+  commentId: M:CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.#ctor(System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,CoreRelm.Models.Migrations.Introspection.TableSchema},System.Collections.Generic.IReadOnlyDictionary{System.String,CoreRelm.Models.Migrations.Introspection.FunctionSchema})
+  id: '#ctor(System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,CoreRelm.Models.Migrations.Introspection.TableSchema},System.Collections.Generic.IReadOnlyDictionary{System.String,CoreRelm.Models.Migrations.Introspection.FunctionSchema})'
+  parent: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot
+  langs:
+  - csharp
+  - vb
+  name: SchemaSnapshot(string, IReadOnlyDictionary<string, TableSchema>, IReadOnlyDictionary<string, FunctionSchema>)
+  nameWithType: SchemaSnapshot.SchemaSnapshot(string, IReadOnlyDictionary<string, TableSchema>, IReadOnlyDictionary<string, FunctionSchema>)
+  fullName: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.SchemaSnapshot(string, System.Collections.Generic.IReadOnlyDictionary<string, CoreRelm.Models.Migrations.Introspection.TableSchema>, System.Collections.Generic.IReadOnlyDictionary<string, CoreRelm.Models.Migrations.Introspection.FunctionSchema>)
+  type: Constructor
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Introspection/SchemaSnapshot.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: .ctor
+    path: ../CoreRelm/Models/Migrations/Introspection/SchemaSnapshot.cs
+    startLine: 8
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Introspection
+  syntax:
+    content: public SchemaSnapshot(string DatabaseName, IReadOnlyDictionary<string, TableSchema> Tables, IReadOnlyDictionary<string, FunctionSchema> Functions)
+    parameters:
+    - id: DatabaseName
+      type: System.String
+    - id: Tables
+      type: System.Collections.Generic.IReadOnlyDictionary{System.String,CoreRelm.Models.Migrations.Introspection.TableSchema}
+    - id: Functions
+      type: System.Collections.Generic.IReadOnlyDictionary{System.String,CoreRelm.Models.Migrations.Introspection.FunctionSchema}
+    content.vb: Public Sub New(DatabaseName As String, Tables As IReadOnlyDictionary(Of String, TableSchema), Functions As IReadOnlyDictionary(Of String, FunctionSchema))
+  overload: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.#ctor*
+  nameWithType.vb: SchemaSnapshot.New(String, IReadOnlyDictionary(Of String, TableSchema), IReadOnlyDictionary(Of String, FunctionSchema))
+  fullName.vb: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.New(String, System.Collections.Generic.IReadOnlyDictionary(Of String, CoreRelm.Models.Migrations.Introspection.TableSchema), System.Collections.Generic.IReadOnlyDictionary(Of String, CoreRelm.Models.Migrations.Introspection.FunctionSchema))
+  name.vb: New(String, IReadOnlyDictionary(Of String, TableSchema), IReadOnlyDictionary(Of String, FunctionSchema))
+- uid: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.DatabaseName
+  commentId: P:CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.DatabaseName
+  id: DatabaseName
+  parent: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot
+  langs:
+  - csharp
+  - vb
+  name: DatabaseName
+  nameWithType: SchemaSnapshot.DatabaseName
+  fullName: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.DatabaseName
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Introspection/SchemaSnapshot.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: DatabaseName
+    path: ../CoreRelm/Models/Migrations/Introspection/SchemaSnapshot.cs
+    startLine: 9
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Introspection
+  syntax:
+    content: public string DatabaseName { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property DatabaseName As String
+  overload: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.DatabaseName*
+- uid: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.Tables
+  commentId: P:CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.Tables
+  id: Tables
+  parent: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot
+  langs:
+  - csharp
+  - vb
+  name: Tables
+  nameWithType: SchemaSnapshot.Tables
+  fullName: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.Tables
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Introspection/SchemaSnapshot.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: Tables
+    path: ../CoreRelm/Models/Migrations/Introspection/SchemaSnapshot.cs
+    startLine: 10
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Introspection
+  syntax:
+    content: public IReadOnlyDictionary<string, TableSchema> Tables { get; init; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyDictionary{System.String,CoreRelm.Models.Migrations.Introspection.TableSchema}
+    content.vb: Public Property Tables As IReadOnlyDictionary(Of String, TableSchema)
+  overload: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.Tables*
+- uid: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.Functions
+  commentId: P:CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.Functions
+  id: Functions
+  parent: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot
+  langs:
+  - csharp
+  - vb
+  name: Functions
+  nameWithType: SchemaSnapshot.Functions
+  fullName: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.Functions
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Introspection/SchemaSnapshot.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: Functions
+    path: ../CoreRelm/Models/Migrations/Introspection/SchemaSnapshot.cs
+    startLine: 11
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Introspection
+  syntax:
+    content: public IReadOnlyDictionary<string, FunctionSchema> Functions { get; init; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyDictionary{System.String,CoreRelm.Models.Migrations.Introspection.FunctionSchema}
+    content.vb: Public Property Functions As IReadOnlyDictionary(Of String, FunctionSchema)
+  overload: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.Functions*
+references:
+- uid: CoreRelm.Models.Migrations.Introspection
+  commentId: N:CoreRelm.Models.Migrations.Introspection
+  href: CoreRelm.html
+  name: CoreRelm.Models.Migrations.Introspection
+  nameWithType: CoreRelm.Models.Migrations.Introspection
+  fullName: CoreRelm.Models.Migrations.Introspection
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Introspection
+    name: Introspection
+    href: CoreRelm.Models.Migrations.Introspection.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Introspection
+    name: Introspection
+    href: CoreRelm.Models.Migrations.Introspection.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IEquatable{CoreRelm.Models.Migrations.Introspection.SchemaSnapshot}
+  commentId: T:System.IEquatable{CoreRelm.Models.Migrations.Introspection.SchemaSnapshot}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<SchemaSnapshot>
+  nameWithType: IEquatable<SchemaSnapshot>
+  fullName: System.IEquatable<CoreRelm.Models.Migrations.Introspection.SchemaSnapshot>
+  nameWithType.vb: IEquatable(Of SchemaSnapshot)
+  fullName.vb: System.IEquatable(Of CoreRelm.Models.Migrations.Introspection.SchemaSnapshot)
+  name.vb: IEquatable(Of SchemaSnapshot)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot
+    name: SchemaSnapshot
+    href: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot
+    name: SchemaSnapshot
+    href: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.#ctor*
+  commentId: Overload:CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.#ctor
+  href: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.html#CoreRelm_Models_Migrations_Introspection_SchemaSnapshot__ctor_System_String_System_Collections_Generic_IReadOnlyDictionary_System_String_CoreRelm_Models_Migrations_Introspection_TableSchema__System_Collections_Generic_IReadOnlyDictionary_System_String_CoreRelm_Models_Migrations_Introspection_FunctionSchema__
+  name: SchemaSnapshot
+  nameWithType: SchemaSnapshot.SchemaSnapshot
+  fullName: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.SchemaSnapshot
+  nameWithType.vb: SchemaSnapshot.New
+  fullName.vb: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.New
+  name.vb: New
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Collections.Generic.IReadOnlyDictionary{System.String,CoreRelm.Models.Migrations.Introspection.TableSchema}
+  commentId: T:System.Collections.Generic.IReadOnlyDictionary{System.String,CoreRelm.Models.Migrations.Introspection.TableSchema}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyDictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  name: IReadOnlyDictionary<string, TableSchema>
+  nameWithType: IReadOnlyDictionary<string, TableSchema>
+  fullName: System.Collections.Generic.IReadOnlyDictionary<string, CoreRelm.Models.Migrations.Introspection.TableSchema>
+  nameWithType.vb: IReadOnlyDictionary(Of String, TableSchema)
+  fullName.vb: System.Collections.Generic.IReadOnlyDictionary(Of String, CoreRelm.Models.Migrations.Introspection.TableSchema)
+  name.vb: IReadOnlyDictionary(Of String, TableSchema)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.Introspection.TableSchema
+    name: TableSchema
+    href: CoreRelm.Models.Migrations.Introspection.TableSchema.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.Introspection.TableSchema
+    name: TableSchema
+    href: CoreRelm.Models.Migrations.Introspection.TableSchema.html
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyDictionary{System.String,CoreRelm.Models.Migrations.Introspection.FunctionSchema}
+  commentId: T:System.Collections.Generic.IReadOnlyDictionary{System.String,CoreRelm.Models.Migrations.Introspection.FunctionSchema}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyDictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  name: IReadOnlyDictionary<string, FunctionSchema>
+  nameWithType: IReadOnlyDictionary<string, FunctionSchema>
+  fullName: System.Collections.Generic.IReadOnlyDictionary<string, CoreRelm.Models.Migrations.Introspection.FunctionSchema>
+  nameWithType.vb: IReadOnlyDictionary(Of String, FunctionSchema)
+  fullName.vb: System.Collections.Generic.IReadOnlyDictionary(Of String, CoreRelm.Models.Migrations.Introspection.FunctionSchema)
+  name.vb: IReadOnlyDictionary(Of String, FunctionSchema)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.Introspection.FunctionSchema
+    name: FunctionSchema
+    href: CoreRelm.Models.Migrations.Introspection.FunctionSchema.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.Introspection.FunctionSchema
+    name: FunctionSchema
+    href: CoreRelm.Models.Migrations.Introspection.FunctionSchema.html
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyDictionary`2
+  commentId: T:System.Collections.Generic.IReadOnlyDictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  name: IReadOnlyDictionary<TKey, TValue>
+  nameWithType: IReadOnlyDictionary<TKey, TValue>
+  fullName: System.Collections.Generic.IReadOnlyDictionary<TKey, TValue>
+  nameWithType.vb: IReadOnlyDictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.IReadOnlyDictionary(Of TKey, TValue)
+  name.vb: IReadOnlyDictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.DatabaseName*
+  commentId: Overload:CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.DatabaseName
+  href: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.html#CoreRelm_Models_Migrations_Introspection_SchemaSnapshot_DatabaseName
+  name: DatabaseName
+  nameWithType: SchemaSnapshot.DatabaseName
+  fullName: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.DatabaseName
+- uid: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.Tables*
+  commentId: Overload:CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.Tables
+  href: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.html#CoreRelm_Models_Migrations_Introspection_SchemaSnapshot_Tables
+  name: Tables
+  nameWithType: SchemaSnapshot.Tables
+  fullName: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.Tables
+- uid: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.Functions*
+  commentId: Overload:CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.Functions
+  href: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.html#CoreRelm_Models_Migrations_Introspection_SchemaSnapshot_Functions
+  name: Functions
+  nameWithType: SchemaSnapshot.Functions
+  fullName: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.Functions

@@ -48,10 +48,26 @@ items:
   - uid: CoreRelm.Enums.Triggers.TriggerTypes
     name: Triggers.TriggerTypes
     type: Enum
+- uid: CoreRelm.Exceptions
+  name: CoreRelm.Exceptions
+  type: Namespace
+  items:
+  - uid: CoreRelm.Exceptions.MissingRelmDatabaseAttributeException
+    name: MissingRelmDatabaseAttributeException
+    type: Class
+  - uid: CoreRelm.Exceptions.MissingRelmTableAttributeException
+    name: MissingRelmTableAttributeException
+    type: Class
 - uid: CoreRelm.Extensions
   name: CoreRelm.Extensions
   type: Namespace
   items:
+  - uid: CoreRelm.Extensions.ChecksumExtensions
+    name: ChecksumExtensions
+    type: Class
+  - uid: CoreRelm.Extensions.CoreRelmServiceCollectionExtensions
+    name: CoreRelmServiceCollectionExtensions
+    type: Class
   - uid: CoreRelm.Extensions.DbContextExtensions
     name: DbContextExtensions
     type: Class
@@ -95,6 +111,28 @@ items:
   - uid: CoreRelm.Interfaces.IRelmModelApartment
     name: IRelmModelApartment
     type: Interface
+- uid: CoreRelm.Interfaces.Migrations
+  name: CoreRelm.Interfaces.Migrations
+  type: Namespace
+  items:
+  - uid: CoreRelm.Interfaces.Migrations.IMigrationOperation
+    name: IMigrationOperation
+    type: Interface
+  - uid: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider
+    name: IMigrationSqlProvider
+    type: Interface
+  - uid: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner
+    name: IRelmDatabaseProvisioner
+    type: Interface
+  - uid: CoreRelm.Interfaces.Migrations.IRelmMigrationExecutor
+    name: IRelmMigrationExecutor
+    type: Interface
+  - uid: CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner
+    name: IRelmMigrationPlanner
+    type: Interface
+  - uid: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer
+    name: IRelmMigrationSqlRenderer
+    type: Interface
 - uid: CoreRelm.Interfaces.RelmQuick
   name: CoreRelm.Interfaces.RelmQuick
   type: Namespace
@@ -115,6 +153,13 @@ items:
   - uid: CoreRelm.Interfaces.Resolvers.IRelmResolver_MySQL
     name: IRelmResolver_MySQL
     type: Interface
+- uid: CoreRelm.Migrations
+  name: CoreRelm.Migrations
+  type: Namespace
+  items:
+  - uid: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider
+    name: DefaultRelmMigrationSqlProvider
+    type: Class
 - uid: CoreRelm.Models
   name: CoreRelm.Models
   type: Namespace
@@ -150,6 +195,116 @@ items:
   - uid: CoreRelm.Models.EventArguments.DtoEventArgs
     name: DtoEventArgs
     type: Class
+- uid: CoreRelm.Models.Migrations
+  name: CoreRelm.Models.Migrations
+  type: Namespace
+  items:
+  - uid: CoreRelm.Models.Migrations.MigrationGenerateResult
+    name: MigrationGenerateResult
+    type: Class
+  - uid: CoreRelm.Models.Migrations.ModelSetDefinition
+    name: ModelSetDefinition
+    type: Class
+  - uid: CoreRelm.Models.Migrations.ModelSetValidateReport
+    name: ModelSetValidateReport
+    type: Class
+  - uid: CoreRelm.Models.Migrations.ModelSetValidatedModel
+    name: ModelSetValidatedModel
+    type: Class
+  - uid: CoreRelm.Models.Migrations.ModelSetsFile
+    name: ModelSetsFile
+    type: Class
+  - uid: CoreRelm.Models.Migrations.ResolvedModelSet
+    name: ResolvedModelSet
+    type: Class
+  - uid: CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics
+    name: ResolvedModelSetDiagnostics
+    type: Class
+  - uid: CoreRelm.Models.Migrations.ValidatedModelType
+    name: ValidatedModelType
+    type: Class
+- uid: CoreRelm.Models.Migrations.Execution
+  name: CoreRelm.Models.Migrations.Execution
+  type: Namespace
+  items:
+  - uid: CoreRelm.Models.Migrations.Execution.AppliedMigration
+    name: AppliedMigration
+    type: Class
+- uid: CoreRelm.Models.Migrations.Introspection
+  name: CoreRelm.Models.Migrations.Introspection
+  type: Namespace
+  items:
+  - uid: CoreRelm.Models.Migrations.Introspection.ColumnSchema
+    name: ColumnSchema
+    type: Class
+  - uid: CoreRelm.Models.Migrations.Introspection.ForeignKeySchema
+    name: ForeignKeySchema
+    type: Class
+  - uid: CoreRelm.Models.Migrations.Introspection.FunctionSchema
+    name: FunctionSchema
+    type: Class
+  - uid: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema
+    name: IndexColumnSchema
+    type: Class
+  - uid: CoreRelm.Models.Migrations.Introspection.IndexSchema
+    name: IndexSchema
+    type: Class
+  - uid: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot
+    name: SchemaSnapshot
+    type: Class
+  - uid: CoreRelm.Models.Migrations.Introspection.TableSchema
+    name: TableSchema
+    type: Class
+  - uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema
+    name: TriggerSchema
+    type: Class
+- uid: CoreRelm.Models.Migrations.MigrationPlans
+  name: CoreRelm.Models.Migrations.MigrationPlans
+  type: Namespace
+  items:
+  - uid: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan
+    name: MigrationPlan
+    type: Class
+  - uid: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions
+    name: MigrationPlanOptions
+    type: Class
+- uid: CoreRelm.Models.Migrations.Rendering
+  name: CoreRelm.Models.Migrations.Rendering
+  type: Namespace
+  items:
+  - uid: CoreRelm.Models.Migrations.Rendering.AddColumnOperation
+    name: AddColumnOperation
+    type: Class
+  - uid: CoreRelm.Models.Migrations.Rendering.AddForeignKeyOperation
+    name: AddForeignKeyOperation
+    type: Class
+  - uid: CoreRelm.Models.Migrations.Rendering.AlterColumnOperation
+    name: AlterColumnOperation
+    type: Class
+  - uid: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation
+    name: CreateFunctionOperation
+    type: Class
+  - uid: CoreRelm.Models.Migrations.Rendering.CreateIndexOperation
+    name: CreateIndexOperation
+    type: Class
+  - uid: CoreRelm.Models.Migrations.Rendering.CreateTableOperation
+    name: CreateTableOperation
+    type: Class
+  - uid: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation
+    name: CreateTriggerOperation
+    type: Class
+  - uid: CoreRelm.Models.Migrations.Rendering.DropForeignKeyOperation
+    name: DropForeignKeyOperation
+    type: Class
+  - uid: CoreRelm.Models.Migrations.Rendering.DropIndexOperation
+    name: DropIndexOperation
+    type: Class
+  - uid: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation
+    name: DropTriggerOperation
+    type: Class
+  - uid: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions
+    name: MySqlRenderOptions
+    type: Class
 - uid: CoreRelm.Options
   name: CoreRelm.Options
   type: Namespace
@@ -166,6 +321,50 @@ items:
   items:
   - uid: CoreRelm.Persistence.BulkTableWriter`1
     name: BulkTableWriter<T>
+    type: Class
+- uid: CoreRelm.RelmInternal.Helpers.Migrations.Execution
+  name: CoreRelm.RelmInternal.Helpers.Migrations.Execution
+  type: Namespace
+  items:
+  - uid: CoreRelm.RelmInternal.Helpers.Migrations.Execution.MigrationApplier
+    name: MigrationApplier
+    type: Class
+  - uid: CoreRelm.RelmInternal.Helpers.Migrations.Execution.MySqlScriptRunner
+    name: MySqlScriptRunner
+    type: Class
+  - uid: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore
+    name: SchemaMigrationsStore
+    type: Class
+- uid: CoreRelm.RelmInternal.Helpers.Migrations.Introspection
+  name: CoreRelm.RelmInternal.Helpers.Migrations.Introspection
+  type: Namespace
+  items:
+  - uid: CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper
+    name: DbAvailabilityHelper
+    type: Class
+  - uid: CoreRelm.RelmInternal.Helpers.Migrations.Introspection.SchemaSnapshotFactory
+    name: SchemaSnapshotFactory
+    type: Class
+- uid: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
+  name: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
+  type: Namespace
+  items:
+  - uid: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner
+    name: RelmMigrationPlanner
+    type: Class
+- uid: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
+  name: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
+  type: Namespace
+  items:
+  - uid: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner
+    name: MySqlDatabaseProvisioner
+    type: Class
+- uid: CoreRelm.RelmInternal.Helpers.Migrations.Rendering
+  name: CoreRelm.RelmInternal.Helpers.Migrations.Rendering
+  type: Namespace
+  items:
+  - uid: CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer
+    name: MySqlMigrationSqlRenderer
     type: Class
 - uid: CoreRelm.RelmInternal.Models
   name: CoreRelm.RelmInternal.Models

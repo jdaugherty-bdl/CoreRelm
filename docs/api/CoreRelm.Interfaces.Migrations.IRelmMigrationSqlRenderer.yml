@@ -1,0 +1,210 @@
+### YamlMime:ManagedReference
+items:
+- uid: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer
+  commentId: T:CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer
+  id: IRelmMigrationSqlRenderer
+  parent: CoreRelm.Interfaces.Migrations
+  children:
+  - CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer.Render(CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan,CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions)
+  langs:
+  - csharp
+  - vb
+  name: IRelmMigrationSqlRenderer
+  nameWithType: IRelmMigrationSqlRenderer
+  fullName: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer
+  type: Interface
+  source:
+    remote:
+      path: CoreRelm/Interfaces/Migrations/IRelmMigrationSqlRenderer.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: IRelmMigrationSqlRenderer
+    path: ../CoreRelm/Interfaces/Migrations/IRelmMigrationSqlRenderer.cs
+    startLine: 11
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces.Migrations
+  syntax:
+    content: public interface IRelmMigrationSqlRenderer
+    content.vb: Public Interface IRelmMigrationSqlRenderer
+- uid: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer.Render(CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan,CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions)
+  commentId: M:CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer.Render(CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan,CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions)
+  id: Render(CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan,CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions)
+  parent: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer
+  langs:
+  - csharp
+  - vb
+  name: Render(MigrationPlan, MySqlRenderOptions?)
+  nameWithType: IRelmMigrationSqlRenderer.Render(MigrationPlan, MySqlRenderOptions?)
+  fullName: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer.Render(CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan, CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions?)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Interfaces/Migrations/IRelmMigrationSqlRenderer.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: Render
+    path: ../CoreRelm/Interfaces/Migrations/IRelmMigrationSqlRenderer.cs
+    startLine: 13
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces.Migrations
+  syntax:
+    content: string Render(MigrationPlan plan, MySqlRenderOptions? options = null)
+    parameters:
+    - id: plan
+      type: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan
+    - id: options
+      type: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions
+    return:
+      type: System.String
+    content.vb: Function Render(plan As MigrationPlan, options As MySqlRenderOptions = Nothing) As String
+  overload: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer.Render*
+  nameWithType.vb: IRelmMigrationSqlRenderer.Render(MigrationPlan, MySqlRenderOptions)
+  fullName.vb: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer.Render(CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan, CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions)
+  name.vb: Render(MigrationPlan, MySqlRenderOptions)
+references:
+- uid: CoreRelm.Interfaces.Migrations
+  commentId: N:CoreRelm.Interfaces.Migrations
+  href: CoreRelm.html
+  name: CoreRelm.Interfaces.Migrations
+  nameWithType: CoreRelm.Interfaces.Migrations
+  fullName: CoreRelm.Interfaces.Migrations
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations
+    name: Migrations
+    href: CoreRelm.Interfaces.Migrations.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations
+    name: Migrations
+    href: CoreRelm.Interfaces.Migrations.html
+- uid: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer.Render*
+  commentId: Overload:CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer.Render
+  href: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer.html#CoreRelm_Interfaces_Migrations_IRelmMigrationSqlRenderer_Render_CoreRelm_Models_Migrations_MigrationPlans_MigrationPlan_CoreRelm_Models_Migrations_Rendering_MySqlRenderOptions_
+  name: Render
+  nameWithType: IRelmMigrationSqlRenderer.Render
+  fullName: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer.Render
+- uid: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan
+  commentId: T:CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan
+  parent: CoreRelm.Models.Migrations.MigrationPlans
+  href: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.html
+  name: MigrationPlan
+  nameWithType: MigrationPlan
+  fullName: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan
+- uid: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions
+  commentId: T:CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions
+  parent: CoreRelm.Models.Migrations.Rendering
+  href: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.html
+  name: MySqlRenderOptions
+  nameWithType: MySqlRenderOptions
+  fullName: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: CoreRelm.Models.Migrations.MigrationPlans
+  commentId: N:CoreRelm.Models.Migrations.MigrationPlans
+  href: CoreRelm.html
+  name: CoreRelm.Models.Migrations.MigrationPlans
+  nameWithType: CoreRelm.Models.Migrations.MigrationPlans
+  fullName: CoreRelm.Models.Migrations.MigrationPlans
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.MigrationPlans
+    name: MigrationPlans
+    href: CoreRelm.Models.Migrations.MigrationPlans.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.MigrationPlans
+    name: MigrationPlans
+    href: CoreRelm.Models.Migrations.MigrationPlans.html
+- uid: CoreRelm.Models.Migrations.Rendering
+  commentId: N:CoreRelm.Models.Migrations.Rendering
+  href: CoreRelm.html
+  name: CoreRelm.Models.Migrations.Rendering
+  nameWithType: CoreRelm.Models.Migrations.Rendering
+  fullName: CoreRelm.Models.Migrations.Rendering
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Rendering
+    name: Rendering
+    href: CoreRelm.Models.Migrations.Rendering.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Rendering
+    name: Rendering
+    href: CoreRelm.Models.Migrations.Rendering.html
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
