@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.Interfaces.Migrations
 {
-    public interface IRelmMigrationExecutor
+    public interface IRelmSqlScriptRunner
     {
-        Task ExecuteSqlAsync(string connectionString, string sql, CancellationToken ct = default);
+        Task ExecuteScriptAsync(IRelmContext context, string sql, CancellationToken ct = default);
     }
 }

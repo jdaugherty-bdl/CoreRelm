@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.Interfaces.Migrations
 {
-    public interface IRelmMigrationExecutor
+    public interface IRelmMigrationSqlProviderFactory
     {
-        Task ExecuteSqlAsync(string connectionString, string sql, CancellationToken ct = default);
+        IMigrationSqlProvider CreateProvider(bool quiet);
     }
 }

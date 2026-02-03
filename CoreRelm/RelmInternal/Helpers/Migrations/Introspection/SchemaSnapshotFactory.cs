@@ -12,8 +12,8 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
         public static SchemaSnapshot Empty(string dbName) =>
             new(
                 DatabaseName: dbName,
-                Tables: new Dictionary<string, TableSchema>(System.StringComparer.Ordinal),
-                Functions: new Dictionary<string, FunctionSchema>(System.StringComparer.OrdinalIgnoreCase)
+                Tables: new Dictionary<string, TableSchema>(StringComparer.Ordinal),
+                Functions: new Dictionary<string, FunctionSchema>(StringComparer.OrdinalIgnoreCase)
             );
     }
 }

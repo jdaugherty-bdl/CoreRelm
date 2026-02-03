@@ -1,4 +1,5 @@
 ﻿using CoreRelm.Interfaces;
+using CoreRelm.Interfaces.Migrations;
 using CoreRelm.Models.Migrations.Execution;
 using MySql.Data.MySqlClient;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
 {
-    public sealed class SchemaMigrationsStore
+    public sealed class SchemaMigrationsStore : IRelmSchemaMigrationsStore
     {
         public async Task<int> EnsureTableAsync(IRelmContext context, CancellationToken ct = default)
         {
@@ -28,11 +29,6 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
               UNIQUE KEY `uq_SchemaMigrations_InternalId` (`InternalId`),
               UNIQUE KEY `uq_SchemaMigrations_migration_file` (`migration_file`)
             ) ENGINE=InnoDB;";
-            /*
-            await using var cmd = conn.CreateCommand();
-            cmd.CommandText = sql;
-            await cmd.ExecuteNonQueryAsync(ct);
-            */
 
             var rowsUpdated = context.DoDatabaseWork<int>(sql);
 
@@ -43,22 +39,6 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
         {
             var result = new Dictionary<string, AppliedMigration>(StringComparer.Ordinal);
 
-            /*
-            await using var cmd = conn.CreateCommand();
-            cmd.CommandText = @"SELECT migration_file, checksum_sha256, applied_utc
-                FROM SchemaMigrations
-                ORDER BY applied_utc;";
-
-            await using var reader = await cmd.ExecuteReaderAsync(ct);
-            while (await reader.ReadAsync(ct))
-            {
-                var file = reader.GetString(0);
-                var checksum = reader.GetString(1);
-                var appliedUtc = reader.GetDateTime(2);
-
-                result[file] = new AppliedMigration(file, checksum, appliedUtc);
-            }
-            */
             var query = @"SELECT migration_file, checksum_sha256, applied_utc
                 FROM SchemaMigrations
                 ORDER BY applied_utc;";
@@ -71,16 +51,6 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
 
         public async Task<int> RecordAppliedAsync(IRelmContext context, string migrationFile, string checksumSha256, CancellationToken ct = default)
         {
-            /*
-            await using var cmd = conn.CreateCommand();
-            cmd.CommandText = @"INSERT INTO SchemaMigrations (InternalId, migration_file, checksum_sha256, applied_utc)
-                VALUES (@internalId, @file, @checksum, UTC_TIMESTAMP());";
-            cmd.Parameters.AddWithValue("@internalId", Guid.NewGuid().ToString()); // Internal tool; OK for bootstrap
-            cmd.Parameters.AddWithValue("@file", migrationFile);
-            cmd.Parameters.AddWithValue("@checksum", checksumSha256);
-
-            await cmd.ExecuteNonQueryAsync(ct);
-            */
             var appliedMigration = new AppliedMigration(
                 fileName: migrationFile,
                 checksumSha256: checksumSha256,

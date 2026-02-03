@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.Interfaces.Metadata
 {
-    internal interface IRelmSchemaIntrospector
+    public interface IRelmSchemaIntrospector
     {
         Task<SchemaSnapshot> LoadSchemaAsync(
             string connectionString,

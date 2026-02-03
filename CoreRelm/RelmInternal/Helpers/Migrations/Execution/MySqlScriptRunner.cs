@@ -1,4 +1,5 @@
 ﻿using CoreRelm.Interfaces;
+using CoreRelm.Interfaces.Migrations;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
 {
-    public sealed class MySqlScriptRunner
+    public sealed class MySqlScriptRunner : IRelmSqlScriptRunner
     {
         public async Task ExecuteScriptAsync(IRelmContext context, string sql, CancellationToken ct = default)
         {
