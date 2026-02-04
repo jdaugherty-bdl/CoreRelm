@@ -16,30 +16,31 @@ namespace CoreRelm.Migrations
         private readonly IRelmSchemaIntrospector _introspector;
         private readonly IRelmMigrationPlanner _planner;
         private readonly IRelmMigrationSqlRenderer _renderer;
+        private readonly IRelmDesiredSchemaBuilder _desiredBuilder;
         private readonly IConfiguration _cfg;
 
         public MigrationSqlProviderFactory(
             IRelmSchemaIntrospector introspector,
             IRelmMigrationPlanner planner,
             IRelmMigrationSqlRenderer renderer,
+            IRelmDesiredSchemaBuilder desiredBuilder,
             IConfiguration cfg)
         {
             _introspector = introspector;
             _planner = planner;
             _renderer = renderer;
+            _desiredBuilder = desiredBuilder;
             _cfg = cfg;
         }
 
-        public IMigrationSqlProvider CreateProvider(bool quiet)
+        public IMigrationSqlProvider CreateProvider(string serverConn, string dbTemplate, bool quiet)
         {
-            var serverConn = _cfg["MySql:ServerConnectionString"] ?? "";
-            var dbTemplate = _cfg["MySql:DatabaseConnectionStringTemplate"] ?? "";
-
             return new DefaultRelmMigrationSqlProvider(
                 _introspector,
                 _planner,
                 _renderer,
                 new MySqlDatabaseProvisioner(),
+                _desiredBuilder,
                 serverConn,
                 dbTemplate,
                 quiet);

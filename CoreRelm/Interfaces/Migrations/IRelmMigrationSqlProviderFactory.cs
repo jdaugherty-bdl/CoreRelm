@@ -8,6 +8,6 @@ namespace CoreRelm.Interfaces.Migrations
 {
     public interface IRelmMigrationSqlProviderFactory
     {
-        IMigrationSqlProvider CreateProvider(bool quiet);
+        IMigrationSqlProvider CreateProvider(string serverConn, string dbTemplate, bool quiet);
     }
 }
