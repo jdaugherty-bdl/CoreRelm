@@ -13,13 +13,8 @@ namespace CoreRelm.Interfaces.Migrations
         Task<MigrationGenerateResult> Generate(
             string migrationName,
             string stampUtc,
-            string setName,
             string dbName,
             List<ValidatedModelType> modelsForDb,
-            bool destructive,
-            CancellationToken cancellationToken,
-            bool quiet,
-            bool apply,
             MySqlDatabaseProvisioner provisioner);
     }
 }

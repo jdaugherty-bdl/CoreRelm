@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CoreRelm.Models.Migrations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace CoreRelm.Interfaces.Migrations
 {
     public interface IRelmMigrationSqlProviderFactory
     {
-        IMigrationSqlProvider CreateProvider(string serverConn, string dbTemplate, bool quiet);
+        IMigrationSqlProvider CreateProvider(MigrationOptions migrationOptions);
     }
 }

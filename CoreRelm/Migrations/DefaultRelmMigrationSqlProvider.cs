@@ -23,9 +23,7 @@ namespace CoreRelm.Migrations
         private readonly IRelmMigrationSqlRenderer _renderer;
         private readonly MySqlDatabaseProvisioner _provisioner;
         private readonly IRelmDesiredSchemaBuilder _desiredBuilder;
-        private readonly string _serverConn;
-        private readonly string _dbConnTemplate;
-        private readonly bool _quiet;
+        private readonly MigrationOptions _migrationOptions;
 
         public DefaultRelmMigrationSqlProvider(
             IRelmSchemaIntrospector introspector,
@@ -33,28 +31,24 @@ namespace CoreRelm.Migrations
             IRelmMigrationSqlRenderer renderer,
             MySqlDatabaseProvisioner provisioner,
             IRelmDesiredSchemaBuilder desiredBuilder,
-            string serverConn,
-            string dbConnTemplate,
-            bool quiet)
+            MigrationOptions migrationOptions)
         {
             _introspector = introspector;
             _planner = planner;
             _renderer = renderer;
             _provisioner = provisioner;
             _desiredBuilder = desiredBuilder;
-            _serverConn = serverConn;
-            _dbConnTemplate = dbConnTemplate;
-            _quiet = quiet;
+            _migrationOptions = migrationOptions;
         }
 
-        public async Task<MigrationGenerateResult> Generate(string migrationName, string stampUtc, string setName, string dbName, List<ValidatedModelType> modelsForDb, bool destructive, CancellationToken cancellationToken, bool quiet, bool doApply, MySqlDatabaseProvisioner provisioner)
+        public async Task<MigrationGenerateResult> Generate(string migrationName, string stampUtc, string dbName, List<ValidatedModelType> modelsForDb, MySqlDatabaseProvisioner provisioner)
         {
             var tables = modelsForDb
                 .OrderBy(m => m.TableName, StringComparer.Ordinal)
                 .ThenBy(m => m.ClrType.FullName, StringComparer.Ordinal)
                 .ToList();
 
-            var sql = await MigrationSqlGeneratorHelper.BuildPlaceholderMigrationSql(migrationName, stampUtc, setName, dbName, tables, cancellationToken, provisioner, quiet: quiet, doApply: doApply);
+            var sql = await MigrationSqlGeneratorHelper.BuildPlaceholderMigrationSql(_migrationOptions, migrationName, stampUtc, dbName, tables, provisioner);
 
             // In the real version, if plan has no operations, return NoChanges and sql would be null.
             // For placeholder, treat as changes.
@@ -68,29 +62,27 @@ namespace CoreRelm.Migrations
         }
 
         public MigrationGenerateResult Generate(
+            MigrationOptions migrationOptions,
             string migrationName,
             string stampUtc,
-            string setName,
             string dbName,
-            List<ValidatedModelType> modelsForDb,
-            bool destructive)
+            List<ValidatedModelType> modelsForDb)
         {
             // This provider is intended to be used in an async flow,
             // but IMigrationSqlProvider is sync. We keep it sync by calling .GetAwaiter().GetResult().
             // If you prefer, change the provider interface to async later.
 
-            return GenerateAsync(migrationName, stampUtc, setName, dbName, modelsForDb, destructive)
+            return GenerateAsync(migrationOptions, migrationName, stampUtc, dbName, modelsForDb)
                 .GetAwaiter()
                 .GetResult();
         }
 
         private async Task<MigrationGenerateResult> GenerateAsync(
+            MigrationOptions migrationOptions,
             string migrationName,
             string stampUtc,
-            string setName,
             string dbName,
-            List<ValidatedModelType> modelsForDb,
-            bool destructive)
+            List<ValidatedModelType> modelsForDb)
         {
             // Determine scope tables (table names derived from model metadata already resolved by your resolver)
             var scopeTables = modelsForDb
@@ -107,22 +99,22 @@ namespace CoreRelm.Migrations
             // - if DB exists, introspect it
             // - otherwise warn and treat as empty (per your policy for non-apply paths)
             SchemaSnapshot actual;
-            var dbExists = await _provisioner.DatabaseExistsAsync(_serverConn, dbName);
+            var dbExists = await _provisioner.DatabaseExistsAsync(migrationOptions, dbName);
             if (!dbExists)
             {
-                if (!_quiet)
+                if (!migrationOptions.Quiet)
                     Console.WriteLine($"WARNING: Database `{dbName}` does not exist. It will be created during apply/db migrate.");
 
                 actual = SchemaSnapshotFactory.Empty(dbName);
             }
             else
             {
-                var dbConn = _dbConnTemplate.Replace("{db}", dbName, StringComparison.Ordinal);
+                var dbConn = migrationOptions.ConnectionStringTemplate.Replace("{db}", dbName, StringComparison.Ordinal);
                 actual = await _introspector.LoadSchemaAsync(dbConn);
             }
 
             var options = new MigrationPlanOptions(
-                Destructive: destructive,
+                Destructive: migrationOptions.Destructive,
                 ScopeTables: scopeTables
             );
 

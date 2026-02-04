@@ -1,5 +1,6 @@
 ﻿using CoreRelm.Interfaces.Metadata;
 using CoreRelm.Interfaces.Migrations;
+using CoreRelm.Models.Migrations;
 using CoreRelm.RelmInternal.Helpers.Migrations.Provisioning;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -33,7 +34,7 @@ namespace CoreRelm.Migrations
             _cfg = cfg;
         }
 
-        public IMigrationSqlProvider CreateProvider(string serverConn, string dbTemplate, bool quiet)
+        public IMigrationSqlProvider CreateProvider(MigrationOptions migrationOptions)
         {
             return new DefaultRelmMigrationSqlProvider(
                 _introspector,
@@ -41,9 +42,7 @@ namespace CoreRelm.Migrations
                 _renderer,
                 new MySqlDatabaseProvisioner(),
                 _desiredBuilder,
-                serverConn,
-                dbTemplate,
-                quiet);
+                migrationOptions);
         }
     }
 }

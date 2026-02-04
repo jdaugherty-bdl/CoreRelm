@@ -1,5 +1,6 @@
 ﻿using CoreRelm.Extensions;
 using CoreRelm.Models;
+using CoreRelm.Models.Migrations;
 using CoreRelm.RelmInternal.Helpers.Migrations.Introspection;
 using CoreRelm.RelmInternal.Helpers.Migrations.Provisioning;
 using MySql.Data.MySqlClient;
@@ -20,25 +21,21 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
         private readonly MySqlScriptRunner _runner = new();
 
         public async Task<bool> ApplyAsync(
-            string serverConn,
-            string dbTemplate,
+            MigrationOptions migrationOptions,
             string dbName,
             string migrationFileName,
-            string sql,
-            bool quiet,
-            CancellationToken ct)
+            string sql)
         {
             var ok = await DbAvailabilityHelper.EnsureForApplyOrMigrateAsync(
+                migrationOptions,
                 _provisioner,
-                serverConn,
                 dbName,
-                logInfo: msg => { if (!quiet) Console.WriteLine(msg); },
-                logWarn: msg => Console.WriteLine("ERROR: " + msg),
-                ct: ct);
+                logInfo: msg => { if (!migrationOptions.Quiet) Console.WriteLine(msg); },
+                logWarn: msg => Console.WriteLine("ERROR: " + msg));
 
             if (!ok) return false;
 
-            var dbConn = dbTemplate.Replace("{db}", dbName, StringComparison.Ordinal);
+            var dbConn = migrationOptions.ConnectionStringTemplate.Replace("{db}", dbName, StringComparison.Ordinal);
 
             /*
             await using var conn = new MySqlConnection(dbConn);
@@ -46,13 +43,13 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
             */
             var context = new RelmContext(dbConn);
 
-            await _store.EnsureTableAsync(context, ct);
+            await _store.EnsureTableAsync(context, migrationOptions.CancelToken);
 
             // Drift safety: if a migration file name was already applied, do not reapply
-            var applied = await _store.GetAppliedAsync(context, ct);
+            var applied = await _store.GetAppliedAsync(context, migrationOptions.CancelToken);
             if (applied.ContainsKey(migrationFileName))
             {
-                if (!quiet)
+                if (!migrationOptions.Quiet)
                     Console.WriteLine($"Already applied on `{dbName}`: {migrationFileName}");
                 return true;
             }
@@ -61,10 +58,10 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
 
             try
             {
-                await _runner.ExecuteScriptAsync(context, sql, ct);
-                await _store.RecordAppliedAsync(context, migrationFileName, checksum, ct);
+                await _runner.ExecuteScriptAsync(context, sql, migrationOptions.CancelToken);
+                await _store.RecordAppliedAsync(context, migrationFileName, checksum, migrationOptions.CancelToken);
 
-                if (!quiet)
+                if (!migrationOptions.Quiet)
                     Console.WriteLine($"Applied and recorded on `{dbName}`: {migrationFileName}");
 
                 return true;

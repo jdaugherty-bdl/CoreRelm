@@ -1,4 +1,5 @@
 ﻿using CoreRelm.Interfaces.Migrations;
+using CoreRelm.Models.Migrations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,21 +11,19 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
     public static class DbAvailabilityHelper
     {
         public static async Task<bool> EnsureForApplyOrMigrateAsync(
+            MigrationOptions migrationOptions,
             IRelmDatabaseProvisioner provisioner,
-            string serverConnectionString,
             string databaseName,
             Action<string> logInfo,
-            Action<string> logWarn,
-            CancellationToken ct)
+            Action<string> logWarn)
         {
             try
             {
                 await provisioner.EnsureDatabaseExistsAsync(
-                    serverConnectionString: serverConnectionString,
+                    migrationOptions: migrationOptions,
                     databaseName: databaseName,
                     charset: "utf8mb4",
-                    collation: "utf8mb4_0900_ai_ci",
-                    ct: ct);
+                    collation: "utf8mb4_0900_ai_ci");
 
                 logInfo($"Database ensured: `{databaseName}`");
                 return true;
@@ -39,15 +38,14 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
         }
 
         public static async Task<bool> WarnIfMissingAsync(
+            MigrationOptions migrationOptions,
             IRelmDatabaseProvisioner provisioner,
-            string serverConnectionString,
             string databaseName,
-            Action<string> logWarn,
-            CancellationToken ct)
+            Action<string> logWarn)
         {
             try
             {
-                var exists = await provisioner.DatabaseExistsAsync(serverConnectionString, databaseName, ct);
+                var exists = await provisioner.DatabaseExistsAsync(migrationOptions, databaseName);
                 if (!exists)
                 {
                     logWarn($"Database `{databaseName}` does not exist. It will be created during apply/db migrate.");

@@ -47,21 +47,19 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                 $"Changes detected for database '{dbName}'. Migration will be generated.");
         }
         */
-        public async static Task<string?> BuildPlaceholderMigrationSql(string migrationName, string stampUtc, string setName, string dbName, List<ValidatedModelType> tables, CancellationToken cancellationToken, MySqlDatabaseProvisioner provisioner, bool quiet = false, bool doApply = false)
+        public async static Task<string?> BuildPlaceholderMigrationSql(MigrationOptions migrationOptions, string migrationName, string stampUtc, string dbName, List<ValidatedModelType> tables, MySqlDatabaseProvisioner provisioner)
         {
-            var dbConnTemplate = "Server=localhost;User ID=root;Password=example;Database={db};";
-            var dbConn = dbConnTemplate.Replace("{db}", dbName, StringComparison.Ordinal);
+            var dbConn = migrationOptions.ConnectionStringTemplate.Replace("{db}", dbName, StringComparison.Ordinal);
 
             var exists = false;
-            if (doApply)
+            if (migrationOptions.Apply)
             {
                 var ok = await DbAvailabilityHelper.EnsureForApplyOrMigrateAsync(
+                    migrationOptions,
                     provisioner,
-                    dbConn,
                     dbName,
-                    logInfo: msg => { if (!quiet) Console.WriteLine(msg); },
-                    logWarn: msg => Console.WriteLine("ERROR: " + msg),
-                    cancellationToken);
+                    logInfo: msg => { if (!migrationOptions.Quiet) Console.WriteLine(msg); },
+                    logWarn: msg => Console.WriteLine("ERROR: " + msg));
 
                 if (!ok)
                 {
@@ -72,18 +70,17 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
             else
             {
                 exists = await DbAvailabilityHelper.WarnIfMissingAsync(
+                    migrationOptions,
                     provisioner,
-                    dbConn,
                     dbName,
-                    logWarn: msg => { if (!quiet) Console.WriteLine("WARNING: " + msg); },
-                    ct: cancellationToken);
+                    logWarn: msg => { if (!migrationOptions.Quiet) Console.WriteLine("WARNING: " + msg); });
             }
 
             SchemaSnapshot snapshot;
             if (exists)
             {
                 var introspector = new MySqlSchemaIntrospector();
-                snapshot = await introspector.LoadSchemaAsync(dbConn, cancellationToken: cancellationToken);
+                snapshot = await introspector.LoadSchemaAsync(dbConn, cancellationToken: migrationOptions.CancelToken);
             }
             else
                 snapshot = SchemaSnapshotFactory.Empty(dbName);
@@ -95,7 +92,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
 
             sb.AppendLine($"-- Migration: {migrationName}");
             sb.AppendLine($"-- GeneratedUtc: {stampUtc}");
-            sb.AppendLine($"-- ModelSet: {setName}");
+            sb.AppendLine($"-- ModelSet: {migrationOptions.SetName}");
             sb.AppendLine($"-- TargetDatabase: {dbName}");
             sb.AppendLine($"-- Tables in scope ({tables.Count}):");
             foreach (var t in tables)

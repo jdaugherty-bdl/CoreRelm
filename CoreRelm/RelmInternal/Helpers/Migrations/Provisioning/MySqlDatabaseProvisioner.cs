@@ -1,4 +1,5 @@
 ﻿using CoreRelm.Interfaces.Migrations;
+using CoreRelm.Models.Migrations;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -13,15 +14,15 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
     {
         private static string EscapeIdentifier(string s) => s.Replace("`", "``", StringComparison.Ordinal);
 
-        public async Task<bool> DatabaseExistsAsync(string serverConnectionString, string databaseName, CancellationToken ct = default)
+        public async Task<bool> DatabaseExistsAsync(MigrationOptions migrationOptions, string databaseName)
         {
-            if (string.IsNullOrWhiteSpace(serverConnectionString))
-                throw new ArgumentException("Server connection string is required.", nameof(serverConnectionString));
+            if (string.IsNullOrWhiteSpace(migrationOptions.ConnectionString))
+                throw new ArgumentException("Server connection string is required.", nameof(migrationOptions.ConnectionString));
             if (string.IsNullOrWhiteSpace(databaseName))
                 throw new ArgumentException("Database name is required.", nameof(databaseName));
 
-            await using var conn = new MySqlConnection(serverConnectionString);
-            await conn.OpenAsync(ct);
+            await using var conn = new MySqlConnection(migrationOptions.ConnectionString);
+            await conn.OpenAsync(migrationOptions.CancelToken);
 
             await using var cmd = conn.CreateCommand();
             cmd.CommandText = @"SELECT 1
@@ -30,25 +31,24 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
                 LIMIT 1;";
             cmd.Parameters.AddWithValue("@db", databaseName);
 
-            var result = await cmd.ExecuteScalarAsync(ct);
+            var result = await cmd.ExecuteScalarAsync(migrationOptions.CancelToken);
             return result is not null;
         }
 
         public async Task EnsureDatabaseExistsAsync(
-            string serverConnectionString,
+            MigrationOptions migrationOptions,
             string databaseName,
             string? charset = null,
-            string? collation = null,
-            CancellationToken ct = default)
+            string? collation = null)
         {
-            if (string.IsNullOrWhiteSpace(serverConnectionString))
-                throw new ArgumentException("Server connection string is required.", nameof(serverConnectionString));
+            if (string.IsNullOrWhiteSpace(migrationOptions.ConnectionString))
+                throw new ArgumentException("Server connection string is required.", nameof(migrationOptions.ConnectionString));
             if (string.IsNullOrWhiteSpace(databaseName))
                 throw new ArgumentException("Database name is required.", nameof(databaseName));
 
             // use straight MySqlConnection instead of a RelmContext because we may be creating the database itself
-            await using var conn = new MySqlConnection(serverConnectionString);
-            await conn.OpenAsync(ct);
+            await using var conn = new MySqlConnection(migrationOptions.ConnectionString);
+            await conn.OpenAsync(migrationOptions.CancelToken);
 
             var sql = $"CREATE DATABASE IF NOT EXISTS `{EscapeIdentifier(databaseName)}`";
             if (!string.IsNullOrWhiteSpace(charset))
@@ -59,7 +59,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
 
             await using var cmd = conn.CreateCommand();
             cmd.CommandText = sql;
-            await cmd.ExecuteNonQueryAsync(ct);
+            await cmd.ExecuteNonQueryAsync(migrationOptions.CancelToken);
         }
     }
 }
