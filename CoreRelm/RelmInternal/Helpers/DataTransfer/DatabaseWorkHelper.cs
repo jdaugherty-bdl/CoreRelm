@@ -106,6 +106,18 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
                 throwException: throwException, useTransaction: useTransaction || relmContext.ContextOptions.DatabaseTransaction != null);
         }
 
+        internal static Task DoDatabaseWorkAsync(IRelmContext relmContext, string query, Dictionary<string, object> parameters = null, bool throwException = true, bool useTransaction = false)
+        {
+            return DoDatabaseWorkAsync<int>(relmContext, query,
+                async (cmd) =>
+                {
+                    cmd.Parameters.AddAllParameters(parameters);
+
+                    return await cmd.ExecuteNonQueryAsync();
+                },
+                throwException: throwException, useTransaction: useTransaction || relmContext.ContextOptions.DatabaseTransaction != null);
+        }
+
         /// <summary>
         /// Executes a database operation using the specified query and parameters.
         /// </summary>
@@ -273,6 +285,26 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
                 throwException: throwException, useTransaction: useTransaction || relmContext.ContextOptions.DatabaseTransaction != null);
         }
 
+        internal async static Task<T> DoDatabaseWorkAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object> parameters = null, bool throwException = true, bool useTransaction = false)
+        {
+            return await DoDatabaseWorkAsync<T>(relmContext, query,
+                async (cmd) =>
+                {
+                    cmd.Parameters.AddAllParameters(parameters);
+
+                    var executionWork = await cmd.ExecuteNonQueryAsync();
+
+                    if (typeof(T) == typeof(string))
+                        return executionWork.ToString();
+                    else if (typeof(T) == typeof(bool))
+                        return executionWork > 0;
+                    else if (typeof(T) == typeof(int))
+                        return executionWork;
+                    else
+                        return default(T);
+                },
+                throwException: throwException, useTransaction: useTransaction || relmContext.ContextOptions.DatabaseTransaction != null);
+        }
 
         /// <summary>
         /// Executes a database operation using the specified query and callback function.
@@ -431,6 +463,11 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         internal static T DoDatabaseWork<T>(IRelmContext relmContext, string query, Func<MySqlCommand, object> actionCallback, bool throwException = true, bool useTransaction = false)
         {
             return DoDatabaseWork<T>(relmContext.ContextOptions, query, actionCallback, throwException: throwException, useTransaction: useTransaction || relmContext.ContextOptions.DatabaseTransaction != null);
+        }
+
+        internal async static Task<T> DoDatabaseWorkAsync<T>(IRelmContext relmContext, string query, Func<MySqlCommand, Task<object>> actionCallback, bool throwException = true, bool useTransaction = false)
+        {
+            return await DoDatabaseWorkAsync<T>(relmContext, query, actionCallback, throwException: throwException, useTransaction: useTransaction || relmContext.ContextOptions.DatabaseTransaction != null);
         }
 
         /// <summary>

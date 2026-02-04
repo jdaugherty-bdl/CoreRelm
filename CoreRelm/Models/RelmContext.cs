@@ -952,6 +952,9 @@ namespace CoreRelm.Models
         public void DoDatabaseWork(string query, Dictionary<string, object> parameters = null, bool throwException = true, bool useTransaction = false)
             => DatabaseWorkHelper.DoDatabaseWork(this, query, parameters, throwException: throwException, useTransaction: useTransaction);
 
+        public async Task DoDatabaseWorkAsync(string query, Dictionary<string, object> parameters = null, bool throwException = true, bool useTransaction = false)
+            => await DatabaseWorkHelper.DoDatabaseWorkAsync(this, query, parameters, throwException: throwException, useTransaction: useTransaction);
+
         /// <summary>
         /// Executes a database query and returns the result as the specified type.
         /// </summary>
@@ -971,6 +974,9 @@ namespace CoreRelm.Models
         /// langword="false"/>.</returns>
         public T DoDatabaseWork<T>(string query, Dictionary<string, object> parameters = null, bool throwException = true, bool useTransaction = false)
          => DatabaseWorkHelper.DoDatabaseWork<T>(this, query, parameters, throwException, useTransaction);
+
+        public async Task<T> DoDatabaseWorkAsync<T>(string query, Dictionary<string, object> parameters = null, bool throwException = true, bool useTransaction = false)
+         => await DatabaseWorkHelper.DoDatabaseWorkAsync<T>(this, query, parameters, throwException, useTransaction);
 
         /// <summary>
         /// Executes a database operation using the specified SQL query and callback, with optional exception handling
