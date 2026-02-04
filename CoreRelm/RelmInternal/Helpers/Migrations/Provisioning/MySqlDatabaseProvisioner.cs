@@ -46,6 +46,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
             if (string.IsNullOrWhiteSpace(databaseName))
                 throw new ArgumentException("Database name is required.", nameof(databaseName));
 
+            // use straight MySqlConnection instead of a RelmContext because we may be creating the database itself
             await using var conn = new MySqlConnection(serverConnectionString);
             await conn.OpenAsync(ct);
 
