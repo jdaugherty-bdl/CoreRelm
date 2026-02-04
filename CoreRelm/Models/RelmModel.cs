@@ -55,7 +55,7 @@ namespace CoreRelm.Models
         /// <summary>
         /// Gets or sets a value indicating whether the entity is active.
         /// </summary>
-        [RelmColumn(isNullable: false, defaultValue: "1")]
+        [RelmColumn(columnSize: 1, isNullable: false, defaultValue: "1")]
         public bool Active { get; set; }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace CoreRelm.Models
         /// </summary>
         [RelmKey]
         [RelmDto]
-        [RelmColumn(isNullable: false, unique: true)]
+        [RelmColumn(columnSize: 45, isNullable: false, unique: true)]
         public string InternalId { get; set; }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace CoreRelm.Models
         /// <summary>
         /// Gets or sets the timestamp of the last update.
         /// </summary>
-        [RelmColumn(isNullable: false, defaultValue: "CURRENT_TIMESTAMP")]
+        [RelmColumn(isNullable: false, defaultValue: "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")]
         public DateTime LastUpdated { get; set; }
 
         /// <summary>
