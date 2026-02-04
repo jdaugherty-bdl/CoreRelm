@@ -154,7 +154,7 @@ namespace CoreRelm.Options
         public RelmContextOptionsBuilder(string connectionString)
         {
             if (string.IsNullOrEmpty(connectionString))
-                throw new ArgumentNullException("Connection string cannot be null or empty.", nameof(connectionString));
+                throw new ArgumentNullException(nameof(connectionString), "Connection string cannot be null or empty.");
 
             ParseConnectionDetails(connectionString);
         }
@@ -222,7 +222,7 @@ namespace CoreRelm.Options
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="connection"/> is null.</exception>
         public RelmContextOptionsBuilder SetDatabaseConnection(MySqlConnection connection)
         {
-            DatabaseConnection = connection ?? throw new ArgumentNullException("Connection cannot be null.", nameof(connection));
+            DatabaseConnection = connection ?? throw new ArgumentNullException(nameof(connection), "Connection cannot be null.");
 
             _optionsBuilderType = OptionsBuilderTypes.OpenConnection;
 
@@ -256,7 +256,7 @@ namespace CoreRelm.Options
         public RelmContextOptionsBuilder SetDatabaseServer(string databaseServer)
         {
             if (string.IsNullOrEmpty(databaseServer))
-                throw new ArgumentNullException("Database server cannot be null or empty.", nameof(databaseServer));
+                throw new ArgumentNullException(nameof(databaseServer), "Database server cannot be null or empty.");
 
             this.DatabaseServer = databaseServer;
 
@@ -277,12 +277,12 @@ namespace CoreRelm.Options
         public RelmContextOptionsBuilder SetDatabaseName(string databaseName)
         {
             if (string.IsNullOrEmpty(databaseName))
-                throw new ArgumentNullException("Database name cannot be null or empty.", nameof(databaseName));
+                throw new ArgumentNullException(nameof(databaseName), "Database name cannot be null or empty.");
 
             string pattern = @"^[a-zA-Z0-9$_\u0080-\uFFFF]+$";
 
             if (!Regex.IsMatch(databaseName, pattern))
-                throw new ArgumentException("DatabaseName", "Invalid database name. Must be alphanumeric with underscores.");
+                throw new ArgumentException("Invalid database name. Must be alphanumeric with underscores.", nameof(databaseName));
 
             this.DatabaseName = databaseName;
 
@@ -300,7 +300,7 @@ namespace CoreRelm.Options
         public RelmContextOptionsBuilder SetDatabaseUser(string databaseUser)
         {
             if (string.IsNullOrEmpty(databaseUser))
-                throw new ArgumentNullException("Database user cannot be null or empty.", nameof(databaseUser));
+                throw new ArgumentNullException(nameof(databaseUser), "Database user cannot be null or empty.");
 
             this.DatabaseUser = databaseUser;
 
@@ -318,7 +318,7 @@ namespace CoreRelm.Options
         public RelmContextOptionsBuilder SetDatabasePassword(string databasePassword)
         {
             if (string.IsNullOrEmpty(databasePassword))
-                throw new ArgumentNullException("Database password cannot be null or empty.", nameof(databasePassword));
+                throw new ArgumentNullException(nameof(databasePassword), "Database password cannot be null or empty.");
 
             this.DatabasePassword = databasePassword;
 
@@ -349,7 +349,7 @@ namespace CoreRelm.Options
         public RelmContextOptionsBuilder SetConnectionStringType(Type enumType, Enum connectionStringType)
         { 
             if (!Enum.IsDefined(enumType, connectionStringType))
-                throw new ArgumentNullException("Invalid connection string type provided.", nameof(connectionStringType));
+                throw new ArgumentNullException(nameof(connectionStringType), "Invalid connection string type provided.");
 
             _connectionStringType = connectionStringType;
 
@@ -420,7 +420,7 @@ namespace CoreRelm.Options
                 if (string.IsNullOrEmpty(DatabaseConnectionString))
                 {
                     if (throwExceptions)
-                        throw new ArgumentNullException("DatabaseConnectionString", "DatabaseConnectionString cannot be null or empty when using a named connection string.");
+                        throw new ArgumentNullException(nameof(DatabaseConnectionString), "DatabaseConnectionString cannot be null or empty when using a named connection string.");
                     else
                         return false;
                 }
@@ -444,7 +444,7 @@ namespace CoreRelm.Options
                 if (string.IsNullOrEmpty(DatabaseServer))
                 {
                     if (throwExceptions)
-                        throw new ArgumentNullException("DatabaseServer", "Database Server cannot be null or empty when using a connection string.");
+                        throw new ArgumentNullException(nameof(DatabaseServer), "Database Server cannot be null or empty when using a connection string.");
                     else
                         return false;
                 }
@@ -452,7 +452,7 @@ namespace CoreRelm.Options
                 if (string.IsNullOrEmpty(DatabaseName))
                 {
                     if (throwExceptions)
-                        throw new ArgumentNullException("DatabaseName", "Database Name cannot be null or empty when using a connection string.");
+                        throw new ArgumentNullException(nameof(DatabaseName), "Database Name cannot be null or empty when using a connection string.");
                     else
                         return false;
                 }
@@ -460,7 +460,7 @@ namespace CoreRelm.Options
                 if (string.IsNullOrEmpty(DatabaseUser))
                 {
                     if (throwExceptions)
-                        throw new ArgumentNullException("DatabaseUser", "Username cannot be null or empty when using a connection string.");
+                        throw new ArgumentNullException(nameof(DatabaseUser), "Username cannot be null or empty when using a connection string.");
                     else
                         return false;
                 }
@@ -468,7 +468,7 @@ namespace CoreRelm.Options
                 if (string.IsNullOrEmpty(DatabasePassword))
                 {
                     if (throwExceptions)
-                        throw new ArgumentNullException("DatabasePassword", "Password cannot be null or empty when using a connection string.");
+                        throw new ArgumentNullException(nameof(DatabasePassword), "Password cannot be null or empty when using a connection string.");
                     else
                         return false;
                 }
