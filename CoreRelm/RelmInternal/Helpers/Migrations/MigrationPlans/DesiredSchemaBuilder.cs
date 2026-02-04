@@ -107,12 +107,13 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                     );
 
                     // Index grouping
-                    if (!string.IsNullOrWhiteSpace(colAttr.Index))
+                    //if (!string.IsNullOrWhiteSpace(colAttr.Index))
+                    if (colAttr.Index)
                     {
-                        if (!indexGroups.TryGetValue(colAttr.Index, out var list))
+                        if (!indexGroups.TryGetValue(colAttr.ColumnName, out var list))
                         {
-                            list = new List<(string ColumnName, bool Desc)>();
-                            indexGroups[colAttr.Index] = list;
+                            list = [];
+                            indexGroups[colAttr.ColumnName] = list;
                         }
 
                         list.Add((colName, colAttr.IndexDescending));

@@ -212,13 +212,15 @@ namespace CoreRelm.RelmInternal.Models
             }
 
             // do indexes
-            var indexKeys = TableProperties.Where(x => !string.IsNullOrWhiteSpace(x.ResolvableSettings?.Index));
+            //var indexKeys = TableProperties.Where(x => !string.IsNullOrWhiteSpace(x.ResolvableSettings?.Index));
+            var indexKeys = TableProperties.Where(x => x.ResolvableSettings?.Index ?? false);
             if (indexKeys.Count() > 0)
             {
                 createTableStatement
                     .Append(string
                         .Join(",", indexKeys
-                            .Select(x => new Tuple<string, bool, string>(x.ResolvableSettings?.Index?.MySqlObjectQuote(), x.ResolvableSettings?.IndexDescending ?? false, x.ColumnName))
+                            //.Select(x => new Tuple<string, bool, string>(x.ResolvableSettings?.Index?.MySqlObjectQuote(), x.ResolvableSettings?.IndexDescending ?? false, x.ColumnName))
+                            .Select(x => new Tuple<string, bool, string>($"ix_{DatabaseName}_{x.ColumnName}", x.ResolvableSettings?.IndexDescending ?? false, x.ColumnName))
                             .Segment((previous, next, index) =>
                             {
                                 return previous.Item1 != next.Item1;
@@ -226,7 +228,7 @@ namespace CoreRelm.RelmInternal.Models
                             .Select(x => new StringBuilder()
                                 .AppendLine()
                                 .Append("\tINDEX ")
-                                .Append(x.FirstOrDefault().Item1)
+                                .Append(x.FirstOrDefault()?.Item1 ?? throw new NullReferenceException($"No index name found for: {x.FirstOrDefault()?.Item3}"))
                                 .Append(" (")
                                 .Append(string.Join(", ", x.Select(y => new StringBuilder()
                                     .Append(y.Item3)
