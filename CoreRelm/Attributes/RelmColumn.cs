@@ -15,110 +15,99 @@ namespace CoreRelm.Attributes
     /// among other features.  When applied, the annotated property or struct is treated as a database column with the
     /// specified characteristics. This attribute is commonly used in object-relational mapping (ORM) scenarios to
     /// define the schema of a database table.</remarks>
+    /// <remarks>
+    /// Initializes a new instance of the <see cref="RelmColumn"/> class, representing a column definition with
+    /// various configuration options for database schema design.
+    /// </remarks>
+    /// <param name="columnType">The type of the column. If <see langword="null"/> or empty, the column will use the property's type.</param>
+    /// <param name="columnName">The name of the column. If <see langword="null"/> or empty, the column will use the property's underscore name.</param>
+    /// <param name="columnSize">The size of the column, typically used for fixed-length data types (e.g., strings). A value of -1 indicates
+    /// that the size is unspecified.</param>
+    /// <param name="compoundColumnSize">An array specifying the sizes of compound columns, if applicable. Can be <see langword="null"/> if the
+    /// column is not part of a compound structure.</param>
+    /// <param name="isNullable">A value indicating whether the column allows <see langword="null"/> values. The default is <see
+    /// langword="true"/>.</param>
+    /// <param name="primaryKey">A value indicating whether the column is part of the primary key. The default is <see langword="false"/>.</param>
+    /// <param name="autonumber">A value indicating whether the column is an auto-incrementing identity column. The default is <see
+    /// langword="false"/>.</param>
+    /// <param name="unique">A value indicating whether the column enforces uniqueness. The default is <see langword="false"/>.</param>
+    /// <param name="defaultValue">The default value for the column, represented as a string. Can be <see langword="null"/> if no default value
+    /// is specified.</param>
+    /// <param name="index">A value indicating whether the column is indexed. The default is <see langword="false"/>.</param>
+    /// <param name="indexDescending">A value indicating whether the index on the column is sorted in descending order. The default is <see
+    /// langword="false"/>.</param>
+    /// <param name="allowDataTruncation">A value indicating whether data truncation is allowed for this column. The default is <see
+    /// langword="false"/>.</param>
+    /// <param name="isVirtual">A value indicating whether the column is a virtual column (i.e., its value is computed rather than stored).
+    /// The default is <see langword="false"/>.</param>
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Struct)]
-    public sealed class RelmColumn : Attribute
+    public sealed class RelmColumn(string? columnType = null, string? columnName = null, int columnSize = -1, int[]? compoundColumnSize = null, bool isNullable = true, bool primaryKey = false, bool autonumber = false, bool unique = false, string? defaultValue = null, bool index = false, bool indexDescending = false, bool allowDataTruncation = false, bool isVirtual = false) : Attribute
     {
+        /// <summary>
+        /// Gets or sets the database column type to use for this property. Will override default type mapping.
+        /// </summary>
+        public string? ColumnType { get; set; } = columnType;
+
         /// <summary>
         /// Gets the name of the database column associated with this instance. If not specified, the underscore version 
         /// of the property or struct name is used as the column name.
         /// </summary>
-        public string ColumnName { get; private set; }
+        public string? ColumnName { get; private set; } = columnName;
 
         /// <summary>
         /// Gets the size of the column, typically representing the maximum number of characters or bytes that the
         /// column can hold.
         /// </summary>
-        public int ColumnSize { get; private set; }
+        public int ColumnSize { get; private set; } = columnSize;
 
         /// <summary>
         /// Gets the sizes of the compound columns, such as decimal.
         /// </summary>
-        public int[] CompoundColumnSize { get; private set; }
+        public int[]? CompoundColumnSize { get; private set; } = compoundColumnSize;
 
         /// <summary>
         /// Gets a value indicating whether data truncation is allowed during processing.
         /// </summary>
-        public bool AllowDataTruncation { get; private set; }
+        public bool AllowDataTruncation { get; private set; } = allowDataTruncation;
 
         /// <summary>
         /// Gets a value indicating whether the associated entity or value can be null.
         /// </summary>
-        public bool IsNullable { get; private set; }
+        public bool IsNullable { get; private set; } = isNullable;
 
         /// <summary>
         /// Gets a value indicating whether this property is the primary key of the entity.
         /// </summary>
-        public bool PrimaryKey { get; private set; }
+        public bool PrimaryKey { get; private set; } = primaryKey;
 
         /// <summary>
         /// Gets a value indicating whether the entity is configured to automatically generate unique identifiers.
         /// </summary>
-        public bool Autonumber { get; private set; }
+        public bool Autonumber { get; private set; } = autonumber;
 
         /// <summary>
         /// Gets a value indicating whether the column can only hold unique values.
         /// </summary>
-        public bool Unique { get; private set; }
+        public bool Unique { get; private set; } = unique;
 
         /// <summary>
         /// Gets the default value associated with this column.
         /// </summary>
-        public string DefaultValue { get; private set; }
+        public string? DefaultValue { get; private set; } = defaultValue;
 
         /// <summary>
-        /// Gets the value indicating which index this property is attached to.
+        /// Gets a value indicating whether indexing is enabled for this column.
         /// </summary>
-        public string Index { get; private set; }
+        public bool Index { get; private set; } = index;
 
         /// <summary>
         /// Gets a value indicating whether the index is sorted in descending order.
         /// </summary>
-        public bool IndexDescending { get; private set; }
+        public bool IndexDescending { get; private set; } = indexDescending;
 
         /// <summary>
         /// Gets a value indicating whether the object is virtual.
         /// </summary>
-        public bool Virtual { get; private set; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RelmColumn"/> class, representing a column definition with
-        /// various configuration options for database schema design.
-        /// </summary>
-        /// <param name="columnName">The name of the column. If <see langword="null"/> or empty, the column will use the property's underscore name.</param>
-        /// <param name="columnSize">The size of the column, typically used for fixed-length data types (e.g., strings). A value of -1 indicates
-        /// that the size is unspecified.</param>
-        /// <param name="compoundColumnSize">An array specifying the sizes of compound columns, if applicable. Can be <see langword="null"/> if the
-        /// column is not part of a compound structure.</param>
-        /// <param name="isNullable">A value indicating whether the column allows <see langword="null"/> values. The default is <see
-        /// langword="true"/>.</param>
-        /// <param name="primaryKey">A value indicating whether the column is part of the primary key. The default is <see langword="false"/>.</param>
-        /// <param name="autonumber">A value indicating whether the column is an auto-incrementing identity column. The default is <see
-        /// langword="false"/>.</param>
-        /// <param name="unique">A value indicating whether the column enforces uniqueness. The default is <see langword="false"/>.</param>
-        /// <param name="defaultValue">The default value for the column, represented as a string. Can be <see langword="null"/> if no default value
-        /// is specified.</param>
-        /// <param name="index">The name of the index associated with the column, if any. Can be <see langword="null"/> if the column is not
-        /// indexed.</param>
-        /// <param name="indexDescending">A value indicating whether the index on the column is sorted in descending order. The default is <see
-        /// langword="false"/>.</param>
-        /// <param name="allowDataTruncation">A value indicating whether data truncation is allowed for this column. The default is <see
-        /// langword="false"/>.</param>
-        /// <param name="isVirtual">A value indicating whether the column is a virtual column (i.e., its value is computed rather than stored).
-        /// The default is <see langword="false"/>.</param>
-        public RelmColumn(string columnName = null, int columnSize = -1, int[] compoundColumnSize = null, bool isNullable = true, bool primaryKey = false, bool autonumber = false, bool unique = false, string defaultValue = null, string index = null, bool indexDescending = false, bool allowDataTruncation = false, bool isVirtual = false)
-        {
-            this.ColumnName = columnName;
-            this.ColumnSize = columnSize;
-            this.CompoundColumnSize = compoundColumnSize;
-            this.IsNullable = isNullable;
-            this.PrimaryKey = primaryKey;
-            this.Autonumber = autonumber;
-            this.Unique = unique;
-            this.DefaultValue = defaultValue;
-            this.Index = index;
-            this.IndexDescending = indexDescending;
-            this.AllowDataTruncation = allowDataTruncation;
-            this.Virtual = isVirtual;
-        }
+        public bool Virtual { get; private set; } = isVirtual;
     }
 }
