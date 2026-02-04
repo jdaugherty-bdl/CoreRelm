@@ -499,12 +499,12 @@ namespace CoreRelm.Options
             if (string.IsNullOrWhiteSpace(connectionDetails))
                 throw new ArgumentNullException(nameof(connectionDetails));
 
-            if (!connectionDetails.Contains("="))
+            if (!connectionDetails.Contains('='))
                 throw new ArgumentException("Invalid connection details. Must be in the format of 'name=connectionString' or 'server=serverName;database=databaseName;user=userName;password=password'.");
 
             var connectionOptions = connectionDetails
-                .Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(x => x.Split(new char[] { '=' }, StringSplitOptions.RemoveEmptyEntries))
+                .Split([';'], StringSplitOptions.RemoveEmptyEntries)
+                .Select(x => x.Split(['='], StringSplitOptions.RemoveEmptyEntries))
                 .ToDictionary(x => x[0].ToLower(), x => x[1]);
 
             // Check for either a 'name' key or all four individual connection parameters.
@@ -528,34 +528,34 @@ namespace CoreRelm.Options
                 throw new ArgumentException("Invalid connection details. Must be in the format of 'name=connectionString' or 'server=serverName;database=databaseName;user=userName;password=password'.");
             }
 
-            if (connectionOptions.ContainsKey("name"))
+            if (connectionOptions.TryGetValue("name", out string? nameValue))
             {
-                SetNamedConnection(connectionOptions["name"]);
+                SetNamedConnection(nameValue);
 
-                var connectionBuilder = RelmHelper.GetConnectionBuilderFromName(connectionOptions["name"]);
+                var connectionBuilder = RelmHelper.GetConnectionBuilderFromName(nameValue);
                 var connectionString = connectionBuilder?.ConnectionString;
 
                 SetDatabaseConnectionString(connectionString);
             }
             else
             {
-                if (connectionOptions.ContainsKey("server"))
-                    SetDatabaseServer(connectionOptions["server"]);
+                if (connectionOptions.TryGetValue("server", out string? serverValue))
+                    SetDatabaseServer(serverValue);
 
-                if (connectionOptions.ContainsKey("database"))
-                    SetDatabaseName(connectionOptions["database"]);
+                if (connectionOptions.TryGetValue("database", out string? databaseValue))
+                    SetDatabaseName(databaseValue);
 
-                if (connectionOptions.ContainsKey("uid"))
-                    SetDatabaseUser(connectionOptions["uid"]);
-                else if (connectionOptions.ContainsKey("user"))
-                    SetDatabaseUser(connectionOptions["user"]);
-                else if (connectionOptions.ContainsKey("user id"))
-                    SetDatabaseUser(connectionOptions["user id"]);
+                if (connectionOptions.TryGetValue("uid", out string? uidValue))
+                    SetDatabaseUser(uidValue);
+                else if (connectionOptions.TryGetValue("user", out string? userValue))
+                    SetDatabaseUser(userValue);
+                else if (connectionOptions.TryGetValue("user id", out string? userIdValue))
+                    SetDatabaseUser(userIdValue);
 
-                if (connectionOptions.ContainsKey("pwd"))
-                    SetDatabasePassword(connectionOptions["pwd"]);
-                else if (connectionOptions.ContainsKey("password"))
-                    SetDatabasePassword(connectionOptions["password"]);
+                if (connectionOptions.TryGetValue("pwd", out string? pwdValue))
+                    SetDatabasePassword(pwdValue);
+                else if (connectionOptions.TryGetValue("password", out string? passwordValue))
+                    SetDatabasePassword(passwordValue);
 
                 DatabaseConnectionString = $"server={DatabaseServer};database={DatabaseName};user id={DatabaseUser};password={DatabasePassword}";
             }
