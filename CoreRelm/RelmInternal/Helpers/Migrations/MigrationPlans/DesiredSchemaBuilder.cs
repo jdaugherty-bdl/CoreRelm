@@ -229,7 +229,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                 );
             }
 
-            return new SchemaSnapshot(databaseName, tables);
+            return new SchemaSnapshot(databaseName, tables, null);
         }
 
         private static PropertyInfo FindProperty(Type t, string name)
