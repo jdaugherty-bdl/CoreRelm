@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static CoreRelm.Enums.ForeignKeys;
 
 namespace CoreRelm.Attributes
 {
@@ -18,17 +19,25 @@ namespace CoreRelm.Attributes
         /// <summary>
         /// Gets the collection of foreign key names associated with the entity.
         /// </summary>
-        public string[] ForeignKeys { get; private set; } = default;
+        public string[]? ForeignKeys { get; private set; }
 
         /// <summary>
         /// Gets the collection of local keys associated with the entity.
         /// </summary>
-        public string[] LocalKeys { get; private set; } = default;
+        public string[]? LocalKeys { get; private set; }
 
         /// <summary>
         /// Gets the list of fields used to determine the order of items.
         /// </summary>
-        public string[] OrderBy { get; private set; } = default;
+        public string[]? OrderBy { get; private set; }
+
+        /// <summary>
+        /// Gets the referential action to perform when a related entity is deleted.
+        /// </summary>
+        /// <remarks>Use this property to determine how deletions in the principal table affect related
+        /// entities in the dependent table. The value specifies whether related rows are deleted, set to null,
+        /// restricted, or left unchanged, depending on the configured referential action.</remarks>
+        public ReferentialAction OnDelete { get; private set; } = ReferentialAction.NoAction;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RelmForeignKey"/> class with optional foreign key, local key,
@@ -40,16 +49,19 @@ namespace CoreRelm.Attributes
         /// array in the <see cref="LocalKeys"/> property.</param>
         /// <param name="orderBy">An optional order-by clause used to define the sorting of the relationship. If provided, it will be stored
         /// as a single-element array in the <see cref="OrderBy"/> property.</param>
-        public RelmForeignKey(string foreignKey = null, string localKey = null, string orderBy = null)
+        /// <param name="onDelete">An optional referential action to specify the behavior when the related entity is deleted.</param>
+        public RelmForeignKey(string? foreignKey = null, string? localKey = null, string? orderBy = null, ReferentialAction onDelete = ReferentialAction.NoAction)
         {
             if (foreignKey != null)
-                this.ForeignKeys = new string[] { foreignKey };
+                this.ForeignKeys = [foreignKey];
 
             if (localKey != null)
-                this.LocalKeys = new string[] { localKey };
+                this.LocalKeys = [localKey];
 
             if (orderBy != null) 
-                this.OrderBy = new string[] { orderBy };
+                this.OrderBy = [orderBy];
+
+            this.OnDelete = onDelete;
         }
 
         /// <summary>
@@ -63,11 +75,13 @@ namespace CoreRelm.Attributes
         /// <param name="orderBy">An array of strings specifying the ordering criteria for the related data. Each string represents a column
         /// name, optionally followed by a direction (e.g., "ColumnName ASC" or "ColumnName DESC"). Can be <see
         /// langword="null"/> if no ordering is required.</param>
-        public RelmForeignKey(string[] foreignKeys = null, string[] localKeys = null, string[] orderBy = null)
+        /// <param name="onDelete">An optional referential action to specify the behavior when the related entity is deleted.</param>
+        public RelmForeignKey(string[]? foreignKeys = null, string[]? localKeys = null, string[]? orderBy = null, ReferentialAction onDelete = ReferentialAction.NoAction)
         {
             this.ForeignKeys = foreignKeys;
             this.LocalKeys = localKeys;
             this.OrderBy = orderBy;
+            this.OnDelete = onDelete;
         }
     }
 }
