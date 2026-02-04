@@ -14,10 +14,10 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
     {
         public async Task<int> EnsureTableAsync(IRelmContext context, CancellationToken ct = default)
         {
-            const string sql = @"CREATE TABLE IF NOT EXISTS `SchemaMigrations` (
+            const string sql = @"CREATE TABLE IF NOT EXISTS `schema_migrations` (
               `id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 
-              `migration_file` VARCHAR(255) NOT NULL,
+              `file_name` VARCHAR(255) NOT NULL,
               `checksum_sha256` CHAR(64) NOT NULL,
               `applied_utc` DATETIME NOT NULL,
 
@@ -26,8 +26,8 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
               `create_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
               `last_updated` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
-              UNIQUE KEY `uq_SchemaMigrations_InternalId` (`InternalId`),
-              UNIQUE KEY `uq_SchemaMigrations_migration_file` (`migration_file`)
+              UNIQUE KEY `uq_schema_migrations_InternalId` (`InternalId`),
+              UNIQUE KEY `uq_schema_migrations_file_name` (`file_name`)
             ) ENGINE=InnoDB;";
 
             var rowsUpdated = context.DoDatabaseWork<int>(sql);
@@ -39,8 +39,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
         {
             var result = new Dictionary<string, AppliedMigration>(StringComparer.Ordinal);
 
-            var query = @"SELECT migration_file, checksum_sha256, applied_utc
-                FROM SchemaMigrations
+            var query = @"SELECT * FROM schema_migrations
                 ORDER BY applied_utc;";
 
             var migrations = context.GetDataObjects<AppliedMigration>(query)
