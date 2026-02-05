@@ -188,7 +188,7 @@ namespace CoreRelm
         /// <param name="connectionName">An enumeration value representing the configuration connection string to use for the database query.</param>
         /// <returns>A string containing the identifier of the last inserted row. The value is determined by the database's
         /// LAST_INSERT_ID() function.</returns>
-        public static string GetLastInsertId(Enum connectionName)
+        public static string? GetLastInsertId(Enum connectionName)
             => RowIdentityHelper.GetLastInsertId(connectionName);
 
         /// <summary>
@@ -202,7 +202,7 @@ namespace CoreRelm
         /// the database.</param>
         /// <returns>A string containing the identifier of the last inserted row. The value is determined by the database's
         /// LAST_INSERT_ID() function.</returns>
-        public static string GetLastInsertId(IRelmContext relmContext)
+        public static string? GetLastInsertId(IRelmContext relmContext)
             => RowIdentityHelper.GetLastInsertId(relmContext);
 
         /// <summary>
@@ -215,7 +215,7 @@ namespace CoreRelm
         /// <param name="tableName">The name of the database table to query. Must not be null or empty.</param>
         /// <param name="InternalId">The internal ID to search for. Must not be null or empty.</param>
         /// <returns>The ID as a string if a matching record is found; otherwise, <see langword="null"/>.</returns>
-        public static string GetIdFromInternalId(Enum connectionName, string tableName, string InternalId)
+        public static string? GetIdFromInternalId(Enum connectionName, string tableName, string InternalId)
             => RowIdentityHelper.GetIdFromInternalId(connectionName, tableName, InternalId);
 
         /// <summary>
@@ -228,7 +228,7 @@ namespace CoreRelm
         /// <param name="tableName">The name of the table to query. Must not be null or empty.</param>
         /// <param name="InternalId">The internal ID to search for. Must not be null or empty.</param>
         /// <returns>The ID as a string if a matching record is found; otherwise, <see langword="null"/>.</returns>
-        public static string GetIdFromInternalId(IRelmContext relmContext, string tableName, string InternalId)
+        public static string? GetIdFromInternalId(IRelmContext relmContext, string tableName, string InternalId)
             => RowIdentityHelper.GetIdFromInternalId(relmContext, tableName, InternalId);
 
         //***************** Refined results *****************//
@@ -540,7 +540,7 @@ namespace CoreRelm
         /// enable user variables; otherwise, <see langword="false"/>.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the data objects retrieved by the query. If no data is found, an
         /// empty collection is returned.</returns>
-        public static IEnumerable<T?> GetDataObjects<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false) where T : IRelmModel, new()
+        public static IEnumerable<T?>? GetDataObjects<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false) where T : IRelmModel, new()
             => ObjectResultsHelper.GetDataObjects<T>(connectionName, query, parameters: parameters, throwException: throwException, allowUserVariables: allowUserVariables);
 
         /// <summary>
@@ -559,7 +559,7 @@ namespace CoreRelm
         /// langword="true"/>, exceptions will be propagated; otherwise, errors will be suppressed.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the data objects retrieved from the database. The collection will
         /// be empty if no matching records are found.</returns>
-        public static IEnumerable<T?> GetDataObjects<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new()
+        public static IEnumerable<T?>? GetDataObjects<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new()
             => ObjectResultsHelper.GetDataObjects<T>(establishedConnection, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
@@ -580,7 +580,7 @@ namespace CoreRelm
         /// langword="null"/> if no transaction is required.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the data objects retrieved from the database. The collection will
         /// be empty if no matching records are found.</returns>
-        public static IEnumerable<T?> GetDataObjects<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new()
+        public static IEnumerable<T?>? GetDataObjects<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new()
             => ObjectResultsHelper.GetDataObjects<T>(establishedConnection, sqlTransaction, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
@@ -602,7 +602,7 @@ namespace CoreRelm
         /// silently.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the data objects retrieved by the query.  If no data is found,
         /// the collection will be empty.</returns>
-        public static IEnumerable<T?> GetDataObjects<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new()
+        public static IEnumerable<T?>? GetDataObjects<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new()
             => ObjectResultsHelper.GetDataObjects<T>(relmContext, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
@@ -618,7 +618,7 @@ namespace CoreRelm
         /// object of type <typeparamref name="T"/>.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the objects created from the rows of the <paramref
         /// name="existingData"/> table.</returns>
-        public static IEnumerable<T?> GetDataObjects<T>(DataTable existingData) where T : IRelmModel, new()
+        public static IEnumerable<T?>? GetDataObjects<T>(DataTable existingData) where T : IRelmModel, new()
             => ObjectResultsHelper.GetDataObjects<T>(existingData);
 
         /// <summary>
@@ -637,7 +637,7 @@ namespace CoreRelm
         /// <param name="allowUserVariables">A value indicating whether user-defined variables are allowed in the query.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the results of the query mapped to the specified type. Returns an
         /// empty collection if no results are found.</returns>
-        public static IEnumerable<T> GetDataList<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false)
+        public static IEnumerable<T>? GetDataList<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false)
             => ObjectResultsHelper.GetDataList<T>(connectionName, query, parameters: parameters, throwException: throwException, allowUserVariables: allowUserVariables);
 
         /// <summary>
@@ -652,7 +652,7 @@ namespace CoreRelm
         /// langword="true"/>, exceptions will be thrown; otherwise, errors will be suppressed.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the results of the query mapped to objects of type <typeparamref
         /// name="T"/>. Returns an empty collection if no results are found.</returns>
-        public static IEnumerable<T> GetDataList<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        public static IEnumerable<T>? GetDataList<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
             => ObjectResultsHelper.GetDataList<T>(establishedConnection, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
@@ -669,7 +669,7 @@ namespace CoreRelm
         /// transaction is required.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the results of the query mapped to objects of type <typeparamref
         /// name="T"/>. Returns an empty collection if no results are found.</returns>
-        public static IEnumerable<T> GetDataList<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        public static IEnumerable<T>? GetDataList<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
             => ObjectResultsHelper.GetDataList<T>(establishedConnection, sqlTransaction, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
@@ -685,7 +685,7 @@ namespace CoreRelm
         /// <returns>An <see cref="IEnumerable{T}"/> containing the data items retrieved by the query.  Returns an empty
         /// collection if no items are found or if <paramref name="throwException"/> is <see langword="false"/> and the
         /// query fails.</returns>
-        public static IEnumerable<T> GetDataList<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        public static IEnumerable<T>? GetDataList<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
             => ObjectResultsHelper.GetDataList<T>(relmContext, query, parameters: parameters, throwException: throwException);
 
         //***************** Table write functions *****************//

@@ -443,12 +443,13 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
             if (!table.Columns.ContainsKey("InternalId"))
                 return table; // or throw; but returning is safer if you later support non-RelmModel tables
 
-            var trigger = new TriggerSchema(
-                TriggerName: triggerName,
-                EventManipulation: "INSERT",
-                ActionTiming: "BEFORE",
-                ActionStatement: "SET NEW.InternalId = IFNULL(NEW.InternalId, uuid_v4())"
-            );
+            var trigger = new TriggerSchema
+            {
+                TriggerName = triggerName,
+                EventManipulation = "INSERT",
+                ActionTiming = "BEFORE",
+                ActionStatement = "SET NEW.InternalId = IFNULL(NEW.InternalId, uuid_v4())"
+            };
 
             var newTriggers = table.Triggers
                 .ToDictionary(k => k.Key, v => v.Value, StringComparer.Ordinal);

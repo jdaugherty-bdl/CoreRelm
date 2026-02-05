@@ -13,6 +13,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using static CoreRelm.Enums.Triggers;
+using CoreRelm.Models;
 
 namespace CoreRelm.RelmInternal.Helpers.Operations
 {
@@ -31,7 +32,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         /// <param name="forceType">An optional type used to explicitly specify the table schema. If null, the type <typeparamref name="T"/> is
         /// used.</param>
         /// <returns><see langword="true"/> if the table was successfully truncated; otherwise, <see langword="false"/>.</returns>
-        internal static bool TruncateTable<T>(Enum connectionName, string tableName = null, Type forceType = null)
+        internal static bool TruncateTable<T>(Enum connectionName, string? tableName = null, Type? forceType = null)
         {
             return TruncateTable(connectionName, tableName: tableName, forceType: forceType ?? typeof(T));
         }
@@ -45,7 +46,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         /// <param name="tableName">The name of the table to truncate. If null, the table name is inferred from the type <typeparamref
         /// name="T"/>.</param>
         /// <returns><see langword="true"/> if the table was successfully truncated; otherwise, <see langword="false"/>.</returns>
-        internal static bool TruncateTable<T>(Enum connectionName, string tableName = null)
+        internal static bool TruncateTable<T>(Enum connectionName, string? tableName = null)
         {
             return TruncateTable(connectionName, tableName: tableName, forceType: typeof(T));
         }
@@ -62,12 +63,12 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         /// <param name="forceType">An optional type parameter that can be used to enforce specific behavior during the truncation process. Can
         /// be <see langword="null"/>.</param>
         /// <returns><see langword="true"/> if the table was successfully truncated; otherwise, <see langword="false"/>.</returns>
-        internal static bool TruncateTable(Enum connectionName, string tableName = null, Type forceType = null)
+        internal static bool TruncateTable(Enum connectionName, string? tableName = null, Type? forceType = null)
         {
-            using (var conn = RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName))
-            {
-                return TruncateTable(conn, tableName: tableName, forceType: forceType, sqlTransaction: null);
-            }
+            using var conn = (RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName))
+                ?? throw new InvalidOperationException($"Could not get a valid connection for connection type '{connectionName}'.");
+
+            return TruncateTable(new RelmContext(conn, autoInitializeDataSets: false, autoVerifyTables: false), tableName: tableName, forceType: forceType);
         }
 
         /// <summary>
@@ -84,58 +85,53 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         /// name="T"/> or <paramref name="forceType"/>.</param>
         /// <param name="forceType">An optional <see cref="Type"/> that explicitly specifies the table type to truncate, overriding
         /// <typeparamref name="T"/>.</param>
-        /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to associate with the operation. If null, the operation is
-        /// executed outside of a transaction.</param>
         /// <returns><see langword="true"/> if the table was successfully truncated; otherwise, <see langword="false"/>.</returns>
-        internal static bool TruncateTable<T>(MySqlConnection existingConnection, string tableName = null, Type forceType = null, MySqlTransaction sqlTransaction = null)
+        internal static bool TruncateTable<T>(MySqlConnection existingConnection, string? tableName = null, Type? forceType = null)
         {
-            return TruncateTable(existingConnection, tableName: tableName, forceType: forceType ?? typeof(T), sqlTransaction: sqlTransaction);
+            return TruncateTable(new RelmContext(existingConnection, autoInitializeDataSets: false, autoVerifyTables: false), tableName: tableName, forceType: forceType ?? typeof(T));
         }
 
         /// <summary>
-        /// Truncates the specified table in the database, removing all rows without logging individual deletions.
+        /// Truncates the specified table in the database, removing all rows while preserving the table structure.
         /// </summary>
-        /// <remarks>This method performs a SQL TRUNCATE operation, which is typically faster than
-        /// deleting rows individually but may have restrictions depending on the database schema. Ensure that the user
-        /// has the necessary permissions to truncate the specified table.</remarks>
-        /// <typeparam name="T">The type used to infer the table schema or mapping, if applicable.</typeparam>
+        /// <remarks>This method removes all rows from the specified table without logging individual row
+        /// deletions, which can improve performance compared to deleting rows one by one. Ensure that the table does
+        /// not have foreign key constraints that would prevent truncation.</remarks>
+        /// <typeparam name="T">The type representing the table to truncate. If <paramref name="forceType"/> is provided, it overrides this
+        /// type.</typeparam>
         /// <param name="existingConnection">An open <see cref="MySqlConnection"/> to the database. The connection must remain open for the duration of
         /// the operation.</param>
-        /// <param name="tableName">The name of the table to truncate. If null, the table name is inferred based on the type <typeparamref
-        /// name="T"/>.</param>
         /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to associate with the operation. If null, the operation is
         /// executed outside of a transaction.</param>
+        /// <param name="tableName">The name of the table to truncate. If null, the table name is inferred from the type <typeparamref
+        /// name="T"/> or <paramref name="forceType"/>.</param>
+        /// <param name="forceType">An optional <see cref="Type"/> that explicitly specifies the table type to truncate, overriding
+        /// <typeparamref name="T"/>.</param>
         /// <returns><see langword="true"/> if the table was successfully truncated; otherwise, <see langword="false"/>.</returns>
-        internal static bool TruncateTable<T>(MySqlConnection existingConnection, string tableName = null, MySqlTransaction sqlTransaction = null)
+        internal static bool TruncateTable<T>(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, string? tableName = null, Type? forceType = null)
         {
-            return TruncateTable(existingConnection, tableName: tableName, forceType: typeof(T), sqlTransaction: sqlTransaction);
+            return TruncateTable(new RelmContext(existingConnection, sqlTransaction, autoInitializeDataSets: false, autoVerifyTables: false), tableName: tableName, forceType: forceType ?? typeof(T));
         }
 
         /// <summary>
-        /// Truncates the specified table in the database.
+        /// Removes all rows from the specified table in the database without deleting the table itself.
         /// </summary>
-        /// <remarks>This method executes a SQL `TRUNCATE` statement on the specified table. The operation
-        /// is performed within a transaction if <paramref name="sqlTransaction"/> is provided or if the default
-        /// transaction behavior is enabled.</remarks>
-        /// <param name="existingConnection">An open <see cref="MySqlConnection"/> to the database where the table resides. The connection must remain
-        /// open for the duration of the operation.</param>
-        /// <param name="tableName">The name of the table to truncate. If <paramref name="tableName"/> is <see langword="null"/>, the table name
-        /// is determined from the <see cref="RelmTable"/> attribute of the type specified in <paramref
-        /// name="forceType"/>.</param>
-        /// <param name="forceType">A <see cref="Type"/> that specifies the table to truncate, based on its <see cref="RelmTable"/> attribute.
-        /// This parameter is used only if <paramref name="tableName"/> is <see langword="null"/>.</param>
-        /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to use for the operation. If provided, the operation will be
-        /// executed within the context of this transaction.</param>
-        /// <returns><see langword="true"/> if the table was successfully truncated; otherwise, <see langword="false"/>.</returns>
-        /// <exception cref="CustomAttributeFormatException">Thrown if <paramref name="tableName"/> is <see langword="null"/> and the <paramref name="forceType"/> does
-        /// not have a <see cref="RelmTable"/> attribute.</exception>
-        internal static bool TruncateTable(MySqlConnection existingConnection, string tableName = null, Type forceType = null, MySqlTransaction sqlTransaction = null)
+        /// <remarks>Truncating a table removes all data but preserves the table structure and schema.
+        /// This operation cannot be undone and may require appropriate database permissions.</remarks>
+        /// <param name="relmContext">The database context used to execute the truncate operation.</param>
+        /// <param name="tableName">The name of the table to truncate. If null, the table name is determined from <paramref name="forceType"/>.</param>
+        /// <param name="forceType">The type whose <see cref="RelmTable"/> attribute specifies the table to truncate. Used if <paramref
+        /// name="tableName"/> is null.</param>
+        /// <returns>true if the table was successfully truncated; otherwise, false.</returns>
+        /// <exception cref="CustomAttributeFormatException">Thrown if neither <paramref name="tableName"/> nor a valid <see cref="RelmTable"/> attribute on <paramref
+        /// name="forceType"/> is provided.</exception>
+        internal static bool TruncateTable(IRelmContext relmContext, string? tableName = null, Type? forceType = null)
         {
-            var localTableName = tableName ?? forceType.GetCustomAttribute<RelmTable>()?.TableName ?? throw new CustomAttributeFormatException(CoreUtilities.NoDalTableAttributeError);
+            var localTableName = tableName ?? forceType?.GetCustomAttribute<RelmTable>()?.TableName ?? throw new CustomAttributeFormatException(CoreUtilities.NoDalTableAttributeError);
 
             var truncateQuery = $"TRUNCATE {localTableName};";
 
-            var rowsUpdated = DatabaseWorkHelper.DoDatabaseWork<int>(existingConnection, truncateQuery, useTransaction: true, sqlTransaction: sqlTransaction);
+            var rowsUpdated = relmContext.DoDatabaseWork<int>(truncateQuery);
 
             var success = rowsUpdated > 0;
 
@@ -192,6 +188,18 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         }
 
         /// <summary>
+        /// Creates a writable table definition for the specified data access layer (DAL) model type using the provided
+        /// Realm context.
+        /// </summary>
+        /// <typeparam name="T">The type of the DAL model for which to create the table definition.</typeparam>
+        /// <param name="relmContext">The Realm context to associate with the table definition. Cannot be null.</param>
+        /// <returns>A writable table definition for the specified DAL model type.</returns>
+        internal static WritableTableDefinition<T> GetDalModelTableObject<T>(IRelmContext relmContext)
+        {
+            return GetWritableTableObject<T>(relmContext: relmContext, addStandardTriggers: true);
+        }
+
+        /// <summary>
         /// Creates and returns a writable table definition for the specified type, with optional configuration for
         /// triggers and database connection.
         /// </summary>
@@ -203,11 +211,11 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         /// triggers for setting the last updated timestamp and generating a UUID for the internal ID are added.</param>
         /// <returns>A <see cref="WritableTableDefinition{T}"/> instance configured with the specified database name and optional
         /// triggers.</returns>
-        private static WritableTableDefinition<T> GetWritableTableObject<T>(Enum connectionName = null, MySqlConnection existingConnection = null, bool addStandardTriggers = false)
+        private static WritableTableDefinition<T> GetWritableTableObject<T>(Enum? connectionName = null, MySqlConnection? existingConnection = null, IRelmContext? relmContext = null, bool addStandardTriggers = false)
         {
             var tableDef = new WritableTableDefinition<T>
             {
-                DatabaseName = existingConnection?.Database ?? RelmHelper.GetConnectionBuilderFromConnectionType(connectionName)?.Database
+                DatabaseName = relmContext?.ContextOptions?.DatabaseConnection?.Database ?? existingConnection?.Database ?? RelmHelper.GetConnectionBuilderFromConnectionType(connectionName!)?.Database!
             };
 
             if (addStandardTriggers)
@@ -231,10 +239,31 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         /// <returns><see langword="true"/> if the table was successfully created; otherwise, <see langword="false"/>.</returns>
         internal static bool CreateTable<T>(Enum connectionName, bool truncateIfExists = false)
         {
-            using (var conn = RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName))
-            {
-                return CreateTable<T>(conn, null, truncateIfExists: truncateIfExists);
-            }
+            using var context = new RelmContext(connectionName)
+                ?? throw new InvalidOperationException($"Could not get a valid connection for connection type '{connectionName}'.");
+
+            return CreateTable<T>(context, truncateIfExists: truncateIfExists);
+        }
+
+        /// <summary>
+        /// Creates a database table for the specified type, with optional behavior for truncating or dropping the table
+        /// if it already exists.
+        /// </summary>
+        /// <remarks>This method uses the specified connection and optional transaction to create the
+        /// table. The behavior of the method can be customized using the <paramref name="truncateIfExists"/> and
+        /// <paramref name="dropIfExists"/> parameters, but these options are mutually exclusive.</remarks>
+        /// <typeparam name="T">The type representing the table schema to be created.</typeparam>
+        /// <param name="existingConnection">An open <see cref="MySqlConnection"/> to the database where the table will be created.</param>
+        /// <param name="truncateIfExists">A value indicating whether to truncate the table if it already exists. If <see langword="true"/>, the
+        /// table's data will be cleared.</param>
+        /// <param name="dropIfExists">A value indicating whether to drop the table if it already exists. If <see langword="true"/>, the table will
+        /// be dropped and recreated.</param>
+        /// <returns><see langword="true"/> if the table was successfully created; otherwise, <see langword="false"/>.</returns>
+        /// <exception cref="ArgumentException">Thrown if both <paramref name="truncateIfExists"/> and <paramref name="dropIfExists"/> are set to <see
+        /// langword="true"/>.</exception>
+        internal static bool CreateTable<T>(MySqlConnection existingConnection, bool truncateIfExists = false, bool dropIfExists = false)
+        {
+            return CreateTable<T>(new RelmContext(existingConnection), truncateIfExists: truncateIfExists, dropIfExists: dropIfExists);
         }
 
         /// <summary>
@@ -255,14 +284,29 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         /// <returns><see langword="true"/> if the table was successfully created; otherwise, <see langword="false"/>.</returns>
         /// <exception cref="ArgumentException">Thrown if both <paramref name="truncateIfExists"/> and <paramref name="dropIfExists"/> are set to <see
         /// langword="true"/>.</exception>
-        internal static bool CreateTable<T>(MySqlConnection existingConnection, MySqlTransaction sqlTransaction = null, bool truncateIfExists = false, bool dropIfExists = false)
+        internal static bool CreateTable<T>(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, bool truncateIfExists = false, bool dropIfExists = false)
+        {
+            return CreateTable<T>(new RelmContext(existingConnection, sqlTransaction), truncateIfExists: truncateIfExists, dropIfExists: dropIfExists);
+        }
+
+        /// <summary>
+        /// Creates a database table for the specified data model type, with options to truncate or drop the table if it
+        /// already exists.
+        /// </summary>
+        /// <typeparam name="T">The type representing the data model for which the table is to be created.</typeparam>
+        /// <param name="relmContext">The database context used to execute table creation operations.</param>
+        /// <param name="truncateIfExists">true to truncate the table if it already exists before creating it; otherwise, false.</param>
+        /// <param name="dropIfExists">true to drop the table if it already exists before creating it; otherwise, false.</param>
+        /// <returns>true if the table was created successfully; otherwise, false.</returns>
+        /// <exception cref="ArgumentException">Thrown if both truncateIfExists and dropIfExists are set to true.</exception>
+        internal static bool CreateTable<T>(IRelmContext relmContext, bool truncateIfExists = false, bool dropIfExists = false)
         {
             if (truncateIfExists && dropIfExists)
                 throw new ArgumentException("Cannot both truncate and drop table on create.");
 
-            var createdTable = GetDalModelTableObject<T>(existingConnection: existingConnection);
+            var createdTable = GetDalModelTableObject<T>(relmContext);
 
-            var rowsUpdated = RelmHelper.DoDatabaseWork<int>(existingConnection, createdTable.ToString(), useTransaction: false, sqlTransaction: sqlTransaction);
+            var rowsUpdated = relmContext.DoDatabaseWork<int>(createdTable.ToString());
 
             return true;
         }
@@ -278,10 +322,10 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         /// <returns><see langword="true"/> if the table exists; otherwise, <see langword="false"/>.</returns>
         internal static bool TableExists(Enum connectionName, string tableName)
         {
-            using (var conn = RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName))
-            {
-                return TableExists(conn, tableName, null);
-            }
+            using var context = new RelmContext(connectionName, autoInitializeDataSets: false, autoVerifyTables: false)
+                ?? throw new InvalidOperationException($"Could not get a valid connection for connection type '{connectionName}'.");
+
+            return TableExists(context, tableName);
         }
 
         /// <summary>
@@ -296,7 +340,12 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         /// a transaction.</param>
         /// <returns><see langword="true"/> if a table with the specified name exists in the current database; otherwise, <see
         /// langword="false"/>.</returns>
-        internal static bool TableExists(MySqlConnection existingConnection, string tableName, MySqlTransaction sqlTransaction = null)
+        internal static bool TableExists(MySqlConnection existingConnection, MySqlTransaction? sqlTransaction, string tableName)
+        {
+            return TableExists(new RelmContext(existingConnection, sqlTransaction, autoInitializeDataSets: false, autoVerifyTables: false), tableName);
+        }
+
+        internal static bool TableExists(IRelmContext relmContext, string tableName)
         {
             // pull the table details from the database
             var existsQuery = @"SELECT TABLE_NAME
@@ -305,11 +354,11 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
                     AND table_name = @table_name
                 LIMIT 1;";
 
-            var localTableName = RefinedResultsHelper.GetScalar<string>(existingConnection, existsQuery, new Dictionary<string, object>
+            var localTableName = RefinedResultsHelper.GetScalar<string>(relmContext, existsQuery, new Dictionary<string, object>
             {
-                ["@table_schema"] = existingConnection.Database,
+                ["@table_schema"] = relmContext.ContextOptions?.DatabaseConnection?.Database,
                 ["@table_name"] = tableName
-            }, sqlTransaction: sqlTransaction);
+            });
 
             return !string.IsNullOrWhiteSpace(localTableName);
         }
@@ -319,7 +368,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         /// </summary>
         /// <typeparam name="T">The type of the model, which must implement <see cref="IRelmModel"/> and have a parameterless constructor.</typeparam>
         /// <returns>A string representing the name of the DAL table associated with the specified model type.</returns>
-        internal static string GetDalTable<T>() where T : IRelmModel, new()
+        internal static string? GetDalTable<T>() where T : IRelmModel, new()
         {
             return GetDalTable(typeof(T));
         }
@@ -330,7 +379,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         /// <param name="dalObjectType">The type of the DAL object. This type must have a <see cref="RelmTable"/> attribute applied.</param>
         /// <returns>The table name specified in the <see cref="RelmTable"/> attribute of the provided type,  or <see
         /// langword="null"/> if the attribute is not present.</returns>
-        internal static string GetDalTable(Type dalObjectType)
+        internal static string? GetDalTable(Type dalObjectType)
         {
             return dalObjectType.GetCustomAttribute<RelmTable>()?.TableName;
         }
@@ -344,7 +393,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         /// <returns>The column name defined by the <see cref="RelmColumn"/> attribute applied to the specified property.</returns>
         /// <exception cref="ArgumentException">Thrown if <paramref name="predicate"/> is not a member access expression or does not target a property.</exception>
         /// <exception cref="CustomAttributeFormatException">Thrown if the specified property does not have a <see cref="RelmColumn"/> attribute.</exception>
-        internal static string GetColumnName<T>(Expression<Func<T, object>> predicate) where T : IRelmModel
+        internal static string? GetColumnName<T>(Expression<Func<T, object>> predicate) where T : IRelmModel
         {
             var member = predicate.Body as MemberExpression 
                 ?? throw new ArgumentException("Predicate must be a member expression");

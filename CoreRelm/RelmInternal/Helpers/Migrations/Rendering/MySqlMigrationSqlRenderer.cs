@@ -175,17 +175,17 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Rendering
             sb.Append(c.IsNullable ? " NULL" : " NOT NULL");
 
             // Default value (if provided)
-            if (!string.IsNullOrWhiteSpace(c.DefaultValueSql))
+            if (!string.IsNullOrWhiteSpace(c.DefaultValue))
             {
                 // For timestamp defaults like "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP",
                 // MySQL expects "DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
-                if (c.DefaultValueSql.Contains("ON UPDATE", StringComparison.OrdinalIgnoreCase))
+                if (c.DefaultValue.Contains("ON UPDATE", StringComparison.OrdinalIgnoreCase))
                 {
-                    sb.Append($" DEFAULT {c.DefaultValueSql}");
+                    sb.Append($" DEFAULT {c.DefaultValue}");
                 }
                 else
                 {
-                    sb.Append($" DEFAULT {c.DefaultValueSql}");
+                    sb.Append($" DEFAULT {c.DefaultValue}");
                 }
             }
 
@@ -278,10 +278,10 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Rendering
             }
         }
 
-        private static string EscapeIdentifier(string s)
+        private static string? EscapeIdentifier(string? s)
         {
             // For backtick-quoted identifiers, escape backticks by doubling.
-            return s.Replace("`", "``", StringComparison.Ordinal);
+            return s?.Replace("`", "``", StringComparison.Ordinal);
         }
     }
 }

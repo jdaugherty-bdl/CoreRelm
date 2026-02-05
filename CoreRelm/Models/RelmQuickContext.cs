@@ -16,6 +16,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
+/*
 namespace CoreRelm.Models
 {
     /// <summary>
@@ -492,7 +493,7 @@ namespace CoreRelm.Models
 
                 attachedProperty.SetValue(this, dataSet);
             }
-            */
+            * /
             if (!_currentDatabaseTables.Contains(RelmHelper.GetDalTable(dataSetType)))
                 throw new InvalidOperationException($"Table for type {dataSetType.Name} [{RelmHelper.GetDalTable(dataSetType)}] does not exist in the current database.");
 
@@ -556,7 +557,7 @@ namespace CoreRelm.Models
                     .Select(x => x.prop)
                     .ToList();
             }
-            */
+            * /
             if (_attachedProperties == null)
                 _attachedProperties = new List<PropertyInfo>();
 
@@ -619,7 +620,7 @@ namespace CoreRelm.Models
                 // If we didn't find it, we add the new dataSet to the list.
                 _attachedDataSets.Add(dataSet);
             }
-            */
+            * /
         }
 
         /// <summary>
@@ -1079,3 +1080,4 @@ namespace CoreRelm.Models
             => relmModels.WriteToDatabase(this, batchSize: batchSize, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
     }
 }
+*/

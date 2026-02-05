@@ -18,32 +18,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
     internal class DataLoaderHelper<T> where T : IRelmModel, new()
     {
         private readonly ICollection<T> targetObjects;
-        private readonly IRelmQuickContext relmQuickContext;
         private readonly IRelmContext relmContext;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DataLoaderHelper{T}"/> class with the specified context and
-        /// target object.
-        /// </summary>
-        /// <param name="relmContext">The context used to interact with the Realm database. This parameter cannot be <see langword="null"/>.</param>
-        /// <param name="targetObject">The target object to be managed by the helper. This parameter cannot be <see langword="null"/>.</param>
-        public DataLoaderHelper(IRelmQuickContext relmContext, T targetObject)
-        {
-            this.targetObjects = new[] { targetObject };
-            this.relmQuickContext = relmContext;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DataLoaderHelper{T}"/> class with the specified context and
-        /// target objects.
-        /// </summary>
-        /// <param name="relmContext">The context used to interact with the Realm database. This parameter cannot be <see langword="null"/>.</param>
-        /// <param name="targetObjects">A collection of target objects to be processed. This parameter cannot be <see langword="null"/>.</param>
-        public DataLoaderHelper(IRelmQuickContext relmContext, ICollection<T> targetObjects)
-        {
-            this.targetObjects = targetObjects;
-            this.relmQuickContext = relmContext;
-        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DataLoaderHelper{T}"/> class with the specified context and
@@ -53,7 +28,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <param name="targetObject">The target object to be processed by the data loader. This parameter cannot be <see langword="null"/>.</param>
         public DataLoaderHelper(IRelmContext relmContext, T targetObject)
         {
-            this.targetObjects = new[] { targetObject };
+            this.targetObjects = [targetObject];
             this.relmContext = relmContext;
         }
 
@@ -79,8 +54,8 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <param name="targetObject">The target object of type <typeparamref name="T"/> to be associated with this helper.</param>
         public DataLoaderHelper(RelmContextOptionsBuilder relmContextOptionsBuilder, T targetObject)
         {
-            this.targetObjects = new[] { targetObject };
-            this.relmQuickContext = new RelmQuickContext(relmContextOptionsBuilder);
+            this.targetObjects = [targetObject];
+            this.relmContext = new RelmContext(relmContextOptionsBuilder);
         }
 
         /// <summary>
@@ -96,7 +71,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         public DataLoaderHelper(RelmContextOptionsBuilder relmContextOptionsBuilder, ICollection<T> targetObjects)
         {
             this.targetObjects = targetObjects;
-            this.relmQuickContext = new RelmQuickContext(relmContextOptionsBuilder);
+            this.relmContext = new RelmContext(relmContextOptionsBuilder);
         }
 
         /// <summary>
@@ -119,12 +94,11 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
                 ?? throw new InvalidOperationException("Collection or property must be represented by a lambda expression in the form of 'x => x.PropertyName'.");
 
             var dataLoaderAttribute = referenceProperty.Member.GetCustomAttributes<RelmDataLoader>()
-                ?.FirstOrDefault(y => y.LoaderType?.GetInterface(relmContext == null ? nameof(IRelmQuickFieldLoader) : nameof(IRelmFieldLoader)) != null)
-                ?? throw new MemberAccessException($"The property or collection [{referenceProperty.Member.Name}] on type [{referenceProperty.Expression.Type.Name}] does not have a RelmDataLoader attribute.");
+                ?.FirstOrDefault(y => y.LoaderType?.GetInterface(nameof(IRelmFieldLoader)) != null)
+                ?? throw new MemberAccessException($"The property or collection [{referenceProperty.Member.Name}] on type [{referenceProperty.Expression?.Type.Name}] does not have a RelmDataLoader attribute.");
 
-            var fieldLoader = relmContext == null
-                ? Activator.CreateInstance(dataLoaderAttribute.LoaderType, new object[] { relmQuickContext, referenceProperty.Member.Name, dataLoaderAttribute.KeyFields })
-                : Activator.CreateInstance(dataLoaderAttribute.LoaderType, new object[] { relmContext, referenceProperty.Member.Name, dataLoaderAttribute.KeyFields });
+            var fieldLoader = Activator.CreateInstance(dataLoaderAttribute.LoaderType, [relmContext, referenceProperty.Member.Name, dataLoaderAttribute.KeyFields]) 
+                ?? throw new MemberAccessException($"The field loader type [{dataLoaderAttribute.LoaderType.FullName}] could not be instantiated for property or collection [{referenceProperty.Member.Name}] on type [{referenceProperty.Expression?.Type.Name}].");
 
             new FieldLoaderHelper<T>(targetObjects).LoadData((IRelmFieldLoaderBase)fieldLoader);
 
