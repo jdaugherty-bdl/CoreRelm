@@ -49,5 +49,7 @@ namespace CoreRelm.Models.Migrations.Introspection
         
         [RelmColumn]
         public int OrdinalPosition { get; set; }
+
+        public ColumnSchema Clone() => (ColumnSchema)this.MemberwiseClone();
     }
 }

@@ -56,8 +56,32 @@ namespace CoreRelm.Extensions
         /// <param name="allowAutoDateColumns">A value indicating whether auto-generated date columns are allowed to be written. The default is <see
         /// langword="false"/>.</param>
         /// <returns>The number of records successfully written to the database.</returns>
-        public static int WriteToDatabase<T>(this IEnumerable<T> modelData, Enum connectionName, string tableName = null, Type forceType = null, bool allowUserVariables = false, int batchSize = 100, string databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false) where T : IRelmModel
+        public static int WriteToDatabase<T>(this IEnumerable<T> modelData, Enum connectionName, string? tableName = null, Type? forceType = null, bool allowUserVariables = false, int batchSize = 100, string? databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false) where T : IRelmModel
         	=> DataOutputOperations.BulkTableWrite<T>(connectionName, modelData, tableName, forceType, allowUserVariables: allowUserVariables, batchSize, databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
+        
+        /// <summary>
+        /// Writes a collection of model data to a database table in bulk.
+        /// </summary>
+        /// <remarks>This method performs a bulk write operation, which is optimized for inserting large
+        /// amounts of data efficiently. The caller is responsible for ensuring that the <paramref
+        /// name="existingConnection"/> is open and valid before calling this method. If <paramref
+        /// name="sqlTransaction"/> is provided, the operation will be part of the specified transaction.</remarks>
+        /// <typeparam name="T">The type of the model data, which must implement <see cref="IRelmModel"/>.</typeparam>
+        /// <param name="modelData">The collection of model data to write to the database.</param>
+        /// <param name="existingConnection">An open <see cref="MySqlConnection"/> to the database where the data will be written.</param>
+        /// <param name="tableName">The name of the database table to write to. If null, the table name is inferred from the model type.</param>
+        /// <param name="forceType">An optional <see cref="Type"/> to enforce a specific model type for the operation. If null, the type of
+        /// <typeparamref name="T"/> is used.</param>
+        /// <param name="batchSize">The number of rows to write in each batch. Defaults to 100.</param>
+        /// <param name="databaseName">The name of the database to write to. If null, the default database for the connection is used.</param>
+        /// <param name="allowAutoIncrementColumns">Indicates whether auto-increment columns are allowed to be written. Defaults to <see langword="false"/>.</param>
+        /// <param name="allowPrimaryKeyColumns">Indicates whether primary key columns are allowed to be written. Defaults to <see langword="false"/>.</param>
+        /// <param name="allowUniqueColumns">Indicates whether unique columns are allowed to be written. Defaults to <see langword="false"/>.</param>
+        /// <param name="allowAutoDateColumns">Indicates whether auto-generated date columns are allowed to be written. Defaults to <see
+        /// langword="false"/>.</param>
+        /// <returns>The number of rows successfully written to the database.</returns>
+        public static int WriteToDatabase<T>(this IEnumerable<T> modelData, MySqlConnection existingConnection, string? tableName = null, Type? forceType = null, int batchSize = 100, string? databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false) where T : IRelmModel
+        	=> DataOutputOperations.BulkTableWrite<T>(existingConnection, modelData, tableName, forceType, batchSize, databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
         
         /// <summary>
         /// Writes a collection of model data to a database table in bulk.
@@ -81,8 +105,8 @@ namespace CoreRelm.Extensions
         /// <param name="allowAutoDateColumns">Indicates whether auto-generated date columns are allowed to be written. Defaults to <see
         /// langword="false"/>.</param>
         /// <returns>The number of rows successfully written to the database.</returns>
-        public static int WriteToDatabase<T>(this IEnumerable<T> modelData, MySqlConnection existingConnection, MySqlTransaction sqlTransaction = null, string tableName = null, Type forceType = null, int batchSize = 100, string databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false) where T : IRelmModel
-        	=> DataOutputOperations.BulkTableWrite<T>(existingConnection, modelData, tableName, sqlTransaction: sqlTransaction, forceType, batchSize, databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
+        public static int WriteToDatabase<T>(this IEnumerable<T> modelData, MySqlConnection existingConnection, MySqlTransaction sqlTransaction, string? tableName = null, Type? forceType = null, int batchSize = 100, string? databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false) where T : IRelmModel
+        	=> DataOutputOperations.BulkTableWrite<T>(existingConnection, sqlTransaction, modelData, tableName, forceType, batchSize, databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
         
         /// <summary>
         /// Writes the specified collection of data to a database table in bulk.
@@ -104,35 +128,7 @@ namespace CoreRelm.Extensions
         /// <param name="allowUniqueColumns">Indicates whether unique columns are allowed in the table. Defaults to <see langword="false"/>.</param>
         /// <param name="allowAutoDateColumns">Indicates whether auto-generated date columns are allowed in the table. Defaults to <see langword="false"/>.</param>
         /// <returns>The number of records successfully written to the database.</returns>
-        public static int WriteToDatabase<T>(this IEnumerable<T> modelData, IRelmContext relmContext, string tableName = null, Type forceType = null, int batchSize = 100, string databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
-        	=> DataOutputOperations.BulkTableWrite<T>(relmContext, modelData, tableName, forceType, batchSize, databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
-        
-        /// <summary>
-        /// Writes the specified collection of data to a database table in bulk.
-        /// </summary>
-        /// <remarks>This method performs a bulk write operation, which is optimized for performance when
-        /// inserting large amounts of data. The behavior of the write operation can be customized using the optional
-        /// parameters.</remarks>
-        /// <typeparam name="T">The type of the data objects to be written to the database.</typeparam>
-        /// <param name="modelData">The collection of data objects to write to the database. Cannot be null or empty.</param>
-        /// <param name="relmContext">The database context used to perform the write operation. Cannot be null.</param>
-        /// <param name="tableName">The name of the database table to write to. If null, the table name is inferred from the type <typeparamref
-        /// name="T"/>.</param>
-        /// <param name="forceType">An optional type to enforce for the database table schema. If null, the schema is inferred from the type
-        /// <typeparamref name="T"/>.</param>
-        /// <param name="batchSize">The number of records to write in each batch. Defaults to 100. Must be greater than zero.</param>
-        /// <param name="databaseName">The name of the database to write to. If null, the default database associated with <paramref
-        /// name="relmContext"/> is used.</param>
-        /// <param name="allowAutoIncrementColumns">A value indicating whether columns with auto-increment constraints are allowed to be written. Defaults to
-        /// <see langword="false"/>.</param>
-        /// <param name="allowPrimaryKeyColumns">A value indicating whether primary key columns are allowed to be written. Defaults to <see
-        /// langword="false"/>.</param>
-        /// <param name="allowUniqueColumns">A value indicating whether columns with unique constraints are allowed to be written. Defaults to <see
-        /// langword="false"/>.</param>
-        /// <param name="allowAutoDateColumns">A value indicating whether columns with automatic date constraints are allowed to be written. Defaults to
-        /// <see langword="false"/>.</param>
-        /// <returns>The total number of records successfully written to the database.</returns>
-        public static int WriteToDatabase<T>(this IEnumerable<T> modelData, IRelmQuickContext relmContext, string tableName = null, Type forceType = null, int batchSize = 100, string databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
+        public static int WriteToDatabase<T>(this IEnumerable<T> modelData, IRelmContext relmContext, string? tableName = null, Type? forceType = null, int batchSize = 100, string? databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
         	=> DataOutputOperations.BulkTableWrite<T>(relmContext, modelData, tableName, forceType, batchSize, databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
 
         /************************************************************************************************************************/
@@ -209,76 +205,6 @@ namespace CoreRelm.Extensions
         /// <returns>A collection of the primary models with the specified foreign key field resolved and populated.</returns>
         public static ICollection<T> LoadForeignKeyField<T, R, S>(this ICollection<T> modelData, IRelmContext relmContext, Expression<Func<T, R>> predicate, IRelmDataLoader<S> customDataLoader, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()
         	=> new ForeignKeyLoader<T>(modelData, relmContext).LoadForeignKey(predicate, customDataLoader, additionalConstraints);
-
-        /************************************************************************************************************************/
-        /****************************************** RelmQuickContext load singular property ******************************************/
-        /************************************************************************************************************************/
-
-        /// <summary>
-        /// Loads and resolves a foreign key field for the specified collection of models.
-        /// </summary>
-        /// <remarks>This method uses the provided <paramref name="relmQuickContext"/> to resolve the
-        /// foreign key relationships for the specified field in the collection of models. The foreign key field is
-        /// loaded based on the <paramref name="predicate"/> expression.</remarks>
-        /// <typeparam name="T">The type of the model in the collection. Must implement <see cref="IRelmModel"/>.</typeparam>
-        /// <typeparam name="R">The type of the related model to be loaded. Must implement <see cref="IRelmModel"/>.</typeparam>
-        /// <param name="modelData">The collection of models for which the foreign key field will be loaded.</param>
-        /// <param name="relmQuickContext">The database context used to resolve the foreign key relationships.</param>
-        /// <param name="predicate">An expression specifying the foreign key field to load.</param>
-        /// <returns>The original collection of models with the specified foreign key field resolved and loaded.</returns>
-        public static ICollection<T> LoadForeignKeyField<T, R>(this ICollection<T> modelData, IRelmQuickContext relmQuickContext, Expression<Func<T, R>> predicate) where T : IRelmModel, new() where R : IRelmModel, new()
-        	=> new ForeignKeyLoader<T>(modelData, relmQuickContext).LoadForeignKey(predicate);
-        
-        /// <summary>
-        /// Loads and resolves a foreign key field for a collection of models, applying the specified constraints.
-        /// </summary>
-        /// <remarks>This method is an extension method designed to simplify the process of resolving
-        /// foreign key relationships for a collection of models. It uses the provided database context and expressions
-        /// to load the related data efficiently. The additional constraints can be used to filter or customize the
-        /// resolution process.</remarks>
-        /// <typeparam name="T">The type of the primary model in the collection. Must implement <see cref="IRelmModel"/>.</typeparam>
-        /// <typeparam name="R">The type of the related model representing the foreign key. Must implement <see cref="IRelmModel"/>.</typeparam>
-        /// <param name="modelData">The collection of primary models for which the foreign key field will be loaded.</param>
-        /// <param name="relmQuickContext">The database context used to resolve the foreign key relationships.</param>
-        /// <param name="predicate">An expression specifying the foreign key relationship between the primary model and the related model.</param>
-        /// <param name="additionalConstraints">An optional expression specifying additional constraints to apply when resolving the foreign key field.</param>
-        /// <returns>A collection of the primary models with the foreign key field resolved and populated.</returns>
-        public static ICollection<T> LoadForeignKeyField<T, R>(this ICollection<T> modelData, IRelmQuickContext relmQuickContext, Expression<Func<T, R>> predicate, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()
-        	=> new ForeignKeyLoader<T>(modelData, relmQuickContext).LoadForeignKey(predicate, additionalConstraints);
-        
-        /// <summary>
-        /// Loads and resolves a foreign key field for a collection of models, using the specified predicate and custom
-        /// data loader.
-        /// </summary>
-        /// <remarks>This method is an extension method that simplifies the process of resolving foreign
-        /// key relationships for a collection of models. The <paramref name="customDataLoader"/> allows for custom
-        /// logic to be applied when retrieving the related data.</remarks>
-        /// <typeparam name="T">The type of the primary model in the collection. Must implement <see cref="IRelmModel"/>.</typeparam>
-        /// <typeparam name="R">The type of the related model being loaded. Must implement <see cref="IRelmModel"/>.</typeparam>
-        /// <typeparam name="S">The type of the model used by the custom data loader. Must implement <see cref="IRelmModel"/>.</typeparam>
-        /// <param name="modelData">The collection of primary models for which the foreign key field will be loaded.</param>
-        /// <param name="relmQuickContext">The context used to manage data loading operations.</param>
-        /// <param name="predicate">An expression that specifies the foreign key field to be loaded.</param>
-        /// <param name="customDataLoader">A custom data loader used to retrieve the related data.</param>
-        /// <returns>A collection of the primary models with the specified foreign key field resolved.</returns>
-        public static ICollection<T> LoadForeignKeyField<T, R, S>(this ICollection<T> modelData, IRelmQuickContext relmQuickContext, Expression<Func<T, R>> predicate, IRelmDataLoader<S> customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()
-        	=> new ForeignKeyLoader<T>(modelData, relmQuickContext).LoadForeignKey(predicate, customDataLoader);
-        
-        /// <summary>
-        /// Loads and resolves a foreign key field for a collection of models, applying additional constraints if
-        /// specified.
-        /// </summary>
-        /// <typeparam name="T">The type of the primary model in the collection.</typeparam>
-        /// <typeparam name="R">The type of the related model referenced by the foreign key.</typeparam>
-        /// <typeparam name="S">The type of the model used by the custom data loader.</typeparam>
-        /// <param name="modelData">The collection of primary models for which the foreign key field will be loaded.</param>
-        /// <param name="relmQuickContext">The context used to manage data loading operations.</param>
-        /// <param name="predicate">An expression specifying the foreign key relationship between the primary model and the related model.</param>
-        /// <param name="customDataLoader">A custom data loader used to retrieve the related models.</param>
-        /// <param name="additionalConstraints">An expression specifying additional constraints to apply when resolving the foreign key field.</param>
-        /// <returns>A collection of the primary models with the foreign key field resolved and populated.</returns>
-        public static ICollection<T> LoadForeignKeyField<T, R, S>(this ICollection<T> modelData, IRelmQuickContext relmQuickContext, Expression<Func<T, R>> predicate, IRelmDataLoader<S> customDataLoader, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()
-        	=> new ForeignKeyLoader<T>(modelData, relmQuickContext).LoadForeignKey(predicate, customDataLoader, additionalConstraints);
 
         /************************************************************************************************************************/
         /****************************************** Context options load singular property ******************************************/
@@ -426,83 +352,6 @@ namespace CoreRelm.Extensions
         	=> new ForeignKeyLoader<T>(modelData, relmContext).LoadForeignKey(predicate, customDataLoader, additionalConstraints);
 
         /************************************************************************************************************************/
-        /****************************************** RelmQuickContext load list property ******************************************/
-        /************************************************************************************************************************/
-
-        /// <summary>
-        /// Loads and populates a foreign key collection field for each entity in the specified model data
-        /// collection.
-        /// </summary>
-        /// <remarks>This method uses the provided <paramref name="relmQuickContext"/> to query and load
-        /// the related entities for the specified foreign key collection property. The foreign key field is populated
-        /// for each entity in the <paramref name="modelData"/> collection based on the provided <paramref
-        /// name="predicate"/>.</remarks>
-        /// <typeparam name="T">The type of the primary model entities in the collection. Must implement <see cref="IRelmModel"/>.</typeparam>
-        /// <typeparam name="R">The type of the related entities in the foreign key collection. Must implement <see cref="IRelmModel"/>.</typeparam>
-        /// <param name="modelData">The collection of primary model entities for which the foreign key field will be loaded.</param>
-        /// <param name="relmQuickContext">The database context used to query and load the related entities.</param>
-        /// <param name="predicate">An expression specifying the foreign key collection property to populate for each entity in <paramref
-        /// name="modelData"/>.</param>
-        /// <returns>The original <paramref name="modelData"/> collection with the specified foreign key field populated for each
-        /// entity.</returns>
-        public static ICollection<T> LoadForeignKeyField<T, R>(this ICollection<T> modelData, IRelmQuickContext relmQuickContext, Expression<Func<T, ICollection<R>>> predicate) where T : IRelmModel, new() where R : IRelmModel, new()
-        	=> new ForeignKeyLoader<T>(modelData, relmQuickContext).LoadForeignKey(predicate);
-
-        /// <summary>
-        /// Loads and populates a foreign key collection field for a collection of model entities.
-        /// </summary>
-        /// <remarks>This method is an extension method that facilitates the loading of related entities
-        /// for a collection of primary model entities. It uses the specified database context and constraints to query
-        /// and populate the foreign key field.</remarks>
-        /// <typeparam name="T">The type of the primary model entities in the collection. Must implement <see cref="IRelmModel"/>.</typeparam>
-        /// <typeparam name="R">The type of the related entities referenced by the foreign key. Must implement <see cref="IRelmModel"/>.</typeparam>
-        /// <param name="modelData">The collection of primary model entities for which the foreign key field will be loaded.</param>
-        /// <param name="relmQuickContext">The database context used to query and load the related entities.</param>
-        /// <param name="predicate">An expression specifying the foreign key field to populate in the primary model entities.</param>
-        /// <param name="additionalConstraints">An expression specifying additional constraints to apply when querying the related entities.</param>
-        /// <returns>A collection of the primary model entities with the specified foreign key field populated.</returns>
-        public static ICollection<T> LoadForeignKeyField<T, R>(this ICollection<T> modelData, IRelmQuickContext relmQuickContext, Expression<Func<T, ICollection<R>>> predicate, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()
-        	=> new ForeignKeyLoader<T>(modelData, relmQuickContext).LoadForeignKey(predicate, additionalConstraints);        
-        
-        /// <summary>
-        /// Loads and populates a foreign key collection field for a collection of models.
-        /// </summary>
-        /// <remarks>This method uses a <see cref="ForeignKeyLoader{T}"/> to load the foreign key
-        /// collection field for each model in the provided collection. The <paramref name="customDataLoader"/> allows
-        /// for custom logic to retrieve the related data, which is then used to populate the specified foreign key
-        /// field.</remarks>
-        /// <typeparam name="T">The type of the primary model in the collection.</typeparam>
-        /// <typeparam name="R">The type of the related model in the foreign key collection.</typeparam>
-        /// <typeparam name="S">The type of the model used by the custom data loader.</typeparam>
-        /// <param name="modelData">The collection of primary models for which the foreign key field will be loaded.</param>
-        /// <param name="relmQuickContext">The context used to manage data loading operations.</param>
-        /// <param name="predicate">An expression specifying the foreign key collection property to populate.</param>
-        /// <param name="customDataLoader">A custom data loader used to retrieve the related data.</param>
-        /// <returns>The original collection of primary models with the specified foreign key field populated.</returns>
-        public static ICollection<T> LoadForeignKeyField<T, R, S>(this ICollection<T> modelData, IRelmQuickContext relmQuickContext, Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S> customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()
-        	=> new ForeignKeyLoader<T>(modelData, relmQuickContext).LoadForeignKey(predicate, customDataLoader);
-
-        /// <summary>
-        /// Loads and populates a foreign key collection field for a collection of models using the specified data loader and
-        /// constraints.
-        /// </summary>
-        /// <remarks>This method uses a <see cref="ForeignKeyLoader{T}"/> to load the foreign key field
-        /// for the provided collection of models. The <paramref name="customDataLoader"/> allows for custom logic to
-        /// retrieve the related data, and the <paramref name="additionalConstraints"/> parameter can be used to further
-        /// refine the data loading process.</remarks>
-        /// <typeparam name="T">The type of the primary model in the collection.</typeparam>
-        /// <typeparam name="R">The type of the related model representing the foreign key field.</typeparam>
-        /// <typeparam name="S">The type of the model used by the custom data loader.</typeparam>
-        /// <param name="modelData">The collection of primary models for which the foreign key field will be loaded.</param>
-        /// <param name="relmQuickContext">The context used to manage data loading operations.</param>
-        /// <param name="predicate">An expression specifying the foreign key field to be loaded for each primary model.</param>
-        /// <param name="customDataLoader">A custom data loader used to retrieve the related data.</param>
-        /// <param name="additionalConstraints">An expression specifying additional constraints to apply when loading the related data.</param>
-        /// <returns>A collection of primary models with the specified foreign key field populated.</returns>
-        public static ICollection<T> LoadForeignKeyField<T, R, S>(this ICollection<T> modelData, IRelmQuickContext relmQuickContext, Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S> customDataLoader, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()
-        	=> new ForeignKeyLoader<T>(modelData, relmQuickContext).LoadForeignKey(predicate, customDataLoader, additionalConstraints);
-
-        /************************************************************************************************************************/
         /****************************************** Context options load list property ******************************************/
         /************************************************************************************************************************/
 
@@ -593,20 +442,6 @@ namespace CoreRelm.Extensions
         /// <returns>The original collection of models with the specified field loaded.</returns>
         public static ICollection<T> LoadDataLoaderField<T, R>(this ICollection<T> modelData, IRelmContext relmContext, Expression<Func<T, R>> predicate) where T : IRelmModel, new()
             => new DataLoaderHelper<T>(relmContext, modelData).LoadField(predicate);
-        
-        /// <summary>
-        /// Loads and populates a specified field for a collection of models using a data loader.
-        /// </summary>
-        /// <remarks>This method uses a data loader to populate the specified field for each model in the
-        /// collection. The <paramref name="predicate"/> parameter determines which field is loaded.</remarks>
-        /// <typeparam name="T">The type of the model in the collection. Must implement <see cref="IRelmModel"/>.</typeparam>
-        /// <typeparam name="R">The type of the field to be loaded.</typeparam>
-        /// <param name="modelData">The collection of models for which the field will be loaded.</param>
-        /// <param name="relmQuickContext">The context used to facilitate data loading operations.</param>
-        /// <param name="predicate">An expression specifying the field to be loaded for each model in the collection.</param>
-        /// <returns>The original collection of models with the specified field loaded.</returns>
-        public static ICollection<T> LoadDataLoaderField<T, R>(this ICollection<T> modelData, IRelmQuickContext relmQuickContext, Expression<Func<T, R>> predicate) where T : IRelmModel, new()
-            => new DataLoaderHelper<T>(relmQuickContext, modelData).LoadField(predicate);
 
         /// <summary>
         /// Loads and populates a specified field for a collection of models using a data loader.
@@ -640,16 +475,14 @@ namespace CoreRelm.Extensions
         /// cref="ICollection{T}"/> of child objects, or <see langword="null"/> if there are no children.</param>
         /// <returns>A flattened <see cref="ICollection{T}"/> containing all objects in the hierarchy, including the top-level
         /// objects and their descendants.</returns>
-        public static ICollection<T> FlattenTreeObject<T>(this IEnumerable<T> enumerableList, Func<T, ICollection<T>> getChildrenFunction)
-        	=> enumerableList
+        public static ICollection<T> FlattenTreeObject<T>(this IEnumerable<T> enumerableList, Func<T, ICollection<T?>> getChildrenFunction)
+        	=> [.. enumerableList
                 .SelectMany(enumerableItem =>
                     Enumerable
                     .Repeat(enumerableItem, 1)
                     .Concat(getChildrenFunction(enumerableItem)
-                        ?.FlattenTreeObject(getChildrenFunction)
-                        ??
-                        Enumerable.Empty<T>()))
-                .ToList();
+                            ?.FlattenTreeObject(getChildrenFunction)
+                        ?? []))];
         
         /// <summary>
         /// Generates a collection of dynamic objects (DTOs) from the specified collection of base objects,  including
@@ -673,8 +506,8 @@ namespace CoreRelm.Extensions
         /// properties specified in <paramref name="includeProperties"/> and excludes those in  <paramref
         /// name="excludeProperties"/>, along with any additional properties provided by  <paramref
         /// name="getAdditionalObjectProperties"/>.</returns>
-        public static ICollection<dynamic> GenerateDTO<T>(this IEnumerable<T> baseObjects, ICollection<string> includeProperties = null, ICollection<string> excludeProperties = null, string sourceObjectName = null, Func<IRelmModel, Dictionary<string, object>> getAdditionalObjectProperties = null) where T : IRelmModel
-        	=> baseObjects.Select(x => x.GenerateDTO(includeProperties: includeProperties, excludeProperties: excludeProperties, sourceObjectName: sourceObjectName, getAdditionalObjectProperties: getAdditionalObjectProperties)).ToList();
+        public static ICollection<dynamic> GenerateDTO<T>(this IEnumerable<T> baseObjects, ICollection<string>? includeProperties = null, ICollection<string>? excludeProperties = null, string? sourceObjectName = null, Func<IRelmModel, Dictionary<string, object>>? getAdditionalObjectProperties = null) where T : IRelmModel
+        	=> [.. baseObjects.Select(x => x.GenerateDTO(includeProperties: includeProperties, excludeProperties: excludeProperties, sourceObjectName: sourceObjectName, getAdditionalObjectProperties: getAdditionalObjectProperties))];
         
         /// <summary>
         /// Retrieves the key-value pair associated with the specified key in the dictionary.
@@ -685,5 +518,6 @@ namespace CoreRelm.Extensions
         /// <param name="key">The key whose associated key-value pair is to be retrieved. Must exist in the dictionary.</param>
         /// <returns>A <see cref="KeyValuePair{TKey, TValue}"/> containing the specified key and its associated value.</returns>
         public static KeyValuePair<TKey, TValue> GetEntry<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key)
-        	=> new KeyValuePair<TKey, TValue>(key, dictionary[key]);    }
+        	=> new(key, dictionary[key]);    
+    }
 }

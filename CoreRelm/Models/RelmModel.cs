@@ -44,7 +44,7 @@ namespace CoreRelm.Models
         /// <remarks>This event is triggered after a DTO has been processed, providing the processed DTO
         /// as part of the event data. Subscribers can use this event to perform additional actions or handle the
         /// processed DTO as needed.</remarks>
-        public event EventHandler<DtoEventArgs> DtoTypeProcessor;
+        public event EventHandler<DtoEventArgs>? DtoTypeProcessor;
 
         /// <summary>
         /// Gets or sets the unique auto-number row identifier for the entity.
@@ -64,7 +64,7 @@ namespace CoreRelm.Models
         [RelmKey]
         [RelmDto]
         [RelmColumn(columnSize: 45, isNullable: false, unique: true)]
-        public string InternalId { get; set; }
+        public string? InternalId { get; set; }
 
         /// <summary>
         /// Gets or sets the creation date and time of the entity.
@@ -124,8 +124,7 @@ namespace CoreRelm.Models
         public RelmModel(IRelmModel fromModel)
         {
             // surface copy all properties from the FromModel to this one
-            if (fromModel == null)
-                throw new ArgumentNullException(nameof(fromModel));
+            ArgumentNullException.ThrowIfNull(fromModel);
 
             var sourceType = fromModel.GetType();
             var targetType = this.GetType();
@@ -140,7 +139,7 @@ namespace CoreRelm.Models
 
             foreach (var target in targetList)
             {
-                target.Key.SetValue(this, target.Value.GetValue(fromModel));
+                target.Key.SetValue(this, target.Value?.GetValue(fromModel));
             }
         }
 
@@ -155,7 +154,7 @@ namespace CoreRelm.Models
         /// name="modelData"/> must match the property names of the model for successful mapping.</param>
         /// <param name="alternateTableName">An optional alternate table name to use when searching for data in the <paramref name="modelData"/>.  If not
         /// specified, the default table name is used.</param>
-        public RelmModel(DataRow modelData, string alternateTableName = null)
+        public RelmModel(DataRow modelData, string? alternateTableName = null)
         {
             ResetWithData(modelData, alternateTableName: alternateTableName);
         }
@@ -172,7 +171,7 @@ namespace CoreRelm.Models
         /// <param name="alternateTableName">An optional alternate table name used to match column names in the <see cref="DataRow"/>. If not provided,
         /// the model's type name is used as the table name.</param>
         /// <returns>The current model instance, updated with the data from the specified <see cref="DataRow"/>.</returns>
-        public IRelmModel ResetWithData(DataRow modelData, string alternateTableName = null)
+        public IRelmModel ResetWithData(DataRow modelData, string? alternateTableName = null)
         {
             var tableName = alternateTableName ?? GetType().Name;
 
@@ -182,15 +181,15 @@ namespace CoreRelm.Models
             var jsonConverters = underscoreProperties
                 .Select(x => x.Value.Item2.GetCustomAttribute<JsonConverterAttribute>())
                 .Where(x => x != null)
-                .Distinct(new JsonConverterAttributeEqualityComparer())
-                .Select(x => (JsonConverter)Activator.CreateInstance(x.ConverterType, x.ConverterParameters))
+                .Distinct(new JsonConverterAttributeEqualityComparer()!)
+                .Select(x => (JsonConverter)Activator.CreateInstance(x!.ConverterType, x.ConverterParameters)!)
                 .ToArray();
 
             // match up all properties to columns using underscore names and populate matches with data from the row
             foreach (var underscoreName in underscoreProperties)
             {
                 // first do the default column names
-                if (modelData.Table.Columns.IndexOf(underscoreName.Key) >= 0 && !(modelData[underscoreName.Key] is DBNull) && underscoreName.Value.Item2.SetMethod != null)
+                if (modelData.Table.Columns.IndexOf(underscoreName.Key) >= 0 && modelData[underscoreName.Key] is not DBNull && underscoreName.Value.Item2.SetMethod != null)
                 {
                     var jsonConverter = underscoreName.Value.Item2.GetCustomAttribute<JsonConverterAttribute>();
                     if (jsonConverter == null)
@@ -200,7 +199,7 @@ namespace CoreRelm.Models
                 }
 
                 // then do the alternate table names
-                if (modelData.Table.Columns.IndexOf($"{underscoreName.Key}_{tableName}") >= 0 && !(modelData[$"{underscoreName.Key}_{tableName}"] is DBNull) && underscoreName.Value.Item2.SetMethod != null)
+                if (modelData.Table.Columns.IndexOf($"{underscoreName.Key}_{tableName}") >= 0 && modelData[$"{underscoreName.Key}_{tableName}"] is not DBNull && underscoreName.Value.Item2.SetMethod != null)
                 {
                     var jsonConverter = underscoreName.Value.Item2.GetCustomAttribute<JsonConverterAttribute>();
                     if (jsonConverter == null)
@@ -227,9 +226,21 @@ namespace CoreRelm.Models
         /// <returns>An object representing the value associated with <paramref name="underscoreKey"/>, converted to the
         /// specified <paramref name="propertyValueType"/>. Returns <see langword="null"/> if the value is <see
         /// cref="DBNull"/>.</returns>
-        private object GetValueData(string underscoreKey, Type propertyValueType, DataRow modelData)
+        /// <exception cref="ArgumentException">Thrown if <paramref name="underscoreKey"/> is null, empty, or does not exist in the
+        /// <paramref name="modelData"/>.</exception>
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="modelData"/> is <see langword="null"/>.</exception>
+        private object? GetValueData(string underscoreKey, Type propertyValueType, DataRow modelData)
         {
-            object valueData;
+            object? valueData;
+
+            if (string.IsNullOrEmpty(underscoreKey))
+                throw new ArgumentException("Underscore key cannot be null or empty.", nameof(underscoreKey));
+
+            if (modelData == null)
+                throw new ArgumentNullException(nameof(modelData), "Model data cannot be null.");
+
+            if (modelData.Table.Columns.IndexOf(underscoreKey) < 0)
+                throw new ArgumentException($"The specified key '{underscoreKey}' does not exist in the provided DataRow.", nameof(underscoreKey));
 
             // most primitive types are just 1:1 passthrough and don't require post-processing
             if (propertyValueType == modelData[underscoreKey].GetType() || modelData[underscoreKey].GetType() == typeof(DateTime))
@@ -237,7 +248,7 @@ namespace CoreRelm.Models
 
             // if it's an Enum, do a parse
             else if (propertyValueType.BaseType == typeof(Enum))
-                valueData = Enum.Parse(propertyValueType, modelData[underscoreKey].ToString());
+                valueData = Enum.Parse(propertyValueType, modelData[underscoreKey].ToString()!);
 
             // if we're putting it in a DateTime, but we have a string, parse it
             else if (propertyValueType == typeof(DateTime) && modelData[underscoreKey].GetType() == typeof(string))
@@ -248,7 +259,7 @@ namespace CoreRelm.Models
                 valueData = TimeSpan.TryParse(modelData[underscoreKey].ToString(), out TimeSpan _timeSpanData) ? _timeSpanData : default;
 
             else if (propertyValueType == typeof(char) && modelData[underscoreKey].GetType() == typeof(string))
-                valueData = modelData[underscoreKey].ToString()?[0];
+                valueData = modelData[underscoreKey].ToString()![0];
 
             else if (propertyValueType == typeof(string) && modelData[underscoreKey].GetType() == typeof(byte[]))
                 valueData = System.Text.Encoding.UTF8.GetString((byte[])modelData[underscoreKey]);
@@ -259,7 +270,7 @@ namespace CoreRelm.Models
                 if (modelData[underscoreKey] is DBNull)
                     valueData = null;
                 else
-                    valueData = JsonConvert.DeserializeObject(modelData[underscoreKey].ToString(), propertyValueType);
+                    valueData = JsonConvert.DeserializeObject(modelData[underscoreKey].ToString()!, propertyValueType);
             }
 
             return valueData;
@@ -309,6 +320,29 @@ namespace CoreRelm.Models
         /// database schema matches the structure of the object being written.</remarks>
         /// <param name="existingConnection">An existing and open <see cref="MySqlConnection"/> to use for writing the data. The connection must remain
         /// open for the duration of the operation.</param>
+        /// <param name="batchSize">The number of rows to write to the database in each batch. Must be greater than zero. Defaults to 100.</param>
+        /// <param name="allowAutoIncrementColumns">A value indicating whether auto-increment columns should be included in the write operation. If <see
+        /// langword="true"/>, auto-increment columns will be written; otherwise, they will be excluded.</param>
+        /// <param name="allowPrimaryKeyColumns">A value indicating whether primary key columns should be included in the write operation. If <see
+        /// langword="true"/>, primary key columns will be written; otherwise, they will be excluded.</param>
+        /// <param name="allowUniqueColumns">A value indicating whether unique columns should be included in the write operation. If <see
+        /// langword="true"/>, unique columns will be written; otherwise, they will be excluded.</param>
+        /// <param name="allowAutoDateColumns">A value indicating whether auto-generated date columns (e.g., timestamps) should be included in the write
+        /// operation. If <see langword="true"/>, auto-date columns will be written; otherwise, they will be excluded.</param>
+        /// <returns>The number of rows successfully written to the database.</returns>
+        public int WriteToDatabase(MySqlConnection existingConnection, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
+        {
+            return DataOutputOperations.BulkTableWrite(existingConnection, this, forceType: this.GetType(), batchSize: batchSize, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
+        }
+
+        /// <summary>
+        /// Writes the current object to the database using the table specified in the <c>RelmTable</c> attribute.
+        /// </summary>
+        /// <remarks>This method performs a bulk write operation to the database. The table to which the
+        /// data is written is determined by the <c>RelmTable</c> attribute applied to the object's type. Ensure that the
+        /// database schema matches the structure of the object being written.</remarks>
+        /// <param name="existingConnection">An existing and open <see cref="MySqlConnection"/> to use for writing the data. The connection must remain
+        /// open for the duration of the operation.</param>
         /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> under which the data will be written. If not provided, the
         /// operation will execute outside of a transaction.</param>
         /// <param name="batchSize">The number of rows to write to the database in each batch. Must be greater than zero. Defaults to 100.</param>
@@ -321,9 +355,9 @@ namespace CoreRelm.Models
         /// <param name="allowAutoDateColumns">A value indicating whether auto-generated date columns (e.g., timestamps) should be included in the write
         /// operation. If <see langword="true"/>, auto-date columns will be written; otherwise, they will be excluded.</param>
         /// <returns>The number of rows successfully written to the database.</returns>
-        public int WriteToDatabase(MySqlConnection existingConnection, MySqlTransaction sqlTransaction = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
+        public int WriteToDatabase(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
         {
-            return DataOutputOperations.BulkTableWrite(existingConnection, this, sqlTransaction: sqlTransaction, forceType: this.GetType(), batchSize: batchSize, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
+            return DataOutputOperations.BulkTableWrite(existingConnection, sqlTransaction, this, forceType: this.GetType(), batchSize: batchSize, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
         }
 
         /// <summary>
@@ -350,34 +384,6 @@ namespace CoreRelm.Models
         /// will be excluded.</param>
         /// <returns>The number of rows successfully written to the database.</returns>
         public int WriteToDatabase(IRelmContext relmContext, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
-        {
-            return DataOutputOperations.BulkTableWrite(relmContext, this, forceType: this.GetType(), batchSize: batchSize, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
-        }
-
-        /// <summary>
-        /// Writes the current object to the database using the table specified in the <c>RelmTable</c> attribute.
-        /// </summary>
-        /// <remarks>This method performs a bulk write operation, which can improve performance when
-        /// writing large amounts of data. Ensure that the provided <paramref name="relmContext"/> is properly
-        /// configured and that the database schema matches the structure of the data being written. The behavior of the
-        /// write operation can be customized using the provided options.</remarks>
-        /// <param name="relmContext">The database context used to perform the write operation. This context must be properly configured        
-        /// to connect to the target database.</param>
-        /// <param name="batchSize">The number of records to include in each batch during the bulk write operation. The default value is 100.</param>
-        /// <param name="allowAutoIncrementColumns">A value indicating whether columns with auto-increment constraints are allowed to be written. If <see
-        /// langword="true"/>,         auto-increment columns will be included in the write operation; otherwise, they
-        /// will be excluded. The default value is <see langword="false"/>.</param>
-        /// <param name="allowPrimaryKeyColumns">A value indicating whether primary key columns are allowed to be written. If <see langword="true"/>,        
-        /// primary key columns will be included in the write operation; otherwise, they will be excluded. The default
-        /// value is <see langword="false"/>.</param>
-        /// <param name="allowUniqueColumns">A value indicating whether columns with unique constraints are allowed to be written. If <see
-        /// langword="true"/>,         unique columns will be included in the write operation; otherwise, they will be
-        /// excluded. The default value is <see langword="false"/>.</param>
-        /// <param name="allowAutoDateColumns">A value indicating whether columns with automatic date constraints (e.g., timestamps) are allowed to be
-        /// written.         If <see langword="true"/>, such columns will be included in the write operation; otherwise,
-        /// they will be excluded.         The default value is <see langword="false"/>.</param>
-        /// <returns>The number of records successfully written to the database.</returns>
-        public int WriteToDatabase(IRelmQuickContext relmContext, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
         {
             return DataOutputOperations.BulkTableWrite(relmContext, this, forceType: this.GetType(), batchSize: batchSize, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
         }
@@ -420,10 +426,9 @@ namespace CoreRelm.Models
         public T CopyFromSource<T>(T source) where T : RelmModel, new()
         {
             // create a new object of type T, then run through all the properties and members available on source and copy the value of each property and member that exists on the new object
-            if (source == null)
-                throw new ArgumentNullException(nameof(source));
+            ArgumentNullException.ThrowIfNull(source);
 
-            T target = new T();
+            T target = new();
 
             foreach (var property in typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance))
             {
@@ -514,14 +519,14 @@ namespace CoreRelm.Models
                                     : new Type[] { x.BaseType })
                                 .Contains(typeof(RelmModel)))
                         {
-                        /*
-                        var isEnumerable = property.PropertyType.GetInterfaces().Any(y => y.IsGenericType && y.GetGenericTypeDefinition() == typeof(IEnumerable<>));
-                        var isRelmModel = property
-                            .PropertyType
-                            .GenericTypeArguments
-                            .FlattenTreeObject(x => string.IsNullOrWhiteSpace(x?.BaseType?.Name) ? null : new Type[] { x.BaseType })
-                            .Contains(typeof(RelmModel));
-                        if (isEnumerable && isRelmModel)
+                            /*
+                            var isEnumerable = property.PropertyType.GetInterfaces().Any(y => y.IsGenericType && y.GetGenericTypeDefinition() == typeof(IEnumerable<>));
+                            var isRelmModel = property
+                                .PropertyType
+                                .GenericTypeArguments
+                                .FlattenTreeObject(x => string.IsNullOrWhiteSpace(x?.BaseType?.Name) ? null : new Type[] { x.BaseType })
+                                .Contains(typeof(RelmModel));
+                            if (isEnumerable && isRelmModel)
                             * /
                             /*
                             seed.Add(property.Name,
@@ -651,7 +656,7 @@ namespace CoreRelm.Models
 
                     if (!string.IsNullOrWhiteSpace(currentIteration))
                         dtoCandidates.Add(currentIteration);
-        }
+                }
                 if (!string.IsNullOrWhiteSpace(property.Name))
                     dtoCandidates.Add(property.Name);
 
@@ -772,7 +777,7 @@ namespace CoreRelm.Models
         private static IEnumerable<IEnumerable<T>> CartesianProduct<T>(IEnumerable<IEnumerable<T>> sequences)
         {
             // base case:
-            IEnumerable<IEnumerable<T>> result = new[] { Enumerable.Empty<T>() };
+            IEnumerable<IEnumerable<T>> result = [[]];
             foreach (var sequence in sequences)
             {
                 var s = sequence; // don't close over the loop variable
@@ -780,7 +785,7 @@ namespace CoreRelm.Models
                 result =
                     from seq in result
                     from item in s
-                    select seq.Concat(new[] { item });
+                    select seq.Concat([item]);
             }
             return result;
         }

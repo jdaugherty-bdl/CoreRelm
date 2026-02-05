@@ -51,12 +51,10 @@ namespace CoreRelm.Models
         public bool IsReadOnly => _items?.IsReadOnly ?? true;
 
         private readonly IRelmContext _currentContext;
-        private readonly IRelmQuickContext _currentQuickContext;
         private IRelmDataLoader<T> _dataLoader;
         private FieldLoaderRegistry<IRelmFieldLoader> _fieldDataLoaders;
-        private FieldLoaderRegistry<IRelmQuickFieldLoader> _fieldDataLoadersQuick;
 
-        private ICollection<T> _items;
+        private ICollection<T>? _items;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RelmDataSet{T}"/> class with the specified context and data
@@ -70,29 +68,9 @@ namespace CoreRelm.Models
         {
             _currentContext = currentContext ?? throw new ArgumentNullException(nameof(currentContext));
 
-            SetupDataSet(dataLoader);
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RelmDataSet{T}"/> class with the specified context and data
-        /// loader.
-        /// </summary>
-        /// <param name="currentContext">The current quick context used to manage the dataset's operational scope. Cannot be <see langword="null"/>.</param>
-        /// <param name="dataLoader">The data loader responsible for loading and managing the dataset's data. Cannot be <see langword="null"/>.</param>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="currentContext"/> is <see langword="null"/>.</exception>
-        public RelmDataSet(IRelmQuickContext currentContext, IRelmDataLoader<T> dataLoader)
-        {
-            _currentQuickContext = currentContext ?? throw new ArgumentNullException(nameof(currentContext));
-
-            SetupDataSet(dataLoader);
-        }
-
-        private void SetupDataSet(IRelmDataLoader<T> dataLoader)
-        { 
             _dataLoader = dataLoader ?? throw new ArgumentNullException(nameof(dataLoader));
 
             _fieldDataLoaders = new FieldLoaderRegistry<IRelmFieldLoader>();
-            _fieldDataLoadersQuick = new FieldLoaderRegistry<IRelmQuickFieldLoader>();
 
             Modified = false;
         }
@@ -106,7 +84,7 @@ namespace CoreRelm.Models
         public IEnumerator<T> GetEnumerator()
         {
             // get cached items if not null, otherwise load new items list if not null, otherwise return empty collection
-            return (_items ?? Load() ?? Enumerable.Empty<T>())?.GetEnumerator();
+            return (_items ?? Load() ?? []).GetEnumerator();
         }
 
         /// <summary>
@@ -138,25 +116,6 @@ namespace CoreRelm.Models
                 throw new ArgumentException($"The field {fieldName} does not exist on the model {typeof(T).Name}");
 
             return _fieldDataLoaders.RegisterFieldLoader(fieldName, dataLoader);
-        }
-
-        /// <summary>
-        /// Registers a field loader for the specified field name.
-        /// </summary>
-        /// <remarks>This method ensures that the specified field exists on the model type <typeparamref
-        /// name="T"/> before registering the loader.</remarks>
-        /// <param name="fieldName">The name of the field on the model for which the loader is being registered.  The field must exist on the
-        /// model type <typeparamref name="T"/>.</param>
-        /// <param name="dataLoader">An instance of <see cref="IRelmQuickFieldLoader"/> that provides the logic for loading the field's data.</param>
-        /// <returns>The registered <see cref="IRelmQuickFieldLoader"/> instance for the specified field.</returns>
-        /// <exception cref="ArgumentException">Thrown if the specified <paramref name="fieldName"/> does not exist on the model type <typeparamref
-        /// name="T"/>.</exception>
-        public IRelmQuickFieldLoader SetFieldLoader(string fieldName, IRelmQuickFieldLoader dataLoader)
-        {
-            if (!typeof(T).GetProperties().Any(x => x.Name == fieldName))
-                throw new ArgumentException($"The field {fieldName} does not exist on the model {typeof(T).Name}");
-
-            return _fieldDataLoadersQuick.RegisterFieldLoader(fieldName, dataLoader);
         }
 
         /// <summary>
@@ -208,7 +167,7 @@ namespace CoreRelm.Models
         /// <returns>An <see cref="IRelmDataSet{T}"/> that includes the specified reference.</returns>
         public IRelmDataSet<T> Reference<S>(Expression<Func<T, S>> predicate)
         {
-            return Reference(predicate, (ICollection<Expression<Func<S, object>>>)null);
+            return Reference(predicate, (ICollection<Expression<Func<S, object>>?>?)null);
         }
 
         /// <summary>
@@ -222,9 +181,9 @@ namespace CoreRelm.Models
         /// <param name="additionalConstraints">An expression that defines additional constraints to apply to the related entities.</param>
         /// <returns>An <see cref="IRelmDataSet{T}"/> that includes the specified navigation property and applies the given
         /// constraints.</returns>
-        public IRelmDataSet<T> Reference<S>(Expression<Func<T, ICollection<S>>> predicate, Expression<Func<S, object>> additionalConstraints)
+        public IRelmDataSet<T> Reference<S>(Expression<Func<T, ICollection<S>>> predicate, Expression<Func<S, object>>? additionalConstraints)
         {
-            return Reference(predicate, new Expression<Func<S, object>>[] { additionalConstraints });
+            return Reference(predicate, [additionalConstraints]);
         }
 
         /// <summary>
@@ -238,9 +197,9 @@ namespace CoreRelm.Models
         /// <param name="additionalConstraints">An expression that defines additional constraints to apply to the related entity.</param>
         /// <returns>An <see cref="IRelmDataSet{T}"/> representing the related dataset that matches the specified predicate and
         /// constraints.</returns>
-        public IRelmDataSet<T> Reference<S>(Expression<Func<T, S>> predicate, Expression<Func<S, object>> additionalConstraints)
+        public IRelmDataSet<T> Reference<S>(Expression<Func<T, S>> predicate, Expression<Func<S, object>>? additionalConstraints)
         {
-            return Reference(predicate, new Expression<Func<S, object>>[] { additionalConstraints });
+            return Reference(predicate, [additionalConstraints]);
         }
 
         /// <summary>
@@ -255,7 +214,7 @@ namespace CoreRelm.Models
         /// <param name="predicate">An expression that specifies the collection navigation property to configure.</param>
         /// <param name="additionalConstraints">A collection of expressions representing additional constraints to apply to the related entities.</param>
         /// <returns>An <see cref="IRelmDataSet{T}"/> representing the configured reference navigation property.</returns>
-        public IRelmDataSet<T> Reference<S>(Expression<Func<T, ICollection<S>>> predicate, ICollection<Expression<Func<S, object>>> additionalConstraints)
+        public IRelmDataSet<T> Reference<S>(Expression<Func<T, ICollection<S>>> predicate, ICollection<Expression<Func<S, object>>?>? additionalConstraints)
         {
             return InternalReference(predicate, additionalConstraints);
         }
@@ -268,7 +227,7 @@ namespace CoreRelm.Models
         /// <param name="additionalConstraints">A collection of expressions that define additional constraints to apply to the related dataset.</param>
         /// <returns>An <see cref="IRelmDataSet{T}"/> representing the related dataset that matches the specified predicate and
         /// constraints.</returns>
-        public IRelmDataSet<T> Reference<S>(Expression<Func<T, S>> predicate, ICollection<Expression<Func<S, object>>> additionalConstraints)
+        public IRelmDataSet<T> Reference<S>(Expression<Func<T, S>> predicate, ICollection<Expression<Func<S, object>>?>? additionalConstraints)
         {
             return InternalReference(predicate, additionalConstraints);
         }
@@ -281,13 +240,13 @@ namespace CoreRelm.Models
         /// <param name="additionalConstraints">A collection of lambda expressions specifying additional constraints for the reference.  If null, no
         /// additional constraints are applied.</param>
         /// <returns>The current dataset instance with the reference applied.</returns>
-        private IRelmDataSet<T> InternalReference<S>(LambdaExpression predicate, ICollection<Expression<Func<S, object>>> additionalConstraints)
+        private IRelmDataSet<T> InternalReference<S>(LambdaExpression predicate, ICollection<Expression<Func<S, object>>?>? additionalConstraints)
         {
             var referenceExpression = _dataLoader.AddExpression(Command.Reference, predicate.Body);
 
             if (additionalConstraints != null)
                 foreach (var additionalConstraint in additionalConstraints)
-                    referenceExpression.AddAdditionalCommand(Command.Reference, additionalConstraint.Body);
+                    referenceExpression.AddAdditionalCommand(Command.Reference, additionalConstraint?.Body);
 
             return this;
         }
@@ -299,7 +258,7 @@ namespace CoreRelm.Models
         /// share the same identifier, only the first match is returned.</remarks>
         /// <param name="id">The unique identifier of the item to find.</param>
         /// <returns>The first item that matches the specified identifier, or <see langword="null"/>  if no such item is found.</returns>
-        public T Find(int id)
+        public T? Find(int id)
         {
             return Where(x => x.Id == id).FirstOrDefault();
         }
@@ -310,7 +269,7 @@ namespace CoreRelm.Models
         /// <param name="InternalId">The internal identifier to search for. Cannot be null.</param>
         /// <returns>The first element that matches the specified internal identifier, or <see langword="null"/> if no match is
         /// found.</returns>
-        public T Find(string InternalId)
+        public T? Find(string InternalId)
         {
             return Where(x => x.InternalId == InternalId).FirstOrDefault();
         }
@@ -323,7 +282,7 @@ namespace CoreRelm.Models
         /// for reference types,  or the default zero value for value types).</remarks>
         /// <returns>The first element of the sequence, or the default value for the type <typeparamref name="T"/> if the
         /// sequence is empty.</returns>
-        public T FirstOrDefault()
+        public T? FirstOrDefault()
         {
             return FirstOrDefault(null, true);
         }
@@ -336,7 +295,7 @@ namespace CoreRelm.Models
         /// <param name="loadItems">A value indicating whether to load items into the collection before retrieving the first element.</param>
         /// <returns>The first element of the collection if it contains any elements; otherwise, the default value for the type
         /// <typeparamref name="T"/>.</returns>
-        public T FirstOrDefault(bool loadItems)
+        public T? FirstOrDefault(bool loadItems)
         {
             return FirstOrDefault(null, loadItems);
         }
@@ -348,7 +307,7 @@ namespace CoreRelm.Models
         /// <param name="predicate">A function to test each element for a condition. The function must not be <see langword="null"/>.</param>
         /// <returns>The first element in the sequence that satisfies the condition defined by <paramref name="predicate"/>,  or
         /// the default value of type <typeparamref name="T"/> if no such element is found.</returns>
-        public T FirstOrDefault(Expression<Func<T, bool>> predicate)
+        public T? FirstOrDefault(Expression<Func<T, bool>> predicate)
         {
             return FirstOrDefault(predicate, true);
         }
@@ -367,7 +326,7 @@ namespace CoreRelm.Models
         /// the items are loaded from the database; otherwise, the method operates on the existing items.</param>
         /// <returns>The first element that satisfies the condition defined by <paramref name="predicate"/>,  or the default
         /// value of type <typeparamref name="T"/> if no such element is found.</returns>
-        public T FirstOrDefault(Expression<Func<T, bool>> predicate, bool loadItems)
+        public T? FirstOrDefault(Expression<Func<T, bool>>? predicate, bool loadItems)
         {
             if (loadItems)
             {
@@ -405,7 +364,7 @@ namespace CoreRelm.Models
         /// includes all items unless specified otherwise in an overload.</remarks>
         /// <returns>A collection of items of type <typeparamref name="T"/>. The collection may be empty if no items are
         /// available.</returns>
-        public ICollection<T> Load()
+        public ICollection<T>? Load()
         {
             return Load(true);
         }
@@ -423,62 +382,56 @@ namespace CoreRelm.Models
         /// otherwise, only the data is loaded.</param>
         /// <returns>A collection of items of type <typeparamref name="T"/> representing the loaded data. The collection will be
         /// empty if no data is available.</returns>
-        public ICollection<T> Load(bool loadDataLoaders)
+        public ICollection<T>? Load(bool loadDataLoaders)
         {
             _items = _dataLoader.GetLoadData();
 
-            if (_items?.Any() ?? false)
+            if (!(_items?.Any() ?? false))
+                return _items;
+            
+            if (loadDataLoaders)
             {
-                if (loadDataLoaders)
+                // find all fields marked with a RelmFieldLoader attribute that have a type derived from IRelmFieldLoader<> and add them to the list of field loaders as long as they are not already there
+                var relevantContextName = nameof(IRelmFieldLoader);
+                var fieldLoaders = new List<PropertyInfo>();
+                var loaderProperties = typeof(T).GetProperties();
+                foreach (var property in loaderProperties)
                 {
-                    // find all fields marked with a RelmFieldLoader attribute that have a type derived from IRelmFieldLoader<> and add them to the list of field loaders as long as they are not already there
-                    var relevantContextName = _currentContext == null ? nameof(IRelmQuickFieldLoader) : nameof(IRelmFieldLoader);
-                    var fieldLoaders = new List<PropertyInfo>();
-                    var loaderProperties = typeof(T).GetProperties();
-                    foreach (var property in loaderProperties)
+                    var dataLoaderAttributes = property.GetCustomAttributes<RelmDataLoader>();
+                    if (dataLoaderAttributes?.Any() ?? false)
                     {
-                        var dataLoaderAttributes = property.GetCustomAttributes<RelmDataLoader>();
-                        if (dataLoaderAttributes?.Any() ?? false)
+                        foreach (var dataLoaderAttribute in dataLoaderAttributes)
                         {
-                            foreach (var dataLoaderAttribute in dataLoaderAttributes)
+                            if (dataLoaderAttribute.LoaderType.GetInterface(relevantContextName) != null)
                             {
-                                if (dataLoaderAttribute.LoaderType.GetInterface(relevantContextName) != null)
-                                {
-                                    fieldLoaders.Add(property);
-                                    break;
-                                }
+                                fieldLoaders.Add(property);
+                                break;
                             }
                         }
                     }
-
-                    foreach (var field in fieldLoaders)
-                    {
-                        if (_fieldDataLoaders.HasFieldLoader(field.Name) || _fieldDataLoadersQuick.HasFieldLoader(field.Name))
-                            continue;
-
-                        var dataLoaderAttribute = field.GetCustomAttributes<RelmDataLoader>().FirstOrDefault(x => x.LoaderType.GetInterfaces().FirstOrDefault(y => y.Name == relevantContextName) != null);
-                        if (_currentQuickContext != null)
-                            _fieldDataLoadersQuick.RegisterFieldLoader(field.Name, (IRelmQuickFieldLoader)Activator.CreateInstance(dataLoaderAttribute.LoaderType, new object[] { _currentQuickContext, field.Name, dataLoaderAttribute.KeyFields }));
-                        if (_currentContext != null)
-                            _fieldDataLoaders.RegisterFieldLoader(field.Name, (IRelmFieldLoader)Activator.CreateInstance(dataLoaderAttribute.LoaderType, new object[] { _currentContext, field.Name, dataLoaderAttribute.KeyFields }));
-                    }
-
-                    // execute all field loaders
-                    var fieldHelper = new FieldLoaderHelper<T>(_items);
-                    foreach (var fieldLoader in _fieldDataLoaders)
-                    {
-                        fieldHelper.LoadData(fieldLoader);
-                    }
-                    foreach (var fieldLoader in _fieldDataLoadersQuick)
-                    {
-                        fieldHelper.LoadData(fieldLoader);
-                    }
                 }
 
-                // load all references
-                if (_dataLoader.LastCommandsExecuted?.ContainsKey(Command.Reference) ?? false)
-                    LoadReference();
+                foreach (var field in fieldLoaders)
+                {
+                    if (_fieldDataLoaders.HasFieldLoader(field.Name))
+                        continue;
+
+                    var dataLoaderAttribute = field.GetCustomAttributes<RelmDataLoader>().FirstOrDefault(x => x.LoaderType.GetInterfaces().FirstOrDefault(y => y.Name == relevantContextName) != null);
+                    if (_currentContext != null && dataLoaderAttribute?.LoaderType != null)
+                        _fieldDataLoaders.RegisterFieldLoader(field.Name, (IRelmFieldLoader?)Activator.CreateInstance(dataLoaderAttribute.LoaderType, [_currentContext, field.Name, dataLoaderAttribute.KeyFields]));
+                }
+
+                // execute all field loaders
+                var fieldHelper = new FieldLoaderHelper<T>(_items);
+                foreach (var fieldLoader in _fieldDataLoaders)
+                {
+                    fieldHelper.LoadData(fieldLoader);
+                }
             }
+
+            // load all references
+            if (_dataLoader.LastCommandsExecuted?.ContainsKey(Command.Reference) ?? false)
+                LoadReference();
 
             return _items;
         }
@@ -509,9 +462,7 @@ namespace CoreRelm.Models
         /// <exception cref="Exception">General exception for unexpected issues, such as a failure to find attributes or properties.</exception>
         private void LoadReference()
         {
-            var objectsLoader = _currentContext == null
-                ? new ForeignObjectsLoader<T>(_items, _currentQuickContext)
-                : new ForeignObjectsLoader<T>(_items, _currentContext);
+            var objectsLoader = new ForeignObjectsLoader<T>(_items, _currentContext);
 
             foreach (var reference in _dataLoader.LastCommandsExecuted[Command.Reference])
             {
@@ -528,7 +479,7 @@ namespace CoreRelm.Models
         /// <returns>The current dataset instance, allowing for method chaining.</returns>
         public IRelmDataSet<T> Entry(T Item)
         {
-            _items = new List<T>();
+            _items = [];
                 
             Add(Item, Persist: false);
 
@@ -547,7 +498,7 @@ namespace CoreRelm.Models
         /// <returns>The current dataset instance with the added item.</returns>
         public IRelmDataSet<T> Entry(T Item, bool Persist = true)
         {
-            _items = new List<T>();
+            _items = [];
 
             Add(Item, Persist: Persist);
 
@@ -702,7 +653,7 @@ namespace CoreRelm.Models
             // check if the item is already in the list, and if so, replace it, otherwise, add it
             if (_items?.Any(x => x.InternalId == Item.InternalId) ?? false)
             {
-                _items = _items.Select(x => x.InternalId == Item.InternalId ? Item : x).ToList();
+                _items = [.. _items.Select(x => x.InternalId == Item.InternalId ? Item : x)];
 
                 return Save();
             }
@@ -721,11 +672,11 @@ namespace CoreRelm.Models
         public int Save()
         {
             int rowsUpdated;
-            var contextOptions = _currentContext?.ContextOptions ?? _currentQuickContext?.ContextOptions;
+            var contextOptions = _currentContext?.ContextOptions ?? new();
             if (contextOptions.OptionsBuilderType == Options.RelmContextOptionsBuilder.OptionsBuilderTypes.OpenConnection)
-                rowsUpdated = _items.WriteToDatabase(contextOptions.DatabaseConnection, sqlTransaction: contextOptions.DatabaseTransaction);
+                rowsUpdated = _items?.WriteToDatabase(contextOptions?.DatabaseConnection, sqlTransaction: contextOptions?.DatabaseTransaction) ?? 0;
             else
-                rowsUpdated = _items.WriteToDatabase(contextOptions.ConnectionStringType);
+                rowsUpdated = _items?.WriteToDatabase(contextOptions?.ConnectionStringType) ?? 0;
 
             Modified = false;
 
@@ -764,7 +715,7 @@ namespace CoreRelm.Models
             if (NewObjectParameters != null)
                 foreach (var property in new RouteValueDictionary(NewObjectParameters))
                     if (_dataLoader.HasUnderscoreProperty(property.Key))
-                        typeof(T).GetProperty(property.Key).SetValue(newObject, property.Value);
+                        typeof(T).GetProperty(property.Key)?.SetValue(newObject, property.Value);
 
             Add(newObject, Persist: Persist);
 
@@ -808,7 +759,7 @@ namespace CoreRelm.Models
         public int Add(T item, bool Persist)
         {
             // Instantiate _items if it has not been initialized
-            _items = _items ?? new List<T>();
+            _items = _items ?? [];
 
             // Add the item to the internal collection
             _items.Add(item);
@@ -816,11 +767,11 @@ namespace CoreRelm.Models
             // If persisting is necessary, write to database
             if (Persist)
             {
-                var contextOptions = _currentContext?.ContextOptions ?? _currentQuickContext?.ContextOptions;
-                if (contextOptions.OptionsBuilderType == Options.RelmContextOptionsBuilder.OptionsBuilderTypes.OpenConnection)
-                    return _items.WriteToDatabase(contextOptions.DatabaseConnection, sqlTransaction: contextOptions.DatabaseTransaction);
+                var contextOptions = _currentContext?.ContextOptions;
+                if (contextOptions?.OptionsBuilderType == Options.RelmContextOptionsBuilder.OptionsBuilderTypes.OpenConnection)
+                    return _items.WriteToDatabase(contextOptions?.DatabaseConnection, sqlTransaction: contextOptions?.DatabaseTransaction);
                 else
-                    return item.WriteToDatabase(contextOptions.ConnectionStringType);
+                    return item.WriteToDatabase(contextOptions?.ConnectionStringType);
             }
             else
                 Modified = true;

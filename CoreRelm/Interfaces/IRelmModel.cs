@@ -38,7 +38,7 @@ namespace CoreRelm.Interfaces
         /// </summary>
         /// <remarks>This GUID identifier is globally unique and is intended to uniquely identify this entity across
         /// all platforms.</remarks>
-        string InternalId { get; set; }
+        string? InternalId { get; set; }
 
         /// <summary>
         /// Gets or sets the date and time when the entity was created.
@@ -138,27 +138,6 @@ namespace CoreRelm.Interfaces
         int WriteToDatabase(IRelmContext relmContext, int batchSize = 10, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false);
 
         /// <summary>
-        /// Writes data to the database using the specified context and batch size, with options to control column
-        /// constraints.
-        /// </summary>
-        /// <remarks>This method provides fine-grained control over which types of columns are included
-        /// during the write operation. Use the boolean parameters to enable or disable specific column constraints as
-        /// needed.</remarks>
-        /// <param name="relmQuickContext">The database context used to perform the write operation. This context must be properly initialized before
-        /// calling this method.</param>
-        /// <param name="batchSize">The number of records to write in each batch. Must be greater than zero. The default value is 10.</param>
-        /// <param name="allowAutoIncrementColumns">A value indicating whether auto-increment columns are allowed during the write operation. If <see
-        /// langword="true"/>, auto-increment columns will be included; otherwise, they will be excluded.</param>
-        /// <param name="allowPrimaryKeyColumns">A value indicating whether primary key columns are allowed during the write operation. If <see
-        /// langword="true"/>, primary key columns will be included; otherwise, they will be excluded.</param>
-        /// <param name="allowUniqueColumns">A value indicating whether unique columns are allowed during the write operation. If <see langword="true"/>,
-        /// unique columns will be included; otherwise, they will be excluded.</param>
-        /// <param name="allowAutoDateColumns">A value indicating whether auto-date columns are allowed during the write operation. If <see
-        /// langword="true"/>, auto-date columns will be included; otherwise, they will be excluded.</param>
-        /// <returns>The total number of records successfully written to the database.</returns>
-        int WriteToDatabase(IRelmQuickContext relmQuickContext, int batchSize = 10, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false);
-
-        /// <summary>
         /// Generates a dynamic Data Transfer Object (DTO) based on the specified properties and additional
         /// configuration.
         /// </summary>
@@ -176,6 +155,6 @@ namespace CoreRelm.Interfaces
         /// <param name="iteration">The current iteration count, used to track recursive or iterative calls. Defaults to 0.</param>
         /// <returns>A dynamic object representing the generated DTO, including the specified properties and any additional
         /// properties provided.</returns>
-        dynamic GenerateDTO(IEnumerable<string> includeProperties = null, IEnumerable<string> excludeProperties = null, string sourceObjectName = null, Func<IRelmModel, Dictionary<string, object>> getAdditionalObjectProperties = null, int iteration = 0);
+        dynamic GenerateDTO(IEnumerable<string>? includeProperties = null, IEnumerable<string>? excludeProperties = null, string? sourceObjectName = null, Func<IRelmModel, Dictionary<string, object>>? getAdditionalObjectProperties = null, int iteration = 0);
     }
 }

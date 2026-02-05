@@ -52,7 +52,7 @@ namespace CoreRelm.Interfaces
         /// <param name="command">The command to which the expression will be added. Cannot be <see langword="null"/>.</param>
         /// <param name="expression">The expression to add to the command. Cannot be <see langword="null"/>.</param>
         /// <returns>An <see cref="IRelmExecutionCommand"/> representing the updated command with the added expression.</returns>
-        IRelmExecutionCommand AddSingleExpression(Command command, Expression expression);
+        IRelmExecutionCommand AddSingleExpression(Command command, Expression? expression);
 
         /// <summary>
         /// Determines whether the specified property key contains an underscore.

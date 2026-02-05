@@ -198,12 +198,12 @@ namespace CoreRelm.Models
         /// represent their corresponding values.</param>
         /// <returns>A collection of data objects of type <typeparamref name="T"/> that match the results of the query.  Returns
         /// an empty collection if no data is found.</returns>
-        public virtual ICollection<T> PullData(string selectQuery, Dictionary<string, object> findOptions)
+        public virtual ICollection<T?> PullData(string selectQuery, Dictionary<string, object> findOptions)
         {
             if (_contextOptionsBuilder.OptionsBuilderType == RelmContextOptionsBuilder.OptionsBuilderTypes.OpenConnection)
-                return RelmHelper.GetDataObjects<T>(_contextOptionsBuilder.DatabaseConnection, selectQuery, findOptions, sqlTransaction: _contextOptionsBuilder.DatabaseTransaction).ToList();
+                return [.. RelmHelper.GetDataObjects<T>(_contextOptionsBuilder.DatabaseConnection!, selectQuery, findOptions)];
             else
-                return RelmHelper.GetDataObjects<T>(_contextOptionsBuilder.ConnectionStringType, selectQuery, findOptions).ToList();
+                return [.. RelmHelper.GetDataObjects<T>(_contextOptionsBuilder.ConnectionStringType!, selectQuery, findOptions)];
         }
 
         /// <summary>
@@ -221,9 +221,9 @@ namespace CoreRelm.Models
             var selectQuery = GetUpdateQuery(findOptions);
 
             if (_contextOptionsBuilder.OptionsBuilderType == RelmContextOptionsBuilder.OptionsBuilderTypes.OpenConnection)
-                return RelmHelper.DoDatabaseWork<int>(_contextOptionsBuilder.DatabaseConnection, selectQuery, findOptions, sqlTransaction: _contextOptionsBuilder.DatabaseTransaction);
+                return RelmHelper.DoDatabaseWork<int>(_contextOptionsBuilder.DatabaseConnection!, selectQuery, findOptions);
             else
-                return RelmHelper.DoDatabaseWork<int>(_contextOptionsBuilder.ConnectionStringType, selectQuery, findOptions);
+                return RelmHelper.DoDatabaseWork<int>(_contextOptionsBuilder.ConnectionStringType!, selectQuery, findOptions);
         }
 
         /// <summary>

@@ -68,7 +68,7 @@ namespace CoreRelm.Interfaces
         /// <param name="predicate">An expression that specifies the navigation property used to reference the related entity.</param>
         /// <param name="additionalConstraints">An expression that defines additional constraints to apply to the referenced data set.</param>
         /// <returns>An <see cref="IRelmDataSet{S}"/> representing the related data set with the specified constraints applied.</returns>
-        IRelmDataSet<T> Reference<S>(Expression<Func<T, S>> predicate, Expression<Func<S, object>> additionalConstraints);
+        IRelmDataSet<T> Reference<S>(Expression<Func<T, S>> predicate, Expression<Func<S, object>>? additionalConstraints);
 
         /// <summary>
         /// Creates a reference to a related data set based on the specified navigation property and applies additional
@@ -82,7 +82,7 @@ namespace CoreRelm.Interfaces
         /// <param name="additionalConstraints">A collection of expressions that define additional constraints to apply to the referenced entities. Each
         /// expression specifies a property of the related entity and a constraint to filter the results.</param>
         /// <returns>An <see cref="IRelmDataSet{T}"/> representing the referenced data set with the applied constraints.</returns>
-        IRelmDataSet<T> Reference<S>(Expression<Func<T, S>> predicate, ICollection<Expression<Func<S, object>>> additionalConstraints);
+        IRelmDataSet<T> Reference<S>(Expression<Func<T, S>> predicate, ICollection<Expression<Func<S, object>>?>? additionalConstraints);
 
         /// <summary>
         /// Creates a reference to a related collection of entities, applying additional constraints to the referenced
@@ -96,7 +96,7 @@ namespace CoreRelm.Interfaces
         /// <param name="additionalConstraints">An expression that defines additional constraints or filters to apply to the referenced entities.</param>
         /// <returns>An <see cref="IRelmDataSet{S}"/> representing the referenced collection with the specified constraints
         /// applied.</returns>
-        IRelmDataSet<T> Reference<S>(Expression<Func<T, ICollection<S>>> predicate, Expression<Func<S, object>> additionalConstraints);
+        IRelmDataSet<T> Reference<S>(Expression<Func<T, ICollection<S>>> predicate, Expression<Func<S, object>>? additionalConstraints);
 
         /// <summary>
         /// Creates a reference to a related collection of entities based on the specified navigation property and
@@ -112,7 +112,7 @@ namespace CoreRelm.Interfaces
         /// expression specifies a property or condition to filter or shape the referenced collection.</param>
         /// <returns>An <see cref="IRelmDataSet{T}"/> that represents the current data set with the specified reference and constraints
         /// applied.</returns>
-        IRelmDataSet<T> Reference<S>(Expression<Func<T, ICollection<S>>> predicate, ICollection<Expression<Func<S, object>>> additionalConstraints);
+        IRelmDataSet<T> Reference<S>(Expression<Func<T, ICollection<S>>> predicate, ICollection<Expression<Func<S, object>>?>? additionalConstraints);
         
         /// <summary>
         /// Retrieves an item of type T with the specified identifier.
@@ -120,21 +120,21 @@ namespace CoreRelm.Interfaces
         /// <param name="itemId">The unique identifier of the item to locate.</param>
         /// <returns>The item of type T that matches the specified identifier, or the default value for type T if no matching
         /// item is found.</returns>
-        T Find(int itemId);
+        T? Find(int itemId);
 
         /// <summary>
         /// Retrieves an item of type T that matches the specified internal identifier.
         /// </summary>
         /// <param name="itemInternalId">The unique internal identifier of the item to locate. Cannot be null or empty.</param>
         /// <returns>The item of type T that matches the specified internal identifier, or null if no matching item is found.</returns>
-        T Find(string itemInternalId);
+        T? Find(string itemInternalId);
 
         /// <summary>
         /// Returns the first element of a sequence, or a default value if the sequence contains no elements.
         /// </summary>
         /// <returns>The first element in the sequence, or the default value for type <typeparamref name="T"/> if the sequence is
         /// empty.</returns>
-        T FirstOrDefault();
+        T? FirstOrDefault();
 
         /// <summary>
         /// Returns the first element of the sequence, or the default value for type T if the sequence contains no
@@ -143,7 +143,7 @@ namespace CoreRelm.Interfaces
         /// <param name="loadItems">true to load items before retrieving the first element; otherwise, false to use the current state of the
         /// sequence.</param>
         /// <returns>The first element of the sequence if it exists; otherwise, the default value for type T.</returns>
-        T FirstOrDefault(bool loadItems);
+        T? FirstOrDefault(bool loadItems);
 
         /// <summary>
         /// Returns the first element that satisfies the specified condition, or the default value for the type if no
@@ -152,7 +152,7 @@ namespace CoreRelm.Interfaces
         /// <param name="predicate">An expression that defines the condition to test each element for. Cannot be null.</param>
         /// <returns>The first element that matches the specified predicate; or the default value for type T if no such element
         /// is found.</returns>
-        T FirstOrDefault(Expression<Func<T, bool>> predicate);
+        T? FirstOrDefault(Expression<Func<T, bool>> predicate);
 
         /// <summary>
         /// Returns the first element that matches the specified predicate, or the default value for type T if no such
@@ -163,20 +163,20 @@ namespace CoreRelm.Interfaces
         /// sequence.</param>
         /// <returns>The first element that matches the predicate, or the default value for type T if no matching element is
         /// found.</returns>
-        T FirstOrDefault(Expression<Func<T, bool>> predicate, bool loadItems);
+        T? FirstOrDefault(Expression<Func<T, bool>> predicate, bool loadItems);
 
         /// <summary>
         /// Loads the items in the data set.
         /// </summary>
         /// <returns>A collection of all items in the data set.</returns>
-        ICollection<T> Load();
+        ICollection<T>? Load();
 
         /// <summary>
         /// Loads a collection of items of type T, optionally including data loaders based on the specified flag.
         /// </summary>
         /// <param name="loadDataLoaders">true to include data loaders in the returned collection; otherwise, false to exclude them.</param>
         /// <returns>A collection of items of type T. The collection may include data loaders if loadDataLoaders is set to true.</returns>
-        ICollection<T> Load(bool loadDataLoaders);
+        ICollection<T>? Load(bool loadDataLoaders);
 
         /// <summary>
         /// Loads the current data as an <see cref="IRelmDataSet{T}"/> instance for querying and manipulation.

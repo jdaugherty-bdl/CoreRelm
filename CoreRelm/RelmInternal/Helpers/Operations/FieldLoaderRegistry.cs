@@ -40,7 +40,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         /// <param name="loader">The loader implementation to register, or null to remove.</param>
         /// <returns>The field loader that was successfully registered, or null if one was removed.</returns>
         /// <exception cref="ArgumentException">Throws when passing a null loader with an invalid field name.</exception>
-        public T RegisterFieldLoader(string fieldName, T loader)
+        public T? RegisterFieldLoader(string fieldName, T? loader)
         {
             if (loader == null)
             {

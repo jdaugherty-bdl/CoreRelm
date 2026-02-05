@@ -91,20 +91,21 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                     }
 
                     // internal ordering computed later
-                    desiredColumns[colName] = new ColumnSchema(
-                        ColumnName: colName,
-                        ColumnType: mysqlType,
-                        IsNullable: isNullable,
-                        IsPrimaryKey: isPk,
-                        IsForeignKey: false,
-                        IsReadOnly: false,
-                        IsUnique: isUnique,
-                        IsAutoIncrement: isAuto,
-                        DefaultValue: string.IsNullOrWhiteSpace(defaultSql) ? null : defaultSql,
-                        DefaultValueSql: string.IsNullOrWhiteSpace(defaultSql) ? null : defaultSql,
-                        Extra: null,
-                        OrdinalPosition: 0
-                    );
+                    desiredColumns[colName] = new ColumnSchema
+                    {
+                        ColumnName = colName,
+                        ColumnType = mysqlType,
+                        IsNullable = isNullable,
+                        IsPrimaryKey = isPk,
+                        IsForeignKey = false,
+                        IsReadOnly = false,
+                        IsUnique = isUnique,
+                        IsAutoIncrement = isAuto,
+                        DefaultValue = string.IsNullOrWhiteSpace(defaultSql) ? null : defaultSql,
+                        //DefaultValueSql = string.IsNullOrWhiteSpace(defaultSql) ? null : defaultSql,
+                        Extra = null,
+                        OrdinalPosition = 0
+                    };
 
                     // Index grouping
                     //if (!string.IsNullOrWhiteSpace(colAttr.Index))
@@ -121,11 +122,12 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                 }
 
                 // Assign ordinal positions deterministically
-                var orderedCols = OrderColumns(desiredColumns.Values.ToList());
+                var orderedCols = OrderColumns([.. desiredColumns.Values]);
                 var ordinal = 1;
                 foreach (var c in orderedCols)
                 {
-                    desiredColumns[c.ColumnName] = c with { OrdinalPosition = ordinal++ };
+                    desiredColumns[c.ColumnName!] = c.Clone();
+                    desiredColumns[c.ColumnName!].OrdinalPosition = ordinal++;
                 }
 
                 // Indexes from groups (non-unique by default; uniqueness comes from column Unique or PK)
@@ -148,11 +150,12 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                         ));
                     }
 
-                    desiredIndexes[indexName] = new IndexSchema(
-                        IndexName: indexName,
-                        IsUnique: false,
-                        Columns: idxCols
-                    );
+                    desiredIndexes[indexName] = new IndexSchema
+                    {
+                        IndexName = indexName,
+                        IsUnique = false,
+                        Columns = idxCols
+                    };
                 }
 
                 // Foreign keys: navigation properties with [RelmForeignKey]
@@ -206,15 +209,16 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
 
                     var fkName = $"fk_{tableName}_{ToSnake(navProp.Name)}";
 
-                    desiredFks[fkName] = new ForeignKeySchema(
-                        ConstraintName: fkName,
-                        TableName: tableName,
-                        ColumnNames: localCols,
-                        ReferencedTableName: principalTblAttr.TableName,
-                        ReferencedColumnNames: refCols,
-                        UpdateRule: "RESTRICT",
-                        DeleteRule: "CASCADE"
-                    );
+                    desiredFks[fkName] = new ForeignKeySchema
+                    {
+                        ConstraintName = fkName,
+                        TableName = tableName,
+                        ColumnNames = localCols,
+                        ReferencedTableName = principalTblAttr.TableName,
+                        ReferencedColumnNames = refCols,
+                        UpdateRule = "RESTRICT",
+                        DeleteRule = "CASCADE"
+                    };
                 }
 
                 // Triggers: leave empty; planner will inject InternalId trigger (and function) rules
@@ -234,9 +238,9 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
 
         private static PropertyInfo FindProperty(Type t, string name)
         {
-            var p = t.GetProperty(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-            if (p is null)
-                throw new InvalidOperationException($"Property '{name}' not found on type {t.FullName}.");
+            var p = t.GetProperty(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic) 
+                ?? throw new InvalidOperationException($"Property '{name}' not found on type {t.FullName}.");
+
             return p;
         }
 
@@ -255,7 +259,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                 current = current.BaseType;
             }
 
-            return props.Values.ToList();
+            return [.. props.Values];
         }
 
         private static Dictionary<string, string> BuildColumnNameMap(Type t)
@@ -292,10 +296,9 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                 _ => 100
             };
 
-            return cols
+            return [.. cols
                 .OrderBy(c => Rank(c.ColumnName))
-                .ThenBy(c => c.ColumnName, StringComparer.OrdinalIgnoreCase)
-                .ToList();
+                .ThenBy(c => c.ColumnName, StringComparer.OrdinalIgnoreCase)];
         }
 
         private static string ConvertPropertyNameToDbColumn(string clrName)
@@ -308,7 +311,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
             const string suffix = "InternalId";
             if (clrName.EndsWith(suffix, StringComparison.Ordinal) && clrName.Length > suffix.Length)
             {
-                var prefix = clrName.Substring(0, clrName.Length - suffix.Length);
+                var prefix = clrName[..^suffix.Length];
                 var snakePrefix = ToSnake(prefix);
                 return $"{snakePrefix}_InternalId";
             }

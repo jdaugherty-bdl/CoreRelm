@@ -52,7 +52,7 @@ namespace CoreRelm.Interfaces
         /// <param name="command">The command to be added to the execution context. Cannot be null.</param>
         /// <param name="expression">The expression associated with the command. Cannot be null.</param>
         /// <returns>A <see cref="RelmExecutionCommand"/> representing the newly added command and its associated expression.</returns>
-        RelmExecutionCommand AddAdditionalCommand(Command command, Expression expression);
+        RelmExecutionCommand AddAdditionalCommand(Command command, Expression? expression);
 
         /// <summary>
         /// Retrieves a list of additional execution commands to be processed.
