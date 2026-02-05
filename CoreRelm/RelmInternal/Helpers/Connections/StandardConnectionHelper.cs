@@ -25,7 +25,7 @@ namespace CoreRelm.RelmInternal.Helpers.Connections
         /// cref="MySqlTransaction"/>.</param>
         /// <param name="exceptionHandler">An optional delegate to handle exceptions that occur during the execution of the action. The delegate
         /// receives the exception and an error message.</param>
-        public static void StandardConnectionWrapper(Enum connectionName, Action<MySqlConnection, MySqlTransaction> actionWrapper, Action<Exception, string> exceptionHandler = null)
+        public static void StandardConnectionWrapper(Enum connectionName, Action<MySqlConnection, MySqlTransaction> actionWrapper, Action<Exception, string>? exceptionHandler = null)
         {
             StandardConnectionWrapper(connectionName,
                 (conn, transaction) =>
@@ -52,11 +52,14 @@ namespace CoreRelm.RelmInternal.Helpers.Connections
         /// exception and its message as parameters. If not provided, exceptions are rethrown without additional
         /// handling.</param>
         /// <returns>The result of the operation defined by <paramref name="actionWrapper"/>.</returns>
-        public static T StandardConnectionWrapper<T>(Enum connectionName, Func<MySqlConnection, MySqlTransaction, T> actionWrapper, Action<Exception, string> exceptionHandler = null)
+        public static T StandardConnectionWrapper<T>(Enum connectionName, Func<MySqlConnection, MySqlTransaction, T> actionWrapper, Action<Exception, string>? exceptionHandler = null)
         {
             using (var conn = RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName))
             {
-                conn.Open();
+                conn?.Open();
+
+                if (conn == null)
+                    throw new IOException("MySQL connection is null");
 
                 var transaction = conn.BeginTransaction();
 
@@ -90,7 +93,7 @@ namespace CoreRelm.RelmInternal.Helpers.Connections
                 finally
                 {
                     if ((conn?.State ?? ConnectionState.Broken) == ConnectionState.Open)
-                        conn.Close();
+                        conn?.Close();
                 }
             }
         }

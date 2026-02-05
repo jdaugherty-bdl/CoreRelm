@@ -109,7 +109,7 @@ namespace CoreRelm.Migrations
             }
             else
             {
-                var dbConn = migrationOptions.ConnectionStringTemplate.Replace("{db}", dbName, StringComparison.Ordinal);
+                var dbConn = migrationOptions.ConnectionStringTemplate?.Replace("{db}", dbName, StringComparison.Ordinal);
                 actual = await _introspector.LoadSchemaAsync(dbConn);
             }
 

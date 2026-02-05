@@ -32,12 +32,12 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// langword="false"/>.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the results of the query, mapped to the specified type
         /// <typeparamref name="T"/>.</returns>
-        internal static IEnumerable<T> GetDataList<T>(Enum connectionName, string query, Dictionary<string, object> parameters = null, bool throwException = true, bool allowUserVariables = false)
+        internal static IEnumerable<T>? GetDataList<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false)
         {
-            using (var conn = RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName, allowUserVariables))
-            {
-                return GetDataList<T>(conn, query, parameters: parameters, throwException: throwException);
-            }
+            using var conn = (RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName, allowUserVariables))
+                ?? throw new InvalidOperationException($"Could not get a valid connection for connection type '{connectionName}'.");
+
+            return GetDataList<T>(conn, query, parameters: parameters, throwException: throwException);
         }
 
         /// <summary>
@@ -50,11 +50,30 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// if no parameters are needed.</param>
         /// <param name="throwException">A value indicating whether to throw an exception if an error occurs. If <see langword="true"/>, exceptions
         /// will be thrown; otherwise, errors will be suppressed.</param>
-        /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to associate with the query. Can be <see langword="null"/> if no
-        /// transaction is required.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the data mapped to the specified type <typeparamref name="T"/>.
         /// The collection will be empty if the query returns no results.</returns>
-        internal static IEnumerable<T> GetDataList<T>(MySqlConnection existingConnection, string query, Dictionary<string, object> parameters = null, bool throwException = true, MySqlTransaction sqlTransaction = null)
+        internal static IEnumerable<T>? GetDataList<T>(MySqlConnection existingConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        {
+            var relmContext = new RelmContext(existingConnection);
+
+            return GetDataList<T>(relmContext, query, parameters: parameters, throwException: throwException);
+        }
+
+        /// <summary>
+        /// Executes the specified SQL query and retrieves a collection of data mapped to the specified type.
+        /// </summary>
+        /// <typeparam name="T">The type to which each row in the result set will be mapped.</typeparam>
+        /// <param name="existingConnection">An existing <see cref="MySqlConnection"/> to use for the query. The connection must be open.</param>
+        /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to associate with the query. Can be <see langword="null"/> if no
+        /// transaction is required.</param>
+        /// <param name="query">The SQL query to execute. Must be a valid SQL statement.</param>
+        /// <param name="parameters">An optional dictionary of parameter names and values to include in the query. Can be <see langword="null"/>
+        /// if no parameters are needed.</param>
+        /// <param name="throwException">A value indicating whether to throw an exception if an error occurs. If <see langword="true"/>, exceptions
+        /// will be thrown; otherwise, errors will be suppressed.</param>
+        /// <returns>An <see cref="IEnumerable{T}"/> containing the data mapped to the specified type <typeparamref name="T"/>.
+        /// The collection will be empty if the query returns no results.</returns>
+        internal static IEnumerable<T>? GetDataList<T>(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
         {
             var relmContext = new RelmContext(existingConnection, sqlTransaction);
 
@@ -75,29 +94,33 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <returns>An <see cref="IEnumerable{T}"/> containing the query results converted to the specified type.  Returns an
         /// empty sequence if the query produces no results or if <paramref name="throwException"/> is <see
         /// langword="false"/> and the query fails.</returns>
-        internal static IEnumerable<T> GetDataList<T>(IRelmContext relmContext, string query, Dictionary<string, object> parameters = null, bool throwException = true)
+        internal static IEnumerable<T>? GetDataList<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
         {
             return RefinedResultsHelper.GetDataTable(relmContext, query, parameters: parameters, throwException: throwException)
-                .AsEnumerable()
+                ?.AsEnumerable()
                 .Select(x => (T)CoreUtilities.ConvertScalar<T>(x[0]));
         }
 
         /// <summary>
-        /// Executes a query against the specified context and returns the results as a sequence of the specified type.
+        /// Executes a query asynchronously against the specified context and returns the results as a sequence of the specified
+        /// type.
         /// </summary>
         /// <typeparam name="T">The type to which the query results will be converted.</typeparam>
-        /// <param name="relmContext">The context used to execute the query. Must not be <see langword="null"/>.</param>
-        /// <param name="query">The SQL query to execute. Must not be <see langword="null"/> or empty.</param>
+        /// <param name="relmContext">The Realm context used to execute the query. Cannot be <see langword="null"/>.</param>
+        /// <param name="query">The SQL-like query string to execute. Cannot be <see langword="null"/> or empty.</param>
         /// <param name="parameters">An optional dictionary of parameters to include in the query. Can be <see langword="null"/> if no parameters
         /// are needed.</param>
         /// <param name="throwException">A value indicating whether an exception should be thrown if the query fails.  If <see langword="true"/>, an
         /// exception will be thrown on failure; otherwise, the method will return an empty sequence.</param>
-        /// <returns>An <see cref="IEnumerable{T}"/> containing the results of the query, with each result converted to the
-        /// specified type. If the query returns no results, an empty sequence is returned.</returns>
-        internal static IEnumerable<T> GetDataList<T>(IRelmQuickContext relmContext, string query, Dictionary<string, object> parameters = null, bool throwException = true)
+        /// <returns>An <see cref="IEnumerable{T}"/> containing the query results converted to the specified type.  Returns an
+        /// empty sequence if the query produces no results or if <paramref name="throwException"/> is <see
+        /// langword="false"/> and the query fails.</returns>
+        internal static async Task<IEnumerable<T>?> GetDataListAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
         {
-            return RefinedResultsHelper.GetDataTable(relmContext, query, parameters: parameters, throwException: throwException)
-                .AsEnumerable()
+            var dataTable = await RefinedResultsHelper.GetDataTableAsync(relmContext, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
+            
+            return dataTable
+                ?.AsEnumerable()
                 .Select(x => (T)CoreUtilities.ConvertScalar<T>(x[0]));
         }
 
@@ -117,9 +140,27 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// langword="false"/>.</param>
         /// <returns>The first data object of type <typeparamref name="T"/> that matches the query, or <see langword="null"/> if
         /// no matching object is found.</returns>
-        internal static T GetDataObject<T>(Enum connectionName, string query, Dictionary<string, object> parameters = null, bool throwException = true, bool allowUserVariables = false) where T : IRelmModel
+        internal static T? GetDataObject<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false) where T : IRelmModel
         {
             return GetDataObjects<T>(connectionName, query, parameters: parameters, throwException: throwException, allowUserVariables: allowUserVariables)
+                .FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Executes the specified query and retrieves the first result as an object of type <typeparamref name="T"/>.
+        /// </summary>
+        /// <typeparam name="T">The type of the object to retrieve. Must implement <see cref="IRelmModel"/>.</typeparam>
+        /// <param name="existingConnection">An existing <see cref="MySqlConnection"/> to use for the query. Cannot be null.</param>
+        /// <param name="query">The SQL query to execute. Cannot be null or empty.</param>
+        /// <param name="parameters">An optional dictionary of parameter names and values to include in the query. Can be null if no parameters
+        /// are needed.</param>
+        /// <param name="throwException">A value indicating whether an exception should be thrown if an error occurs during query execution. <see
+        /// langword="true"/> to throw exceptions; otherwise, <see langword="false"/>.</param>
+        /// <returns>The first result of the query as an object of type <typeparamref name="T"/>, or <see langword="null"/> if no
+        /// results are found.</returns>
+        internal static T? GetDataObject<T>(MySqlConnection existingConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel
+        {
+            return GetDataObjects<T>(existingConnection, query, parameters: parameters, throwException: throwException)
                 .FirstOrDefault();
         }
 
@@ -137,9 +178,9 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// used.</param>
         /// <returns>The first result of the query as an object of type <typeparamref name="T"/>, or <see langword="null"/> if no
         /// results are found.</returns>
-        internal static T GetDataObject<T>(MySqlConnection existingConnection, string query, Dictionary<string, object> parameters = null, bool throwException = true, MySqlTransaction sqlTransaction = null) where T : IRelmModel
+        internal static T? GetDataObject<T>(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel
         {
-            return GetDataObjects<T>(existingConnection, query, parameters: parameters, throwException: throwException, sqlTransaction: sqlTransaction)
+            return GetDataObjects<T>(existingConnection, sqlTransaction, query, parameters: parameters, throwException: throwException)
                 .FirstOrDefault();
         }
 
@@ -157,26 +198,9 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// langword="true"/>.</param>
         /// <returns>The first data object of type <typeparamref name="T"/> that matches the query, or <see langword="null"/> if
         /// no matching object is found.</returns>
-        internal static T GetDataObject<T>(IRelmContext relmContext, string query, Dictionary<string, object> parameters = null, bool throwException = true) where T : IRelmModel
+        internal static T? GetDataObject<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel
         {
             return GetDataObjects<T>(relmContext, query, parameters: parameters, throwException: throwException)
-                .FirstOrDefault();
-        }
-
-        /// <summary>
-        /// Retrieves a single data object of the specified type that matches the given query and parameters.
-        /// </summary>
-        /// <typeparam name="T">The type of the data object to retrieve. Must implement <see cref="IRelmModel"/>.</typeparam>
-        /// <param name="relmQuickContext">The context used to execute the query.</param>
-        /// <param name="query">The query string used to retrieve the data object.</param>
-        /// <param name="parameters">An optional dictionary of parameters to be used in the query. Can be <see langword="null"/>.</param>
-        /// <param name="throwException">A value indicating whether an exception should be thrown if the query fails or no data object is found. <see
-        /// langword="true"/> to throw an exception; otherwise, <see langword="false"/>.</param>
-        /// <returns>The first data object of type <typeparamref name="T"/> that matches the query, or <see langword="null"/> if
-        /// no match is found and <paramref name="throwException"/> is <see langword="false"/>.</returns>
-        internal static T GetDataObject<T>(IRelmQuickContext relmQuickContext, string query, Dictionary<string, object> parameters = null, bool throwException = true) where T : IRelmModel
-        {
-            return GetDataObjects<T>(relmQuickContext, query, parameters: parameters, throwException: throwException)
                 .FirstOrDefault();
         }
 
@@ -198,12 +222,12 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// langword="false"/>.</param>
         /// <returns>A collection of objects of type <typeparamref name="T"/> retrieved from the database. The collection will be
         /// empty if no matching data is found.</returns>
-        internal static IEnumerable<T> GetDataObjects<T>(Enum connectionName, string query, Dictionary<string, object> parameters = null, bool throwException = true, bool allowUserVariables = false) where T : IRelmModel
+        internal static IEnumerable<T?>? GetDataObjects<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false) where T : IRelmModel
         {
-            using (var conn = RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName, allowUserVariables))
-            {
-                return GetDataObjects<T>(conn, query, parameters: parameters, throwException: throwException);
-            }
+            using var conn = (RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName, allowUserVariables))
+                ?? throw new InvalidOperationException($"Could not get a valid connection for connection type '{connectionName}'.");
+
+            return GetDataObjects<T>(conn, query, parameters: parameters, throwException: throwException);
         }
 
         /// <summary>
@@ -216,12 +240,28 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// if no parameters are required.</param>
         /// <param name="throwException">A value indicating whether to throw an exception if an error occurs during query execution. If <see
         /// langword="true"/>, exceptions will be thrown; otherwise, errors will be suppressed.</param>
+        /// <returns>A collection of objects of type <typeparamref name="T"/> populated with the data returned by the query.</returns>
+        internal static IEnumerable<T?>? GetDataObjects<T>(MySqlConnection existingConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel
+        {
+            return GetDataObjects<T>(RefinedResultsHelper.GetDataTable(existingConnection, query, parameters: parameters, throwException: throwException));
+        }
+
+        /// <summary>
+        /// Retrieves a collection of data objects of the specified type by executing the provided SQL query.
+        /// </summary>
+        /// <typeparam name="T">The type of data objects to retrieve. Must implement <see cref="IRelmModel"/>.</typeparam>
+        /// <param name="existingConnection">An open <see cref="MySqlConnection"/> to use for executing the query.</param>
         /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to associate with the query execution. Can be <see
         /// langword="null"/> if no transaction is required.</param>
+        /// <param name="query">The SQL query to execute. The query should be a valid SQL statement that returns data.</param>
+        /// <param name="parameters">An optional dictionary of parameter names and values to include in the query. Can be <see langword="null"/>
+        /// if no parameters are required.</param>
+        /// <param name="throwException">A value indicating whether to throw an exception if an error occurs during query execution. If <see
+        /// langword="true"/>, exceptions will be thrown; otherwise, errors will be suppressed.</param>
         /// <returns>A collection of objects of type <typeparamref name="T"/> populated with the data returned by the query.</returns>
-        internal static IEnumerable<T> GetDataObjects<T>(MySqlConnection existingConnection, string query, Dictionary<string, object> parameters = null, bool throwException = true, MySqlTransaction sqlTransaction = null) where T : IRelmModel
+        internal static IEnumerable<T?>? GetDataObjects<T>(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel
         {
-            return GetDataObjects<T>(RefinedResultsHelper.GetDataTable(existingConnection, query, parameters: parameters, throwException: throwException, sqlTransaction: sqlTransaction));
+            return GetDataObjects<T>(RefinedResultsHelper.GetDataTable(existingConnection, sqlTransaction, query, parameters: parameters, throwException: throwException));
         }
 
         /// <summary>
@@ -239,26 +279,9 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// langword="true"/> to throw an exception; otherwise, <see langword="false"/>.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the data objects of type <typeparamref name="T"/> retrieved by
         /// the query. If no data is found, an empty collection is returned.</returns>
-        internal static IEnumerable<T> GetDataObjects<T>(IRelmContext relmContext, string query, Dictionary<string, object> parameters = null, bool throwException = true) where T : IRelmModel
+        internal static IEnumerable<T?>? GetDataObjects<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel
         {
             return GetDataObjects<T>(RefinedResultsHelper.GetDataTable(relmContext, query, parameters: parameters, throwException: throwException));
-        }
-
-        /// <summary>
-        /// Retrieves a collection of data objects of the specified type based on the provided query and parameters.
-        /// </summary>
-        /// <typeparam name="T">The type of data objects to retrieve. Must implement <see cref="IRelmModel"/>.</typeparam>
-        /// <param name="relmQuickContext">The context used to execute the query.</param>
-        /// <param name="query">The SQL query string used to retrieve the data.</param>
-        /// <param name="parameters">An optional dictionary of parameters to be used in the query. The keys represent parameter names, and the
-        /// values represent parameter values.</param>
-        /// <param name="throwException">A boolean value indicating whether an exception should be thrown if an error occurs during query execution.
-        /// <see langword="true"/> to throw an exception; otherwise, <see langword="false"/>.</param>
-        /// <returns>An <see cref="IEnumerable{T}"/> containing the data objects of type <typeparamref name="T"/> retrieved by
-        /// the query.</returns>
-        internal static IEnumerable<T> GetDataObjects<T>(IRelmQuickContext relmQuickContext, string query, Dictionary<string, object> parameters = null, bool throwException = true) where T : IRelmModel
-        {
-            return GetDataObjects<T>(RefinedResultsHelper.GetDataTable(relmQuickContext, query, parameters: parameters, throwException: throwException));
         }
 
         /// <summary>
@@ -271,13 +294,13 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <returns>An <see cref="IEnumerable{T}"/> containing objects of type <typeparamref name="T"/> created from the rows of
         /// the <paramref name="existingData"/>. If a row is null, the corresponding object in the collection will be
         /// the default value of <typeparamref name="T"/>.</returns>
-        internal static IEnumerable<T> GetDataObjects<T>(DataTable existingData) where T : IRelmModel
+        internal static IEnumerable<T?>? GetDataObjects<T>(DataTable? existingData) where T : IRelmModel
         {
             return existingData
-                .AsEnumerable()
+                ?.AsEnumerable()
                 .Select(x => x == null
                     ? default
-                    : (T)CoreUtilities.CreateCreatorExpression<T>()().ResetWithData(x, null));
+                    : (T)CoreUtilities.CreateCreatorExpression<T>()().ResetWithData(x));
         }
     }
 }

@@ -36,12 +36,11 @@ namespace CoreRelm.Persistence
         private readonly int DEFAULT_BATCH_SIZE = 100; // default size of the write batches
 
         // exposed by functional methods
-        private string _insertQuery;
-        private string _tableName;
-        private string _databaseName;
+        private string? _insertQuery;
+        private string? _tableName;
+        private string? _databaseName;
 
         // awkward names here so we can use the nice name for the set method below
-        private bool _useTransaction; 
         private bool _throwException;
         private bool _allowUserVariables;
         private bool _allowAutoIncrementColumns;
@@ -49,19 +48,19 @@ namespace CoreRelm.Persistence
         private bool _allowUniqueColumns;
         private bool _allowAutoDateColumns;
 
-        private Dictionary<string, Tuple<MySqlDbType, int, string, string>> _tableColumns;
-        private Dictionary<string, Tuple<MySqlDbType, int, string, string>> TableColumns => _tableColumns = _tableColumns ?? new Dictionary<string, Tuple<MySqlDbType, int, string, string>>();
+        private Dictionary<string, Tuple<MySqlDbType, int, string?, string?>?>? _tableColumns;
+        private Dictionary<string, Tuple<MySqlDbType, int, string?, string?>?>? TableColumns => _tableColumns = _tableColumns ?? [];
 
         private int _batchSize;
-        private IEnumerable<T> _sourceData;
-        private MySqlTransaction _sqlTransaction;
-        private IRelmContext _existingContext;
-        private IRelmQuickContext _existingQuickContext;
+        private IEnumerable<T>? _sourceData;
+        private MySqlTransaction? _sqlTransaction;
+        private readonly IRelmContext? _existingContext;
 
         // local objects
-        private readonly MySqlConnection _existingConnection;
-        private readonly Enum _connectionName;
-        private DataTable _outputTable;
+        private readonly MySqlConnection? _existingConnection;
+        private readonly Enum? _connectionName = default;
+        private DataTable? _outputTable;
+        private static readonly string[] _autoDateColumnNames = new string[] { "create_date", "last_updated" };
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BulkTableWriter{T}"/> class.
@@ -86,8 +85,6 @@ namespace CoreRelm.Persistence
         /// generated.</param>
         /// <param name="throwException">Indicates whether exceptions should be thrown when an error occurs. If <see langword="true"/>, exceptions
         /// will be thrown; otherwise, errors will be suppressed.</param>
-        /// <param name="useTransaction">Indicates whether the bulk operation should be performed within a transaction. If <see langword="true"/>,
-        /// the operation will be transactional; otherwise, it will not.</param>
         /// <param name="allowUserVariables">Indicates whether user-defined variables are allowed in the bulk operation. If <see langword="true"/>, user
         /// variables are permitted; otherwise, they are not.</param>
         /// <param name="allowAutoIncrementColumns">Indicates whether auto-increment columns are allowed in the bulk operation. If <see langword="true"/>,
@@ -98,11 +95,11 @@ namespace CoreRelm.Persistence
         /// columns are permitted; otherwise, they are not.</param>
         /// <param name="allowAutoDateColumns">Indicates whether auto-generated date columns are allowed in the bulk operation. If <see langword="true"/>,
         /// auto date columns are permitted; otherwise, they are not.</param>
-        internal BulkTableWriter(Enum connectionName, string insertQuery = null, bool throwException = true, bool useTransaction = false, bool allowUserVariables = false, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
+        internal BulkTableWriter(Enum connectionName, string? insertQuery = null, bool throwException = true, bool allowUserVariables = false, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
         {
             _connectionName = connectionName;
 
-            CommonSetup(insertQuery, useTransaction, throwException, null, allowUserVariables, allowAutoIncrementColumns, allowPrimaryKeyColumns, allowUniqueColumns, allowAutoDateColumns);
+            CommonSetup(insertQuery, throwException, null, allowUserVariables, allowAutoIncrementColumns, allowPrimaryKeyColumns, allowUniqueColumns, allowAutoDateColumns);
         }
 
         /// <summary>
@@ -118,8 +115,6 @@ namespace CoreRelm.Persistence
         /// based on the table schema.</param>
         /// <param name="throwException">A value indicating whether exceptions should be thrown when an error occurs. If <see langword="true"/>,
         /// exceptions will be thrown; otherwise, errors will be suppressed.</param>
-        /// <param name="useTransaction">A value indicating whether to use a transaction for the bulk operation. If <see langword="true"/>, a
-        /// transaction will be used to ensure atomicity.</param>
         /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to use for the bulk operation. If provided, this transaction will
         /// be used instead of creating a new one.</param>
         /// <param name="allowAutoIncrementColumns">A value indicating whether auto-increment columns are allowed in the bulk operation. If <see
@@ -130,12 +125,43 @@ namespace CoreRelm.Persistence
         /// unique columns will be included.</param>
         /// <param name="allowAutoDateColumns">A value indicating whether auto-generated date columns (e.g., timestamp columns) are allowed in the bulk
         /// operation. If <see langword="true"/>, such columns will be included.</param>
-        internal BulkTableWriter(MySqlConnection existingConnection, string insertQuery = null, bool throwException = true, bool useTransaction = false, MySqlTransaction sqlTransaction = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
+        internal BulkTableWriter(MySqlConnection existingConnection, string? insertQuery = null, bool throwException = true, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
         {
             _existingConnection = existingConnection;
-            _existingQuickContext = new RelmQuickContext(existingConnection, sqlTransaction);
+            _existingContext = new RelmContext(existingConnection, autoInitializeDataSets: false, autoVerifyTables: false);
 
-            CommonSetup(insertQuery, useTransaction, throwException, sqlTransaction, false, allowAutoIncrementColumns, allowPrimaryKeyColumns, allowUniqueColumns, allowAutoDateColumns);
+            CommonSetup(insertQuery, throwException, null, false, allowAutoIncrementColumns, allowPrimaryKeyColumns, allowUniqueColumns, allowAutoDateColumns);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BulkTableWriter{T}"/> class, which facilitates bulk data insertion
+        /// into a MySQL database.
+        /// </summary>
+        /// <remarks>This constructor is intended for internal use and provides advanced configuration
+        /// options for bulk data insertion.  Ensure that the provided <paramref name="existingConnection"/> is open and
+        /// valid before using this class.</remarks>
+        /// <param name="existingConnection">An existing <see cref="MySqlConnection"/> to use for database operations. This connection must be open
+        /// before calling this constructor.</param>
+        /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to use for the bulk operation. If provided, this transaction will
+        /// be used instead of creating a new one.</param>
+        /// <param name="insertQuery">An optional SQL insert query to use for bulk insertion. If not provided, a default query will be generated
+        /// based on the table schema.</param>
+        /// <param name="throwException">A value indicating whether exceptions should be thrown when an error occurs. If <see langword="true"/>,
+        /// exceptions will be thrown; otherwise, errors will be suppressed.</param>
+        /// <param name="allowAutoIncrementColumns">A value indicating whether auto-increment columns are allowed in the bulk operation. If <see
+        /// langword="true"/>, auto-increment columns will be included.</param>
+        /// <param name="allowPrimaryKeyColumns">A value indicating whether primary key columns are allowed in the bulk operation. If <see langword="true"/>,
+        /// primary key columns will be included.</param>
+        /// <param name="allowUniqueColumns">A value indicating whether unique columns are allowed in the bulk operation. If <see langword="true"/>,
+        /// unique columns will be included.</param>
+        /// <param name="allowAutoDateColumns">A value indicating whether auto-generated date columns (e.g., timestamp columns) are allowed in the bulk
+        /// operation. If <see langword="true"/>, such columns will be included.</param>
+        internal BulkTableWriter(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, string? insertQuery = null, bool throwException = true, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
+        {
+            _existingConnection = existingConnection;
+            _existingContext = new RelmContext(existingConnection, autoInitializeDataSets: false, autoVerifyTables: false);
+
+            CommonSetup(insertQuery, throwException, sqlTransaction, false, allowAutoIncrementColumns, allowPrimaryKeyColumns, allowUniqueColumns, allowAutoDateColumns);
         }
 
         /// <summary>
@@ -160,56 +186,25 @@ namespace CoreRelm.Persistence
         /// unique columns will be included; otherwise, they will be excluded.</param>
         /// <param name="allowAutoDateColumns">A value indicating whether auto-generated date columns are allowed in the bulk operation.  If <see
         /// langword="true"/>, auto-generated date columns will be included; otherwise, they will be excluded.</param>
-        internal BulkTableWriter(IRelmContext relmContext, string insertQuery = null, bool throwException = true, bool useTransaction = false, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
+        internal BulkTableWriter(IRelmContext relmContext, string? insertQuery = null, bool throwException = true, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
         {
             _existingConnection = relmContext.ContextOptions.DatabaseConnection;
             _sqlTransaction = relmContext.ContextOptions.DatabaseTransaction;
             _existingContext = relmContext;
 
-            CommonSetup(insertQuery, useTransaction, throwException, _sqlTransaction, false, allowAutoIncrementColumns, allowPrimaryKeyColumns, allowUniqueColumns, allowAutoDateColumns);
+            CommonSetup(insertQuery, throwException, _sqlTransaction, false, allowAutoIncrementColumns, allowPrimaryKeyColumns, allowUniqueColumns, allowAutoDateColumns);
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BulkTableWriter{T}"/> class, which facilitates bulk data insertion
-        /// into a database table.
-        /// </summary>
-        /// <remarks>This constructor is intended for internal use and is not accessible outside the
-        /// assembly.  It sets up the necessary database context and configuration for performing bulk insert
-        /// operations.</remarks>
-        /// <param name="relmQuickContext">The database context used to manage the connection and transaction for the bulk operation.  This parameter
-        /// cannot be <see langword="null"/>.</param>
-        /// <param name="insertQuery">An optional SQL insert query template to use for the bulk operation. If <see langword="null"/>, a default
-        /// query will be generated.</param>
-        /// <param name="throwException">A value indicating whether exceptions should be thrown during the operation.  If <see langword="true"/>,
-        /// exceptions will be thrown; otherwise, they will be suppressed.</param>
-        /// <param name="useTransaction">A value indicating whether the bulk operation should be executed within a database transaction.  If <see
-        /// langword="true"/>, a transaction will be used; otherwise, the operation will proceed without one.</param>
-        /// <param name="allowAutoIncrementColumns">A value indicating whether auto-increment columns are allowed in the bulk operation.  If <see
-        /// langword="true"/>, auto-increment columns will be included; otherwise, they will be excluded.</param>
-        /// <param name="allowPrimaryKeyColumns">A value indicating whether primary key columns are allowed in the bulk operation.  If <see
-        /// langword="true"/>, primary key columns will be included; otherwise, they will be excluded.</param>
-        /// <param name="allowUniqueColumns">A value indicating whether unique columns are allowed in the bulk operation.  If <see langword="true"/>,
-        /// unique columns will be included; otherwise, they will be excluded.</param>
-        /// <param name="allowAutoDateColumns">A value indicating whether auto-generated date columns are allowed in the bulk operation.  If <see
-        /// langword="true"/>, auto-generated date columns will be included; otherwise, they will be excluded.</param>
-        internal BulkTableWriter(IRelmQuickContext relmQuickContext, string insertQuery = null, bool throwException = true, bool useTransaction = false, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
-        {
-            _existingConnection = relmQuickContext.ContextOptions.DatabaseConnection;
-            _sqlTransaction = relmQuickContext.ContextOptions.DatabaseTransaction;
-            _existingQuickContext = relmQuickContext;
-
-            CommonSetup(insertQuery, useTransaction, throwException, _sqlTransaction, false, allowAutoIncrementColumns, allowPrimaryKeyColumns, allowUniqueColumns, allowAutoDateColumns);
-        }
-
-        private void CommonSetup(string insertQuery, bool useTransaction, bool throwException, MySqlTransaction sqlTransaction, bool allowUserVariables, bool allowAutoIncrementColumns, bool allowPrimaryKeyColumns, bool allowUniqueColumns, bool allowAutoDateColumns = false)
+        private void CommonSetup(string? insertQuery, bool throwException, MySqlTransaction? sqlTransaction, bool allowUserVariables, bool allowAutoIncrementColumns, bool allowPrimaryKeyColumns, bool allowUniqueColumns, bool allowAutoDateColumns = false)
         {
             _insertQuery = insertQuery;
-            _useTransaction = useTransaction;
             _throwException = throwException;
             _allowUserVariables = allowUserVariables;
             _allowAutoIncrementColumns = allowAutoIncrementColumns;
             _allowPrimaryKeyColumns = allowPrimaryKeyColumns;
             _allowUniqueColumns = allowUniqueColumns;
+            _allowAutoDateColumns = allowAutoDateColumns;
+
             _sqlTransaction = sqlTransaction;
 
             SetupBatchSize();
@@ -248,7 +243,7 @@ namespace CoreRelm.Persistence
         /// to be inserted into the data table.</param>
         /// <returns>The total number of records successfully inserted into the database. Returns 0 if there is no source data to
         /// process.</returns>
-        public int Write(Func<string, T, object> DataTableFunction)
+        public int Write(Func<string, T, object>? DataTableFunction)
         {
             var sourceDataCount = _sourceData?.Count() ?? 0;
 
@@ -256,6 +251,9 @@ namespace CoreRelm.Persistence
                 return 0;
 
             PopulateColumnDetails();
+
+            if (string.IsNullOrWhiteSpace(_insertQuery))
+                throw new ArgumentNullException("Error executing Bulk Table Writer: insert query not defined");
 
             var outputIterations = sourceDataCount <= _batchSize
                 ? 1
@@ -269,14 +267,17 @@ namespace CoreRelm.Persistence
             {
                 CreateOutputDataTable(DataTableFunction, i);
 
-                if (_existingQuickContext != null)
-                    recordsInserted += DatabaseWorkHelper.DoDatabaseWork<int>(_existingQuickContext, _insertQuery, CommonDatabaseWork, useTransaction: _useTransaction, throwException: _throwException);
-                else if (_existingContext != null)
-                    recordsInserted += DatabaseWorkHelper.DoDatabaseWork<int>(_existingContext, _insertQuery, CommonDatabaseWork, useTransaction: _useTransaction, throwException: _throwException);
+                if (_existingContext != null)
+                    recordsInserted += DatabaseWorkHelper.DoDatabaseWork<int>(_existingContext, _insertQuery, CommonDatabaseWork, throwException: _throwException);
                 else if (_existingConnection != null)
-                    recordsInserted += DatabaseWorkHelper.DoDatabaseWork<int>(_existingConnection, _insertQuery, CommonDatabaseWork, useTransaction: _useTransaction, throwException: _throwException, sqlTransaction: _sqlTransaction);
+                {
+                    if (_sqlTransaction == null)
+                        recordsInserted += DatabaseWorkHelper.DoDatabaseWork<int>(_existingConnection, _insertQuery, CommonDatabaseWork, throwException: _throwException);
+                    else
+                        recordsInserted += DatabaseWorkHelper.DoDatabaseWork<int>(_existingConnection, _sqlTransaction, _insertQuery, CommonDatabaseWork, throwException: _throwException);
+                }
                 else
-                    recordsInserted += DatabaseWorkHelper.DoDatabaseWork<int>(_connectionName, _insertQuery, CommonDatabaseWork, useTransaction: _useTransaction, throwException: _throwException, allowUserVariables: _allowUserVariables);
+                    recordsInserted += DatabaseWorkHelper.DoDatabaseWork<int>(_connectionName!, _insertQuery, CommonDatabaseWork, throwException: _throwException, allowUserVariables: _allowUserVariables);
             }
 
             return recordsInserted;
@@ -299,7 +300,7 @@ namespace CoreRelm.Persistence
             CommandObject
                 .Parameters
                 .AddRange(TableColumns
-                    .Select(x => new MySqlParameter($"@{x.Key}", x.Value.Item1, x.Value.Item2, x.Key))
+                    ?.Select(x => new MySqlParameter($"@{x.Key}", x.Value.Item1, x.Value.Item2, x.Key))
                     .ToArray());
 
             // Specify the number of records to be Inserted/Updated in one go. Default is 1.
@@ -310,7 +311,7 @@ namespace CoreRelm.Persistence
             };
 
             // output the data using batch output
-            return adpt.Update(_outputTable);
+            return adpt.Update(_outputTable!);
         }
 
         /// <summary>
@@ -333,23 +334,26 @@ namespace CoreRelm.Persistence
                     throw new ArgumentNullException("Error auto-populating Bulk Table Writer call: table name not defined");
 
                 // pull the table details from the database
-                List<DALTableRowDescriptor> currentTableDetails = null;
-                if (_existingQuickContext != null)
-                    currentTableDetails = RelmHelper.GetDataObjects<DALTableRowDescriptor>(_existingQuickContext, $"DESCRIBE {(string.IsNullOrWhiteSpace(_databaseName) ? string.Empty : $"{_databaseName}.")}{_tableName}").ToList();
-                else if (_existingContext != null)
-                    currentTableDetails = RelmHelper.GetDataObjects<DALTableRowDescriptor>(_existingContext, $"DESCRIBE {(string.IsNullOrWhiteSpace(_databaseName) ? string.Empty : $"{_databaseName}.")}{_tableName}").ToList();
+                List<DALTableRowDescriptor?>? currentTableDetails = null;
+                if (_existingContext != null)
+                    currentTableDetails = [.. RelmHelper.GetDataObjects<DALTableRowDescriptor>(_existingContext, $"DESCRIBE {(string.IsNullOrWhiteSpace(_databaseName) ? string.Empty : $"{_databaseName}.")}{_tableName}")];
                 else if (_existingConnection != null)
-                    currentTableDetails = RelmHelper.GetDataObjects<DALTableRowDescriptor>(_existingConnection, $"DESCRIBE {(string.IsNullOrWhiteSpace(_databaseName) ? string.Empty : $"{_databaseName}.")}{_tableName}").ToList();
+                {
+                    if (_sqlTransaction == null)
+                        currentTableDetails = [.. RelmHelper.GetDataObjects<DALTableRowDescriptor>(_existingConnection, $"DESCRIBE {(string.IsNullOrWhiteSpace(_databaseName) ? string.Empty : $"{_databaseName}.")}{_tableName}")];
+                    else
+                        currentTableDetails = [.. RelmHelper.GetDataObjects<DALTableRowDescriptor>(_existingConnection, _sqlTransaction, $"DESCRIBE {(string.IsNullOrWhiteSpace(_databaseName) ? string.Empty : $"{_databaseName}.")}{_tableName}")];
+                }
                 else
-                    currentTableDetails = RelmHelper.GetDataObjects<DALTableRowDescriptor>(_connectionName, $"DESCRIBE {(string.IsNullOrWhiteSpace(_databaseName) ? string.Empty : $"{_databaseName}.")}{_tableName}").ToList();
+                    currentTableDetails = [.. RelmHelper.GetDataObjects<DALTableRowDescriptor>(_connectionName!, $"DESCRIBE {(string.IsNullOrWhiteSpace(_databaseName) ? string.Empty : $"{_databaseName}.")}{_tableName}")];
 
                 // use all column for insert EXCEPT autonumber fields and the boilerplate create_date and last_updated columns
                 var insertColumns = currentTableDetails
-                    .Where(x => (_allowAutoIncrementColumns || (!_allowAutoIncrementColumns && !x.Extra.Contains("auto_increment"))) && (_allowAutoDateColumns || (!_allowAutoDateColumns && !new string[] { "create_date", "last_updated" }.Contains(x.Field))));
+                    .Where(x => (_allowAutoIncrementColumns || (!_allowAutoIncrementColumns && !(x?.Extra.Contains("auto_increment") ?? false))) && (_allowAutoDateColumns || (!_allowAutoDateColumns && !_autoDateColumnNames.Contains(x?.Field))));
 
                 // don't update primary key or unique columns on duplicate key as it's unnecessary
                 var updateColumns = insertColumns
-                    .Where(x => (_allowPrimaryKeyColumns || (!_allowPrimaryKeyColumns && !x.Key.Contains("PRI"))) && (_allowUniqueColumns || (!_allowUniqueColumns && !x.Key.Contains("UNI"))));
+                    .Where(x => (_allowPrimaryKeyColumns || (!_allowPrimaryKeyColumns && !(x?.Key.Contains("PRI") ?? false))) && (_allowUniqueColumns || (!_allowUniqueColumns && !(x?.Key.Contains("UNI") ?? false))));
 
                 // if we don't have an insert query, make one
                 if (string.IsNullOrWhiteSpace(_insertQuery))
@@ -360,13 +364,13 @@ namespace CoreRelm.Persistence
                     newQuery.Append(string.IsNullOrWhiteSpace(_databaseName) ? string.Empty : $"{_databaseName}.");
                     newQuery.Append(_tableName);
                     newQuery.Append(" (`");
-                    newQuery.Append(string.Join("`,`", insertColumns.Select(x => x.Field)));
+                    newQuery.Append(string.Join("`,`", insertColumns.Select(x => x?.Field)));
                     newQuery.Append("`) VALUES (");
-                    newQuery.Append(string.Join(",", insertColumns.Select(x => $"@{x.Field}")));
+                    newQuery.Append(string.Join(",", insertColumns.Select(x => $"@{x?.Field}")));
                     newQuery.Append(") ");
                     newQuery.Append("ON DUPLICATE KEY UPDATE ");
-                    newQuery.Append(string.Join(",", updateColumns.Select(x => $"`{x.Field}` = VALUES(`{x.Field}`)"))); // don't update primary key or unique columns on duplicate key as it's unnecessary
-                    newQuery.Append(";");
+                    newQuery.Append(string.Join(",", updateColumns.Select(x => $"`{x?.Field}` = VALUES(`{x?.Field}`)"))); // don't update primary key or unique columns on duplicate key as it's unnecessary
+                    newQuery.Append(';');
 
                     SetInsertQuery(newQuery.ToString());
                 }
@@ -378,13 +382,16 @@ namespace CoreRelm.Persistence
                     var columnDefinitions = insertColumns
                         .Select((x) =>
                         {
+                            if (x == null)
+                                return default;
+
                             var fieldType = x.Type;
                             var fieldSize = -1;
 
                             // try to pull the type and size from the column name
-                            if (fieldType.Contains("("))
+                            if (fieldType.Contains('('))
                             {
-                                var typeParts = fieldType.Split(new char[] { '(', ')' }, StringSplitOptions.RemoveEmptyEntries);
+                                var typeParts = fieldType.Split(['(', ')'], StringSplitOptions.RemoveEmptyEntries);
 
                                 fieldType = typeParts[0];
 
@@ -398,7 +405,7 @@ namespace CoreRelm.Persistence
                             if (convertedType.PropertyType == null)
                                 throw new KeyNotFoundException($"Error auto-populating columns for [`{_tableName}`.`{x.Field}`]: Invalid field type [{fieldType}]");
 
-                            return new Tuple<string, MySqlDbType, int, string, string>(x.Field, convertedType.PropertyMySqlDbType, fieldSize, null, x.Default);
+                            return new Tuple<string, MySqlDbType, int, string?, string?>(x.Field, convertedType.PropertyMySqlDbType, fieldSize, null, x.Default);
                         });
 
                     // add all those columns to the output table
@@ -421,17 +428,18 @@ namespace CoreRelm.Persistence
         /// include.</param>
         /// <returns>A <see cref="DataTable"/> containing the specified subset of data, with columns defined by <see
         /// cref="TableColumns"/>.</returns>
-        private DataTable CreateOutputDataTable(Func<string, T, object> DataTableFunction, int IterationCount)
+        private DataTable CreateOutputDataTable(Func<string, T, object>? DataTableFunction, int IterationCount)
         {
             // make a new table
             _outputTable = new DataTable();
             _outputTable.Clear();
 
             // add the columns
-            _outputTable.Columns.AddRange(TableColumns.Select(x => new DataColumn(x.Key)).ToArray());
+            if (TableColumns != null)
+                _outputTable.Columns.AddRange([.. TableColumns.Select(x => new DataColumn(x.Key))]);
 
             // add the rows
-            foreach (var data in _sourceData.Skip(IterationCount * _batchSize).Take(_batchSize))
+            foreach (var data in _sourceData?.Skip(IterationCount * _batchSize).Take(_batchSize) ?? [])
             {
                 _outputTable.Rows.Add(CreateOutputDataRow(_outputTable, data, DataTableFunction));
             }
@@ -456,12 +464,12 @@ namespace CoreRelm.Persistence
         /// logic is applied based on the object's properties and column definitions.</param>
         /// <returns>A <see cref="DataRow"/> populated with data from the specified object and mapping logic.</returns>
         /// <exception cref="ArgumentException">Thrown if a string value exceeds the column size limit and truncation is not allowed.</exception>
-        private DataRow CreateOutputDataRow(DataTable formData, T RowData, Func<string, T, object> DataTableFunction)
+        private DataRow CreateOutputDataRow(DataTable formData, T RowData, Func<string, T, object>? DataTableFunction)
         {
             var newRow = formData.NewRow();
 
             // if there is no data conversion function specified, auto generate
-            if (DataTableFunction == null)
+            if (DataTableFunction == null && TableColumns != null)
             {
                 var underscoreProperties = RowData.ConvertPropertiesToUnderscoreNames();
 
@@ -471,7 +479,7 @@ namespace CoreRelm.Persistence
                 foreach (var tableColumn in TableColumns)
                 {
                     // check if AlternatePropertyName is a property on this object
-                    var alternateUnderscoreName = tableColumn.Value.Item3 == null ? null : Regex.Replace(tableColumn.Value.Item3, UnderscoreNamesHelper.UppercaseSearchPattern, UnderscoreNamesHelper.ReplacePattern);
+                    var alternateUnderscoreName = tableColumn.Value?.Item3 == null ? null : Regex.Replace(tableColumn.Value.Item3, UnderscoreNamesHelper.UppercaseSearchPattern, UnderscoreNamesHelper.ReplacePattern);
 
                     var underscoreProperty = (KeyValuePair<string, Tuple<string, PropertyInfo>>?)null;
 
@@ -498,15 +506,22 @@ namespace CoreRelm.Persistence
                         var resolvedObject = currentProperty.GetValue(RowData, null);
 
                         // get value from property name, perform any type conversions as necessary
-                        switch (tableColumn.Value.Item1)
+                        switch (tableColumn.Value?.Item1)
                         {
                             case MySqlDbType.Bit:
                             case MySqlDbType.Int16:
                             case MySqlDbType.Int24:
                             case MySqlDbType.Int32:
                             case MySqlDbType.Int64:
+                                /*
                                 if (currentProperty.PropertyType == typeof(bool) || currentProperty.PropertyType.GenericTypeArguments?.FirstOrDefault() == typeof(bool))
                                     resolvedObject = (bool)currentProperty.GetValue(RowData, null) ? 1 : 0;
+                                */
+                                if (currentProperty.PropertyType == typeof(bool) || currentProperty.PropertyType.GenericTypeArguments?.FirstOrDefault() == typeof(bool))
+                                {
+                                    var fieldValue = currentProperty.GetValue(RowData, null);
+                                    resolvedObject = fieldValue is bool boolValue ? 1 : 0;
+                                }
                                 break;
                             case MySqlDbType.Timestamp:
                             case MySqlDbType.DateTime:
@@ -526,7 +541,10 @@ namespace CoreRelm.Persistence
                                 break;
                             case MySqlDbType.VarChar:
                                 if (currentProperty.PropertyType == typeof(Enum) || currentProperty.PropertyType.GenericTypeArguments?.FirstOrDefault() == typeof(Enum))
-                                    resolvedObject = ((Enum)currentProperty.GetValue(RowData, null)).ToString();
+                                {
+                                    var enumValue = currentProperty.GetValue(RowData, null);
+                                    resolvedObject = enumValue?.ToString();
+                                }
                                 break;
                         }
 
@@ -542,7 +560,7 @@ namespace CoreRelm.Persistence
                                 if (_throwException && !shouldTruncate)
                                     throw new ArgumentException($"String length [{resolvedObject?.ToString()?.Length}] is too long for column [{underscoreProperty?.Key}]. Expected [{columnSize}].");
                                 else
-                                    resolvedObject = resolvedObject?.ToString()?.Substring(0, columnSize);
+                                    resolvedObject = resolvedObject?.ToString()?[..columnSize];
                             }
                         }
 
@@ -552,12 +570,13 @@ namespace CoreRelm.Persistence
                     else
                     {
                         // if can't find property, just return null
-                        newRow[tableColumn.Key] = tableColumn.Value.Item4;
+                        newRow[tableColumn.Key] = tableColumn.Value?.Item4;
                     }
                 }
             }
-            else // data conversion function is provided
+            else if (TableColumns != null && DataTableFunction != null) 
             {
+                // data conversion function is provided
                 // go through each column and use the data conversion function to populate the row
                 foreach (var column in TableColumns)
                 {
@@ -566,19 +585,6 @@ namespace CoreRelm.Persistence
             }
 
             return newRow;
-        }
-
-        /// <summary>
-        /// Configures whether the bulk table writer should use a transaction during its operations.
-        /// </summary>
-        /// <param name="useTransaction">A value indicating whether to enable transaction usage.  <see langword="true"/> to use a transaction;
-        /// otherwise, <see langword="false"/>.</param>
-        /// <returns>The current instance of <see cref="BulkTableWriter{T}"/>, allowing for method chaining.</returns>
-        public BulkTableWriter<T> UseTransaction(bool useTransaction)
-        {
-            this._useTransaction = useTransaction;
-
-            return this;
         }
 
         /// <summary>
@@ -707,7 +713,7 @@ namespace CoreRelm.Persistence
         /// <returns>The current instance of <see cref="BulkTableWriter{T}"/>, allowing for method chaining.</returns>
         public BulkTableWriter<T> SetSourceData(T sourceData)
         {
-            this._sourceData = new List<T> { sourceData };
+            this._sourceData = [sourceData];
 
             return this;
         }
@@ -722,9 +728,9 @@ namespace CoreRelm.Persistence
         /// mapping.</param>
         /// <param name="columnDefault">An optional default value for the column. If null, no default value will be applied.</param>
         /// <returns>The current <see cref="BulkTableWriter{T}"/> instance, allowing for method chaining.</returns>
-        public BulkTableWriter<T> AddColumn(string columnName, MySqlDbType dbType, int size, string alternatePropertyName = null, string columnDefault = null)
+        public BulkTableWriter<T> AddColumn(string columnName, MySqlDbType dbType, int size, string? alternatePropertyName = null, string? columnDefault = null)
         {
-            TableColumns.Add(columnName, new Tuple<MySqlDbType, int, string, string>(dbType, size, alternatePropertyName, columnDefault));
+            TableColumns?.Add(columnName, new Tuple<MySqlDbType, int, string?, string?>(dbType, size, alternatePropertyName, columnDefault));
 
             return this;
         }
@@ -741,14 +747,14 @@ namespace CoreRelm.Persistence
         /// collation (<see cref="string"/>).</description></item> <item><description>The column default value (<see
         /// cref="string"/>).</description></item> </list></param>
         /// <returns>The current instance of <see cref="BulkTableWriter{T}"/>, allowing for method chaining.</returns>
-        public BulkTableWriter<T> AddColumns(IEnumerable<Tuple<string, MySqlDbType, int, string, string>> columns)
+        public BulkTableWriter<T> AddColumns(IEnumerable<Tuple<string, MySqlDbType, int, string?, string?>?>? columns)
         {
             _tableColumns = TableColumns
-                .Concat(columns?
+                ?.Concat(columns?
                     .Where(x => x?.Item2 != null)
-                    .ToDictionary(x => x.Item1, x => new Tuple<MySqlDbType, int, string, string>(x.Item2, x.Item3, x.Item4, x.Item5))
+                    .ToDictionary(x => x!.Item1, x => new Tuple<MySqlDbType, int, string?, string?>(x!.Item2, x.Item3, x.Item4, x.Item5))
                     ??
-                    new Dictionary<string, Tuple<MySqlDbType, int, string, string>>())
+                    [])
                 .ToDictionary(x => x.Key, x => x.Value);
 
             return this;
@@ -765,7 +771,7 @@ namespace CoreRelm.Persistence
         /// <returns>The current instance of <see cref="BulkTableWriter{T}"/> with the specified columns added.</returns>
         public BulkTableWriter<T> AddColumns(IEnumerable<Tuple<string, MySqlDbType, int>> columns)
         {
-            return AddColumns(columns.Select(x => new Tuple<string, MySqlDbType, int, string, string>(x.Item1, x.Item2, x.Item3, null, null)));
+            return AddColumns(columns.Select(x => new Tuple<string, MySqlDbType, int, string?, string?>(x.Item1, x.Item2, x.Item3, null, null)));
         }
 
         /// <summary>
@@ -801,7 +807,7 @@ namespace CoreRelm.Persistence
         /// <returns>The current <see cref="BulkTableWriter{T}"/> instance, allowing for method chaining.</returns>
         public BulkTableWriter<T> RemoveColumn(string columnName)
         {
-            if (TableColumns.ContainsKey(columnName))
+            if (TableColumns?.ContainsKey(columnName) ?? false)
                 TableColumns.Remove(columnName);
 
             return this;

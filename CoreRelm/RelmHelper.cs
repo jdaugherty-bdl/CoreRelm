@@ -39,13 +39,13 @@ namespace CoreRelm
         /// <summary>
         /// Caches the last execution error encountered
         /// </summary>
-        public static Exception LastExecutionException
+        public static Exception? LastExecutionException
             => DatabaseWorkHelper.LastExecutionException;
 
         /// <summary>
         /// Convenience function to get the last exception message
         /// </summary>
-        public static string LastExecutionError
+        public static string? LastExecutionError
             => DatabaseWorkHelper.LastExecutionError;
 
         /// <summary>
@@ -206,20 +206,6 @@ namespace CoreRelm
             => RowIdentityHelper.GetLastInsertId(relmContext);
 
         /// <summary>
-        /// Retrieves the identifier of the last inserted row in the current database session.
-        /// </summary>
-        /// <remarks>This method relies on the database's LAST_INSERT_ID() function, which typically
-        /// returns the most recent auto-increment value generated during the current session.  Ensure that the database
-        /// supports this function and that the session context is consistent with the operation that generated the
-        /// ID.</remarks>
-        /// <param name="relmQuickContext">The database quick context used to execute the query. This context must be properly initialized and connected to
-        /// the database.</param>
-        /// <returns>A string representing the identifier of the last inserted row. The value is determined by the database's
-        /// LAST_INSERT_ID() function.</returns>
-        public static string GetLastInsertId(IRelmQuickContext relmQuickContext)
-            => RowIdentityHelper.GetLastInsertId(relmQuickContext);
-
-        /// <summary>
         /// Retrieves the ID associated with the specified internal ID from the given table.
         /// </summary>
         /// <remarks>This method executes a SQL query to retrieve the ID corresponding to the
@@ -245,19 +231,6 @@ namespace CoreRelm
         public static string GetIdFromInternalId(IRelmContext relmContext, string tableName, string InternalId)
             => RowIdentityHelper.GetIdFromInternalId(relmContext, tableName, InternalId);
 
-        /// <summary>
-        /// Retrieves the ID associated with the specified internal ID from the given table.
-        /// </summary>
-        /// <remarks>This method executes a SQL query to retrieve the external ID from the specified
-        /// table. Ensure that the table contains a column named "InternalId" and that the query is executed in a secure
-        /// and valid context.</remarks>
-        /// <param name="relmQuickContext">The database quick context used to execute the query.</param>
-        /// <param name="tableName">The name of the table to query. Must not be null or empty.</param>
-        /// <param name="InternalId">The internal ID to search for. Must not be null or empty.</param>
-        /// <returns>The ID corresponding to the specified internal ID, or <see langword="null"/> if no match is found.</returns>
-        public static string GetIdFromInternalId(IRelmQuickContext relmQuickContext, string tableName, string InternalId)
-            => RowIdentityHelper.GetIdFromInternalId(relmQuickContext, tableName, InternalId);
-
         //***************** Refined results *****************//
 
         /// <summary>
@@ -278,7 +251,7 @@ namespace CoreRelm
         /// user variables; otherwise, <see langword="false"/>.</param>
         /// <returns>The scalar result of the query, cast to the specified type <typeparamref name="T"/>. Returns the default
         /// value of <typeparamref name="T"/> if the query returns no result.</returns>
-        public static T GetScalar<T>(Enum connectionName, string query, Dictionary<string, object> parameters = null, bool throwException = true, bool allowUserVariables = false)
+        public static T? GetScalar<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false)
             => RefinedResultsHelper.GetScalar<T>(connectionName, query, parameters: parameters, throwException: throwException, allowUserVariables: allowUserVariables);
 
         /// <summary>
@@ -291,12 +264,27 @@ namespace CoreRelm
         /// applied.</param>
         /// <param name="throwException">A boolean value indicating whether to throw an exception if an error occurs. If <see langword="true"/>,
         /// exceptions will be thrown; otherwise, errors will be suppressed.</param>
-        /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to associate with the query. If null, the query will not be part
-        /// of a transaction.</param>
         /// <returns>The scalar result of the query, converted to the specified type <typeparamref name="T"/>. Returns the
         /// default value of <typeparamref name="T"/> if the query result is null.</returns>
-        public static T GetScalar<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object> parameters = null, bool throwException = true, MySqlTransaction sqlTransaction = null)
-            => RefinedResultsHelper.GetScalar<T>(establishedConnection, query, parameters: parameters, throwException: throwException, sqlTransaction: sqlTransaction);
+        public static T? GetScalar<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+            => RefinedResultsHelper.GetScalar<T>(establishedConnection, query, parameters: parameters, throwException: throwException);
+
+        /// <summary>
+        /// Executes a scalar query on the specified MySQL connection and returns the result as the specified type.
+        /// </summary>
+        /// <typeparam name="T">The type to which the scalar result will be converted.</typeparam>
+        /// <param name="establishedConnection">An open <see cref="MySqlConnection"/> to execute the query on. The connection must be valid and open.</param>
+        /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to associate with the query. If null, the query will not be part
+        /// of a transaction.</param>
+        /// <param name="query">The SQL query string to execute. The query must return a single value.</param>
+        /// <param name="parameters">An optional dictionary of parameter names and values to be used in the query. If null, no parameters are
+        /// applied.</param>
+        /// <param name="throwException">A boolean value indicating whether to throw an exception if an error occurs. If <see langword="true"/>,
+        /// exceptions will be thrown; otherwise, errors will be suppressed.</param>
+        /// <returns>The scalar result of the query, converted to the specified type <typeparamref name="T"/>. Returns the
+        /// default value of <typeparamref name="T"/> if the query result is null.</returns>
+        public static T? GetScalar<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+            => RefinedResultsHelper.GetScalar<T>(establishedConnection, sqlTransaction, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
         /// Executes a scalar query and retrieves the result as the specified type.
@@ -311,24 +299,8 @@ namespace CoreRelm
         /// <returns>The scalar result of the query converted to the specified type <typeparamref name="T"/>. Returns the default
         /// value of <typeparamref name="T"/> if the query produces no result or fails and <paramref
         /// name="throwException"/> is <see langword="false"/>.</returns>
-        public static T GetScalar<T>(IRelmContext relmContext, string query, Dictionary<string, object> parameters = null, bool throwException = true)
+        public static T? GetScalar<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
             => RefinedResultsHelper.GetScalar<T>(relmContext, query, parameters: parameters, throwException: throwException);
-        
-        /// <summary>
-        /// Executes a scalar query and retrieves the result as the specified type.
-        /// </summary>
-        /// <typeparam name="T">The type of the result to be returned.</typeparam>
-        /// <param name="relmQuickContext">The database context used to execute the query. Cannot be <see langword="null"/>.</param>
-        /// <param name="query">The SQL query string to execute. Cannot be <see langword="null"/> or empty.</param>
-        /// <param name="parameters">An optional dictionary of parameters to include in the query. Keys represent parameter names, and values
-        /// represent parameter values. Can be <see langword="null"/> if no parameters are needed.</param>
-        /// <param name="throwException">Indicates whether an exception should be thrown if the query fails. If <see langword="true"/>, an exception
-        /// will be thrown on failure; otherwise, the method will return the default value of <typeparamref name="T"/>.</param>
-        /// <returns>The result of the scalar query, cast to the specified type <typeparamref name="T"/>. Returns the default
-        /// value of <typeparamref name="T"/> if the query fails and <paramref name="throwException"/> is <see
-        /// langword="false"/>.</returns>
-        public static T GetScalar<T>(IRelmQuickContext relmQuickContext, string query, Dictionary<string, object> parameters = null, bool throwException = true)
-            => RefinedResultsHelper.GetScalar<T>(relmQuickContext, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
         /// Executes the specified query and retrieves the first row of the result set as a <see cref="DataRow"/>.
@@ -346,7 +318,7 @@ namespace CoreRelm
         /// to allow user variables; otherwise, <see langword="false"/>.</param>
         /// <returns>A <see cref="DataRow"/> representing the first row of the result set.  Returns <see langword="null"/> if the
         /// query does not return any rows.</returns>
-        public static DataRow GetDataRow(Enum connectionName, string query, Dictionary<string, object> parameters = null, bool throwException = true, bool allowUserVariables = false)
+        public static DataRow? GetDataRow(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false)
             => RefinedResultsHelper.GetDataRow(connectionName, query, parameters: parameters, throwException: throwException, allowUserVariables: allowUserVariables);
 
         /// <summary>
@@ -362,12 +334,30 @@ namespace CoreRelm
         /// applied.</param>
         /// <param name="throwException">A boolean value indicating whether to throw an exception if the query fails.  <see langword="true"/> to
         /// throw an exception on failure; otherwise, <see langword="false"/>.</param>
-        /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to associate with the query. If null, the query is executed
-        /// without a transaction.</param>
         /// <returns>A <see cref="DataRow"/> representing the first row of the result set. Returns <see langword="null"/> if the
         /// query does not return any rows.</returns>
-        public static DataRow GetDataRow(MySqlConnection establishedConnection, string query, Dictionary<string, object> parameters = null, bool throwException = true, MySqlTransaction sqlTransaction = null)
-            => RefinedResultsHelper.GetDataRow(establishedConnection, query, parameters: parameters, throwException: throwException, sqlTransaction: sqlTransaction);
+        public static DataRow? GetDataRow(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+            => RefinedResultsHelper.GetDataRow(establishedConnection, query, parameters: parameters, throwException: throwException);
+
+        /// <summary>
+        /// Executes the specified SQL query and retrieves the first row of the result set as a <see cref="DataRow"/>.
+        /// </summary>
+        /// <remarks>This method is a convenience wrapper for retrieving a single row from the result set
+        /// of a query. If the query returns multiple rows, only the first row is returned. If no rows are returned, the
+        /// method returns <see langword="null"/>.</remarks>
+        /// <param name="establishedConnection">An open <see cref="MySqlConnection"/> to the database. The connection must be in an open state before
+        /// calling this method.</param>
+        /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to associate with the query. If null, the query is executed
+        /// without a transaction.</param>
+        /// <param name="query">The SQL query to execute. The query must be a valid SQL statement that returns a result set.</param>
+        /// <param name="parameters">An optional dictionary of parameter names and values to be used in the query. If null, no parameters are
+        /// applied.</param>
+        /// <param name="throwException">A boolean value indicating whether to throw an exception if the query fails.  <see langword="true"/> to
+        /// throw an exception on failure; otherwise, <see langword="false"/>.</param>
+        /// <returns>A <see cref="DataRow"/> representing the first row of the result set. Returns <see langword="null"/> if the
+        /// query does not return any rows.</returns>
+        public static DataRow? GetDataRow(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+            => RefinedResultsHelper.GetDataRow(establishedConnection, sqlTransaction, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
         /// Executes the specified query and retrieves the first row of the result set as a <see cref="DataRow"/>.
@@ -380,23 +370,8 @@ namespace CoreRelm
         /// langword="true"/> to throw an exception when no rows are returned; otherwise, <see langword="false"/>.</param>
         /// <returns>A <see cref="DataRow"/> representing the first row of the result set. Returns <see langword="null"/> if no
         /// rows are found and <paramref name="throwException"/> is <see langword="false"/>.</returns>
-        public static DataRow GetDataRow(IRelmContext relmContext, string query, Dictionary<string, object> parameters = null, bool throwException = true)
+        public static DataRow? GetDataRow(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
             => RefinedResultsHelper.GetDataRow(relmContext, query, parameters: parameters, throwException: throwException);
-
-        /// <summary>
-        /// Executes the specified query and retrieves the first row of the result set as a <see cref="DataRow"/>.
-        /// </summary>
-        /// <param name="relmQuickContext">The context used to execute the query. This must not be <see langword="null"/>.</param>
-        /// <param name="query">The SQL query to execute. This must not be <see langword="null"/> or empty.</param>
-        /// <param name="parameters">An optional dictionary of parameter names and values to be used in the query. If <see langword="null"/>, no
-        /// parameters are applied.</param>
-        /// <param name="throwException">A value indicating whether an exception should be thrown if the query does not return any rows. If <see
-        /// langword="true"/>, an exception is thrown when no rows are found; otherwise, <see langword="null"/> is
-        /// returned.</param>
-        /// <returns>The first row of the result set as a <see cref="DataRow"/>, or <see langword="null"/> if no rows are found
-        /// and <paramref name="throwException"/> is <see langword="false"/>.</returns>
-        public static DataRow GetDataRow(IRelmQuickContext relmQuickContext, string query, Dictionary<string, object> parameters = null, bool throwException = true)
-            => RefinedResultsHelper.GetDataRow(relmQuickContext, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
         /// Executes the specified SQL query and returns the results as a <see cref="DataTable"/>.
@@ -414,7 +389,7 @@ namespace CoreRelm
         /// langword="true"/>, user-defined variables are permitted; otherwise, they are not.</param>
         /// <returns>A <see cref="DataTable"/> containing the results of the query. The <see cref="DataTable"/> will be empty if
         /// the query returns no rows.</returns>
-        public static DataTable GetDataTable(Enum connectionName, string query, Dictionary<string, object> parameters = null, bool throwException = true, bool allowUserVariables = false)
+        public static DataTable? GetDataTable(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false)
             => RefinedResultsHelper.GetDataTable(connectionName, query, parameters: parameters, throwException: throwException, allowUserVariables: allowUserVariables);
 
         /// <summary>
@@ -427,12 +402,27 @@ namespace CoreRelm
         /// no parameters are applied.</param>
         /// <param name="throwException">A boolean value indicating whether to throw an exception if an error occurs. If <see langword="true"/>,
         /// exceptions are thrown; otherwise, errors are suppressed.</param>
-        /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to associate with the query. If null, the query is executed
-        /// without a transaction.</param>
         /// <returns>A <see cref="DataTable"/> containing the results of the query. If the query returns no rows, the <see
         /// cref="DataTable"/> will be empty.</returns>
-        public static DataTable GetDataTable(MySqlConnection establishedConnection, string query, Dictionary<string, object> parameters = null, bool throwException = true, MySqlTransaction sqlTransaction = null)
-            => RefinedResultsHelper.GetDataTable(establishedConnection, query, parameters: parameters, throwException: throwException, sqlTransaction: sqlTransaction);
+        public static DataTable? GetDataTable(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+            => RefinedResultsHelper.GetDataTable(establishedConnection, query, parameters: parameters, throwException: throwException);
+
+        /// <summary>
+        /// Executes the specified SQL query and retrieves the results as a <see cref="DataTable"/>.
+        /// </summary>
+        /// <param name="establishedConnection">An open <see cref="MySqlConnection"/> to the database. The connection must be in an open state before
+        /// calling this method.</param>
+        /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to associate with the query. If null, the query is executed
+        /// without a transaction.</param>
+        /// <param name="query">The SQL query to execute. The query can include parameter placeholders.</param>
+        /// <param name="parameters">An optional dictionary of parameter names and their corresponding values to be used in the query. If null,
+        /// no parameters are applied.</param>
+        /// <param name="throwException">A boolean value indicating whether to throw an exception if an error occurs. If <see langword="true"/>,
+        /// exceptions are thrown; otherwise, errors are suppressed.</param>
+        /// <returns>A <see cref="DataTable"/> containing the results of the query. If the query returns no rows, the <see
+        /// cref="DataTable"/> will be empty.</returns>
+        public static DataTable? GetDataTable(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+            => RefinedResultsHelper.GetDataTable(establishedConnection, sqlTransaction, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
         /// Executes the specified query against the provided Relm context and returns the results as a <see
@@ -446,25 +436,8 @@ namespace CoreRelm
         /// langword="true"/>, exceptions will be thrown; otherwise, errors will be suppressed.</param>
         /// <returns>A <see cref="DataTable"/> containing the results of the query. If the query returns no results, the <see
         /// cref="DataTable"/> will be empty.</returns>
-        public static DataTable GetDataTable(IRelmContext relmContext, string query, Dictionary<string, object> parameters = null, bool throwException = true)
+        public static DataTable? GetDataTable(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
             => RefinedResultsHelper.GetDataTable(relmContext, query, parameters: parameters, throwException: throwException);
-        
-        /// <summary>
-        /// Executes the specified query against the provided RelmQuick context and returns the results as a <see
-        /// cref="DataTable"/>.
-        /// </summary>
-        /// <remarks>This method provides a convenient way to execute queries  and retrieve results in a tabular format. Ensure that the
-        /// <paramref name="relmQuickContext"/> is properly initialized before calling this method.</remarks>
-        /// <param name="relmQuickContext">The context used to execute the query. This must not be <see langword="null"/>.</param>
-        /// <param name="query">The SQL query to execute. This must not be <see langword="null"/> or empty.</param>
-        /// <param name="parameters">An optional dictionary of parameter names and values to be used in the query. If <see langword="null"/>, no
-        /// parameters are applied.</param>
-        /// <param name="throwException">A value indicating whether an exception should be thrown if an error occurs during query execution.  If <see
-        /// langword="true"/>, exceptions are thrown; otherwise, errors are suppressed.</param>
-        /// <returns>A <see cref="DataTable"/> containing the results of the query. The table will be empty if the query returns
-        /// no rows.</returns>
-        public static DataTable GetDataTable(IRelmQuickContext relmQuickContext, string query, Dictionary<string, object> parameters = null, bool throwException = true)
-            => RefinedResultsHelper.GetDataTable(relmQuickContext, query, parameters: parameters, throwException: throwException);
 
         //***************** Object results *****************//
 
@@ -486,7 +459,7 @@ namespace CoreRelm
         /// <returns>An instance of the specified type <typeparamref name="T"/> populated with the data retrieved from the query,
         /// or <see langword="null"/> if no data is found and <paramref name="throwException"/> is <see
         /// langword="false"/>.</returns>
-        public static T GetDataObject<T>(Enum connectionName, string query, Dictionary<string, object> parameters = null, bool throwException = true, bool allowUserVariables = false) where T : IRelmModel, new()
+        public static T? GetDataObject<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false) where T : IRelmModel, new()
             => ObjectResultsHelper.GetDataObject<T>(connectionName, query, parameters: parameters, throwException: throwException, allowUserVariables: allowUserVariables);
 
         /// <summary>
@@ -502,13 +475,32 @@ namespace CoreRelm
         /// <param name="throwException">A boolean value indicating whether an exception should be thrown if the query does not return a result. If
         /// <see langword="true"/>, an exception is thrown when no data is found; otherwise, <see langword="default"/>
         /// is returned.</param>
-        /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to associate with the query. Can be <see langword="null"/> if no
-        /// transaction is needed.</param>
         /// <returns>An instance of type <typeparamref name="T"/> populated with the data retrieved from the database. Returns
         /// <see langword="default"/> if no data is found and <paramref name="throwException"/> is <see
         /// langword="false"/>.</returns>
-        public static T GetDataObject<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object> parameters = null, bool throwException = true, MySqlTransaction sqlTransaction = null) where T : IRelmModel, new()
-            => ObjectResultsHelper.GetDataObject<T>(establishedConnection, query, parameters: parameters, throwException: throwException, sqlTransaction: sqlTransaction);
+        public static T? GetDataObject<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new()
+            => ObjectResultsHelper.GetDataObject<T>(establishedConnection, query, parameters: parameters, throwException: throwException);
+
+        /// <summary>
+        /// Retrieves a single data object of the specified type from the database based on the provided query and
+        /// parameters.
+        /// </summary>
+        /// <typeparam name="T">The type of the data object to retrieve. Must implement <see cref="IRelmModel"/> and have a parameterless
+        /// constructor.</typeparam>
+        /// <param name="establishedConnection">An open <see cref="MySqlConnection"/> to the database. The connection must be valid and already established.</param>
+        /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to associate with the query. Can be <see langword="null"/> if no
+        /// transaction is needed.</param>
+        /// <param name="query">The SQL query to execute. The query should be structured to return a single row of data.</param>
+        /// <param name="parameters">An optional dictionary of parameter names and values to be used in the query. Can be <see langword="null"/>
+        /// if no parameters are required.</param>
+        /// <param name="throwException">A boolean value indicating whether an exception should be thrown if the query does not return a result. If
+        /// <see langword="true"/>, an exception is thrown when no data is found; otherwise, <see langword="default"/>
+        /// is returned.</param>
+        /// <returns>An instance of type <typeparamref name="T"/> populated with the data retrieved from the database. Returns
+        /// <see langword="default"/> if no data is found and <paramref name="throwException"/> is <see
+        /// langword="false"/>.</returns>
+        public static T? GetDataObject<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new()
+            => ObjectResultsHelper.GetDataObject<T>(establishedConnection, sqlTransaction, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
         /// Retrieves a single data object of the specified type based on the provided query and parameters.
@@ -527,29 +519,8 @@ namespace CoreRelm
         /// <returns>An instance of the specified type <typeparamref name="T"/> populated with the data retrieved by the query.
         /// Returns <see langword="null"/> if no data is found and <paramref name="throwException"/> is <see
         /// langword="false"/>.</returns>
-        public static T GetDataObject<T>(IRelmContext relmContext, string query, Dictionary<string, object> parameters = null, bool throwException = true) where T : IRelmModel, new()
+        public static T? GetDataObject<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new()
             => ObjectResultsHelper.GetDataObject<T>(relmContext, query, parameters: parameters, throwException: throwException);
-
-        /// <summary>
-        /// Retrieves a single data object of the specified type based on the provided query and parameters.
-        /// </summary>
-        /// <remarks>This method provides a convenient way to retrieve a single data object. Ensure that the query and parameters are
-        /// properly constructed to avoid unexpected results.</remarks>
-        /// <typeparam name="T">The type of the data object to retrieve. Must implement <see cref="IRelmModel"/> and have a parameterless
-        /// constructor.</typeparam>
-        /// <param name="relmQuickContext">The context used to execute the query. This provides the necessary connection and configuration for data
-        /// retrieval.</param>
-        /// <param name="query">The query string used to retrieve the data object. This should be a valid query supported by the context.</param>
-        /// <param name="parameters">An optional dictionary of parameters to be used in the query. Keys represent parameter names, and values
-        /// represent their corresponding values.</param>
-        /// <param name="throwException">A boolean value indicating whether an exception should be thrown if the query does not return a result. If
-        /// <see langword="true"/>, an exception is thrown when no result is found; otherwise, <see langword="null"/> is
-        /// returned.</param>
-        /// <returns>An instance of the specified type <typeparamref name="T"/> representing the retrieved data object. Returns
-        /// <see langword="null"/> if no result is found and <paramref name="throwException"/> is <see
-        /// langword="false"/>.</returns>
-        public static T GetDataObject<T>(IRelmQuickContext relmQuickContext, string query, Dictionary<string, object> parameters = null, bool throwException = true) where T : IRelmModel, new()
-            => ObjectResultsHelper.GetDataObject<T>(relmQuickContext, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
         /// Retrieves a collection of data objects of the specified type from the database.
@@ -569,8 +540,27 @@ namespace CoreRelm
         /// enable user variables; otherwise, <see langword="false"/>.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the data objects retrieved by the query. If no data is found, an
         /// empty collection is returned.</returns>
-        public static IEnumerable<T> GetDataObjects<T>(Enum connectionName, string query, Dictionary<string, object> parameters = null, bool throwException = true, bool allowUserVariables = false) where T : IRelmModel, new()
+        public static IEnumerable<T?> GetDataObjects<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false) where T : IRelmModel, new()
             => ObjectResultsHelper.GetDataObjects<T>(connectionName, query, parameters: parameters, throwException: throwException, allowUserVariables: allowUserVariables);
+
+        /// <summary>
+        /// Retrieves a collection of data objects of the specified type from the database based on the provided query
+        /// and parameters.
+        /// </summary>
+        /// <remarks>This method uses the specified SQL query and parameters to retrieve data objects from
+        /// the database. Ensure that the query matches the structure of the type <typeparamref name="T"/>.</remarks>
+        /// <typeparam name="T">The type of the data objects to retrieve. Must implement <see cref="IRelmModel"/> and have a parameterless
+        /// constructor.</typeparam>
+        /// <param name="establishedConnection">An open <see cref="MySqlConnection"/> to the database. The connection must be established and valid.</param>
+        /// <param name="query">The SQL query to execute for retrieving the data objects.</param>
+        /// <param name="parameters">An optional dictionary of parameter names and values to be used in the query. Can be <see langword="null"/>
+        /// if no parameters are required.</param>
+        /// <param name="throwException">A value indicating whether an exception should be thrown if an error occurs during query execution. If <see
+        /// langword="true"/>, exceptions will be propagated; otherwise, errors will be suppressed.</param>
+        /// <returns>An <see cref="IEnumerable{T}"/> containing the data objects retrieved from the database. The collection will
+        /// be empty if no matching records are found.</returns>
+        public static IEnumerable<T?> GetDataObjects<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new()
+            => ObjectResultsHelper.GetDataObjects<T>(establishedConnection, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
         /// Retrieves a collection of data objects of the specified type from the database based on the provided query
@@ -590,29 +580,8 @@ namespace CoreRelm
         /// langword="null"/> if no transaction is required.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the data objects retrieved from the database. The collection will
         /// be empty if no matching records are found.</returns>
-        public static IEnumerable<T> GetDataObjects<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object> parameters = null, bool throwException = true, MySqlTransaction sqlTransaction = null) where T : IRelmModel, new()
-            => ObjectResultsHelper.GetDataObjects<T>(establishedConnection, query, parameters: parameters, throwException: throwException, sqlTransaction);
-
-        /// <summary>
-        /// Executes a query against the specified Relm context and retrieves a collection of data objects of the
-        /// specified type.
-        /// </summary>
-        /// <remarks>This method provides a convenient way to execute queries and
-        /// retrieve data objects. Ensure that the query string and parameters are properly formatted to avoid runtime
-        /// errors.</remarks>
-        /// <typeparam name="T">The type of data objects to retrieve. Must implement <see cref="IRelmModel"/> and have a parameterless
-        /// constructor.</typeparam>
-        /// <param name="relmContext">The Relm context used to execute the query. This context provides the connection and configuration for the
-        /// database.</param>
-        /// <param name="query">The query string to execute. The query must be valid for the underlying database.</param>
-        /// <param name="parameters">An optional dictionary of parameters to include in the query. Keys represent parameter names, and values
-        /// represent their corresponding values.</param>
-        /// <param name="throwException">A value indicating whether an exception should be thrown if an error occurs during query execution. If <see
-        /// langword="true"/>, exceptions will be thrown; otherwise, errors will be suppressed.</param>
-        /// <returns>An <see cref="IEnumerable{T}"/> containing the data objects retrieved by the query. The collection will be
-        /// empty if no matching data is found.</returns>
-        public static IEnumerable<T> GetDataObjects<T>(IRelmQuickContext relmContext, string query, Dictionary<string, object> parameters = null, bool throwException = true) where T : IRelmModel, new()
-            => ObjectResultsHelper.GetDataObjects<T>(relmContext, query, parameters: parameters, throwException: throwException);
+        public static IEnumerable<T?> GetDataObjects<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new()
+            => ObjectResultsHelper.GetDataObjects<T>(establishedConnection, sqlTransaction, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
         /// Executes a query against the specified Relm context and retrieves a collection of data objects of the
@@ -633,7 +602,7 @@ namespace CoreRelm
         /// silently.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the data objects retrieved by the query.  If no data is found,
         /// the collection will be empty.</returns>
-        public static IEnumerable<T> GetDataObjects<T>(IRelmContext relmContext, string query, Dictionary<string, object> parameters = null, bool throwException = true) where T : IRelmModel, new()
+        public static IEnumerable<T?> GetDataObjects<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new()
             => ObjectResultsHelper.GetDataObjects<T>(relmContext, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
@@ -649,7 +618,7 @@ namespace CoreRelm
         /// object of type <typeparamref name="T"/>.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the objects created from the rows of the <paramref
         /// name="existingData"/> table.</returns>
-        public static IEnumerable<T> GetDataObjects<T>(DataTable existingData) where T : IRelmModel, new()
+        public static IEnumerable<T?> GetDataObjects<T>(DataTable existingData) where T : IRelmModel, new()
             => ObjectResultsHelper.GetDataObjects<T>(existingData);
 
         /// <summary>
@@ -668,8 +637,23 @@ namespace CoreRelm
         /// <param name="allowUserVariables">A value indicating whether user-defined variables are allowed in the query.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the results of the query mapped to the specified type. Returns an
         /// empty collection if no results are found.</returns>
-        public static IEnumerable<T> GetDataList<T>(Enum connectionName, string query, Dictionary<string, object> parameters = null, bool throwException = true, bool allowUserVariables = false)
+        public static IEnumerable<T> GetDataList<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false)
             => ObjectResultsHelper.GetDataList<T>(connectionName, query, parameters: parameters, throwException: throwException, allowUserVariables: allowUserVariables);
+
+        /// <summary>
+        /// Executes the specified SQL query and retrieves a list of objects of type <typeparamref name="T"/>.
+        /// </summary>
+        /// <typeparam name="T">The type of objects to map the query results to.</typeparam>
+        /// <param name="establishedConnection">An open and valid <see cref="MySqlConnection"/> to use for the query.</param>
+        /// <param name="query">The SQL query to execute. Must be a valid SQL statement.</param>
+        /// <param name="parameters">An optional dictionary of parameter names and values to include in the query. Can be <see langword="null"/>
+        /// if no parameters are needed.</param>
+        /// <param name="throwException">A value indicating whether to throw an exception if an error occurs during query execution. If <see
+        /// langword="true"/>, exceptions will be thrown; otherwise, errors will be suppressed.</param>
+        /// <returns>An <see cref="IEnumerable{T}"/> containing the results of the query mapped to objects of type <typeparamref
+        /// name="T"/>. Returns an empty collection if no results are found.</returns>
+        public static IEnumerable<T> GetDataList<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+            => ObjectResultsHelper.GetDataList<T>(establishedConnection, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
         /// Executes the specified SQL query and retrieves a list of objects of type <typeparamref name="T"/>.
@@ -685,8 +669,8 @@ namespace CoreRelm
         /// transaction is required.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the results of the query mapped to objects of type <typeparamref
         /// name="T"/>. Returns an empty collection if no results are found.</returns>
-        public static IEnumerable<T> GetDataList<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object> parameters = null, bool throwException = true, MySqlTransaction sqlTransaction = null)
-            => ObjectResultsHelper.GetDataList<T>(establishedConnection, query, parameters: parameters, throwException: throwException, sqlTransaction: sqlTransaction);
+        public static IEnumerable<T> GetDataList<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+            => ObjectResultsHelper.GetDataList<T>(establishedConnection, sqlTransaction, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
         /// Executes a query against the specified Realm context and retrieves a collection of data items.
@@ -701,24 +685,7 @@ namespace CoreRelm
         /// <returns>An <see cref="IEnumerable{T}"/> containing the data items retrieved by the query.  Returns an empty
         /// collection if no items are found or if <paramref name="throwException"/> is <see langword="false"/> and the
         /// query fails.</returns>
-        public static IEnumerable<T> GetDataList<T>(IRelmContext relmContext, string query, Dictionary<string, object> parameters = null, bool throwException = true)
-            => ObjectResultsHelper.GetDataList<T>(relmContext, query, parameters: parameters, throwException: throwException);
-
-        /// <summary>
-        /// Executes a query against the specified context and returns a collection of results of the specified type.
-        /// </summary>
-        /// <typeparam name="T">The type of objects to be returned in the result set.</typeparam>
-        /// <param name="relmContext">The context used to execute the query. This parameter cannot be <see langword="null"/>.</param>
-        /// <param name="query">The query string to execute. This parameter cannot be <see langword="null"/> or empty.</param>
-        /// <param name="parameters">An optional dictionary of parameters to be used in the query. Keys represent parameter names, and values
-        /// represent their corresponding values. Can be <see langword="null"/> if no parameters are needed.</param>
-        /// <param name="throwException">A value indicating whether an exception should be thrown if an error occurs during query execution. If <see
-        /// langword="true"/>, an exception will be thrown on error; otherwise, the method will return an empty
-        /// collection.</param>
-        /// <returns>A collection of objects of type <typeparamref name="T"/> representing the results of the query. Returns an
-        /// empty collection if no results are found or if <paramref name="throwException"/> is <see langword="false"/>
-        /// and an error occurs.</returns>
-        public static IEnumerable<T> GetDataList<T>(IRelmQuickContext relmContext, string query, Dictionary<string, object> parameters = null, bool throwException = true)
+        public static IEnumerable<T> GetDataList<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
             => ObjectResultsHelper.GetDataList<T>(relmContext, query, parameters: parameters, throwException: throwException);
 
         //***************** Table write functions *****************//
@@ -735,8 +702,6 @@ namespace CoreRelm
         /// connection to use.</param>
         /// <param name="insertQuery">An optional SQL insert query to use for the bulk operation. If not provided, a default query is generated
         /// based on the type <typeparamref name="T"/>.</param>
-        /// <param name="useTransaction">A value indicating whether the bulk operation should be performed within a database transaction. If <see
-        /// langword="true"/>, the operation is transactional; otherwise, it is not.</param>
         /// <param name="throwException">A value indicating whether exceptions should be thrown if an error occurs during the operation. If <see
         /// langword="true"/>, exceptions are thrown; otherwise, errors are suppressed.</param>
         /// <param name="allowUserVariables">A value indicating whether user-defined variables are allowed in the SQL query. If <see langword="true"/>,
@@ -748,8 +713,8 @@ namespace CoreRelm
         /// <param name="allowUniqueColumns">A value indicating whether unique columns are allowed to be included in the bulk operation. If <see
         /// langword="true"/>, unique columns are included; otherwise, they are excluded.</param>
         /// <returns>A <see cref="BulkTableWriter{T}"/> instance configured for the specified bulk operation.</returns>
-        public static BulkTableWriter<T> GetBulkTableWriter<T>(Enum connectionName, string insertQuery = null, bool useTransaction = false, bool throwException = true, bool allowUserVariables = false, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
-            => DataOutputOperations.GetBulkTableWriter<T>(connectionName, insertQuery: insertQuery, useTransaction: useTransaction, throwException: throwException, allowUserVariables: allowUserVariables, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns);
+        public static BulkTableWriter<T> GetBulkTableWriter<T>(Enum connectionName, string? insertQuery = null, bool throwException = true, bool allowUserVariables = false, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
+            => DataOutputOperations.GetBulkTableWriter<T>(connectionName, insertQuery: insertQuery, throwException: throwException, allowUserVariables: allowUserVariables, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns);
         
         /// <summary>
         /// Creates and returns a <see cref="BulkTableWriter{T}"/> instance for performing bulk insert operations on a
@@ -765,8 +730,30 @@ namespace CoreRelm
         /// generated based on the type <typeparamref name="T"/> and the target table schema.</param>
         /// <param name="throwException">A value indicating whether exceptions should be thrown if an error occurs during the bulk operation. If <see
         /// langword="true"/>, exceptions will be thrown; otherwise, errors will be suppressed.</param>
-        /// <param name="useTransaction">A value indicating whether the bulk operation should be performed within a transaction. If <see
-        /// langword="true"/>, a transaction will be used unless <paramref name="sqlTransaction"/> is provided.</param>
+        /// <param name="allowAutoIncrementColumns">A value indicating whether auto-increment columns in the target table are allowed to be explicitly written
+        /// to. If <see langword="false"/>, auto-increment columns will be excluded from the operation.</param>
+        /// <param name="allowPrimaryKeyColumns">A value indicating whether primary key columns in the target table are allowed to be explicitly written to.
+        /// If <see langword="false"/>, primary key columns will be excluded from the operation.</param>
+        /// <param name="allowUniqueColumns">A value indicating whether unique columns in the target table are allowed to be explicitly written to. If
+        /// <see langword="false"/>, unique columns will be excluded from the operation.</param>
+        /// <returns>A <see cref="BulkTableWriter{T}"/> instance configured for the specified bulk operation.</returns>
+        public static BulkTableWriter<T> GetBulkTableWriter<T>(MySqlConnection establishedConnection, string? insertQuery = null, bool throwException = true, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
+            => DataOutputOperations.GetBulkTableWriter<T>(establishedConnection, insertQuery: insertQuery, throwException: throwException, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns);
+        
+        /// <summary>
+        /// Creates and returns a <see cref="BulkTableWriter{T}"/> instance for performing bulk insert operations on a
+        /// MySQL database table.
+        /// </summary>
+        /// <remarks>This method provides a flexible way to perform high-performance bulk insert
+        /// operations on a MySQL database table. The behavior of the operation can be customized using the provided
+        /// parameters.</remarks>
+        /// <typeparam name="T">The type of the objects to be written to the database. Each object represents a row in the target table.</typeparam>
+        /// <param name="establishedConnection">An open and valid <see cref="MySqlConnection"/> to the target database. The connection must remain open for
+        /// the duration of the bulk operation.</param>
+        /// <param name="insertQuery">An optional custom SQL insert query to use for the bulk operation. If not provided, a default query will be
+        /// generated based on the type <typeparamref name="T"/> and the target table schema.</param>
+        /// <param name="throwException">A value indicating whether exceptions should be thrown if an error occurs during the bulk operation. If <see
+        /// langword="true"/>, exceptions will be thrown; otherwise, errors will be suppressed.</param>
         /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to use for the bulk operation. If provided, the operation will
         /// use this transaction instead of creating a new one. This parameter is ignored if <paramref
         /// name="useTransaction"/> is <see langword="false"/>.</param>
@@ -777,8 +764,8 @@ namespace CoreRelm
         /// <param name="allowUniqueColumns">A value indicating whether unique columns in the target table are allowed to be explicitly written to. If
         /// <see langword="false"/>, unique columns will be excluded from the operation.</param>
         /// <returns>A <see cref="BulkTableWriter{T}"/> instance configured for the specified bulk operation.</returns>
-        public static BulkTableWriter<T> GetBulkTableWriter<T>(MySqlConnection establishedConnection, string insertQuery = null, bool throwException = true, bool useTransaction = true, MySqlTransaction sqlTransaction = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
-            => DataOutputOperations.GetBulkTableWriter<T>(establishedConnection, insertQuery: insertQuery, useTransaction: useTransaction, throwException: throwException, sqlTransaction: sqlTransaction, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns);
+        public static BulkTableWriter<T> GetBulkTableWriter<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string? insertQuery = null, bool throwException = true, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
+            => DataOutputOperations.GetBulkTableWriter<T>(establishedConnection, sqlTransaction, insertQuery: insertQuery, throwException: throwException, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns);
         
         /// <summary>
         /// Creates and returns a <see cref="BulkTableWriter{T}"/> instance for performing bulk insert operations on a
@@ -793,8 +780,6 @@ namespace CoreRelm
         /// langword="null"/>.</param>
         /// <param name="insertQuery">An optional SQL insert query to use for the bulk operation. If <see langword="null"/>, a default query is
         /// generated based on the type <typeparamref name="T"/>.</param>
-        /// <param name="useTransaction">Indicates whether the bulk operation should be performed within a transaction. If <see langword="true"/>,
-        /// the operation is transactional; otherwise, it is not.</param>
         /// <param name="throwException">Determines whether exceptions should be thrown during the operation. If <see langword="true"/>, exceptions
         /// are thrown; otherwise, errors are suppressed.</param>
         /// <param name="allowAutoIncrementColumns">Specifies whether auto-increment columns are allowed in the bulk operation. If <see langword="true"/>,
@@ -804,35 +789,8 @@ namespace CoreRelm
         /// <param name="allowUniqueColumns">Specifies whether unique columns are allowed in the bulk operation. If <see langword="true"/>, unique
         /// columns are included; otherwise, they are excluded.</param>
         /// <returns>A <see cref="BulkTableWriter{T}"/> instance configured for the specified bulk operation.</returns>
-        public static BulkTableWriter<T> GetBulkTableWriter<T>(IRelmContext relmContext, string insertQuery = null, bool useTransaction = false, bool throwException = true, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
-            => DataOutputOperations.GetBulkTableWriter<T>(relmContext, insertQuery: insertQuery, useTransaction: useTransaction, throwException: throwException, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns);
-        
-        /// <summary>
-        /// Creates and returns a <see cref="BulkTableWriter{T}"/> instance for performing bulk insert operations on a
-        /// database table.
-        /// </summary>
-        /// <remarks>This method is a wrapper around <see
-        /// cref="DataOutputOperations.GetBulkTableWriter{T}"/> and provides additional configuration options for bulk
-        /// insert operations. Use this method to efficiently insert large amounts of data into a database
-        /// table.</remarks>
-        /// <typeparam name="T">The type of the objects to be written to the database table.</typeparam>
-        /// <param name="relmQuickContext">The database context used to manage the connection and operations. This parameter cannot be <see
-        /// langword="null"/>.</param>
-        /// <param name="insertQuery">An optional SQL insert query to use for the bulk operation. If <see langword="null"/>, a default query is
-        /// generated based on the type <typeparamref name="T"/>.</param>
-        /// <param name="useTransaction">A value indicating whether the bulk operation should be performed within a transaction. The default is <see
-        /// langword="false"/>.</param>
-        /// <param name="throwException">A value indicating whether exceptions should be thrown if an error occurs during the operation. The default
-        /// is <see langword="true"/>.</param>
-        /// <param name="allowAutoIncrementColumns">A value indicating whether auto-increment columns are allowed in the bulk operation. The default is <see
-        /// langword="false"/>.</param>
-        /// <param name="allowPrimaryKeyColumns">A value indicating whether primary key columns are allowed in the bulk operation. The default is <see
-        /// langword="false"/>.</param>
-        /// <param name="allowUniqueColumns">A value indicating whether unique columns are allowed in the bulk operation. The default is <see
-        /// langword="false"/>.</param>
-        /// <returns>A <see cref="BulkTableWriter{T}"/> instance configured for the specified bulk operation.</returns>
-        public static BulkTableWriter<T> GetBulkTableWriter<T>(IRelmQuickContext relmQuickContext, string insertQuery = null, bool useTransaction = false, bool throwException = true, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
-            => DataOutputOperations.GetBulkTableWriter<T>(relmQuickContext, insertQuery: insertQuery, useTransaction: useTransaction, throwException: throwException, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns);
+        public static BulkTableWriter<T> GetBulkTableWriter<T>(IRelmContext relmContext, string? insertQuery = null, bool throwException = true, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
+            => DataOutputOperations.GetBulkTableWriter<T>(relmContext, insertQuery: insertQuery, throwException: throwException, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns);
         
         /// <summary>
         /// Writes a collection of data to a database table in bulk, optimizing for high performance.
@@ -857,8 +815,38 @@ namespace CoreRelm
         /// langword="false"/>.</param>
         /// <param name="allowUniqueColumns">A value indicating whether unique columns are allowed to be written. Defaults to <see langword="false"/>.</param>
         /// <returns>The number of rows successfully written to the database.</returns>
-        public static int BulkTableWrite<T>(Enum connectionName, T sourceData, string tableName = null, Type forceType = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
+        public static int BulkTableWrite<T>(Enum connectionName, T sourceData, string? tableName = null, Type? forceType = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
             => DataOutputOperations.BulkTableWrite<T>(connectionName, sourceData, tableName, forceType, batchSize: batchSize, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns);
+
+        /// <summary>
+        /// Writes a collection of data to a database table in bulk, optimizing for performance.
+        /// </summary>
+        /// <remarks>This method is designed for high-performance bulk data insertion. It is the caller's
+        /// responsibility to ensure that the data in <paramref name="sourceData"/> matches the schema of the target
+        /// table. <para> If <paramref name="allowAutoIncrementColumns"/>, <paramref name="allowPrimaryKeyColumns"/>, or
+        /// <paramref name="allowUniqueColumns"/> are set to <see langword="true"/>, the caller must ensure that the
+        /// data does not violate database constraints. </para> <para> The method does not automatically handle schema
+        /// mismatches or data validation. Ensure that the data types and column mappings align with the target table.
+        /// </para></remarks>
+        /// <typeparam name="T">The type of the data source. Typically a collection of objects or a DataTable.</typeparam>
+        /// <param name="establishedConnection">An open <see cref="MySqlConnection"/> to the database where the data will be written. The connection must
+        /// remain open for the duration of the operation.</param>
+        /// <param name="sourceData">The data to be written to the table. This can be a collection of objects or a DataTable.</param>
+        /// <param name="tableName">The name of the target database table. If null, the table name is inferred from the type of <typeparamref
+        /// name="T"/>.</param>
+        /// <param name="forceType">An optional <see cref="Type"/> to enforce a specific type for the data being written. If null, the type is
+        /// inferred from <typeparamref name="T"/>.</param>
+        /// <param name="batchSize">The number of rows to write in each batch. Defaults to 100. Larger batch sizes may improve performance but
+        /// require more memory.</param>
+        /// <param name="allowAutoIncrementColumns">Indicates whether auto-increment columns in the target table are allowed to be written. Defaults to <see
+        /// langword="false"/>.</param>
+        /// <param name="allowPrimaryKeyColumns">Indicates whether primary key columns in the target table are allowed to be written. Defaults to <see
+        /// langword="false"/>.</param>
+        /// <param name="allowUniqueColumns">Indicates whether unique columns in the target table are allowed to be written. Defaults to <see
+        /// langword="false"/>.</param>
+        /// <returns>The number of rows successfully written to the database table.</returns>
+        public static int BulkTableWrite<T>(MySqlConnection establishedConnection, T sourceData, string? tableName = null, Type? forceType = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
+            => DataOutputOperations.BulkTableWrite<T>(establishedConnection, sourceData, tableName, forceType, batchSize: batchSize, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns);
 
         /// <summary>
         /// Writes a collection of data to a database table in bulk, optimizing for performance.
@@ -889,8 +877,8 @@ namespace CoreRelm
         /// <param name="allowUniqueColumns">Indicates whether unique columns in the target table are allowed to be written. Defaults to <see
         /// langword="false"/>.</param>
         /// <returns>The number of rows successfully written to the database table.</returns>
-        public static int BulkTableWrite<T>(MySqlConnection establishedConnection, T sourceData, string tableName = null, MySqlTransaction sqlTransaction = null, Type forceType = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
-            => DataOutputOperations.BulkTableWrite<T>(establishedConnection, sourceData, tableName, sqlTransaction, forceType, batchSize: batchSize, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns);
+        public static int BulkTableWrite<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, T sourceData, string? tableName = null, Type? forceType = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
+            => DataOutputOperations.BulkTableWrite<T>(establishedConnection, sqlTransaction, sourceData, tableName, forceType, batchSize: batchSize, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns);
         
         /// <summary>
         /// Writes a collection of data to a database table in bulk, optimizing for performance.
@@ -914,33 +902,8 @@ namespace CoreRelm
         /// <param name="allowUniqueColumns">A value indicating whether unique columns are allowed to be included in the bulk write operation. If <see
         /// langword="false"/>, unique columns are excluded.</param>
         /// <returns>The total number of rows successfully written to the database.</returns>
-        public static int BulkTableWrite<T>(IRelmContext relmContext, T sourceData, string tableName = null, Type forceType = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
+        public static int BulkTableWrite<T>(IRelmContext relmContext, T sourceData, string? tableName = null, Type? forceType = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
             => DataOutputOperations.BulkTableWrite<T>(relmContext, sourceData, tableName, forceType, batchSize: batchSize, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns);
-        
-        /// <summary>
-        /// Writes data in bulk to a database table, with options to customize the operation.
-        /// </summary>
-        /// <remarks>This method provides a high-performance way to insert or update large amounts of data
-        /// in a database table. The behavior of the operation can be customized using the optional parameters to
-        /// control how specific columns (e.g., auto-increment, primary key, or unique columns) are handled.</remarks>
-        /// <typeparam name="T">The type of the data source to be written to the table.</typeparam>
-        /// <param name="relmQuickContext">The database context used to execute the bulk write operation. Cannot be <see langword="null"/>.</param>
-        /// <param name="sourceData">The data to be written to the table. This can be a collection or a single object. Cannot be <see
-        /// langword="null"/>.</param>
-        /// <param name="tableName">The name of the target database table. If <see langword="null"/>, the table name is inferred from the type
-        /// <typeparamref name="T"/>.</param>
-        /// <param name="forceType">An optional type to enforce for the operation. If <see langword="null"/>, the type is inferred from
-        /// <typeparamref name="T"/>.</param>
-        /// <param name="batchSize">The number of rows to write in each batch. Must be greater than 0. Defaults to 100.</param>
-        /// <param name="allowAutoIncrementColumns">A value indicating whether auto-increment columns in the target table are allowed to be explicitly written.
-        /// If <see langword="false"/>, auto-increment columns are ignored during the write operation.</param>
-        /// <param name="allowPrimaryKeyColumns">A value indicating whether primary key columns in the target table are allowed to be explicitly written. If
-        /// <see langword="false"/>, primary key columns are ignored during the write operation.</param>
-        /// <param name="allowUniqueColumns">A value indicating whether unique columns in the target table are allowed to be explicitly written. If <see
-        /// langword="false"/>, unique columns are ignored during the write operation.</param>
-        /// <returns>The total number of rows successfully written to the database table.</returns>
-        public static int BulkTableWrite<T>(IRelmQuickContext relmQuickContext, T sourceData, string tableName = null, Type forceType = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
-            => DataOutputOperations.BulkTableWrite<T>(relmQuickContext, sourceData, tableName, forceType, batchSize: batchSize, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns);
         
         /// <summary>
         /// Writes a collection of data to a database table in bulk, using the specified connection and options.
@@ -965,7 +928,7 @@ namespace CoreRelm
         /// <param name="allowUniqueColumns">A value indicating whether unique columns in the target table are allowed to be explicitly written. Defaults
         /// to <see langword="false"/>.</param>
         /// <returns>The total number of rows successfully written to the database.</returns>
-        public static int BulkTableWrite<T>(Enum connectionName, IEnumerable<T> sourceData, string tableName = null, Type forceType = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
+        public static int BulkTableWrite<T>(Enum connectionName, IEnumerable<T> sourceData, string? tableName = null, Type? forceType = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
             => DataOutputOperations.BulkTableWrite<T>(connectionName, sourceData, tableName, forceType, batchSize: batchSize, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns);
         
         /// <summary>
@@ -982,8 +945,6 @@ namespace CoreRelm
         /// be inserted.</param>
         /// <param name="tableName">The name of the target database table. If <c>null</c>, the table name is inferred from the type
         /// <typeparamref name="T"/>.</param>
-        /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to associate with the bulk write operation. If <c>null</c>, the
-        /// operation is performed without a transaction.</param>
         /// <param name="forceType">An optional <see cref="Type"/> to enforce a specific type mapping for the data being written. If
         /// <c>null</c>, the type is inferred from <typeparamref name="T"/>.</param>
         /// <param name="batchSize">The number of rows to write in each batch. Defaults to 100. Larger batch sizes may improve performance but
@@ -995,8 +956,38 @@ namespace CoreRelm
         /// <param name="allowUniqueColumns">A value indicating whether unique constraint columns are included in the bulk write operation.  If
         /// <c>true</c>, unique columns are included; otherwise, they are excluded.</param>
         /// <returns>The total number of rows successfully written to the database table.</returns>
-        public static int BulkTableWrite<T>(MySqlConnection establishedConnection, IEnumerable<T> sourceData, string tableName = null, MySqlTransaction sqlTransaction = null, Type forceType = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
-            => DataOutputOperations.BulkTableWrite<T>(establishedConnection, sourceData, tableName, sqlTransaction, forceType, batchSize: batchSize, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns);
+        public static int BulkTableWrite<T>(MySqlConnection establishedConnection, IEnumerable<T> sourceData, string? tableName = null, Type? forceType = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
+            => DataOutputOperations.BulkTableWrite<T>(establishedConnection, sourceData, tableName, forceType, batchSize: batchSize, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns);
+        
+        /// <summary>
+        /// Writes a collection of data to a database table in bulk, optimizing for performance.
+        /// </summary>
+        /// <remarks>This method is designed for high-performance bulk data insertion and should be used
+        /// when inserting large datasets. Ensure that the <paramref name="establishedConnection"/> is open and valid
+        /// before calling this method.  If <paramref name="tableName"/> is not provided, the method attempts to infer
+        /// the table name from the type <typeparamref name="T"/>.</remarks>
+        /// <typeparam name="T">The type of the objects in the <paramref name="sourceData"/> collection.</typeparam>
+        /// <param name="establishedConnection">An open <see cref="MySqlConnection"/> to the database where the data will be written. The connection must
+        /// remain open for the duration of the operation.</param>
+        /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to associate with the bulk write operation. If <c>null</c>, the
+        /// operation is performed without a transaction.</param>
+        /// <param name="sourceData">The collection of data to be written to the database table. Each item in the collection represents a row to
+        /// be inserted.</param>
+        /// <param name="tableName">The name of the target database table. If <c>null</c>, the table name is inferred from the type
+        /// <typeparamref name="T"/>.</param>
+        /// <param name="forceType">An optional <see cref="Type"/> to enforce a specific type mapping for the data being written. If
+        /// <c>null</c>, the type is inferred from <typeparamref name="T"/>.</param>
+        /// <param name="batchSize">The number of rows to write in each batch. Defaults to 100. Larger batch sizes may improve performance but
+        /// require more memory.</param>
+        /// <param name="allowAutoIncrementColumns">A value indicating whether columns with auto-increment constraints are included in the bulk write operation.
+        /// If <c>true</c>, auto-increment columns are included; otherwise, they are excluded.</param>
+        /// <param name="allowPrimaryKeyColumns">A value indicating whether primary key columns are included in the bulk write operation.  If <c>true</c>,
+        /// primary key columns are included; otherwise, they are excluded.</param>
+        /// <param name="allowUniqueColumns">A value indicating whether unique constraint columns are included in the bulk write operation.  If
+        /// <c>true</c>, unique columns are included; otherwise, they are excluded.</param>
+        /// <returns>The total number of rows successfully written to the database table.</returns>
+        public static int BulkTableWrite<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, IEnumerable<T> sourceData, string? tableName = null, Type? forceType = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
+            => DataOutputOperations.BulkTableWrite<T>(establishedConnection, sqlTransaction, sourceData, tableName, forceType, batchSize: batchSize, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns);
         
         /// <summary>
         /// Writes a collection of data to a database table in bulk, optimizing for performance.
@@ -1020,32 +1011,8 @@ namespace CoreRelm
         /// <param name="allowUniqueColumns">A value indicating whether unique columns in the target table are allowed to be explicitly written to. If
         /// <see langword="false"/>, unique columns are ignored during the write operation.</param>
         /// <returns>The total number of rows successfully written to the database table.</returns>
-        public static int BulkTableWrite<T>(IRelmContext relmContext, IEnumerable<T> sourceData, string tableName = null, Type forceType = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
+        public static int BulkTableWrite<T>(IRelmContext relmContext, IEnumerable<T> sourceData, string? tableName = null, Type? forceType = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
             => DataOutputOperations.BulkTableWrite<T>(relmContext, sourceData, tableName, forceType, batchSize: batchSize, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns);
-        
-        /// <summary>
-        /// Writes a collection of data to a database table in bulk, optimizing for performance.
-        /// </summary>
-        /// <remarks>This method is designed for high-performance bulk insert operations. It is the
-        /// caller's responsibility to ensure that the data in <paramref name="sourceData"/> conforms to the schema of
-        /// the target table.</remarks>
-        /// <typeparam name="T">The type of the objects in the <paramref name="sourceData"/> collection.</typeparam>
-        /// <param name="relmQuickContext">The database context used to execute the bulk write operation. Cannot be <see langword="null"/>.</param>
-        /// <param name="sourceData">The collection of data to be written to the table. Cannot be <see langword="null"/> or empty.</param>
-        /// <param name="tableName">The name of the target database table. If <see langword="null"/>, the table name is inferred from the type
-        /// <typeparamref name="T"/>.</param>
-        /// <param name="forceType">An optional type to enforce for the table schema. If <see langword="null"/>, the schema is inferred from
-        /// <typeparamref name="T"/>.</param>
-        /// <param name="batchSize">The number of rows to write in each batch. Must be greater than 0. Defaults to 100.</param>
-        /// <param name="allowAutoIncrementColumns">A value indicating whether auto-increment columns in the target table are allowed to be written to. If <see
-        /// langword="false"/>, auto-increment columns are excluded from the operation.</param>
-        /// <param name="allowPrimaryKeyColumns">A value indicating whether primary key columns in the target table are allowed to be written to. If <see
-        /// langword="false"/>, primary key columns are excluded from the operation.</param>
-        /// <param name="allowUniqueColumns">A value indicating whether unique columns in the target table are allowed to be written to. If <see
-        /// langword="false"/>, unique columns are excluded from the operation.</param>
-        /// <returns>The total number of rows successfully written to the database.</returns>
-        public static int BulkTableWrite<T>(IRelmQuickContext relmQuickContext, IEnumerable<T> sourceData, string tableName = null, Type forceType = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
-            => DataOutputOperations.BulkTableWrite<T>(relmQuickContext, sourceData, tableName, forceType, batchSize: batchSize, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns);
 
         //***************** Core functions *****************//
 
@@ -1062,15 +1029,10 @@ namespace CoreRelm
         /// be passed to the query.</param>
         /// <param name="throwException">A boolean value indicating whether to throw an exception if an error occurs.  If <see langword="true"/>,
         /// exceptions will be thrown; otherwise, errors will be suppressed.</param>
-        /// <param name="useTransaction">A boolean value indicating whether to execute the query within a transaction.  If <see langword="true"/>, a
-        /// transaction will be used; otherwise, the query will execute without a transaction.</param>
-        /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> object to use for the operation.  If provided, the operation will
-        /// use this transaction; otherwise, a new transaction may be created if <paramref name="useTransaction"/> is
-        /// <see langword="true"/>.</param>
         /// <param name="allowUserVariables">A boolean value indicating whether user-defined variables are allowed in the query.  If <see
         /// langword="true"/>, user variables are permitted; otherwise, they are not.</param>
-        public static void DoDatabaseWork(Enum connectionName, string query, Dictionary<string, object> parameters = null, bool throwException = true, bool useTransaction = false, MySqlTransaction sqlTransaction = null, bool allowUserVariables = false)
-            => DatabaseWorkHelper.DoDatabaseWork(connectionName, query, parameters, throwException, useTransaction, sqlTransaction, allowUserVariables);
+        public static void DoDatabaseWork(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false)
+            => DatabaseWorkHelper.DoDatabaseWork(connectionName, query, parameters, throwException, allowUserVariables);
         
         /// <summary>
         /// Executes a database query using the provided connection and optional parameters.
@@ -1085,12 +1047,26 @@ namespace CoreRelm
         /// applied.</param>
         /// <param name="throwException">A boolean value indicating whether to throw an exception if an error occurs. If <see langword="true"/>,
         /// exceptions are thrown; otherwise, errors are suppressed.</param>
-        /// <param name="useTransaction">A boolean value indicating whether to execute the query within a transaction. If <see langword="true"/>, a
-        /// transaction is used; otherwise, the query is executed without a transaction.</param>
+        public static void DoDatabaseWork(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+            => DatabaseWorkHelper.DoDatabaseWork(establishedConnection, query, parameters, throwException);
+        
+        /// <summary>
+        /// Executes a database query using the provided connection and optional parameters.
+        /// </summary>
+        /// <remarks>This method delegates the execution to <see
+        /// cref="DatabaseWorkHelper.DoDatabaseWork"/>. Ensure that the connection is properly managed and disposed of
+        /// after use.</remarks>
+        /// <param name="establishedConnection">An open and established <see cref="MySqlConnection"/> to the database. The connection must be valid and open
+        /// before calling this method.</param>
         /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to use for the query. If provided, this transaction is used
         /// instead of creating a new one. Ignored if <paramref name="useTransaction"/> is <see langword="false"/>.</param>
-        public static void DoDatabaseWork(MySqlConnection establishedConnection, string query, Dictionary<string, object> parameters = null, bool throwException = true, bool useTransaction = false, MySqlTransaction sqlTransaction = null)
-            => DatabaseWorkHelper.DoDatabaseWork(establishedConnection, query, parameters, throwException, useTransaction, sqlTransaction);
+        /// <param name="query">The SQL query to execute. This must be a valid SQL statement supported by the database.</param>
+        /// <param name="parameters">An optional dictionary of parameter names and values to be used in the query. If null, no parameters are
+        /// applied.</param>
+        /// <param name="throwException">A boolean value indicating whether to throw an exception if an error occurs. If <see langword="true"/>,
+        /// exceptions are thrown; otherwise, errors are suppressed.</param>
+        public static void DoDatabaseWork(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+            => DatabaseWorkHelper.DoDatabaseWork(establishedConnection, sqlTransaction, query, parameters, throwException);
         
         /// <summary>
         /// Executes a database operation using the specified query and parameters.
@@ -1104,26 +1080,8 @@ namespace CoreRelm
         /// parameters will be passed.</param>
         /// <param name="throwException">A value indicating whether an exception should be thrown if the operation fails.  The default value is <see
         /// langword="true"/>.</param>
-        /// <param name="useTransaction">A value indicating whether the operation should be executed within a transaction.  The default value is <see
-        /// langword="false"/>.</param>
-        public static void DoDatabaseWork(IRelmContext relmContext, string query, Dictionary<string, object> parameters = null, bool throwException = true, bool useTransaction = false)
-            => DatabaseWorkHelper.DoDatabaseWork(relmContext, query, parameters, throwException: throwException, useTransaction: useTransaction);
-        
-        /// <summary>
-        /// Executes a database operation using the specified query and parameters.
-        /// </summary>
-        /// <remarks>This method delegates the database operation to an internal helper. Ensure that the
-        /// provided query and parameters are valid for the target database.</remarks>
-        /// <param name="relmQuickContext">The database context used to execute the operation. This cannot be <see langword="null"/>.</param>
-        /// <param name="query">The SQL query to execute. This cannot be <see langword="null"/> or empty.</param>
-        /// <param name="parameters">An optional dictionary of parameter names and values to be used in the query. If <see langword="null"/>, no
-        /// parameters are applied.</param>
-        /// <param name="throwException">A value indicating whether an exception should be thrown if the operation fails. The default is <see
-        /// langword="true"/>.</param>
-        /// <param name="useTransaction">A value indicating whether the operation should be executed within a transaction. The default is <see
-        /// langword="false"/>.</param>
-        public static void DoDatabaseWork(IRelmQuickContext relmQuickContext, string query, Dictionary<string, object> parameters = null, bool throwException = true, bool useTransaction = false)
-            => DatabaseWorkHelper.DoDatabaseWork(relmQuickContext, query, parameters, throwException: throwException, useTransaction: useTransaction);
+        public static void DoDatabaseWork(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+            => DatabaseWorkHelper.DoDatabaseWork(relmContext, query, parameters, throwException: throwException);
         
         /// <summary>
         /// Executes a database operation and returns the result of the specified type.
@@ -1139,15 +1097,11 @@ namespace CoreRelm
         /// represent their corresponding values. Can be null if no parameters are needed.</param>
         /// <param name="throwException">Indicates whether an exception should be thrown if an error occurs during the operation. If <see
         /// langword="true"/>, exceptions will be propagated; otherwise, errors will be suppressed.</param>
-        /// <param name="useTransaction">Specifies whether the operation should be executed within a transaction. If <see langword="true"/>, a
-        /// transaction will be used unless <paramref name="sqlTransaction"/> is provided.</param>
-        /// <param name="sqlTransaction">An optional existing <see cref="MySqlTransaction"/> to use for the operation. If provided, <paramref
-        /// name="useTransaction"/> is ignored.</param>
         /// <param name="allowUserVariables">Indicates whether user-defined variables are allowed in the query. If <see langword="true"/>, user variables
         /// are permitted; otherwise, they are disallowed.</param>
         /// <returns>The result of the database operation, cast to the specified type <typeparamref name="T"/>.</returns>
-        public static T DoDatabaseWork<T>(Enum connectionName, string query, Dictionary<string, object> parameters = null, bool throwException = true, bool useTransaction = false, MySqlTransaction sqlTransaction = null, bool allowUserVariables = false)
-            => DatabaseWorkHelper.DoDatabaseWork<T>(connectionName, query, parameters, throwException, useTransaction, sqlTransaction, allowUserVariables);
+        public static T? DoDatabaseWork<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false)
+            => DatabaseWorkHelper.DoDatabaseWork<T>(connectionName, query, parameters, throwException, allowUserVariables);
         
         /// <summary>
         /// Executes a database query and returns the result as the specified type.
@@ -1162,13 +1116,28 @@ namespace CoreRelm
         /// added.</param>
         /// <param name="throwException">A boolean value indicating whether to throw an exception if an error occurs.  If <see langword="true"/>,
         /// exceptions are thrown; otherwise, errors are suppressed.</param>
-        /// <param name="useTransaction">A boolean value indicating whether to execute the query within a transaction.  If <see langword="true"/>, a
-        /// transaction is used.</param>
+        /// <returns>The result of the query, cast to the specified type <typeparamref name="T"/>.</returns>
+        public static T? DoDatabaseWork<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+            => DatabaseWorkHelper.DoDatabaseWork<T>(establishedConnection, query, parameters, throwException);
+        
+        /// <summary>
+        /// Executes a database query and returns the result as the specified type.
+        /// </summary>
+        /// <remarks>This method is a wrapper for executing database queries with optional
+        /// parameterization,  transaction support, and error handling. Ensure the connection is open before calling
+        /// this method.</remarks>
+        /// <typeparam name="T">The type of the result expected from the query.</typeparam>
+        /// <param name="establishedConnection">An open and valid <see cref="MySqlConnection"/> to the database.</param>
         /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to use for the query.  If null, a new transaction is created if
         /// <paramref name="useTransaction"/> is <see langword="true"/>.</param>
+        /// <param name="query">The SQL query to execute.</param>
+        /// <param name="parameters">An optional dictionary of parameter names and values to be used in the query.  If null, no parameters are
+        /// added.</param>
+        /// <param name="throwException">A boolean value indicating whether to throw an exception if an error occurs.  If <see langword="true"/>,
+        /// exceptions are thrown; otherwise, errors are suppressed.</param>
         /// <returns>The result of the query, cast to the specified type <typeparamref name="T"/>.</returns>
-        public static T DoDatabaseWork<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object> parameters = null, bool throwException = true, bool useTransaction = false, MySqlTransaction sqlTransaction = null)
-            => DatabaseWorkHelper.DoDatabaseWork<T>(establishedConnection, query, parameters, throwException, useTransaction, sqlTransaction);
+        public static T? DoDatabaseWork<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+            => DatabaseWorkHelper.DoDatabaseWork<T>(establishedConnection, sqlTransaction, query, parameters, throwException);
         
         /// <summary>
         /// Executes a database operation using the specified query and parameters, and optionally within a transaction.
@@ -1183,27 +1152,9 @@ namespace CoreRelm
         /// if no parameters are required.</param>
         /// <param name="throwException">A value indicating whether an exception should be thrown if the operation fails.  If <see langword="true"/>,
         /// exceptions will be propagated; otherwise, the method may handle errors internally.</param>
-        /// <param name="useTransaction">A value indicating whether the operation should be executed within a transaction.  If <see
-        /// langword="true"/>, the operation will be wrapped in a transaction.</param>
         /// <returns>The result of the database operation, of type <typeparamref name="T"/>.</returns>
-        public static T DoDatabaseWork<T>(IRelmContext relmContext, string query, Dictionary<string, object> parameters = null, bool throwException = true, bool useTransaction = false)
-            => DatabaseWorkHelper.DoDatabaseWork<T>(relmContext, query, parameters, throwException, useTransaction);
-        
-        /// <summary>
-        /// Executes a database operation using the specified query and parameters, and optionally within a transaction.
-        /// </summary>
-        /// <typeparam name="T">The type of the result expected from the database operation.</typeparam>
-        /// <param name="relmQuickContext">The database context used to execute the operation. Cannot be <see langword="null"/>.</param>
-        /// <param name="query">The SQL query to execute. Cannot be <see langword="null"/> or empty.</param>
-        /// <param name="parameters">An optional dictionary of parameters to include in the query. Keys represent parameter names, and values
-        /// represent their corresponding values. Defaults to <see langword="null"/>.</param>
-        /// <param name="throwException">A value indicating whether an exception should be thrown if the operation fails. Defaults to <see
-        /// langword="true"/>.</param>
-        /// <param name="useTransaction">A value indicating whether the operation should be executed within a transaction. Defaults to <see
-        /// langword="false"/>.</param>
-        /// <returns>The result of the database operation, cast to the specified type <typeparamref name="T"/>.</returns>
-        public static T DoDatabaseWork<T>(IRelmQuickContext relmQuickContext, string query, Dictionary<string, object> parameters = null, bool throwException = true, bool useTransaction = false)
-            => DatabaseWorkHelper.DoDatabaseWork<T>(relmQuickContext, query, parameters, throwException, useTransaction);
+        public static T? DoDatabaseWork<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+            => DatabaseWorkHelper.DoDatabaseWork<T>(relmContext, query, parameters, throwException);
 
         /// <summary>
         /// Executes a database operation using the specified query and callback function.
@@ -1218,14 +1169,10 @@ namespace CoreRelm
         /// null.</param>
         /// <param name="throwException">Specifies whether to throw an exception if an error occurs. If <see langword="true"/>, exceptions will be
         /// thrown; otherwise, errors will be suppressed.</param>
-        /// <param name="useTransaction">Specifies whether the operation should be executed within a transaction. If <see langword="true"/>, a
-        /// transaction will be used.</param>
-        /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> object to use for the operation. If provided, this transaction
-        /// will be used instead of creating a new one.</param>
         /// <param name="allowUserVariables">Specifies whether user-defined variables are allowed in the SQL query. If <see langword="true"/>, user
         /// variables are permitted.</param>
-        public static void DoDatabaseWork(Enum connectionName, string query, Func<MySqlCommand, object> actionCallback, bool throwException = true, bool useTransaction = false, MySqlTransaction sqlTransaction = null, bool allowUserVariables = false)
-            => DatabaseWorkHelper.DoDatabaseWork(connectionName, query, actionCallback, throwException, useTransaction, sqlTransaction, allowUserVariables);
+        public static void DoDatabaseWork(Enum connectionName, string query, Func<MySqlCommand, object> actionCallback, bool throwException = true, bool allowUserVariables = false)
+            => DatabaseWorkHelper.DoDatabaseWork(connectionName, query, actionCallback, throwException, allowUserVariables);
         
         /// <summary>
         /// Executes a database operation using the provided connection, query, and callback function.
@@ -1243,13 +1190,29 @@ namespace CoreRelm
         /// <param name="throwException">A value indicating whether to throw exceptions if an error occurs during the operation.  If <see
         /// langword="true"/>, exceptions will be propagated; otherwise, errors will be suppressed. The default value is
         /// <see langword="true"/>.</param>
-        /// <param name="useTransaction">A value indicating whether the operation should be executed within a transaction.  If <see
-        /// langword="true"/>, a transaction will be used unless <paramref name="sqlTransaction"/> is provided. The
-        /// default value is <see langword="false"/>.</param>
+        public static void DoDatabaseWork(MySqlConnection establishedConnection, string query, Func<MySqlCommand, object> actionCallback, bool throwException = true)
+            => DatabaseWorkHelper.DoDatabaseWork(establishedConnection, query, actionCallback, throwException);
+        
+        /// <summary>
+        /// Executes a database operation using the provided connection, query, and callback function.
+        /// </summary>
+        /// <remarks>This method delegates the database operation to a helper method and provides
+        /// flexibility for executing queries with or without transactions.  Ensure that the connection is open and
+        /// valid before calling this method. If <paramref name="useTransaction"/> is <see langword="true"/> and 
+        /// <paramref name="sqlTransaction"/> is not provided, a new transaction will be created and committed
+        /// automatically.</remarks>
+        /// <param name="establishedConnection">An open and valid <see cref="MySqlConnection"/> to the database. The connection must be established before
+        /// calling this method.</param>
         /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to use for the operation. If provided, this transaction will be
         /// used instead of creating a new one.</param>
-        public static void DoDatabaseWork(MySqlConnection establishedConnection, string query, Func<MySqlCommand, object> actionCallback, bool throwException = true, bool useTransaction = false, MySqlTransaction sqlTransaction = null)
-            => DatabaseWorkHelper.DoDatabaseWork(establishedConnection, query, actionCallback, throwException, useTransaction, sqlTransaction);
+        /// <param name="query">The SQL query to execute. This query is passed to the callback function for processing.</param>
+        /// <param name="actionCallback">A callback function that processes the <see cref="MySqlCommand"/> created from the query. The function
+        /// should return an object representing the result of the operation.</param>
+        /// <param name="throwException">A value indicating whether to throw exceptions if an error occurs during the operation.  If <see
+        /// langword="true"/>, exceptions will be propagated; otherwise, errors will be suppressed. The default value is
+        /// <see langword="true"/>.</param>
+        public static void DoDatabaseWork(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Func<MySqlCommand, object> actionCallback, bool throwException = true)
+            => DatabaseWorkHelper.DoDatabaseWork(establishedConnection, sqlTransaction, query, actionCallback, throwException);
         
         /// <summary>
         /// Executes a database operation using the specified query and callback function.
@@ -1263,26 +1226,8 @@ namespace CoreRelm
         /// cannot be <see langword="null"/>.</param>
         /// <param name="throwException">A value indicating whether exceptions should be thrown if an error occurs during the operation. The default
         /// value is <see langword="true"/>.</param>
-        /// <param name="useTransaction">A value indicating whether the operation should be executed within a database transaction. The default value
-        /// is <see langword="false"/>.</param>
-        public static void DoDatabaseWork(IRelmContext relmContext, string query, Func<MySqlCommand, object> actionCallback, bool throwException = true, bool useTransaction = false)
-            => DatabaseWorkHelper.DoDatabaseWork(relmContext, query, actionCallback, throwException, useTransaction);
-        
-        /// <summary>
-        /// Executes a database operation using the specified query and callback function.
-        /// </summary>
-        /// <remarks>This method delegates the database operation to <see
-        /// cref="DatabaseWorkHelper.DoDatabaseWork"/>.  Ensure that the <paramref name="relmQuickContext"/> is properly
-        /// configured before calling this method.</remarks>
-        /// <param name="relmQuickContext">The database context used to establish the connection and manage the operation.</param>
-        /// <param name="query">The SQL query to execute. Must be a valid SQL statement.</param>
-        /// <param name="actionCallback">A callback function that processes the <see cref="MySqlCommand"/> object and returns a result.</param>
-        /// <param name="throwException">A value indicating whether to throw an exception if an error occurs during the operation.  <see
-        /// langword="true"/> to throw exceptions; otherwise, <see langword="false"/>.</param>
-        /// <param name="useTransaction">A value indicating whether the operation should be executed within a database transaction.  <see
-        /// langword="true"/> to use a transaction; otherwise, <see langword="false"/>.</param>
-        public static void DoDatabaseWork(IRelmQuickContext relmQuickContext, string query, Func<MySqlCommand, object> actionCallback, bool throwException = true, bool useTransaction = false)
-            => DatabaseWorkHelper.DoDatabaseWork(relmQuickContext, query, actionCallback, throwException, useTransaction);
+        public static void DoDatabaseWork(IRelmContext relmContext, string query, Func<MySqlCommand, object> actionCallback, bool throwException = true)
+            => DatabaseWorkHelper.DoDatabaseWork(relmContext, query, actionCallback, throwException);
 
         /// <summary>
         /// Executes a database operation using the specified query and callback function.
@@ -1299,15 +1244,11 @@ namespace CoreRelm
         /// <typeparamref name="T"/>.</param>
         /// <param name="throwException">Specifies whether to throw an exception if an error occurs. If <see langword="true"/>, exceptions will be
         /// thrown; otherwise, errors will be suppressed.</param>
-        /// <param name="useTransaction">Specifies whether the operation should be executed within a database transaction. If <see langword="true"/>,
-        /// a transaction will be used.</param>
-        /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> object to use for the operation. If provided, the operation will
-        /// be executed within this transaction.</param>
         /// <param name="allowUserVariables">Specifies whether user-defined variables are allowed in the SQL query. If <see langword="true"/>, user
         /// variables are permitted.</param>
         /// <returns>The result of the operation, as returned by the <paramref name="actionCallback"/> function.</returns>
-        public static T DoDatabaseWork<T>(Enum connectionName, string query, Func<MySqlCommand, object> actionCallback, bool throwException = true, bool useTransaction = false, MySqlTransaction sqlTransaction = null, bool allowUserVariables = false)
-            => DatabaseWorkHelper.DoDatabaseWork<T>(connectionName, query, actionCallback, throwException, useTransaction, sqlTransaction, allowUserVariables);
+        public static T? DoDatabaseWork<T>(Enum connectionName, string query, Func<MySqlCommand, object> actionCallback, bool throwException = true, bool allowUserVariables = false)
+            => DatabaseWorkHelper.DoDatabaseWork<T>(connectionName, query, actionCallback, throwException, allowUserVariables);
         
         /// <summary>
         /// Executes a database operation using the provided query and callback function.
@@ -1323,13 +1264,29 @@ namespace CoreRelm
         /// the query.</param>
         /// <param name="throwException">A value indicating whether exceptions should be thrown if an error occurs during the operation. If <see
         /// langword="true"/>, exceptions are propagated to the caller; otherwise, they are suppressed.</param>
-        /// <param name="useTransaction">A value indicating whether the operation should be executed within a transaction. If <see langword="true"/>,
-        /// a transaction is used unless <paramref name="sqlTransaction"/> is provided.</param>
+        /// <returns>The result of type <typeparamref name="T"/> as returned by the <paramref name="actionCallback"/>.</returns>
+        public static T? DoDatabaseWork<T>(MySqlConnection establishedConnection, string query, Func<MySqlCommand, object> actionCallback, bool throwException = true)
+            => DatabaseWorkHelper.DoDatabaseWork<T>(establishedConnection, query, actionCallback, throwException);
+        
+        /// <summary>
+        /// Executes a database operation using the provided query and callback function.
+        /// </summary>
+        /// <remarks>This method provides a flexible way to execute database operations by allowing the
+        /// caller to define the specific action to perform via the <paramref name="actionCallback"/>. If <paramref
+        /// name="useTransaction"/> is <see langword="true"/> and no <paramref name="sqlTransaction"/> is provided, a
+        /// new transaction is created for the operation.</remarks>
+        /// <typeparam name="T">The type of the result returned by the callback function.</typeparam>
+        /// <param name="establishedConnection">An open and valid <see cref="MySqlConnection"/> to the database. The connection must already be established.</param>
         /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to use for the operation. If provided, this transaction is used
         /// regardless of the value of <paramref name="useTransaction"/>.</param>
+        /// <param name="query">The SQL query to be executed. This query is passed to the callback function for execution.</param>
+        /// <param name="actionCallback">A callback function that defines the operation to perform using the <see cref="MySqlCommand"/> created from
+        /// the query.</param>
+        /// <param name="throwException">A value indicating whether exceptions should be thrown if an error occurs during the operation. If <see
+        /// langword="true"/>, exceptions are propagated to the caller; otherwise, they are suppressed.</param>
         /// <returns>The result of type <typeparamref name="T"/> as returned by the <paramref name="actionCallback"/>.</returns>
-        public static T DoDatabaseWork<T>(MySqlConnection establishedConnection, string query, Func<MySqlCommand, object> actionCallback, bool throwException = true, bool useTransaction = false, MySqlTransaction sqlTransaction = null)
-            => DatabaseWorkHelper.DoDatabaseWork<T>(establishedConnection, query, actionCallback, throwException, useTransaction, sqlTransaction);
+        public static T? DoDatabaseWork<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Func<MySqlCommand, object> actionCallback, bool throwException = true)
+            => DatabaseWorkHelper.DoDatabaseWork<T>(establishedConnection, sqlTransaction, query, actionCallback, throwException);
         
         /// <summary>
         /// Executes a database operation using the specified query and callback function.
@@ -1346,31 +1303,9 @@ namespace CoreRelm
         /// Cannot be <see langword="null"/>.</param>
         /// <param name="throwException">A value indicating whether exceptions encountered during the operation should be thrown. If <see
         /// langword="true"/>, exceptions will be propagated to the caller; otherwise, they will be suppressed.</param>
-        /// <param name="useTransaction">A value indicating whether the operation should be executed within a database transaction. If <see
-        /// langword="true"/>, the operation will be wrapped in a transaction.</param>
         /// <returns>The result of the database operation, as defined by the <typeparamref name="T"/> type.</returns>
-        public static T DoDatabaseWork<T>(IRelmContext relmContext, string query, Func<MySqlCommand, object> actionCallback, bool throwException = true, bool useTransaction = false)
-            => DatabaseWorkHelper.DoDatabaseWork<T>(relmContext, query, actionCallback, throwException, useTransaction);
-        
-        /// <summary>
-        /// Executes a database operation using the specified query and callback function.
-        /// </summary>
-        /// <remarks>This method provides a flexible way to execute database operations by allowing the
-        /// caller to specify a query  and a custom callback function to process the database command. The caller can
-        /// optionally enable transaction  support and control whether exceptions are thrown or suppressed.</remarks>
-        /// <typeparam name="T">The type of the result returned by the callback function.</typeparam>
-        /// <param name="relmQuickContext">The database context used to establish the connection and manage the operation. Cannot be <see
-        /// langword="null"/>.</param>
-        /// <param name="query">The SQL query to be executed. Cannot be <see langword="null"/> or empty.</param>
-        /// <param name="actionCallback">A callback function that defines the operation to perform using the <see cref="MySqlCommand"/> object.
-        /// Cannot be <see langword="null"/>.</param>
-        /// <param name="throwException">A value indicating whether exceptions should be thrown if an error occurs during the operation.  If <see
-        /// langword="true"/>, exceptions will be propagated; otherwise, errors will be suppressed.</param>
-        /// <param name="useTransaction">A value indicating whether the operation should be executed within a database transaction.  If <see
-        /// langword="true"/>, the operation will be wrapped in a transaction.</param>
-        /// <returns>The result of the operation, as returned by the <paramref name="actionCallback"/>.</returns>
-        public static T DoDatabaseWork<T>(IRelmQuickContext relmQuickContext, string query, Func<MySqlCommand, object> actionCallback, bool throwException = true, bool useTransaction = false)
-            => DatabaseWorkHelper.DoDatabaseWork<T>(relmQuickContext, query, actionCallback, throwException, useTransaction);
+        public static T? DoDatabaseWork<T>(IRelmContext relmContext, string query, Func<MySqlCommand, object> actionCallback, bool throwException = true)
+            => DatabaseWorkHelper.DoDatabaseWork<T>(relmContext, query, actionCallback, throwException);
 
         //***************** Table operations *****************//
         /*
@@ -1430,7 +1365,7 @@ namespace CoreRelm
         /// <param name="exceptionHandler">An optional delegate to handle exceptions that occur during the execution of <paramref
         /// name="actionWrapper"/>. The delegate receives the exception and an error message as parameters. If not
         /// provided, exceptions will propagate to the caller.</param>
-        public static void StandardConnectionWrapper(Enum connectionName, Action<MySqlConnection, MySqlTransaction> actionWrapper, Action<Exception, string> exceptionHandler = null)
+        public static void StandardConnectionWrapper(Enum connectionName, Action<MySqlConnection, MySqlTransaction> actionWrapper, Action<Exception, string>? exceptionHandler = null)
             => StandardConnectionHelper.StandardConnectionWrapper(connectionName, actionWrapper, exceptionHandler);
 
         /// <summary>
@@ -1447,7 +1382,7 @@ namespace CoreRelm
         /// <param name="exceptionHandler">An optional delegate to handle exceptions that occur during the operation. The delegate receives the 
         /// exception and a string message describing the context of the error.</param>
         /// <returns>The result of the operation, as defined by the <paramref name="actionWrapper"/> delegate.</returns>
-        public static T StandardConnectionWrapper<T>(Enum connectionName, Func<MySqlConnection, MySqlTransaction, T> actionWrapper, Action<Exception, string> exceptionHandler = null)
+        public static T StandardConnectionWrapper<T>(Enum connectionName, Func<MySqlConnection, MySqlTransaction, T> actionWrapper, Action<Exception, string>? exceptionHandler = null)
             => StandardConnectionHelper.StandardConnectionWrapper<T>(connectionName, actionWrapper, exceptionHandler);
 
         /// <summary>
@@ -1467,7 +1402,7 @@ namespace CoreRelm
         /// <param name="additionalConstraints">An optional expression specifying additional constraints to apply when loading the foreign key field.</param>
         /// <returns>The first related model that matches the specified predicate and constraints, or <see langword="null"/> if
         /// no match is found.</returns>
-        public static T LoadForeignKeyField<T, R, S>(RelmContextOptionsBuilder relmContextOptionsBuilder, T target, Expression<Func<T, R>> predicate, IRelmDataLoader<S> customDataLoader, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()
+        public static T? LoadForeignKeyField<T, R, S>(RelmContextOptionsBuilder relmContextOptionsBuilder, T target, Expression<Func<T, R>> predicate, IRelmDataLoader<S> customDataLoader, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()
             => new ForeignKeyLoader<T>(target, relmContextOptionsBuilder).LoadForeignKey(predicate, customDataLoader, additionalConstraints).FirstOrDefault();
 
         /// <summary>
@@ -1487,7 +1422,7 @@ namespace CoreRelm
         /// <param name="customDataLoader">A custom data loader used to retrieve the related data.</param>
         /// <returns>The first related model of type <typeparamref name="R"/> that matches the foreign key, or <see
         /// langword="null"/> if no match is found.</returns>
-        public static T LoadForeignKeyField<T, R, S>(RelmContextOptionsBuilder relmContextOptionsBuilder, T target, Expression<Func<T, R>> predicate, IRelmDataLoader<S> customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()
+        public static T? LoadForeignKeyField<T, R, S>(RelmContextOptionsBuilder relmContextOptionsBuilder, T target, Expression<Func<T, R>> predicate, IRelmDataLoader<S> customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()
             => new ForeignKeyLoader<T>(target, relmContextOptionsBuilder).LoadForeignKey(predicate, customDataLoader).FirstOrDefault();
 
         /// <summary>
@@ -1505,7 +1440,7 @@ namespace CoreRelm
         /// <param name="additionalConstraints">An optional expression specifying additional constraints to apply when loading the related model.</param>
         /// <returns>The first related model that matches the specified predicate and additional constraints, or <see
         /// langword="null"/> if no match is found.</returns>
-        public static T LoadForeignKeyField<T, R>(RelmContextOptionsBuilder relmContextOptionsBuilder, T target, Expression<Func<T, R>> predicate, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()
+        public static T? LoadForeignKeyField<T, R>(RelmContextOptionsBuilder relmContextOptionsBuilder, T target, Expression<Func<T, R>> predicate, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()
             => new ForeignKeyLoader<T>(target, relmContextOptionsBuilder).LoadForeignKey(predicate, additionalConstraints).FirstOrDefault();
 
         /// <summary>
@@ -1521,7 +1456,7 @@ namespace CoreRelm
         /// <param name="predicate">An expression specifying the foreign key field to load.</param>
         /// <returns>The first related entity of type <typeparamref name="R"/> that matches the foreign key field, or <see
         /// langword="null"/> if no match is found.</returns>
-        public static T LoadForeignKeyField<T, R>(RelmContextOptionsBuilder relmContextOptionsBuilder, T target, Expression<Func<T, R>> predicate) where T : IRelmModel, new() where R : IRelmModel, new()
+        public static T? LoadForeignKeyField<T, R>(RelmContextOptionsBuilder relmContextOptionsBuilder, T target, Expression<Func<T, R>> predicate) where T : IRelmModel, new() where R : IRelmModel, new()
             => new ForeignKeyLoader<T>(target, relmContextOptionsBuilder).LoadForeignKey(predicate).FirstOrDefault();
 
         /// <summary>
@@ -1540,7 +1475,7 @@ namespace CoreRelm
         /// <param name="additionalConstraints">An expression specifying additional constraints to apply when loading the related entities.</param>
         /// <returns>The first related entity that matches the specified predicate and constraints, or <see langword="null"/> if
         /// no match is found.</returns>
-        public static T LoadForeignKeyField<T, R, S>(RelmContextOptionsBuilder relmContextOptionsBuilder, T target, Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S> customDataLoader, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()
+        public static T? LoadForeignKeyField<T, R, S>(RelmContextOptionsBuilder relmContextOptionsBuilder, T target, Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S> customDataLoader, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()
             => new ForeignKeyLoader<T>(target, relmContextOptionsBuilder).LoadForeignKey(predicate, customDataLoader, additionalConstraints).FirstOrDefault();
 
         /// <summary>
@@ -1559,7 +1494,7 @@ namespace CoreRelm
         /// <param name="customDataLoader">A custom data loader used to retrieve the related data.</param>
         /// <returns>The first related entity from the loaded foreign key collection, or <see langword="null"/> if no related
         /// entities are found.</returns>
-        public static T LoadForeignKeyField<T, R, S>(RelmContextOptionsBuilder relmContextOptionsBuilder, T target, Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S> customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()
+        public static T? LoadForeignKeyField<T, R, S>(RelmContextOptionsBuilder relmContextOptionsBuilder, T target, Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S> customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()
             => new ForeignKeyLoader<T>(target, relmContextOptionsBuilder).LoadForeignKey(predicate, customDataLoader).FirstOrDefault();
 
         /// <summary>
@@ -1574,7 +1509,7 @@ namespace CoreRelm
         /// <param name="additionalConstraints">An expression specifying additional constraints to apply when loading the related entities.</param>
         /// <returns>The first related entity that matches the specified predicate and constraints, or <see langword="null"/> if
         /// no match is found.</returns>
-        public static T LoadForeignKeyField<T, R>(RelmContextOptionsBuilder relmContextOptionsBuilder, T target, Expression<Func<T, ICollection<R>>> predicate, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()
+        public static T? LoadForeignKeyField<T, R>(RelmContextOptionsBuilder relmContextOptionsBuilder, T target, Expression<Func<T, ICollection<R>>> predicate, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()
             => new ForeignKeyLoader<T>(target, relmContextOptionsBuilder).LoadForeignKey(predicate, additionalConstraints).FirstOrDefault();
 
         /// <summary>
@@ -1592,7 +1527,7 @@ namespace CoreRelm
         /// key relationship.</param>
         /// <returns>The first related entity matching the specified predicate, or <see langword="null"/> if no related entities
         /// are found.</returns>
-        public static T LoadForeignKeyField<T, R>(RelmContextOptionsBuilder relmContextOptionsBuilder, T target, Expression<Func<T, ICollection<R>>> predicate) where T : IRelmModel, new() where R : IRelmModel, new()
+        public static T? LoadForeignKeyField<T, R>(RelmContextOptionsBuilder relmContextOptionsBuilder, T target, Expression<Func<T, ICollection<R>>> predicate) where T : IRelmModel, new() where R : IRelmModel, new()
             => new ForeignKeyLoader<T>(target, relmContextOptionsBuilder).LoadForeignKey(predicate).FirstOrDefault();
 
         /// <summary>
@@ -1767,24 +1702,8 @@ namespace CoreRelm
         /// <param name="predicate">An expression specifying the field to load.</param>
         /// <returns>The first result of the loaded field, or the default value of <typeparamref name="R"/> if no results are
         /// found.</returns>
-        public static T LoadDataLoaderField<T, R>(IRelmContext relmContext, T target, Expression<Func<T, R>> predicate) where T : IRelmModel, new()
+        public static T? LoadDataLoaderField<T, R>(IRelmContext relmContext, T target, Expression<Func<T, R>> predicate) where T : IRelmModel, new()
             => new DataLoaderHelper<T>(relmContext, target).LoadField(predicate).FirstOrDefault();
-
-        /// <summary>
-        /// Loads a specified field of a data model using a DataLoader and returns the first result.
-        /// </summary>
-        /// <remarks>This method uses a DataLoader to load the specified field of the target data model. 
-        /// If multiple results are loaded, only the first result is returned.</remarks>
-        /// <typeparam name="T">The type of the data model, which must implement <see cref="IRelmModel"/> and have a parameterless
-        /// constructor.</typeparam>
-        /// <typeparam name="R">The type of the field to be loaded.</typeparam>
-        /// <param name="relmQuickContext">The context used to interact with the data source.</param>
-        /// <param name="target">The target data model instance whose field is to be loaded.</param>
-        /// <param name="predicate">An expression specifying the field to load from the data model.</param>
-        /// <returns>The first result of the loaded field, or the default value of <typeparamref name="R"/> if no results are
-        /// found.</returns>
-        public static T LoadDataLoaderField<T, R>(IRelmQuickContext relmQuickContext, T target, Expression<Func<T, R>> predicate) where T : IRelmModel, new()
-            => new DataLoaderHelper<T>(relmQuickContext, target).LoadField(predicate).FirstOrDefault();
 
         /// <summary>
         /// Writes the specified model to the database using the provided context and configuration options.
@@ -1806,29 +1725,6 @@ namespace CoreRelm
         /// <returns>The number of records successfully written to the database.</returns>
         public static int WriteToDatabase(IRelmContext relmContext, IRelmModel relmModel, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
             => relmModel.WriteToDatabase(relmContext, batchSize: batchSize, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
-    
-        /// <summary>
-        /// Writes the specified model to the database using the provided context and configuration options.
-        /// </summary>
-        /// <remarks>This method provides fine-grained control over which types of columns are included in
-        /// the database write operation. Use the configuration options to tailor the behavior to your specific
-        /// requirements.</remarks>
-        /// <param name="relmQuickContext">The database context used to manage the connection and transaction for the operation.</param>
-        /// <param name="relmModel">The model to be written to the database. This model must conform to the expected schema.</param>
-        /// <param name="batchSize">The number of records to process in a single batch. Defaults to 100. Must be a positive integer.</param>
-        /// <param name="allowAutoIncrementColumns">A value indicating whether columns with auto-increment constraints are allowed to be written. If <see
-        /// langword="true"/>, auto-increment columns will be included in the operation; otherwise, they will be
-        /// excluded.</param>
-        /// <param name="allowPrimaryKeyColumns">A value indicating whether primary key columns are allowed to be written. If <see langword="true"/>, primary
-        /// key columns will be included in the operation; otherwise, they will be excluded.</param>
-        /// <param name="allowUniqueColumns">A value indicating whether unique columns are allowed to be written. If <see langword="true"/>, unique
-        /// columns will be included in the operation; otherwise, they will be excluded.</param>
-        /// <param name="allowAutoDateColumns">A value indicating whether columns with automatic date generation constraints are allowed to be written. If
-        /// <see langword="true"/>, auto-date columns will be included in the operation; otherwise, they will be
-        /// excluded.</param>
-        /// <returns>The number of records successfully written to the database.</returns>
-        public static int WriteToDatabase(IRelmQuickContext relmQuickContext, IRelmModel relmModel, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
-            => relmModel.WriteToDatabase(relmQuickContext, batchSize: batchSize, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
     
         /// <summary>
         /// Writes a collection of models to the specified database context in batches.
@@ -1854,30 +1750,6 @@ namespace CoreRelm
         /// <returns>The total number of models successfully written to the database.</returns>
         public static int WriteToDatabase(IRelmContext relmContext, IEnumerable<IRelmModel> relmModels, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
             => relmModels.WriteToDatabase(relmContext, batchSize: batchSize, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
-    
-        /// <summary>
-        /// Writes a collection of Relm models to the database using the specified context and configuration options.
-        /// </summary>
-        /// <remarks>This method provides fine-grained control over how data is written to the database by
-        /// allowing the caller to specify whether certain types of columns (e.g., auto-increment, primary key, unique,
-        /// or auto-date columns) are included in the operation. Use caution when enabling these options, as they may
-        /// violate database constraints or lead to unexpected behavior.</remarks>
-        /// <param name="relmQuickContext">The database context used to manage the connection and transaction for the operation.</param>
-        /// <param name="relmModels">The collection of models to be written to the database. Each model represents a row to be inserted or
-        /// updated.</param>
-        /// <param name="batchSize">The number of models to process in a single batch. Defaults to 100. Larger batch sizes may improve
-        /// performance but require more memory.</param>
-        /// <param name="allowAutoIncrementColumns">A value indicating whether columns marked as auto-increment are allowed to be written. Defaults to <see
-        /// langword="false"/>.</param>
-        /// <param name="allowPrimaryKeyColumns">A value indicating whether primary key columns are allowed to be written. Defaults to <see
-        /// langword="false"/>.</param>
-        /// <param name="allowUniqueColumns">A value indicating whether columns with unique constraints are allowed to be written. Defaults to <see
-        /// langword="false"/>.</param>
-        /// <param name="allowAutoDateColumns">A value indicating whether columns with automatic date generation (e.g., timestamps) are allowed to be
-        /// written. Defaults to <see langword="false"/>.</param>
-        /// <returns>The total number of rows successfully written to the database.</returns>
-        public static int WriteToDatabase(IRelmQuickContext relmQuickContext, IEnumerable<IRelmModel> relmModels, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
-            => relmModels.WriteToDatabase(relmQuickContext, batchSize: batchSize, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
 
         /// <summary>
         /// Configures the library to use the specified <see cref="IConfiguration"/> instance for application settings

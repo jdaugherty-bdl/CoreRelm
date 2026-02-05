@@ -48,44 +48,44 @@ namespace CoreRelm.Options
         /// <summary>
         /// Gets the name or network address of the database server to which the application is connected.
         /// </summary>
-        public string DatabaseServer { get; private set; }
+        public string? DatabaseServer { get; private set; }
 
         /// <summary>
         /// Gets the name of the database associated with this instance.
         /// </summary>
-        public string DatabaseName { get; private set; }
+        public string? DatabaseName { get; private set; }
 
         /// <summary>
         /// Gets the user name used to connect to the database.
         /// </summary>
-        public string DatabaseUser { get; private set; }
+        public string? DatabaseUser { get; private set; }
 
         /// <summary>
         /// Gets the password used to connect to the database.
         /// </summary>
-        public string DatabasePassword { get; private set; }
+        public string? DatabasePassword { get; private set; }
 
         /// <summary>
         /// Gets the connection string used to connect to the database.
         /// </summary>
-        public string DatabaseConnectionString { get; private set; }
+        public string? DatabaseConnectionString { get; private set; }
 
         /// <summary>
         /// Gets or sets the name of the connection to use for database operations.
         /// </summary>
-        public string NamedConnection { get; set; }
+        public string? NamedConnection { get; set; }
 
         /// <summary>
         /// Gets the active MySQL database connection used by the application.
         /// </summary>
-        public MySqlConnection DatabaseConnection { get; private set; }
+        public MySqlConnection? DatabaseConnection { get; private set; }
 
         /// <summary>
         /// Gets the current database transaction associated with the connection.
         /// </summary>
         /// <remarks>Use this property to access the active MySQL transaction for executing commands
         /// within a transactional context. The property is null if no transaction is in progress.</remarks>
-        public MySqlTransaction DatabaseTransaction { get; private set; }
+        public MySqlTransaction? DatabaseTransaction { get; private set; }
 
         /// <summary>
         /// Gets a value indicating whether the connection should be automatically opened when required.
@@ -136,8 +136,8 @@ namespace CoreRelm.Options
         /// <summary>
         /// Gets the type of the connection string used by the data source.
         /// </summary>
-        public Enum ConnectionStringType => _connectionStringType;
-        private Enum _connectionStringType;
+        public Enum? ConnectionStringType => _connectionStringType;
+        private Enum? _connectionStringType;
 
         internal bool CanOpenConnection { get; set; } = true;
 
@@ -205,7 +205,7 @@ namespace CoreRelm.Options
         /// externally.</remarks>
         /// <param name="connection">The MySqlConnection to be used for database operations. Cannot be null.</param>
         /// <param name="transaction">The MySqlTransaction to associate with the context. Cannot be null.</param>
-        public RelmContextOptionsBuilder(MySqlConnection connection, MySqlTransaction transaction)
+        public RelmContextOptionsBuilder(MySqlConnection connection, MySqlTransaction? transaction)
         {
             SetDatabaseConnection(connection);
             SetDatabaseTransaction(transaction);
@@ -220,7 +220,7 @@ namespace CoreRelm.Options
         /// <param name="connection">The open <see cref="MySqlConnection"/> to associate with this instance. The connection must not be null.</param>
         /// <returns>The current instance of the <see cref="RelmContextOptionsBuilder"/> class.</returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="connection"/> is null.</exception>
-        public RelmContextOptionsBuilder SetDatabaseConnection(MySqlConnection connection)
+        public RelmContextOptionsBuilder SetDatabaseConnection(MySqlConnection? connection)
         {
             DatabaseConnection = connection ?? throw new ArgumentNullException(nameof(connection), "Connection cannot be null.");
 
@@ -238,9 +238,9 @@ namespace CoreRelm.Options
         /// <param name="transaction">The MySqlTransaction instance to associate with database operations. Can be null to clear the current
         /// transaction.</param>
         /// <returns>The current instance of the <see cref="RelmContextOptionsBuilder"/> class.</returns>
-        public RelmContextOptionsBuilder SetDatabaseTransaction(MySqlTransaction transaction)
+        public RelmContextOptionsBuilder SetDatabaseTransaction(MySqlTransaction? transaction)
         {
-            DatabaseTransaction = transaction; // ?? throw new ArgumentNullException("Transaction cannot be null.", nameof(transaction));
+            DatabaseTransaction = transaction;
 
             _optionsBuilderType = OptionsBuilderTypes.OpenConnection;
 
@@ -533,7 +533,8 @@ namespace CoreRelm.Options
                 SetNamedConnection(nameValue);
 
                 var connectionBuilder = RelmHelper.GetConnectionBuilderFromName(nameValue);
-                var connectionString = connectionBuilder?.ConnectionString;
+                var connectionString = connectionBuilder?.ConnectionString 
+                    ?? throw new ArgumentNullException(nameof(MySqlConnectionStringBuilder.ConnectionString));
 
                 SetDatabaseConnectionString(connectionString);
             }

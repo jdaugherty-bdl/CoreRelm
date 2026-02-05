@@ -53,8 +53,8 @@ namespace CoreRelm.Models
         /// configuration.</remarks>
         public RelmContextOptionsBuilder ContextOptions { get; private set; }
 
-        private IEnumerable<PropertyInfo> _enumeratedDataSets;
-        private List<object> _attachedDataSets;
+        private IEnumerable<PropertyInfo>? _enumeratedDataSets;
+        private List<object>? _attachedDataSets;
 
         private bool _localOpenConnection = false;
         private bool _localOpenTransaction = false;
@@ -77,7 +77,7 @@ namespace CoreRelm.Models
         {
             if (relmContext == null)
                 throw new ArgumentNullException(nameof(relmContext), "RelmContext cannot be null.");
-            ContextOptions = relmContext.ContextOptions ?? throw new ArgumentNullException(nameof(relmContext.ContextOptions), "RelmContextOptionsBuilder cannot be null.");
+            ContextOptions = relmContext.ContextOptions ?? throw new ArgumentNullException(nameof(IRelmContext.ContextOptions), "RelmContextOptionsBuilder cannot be null.");
             ContextOptions.ValidateAllSettings();
             InitializeContext(autoOpenConnection, autoOpenTransaction, allowUserVariables, convertZeroDateTime, lockWaitTimeoutSeconds, autoInitializeDataSets, autoVerifyTables);
         }
@@ -184,7 +184,7 @@ namespace CoreRelm.Models
         /// server setting.</param>
         /// <param name="autoInitializeDataSets">true to automatically initialize data sets when the context is created; otherwise, false.</param>
         /// <param name="autoVerifyTables">true to automatically verify table existence when the context is created; otherwise, false.</param>
-        public RelmContext(MySqlConnection connection, MySqlTransaction transaction, bool autoOpenConnection = true, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true)
+        public RelmContext(MySqlConnection connection, MySqlTransaction? transaction, bool autoOpenConnection = true, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true)
         {
             ContextOptions = new RelmContextOptionsBuilder(connection, transaction);
             InitializeContext(autoOpenConnection, autoOpenTransaction: false, allowUserVariables, convertZeroDateTime, lockWaitTimeoutSeconds, autoInitializeDataSets, autoVerifyTables);
@@ -193,7 +193,7 @@ namespace CoreRelm.Models
         private void InitializeContext(bool autoOpenConnection, bool autoOpenTransaction, bool allowUserVariables, bool convertZeroDateTime, int lockWaitTimeoutSeconds, bool autoInitializeDataSets, bool autoVerifyTables)
         {
             if (ContextOptions.DatabaseConnection == null)
-                ContextOptions.SetDatabaseConnection(RelmHelper.GetConnectionFromConnectionString(ContextOptions.DatabaseConnectionString, allowUserVariables: allowUserVariables, convertZeroDateTime: convertZeroDateTime, lockWaitTimeoutSeconds: lockWaitTimeoutSeconds));
+                ContextOptions.SetDatabaseConnection(RelmHelper.GetConnectionFromConnectionString(ContextOptions.DatabaseConnectionString!, allowUserVariables: allowUserVariables, convertZeroDateTime: convertZeroDateTime, lockWaitTimeoutSeconds: lockWaitTimeoutSeconds));
 
             if ((autoOpenConnection || autoOpenTransaction) && ContextOptions.DatabaseConnection != null)
                 StartConnection(autoOpenTransaction: autoOpenTransaction, lockWaitTimeoutSeconds: lockWaitTimeoutSeconds);
@@ -206,7 +206,7 @@ namespace CoreRelm.Models
             ContextOptions.SetAutoInitializeDataSets(autoInitializeDataSets);
             ContextOptions.SetAutoVerifyTables(autoVerifyTables);
 
-            _attachedDataSets = new List<object>();
+            _attachedDataSets = [];
 
             // call the user's OnConfigure method
             OnConfigure(ContextOptions);
@@ -233,38 +233,39 @@ namespace CoreRelm.Models
                     .ToList();
 
                 // don't initialize the data sets if the table name is not in the current database
-                _enumeratedDataSets = tableNames
-                    .Where(x => currentDatabaseTables.Contains(x.TableName))
+                _enumeratedDataSets = tableNames?
+                    .Where(x => !string.IsNullOrWhiteSpace(x.TableName) && (currentDatabaseTables?.Contains(x.TableName) ?? false))
                     .Select(x => x.attachedProperty)
                     .ToList();
             }
 
-            if (ContextOptions.AutoInitializeDataSets)
+            if (ContextOptions.AutoInitializeDataSets && (_enumeratedDataSets?.Any() ?? false) && (_attachedDataSets?.Any() ?? false))
             {
                 // instantiate each item in the DALDataSet<T> properties
                 foreach (var attachedProperty in _enumeratedDataSets)
                 {
                     var dalDataSet = CreateDataSetType(attachedProperty);
-                    _attachedDataSets.Add(dalDataSet);
+                    if (dalDataSet != null)
+                        _attachedDataSets.Add(dalDataSet);
                 }
             }
         }
 
-        private object CreateDataSetType(PropertyInfo attachedProperty)
+        private object? CreateDataSetType(PropertyInfo attachedProperty)
         {
             var dalDataSetType = attachedProperty.PropertyType.GetGenericArguments()[0];
 
             // create a default data loader for the generic type argument then create a dataset and pass the data loader
             // check if dalDataSetType has a RelmDataLoader attribute defined at the class level, and create a new instance of the type indicated and save to dalDataLoader
-            object dalDataLoader;
+            object? dalDataLoader;
             var classDataLoader = dalDataSetType.GetCustomAttribute<RelmDataLoader>(true);
 
             try
             {
                 if (classDataLoader?.LoaderType == null)
-                    dalDataLoader = Activator.CreateInstance(typeof(RelmDefaultDataLoader<>).MakeGenericType(dalDataSetType), new object[] { ContextOptions });
+                    dalDataLoader = Activator.CreateInstance(typeof(RelmDefaultDataLoader<>).MakeGenericType(dalDataSetType), [ContextOptions]);
                 else
-                    dalDataLoader = Activator.CreateInstance(classDataLoader.LoaderType, new object[] { ContextOptions });
+                    dalDataLoader = Activator.CreateInstance(classDataLoader.LoaderType, [ContextOptions]);
             }
             catch (Exception ex)
             {
@@ -272,7 +273,7 @@ namespace CoreRelm.Models
             }
 
             // create a new instance of the DALDataSet<T> and pass the data loader
-            var dalDataSet = Activator.CreateInstance(typeof(RelmDataSet<>).MakeGenericType(dalDataSetType), new object[] { this, dalDataLoader });
+            var dalDataSet = Activator.CreateInstance(typeof(RelmDataSet<>).MakeGenericType(dalDataSetType), [this, dalDataLoader]);
             
             attachedProperty.SetValue(this, dalDataSet);
 
@@ -291,7 +292,7 @@ namespace CoreRelm.Models
             if (!HasDataSet<T>())
                 throw new InvalidOperationException("No such data set exists");
 
-            GetDataSetType<T>().SetDataLoader(dataLoader);
+            GetDataSetType<T>()?.SetDataLoader(dataLoader);
         }
 
         /// <summary>
@@ -304,7 +305,7 @@ namespace CoreRelm.Models
         {
             // First, let's try to find an existing dataSet of the same type.
             var existingDataSet = _attachedDataSets
-                .FirstOrDefault(ds => typeof(T).IsInstanceOfType(ds));
+                ?.FirstOrDefault(ds => typeof(T).IsInstanceOfType(ds));
 
             if (existingDataSet != null)
             {
@@ -312,15 +313,20 @@ namespace CoreRelm.Models
                 this.GetType()
                     .GetProperties()
                     .FirstOrDefault(x => x.PropertyType.IsGenericType && typeof(T).IsInstanceOfType(x.GetValue(this)))
-                    .SetValue(this, dataSet);
+                    ?.SetValue(this, dataSet);
 
-                var index = _attachedDataSets.IndexOf(existingDataSet);
-                _attachedDataSets[index] = dataSet;
+                if (_attachedDataSets != null && dataSet != null)
+                {
+                    var index = _attachedDataSets.IndexOf(existingDataSet);
+                    if (index >= 0)
+                        _attachedDataSets[index] = dataSet;
+                }
             }
             else
             {
                 // If we didn't find it, we add the new dataSet to the list.
-                _attachedDataSets.Add(dataSet);
+                if (dataSet != null)
+                    _attachedDataSets?.Add(dataSet);
             }
         }
 
@@ -378,18 +384,18 @@ namespace CoreRelm.Models
         /// langword="true"/> to commit; otherwise, the transaction will not be committed.</param>
         public void EndConnection(bool commitTransaction = true)
         {
-            if ((ContextOptions?.DatabaseConnection?.State ?? System.Data.ConnectionState.Closed) != System.Data.ConnectionState.Closed)
+            if ((ContextOptions?.DatabaseConnection?.State ?? ConnectionState.Closed) != ConnectionState.Closed)
             {
                 if (commitTransaction && _localOpenTransaction)
                 {
-                    ContextOptions.DatabaseTransaction?.Commit();
+                    ContextOptions?.DatabaseTransaction?.Commit();
 
                     _localOpenTransaction = false;
                 }
 
                 if (_localOpenConnection)
                 {
-                    ContextOptions.DatabaseConnection.Close();
+                    ContextOptions?.DatabaseConnection?.Close();
 
                     _localOpenConnection = false;
                 }
@@ -414,12 +420,12 @@ namespace CoreRelm.Models
         /// operation. Ensure that the underlying database connection is open before calling this method.</remarks>
         /// <returns>A <see cref="MySqlTransaction"/> object representing the started transaction. If a transaction is already
         /// active, returns the existing transaction.</returns>
-        public MySqlTransaction BeginTransaction()
+        public MySqlTransaction? BeginTransaction()
         {
             if (ContextOptions.DatabaseTransaction == null)
                 ContextOptions.SetDatabaseTransaction(ContextOptions.DatabaseConnection?.BeginTransaction());
 
-            return ContextOptions.DatabaseTransaction;
+            return ContextOptions?.DatabaseTransaction;
         }
 
         /// <summary>
@@ -481,7 +487,7 @@ namespace CoreRelm.Models
         {
             EndConnection();
 
-            if (disposing)
+            if (disposing && _enumeratedDataSets != null)
             {
                 foreach (var attachedProperty in _enumeratedDataSets)
                 {
@@ -491,7 +497,7 @@ namespace CoreRelm.Models
                         attachedProperty.SetValue(this, default);
                 }
 
-                _attachedDataSets.Clear();
+                _attachedDataSets?.Clear();
             }
         }
 
@@ -512,7 +518,7 @@ namespace CoreRelm.Models
         /// </summary>
         /// <typeparam name="T">The type of model to retrieve. Must implement <see cref="IRelmModel"/> and have a parameterless constructor.</typeparam>
         /// <returns>An <see cref="IRelmDataSet{T}"/> instance for the specified model type <typeparamref name="T"/>.</returns>
-        public IRelmDataSet<T> GetDataSet<T>() where T : IRelmModel, new()
+        public IRelmDataSet<T>? GetDataSet<T>() where T : IRelmModel, new()
         {
             return GetDataSet<T>(false); // auto-initialize
         }
@@ -527,7 +533,7 @@ namespace CoreRelm.Models
         /// <returns>An <see cref="IRelmDataSet{T}"/> instance representing the data set for the specified model type, or <see
         /// langword="null"/> if the data set cannot be retrieved and <paramref name="throwException"/> is <see
         /// langword="false"/>.</returns>
-        public IRelmDataSet<T> GetDataSet<T>(bool throwException) where T : IRelmModel, new()
+        public IRelmDataSet<T>? GetDataSet<T>(bool throwException) where T : IRelmModel, new()
         {
             return GetDataSet(typeof(T), throwException) as IRelmDataSet<T>;
         }
@@ -537,7 +543,7 @@ namespace CoreRelm.Models
         /// </summary>
         /// <param name="dataSetType">The type of the data set to retrieve. Must implement <see cref="IRelmDataSetBase"/>.</param>
         /// <returns>An instance of <see cref="IRelmDataSetBase"/> corresponding to the specified type.</returns>
-        public IRelmDataSetBase GetDataSet(Type dataSetType)
+        public IRelmDataSetBase? GetDataSet(Type dataSetType)
         {
             return GetDataSet(dataSetType, false); // auto-initialize
         }
@@ -560,10 +566,10 @@ namespace CoreRelm.Models
         /// <exception cref="InvalidOperationException">Thrown if the specified type does not correspond to a table in the current database, if no attached property
         /// is found for the type, or if the data set cannot be initialized and <paramref name="throwException"/> is
         /// <see langword="true"/>.</exception>
-        public IRelmDataSetBase GetDataSet(Type dataSetType, bool throwException)
+        public IRelmDataSetBase? GetDataSet(Type dataSetType, bool throwException)
         {
-            var attachedProperty = _enumeratedDataSets.FirstOrDefault(x => x.PropertyType.GetGenericArguments().Any(y => y == dataSetType))
-                ?? _enumeratedDataSets.FirstOrDefault(x => x.PropertyType.GetGenericArguments().Any(y => y.IsAssignableFrom(dataSetType)))
+            var attachedProperty = _enumeratedDataSets?.FirstOrDefault(x => x.PropertyType.GetGenericArguments().Any(y => y == dataSetType))
+                ?? _enumeratedDataSets?.FirstOrDefault(x => x.PropertyType.GetGenericArguments().Any(y => y.IsAssignableFrom(dataSetType)))
                 ?? throw new InvalidOperationException($"No attached property found for type {dataSetType.Name}.");
 
             var dataSet = attachedProperty.GetValue(this) as IRelmDataSetBase;
@@ -606,7 +612,7 @@ namespace CoreRelm.Models
         /// <typeparam name="T">The type of model for which to retrieve the data set. Must implement <see cref="IRelmModel"/> and have a
         /// parameterless constructor.</typeparam>
         /// <returns>An <see cref="IRelmDataSet{T}"/> instance associated with the specified model type.</returns>
-        public IRelmDataSet<T> GetDataSetType<T>() where T : IRelmModel, new()
+        public IRelmDataSet<T>? GetDataSetType<T>() where T : IRelmModel, new()
         {
             return GetDataSetType<T>(throwException: true);
         }
@@ -618,9 +624,9 @@ namespace CoreRelm.Models
         /// <param name="throwException">Whether to throw an exception if the dataset is not found.</param>
         /// <returns>An instance of IDALDataSet of the specified type.</returns>
         /// <exception cref="InvalidOperationException">Thrown when no matching dataset is found.</exception>
-        public IRelmDataSet<T> GetDataSetType<T>(bool throwException) where T : IRelmModel, new()
+        public IRelmDataSet<T>? GetDataSetType<T>(bool throwException) where T : IRelmModel, new()
         {
-            return (IRelmDataSet<T>)GetDataSetType(typeof(T), throwException: throwException);
+            return (IRelmDataSet<T>?)GetDataSetType(typeof(T), throwException: throwException);
         }
 
         /// <summary>
@@ -628,7 +634,7 @@ namespace CoreRelm.Models
         /// </summary>
         /// <param name="dataSetType">The type of the data set to retrieve. Must be a valid type that implements the required data set interface.</param>
         /// <returns>An object representing the data set of the specified type.</returns>
-        public IRelmDataSetBase GetDataSetType(Type dataSetType)
+        public IRelmDataSetBase? GetDataSetType(Type dataSetType)
         {
             return GetDataSetType(dataSetType, throwException: true);
         }
@@ -640,7 +646,7 @@ namespace CoreRelm.Models
         /// <param name="throwException">Whether to throw an exception if the dataset is not found.</param>
         /// <returns>An IDALDataSetBase instance of the given type.</returns>
         /// <exception cref="InvalidOperationException">Thrown when no matching dataset is found.</exception>
-        public IRelmDataSetBase GetDataSetType(Type dataSetType, bool throwException)
+        public IRelmDataSetBase? GetDataSetType(Type dataSetType, bool throwException)
         {
             // Find the first property that is of type DALDataSet<> and has a generic type argument that matches DataSetType
             var dataSetProperty = this.GetType()
@@ -672,7 +678,7 @@ namespace CoreRelm.Models
         /// <returns>A collection containing all entities of type <typeparamref name="T"/> from the data set. The collection is
         /// empty if no entities are present.</returns>
         /// <exception cref="InvalidOperationException">Thrown if the data set for type <typeparamref name="T"/> is not initialized.</exception>
-        public ICollection<T> Get<T>(bool loadDataLoaders = false) where T : IRelmModel, new()
+        public ICollection<T>? Get<T>(bool loadDataLoaders = false) where T : IRelmModel, new()
         {
             var dataSet = GetDataSet<T>()
                 ?? throw new InvalidOperationException($"DataSet for type {typeof(T).Name} is not initialized.");
@@ -688,7 +694,7 @@ namespace CoreRelm.Models
         /// <param name="loadDataLoaders">true to load related data loaders for each entity; otherwise, false. The default is false.</param>
         /// <returns>A collection of entities of type T that match the specified predicate. The collection will be empty if no
         /// entities satisfy the predicate.</returns>
-        public ICollection<T> Get<T>(Expression<Func<T, bool>> predicate, bool loadDataLoaders = false) where T : IRelmModel, new()
+        public ICollection<T>? Get<T>(Expression<Func<T, bool>> predicate, bool loadDataLoaders = false) where T : IRelmModel, new()
         {
             return Where(predicate).Load(loadDataLoaders: loadDataLoaders);
         }
@@ -701,9 +707,9 @@ namespace CoreRelm.Models
         /// <param name="predicate">An expression that defines the conditions the returned element must satisfy.</param>
         /// <param name="loadDataLoaders">true to load related data loaders for the returned element; otherwise, false. The default is false.</param>
         /// <returns>The first element of type T that matches the predicate, or default(T) if no match is found.</returns>
-        public T FirstOrDefault<T>(Expression<Func<T, bool>> predicate, bool loadDataLoaders = false) where T : IRelmModel, new()
+        public T? FirstOrDefault<T>(Expression<Func<T, bool>> predicate, bool loadDataLoaders = false) where T : IRelmModel, new()
         {
-            return Get(predicate, loadDataLoaders: loadDataLoaders).FirstOrDefault();
+            return (Get(predicate, loadDataLoaders: loadDataLoaders) ?? []).FirstOrDefault();
         }
 
         /// <summary>
@@ -740,7 +746,7 @@ namespace CoreRelm.Models
         /// <returns>A collection of objects of type T that satisfy the query. The collection will be empty if no matching
         /// objects are found.</returns>
         /// <exception cref="ArgumentNullException">Thrown if query is null or empty.</exception>
-        public ICollection<T> Run<T>(string query, Dictionary<string, object> parameters = null) where T : IRelmModel, new()
+        public ICollection<T?> Run<T>(string query, Dictionary<string, object>? parameters = null) where T : IRelmModel, new()
         {
             if (string.IsNullOrWhiteSpace(query))
                 throw new ArgumentNullException(nameof(query), "Query cannot be null or empty.");
@@ -760,12 +766,15 @@ namespace CoreRelm.Models
         /// successfully.</remarks>
         public void SaveAll()
         {
+            if (_attachedDataSets == null || _attachedDataSets.Count == 0)
+                return;
+
             // loop through each _attachedDataSet and call Save()
             foreach (var attachedDataSet in _attachedDataSets)
             {
                 var saveMethod = attachedDataSet.GetType().GetMethod(nameof(RelmDataSet<RelmModel>.Save));
 
-                saveMethod.Invoke(attachedDataSet, null);
+                saveMethod?.Invoke(attachedDataSet, null);
             }
         }
 
@@ -795,7 +804,7 @@ namespace CoreRelm.Models
         /// <param name="throwException">true to throw an exception if no matching row is found; otherwise, false to return null.</param>
         /// <returns>A DataRow containing the first result of the query if found; otherwise, null if no matching row exists and
         /// throwException is false.</returns>
-        public DataRow GetDataRow(string query, Dictionary<string, object> parameters = null, bool throwException = true)
+        public DataRow? GetDataRow(string query, Dictionary<string, object>? parameters = null, bool throwException = true)
             => RefinedResultsHelper.GetDataRow(this, query, parameters, throwException: throwException);
 
         /// <summary>
@@ -811,7 +820,7 @@ namespace CoreRelm.Models
         /// thrown on error; otherwise, the method returns <see langword="null"/>.</param>
         /// <returns>A <see cref="DataTable"/> containing the results of the query, or <see langword="null"/> if the query fails
         /// and <paramref name="throwException"/> is <see langword="false"/>.</returns>
-        public DataTable GetDataTable(string query, Dictionary<string, object> parameters = null, bool throwException = true)
+        public DataTable? GetDataTable(string query, Dictionary<string, object>? parameters = null, bool throwException = true)
             => RefinedResultsHelper.GetDataTable(this, query, parameters, throwException: throwException);
 
         /// <summary>
@@ -828,7 +837,7 @@ namespace CoreRelm.Models
         /// <returns>An instance of <typeparamref name="T"/> representing the retrieved data object. Returns the default value of
         /// <typeparamref name="T"/> if no data is found and <paramref name="throwException"/> is <see
         /// langword="false"/>.</returns>
-        public T GetDataObject<T>(string query, Dictionary<string, object> parameters = null, bool throwException = true) where T : IRelmModel, new()
+        public T? GetDataObject<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new()
             => ObjectResultsHelper.GetDataObject<T>(this, query, parameters, throwException: throwException);
 
         /// <summary>
@@ -845,7 +854,7 @@ namespace CoreRelm.Models
         /// <returns>An enumerable collection of data objects of type <typeparamref name="T"/> that satisfy the query. Returns an
         /// empty collection if no matching objects are found or if the query fails and <paramref
         /// name="throwException"/> is <see langword="false"/>.</returns>
-        public IEnumerable<T> GetDataObjects<T>(string query, Dictionary<string, object> parameters = null, bool throwException = true) where T : IRelmModel, new()
+        public IEnumerable<T?>? GetDataObjects<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new()
             => ObjectResultsHelper.GetDataObjects<T>(this, query, parameters, throwException: throwException);
 
         /// <summary>
@@ -862,8 +871,25 @@ namespace CoreRelm.Models
         /// collection.</param>
         /// <returns>An enumerable collection of objects of type T representing the query results. Returns an empty collection if
         /// no results are found or if an error occurs and throwException is false.</returns>
-        public IEnumerable<T> GetDataList<T>(string query, Dictionary<string, object> parameters = null, bool throwException = true)
+        public IEnumerable<T>? GetDataList<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true)
             => ObjectResultsHelper.GetDataList<T>(this, query, parameters, throwException: throwException);
+
+        /// <summary>
+        /// Executes the specified query asynchronously and returns a collection of results mapped to the specified type.
+        /// </summary>
+        /// <remarks>The method maps each row in the result set to an instance of type T. If
+        /// throwException is false and an error occurs during query execution, the method returns an empty collection
+        /// instead of throwing an exception.</remarks>
+        /// <typeparam name="T">The type to which each result row will be mapped.</typeparam>
+        /// <param name="query">The SQL query to execute against the data source.</param>
+        /// <param name="parameters">An optional dictionary of parameter names and values to be applied to the query. If null, the query is
+        /// executed without parameters.</param>
+        /// <param name="throwException">true to throw an exception if the query fails; otherwise, false to suppress exceptions and return an empty
+        /// collection.</param>
+        /// <returns>An enumerable collection of objects of type T representing the query results. Returns an empty collection if
+        /// no results are found or if an error occurs and throwException is false.</returns>
+        public async Task<IEnumerable<T>?> GetDataListAsync<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+            => await ObjectResultsHelper.GetDataListAsync<T>(this, query, parameters, throwException: throwException, cancellationToken: cancellationToken);
 
         /// <summary>
         /// Executes the specified SQL query and returns the first column of the first row in the result set, cast to
@@ -880,8 +906,28 @@ namespace CoreRelm.Models
         /// value of type T.</param>
         /// <returns>The value of the first column of the first row in the result set, cast to type T. Returns the default value
         /// of T if no result is found and throwException is false.</returns>
-        public T GetScalar<T>(string query, Dictionary<string, object> parameters = null, bool throwException = true)
+        public T? GetScalar<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true)
             => RefinedResultsHelper.GetScalar<T>(this, query, parameters, throwException: throwException);
+
+        /// <summary>
+        /// Asynchronously executes a SQL query and returns the first column of the first row in the result set as a
+        /// scalar value of the specified type.
+        /// </summary>
+        /// <remarks>Use this method to efficiently retrieve a single value from the database, such as a
+        /// count or aggregate. If throwException is set to false and the query yields no result, the method returns
+        /// default(T) instead of throwing an exception.</remarks>
+        /// <typeparam name="T">The type to which the scalar result is cast. Must be compatible with the value returned by the query.</typeparam>
+        /// <param name="query">The SQL query to execute. The query should return a single value.</param>
+        /// <param name="parameters">An optional dictionary of parameter names and values to be applied to the query. Can be null if the query
+        /// does not require parameters.</param>
+        /// <param name="throwException">true to throw an exception if the query returns no result or if an error occurs; otherwise, false to return
+        /// the default value of type T.</param>
+        /// <param name="cancellationToken">A cancellation token that can be used to cancel the asynchronous operation.</param>
+        /// <returns>A task that represents the asynchronous operation. The task result contains the scalar value of type T if
+        /// the query succeeds; otherwise, the default value of type T if throwException is false and no result is
+        /// found.</returns>
+        public async Task<T?> GetScalarAsync<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+            => await RefinedResultsHelper.GetScalarAsync<T>(this, query, parameters, throwException: throwException, cancellationToken: cancellationToken);
 
         /// <summary>
         /// Creates and returns a bulk table writer for efficiently inserting multiple records of type T into the
@@ -893,8 +939,6 @@ namespace CoreRelm.Models
         /// <typeparam name="T">The type of entities to be written to the database table.</typeparam>
         /// <param name="insertQuery">An optional custom SQL insert query to use for bulk operations. If null, a default query is generated based
         /// on the type T.</param>
-        /// <param name="useTransaction">Specifies whether the bulk insert operation should be performed within a database transaction. Set to <see
-        /// langword="true"/> to ensure atomicity; otherwise, <see langword="false"/>.</param>
         /// <param name="throwException">Specifies whether exceptions encountered during the bulk operation should be thrown. If <see
         /// langword="true"/>, exceptions are propagated; otherwise, errors are suppressed.</param>
         /// <param name="allowAutoIncrementColumns">Indicates whether auto-increment columns are included in the insert operation. Set to <see langword="true"/>
@@ -904,8 +948,8 @@ namespace CoreRelm.Models
         /// <param name="allowUniqueColumns">Indicates whether unique columns are included in the insert operation. Set to <see langword="true"/> to
         /// allow explicit values for unique columns.</param>
         /// <returns>A <see cref="BulkTableWriter{T}"/> instance configured for bulk insertion of entities of type T into the database.</returns>
-        public BulkTableWriter<T> GetBulkTableWriter<T>(string insertQuery = null, bool useTransaction = false, bool throwException = true, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
-            => DataOutputOperations.GetBulkTableWriter<T>(this, insertQuery: insertQuery, useTransaction: useTransaction, throwException: throwException, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns);
+        public BulkTableWriter<T> GetBulkTableWriter<T>(string? insertQuery = null, bool throwException = true, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
+            => DataOutputOperations.GetBulkTableWriter<T>(this, insertQuery: insertQuery, throwException: throwException, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns);
 
         /// <summary>
         /// Writes a collection of data to a database table in bulk, optionally using batching and transaction support.
@@ -931,14 +975,14 @@ namespace CoreRelm.Models
         /// <param name="allowUniqueColumns">Indicates whether unique columns are included in the write operation. If <see langword="true"/>, unique
         /// columns are written; otherwise, they are excluded.</param>
         /// <returns>The number of rows successfully written to the database table.</returns>
-        public int BulkTableWrite<T>(T source, string table = null, MySqlTransaction sqlTransaction = null, Type forceType = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
+        public int BulkTableWrite<T>(T source, string? table = null, MySqlTransaction? sqlTransaction = null, Type? forceType = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
             => DataOutputOperations.BulkTableWrite<T>(this, source, table, forceType, batchSize: batchSize, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns);
 
         /// <summary>
         /// Executes a database operation using the specified SQL query and parameters, with optional exception handling
         /// and transaction support.
         /// </summary>
-        /// <remarks>If <paramref name="useTransaction"/> is <see langword="true"/>, the operation is
+        /// <remarks>The operation is
         /// performed within a transaction, which is committed if successful or rolled back on failure. When <paramref
         /// name="throwException"/> is <see langword="false"/>, errors are suppressed and no exception is thrown, but
         /// the operation may not complete as expected.</remarks>
@@ -947,18 +991,28 @@ namespace CoreRelm.Models
         /// is executed without parameters.</param>
         /// <param name="throwException">Specifies whether to throw an exception if the database operation fails. Set to <see langword="true"/> to
         /// throw exceptions; otherwise, errors are suppressed.</param>
-        /// <param name="useTransaction">Specifies whether to execute the operation within a database transaction. Set to <see langword="true"/> to
-        /// use a transaction; otherwise, the operation is executed without transactional support.</param>
-        public void DoDatabaseWork(string query, Dictionary<string, object> parameters = null, bool throwException = true, bool useTransaction = false)
-            => DatabaseWorkHelper.DoDatabaseWork(this, query, parameters, throwException: throwException, useTransaction: useTransaction);
+        public void DoDatabaseWork(string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+            => DatabaseWorkHelper.DoDatabaseWork(this, query, parameters, throwException: throwException);
 
-        public async Task DoDatabaseWorkAsync(string query, Dictionary<string, object> parameters = null, bool throwException = true, bool useTransaction = false)
-            => await DatabaseWorkHelper.DoDatabaseWorkAsync(this, query, parameters, throwException: throwException, useTransaction: useTransaction);
+        /// <summary>
+        /// Executes an asynchronous database operation using the specified query and parameters.
+        /// </summary>
+        /// <remarks>The operation is
+        /// performed within a transaction, which is committed if successful or rolled back on failure. When <paramref
+        /// name="throwException"/> is <see langword="false"/>, errors are suppressed and no exception is thrown, but
+        /// the operation may not complete as expected.</remarks>
+        /// <param name="query">The SQL query to execute against the database. Cannot be null or empty.</param>
+        /// <param name="parameters">An optional dictionary of parameter names and values to be used with the query. If null, the query is
+        /// executed without parameters.</param>
+        /// <param name="throwException">true to throw an exception if the operation fails; otherwise, false to suppress exceptions.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
+        public async Task DoDatabaseWorkAsync(string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+            => await DatabaseWorkHelper.DoDatabaseWorkAsync(this, query, parameters, throwException: throwException);
 
         /// <summary>
         /// Executes a database query and returns the result as the specified type.
         /// </summary>
-        /// <remarks>If <paramref name="useTransaction"/> is <see langword="true"/>, the query is executed
+        /// <remarks>The query is executed
         /// within a transaction, which may impact performance and rollback behavior. Ensure that <paramref
         /// name="query"/> and <paramref name="parameters"/> are valid for the target database.</remarks>
         /// <typeparam name="T">The type of the result to return. Must be compatible with the query result.</typeparam>
@@ -967,16 +1021,29 @@ namespace CoreRelm.Models
         /// applied.</param>
         /// <param name="throwException">Specifies whether to throw an exception if the query fails. If <see langword="true"/>, an exception is
         /// thrown on error; otherwise, the method returns the default value of <typeparamref name="T"/>.</param>
-        /// <param name="useTransaction">Specifies whether to execute the query within a database transaction. If <see langword="true"/>, the query
-        /// is executed in a transaction.</param>
         /// <returns>The result of the query cast to the specified type <typeparamref name="T"/>. Returns the default value of
         /// <typeparamref name="T"/> if the query fails and <paramref name="throwException"/> is <see
         /// langword="false"/>.</returns>
-        public T DoDatabaseWork<T>(string query, Dictionary<string, object> parameters = null, bool throwException = true, bool useTransaction = false)
-         => DatabaseWorkHelper.DoDatabaseWork<T>(this, query, parameters, throwException, useTransaction);
+        public T? DoDatabaseWork<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+         => DatabaseWorkHelper.DoDatabaseWork<T>(this, query, parameters, throwException);
 
-        public async Task<T> DoDatabaseWorkAsync<T>(string query, Dictionary<string, object> parameters = null, bool throwException = true, bool useTransaction = false)
-         => await DatabaseWorkHelper.DoDatabaseWorkAsync<T>(this, query, parameters, throwException, useTransaction);
+        /// <summary>
+        /// Executes the specified database query asynchronously and returns the result as an instance of the specified
+        /// type.
+        /// </summary>
+        /// <remarks>The query is executed
+        /// within a transaction, which may impact performance and rollback behavior. Ensure that <paramref
+        /// name="query"/> and <paramref name="parameters"/> are valid for the target database.</remarks>
+        /// <typeparam name="T">The type to which the query result is mapped. Must be compatible with the result set returned by the query.</typeparam>
+        /// <param name="query">The SQL query to execute against the database. Cannot be null or empty.</param>
+        /// <param name="parameters">An optional dictionary of parameter names and values to be applied to the query. If null, the query is
+        /// executed without parameters.</param>
+        /// <param name="throwException">true to throw an exception if the query fails; otherwise, false to suppress exceptions and return null on
+        /// failure.</param>
+        /// <returns>A task that represents the asynchronous operation. The task result contains an instance of type T if the
+        /// query succeeds; otherwise, null.</returns>
+        public async Task<T?> DoDatabaseWorkAsync<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+         => await DatabaseWorkHelper.DoDatabaseWorkAsync<T>(this, query, parameters, throwException);
 
         /// <summary>
         /// Executes a database operation using the specified SQL query and callback, with optional exception handling
@@ -991,16 +1058,14 @@ namespace CoreRelm.Models
         /// function should return an object representing the result of the operation.</param>
         /// <param name="throwException">Specifies whether to throw an exception if the database operation fails. If <see langword="true"/>,
         /// exceptions are propagated; otherwise, errors are suppressed.</param>
-        /// <param name="useTransaction">Specifies whether the database operation should be executed within a transaction. If <see langword="true"/>,
-        /// the operation is wrapped in a transaction.</param>
-        public void DoDatabaseWork(string query, Func<MySqlCommand, object> actionCallback, bool throwException = true, bool useTransaction = false)
-            => DatabaseWorkHelper.DoDatabaseWork(this, query, actionCallback, throwException, useTransaction);
+        public void DoDatabaseWork(string query, Func<MySqlCommand, object> actionCallback, bool throwException = true)
+            => DatabaseWorkHelper.DoDatabaseWork(this, query, actionCallback, throwException);
 
         /// <summary>
         /// Executes a database operation using the specified query and callback, optionally within a transaction, and
         /// returns the result as the specified type.
         /// </summary>
-        /// <remarks>If <paramref name="useTransaction"/> is <see langword="true"/>, the operation is
+        /// <remarks>The operation is
         /// executed within a transaction, which is committed if successful or rolled back on failure. The behavior when
         /// an error occurs depends on the value of <paramref name="throwException"/>.</remarks>
         /// <typeparam name="T">The type of the result returned by the database operation.</typeparam>
@@ -1009,11 +1074,9 @@ namespace CoreRelm.Models
         /// result of this callback is returned as type <typeparamref name="T"/>.</param>
         /// <param name="throwException">Specifies whether to throw an exception if the database operation fails. If <see langword="true"/>,
         /// exceptions are thrown; otherwise, failures are handled silently.</param>
-        /// <param name="useTransaction">Specifies whether to execute the database operation within a transaction. If <see langword="true"/>, the
-        /// operation is performed in a transaction; otherwise, no transaction is used.</param>
         /// <returns>The result of the database operation as type <typeparamref name="T"/>.</returns>
-        public T DoDatabaseWork<T>(string query, Func<MySqlCommand, object> actionCallback, bool throwException = true, bool useTransaction = false)
-            => DatabaseWorkHelper.DoDatabaseWork<T>(this, query, actionCallback, throwException, useTransaction);
+        public T? DoDatabaseWork<T>(string query, Func<MySqlCommand, object> actionCallback, bool throwException = true)
+            => DatabaseWorkHelper.DoDatabaseWork<T>(this, query, actionCallback, throwException);
 
         /// <summary>
         /// Writes the specified data model to the database using configurable options for batch size and column

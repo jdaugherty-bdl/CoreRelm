@@ -45,9 +45,9 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence
         /// <param name="allowAutoDateColumns">Specifies whether auto-generated date columns are allowed in the bulk write operation. Defaults to <see
         /// langword="false"/>.</param>
         /// <returns>A new instance of <see cref="BulkTableWriter{T}"/> configured with the specified options.</returns>
-        internal static BulkTableWriter<T> GetBulkTableWriter<T>(Enum connectionName, string insertQuery = null, bool useTransaction = false, bool throwException = true, bool allowUserVariables = false, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
+        internal static BulkTableWriter<T> GetBulkTableWriter<T>(Enum connectionName, string? insertQuery = null, bool throwException = true, bool allowUserVariables = false, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
         {
-            return new BulkTableWriter<T>(connectionName, insertQuery: insertQuery, throwException: throwException, useTransaction: useTransaction, allowUserVariables: allowUserVariables, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
+            return new BulkTableWriter<T>(connectionName, insertQuery: insertQuery, throwException: throwException, allowUserVariables: allowUserVariables, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
         }
 
         /// <summary>
@@ -60,12 +60,8 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence
         /// open before calling this method.</param>
         /// <param name="insertQuery">An optional custom SQL insert query to use for the bulk operation. If not provided, a default query will be
         /// generated based on the entity type <typeparamref name="T"/>.</param>
-        /// <param name="useTransaction">A value indicating whether the bulk operation should be wrapped in a database transaction. If <see
-        /// langword="true"/>, a transaction will be used; otherwise, no transaction will be applied.</param>
         /// <param name="throwException">A value indicating whether exceptions should be thrown if an error occurs during the bulk operation. If <see
         /// langword="true"/>, exceptions will be thrown; otherwise, errors will be suppressed.</param>
-        /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to be used for the bulk operation. If provided, this transaction
-        /// will be used instead of creating a new one.</param>
         /// <param name="allowAutoIncrementColumns">A value indicating whether auto-increment columns in the target table are allowed to be explicitly set
         /// during the bulk operation. If <see langword="true"/>, auto-increment columns can be set; otherwise, they
         /// will be ignored.</param>
@@ -79,9 +75,41 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence
         /// ignored.</param>
         /// <returns>A <see cref="BulkTableWriter{T}"/> instance configured for performing bulk insert operations on the target
         /// table.</returns>
-        internal static BulkTableWriter<T> GetBulkTableWriter<T>(MySqlConnection existingConnection, string insertQuery = null, bool useTransaction = false, bool throwException = true, MySqlTransaction sqlTransaction = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
+        internal static BulkTableWriter<T> GetBulkTableWriter<T>(MySqlConnection existingConnection, string? insertQuery = null, bool throwException = true, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
         {
-            return GetBulkTableWriter<T>(new RelmContext(existingConnection, sqlTransaction), insertQuery: insertQuery, useTransaction: useTransaction, throwException: throwException, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
+            return GetBulkTableWriter<T>(new RelmContext(existingConnection), insertQuery: insertQuery, throwException: throwException, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
+        }
+
+        /// <summary>
+        /// Creates and returns a <see cref="BulkTableWriter{T}"/> instance for performing bulk insert operations on a
+        /// database table.
+        /// </summary>
+        /// <typeparam name="T">The type of the entity to be written to the database. Each instance of <typeparamref name="T"/> represents a
+        /// row in the target table.</typeparam>
+        /// <param name="existingConnection">An existing <see cref="MySqlConnection"/> to be used for the database operations. The connection must be
+        /// open before calling this method.</param>
+        /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to be used for the bulk operation. If provided, this transaction
+        /// will be used instead of creating a new one.</param>
+        /// <param name="insertQuery">An optional custom SQL insert query to use for the bulk operation. If not provided, a default query will be
+        /// generated based on the entity type <typeparamref name="T"/>.</param>
+        /// <param name="throwException">A value indicating whether exceptions should be thrown if an error occurs during the bulk operation. If <see
+        /// langword="true"/>, exceptions will be thrown; otherwise, errors will be suppressed.</param>
+        /// <param name="allowAutoIncrementColumns">A value indicating whether auto-increment columns in the target table are allowed to be explicitly set
+        /// during the bulk operation. If <see langword="true"/>, auto-increment columns can be set; otherwise, they
+        /// will be ignored.</param>
+        /// <param name="allowPrimaryKeyColumns">A value indicating whether primary key columns in the target table are allowed to be explicitly set during
+        /// the bulk operation. If <see langword="true"/>, primary key columns can be set; otherwise, they will be
+        /// ignored.</param>
+        /// <param name="allowUniqueColumns">A value indicating whether unique columns in the target table are allowed to be explicitly set during the
+        /// bulk operation. If <see langword="true"/>, unique columns can be set; otherwise, they will be ignored.</param>
+        /// <param name="allowAutoDateColumns">A value indicating whether auto-generated date columns in the target table are allowed to be explicitly set
+        /// during the bulk operation. If <see langword="true"/>, auto-date columns can be set; otherwise, they will be
+        /// ignored.</param>
+        /// <returns>A <see cref="BulkTableWriter{T}"/> instance configured for performing bulk insert operations on the target
+        /// table.</returns>
+        internal static BulkTableWriter<T> GetBulkTableWriter<T>(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, string? insertQuery = null, bool throwException = true, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
+        {
+            return GetBulkTableWriter<T>(new RelmContext(existingConnection, sqlTransaction), insertQuery: insertQuery, throwException: throwException, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
         }
 
         /// <summary>
@@ -93,8 +121,6 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence
         /// <c>null</c>.</param>
         /// <param name="insertQuery">An optional custom SQL insert query to use for the bulk write operation. If <c>null</c>, a default query
         /// will be generated.</param>
-        /// <param name="useTransaction">Indicates whether the bulk write operation should be performed within a transaction. If <c>true</c>, a
-        /// transaction will be used; otherwise, no transaction will be used unless the context already has one.</param>
         /// <param name="throwException">Indicates whether exceptions should be thrown during the bulk write operation. If <c>true</c>, exceptions
         /// will be thrown; otherwise, errors will be suppressed.</param>
         /// <param name="allowAutoIncrementColumns">Specifies whether auto-increment columns are allowed to be included in the bulk write operation. If
@@ -107,36 +133,9 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence
         /// <c>false</c>, such columns will be excluded.</param>
         /// <returns>A new instance of <see cref="BulkTableWriter{T}"/> configured with the specified options for performing bulk
         /// write operations.</returns>
-        internal static BulkTableWriter<T> GetBulkTableWriter<T>(IRelmContext relmContext, string insertQuery = null, bool useTransaction = false, bool throwException = true, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
+        internal static BulkTableWriter<T> GetBulkTableWriter<T>(IRelmContext relmContext, string? insertQuery = null, bool throwException = true, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
         {
-            return new BulkTableWriter<T>(relmContext, insertQuery: insertQuery, throwException: throwException, useTransaction: useTransaction || relmContext.ContextOptions.DatabaseTransaction != null, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
-        }
-
-        /// <summary>
-        /// Creates and returns a new instance of <see cref="BulkTableWriter{T}"/> for performing bulk write operations
-        /// on a database table.
-        /// </summary>
-        /// <typeparam name="T">The type of the entity to be written to the database table.</typeparam>
-        /// <param name="relmQuickContext">The database context used to manage the connection and transaction for the bulk write operation. Cannot be
-        /// <c>null</c>.</param>
-        /// <param name="insertQuery">An optional SQL insert query to use for the bulk write operation. If <c>null</c>, a default query will be
-        /// generated.</param>
-        /// <param name="useTransaction">Indicates whether the bulk write operation should be wrapped in a transaction. If <c>true</c>, a transaction
-        /// will be used; otherwise, no transaction will be used unless the context already has one.</param>
-        /// <param name="throwException">Indicates whether exceptions should be thrown during the bulk write operation. If <c>true</c>, exceptions
-        /// will be thrown; otherwise, errors will be suppressed.</param>
-        /// <param name="allowAutoIncrementColumns">Specifies whether auto-increment columns are allowed in the bulk write operation. If <c>true</c>,
-        /// auto-increment columns will be included; otherwise, they will be excluded.</param>
-        /// <param name="allowPrimaryKeyColumns">Specifies whether primary key columns are allowed in the bulk write operation. If <c>true</c>, primary key
-        /// columns will be included; otherwise, they will be excluded.</param>
-        /// <param name="allowUniqueColumns">Specifies whether unique columns are allowed in the bulk write operation. If <c>true</c>, unique columns
-        /// will be included; otherwise, they will be excluded.</param>
-        /// <param name="allowAutoDateColumns">Specifies whether auto-generated date columns are allowed in the bulk write operation. If <c>true</c>,
-        /// auto-generated date columns will be included; otherwise, they will be excluded.</param>
-        /// <returns>A new instance of <see cref="BulkTableWriter{T}"/> configured with the specified options.</returns>
-        internal static BulkTableWriter<T> GetBulkTableWriter<T>(IRelmQuickContext relmQuickContext, string insertQuery = null, bool useTransaction = false, bool throwException = true, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
-        {
-            return new BulkTableWriter<T>(relmQuickContext, insertQuery: insertQuery, throwException: throwException, useTransaction: useTransaction || relmQuickContext.ContextOptions.DatabaseTransaction != null, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
+            return new BulkTableWriter<T>(relmContext, insertQuery: insertQuery, throwException: throwException, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
         }
 
         /// <summary>
@@ -173,12 +172,12 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence
         /// <param name="allowAutoDateColumns">Indicates whether auto-generated date columns in the target table are allowed to be written to. Defaults to
         /// <see langword="false"/>.</param>
         /// <returns>The number of rows successfully written to the table.</returns>
-        internal static int BulkTableWrite<T>(Enum connectionName, T sourceData, string tableName = null, Type forceType = null, bool allowUserVariables = false, int batchSize = 100, string databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
+        internal static int BulkTableWrite<T>(Enum connectionName, T sourceData, string? tableName = null, Type? forceType = null, bool allowUserVariables = false, int batchSize = 100, string? databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
         {
-            using (var conn = RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName, allowUserVariables: allowUserVariables))
-            {
-                return BulkTableWrite<T>(conn, sourceData, tableName, null, forceType, batchSize, databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
-            }
+            using var conn = (RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName, allowUserVariables: allowUserVariables))
+                ?? throw new InvalidOperationException($"Could not get a valid connection for connection type '{connectionName}'.");
+
+            return BulkTableWrite<T>(conn, sourceData, tableName, forceType, batchSize, databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
         }
 
         /// <summary>
@@ -203,12 +202,12 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence
         /// <param name="allowAutoDateColumns">Indicates whether auto-generated date columns are included in the write operation. Defaults to <see
         /// langword="false"/>.</param>
         /// <returns>The total number of rows successfully written to the database table.</returns>
-        internal static int BulkTableWrite<T>(Enum connectionName, IEnumerable<T> sourceData, string tableName = null, Type forceType = null, bool allowUserVariables = false, int batchSize = 100, string databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
+        internal static int BulkTableWrite<T>(Enum connectionName, IEnumerable<T> sourceData, string? tableName = null, Type? forceType = null, bool allowUserVariables = false, int batchSize = 100, string? databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
         {
-            using (var conn = RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName, allowUserVariables: allowUserVariables))
-            {
-                return BulkTableWrite<T>(conn, sourceData, tableName, null, forceType, batchSize, databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
-            }
+            using var conn = (RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName, allowUserVariables: allowUserVariables))
+                ?? throw new InvalidOperationException($"Could not get a valid connection for connection type '{connectionName}'.");
+
+            return BulkTableWrite<T>(conn, sourceData, tableName, forceType, batchSize, databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
         }
 
         /// <summary>
@@ -227,7 +226,6 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence
         /// implementation.</param>
         /// <param name="tableName">The name of the target database table. If null, the table name is inferred from the type <typeparamref
         /// name="T"/>.</param>
-        /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to associate with the operation. If null, no transaction is used.</param>
         /// <param name="forceType">An optional <see cref="Type"/> to explicitly specify the type of the source data. If null, the type is
         /// inferred from <typeparamref name="T"/>.</param>
         /// <param name="batchSize">The maximum number of rows to include in each batch during the bulk write operation. Must be greater than
@@ -242,7 +240,43 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence
         /// <param name="allowAutoDateColumns">Indicates whether auto-generated date columns in the target table are allowed to be written. Default is <see
         /// langword="false"/>.</param>
         /// <returns>The number of rows successfully written to the target table.</returns>
-        internal static int BulkTableWrite<T>(MySqlConnection existingConnection, T sourceData, string tableName = null, MySqlTransaction sqlTransaction = null, Type forceType = null, int batchSize = 100, string databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
+        internal static int BulkTableWrite<T>(MySqlConnection existingConnection, T sourceData, string? tableName = null, Type? forceType = null, int batchSize = 100, string? databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
+        {
+            return BulkTableWrite<T>(new RelmContext(existingConnection), sourceData, tableName: tableName, forceType: forceType, batchSize: batchSize, databaseName: databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
+        }
+
+        /// <summary>
+        /// Performs a bulk write operation to a database table using the specified connection and source data.
+        /// </summary>
+        /// <remarks>This method provides a convenient way to perform bulk insert operations into a
+        /// database table. It supports optional configurations such as batch size, table name inference, and column
+        /// write permissions.  The caller is responsible for ensuring that the provided <paramref
+        /// name="existingConnection"/> is open before invoking this method. If a transaction is provided via <paramref
+        /// name="sqlTransaction"/>, the operation will be executed within the context of that transaction.  Use the
+        /// optional parameters to customize the behavior of the bulk write operation, such as allowing specific column
+        /// types to be written or specifying a target database.</remarks>
+        /// <typeparam name="T">The type of the source data to be written to the table.</typeparam>
+        /// <param name="existingConnection">An existing <see cref="MySqlConnection"/> to use for the operation. The connection must be open.</param>
+        /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to associate with the operation. If null, no transaction is used.</param>
+        /// <param name="sourceData">The data to be written to the table. This can be a collection or a single object, depending on the
+        /// implementation.</param>
+        /// <param name="tableName">The name of the target database table. If null, the table name is inferred from the type <typeparamref
+        /// name="T"/>.</param>
+        /// <param name="forceType">An optional <see cref="Type"/> to explicitly specify the type of the source data. If null, the type is
+        /// inferred from <typeparamref name="T"/>.</param>
+        /// <param name="batchSize">The maximum number of rows to include in each batch during the bulk write operation. Must be greater than
+        /// zero. Default is 100.</param>
+        /// <param name="databaseName">The name of the target database. If null, the default database associated with the connection is used.</param>
+        /// <param name="allowAutoIncrementColumns">Indicates whether auto-increment columns in the target table are allowed to be written. Default is <see
+        /// langword="false"/>.</param>
+        /// <param name="allowPrimaryKeyColumns">Indicates whether primary key columns in the target table are allowed to be written. Default is <see
+        /// langword="false"/>.</param>
+        /// <param name="allowUniqueColumns">Indicates whether unique columns in the target table are allowed to be written. Default is <see
+        /// langword="false"/>.</param>
+        /// <param name="allowAutoDateColumns">Indicates whether auto-generated date columns in the target table are allowed to be written. Default is <see
+        /// langword="false"/>.</param>
+        /// <returns>The number of rows successfully written to the target table.</returns>
+        internal static int BulkTableWrite<T>(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, T sourceData, string? tableName = null, Type? forceType = null, int batchSize = 100, string? databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
         {
             return BulkTableWrite<T>(new RelmContext(existingConnection, sqlTransaction), sourceData, tableName: tableName, forceType: forceType, batchSize: batchSize, databaseName: databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
         }
@@ -271,39 +305,9 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence
         /// <param name="allowAutoDateColumns">Indicates whether auto-generated date columns are allowed to be written. Defaults to <see
         /// langword="false"/>.</param>
         /// <returns>The number of rows successfully written to the database table.</returns>
-        internal static int BulkTableWrite<T>(IRelmContext relmContext, T sourceData, string tableName = null, Type forceType = null, int batchSize = 100, string databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
+        internal static int BulkTableWrite<T>(IRelmContext relmContext, T sourceData, string? tableName = null, Type? forceType = null, int batchSize = 100, string? databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
         {
             return BulkTableWriteStatic<T>(GetBulkTableWriter<T>(relmContext), sourceData, tableName: tableName, forceType: forceType, batchSize: batchSize, databaseName: databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
-        }
-
-        /// <summary>
-        /// Performs a bulk write operation to a database table using the specified data source and configuration
-        /// options.
-        /// </summary>
-        /// <remarks>This method provides a high-performance mechanism for inserting or updating large
-        /// amounts of data in a database table. The behavior of the operation can be customized using the provided
-        /// parameters, such as enabling or disabling specific column constraints. Ensure that the <paramref
-        /// name="relmQuickContext"/> is properly configured and connected to the target database before calling this
-        /// method.</remarks>
-        /// <typeparam name="T">The type of the data source to be written to the table.</typeparam>
-        /// <param name="relmQuickContext">The database context used to manage the connection and transaction for the operation.</param>
-        /// <param name="sourceData">The data source containing the records to be written to the table. This can be a collection or other
-        /// enumerable data structure.</param>
-        /// <param name="tableName">The name of the target database table. If null, the table name is inferred from the type <typeparamref
-        /// name="T"/>.</param>
-        /// <param name="forceType">An optional type to enforce for the operation. If null, the type is inferred from <typeparamref name="T"/>.</param>
-        /// <param name="batchSize">The number of records to write in each batch. Defaults to 100. Must be greater than zero.</param>
-        /// <param name="databaseName">The name of the target database. If null, the default database is used.</param>
-        /// <param name="allowAutoIncrementColumns">Indicates whether auto-increment columns are allowed in the bulk write operation. Defaults to <see
-        /// langword="false"/>.</param>
-        /// <param name="allowPrimaryKeyColumns">Indicates whether primary key columns are allowed to be written. Defaults to <see langword="false"/>.</param>
-        /// <param name="allowUniqueColumns">Indicates whether unique columns are allowed to be written. Defaults to <see langword="false"/>.</param>
-        /// <param name="allowAutoDateColumns">Indicates whether auto-generated date columns are allowed to be written. Defaults to <see
-        /// langword="false"/>.</param>
-        /// <returns>The total number of records successfully written to the table.</returns>
-        internal static int BulkTableWrite<T>(IRelmQuickContext relmQuickContext, T sourceData, string tableName = null, Type forceType = null, int batchSize = 100, string databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
-        {
-            return BulkTableWriteStatic<T>(GetBulkTableWriter<T>(relmQuickContext), sourceData, tableName: tableName, forceType: forceType, batchSize: batchSize, databaseName: databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
         }
 
         /// <summary>
@@ -327,13 +331,12 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence
         /// <returns>The number of rows successfully written to the table.</returns>
         /// <exception cref="CustomAttributeFormatException">Thrown if the table name cannot be resolved because the <see cref="RelmTable"/> attribute is missing on the
         /// type <typeparamref name="T"/> or the <paramref name="forceType"/>.</exception>
-        private static int BulkTableWriteStatic<T>(BulkTableWriter<T> tableWriter, T sourceData, string tableName = null, Type forceType = null, int batchSize = 100, string databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
+        private static int BulkTableWriteStatic<T>(BulkTableWriter<T> tableWriter, T sourceData, string? tableName = null, Type? forceType = null, int batchSize = 100, string? databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
         {
             var rowsUpdated = tableWriter
                 .SetTableName(tableName ?? (forceType ?? typeof(T)).GetCustomAttribute<RelmTable>()?.TableName ?? throw new CustomAttributeFormatException(CoreUtilities.NoDalTableAttributeError))
                 .SetDatabaseName(databaseName ?? (forceType ?? typeof(T)).GetCustomAttribute<RelmDatabase>()?.DatabaseName)
                 .SetSourceData(sourceData)
-                .UseTransaction(true)
                 .SetBatchSize(batchSize)
                 .AllowAutoDateColumns(allowAutoDateColumns)
                 .AllowAutoIncrementColumns(allowAutoIncrementColumns)
@@ -357,8 +360,6 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence
         /// updated.</param>
         /// <param name="tableName">The name of the target database table. If <c>null</c>, the table name is inferred from the type
         /// <typeparamref name="T"/>.</param>
-        /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to associate with the operation. If <c>null</c>, no transaction
-        /// is used.</param>
         /// <param name="forceType">An optional <see cref="Type"/> to enforce a specific type mapping for the operation. If <c>null</c>, the
         /// type is inferred from <typeparamref name="T"/>.</param>
         /// <param name="batchSize">The maximum number of rows to include in each batch during the bulk write operation. Must be greater than
@@ -375,7 +376,43 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence
         /// <see langword="true"/>, auto-generated date columns are included; otherwise, they are excluded. Default is
         /// <see langword="false"/>.</param>
         /// <returns>The total number of rows successfully written to the database.</returns>
-        internal static int BulkTableWrite<T>(MySqlConnection existingConnection, IEnumerable<T> sourceData, string tableName = null, MySqlTransaction sqlTransaction = null, Type forceType = null, int batchSize = 100, string databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
+        internal static int BulkTableWrite<T>(MySqlConnection existingConnection, IEnumerable<T> sourceData, string? tableName = null, Type? forceType = null, int batchSize = 100, string? databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
+        {
+            return BulkTableWrite<T>(new RelmContext(existingConnection), sourceData, tableName: tableName, forceType: forceType, batchSize: batchSize, databaseName: databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
+        }
+
+        /// <summary>
+        /// Performs a bulk write operation to insert or update data in a database table.
+        /// </summary>
+        /// <remarks>This method performs a bulk write operation to efficiently insert or update multiple
+        /// rows in a database table. It supports optional configuration for handling specific column types, such as
+        /// auto-increment, primary key, unique, and auto-generated date columns. The operation can be performed within
+        /// an existing transaction if <paramref name="sqlTransaction"/> is provided.</remarks>
+        /// <typeparam name="T">The type of the objects in the <paramref name="sourceData"/> collection.</typeparam>
+        /// <param name="existingConnection">An existing <see cref="MySqlConnection"/> to use for the operation. The connection must be open.</param>
+        /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to associate with the operation. If <c>null</c>, no transaction
+        /// is used.</param>
+        /// <param name="sourceData">The collection of data to be written to the database table. Each item represents a row to be inserted or
+        /// updated.</param>
+        /// <param name="tableName">The name of the target database table. If <c>null</c>, the table name is inferred from the type
+        /// <typeparamref name="T"/>.</param>
+        /// <param name="forceType">An optional <see cref="Type"/> to enforce a specific type mapping for the operation. If <c>null</c>, the
+        /// type is inferred from <typeparamref name="T"/>.</param>
+        /// <param name="batchSize">The maximum number of rows to include in each batch during the bulk write operation. Must be greater than
+        /// zero. Default is 100.</param>
+        /// <param name="databaseName">The name of the target database. If <c>null</c>, the default database associated with the connection is
+        /// used.</param>
+        /// <param name="allowAutoIncrementColumns">A value indicating whether auto-increment columns are included in the operation. If <see langword="true"/>,
+        /// auto-increment columns are included; otherwise, they are excluded. Default is <see langword="false"/>.</param>
+        /// <param name="allowPrimaryKeyColumns">A value indicating whether primary key columns are included in the operation. If <see langword="true"/>,
+        /// primary key columns are included; otherwise, they are excluded. Default is <see langword="false"/>.</param>
+        /// <param name="allowUniqueColumns">A value indicating whether unique columns are included in the operation. If <see langword="true"/>, unique
+        /// columns are included; otherwise, they are excluded. Default is <see langword="false"/>.</param>
+        /// <param name="allowAutoDateColumns">A value indicating whether auto-generated date columns (e.g., timestamps) are included in the operation. If
+        /// <see langword="true"/>, auto-generated date columns are included; otherwise, they are excluded. Default is
+        /// <see langword="false"/>.</param>
+        /// <returns>The total number of rows successfully written to the database.</returns>
+        internal static int BulkTableWrite<T>(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, IEnumerable<T> sourceData, string? tableName = null, Type? forceType = null, int batchSize = 100, string? databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
         {
             return BulkTableWrite<T>(new RelmContext(existingConnection, sqlTransaction), sourceData, tableName: tableName, forceType: forceType, batchSize: batchSize, databaseName: databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
         }
@@ -406,38 +443,9 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence
         /// <param name="allowAutoDateColumns">Indicates whether auto-generated date columns are allowed in the bulk write operation. Defaults to <see
         /// langword="false"/>.</param>
         /// <returns>The total number of rows successfully written to the table.</returns>
-        internal static int BulkTableWrite<T>(IRelmContext relmContext, IEnumerable<T> sourceData, string tableName = null, Type forceType = null, int batchSize = 100, string databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
+        internal static int BulkTableWrite<T>(IRelmContext relmContext, IEnumerable<T> sourceData, string? tableName = null, Type? forceType = null, int batchSize = 100, string? databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
         {
             return BulkTableWriteStatic(GetBulkTableWriter<T>(relmContext), sourceData, tableName: tableName, forceType: forceType, batchSize: batchSize, databaseName: databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
-        }
-
-        /// <summary>
-        /// Writes a collection of data to a database table in bulk, optimizing for performance.
-        /// </summary>
-        /// <remarks>This method performs a bulk write operation to improve performance when inserting
-        /// large amounts of data. The behavior of the operation can be customized using the optional parameters, such
-        /// as allowing specific column types to be written or specifying the target table and database.</remarks>
-        /// <typeparam name="T">The type of the objects in the <paramref name="sourceData"/> collection.</typeparam>
-        /// <param name="relmQuickContext">The database context used to manage the connection and transaction for the bulk write operation.</param>
-        /// <param name="sourceData">The collection of data to be written to the database table. Cannot be null or empty.</param>
-        /// <param name="tableName">The name of the target database table. If null, the table name is inferred from the type <typeparamref
-        /// name="T"/>.</param>
-        /// <param name="forceType">An optional type to enforce for the database table schema. If null, the schema is inferred from
-        /// <typeparamref name="T"/>.</param>
-        /// <param name="batchSize">The number of rows to write in each batch. Must be greater than zero. Defaults to 100.</param>
-        /// <param name="databaseName">The name of the target database. If null, the default database for the context is used.</param>
-        /// <param name="allowAutoIncrementColumns">Indicates whether auto-increment columns in the database table are allowed to be written. Defaults to <see
-        /// langword="false"/>.</param>
-        /// <param name="allowPrimaryKeyColumns">Indicates whether primary key columns in the database table are allowed to be written. Defaults to <see
-        /// langword="false"/>.</param>
-        /// <param name="allowUniqueColumns">Indicates whether unique columns in the database table are allowed to be written. Defaults to <see
-        /// langword="false"/>.</param>
-        /// <param name="allowAutoDateColumns">Indicates whether auto-generated date columns in the database table are allowed to be written. Defaults to
-        /// <see langword="false"/>.</param>
-        /// <returns>The total number of rows successfully written to the database table.</returns>
-        internal static int BulkTableWrite<T>(IRelmQuickContext relmQuickContext, IEnumerable<T> sourceData, string tableName = null, Type forceType = null, int batchSize = 100, string databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
-        {
-            return BulkTableWriteStatic<T>(GetBulkTableWriter<T>(relmQuickContext), sourceData, tableName: tableName, forceType: forceType, batchSize: batchSize, databaseName: databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
         }
 
         /// <summary>
@@ -466,13 +474,12 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence
         /// <returns>The total number of rows successfully written to the database table.</returns>
         /// <exception cref="CustomAttributeFormatException">Thrown if the table name cannot be resolved because the <see cref="RelmTable"/> attribute is missing on the
         /// type <typeparamref name="T"/> or the <paramref name="forceType"/>.</exception>
-        internal static int BulkTableWriteStatic<T>(BulkTableWriter<T> tableWriter, IEnumerable<T> sourceData, string tableName = null, Type forceType = null, int batchSize = 100, string databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
+        internal static int BulkTableWriteStatic<T>(BulkTableWriter<T> tableWriter, IEnumerable<T> sourceData, string? tableName = null, Type? forceType = null, int batchSize = 100, string? databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
         {
             var rowsUpdated = tableWriter
                 .SetTableName(tableName ?? (forceType ?? typeof(T)).GetCustomAttribute<RelmTable>()?.TableName ?? throw new CustomAttributeFormatException(CoreUtilities.NoDalTableAttributeError))
                 .SetDatabaseName(databaseName ?? (forceType ?? typeof(T)).GetCustomAttribute<RelmDatabase>()?.DatabaseName)
                 .SetSourceData(sourceData)
-                .UseTransaction(true)
                 .SetBatchSize(batchSize)
                 .AllowAutoDateColumns(allowAutoDateColumns)
                 .AllowAutoIncrementColumns(allowAutoIncrementColumns)

@@ -117,7 +117,7 @@ namespace CoreRelm.Interfaces
         /// <typeparam name="T">The type of the dataset to retrieve. Must implement <see cref="IRelmModel"/> and have a parameterless
         /// constructor.</typeparam>
         /// <returns>An instance of <see cref="IRelmDataSet{T}"/> containing the data for the specified type.</returns>
-        IRelmDataSet<T> GetDataSet<T>() where T : IRelmModel, new();
+        IRelmDataSet<T>? GetDataSet<T>() where T : IRelmModel, new();
 
         /// <summary>
         /// Retrieves an initialized instance of a dataset of the specified type.
@@ -129,7 +129,7 @@ namespace CoreRelm.Interfaces
         /// <returns>An instance of <see cref="IRelmDataSet{T}"/> containing the dataset of type <typeparamref name="T"/>.
         /// Returns <see langword="null"/> if the dataset cannot be retrieved and <paramref name="throwException"/> is
         /// <see langword="false"/>.</returns>
-        IRelmDataSet<T> GetDataSet<T>(bool throwException) where T : IRelmModel, new();
+        IRelmDataSet<T>? GetDataSet<T>(bool throwException) where T : IRelmModel, new();
 
         /// <summary>
         /// Retrieves an initialized instance of a dataset based on the specified type.
@@ -138,7 +138,7 @@ namespace CoreRelm.Interfaces
         /// cref="IRelmDataSetBase"/>.</param>
         /// <returns>An instance of the dataset that matches the specified type. Returns <see langword="null"/> if no matching
         /// dataset is found.</returns>
-        IRelmDataSetBase GetDataSet(Type dataSetType);
+        IRelmDataSetBase? GetDataSet(Type dataSetType);
 
         /// <summary>
         /// Retrieves an initialized instance of a dataset of the specified type.
@@ -149,7 +149,7 @@ namespace CoreRelm.Interfaces
         /// is returned.</param>
         /// <returns>An instance of <see cref="IRelmDataSetBase"/> representing the requested dataset, or <see langword="null"/>
         /// if the dataset is not found and <paramref name="throwException"/> is <see langword="false"/>.</returns>
-        IRelmDataSetBase GetDataSet(Type dataSetType, bool throwException);
+        IRelmDataSetBase? GetDataSet(Type dataSetType, bool throwException);
 
         /// <summary>
         /// Retrieves an uninitialized dataset of the specified type.
@@ -159,7 +159,7 @@ namespace CoreRelm.Interfaces
         /// <typeparam name="T">The type of the dataset to retrieve. Must implement <see cref="IRelmModel"/> and have a parameterless
         /// constructor.</typeparam>
         /// <returns>An instance of <see cref="IRelmDataSet{T}"/> representing the dataset of the specified type.</returns>
-        IRelmDataSet<T> GetDataSetType<T>() where T : IRelmModel, new();
+        IRelmDataSet<T>? GetDataSetType<T>() where T : IRelmModel, new();
 
         /// <summary>
         /// Retrieves an uninitialized dataset of the specified type.
@@ -171,7 +171,7 @@ namespace CoreRelm.Interfaces
         /// <returns>An instance of <see cref="IRelmDataSet{T}"/> representing the dataset of the specified type, or <see
         /// langword="null"/> if the dataset cannot be retrieved and <paramref name="throwException"/> is <see
         /// langword="false"/>.</returns>
-        IRelmDataSet<T> GetDataSetType<T>(bool throwException) where T : IRelmModel, new();
+        IRelmDataSet<T>? GetDataSetType<T>(bool throwException) where T : IRelmModel, new();
 
         /// <summary>
         /// Retrieves an uninitialized dataset of type specified by <paramref name="dataSetType"/>.
@@ -179,7 +179,7 @@ namespace CoreRelm.Interfaces
         /// <param name="dataSetType">The <see cref="Type"/> of the dataset to retrieve. This must implement <see cref="IRelmDataSetBase"/>.</param>
         /// <returns>An instance of <see cref="IRelmDataSetBase"/> that corresponds to the specified <paramref
         /// name="dataSetType"/>.</returns>
-        IRelmDataSetBase GetDataSetType(Type dataSetType);
+        IRelmDataSetBase? GetDataSetType(Type dataSetType);
 
         /// <summary>
         /// Retrieves an uninitialized dataset of type specified by <paramref name="dataSetType"/>.
@@ -190,7 +190,7 @@ namespace CoreRelm.Interfaces
         /// <returns>An instance of <see cref="IRelmDataSetBase"/> corresponding to the specified <paramref name="dataSetType"/>.
         /// Returns <see langword="null"/> if <paramref name="throwException"/> is <see langword="false"/> and the
         /// dataset type is invalid.</returns>
-        IRelmDataSetBase GetDataSetType(Type dataSetType, bool throwException);
+        IRelmDataSetBase? GetDataSetType(Type dataSetType, bool throwException);
 
         /// <summary>
         /// Retrieves a collection of entities of type <typeparamref name="T"/> from the data source.
@@ -201,7 +201,7 @@ namespace CoreRelm.Interfaces
         /// will be initialized; otherwise, they will not.</param>
         /// <returns>A collection of objects of type <typeparamref name="T"/>. The collection may be empty if no objects are
         /// found.</returns>
-        ICollection<T> Get<T>(bool loadDataLoaders = false) where T : IRelmModel, new();
+        ICollection<T>? Get<T>(bool loadDataLoaders = false) where T : IRelmModel, new();
 
         /// <summary>
         /// Retrieves a collection of entities of type <typeparamref name="T"/> from the data source that satisfy the specified predicate.
@@ -213,7 +213,7 @@ namespace CoreRelm.Interfaces
         /// langword="true"/> to load data loaders; otherwise, <see langword="false"/>.</param>
         /// <returns>A collection of entities of type <typeparamref name="T"/> that match the specified predicate.  Returns an
         /// empty collection if no entities match.</returns>
-        ICollection<T> Get<T>(Expression<Func<T, bool>> predicate, bool loadDataLoaders = false) where T : IRelmModel, new();
+        ICollection<T>? Get<T>(Expression<Func<T, bool>> predicate, bool loadDataLoaders = false) where T : IRelmModel, new();
 
         /// <summary>
         /// Retrieves the first element of a sequence from the data source that satisfies the specified condition, or a default value if no
@@ -226,7 +226,7 @@ namespace CoreRelm.Interfaces
         /// langword="true"/>, data loaders will be initialized; otherwise, they will not be loaded.</param>
         /// <returns>The first element of type <typeparamref name="T"/> that satisfies the specified condition,  or the default
         /// value of <typeparamref name="T"/> if no such element is found.</returns>
-        T FirstOrDefault<T>(Expression<Func<T, bool>> predicate, bool loadDataLoaders = false) where T : IRelmModel, new();
+        T? FirstOrDefault<T>(Expression<Func<T, bool>> predicate, bool loadDataLoaders = false) where T : IRelmModel, new();
 
         /// <summary>
         /// Retrieves data from the data source, filtered based on the specified predicate.
@@ -249,7 +249,7 @@ namespace CoreRelm.Interfaces
         /// applied.</param>
         /// <returns>A collection of objects of type <typeparamref name="T"/> representing the query results. The collection will
         /// be empty if no results are found.</returns>
-        ICollection<T> Run<T>(string query, Dictionary<string, object> parameters = null) where T : IRelmModel, new();
+        ICollection<T?> Run<T>(string query, Dictionary<string, object> parameters = null) where T : IRelmModel, new();
 
         /// <summary>
         /// Retrieves the row identifier of the most recently inserted record in the database.
@@ -280,7 +280,7 @@ namespace CoreRelm.Interfaces
         /// returned.</param>
         /// <returns>A <see cref="DataRow"/> representing the first row of the result set, or <see langword="null"/> if no rows
         /// are found  and <paramref name="throwException"/> is set to <see langword="false"/>.</returns>
-        DataRow GetDataRow(string query, Dictionary<string, object> parameters = null, bool throwException = true);
+        DataRow? GetDataRow(string query, Dictionary<string, object> parameters = null, bool throwException = true);
 
         /// <summary>
         /// Executes the specified SQL query and returns the results as a <see cref="DataTable"/>.
@@ -296,7 +296,7 @@ namespace CoreRelm.Interfaces
         /// langword="true"/>.</param>
         /// <returns>A <see cref="DataTable"/> containing the results of the query. Returns <see langword="null"/> if <paramref
         /// name="throwException"/> is <see langword="false"/> and an error occurs during execution.</returns>
-        DataTable GetDataTable(string query, Dictionary<string, object> parameters = null, bool throwException = true);
+        DataTable? GetDataTable(string query, Dictionary<string, object> parameters = null, bool throwException = true);
 
         /// <summary>
         /// Executes the specified query and retrieves a data object of the specified type.
@@ -311,7 +311,7 @@ namespace CoreRelm.Interfaces
         /// <returns>An instance of the specified type <typeparamref name="T"/> populated with the data retrieved by the query. 
         /// Returns <see langword="default"/> if no data is found and <paramref name="throwException"/> is <see
         /// langword="false"/>.</returns>
-        T GetDataObject<T>(string query, Dictionary<string, object> parameters = null, bool throwException = true) where T : IRelmModel, new();
+        T? GetDataObject<T>(string query, Dictionary<string, object> parameters = null, bool throwException = true) where T : IRelmModel, new();
 
         /// <summary>
         /// Executes a query and retrieves a collection of data objects of the specified type.
@@ -326,7 +326,7 @@ namespace CoreRelm.Interfaces
         /// <returns>An <see cref="IEnumerable{T}"/> containing the data objects retrieved by the query. Returns an empty
         /// collection if no data is found or if <paramref name="throwException"/> is <see langword="false"/> and the
         /// query fails.</returns>
-        IEnumerable<T> GetDataObjects<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new();
+        IEnumerable<T?>? GetDataObjects<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new();
 
         /// <summary>
         /// Executes the specified query and retrieves a collection of data mapped to the specified type.
@@ -340,7 +340,23 @@ namespace CoreRelm.Interfaces
         /// <returns>An <see cref="IEnumerable{T}"/> containing the results of the query mapped to the specified type.  Returns
         /// an empty collection if no results are found or if <paramref name="throwException"/> is <see
         /// langword="false"/> and the query fails.</returns>
-        IEnumerable<T> GetDataList<T>(string query, Dictionary<string, object> parameters = null, bool throwException = true);
+        IEnumerable<T>? GetDataList<T>(string query, Dictionary<string, object> parameters = null, bool throwException = true);
+
+        /// <summary>
+        /// Executes the specified query asynchronously and returns a collection of results mapped to the specified type.
+        /// </summary>
+        /// <remarks>The method maps each row in the result set to an instance of type T. If
+        /// throwException is false and an error occurs during query execution, the method returns an empty collection
+        /// instead of throwing an exception.</remarks>
+        /// <typeparam name="T">The type to which each result row will be mapped.</typeparam>
+        /// <param name="query">The SQL query to execute against the data source.</param>
+        /// <param name="parameters">An optional dictionary of parameter names and values to be applied to the query. If null, the query is
+        /// executed without parameters.</param>
+        /// <param name="throwException">true to throw an exception if the query fails; otherwise, false to suppress exceptions and return an empty
+        /// collection.</param>
+        /// <returns>An enumerable collection of objects of type T representing the query results. Returns an empty collection if
+        /// no results are found or if an error occurs and throwException is false.</returns>
+        Task<IEnumerable<T>?> GetDataListAsync<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Executes the specified SQL query and retrieves a single scalar value of the specified type.
@@ -358,7 +374,26 @@ namespace CoreRelm.Interfaces
         /// <returns>The scalar value of type <typeparamref name="T"/> returned by the query.  If the query does not return a
         /// result and <paramref name="throwException"/> is <see langword="false"/>, the default value of <typeparamref
         /// name="T"/> is returned.</returns>
-        T GetScalar<T>(string query, Dictionary<string, object> parameters = null, bool throwException = true);
+        T? GetScalar<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true);
+
+        /// <summary>
+        /// Asynchronously executes a SQL query and returns the first column of the first row in the result set as a
+        /// scalar value of the specified type.
+        /// </summary>
+        /// <remarks>Use this method to efficiently retrieve a single value from the database, such as a
+        /// count or aggregate. If throwException is set to false and the query yields no result, the method returns
+        /// default(T) instead of throwing an exception.</remarks>
+        /// <typeparam name="T">The type to which the scalar result is cast. Must be compatible with the value returned by the query.</typeparam>
+        /// <param name="query">The SQL query to execute. The query should return a single value.</param>
+        /// <param name="parameters">An optional dictionary of parameter names and values to be applied to the query. Can be null if the query
+        /// does not require parameters.</param>
+        /// <param name="throwException">true to throw an exception if the query returns no result or if an error occurs; otherwise, false to return
+        /// the default value of type T.</param>
+        /// <param name="cancellationToken">A cancellation token that can be used to cancel the asynchronous operation.</param>
+        /// <returns>A task that represents the asynchronous operation. The task result contains the scalar value of type T if
+        /// the query succeeds; otherwise, the default value of type T if throwException is false and no result is
+        /// found.</returns>
+        Task<T?> GetScalarAsync<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Creates and returns a <see cref="BulkTableWriter{T}"/> instance for performing bulk insert operations on a
@@ -370,8 +405,6 @@ namespace CoreRelm.Interfaces
         /// <typeparam name="T">The type of the objects to be written to the database table. Each object represents a row in the table.</typeparam>
         /// <param name="insertQuery">An optional SQL insert query to use for the bulk operation. If <see langword="null"/>, a default query is
         /// generated based on the type <typeparamref name="T"/>.</param>
-        /// <param name="useTransaction">Specifies whether the bulk operation should be performed within a transaction. If <see langword="true"/>,
-        /// the operation is transactional; otherwise, it is not.</param>
         /// <param name="throwException">Specifies whether exceptions should be thrown if an error occurs during the bulk operation. If <see
         /// langword="true"/>, exceptions are thrown; otherwise, errors are suppressed.</param>
         /// <param name="allowAutoIncrementColumns">Indicates whether auto-increment columns in the database table are allowed to be included in the bulk
@@ -381,7 +414,7 @@ namespace CoreRelm.Interfaces
         /// <param name="allowUniqueColumns">Indicates whether unique columns in the database table are allowed to be included in the bulk operation. If
         /// <see langword="true"/>, these columns are included; otherwise, they are excluded.</param>
         /// <returns>A <see cref="BulkTableWriter{T}"/> instance configured for the specified bulk operation settings.</returns>
-        BulkTableWriter<T> GetBulkTableWriter<T>(string insertQuery = null, bool useTransaction = false, bool throwException = true, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false);
+        BulkTableWriter<T> GetBulkTableWriter<T>(string? insertQuery = null, bool throwException = true, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false);
 
         /// <summary>
         /// Performs a bulk write operation to insert or update data in the specified database table.
@@ -408,7 +441,7 @@ namespace CoreRelm.Interfaces
         /// <param name="allowUniqueColumns">Indicates whether unique columns in the target table are allowed to be explicitly written. Defaults to <see
         /// langword="false"/>.</param>
         /// <returns>The number of rows successfully written to the database table.</returns>
-        int BulkTableWrite<T>(T sourceData, string tableName = null, MySqlTransaction sqlTransaction = null, Type forceType = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false);
+        int BulkTableWrite<T>(T sourceData, string? tableName = null, MySqlTransaction sqlTransaction = null, Type forceType = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false);
 
         /// <summary>
         /// Executes a database operation using the specified query and parameters.
@@ -420,9 +453,7 @@ namespace CoreRelm.Interfaces
         /// applied.</param>
         /// <param name="throwException">A value indicating whether an exception should be thrown if the operation fails.  If <see langword="true"/>,
         /// an exception is thrown on failure; otherwise, the failure is silently handled.</param>
-        /// <param name="useTransaction">A value indicating whether the operation should be executed within a transaction.  If <see
-        /// langword="true"/>, the operation is wrapped in a transaction; otherwise, it is executed without one.</param>
-        void DoDatabaseWork(string query, Dictionary<string, object> parameters = null, bool throwException = true, bool useTransaction = false);
+        void DoDatabaseWork(string query, Dictionary<string, object>? parameters = null, bool throwException = true);
 
         /// <summary>
         /// Executes a database query and returns the result as the specified type.
@@ -436,12 +467,10 @@ namespace CoreRelm.Interfaces
         /// are required.</param>
         /// <param name="throwException">Specifies whether an exception should be thrown if the query fails. If <see langword="true"/>, an exception
         /// is thrown on failure; otherwise, the method returns the default value of <typeparamref name="T"/>.</param>
-        /// <param name="useTransaction">Specifies whether the query should be executed within a transaction. If <see langword="true"/>, the query is
-        /// executed in a transactional context; otherwise, it is executed without a transaction.</param>
         /// <returns>The result of the query as an instance of type <typeparamref name="T"/>. Returns the default value of
         /// <typeparamref name="T"/> if <paramref name="throwException"/> is <see langword="false"/> and the query
         /// fails.</returns>
-        T DoDatabaseWork<T>(string query, Dictionary<string, object> parameters = null, bool throwException = true, bool useTransaction = false);
+        T? DoDatabaseWork<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true);
 
         /// <summary>
         /// Executes a database operation using the specified query and callback function.
@@ -454,9 +483,7 @@ namespace CoreRelm.Interfaces
         /// must not be null.</param>
         /// <param name="throwException">A value indicating whether to throw an exception if an error occurs during the operation.  If <see
         /// langword="true"/>, exceptions will be thrown; otherwise, errors will be suppressed.</param>
-        /// <param name="useTransaction">A value indicating whether the operation should be executed within a database transaction.  If <see
-        /// langword="true"/>, the operation will be wrapped in a transaction; otherwise, it will not.</param>
-        void DoDatabaseWork(string query, Func<MySqlCommand, object> actionCallback, bool throwException = true, bool useTransaction = false);
+        void DoDatabaseWork(string query, Func<MySqlCommand, object> actionCallback, bool throwException = true);
 
         /// <summary>
         /// Executes a database operation using the specified query and callback function.
@@ -472,10 +499,8 @@ namespace CoreRelm.Interfaces
         /// function should return an object of type <typeparamref name="T"/>.</param>
         /// <param name="throwException">A value indicating whether an exception should be thrown if an error occurs during the operation. The
         /// default value is <see langword="true"/>.</param>
-        /// <param name="useTransaction">A value indicating whether the operation should be executed within a database transaction. The default value
-        /// is <see langword="false"/>.</param>
         /// <returns>The result of the operation, as returned by the <paramref name="actionCallback"/> function.</returns>
-        T DoDatabaseWork<T>(string query, Func<MySqlCommand, object> actionCallback, bool throwException = true, bool useTransaction = false);
+        T? DoDatabaseWork<T>(string query, Func<MySqlCommand, object> actionCallback, bool throwException = true);
 
         /// <summary>
         /// Writes the specified <see cref="IRelmModel"/> to the database in batches.

@@ -1,4 +1,6 @@
-﻿using CoreRelm.Interfaces.Metadata;
+﻿using CoreRelm.Interfaces;
+using CoreRelm.Interfaces.Metadata;
+using CoreRelm.Models;
 using CoreRelm.Models.Migrations.Introspection;
 using MySql.Data.MySqlClient;
 using System;
@@ -25,7 +27,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
         );
 
         public async Task<SchemaSnapshot> LoadSchemaAsync(
-            string connectionString,
+            string? connectionString,
             SchemaIntrospectionOptions? options = null,
             CancellationToken cancellationToken = default)
         {
@@ -34,26 +36,25 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
             if (string.IsNullOrWhiteSpace(connectionString))
                 throw new ArgumentException("Connection string is required.", nameof(connectionString));
 
-            await using var conn = new MySqlConnection(connectionString);
-            await conn.OpenAsync(cancellationToken);
+            var context = new RelmContext(connectionString);
 
-            var databaseName = await GetCurrentDatabaseAsync(conn, cancellationToken);
+            var databaseName = await GetCurrentDatabaseAsync(context, cancellationToken);
             if (string.IsNullOrWhiteSpace(databaseName))
                 throw new InvalidOperationException("No active database selected. Ensure the connection string specifies Database=<name>.");
 
-            var tableNames = await LoadTableNamesAsync(conn, databaseName, options.IncludeViews, cancellationToken);
+            var tableNames = await LoadTableNamesAsync(context, databaseName, options.IncludeViews, cancellationToken);
 
             // Load all schema components
-            var columns = await LoadColumnsAsync(conn, databaseName, cancellationToken);
-            var indexes = await LoadIndexesAsync(conn, databaseName, cancellationToken);
-            var foreignKeys = await LoadForeignKeysAsync(conn, databaseName, cancellationToken);
-            var triggers = await LoadTriggersAsync(conn, databaseName, cancellationToken);
-            var functions = await LoadFunctionsAsync(conn, databaseName, cancellationToken);
+            var columns = await LoadColumnsAsync(context, databaseName, cancellationToken);
+            var indexes = await LoadIndexesAsync(context, databaseName, cancellationToken);
+            var foreignKeys = await LoadForeignKeysAsync(context, databaseName, cancellationToken);
+            var triggers = await LoadTriggersAsync(context, databaseName, cancellationToken);
+            var functions = await LoadFunctionsAsync(context, databaseName, cancellationToken);
 
             // Assemble per-table structures
             var tables = new Dictionary<string, TableSchema>(StringComparer.Ordinal);
 
-            foreach (var tableName in tableNames.OrderBy(t => t, StringComparer.Ordinal))
+            foreach (var tableName in tableNames?.OrderBy(t => t, StringComparer.Ordinal).ToArray() ?? [])
             {
                 var tableColumns = columns.TryGetValue(tableName, out var colDict)
                     ? new Dictionary<string, ColumnSchema>(colDict, StringComparer.Ordinal)
@@ -83,53 +84,42 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
             return new SchemaSnapshot(databaseName, tables, functions);
         }
 
-        private static async Task<string?> GetCurrentDatabaseAsync(MySqlConnection conn, CancellationToken cancellationToken)
+        private static async Task<string?> GetCurrentDatabaseAsync(RelmContext relmContext, CancellationToken cancellationToken)
         {
-            await using var cmd = conn.CreateCommand();
-            cmd.CommandText = "SELECT DATABASE();";
-            var obj = await cmd.ExecuteScalarAsync(cancellationToken);
-            return obj as string;
+            var currentDatabase = await relmContext.GetScalarAsync<string>("SELECT DATABASE();", cancellationToken: cancellationToken);
+
+            return currentDatabase;
         }
 
-        private static async Task<List<string>> LoadTableNamesAsync(
-            MySqlConnection conn, 
+        private static async Task<List<string>?> LoadTableNamesAsync(
+            RelmContext relmContext, 
             string databaseName,
             bool includeViews,
             CancellationToken cancellationToken)
         {
-            var result = new List<string>();
+            var tableQuery = $@"SELECT TABLE_NAME
+                FROM INFORMATION_SCHEMA.TABLES
+                WHERE TABLE_SCHEMA = @database_name
+                    AND TABLE_TYPE IN (@view_types)
+                ORDER BY TABLE_NAME;";
 
-            await using var cmd = conn.CreateCommand();
-            cmd.CommandText = includeViews
-                ? @"SELECT TABLE_NAME
-                    FROM INFORMATION_SCHEMA.TABLES
-                    WHERE TABLE_SCHEMA = @db
-                        AND TABLE_TYPE IN ('BASE TABLE','VIEW')
-                    ORDER BY TABLE_NAME;"
-                : @"SELECT TABLE_NAME
-                    FROM INFORMATION_SCHEMA.TABLES
-                    WHERE TABLE_SCHEMA = @db
-                        AND TABLE_TYPE = 'BASE TABLE'
-                    ORDER BY TABLE_NAME;";
-
-            cmd.Parameters.AddWithValue("@database_name", databaseName);
-
-            await using var reader = await cmd.ExecuteReaderAsync(cancellationToken);
-            while (await reader.ReadAsync(cancellationToken))
+            var result = await relmContext.GetDataListAsync<string>(tableQuery, new Dictionary<string, object>
             {
-                result.Add(reader.GetString(0));
-            }
+                { "@database_name", databaseName },
+                { "@view_types", includeViews ? "BASE TABLE,VIEW" : "BASE TABLE" }
+            }, cancellationToken: cancellationToken);
 
-            return result;
+            return result?.ToList();
         }
 
         private static async Task<Dictionary<string, Dictionary<string, ColumnSchema>>> LoadColumnsAsync(
-            MySqlConnection conn,
+            IRelmContext relmContext,
             string databaseName,
             CancellationToken cancellationToken)
         {
             var columnSchemas = new Dictionary<string, Dictionary<string, ColumnSchema>>(StringComparer.Ordinal);
 
+            /*
             await using var cmd = conn.CreateCommand();
             cmd.CommandText = @"SELECT TABLE_NAME, COLUMN_NAME, COLUMN_TYPE, IS_NULLABLE, COLUMN_DEFAULT, EXTRA, ORDINAL_POSITION
                 FROM INFORMATION_SCHEMA.COLUMNS
@@ -173,18 +163,69 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
 
                 columns[columnName] = schema;
             }
+            */
+            /*
+            var columnQuery = @"SELECT TABLE_NAME AS table_name, COLUMN_NAME AS column_name, COLUMN_TYPE AS column_type, 
+                    IS_NULLABLE AS is_nullable, COLUMN_DEFAULT AS default_value, EXTRA AS extra, ORDINAL_POSITION AS ordinal_position
+                FROM INFORMATION_SCHEMA.COLUMNS
+                WHERE TABLE_SCHEMA = @database_name
+                ORDER BY TABLE_NAME, ORDINAL_POSITION;";
+            */
+            /*
+            TABLE_NAME, COLUMN_NAME, COLUMN_TYPE, COLUMN_KEY, IS_NULLABLE, COLUMN_DEFAULT AS default_value, EXTRA, ORDINAL_POSITION
+            */
+            var columnQuery = @"SELECT * FROM INFORMATION_SCHEMA.COLUMNS
+                WHERE TABLE_SCHEMA = @database_name
+                ORDER BY TABLE_NAME, ORDINAL_POSITION;";
+
+            var columnResults = (await relmContext.GetDataListAsync<ColumnSchema>(columnQuery, new Dictionary<string, object>
+            {
+                ["@database_name"] = databaseName
+            }, cancellationToken: cancellationToken))
+                ?.ToList();
+
+            if (columnResults != null)
+            {
+                foreach (var column in columnResults)
+                {
+                    if (column.ColumnKey?.Contains("PRI", StringComparison.OrdinalIgnoreCase) ?? false)
+                        column.IsPrimaryKey = true;
+
+                    if (column.ColumnKey?.Contains("UNI", StringComparison.OrdinalIgnoreCase) ?? false)
+                        column.IsUnique = true;
+
+                    if (column.Extra != null && column.Extra.Contains("auto_increment", StringComparison.OrdinalIgnoreCase))
+                    {
+                        column.IsAutoIncrement = true;
+                    }
+
+                    if (string.IsNullOrWhiteSpace(column.TableName))
+                    {
+                        throw new InvalidOperationException($"Column schema {column.ColumnName} missing TableName.");
+                    }
+
+                    if (!columnSchemas.TryGetValue(column.TableName, out var columns))
+                    {
+                        columns = new Dictionary<string, ColumnSchema>(StringComparer.Ordinal);
+                        columnSchemas[column.TableName] = columns;
+                    }
+
+                    columns[column.ColumnName!] = column;
+                }
+            }
 
             return columnSchemas;
         }
 
         private static async Task<Dictionary<string, Dictionary<string, IndexSchema>>> LoadIndexesAsync(
-            MySqlConnection conn,
+            IRelmContext relmContext,
             string databaseName,
             CancellationToken cancellationToken)
         {
             // We read INFORMATION_SCHEMA.STATISTICS and group by table+index name.
             // MySQL reports one row per index column.
-            var indexListing = new Dictionary<(string Table, string Index), List<(string Column, int Seq, string? Collation, bool NonUnique)>>();
+            /*
+            var indexListing = new Dictionary<(string? Table, string? Index), List<IndexSchema>>();
 
             await using var cmd = conn.CreateCommand();
             cmd.CommandText = @"SELECT TABLE_NAME, INDEX_NAME, NON_UNIQUE, COLUMN_NAME, SEQ_IN_INDEX, COLLATION
@@ -212,19 +253,41 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
 
                 indexList.Add((columnName, sequenceInIndex, collation, nonUnique));
             }
+            */
+            var indexQuery = @"SELECT TABLE_NAME, INDEX_NAME, NON_UNIQUE, COLUMN_NAME, SEQ_IN_INDEX, COLLATION
+                FROM INFORMATION_SCHEMA.STATISTICS
+                WHERE TABLE_SCHEMA = @database_name
+                ORDER BY TABLE_NAME, INDEX_NAME, SEQ_IN_INDEX;";
+
+            var indexResults = (await relmContext.GetDataListAsync<IndexSchema>(indexQuery, new Dictionary<string, object>
+            {
+                ["@database_name"] = databaseName
+            }, cancellationToken: cancellationToken))
+                ?.ToList();
+
+            var indexListing = indexResults
+                ?.Where(index => !string.IsNullOrWhiteSpace(index.TableName) && !string.IsNullOrWhiteSpace(index.IndexName) && !string.IsNullOrWhiteSpace(index.ColumnName))
+                .GroupBy(i => (i.TableName, i.IndexName))
+                .ToDictionary(
+                    g => (g.Key.TableName, g.Key.IndexName),
+                    g => g.ToList()
+                );
 
             var indexSchemas = new Dictionary<string, Dictionary<string, IndexSchema>>(StringComparer.Ordinal);
+            if (indexListing == null)
+                return indexSchemas;
+
             foreach (var group in indexListing)
             {
-                var tableName = group.Key.Table;
-                var indexName = group.Key.Index;
-                var rows = group.Value;
+                var tableName = group.Key.TableName!;
+                var indexName = group.Key.IndexName!;
+                var indexColumns = group.Value;
 
-                var isUnique = !rows.Any(r => r.NonUnique);
+                var isUnique = !indexColumns.Any(r => r.NonUnique);
 
-                var columns = rows
-                    .OrderBy(r => r.Seq)
-                    .Select(r => new IndexColumnSchema(r.Column, r.Seq, r.Collation))
+                var columns = indexColumns
+                    .OrderBy(r => r.SeqInIndex)
+                    .Select(r => new IndexColumnSchema(r.ColumnName!, r.SeqInIndex, r.Collation))
                     .ToList();
 
                 if (!indexSchemas.TryGetValue(tableName, out var indexes))
@@ -233,19 +296,26 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
                     indexSchemas[tableName] = indexes;
                 }
 
-                indexes[indexName] = new IndexSchema(indexName, isUnique, columns);
+                indexes[indexName] = new IndexSchema()
+                {
+                    TableName = tableName,
+                    IndexName = indexName,
+                    IsUnique = isUnique,
+                    Columns = columns
+                };
             }
 
             return indexSchemas;
         }
 
         private static async Task<Dictionary<string, Dictionary<string, ForeignKeySchema>>> LoadForeignKeysAsync(
-            MySqlConnection conn,
+            IRelmContext relmContext,
             string databaseName,
             CancellationToken cancellationToken)
         {
             // Join KEY_COLUMN_USAGE with REFERENTIAL_CONSTRAINTS to get update/delete rules.
             // One row per constrained column.
+            /*
             var foreignKeySchemas = new Dictionary<string, List<FkRow>>(StringComparer.Ordinal);
 
             await using var cmd = conn.CreateCommand();
@@ -280,8 +350,30 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
 
                 list.Add(new FkRow(constraint, table, columnName, referencedTable, referencedColumn, updateRule, deleteRule, ordinal));
             }
+            */
+            var foreignKeyQuery = @"SELECT kcu.CONSTRAINT_NAME, kcu.TABLE_NAME, kcu.COLUMN_NAME, kcu.REFERENCED_TABLE_NAME, kcu.REFERENCED_COLUMN_NAME, 
+                    rc.UPDATE_RULE, rc.DELETE_RULE, kcu.ORDINAL_POSITION
+                FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE kcu
+                JOIN INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS rc
+                  ON rc.CONSTRAINT_SCHEMA = kcu.CONSTRAINT_SCHEMA
+                 AND rc.CONSTRAINT_NAME = kcu.CONSTRAINT_NAME
+                WHERE kcu.CONSTRAINT_SCHEMA = @database_name
+                  AND kcu.REFERENCED_TABLE_NAME IS NOT NULL
+                ORDER BY kcu.TABLE_NAME, kcu.CONSTRAINT_NAME, kcu.ORDINAL_POSITION;";
+
+            var foreignKeyResults = (await relmContext.GetDataListAsync<FkRow>(foreignKeyQuery, new Dictionary<string, object>
+            {
+                ["@database_name"] = databaseName
+            }, cancellationToken: cancellationToken))
+                ?.ToList();
+
+            var foreignKeySchemas = foreignKeyResults
+                ?.GroupBy(fk => fk.ConstraintName)
+                .ToDictionary(x => x.Key, x => x.ToList());
 
             var byTable = new Dictionary<string, Dictionary<string, ForeignKeySchema>>(StringComparer.Ordinal);
+            if (foreignKeySchemas == null)
+                return byTable;
 
             foreach (var kvp in foreignKeySchemas)
             {
@@ -294,15 +386,16 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
                 var localCols = rows.OrderBy(r => r.Ordinal).Select(r => r.ColumnName).ToList();
                 var refCols = rows.OrderBy(r => r.Ordinal).Select(r => r.ReferencedColumnName).ToList();
 
-                var foreignKeySchema = new ForeignKeySchema(
-                    ConstraintName: constraintName,
-                    TableName: table,
-                    ColumnNames: localCols,
-                    ReferencedTableName: first.ReferencedTableName,
-                    ReferencedColumnNames: refCols,
-                    UpdateRule: first.UpdateRule,
-                    DeleteRule: first.DeleteRule
-                );
+                var foreignKeySchema = new ForeignKeySchema
+                {
+                    ConstraintName = constraintName,
+                    TableName = table,
+                    ColumnNames = localCols,
+                    ReferencedTableName = first.ReferencedTableName,
+                    ReferencedColumnNames = refCols,
+                    UpdateRule = first.UpdateRule,
+                    DeleteRule = first.DeleteRule
+                };
 
                 if (!byTable.TryGetValue(table, out var foreignKeys))
                 {
@@ -317,10 +410,11 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
         }
 
         private static async Task<Dictionary<string, Dictionary<string, TriggerSchema>>> LoadTriggersAsync(
-            MySqlConnection conn,
+            IRelmContext relmContext,
             string databaseName,
             CancellationToken cancellationToken)
         {
+            /*
             var triggerSchemas = new Dictionary<string, Dictionary<string, TriggerSchema>>(StringComparer.Ordinal);
 
             await using var cmd = conn.CreateCommand();
@@ -354,15 +448,39 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
 
                 trigger[triggerName] = schema;
             }
+            */
+            var triggerQuery = @"SELECT TRIGGER_NAME, EVENT_MANIPULATION, ACTION_TIMING, EVENT_OBJECT_TABLE, ACTION_STATEMENT
+                FROM INFORMATION_SCHEMA.TRIGGERS
+                WHERE TRIGGER_SCHEMA = @database_name
+                ORDER BY EVENT_OBJECT_TABLE, TRIGGER_NAME;";
+
+            var triggerResults = (await relmContext.GetDataListAsync<TriggerSchema>(triggerQuery, new Dictionary<string, object>
+            {
+                ["@database_name"] = databaseName
+            }, cancellationToken: cancellationToken))
+                ?.ToList();
+
+            var triggerSchemas = triggerResults
+                ?.GroupBy(t => t.EventObjectTable)
+                .ToDictionary(
+                    g => g.Key!,
+                    g => g.ToDictionary(
+                        t => t.TriggerName!,
+                        t => t,
+                        StringComparer.Ordinal)
+                )
+                ??
+                [];
 
             return triggerSchemas;
         }
 
         private static async Task<Dictionary<string, FunctionSchema>> LoadFunctionsAsync(
-            MySqlConnection conn,
+            IRelmContext relmContext,
             string dbName,
             CancellationToken ct)
         {
+            /*
             var functions = new Dictionary<string, FunctionSchema>(StringComparer.OrdinalIgnoreCase);
 
             await using var cmd = conn.CreateCommand();
@@ -371,10 +489,10 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
                   DTD_IDENTIFIER,
                   ROUTINE_DEFINITION
                 FROM INFORMATION_SCHEMA.ROUTINES
-                WHERE ROUTINE_SCHEMA = @db
+                WHERE ROUTINE_SCHEMA = @database_name
                   AND ROUTINE_TYPE = 'FUNCTION'
                 ORDER BY ROUTINE_NAME;";
-            cmd.Parameters.AddWithValue("@db", dbName);
+            cmd.Parameters.AddWithValue("@database_name", dbName);
 
             await using var reader = await cmd.ExecuteReaderAsync(ct);
             while (await reader.ReadAsync(ct))
@@ -389,6 +507,23 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
                     RoutineDefinition: def
                 );
             }
+            */
+            var functionQuery = @"SELECT ROUTINE_NAME, DTD_IDENTIFIER, ROUTINE_DEFINITION
+                FROM INFORMATION_SCHEMA.ROUTINES
+                WHERE ROUTINE_SCHEMA = @database_name
+                  AND ROUTINE_TYPE = 'FUNCTION'
+                ORDER BY ROUTINE_NAME;";
+
+            var functionResults = (await relmContext.GetDataListAsync<FunctionSchema>(functionQuery, new Dictionary<string, object>
+            {
+                ["@database_name"] = dbName
+            }, cancellationToken: ct))
+                ?.ToList();
+
+            var functions = functionResults
+                ?.ToDictionary(f => f.RoutineName!, f => f, StringComparer.Ordinal)
+                ??
+                [];
 
             return functions;
         }
