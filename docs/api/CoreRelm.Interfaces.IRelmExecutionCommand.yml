@@ -206,9 +206,9 @@ items:
   langs:
   - csharp
   - vb
-  name: AddAdditionalCommand(Command, Expression)
-  nameWithType: IRelmExecutionCommand.AddAdditionalCommand(Commands.Command, Expression)
-  fullName: CoreRelm.Interfaces.IRelmExecutionCommand.AddAdditionalCommand(CoreRelm.Enums.Commands.Command, System.Linq.Expressions.Expression)
+  name: AddAdditionalCommand(Command, Expression?)
+  nameWithType: IRelmExecutionCommand.AddAdditionalCommand(Commands.Command, Expression?)
+  fullName: CoreRelm.Interfaces.IRelmExecutionCommand.AddAdditionalCommand(CoreRelm.Enums.Commands.Command, System.Linq.Expressions.Expression?)
   type: Method
   source:
     remote:
@@ -227,7 +227,7 @@ items:
     expression.
   example: []
   syntax:
-    content: RelmExecutionCommand AddAdditionalCommand(Commands.Command command, Expression expression)
+    content: RelmExecutionCommand AddAdditionalCommand(Commands.Command command, Expression? expression)
     parameters:
     - id: command
       type: CoreRelm.Enums.Commands.Command
@@ -240,6 +240,9 @@ items:
       description: A <xref href="CoreRelm.Models.RelmExecutionCommand" data-throw-if-not-resolved="false"></xref> representing the newly added command and its associated expression.
     content.vb: Function AddAdditionalCommand(command As Commands.Command, expression As Expression) As RelmExecutionCommand
   overload: CoreRelm.Interfaces.IRelmExecutionCommand.AddAdditionalCommand*
+  nameWithType.vb: IRelmExecutionCommand.AddAdditionalCommand(Commands.Command, Expression)
+  fullName.vb: CoreRelm.Interfaces.IRelmExecutionCommand.AddAdditionalCommand(CoreRelm.Enums.Commands.Command, System.Linq.Expressions.Expression)
+  name.vb: AddAdditionalCommand(Command, Expression)
 - uid: CoreRelm.Interfaces.IRelmExecutionCommand.GetAdditionalCommands
   commentId: M:CoreRelm.Interfaces.IRelmExecutionCommand.GetAdditionalCommands
   id: GetAdditionalCommands

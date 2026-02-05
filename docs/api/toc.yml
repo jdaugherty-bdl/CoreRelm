@@ -26,11 +26,17 @@ items:
   - uid: CoreRelm.Attributes.RelmForeignKey
     name: RelmForeignKey
     type: Class
+  - uid: CoreRelm.Attributes.RelmIndex
+    name: RelmIndex
+    type: Class
   - uid: CoreRelm.Attributes.RelmKey
     name: RelmKey
     type: Class
   - uid: CoreRelm.Attributes.RelmTable
     name: RelmTable
+    type: Class
+  - uid: CoreRelm.Attributes.RelmUnique
+    name: RelmUnique
     type: Class
 - uid: CoreRelm.Enums
   name: CoreRelm.Enums
@@ -41,6 +47,12 @@ items:
     type: Class
   - uid: CoreRelm.Enums.Commands.Command
     name: Commands.Command
+    type: Enum
+  - uid: CoreRelm.Enums.ForeignKeys
+    name: ForeignKeys
+    type: Class
+  - uid: CoreRelm.Enums.ForeignKeys.ReferentialAction
+    name: ForeignKeys.ReferentialAction
     type: Enum
   - uid: CoreRelm.Enums.Triggers
     name: Triggers
@@ -111,6 +123,13 @@ items:
   - uid: CoreRelm.Interfaces.IRelmModelApartment
     name: IRelmModelApartment
     type: Interface
+- uid: CoreRelm.Interfaces.Metadata
+  name: CoreRelm.Interfaces.Metadata
+  type: Namespace
+  items:
+  - uid: CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector
+    name: IRelmSchemaIntrospector
+    type: Interface
 - uid: CoreRelm.Interfaces.Migrations
   name: CoreRelm.Interfaces.Migrations
   type: Namespace
@@ -124,14 +143,26 @@ items:
   - uid: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner
     name: IRelmDatabaseProvisioner
     type: Interface
+  - uid: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder
+    name: IRelmDesiredSchemaBuilder
+    type: Interface
   - uid: CoreRelm.Interfaces.Migrations.IRelmMigrationExecutor
     name: IRelmMigrationExecutor
     type: Interface
   - uid: CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner
     name: IRelmMigrationPlanner
     type: Interface
+  - uid: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory
+    name: IRelmMigrationSqlProviderFactory
+    type: Interface
   - uid: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer
     name: IRelmMigrationSqlRenderer
+    type: Interface
+  - uid: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore
+    name: IRelmSchemaMigrationsStore
+    type: Interface
+  - uid: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner
+    name: IRelmSqlScriptRunner
     type: Interface
 - uid: CoreRelm.Interfaces.RelmQuick
   name: CoreRelm.Interfaces.RelmQuick
@@ -159,6 +190,9 @@ items:
   items:
   - uid: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider
     name: DefaultRelmMigrationSqlProvider
+    type: Class
+  - uid: CoreRelm.Migrations.MigrationSqlProviderFactory
+    name: MigrationSqlProviderFactory
     type: Class
 - uid: CoreRelm.Models
   name: CoreRelm.Models
@@ -201,6 +235,9 @@ items:
   items:
   - uid: CoreRelm.Models.Migrations.MigrationGenerateResult
     name: MigrationGenerateResult
+    type: Class
+  - uid: CoreRelm.Models.Migrations.MigrationOptions
+    name: MigrationOptions
     type: Class
   - uid: CoreRelm.Models.Migrations.ModelSetDefinition
     name: ModelSetDefinition
@@ -248,6 +285,9 @@ items:
     type: Class
   - uid: CoreRelm.Models.Migrations.Introspection.IndexSchema
     name: IndexSchema
+    type: Class
+  - uid: CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions
+    name: SchemaIntrospectionOptions
     type: Class
   - uid: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot
     name: SchemaSnapshot
@@ -349,6 +389,9 @@ items:
   name: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
   type: Namespace
   items:
+  - uid: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder
+    name: DesiredSchemaBuilder
+    type: Class
   - uid: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner
     name: RelmMigrationPlanner
     type: Class

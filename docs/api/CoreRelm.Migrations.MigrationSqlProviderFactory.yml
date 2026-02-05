@@ -1,0 +1,575 @@
+### YamlMime:ManagedReference
+items:
+- uid: CoreRelm.Migrations.MigrationSqlProviderFactory
+  commentId: T:CoreRelm.Migrations.MigrationSqlProviderFactory
+  id: MigrationSqlProviderFactory
+  parent: CoreRelm.Migrations
+  children:
+  - CoreRelm.Migrations.MigrationSqlProviderFactory.#ctor(CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector,CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner,CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer,CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder,Microsoft.Extensions.Configuration.IConfiguration)
+  - CoreRelm.Migrations.MigrationSqlProviderFactory.CreateProvider(CoreRelm.Models.Migrations.MigrationOptions)
+  langs:
+  - csharp
+  - vb
+  name: MigrationSqlProviderFactory
+  nameWithType: MigrationSqlProviderFactory
+  fullName: CoreRelm.Migrations.MigrationSqlProviderFactory
+  type: Class
+  source:
+    remote:
+      path: CoreRelm/Migrations/MigrationSqlProviderFactory.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: MigrationSqlProviderFactory
+    path: ../CoreRelm/Migrations/MigrationSqlProviderFactory.cs
+    startLine: 14
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Migrations
+  syntax:
+    content: 'public sealed class MigrationSqlProviderFactory : IRelmMigrationSqlProviderFactory'
+    content.vb: Public NotInheritable Class MigrationSqlProviderFactory Implements IRelmMigrationSqlProviderFactory
+  inheritance:
+  - System.Object
+  implements:
+  - CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: CoreRelm.Migrations.MigrationSqlProviderFactory.#ctor(CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector,CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner,CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer,CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder,Microsoft.Extensions.Configuration.IConfiguration)
+  commentId: M:CoreRelm.Migrations.MigrationSqlProviderFactory.#ctor(CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector,CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner,CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer,CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder,Microsoft.Extensions.Configuration.IConfiguration)
+  id: '#ctor(CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector,CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner,CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer,CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder,Microsoft.Extensions.Configuration.IConfiguration)'
+  parent: CoreRelm.Migrations.MigrationSqlProviderFactory
+  langs:
+  - csharp
+  - vb
+  name: MigrationSqlProviderFactory(IRelmSchemaIntrospector, IRelmMigrationPlanner, IRelmMigrationSqlRenderer, IRelmDesiredSchemaBuilder, IConfiguration)
+  nameWithType: MigrationSqlProviderFactory.MigrationSqlProviderFactory(IRelmSchemaIntrospector, IRelmMigrationPlanner, IRelmMigrationSqlRenderer, IRelmDesiredSchemaBuilder, IConfiguration)
+  fullName: CoreRelm.Migrations.MigrationSqlProviderFactory.MigrationSqlProviderFactory(CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector, CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner, CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer, CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder, Microsoft.Extensions.Configuration.IConfiguration)
+  type: Constructor
+  source:
+    remote:
+      path: CoreRelm/Migrations/MigrationSqlProviderFactory.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: .ctor
+    path: ../CoreRelm/Migrations/MigrationSqlProviderFactory.cs
+    startLine: 22
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Migrations
+  syntax:
+    content: public MigrationSqlProviderFactory(IRelmSchemaIntrospector introspector, IRelmMigrationPlanner planner, IRelmMigrationSqlRenderer renderer, IRelmDesiredSchemaBuilder desiredBuilder, IConfiguration cfg)
+    parameters:
+    - id: introspector
+      type: CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector
+    - id: planner
+      type: CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner
+    - id: renderer
+      type: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer
+    - id: desiredBuilder
+      type: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder
+    - id: cfg
+      type: Microsoft.Extensions.Configuration.IConfiguration
+    content.vb: Public Sub New(introspector As IRelmSchemaIntrospector, planner As IRelmMigrationPlanner, renderer As IRelmMigrationSqlRenderer, desiredBuilder As IRelmDesiredSchemaBuilder, cfg As IConfiguration)
+  overload: CoreRelm.Migrations.MigrationSqlProviderFactory.#ctor*
+  nameWithType.vb: MigrationSqlProviderFactory.New(IRelmSchemaIntrospector, IRelmMigrationPlanner, IRelmMigrationSqlRenderer, IRelmDesiredSchemaBuilder, IConfiguration)
+  fullName.vb: CoreRelm.Migrations.MigrationSqlProviderFactory.New(CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector, CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner, CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer, CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder, Microsoft.Extensions.Configuration.IConfiguration)
+  name.vb: New(IRelmSchemaIntrospector, IRelmMigrationPlanner, IRelmMigrationSqlRenderer, IRelmDesiredSchemaBuilder, IConfiguration)
+- uid: CoreRelm.Migrations.MigrationSqlProviderFactory.CreateProvider(CoreRelm.Models.Migrations.MigrationOptions)
+  commentId: M:CoreRelm.Migrations.MigrationSqlProviderFactory.CreateProvider(CoreRelm.Models.Migrations.MigrationOptions)
+  id: CreateProvider(CoreRelm.Models.Migrations.MigrationOptions)
+  parent: CoreRelm.Migrations.MigrationSqlProviderFactory
+  langs:
+  - csharp
+  - vb
+  name: CreateProvider(MigrationOptions)
+  nameWithType: MigrationSqlProviderFactory.CreateProvider(MigrationOptions)
+  fullName: CoreRelm.Migrations.MigrationSqlProviderFactory.CreateProvider(CoreRelm.Models.Migrations.MigrationOptions)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Migrations/MigrationSqlProviderFactory.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: CreateProvider
+    path: ../CoreRelm/Migrations/MigrationSqlProviderFactory.cs
+    startLine: 36
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Migrations
+  example: []
+  syntax:
+    content: public IMigrationSqlProvider CreateProvider(MigrationOptions migrationOptions)
+    parameters:
+    - id: migrationOptions
+      type: CoreRelm.Models.Migrations.MigrationOptions
+    return:
+      type: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider
+    content.vb: Public Function CreateProvider(migrationOptions As MigrationOptions) As IMigrationSqlProvider
+  overload: CoreRelm.Migrations.MigrationSqlProviderFactory.CreateProvider*
+  implements:
+  - CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory.CreateProvider(CoreRelm.Models.Migrations.MigrationOptions)
+references:
+- uid: CoreRelm.Migrations
+  commentId: N:CoreRelm.Migrations
+  href: CoreRelm.html
+  name: CoreRelm.Migrations
+  nameWithType: CoreRelm.Migrations
+  fullName: CoreRelm.Migrations
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Migrations
+    name: Migrations
+    href: CoreRelm.Migrations.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Migrations
+    name: Migrations
+    href: CoreRelm.Migrations.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory
+  commentId: T:CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory
+  parent: CoreRelm.Interfaces.Migrations
+  href: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory.html
+  name: IRelmMigrationSqlProviderFactory
+  nameWithType: IRelmMigrationSqlProviderFactory
+  fullName: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CoreRelm.Interfaces.Migrations
+  commentId: N:CoreRelm.Interfaces.Migrations
+  href: CoreRelm.html
+  name: CoreRelm.Interfaces.Migrations
+  nameWithType: CoreRelm.Interfaces.Migrations
+  fullName: CoreRelm.Interfaces.Migrations
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations
+    name: Migrations
+    href: CoreRelm.Interfaces.Migrations.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations
+    name: Migrations
+    href: CoreRelm.Interfaces.Migrations.html
+- uid: CoreRelm.Migrations.MigrationSqlProviderFactory.#ctor*
+  commentId: Overload:CoreRelm.Migrations.MigrationSqlProviderFactory.#ctor
+  href: CoreRelm.Migrations.MigrationSqlProviderFactory.html#CoreRelm_Migrations_MigrationSqlProviderFactory__ctor_CoreRelm_Interfaces_Metadata_IRelmSchemaIntrospector_CoreRelm_Interfaces_Migrations_IRelmMigrationPlanner_CoreRelm_Interfaces_Migrations_IRelmMigrationSqlRenderer_CoreRelm_Interfaces_Migrations_IRelmDesiredSchemaBuilder_Microsoft_Extensions_Configuration_IConfiguration_
+  name: MigrationSqlProviderFactory
+  nameWithType: MigrationSqlProviderFactory.MigrationSqlProviderFactory
+  fullName: CoreRelm.Migrations.MigrationSqlProviderFactory.MigrationSqlProviderFactory
+  nameWithType.vb: MigrationSqlProviderFactory.New
+  fullName.vb: CoreRelm.Migrations.MigrationSqlProviderFactory.New
+  name.vb: New
+- uid: CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector
+  commentId: T:CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector
+  parent: CoreRelm.Interfaces.Metadata
+  href: CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector.html
+  name: IRelmSchemaIntrospector
+  nameWithType: IRelmSchemaIntrospector
+  fullName: CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector
+- uid: CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner
+  commentId: T:CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner
+  parent: CoreRelm.Interfaces.Migrations
+  href: CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner.html
+  name: IRelmMigrationPlanner
+  nameWithType: IRelmMigrationPlanner
+  fullName: CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner
+- uid: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer
+  commentId: T:CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer
+  parent: CoreRelm.Interfaces.Migrations
+  href: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer.html
+  name: IRelmMigrationSqlRenderer
+  nameWithType: IRelmMigrationSqlRenderer
+  fullName: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer
+- uid: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder
+  commentId: T:CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder
+  parent: CoreRelm.Interfaces.Migrations
+  href: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder.html
+  name: IRelmDesiredSchemaBuilder
+  nameWithType: IRelmDesiredSchemaBuilder
+  fullName: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder
+- uid: Microsoft.Extensions.Configuration.IConfiguration
+  commentId: T:Microsoft.Extensions.Configuration.IConfiguration
+  parent: Microsoft.Extensions.Configuration
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.configuration.iconfiguration
+  name: IConfiguration
+  nameWithType: IConfiguration
+  fullName: Microsoft.Extensions.Configuration.IConfiguration
+- uid: CoreRelm.Interfaces.Metadata
+  commentId: N:CoreRelm.Interfaces.Metadata
+  href: CoreRelm.html
+  name: CoreRelm.Interfaces.Metadata
+  nameWithType: CoreRelm.Interfaces.Metadata
+  fullName: CoreRelm.Interfaces.Metadata
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Metadata
+    name: Metadata
+    href: CoreRelm.Interfaces.Metadata.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Metadata
+    name: Metadata
+    href: CoreRelm.Interfaces.Metadata.html
+- uid: Microsoft.Extensions.Configuration
+  commentId: N:Microsoft.Extensions.Configuration
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
+  name: Microsoft.Extensions.Configuration
+  nameWithType: Microsoft.Extensions.Configuration
+  fullName: Microsoft.Extensions.Configuration
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.Extensions
+    name: Extensions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions
+  - name: .
+  - uid: Microsoft.Extensions.Configuration
+    name: Configuration
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.configuration
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.Extensions
+    name: Extensions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions
+  - name: .
+  - uid: Microsoft.Extensions.Configuration
+    name: Configuration
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.configuration
+- uid: CoreRelm.Migrations.MigrationSqlProviderFactory.CreateProvider*
+  commentId: Overload:CoreRelm.Migrations.MigrationSqlProviderFactory.CreateProvider
+  href: CoreRelm.Migrations.MigrationSqlProviderFactory.html#CoreRelm_Migrations_MigrationSqlProviderFactory_CreateProvider_CoreRelm_Models_Migrations_MigrationOptions_
+  name: CreateProvider
+  nameWithType: MigrationSqlProviderFactory.CreateProvider
+  fullName: CoreRelm.Migrations.MigrationSqlProviderFactory.CreateProvider
+- uid: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory.CreateProvider(CoreRelm.Models.Migrations.MigrationOptions)
+  commentId: M:CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory.CreateProvider(CoreRelm.Models.Migrations.MigrationOptions)
+  parent: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory
+  href: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory.html#CoreRelm_Interfaces_Migrations_IRelmMigrationSqlProviderFactory_CreateProvider_CoreRelm_Models_Migrations_MigrationOptions_
+  name: CreateProvider(MigrationOptions)
+  nameWithType: IRelmMigrationSqlProviderFactory.CreateProvider(MigrationOptions)
+  fullName: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory.CreateProvider(CoreRelm.Models.Migrations.MigrationOptions)
+  spec.csharp:
+  - uid: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory.CreateProvider(CoreRelm.Models.Migrations.MigrationOptions)
+    name: CreateProvider
+    href: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory.html#CoreRelm_Interfaces_Migrations_IRelmMigrationSqlProviderFactory_CreateProvider_CoreRelm_Models_Migrations_MigrationOptions_
+  - name: (
+  - uid: CoreRelm.Models.Migrations.MigrationOptions
+    name: MigrationOptions
+    href: CoreRelm.Models.Migrations.MigrationOptions.html
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory.CreateProvider(CoreRelm.Models.Migrations.MigrationOptions)
+    name: CreateProvider
+    href: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory.html#CoreRelm_Interfaces_Migrations_IRelmMigrationSqlProviderFactory_CreateProvider_CoreRelm_Models_Migrations_MigrationOptions_
+  - name: (
+  - uid: CoreRelm.Models.Migrations.MigrationOptions
+    name: MigrationOptions
+    href: CoreRelm.Models.Migrations.MigrationOptions.html
+  - name: )
+- uid: CoreRelm.Models.Migrations.MigrationOptions
+  commentId: T:CoreRelm.Models.Migrations.MigrationOptions
+  parent: CoreRelm.Models.Migrations
+  href: CoreRelm.Models.Migrations.MigrationOptions.html
+  name: MigrationOptions
+  nameWithType: MigrationOptions
+  fullName: CoreRelm.Models.Migrations.MigrationOptions
+- uid: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider
+  commentId: T:CoreRelm.Interfaces.Migrations.IMigrationSqlProvider
+  parent: CoreRelm.Interfaces.Migrations
+  href: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.html
+  name: IMigrationSqlProvider
+  nameWithType: IMigrationSqlProvider
+  fullName: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider
+- uid: CoreRelm.Models.Migrations
+  commentId: N:CoreRelm.Models.Migrations
+  href: CoreRelm.html
+  name: CoreRelm.Models.Migrations
+  nameWithType: CoreRelm.Models.Migrations
+  fullName: CoreRelm.Models.Migrations
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html

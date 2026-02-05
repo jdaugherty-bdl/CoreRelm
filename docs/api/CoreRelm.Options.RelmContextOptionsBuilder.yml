@@ -115,7 +115,7 @@ items:
   summary: Gets the name or network address of the database server to which the application is connected.
   example: []
   syntax:
-    content: public string DatabaseServer { get; }
+    content: public string? DatabaseServer { get; }
     parameters: []
     return:
       type: System.String
@@ -146,7 +146,7 @@ items:
   summary: Gets the name of the database associated with this instance.
   example: []
   syntax:
-    content: public string DatabaseName { get; }
+    content: public string? DatabaseName { get; }
     parameters: []
     return:
       type: System.String
@@ -177,7 +177,7 @@ items:
   summary: Gets the user name used to connect to the database.
   example: []
   syntax:
-    content: public string DatabaseUser { get; }
+    content: public string? DatabaseUser { get; }
     parameters: []
     return:
       type: System.String
@@ -208,7 +208,7 @@ items:
   summary: Gets the password used to connect to the database.
   example: []
   syntax:
-    content: public string DatabasePassword { get; }
+    content: public string? DatabasePassword { get; }
     parameters: []
     return:
       type: System.String
@@ -239,7 +239,7 @@ items:
   summary: Gets the connection string used to connect to the database.
   example: []
   syntax:
-    content: public string DatabaseConnectionString { get; }
+    content: public string? DatabaseConnectionString { get; }
     parameters: []
     return:
       type: System.String
@@ -270,7 +270,7 @@ items:
   summary: Gets or sets the name of the connection to use for database operations.
   example: []
   syntax:
-    content: public string NamedConnection { get; set; }
+    content: public string? NamedConnection { get; set; }
     parameters: []
     return:
       type: System.String
@@ -301,7 +301,7 @@ items:
   summary: Gets the active MySQL database connection used by the application.
   example: []
   syntax:
-    content: public MySqlConnection DatabaseConnection { get; }
+    content: public MySqlConnection? DatabaseConnection { get; }
     parameters: []
     return:
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -335,7 +335,7 @@ items:
         within a transactional context. The property is null if no transaction is in progress.
   example: []
   syntax:
-    content: public MySqlTransaction DatabaseTransaction { get; }
+    content: public MySqlTransaction? DatabaseTransaction { get; }
     parameters: []
     return:
       type: MySql.Data.MySqlClient.MySqlTransaction
@@ -624,7 +624,7 @@ items:
   summary: Gets the type of the connection string used by the data source.
   example: []
   syntax:
-    content: public Enum ConnectionStringType { get; }
+    content: public Enum? ConnectionStringType { get; }
     parameters: []
     return:
       type: System.Enum
@@ -832,9 +832,9 @@ items:
   langs:
   - csharp
   - vb
-  name: RelmContextOptionsBuilder(MySqlConnection, MySqlTransaction)
-  nameWithType: RelmContextOptionsBuilder.RelmContextOptionsBuilder(MySqlConnection, MySqlTransaction)
-  fullName: CoreRelm.Options.RelmContextOptionsBuilder.RelmContextOptionsBuilder(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction)
+  name: RelmContextOptionsBuilder(MySqlConnection, MySqlTransaction?)
+  nameWithType: RelmContextOptionsBuilder.RelmContextOptionsBuilder(MySqlConnection, MySqlTransaction?)
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.RelmContextOptionsBuilder(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction?)
   type: Constructor
   source:
     remote:
@@ -857,7 +857,7 @@ items:
         externally.
   example: []
   syntax:
-    content: public RelmContextOptionsBuilder(MySqlConnection connection, MySqlTransaction transaction)
+    content: public RelmContextOptionsBuilder(MySqlConnection connection, MySqlTransaction? transaction)
     parameters:
     - id: connection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -877,9 +877,9 @@ items:
   langs:
   - csharp
   - vb
-  name: SetDatabaseConnection(MySqlConnection)
-  nameWithType: RelmContextOptionsBuilder.SetDatabaseConnection(MySqlConnection)
-  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseConnection(MySql.Data.MySqlClient.MySqlConnection)
+  name: SetDatabaseConnection(MySqlConnection?)
+  nameWithType: RelmContextOptionsBuilder.SetDatabaseConnection(MySqlConnection?)
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseConnection(MySql.Data.MySqlClient.MySqlConnection?)
   type: Method
   source:
     remote:
@@ -899,7 +899,7 @@ items:
         connection.
   example: []
   syntax:
-    content: public RelmContextOptionsBuilder SetDatabaseConnection(MySqlConnection connection)
+    content: public RelmContextOptionsBuilder SetDatabaseConnection(MySqlConnection? connection)
     parameters:
     - id: connection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -913,6 +913,9 @@ items:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
     description: Thrown if <code class="paramref">connection</code> is null.
+  nameWithType.vb: RelmContextOptionsBuilder.SetDatabaseConnection(MySqlConnection)
+  fullName.vb: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseConnection(MySql.Data.MySqlClient.MySqlConnection)
+  name.vb: SetDatabaseConnection(MySqlConnection)
 - uid: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseTransaction(MySql.Data.MySqlClient.MySqlTransaction)
   commentId: M:CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseTransaction(MySql.Data.MySqlClient.MySqlTransaction)
   id: SetDatabaseTransaction(MySql.Data.MySqlClient.MySqlTransaction)
@@ -920,9 +923,9 @@ items:
   langs:
   - csharp
   - vb
-  name: SetDatabaseTransaction(MySqlTransaction)
-  nameWithType: RelmContextOptionsBuilder.SetDatabaseTransaction(MySqlTransaction)
-  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseTransaction(MySql.Data.MySqlClient.MySqlTransaction)
+  name: SetDatabaseTransaction(MySqlTransaction?)
+  nameWithType: RelmContextOptionsBuilder.SetDatabaseTransaction(MySqlTransaction?)
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseTransaction(MySql.Data.MySqlClient.MySqlTransaction?)
   type: Method
   source:
     remote:
@@ -942,7 +945,7 @@ items:
         it is cleared or replaced.
   example: []
   syntax:
-    content: public RelmContextOptionsBuilder SetDatabaseTransaction(MySqlTransaction transaction)
+    content: public RelmContextOptionsBuilder SetDatabaseTransaction(MySqlTransaction? transaction)
     parameters:
     - id: transaction
       type: MySql.Data.MySqlClient.MySqlTransaction
@@ -954,6 +957,9 @@ items:
       description: The current instance of the <xref href="CoreRelm.Options.RelmContextOptionsBuilder" data-throw-if-not-resolved="false"></xref> class.
     content.vb: Public Function SetDatabaseTransaction(transaction As MySqlTransaction) As RelmContextOptionsBuilder
   overload: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseTransaction*
+  nameWithType.vb: RelmContextOptionsBuilder.SetDatabaseTransaction(MySqlTransaction)
+  fullName.vb: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseTransaction(MySql.Data.MySqlClient.MySqlTransaction)
+  name.vb: SetDatabaseTransaction(MySqlTransaction)
 - uid: CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseServer(System.String)
   commentId: M:CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseServer(System.String)
   id: SetDatabaseServer(System.String)
@@ -1414,7 +1420,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetAutoOpenConnection
     path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
-    startLine: 571
+    startLine: 572
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Options
@@ -1456,7 +1462,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetAutoOpenTransaction
     path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
-    startLine: 583
+    startLine: 584
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Options
@@ -1494,7 +1500,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetAllowUserVariables
     path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
-    startLine: 595
+    startLine: 596
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Options
@@ -1532,7 +1538,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetConvertZeroDateTime
     path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
-    startLine: 610
+    startLine: 611
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Options
@@ -1574,7 +1580,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetLockWaitTimeoutSeconds
     path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
-    startLine: 625
+    startLine: 626
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Options
@@ -1616,7 +1622,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetAutoInitializeDataSets
     path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
-    startLine: 637
+    startLine: 638
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Options
@@ -1654,7 +1660,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetAutoVerifyTables
     path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
-    startLine: 649
+    startLine: 650
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Options

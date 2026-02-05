@@ -15,7 +15,6 @@ items:
   - CoreRelm.Interfaces.IRelmModel.ResetCoreAttributes(System.Boolean,System.Boolean)
   - CoreRelm.Interfaces.IRelmModel.ResetWithData(System.Data.DataRow,System.String)
   - CoreRelm.Interfaces.IRelmModel.WriteToDatabase(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  - CoreRelm.Interfaces.IRelmModel.WriteToDatabase(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
   - CoreRelm.Interfaces.IRelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
   - CoreRelm.Interfaces.IRelmModel.WriteToDatabase(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
   langs:
@@ -141,7 +140,7 @@ items:
         all platforms.
   example: []
   syntax:
-    content: string InternalId { get; set; }
+    content: string? InternalId { get; set; }
     parameters: []
     return:
       type: System.String
@@ -526,70 +525,6 @@ items:
   nameWithType.vb: IRelmModel.WriteToDatabase(IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean)
   fullName.vb: CoreRelm.Interfaces.IRelmModel.WriteToDatabase(CoreRelm.Interfaces.IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean)
   name.vb: WriteToDatabase(IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean)
-- uid: CoreRelm.Interfaces.IRelmModel.WriteToDatabase(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  commentId: M:CoreRelm.Interfaces.IRelmModel.WriteToDatabase(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  id: WriteToDatabase(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  parent: CoreRelm.Interfaces.IRelmModel
-  langs:
-  - csharp
-  - vb
-  name: WriteToDatabase(IRelmQuickContext, int, bool, bool, bool, bool)
-  nameWithType: IRelmModel.WriteToDatabase(IRelmQuickContext, int, bool, bool, bool, bool)
-  fullName: CoreRelm.Interfaces.IRelmModel.WriteToDatabase(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, int, bool, bool, bool, bool)
-  type: Method
-  source:
-    remote:
-      path: CoreRelm/Interfaces/IRelmModel.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: WriteToDatabase
-    path: ../CoreRelm/Interfaces/IRelmModel.cs
-    startLine: 158
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Interfaces
-  summary: >-
-    Writes data to the database using the specified context and batch size, with options to control column
-
-    constraints.
-  remarks: >-
-    This method provides fine-grained control over which types of columns are included
-        during the write operation. Use the boolean parameters to enable or disable specific column constraints as
-        needed.
-  example: []
-  syntax:
-    content: int WriteToDatabase(IRelmQuickContext relmQuickContext, int batchSize = 10, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
-    parameters:
-    - id: relmQuickContext
-      type: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-      description: >-
-        The database context used to perform the write operation. This context must be properly initialized before
-            calling this method.
-    - id: batchSize
-      type: System.Int32
-      description: The number of records to write in each batch. Must be greater than zero. The default value is 10.
-    - id: allowAutoIncrementColumns
-      type: System.Boolean
-      description: A value indicating whether auto-increment columns are allowed during the write operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, auto-increment columns will be included; otherwise, they will be excluded.
-    - id: allowPrimaryKeyColumns
-      type: System.Boolean
-      description: A value indicating whether primary key columns are allowed during the write operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, primary key columns will be included; otherwise, they will be excluded.
-    - id: allowUniqueColumns
-      type: System.Boolean
-      description: >-
-        A value indicating whether unique columns are allowed during the write operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>,
-            unique columns will be included; otherwise, they will be excluded.
-    - id: allowAutoDateColumns
-      type: System.Boolean
-      description: A value indicating whether auto-date columns are allowed during the write operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, auto-date columns will be included; otherwise, they will be excluded.
-    return:
-      type: System.Int32
-      description: The total number of records successfully written to the database.
-    content.vb: Function WriteToDatabase(relmQuickContext As IRelmQuickContext, batchSize As Integer = 10, allowAutoIncrementColumns As Boolean = False, allowPrimaryKeyColumns As Boolean = False, allowUniqueColumns As Boolean = False, allowAutoDateColumns As Boolean = False) As Integer
-  overload: CoreRelm.Interfaces.IRelmModel.WriteToDatabase*
-  nameWithType.vb: IRelmModel.WriteToDatabase(IRelmQuickContext, Integer, Boolean, Boolean, Boolean, Boolean)
-  fullName.vb: CoreRelm.Interfaces.IRelmModel.WriteToDatabase(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, Integer, Boolean, Boolean, Boolean, Boolean)
-  name.vb: WriteToDatabase(IRelmQuickContext, Integer, Boolean, Boolean, Boolean, Boolean)
 - uid: CoreRelm.Interfaces.IRelmModel.GenerateDTO(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String,System.Func{CoreRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}},System.Int32)
   commentId: M:CoreRelm.Interfaces.IRelmModel.GenerateDTO(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String,System.Func{CoreRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}},System.Int32)
   id: GenerateDTO(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String,System.Func{CoreRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}},System.Int32)
@@ -597,9 +532,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GenerateDTO(IEnumerable<string>, IEnumerable<string>, string, Func<IRelmModel, Dictionary<string, object>>, int)
-  nameWithType: IRelmModel.GenerateDTO(IEnumerable<string>, IEnumerable<string>, string, Func<IRelmModel, Dictionary<string, object>>, int)
-  fullName: CoreRelm.Interfaces.IRelmModel.GenerateDTO(System.Collections.Generic.IEnumerable<string>, System.Collections.Generic.IEnumerable<string>, string, System.Func<CoreRelm.Interfaces.IRelmModel, System.Collections.Generic.Dictionary<string, object>>, int)
+  name: GenerateDTO(IEnumerable<string>?, IEnumerable<string>?, string?, Func<IRelmModel, Dictionary<string, object>>?, int)
+  nameWithType: IRelmModel.GenerateDTO(IEnumerable<string>?, IEnumerable<string>?, string?, Func<IRelmModel, Dictionary<string, object>>?, int)
+  fullName: CoreRelm.Interfaces.IRelmModel.GenerateDTO(System.Collections.Generic.IEnumerable<string>?, System.Collections.Generic.IEnumerable<string>?, string?, System.Func<CoreRelm.Interfaces.IRelmModel, System.Collections.Generic.Dictionary<string, object>>?, int)
   type: Method
   source:
     remote:
@@ -608,7 +543,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GenerateDTO
     path: ../CoreRelm/Interfaces/IRelmModel.cs
-    startLine: 178
+    startLine: 157
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Interfaces
@@ -621,7 +556,7 @@ items:
         specifying inclusion and exclusion lists. If both <code class="paramref">includeProperties</code> and <code class="paramref">excludeProperties</code> are provided, the exclusion list takes precedence.
   example: []
   syntax:
-    content: dynamic GenerateDTO(IEnumerable<string> includeProperties = null, IEnumerable<string> excludeProperties = null, string sourceObjectName = null, Func<IRelmModel, Dictionary<string, object>> getAdditionalObjectProperties = null, int iteration = 0)
+    content: dynamic GenerateDTO(IEnumerable<string>? includeProperties = null, IEnumerable<string>? excludeProperties = null, string? sourceObjectName = null, Func<IRelmModel, Dictionary<string, object>>? getAdditionalObjectProperties = null, int iteration = 0)
     parameters:
     - id: includeProperties
       type: System.Collections.Generic.IEnumerable{System.String}
@@ -1123,43 +1058,6 @@ references:
   name: IRelmContext
   nameWithType: IRelmContext
   fullName: CoreRelm.Interfaces.IRelmContext
-- uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-  commentId: T:CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-  parent: CoreRelm.Interfaces.RelmQuick
-  href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  name: IRelmQuickContext
-  nameWithType: IRelmQuickContext
-  fullName: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-- uid: CoreRelm.Interfaces.RelmQuick
-  commentId: N:CoreRelm.Interfaces.RelmQuick
-  href: CoreRelm.html
-  name: CoreRelm.Interfaces.RelmQuick
-  nameWithType: CoreRelm.Interfaces.RelmQuick
-  fullName: CoreRelm.Interfaces.RelmQuick
-  spec.csharp:
-  - uid: CoreRelm
-    name: CoreRelm
-    href: CoreRelm.html
-  - name: .
-  - uid: CoreRelm.Interfaces
-    name: Interfaces
-    href: CoreRelm.Interfaces.html
-  - name: .
-  - uid: CoreRelm.Interfaces.RelmQuick
-    name: RelmQuick
-    href: CoreRelm.Interfaces.RelmQuick.html
-  spec.vb:
-  - uid: CoreRelm
-    name: CoreRelm
-    href: CoreRelm.html
-  - name: .
-  - uid: CoreRelm.Interfaces
-    name: Interfaces
-    href: CoreRelm.Interfaces.html
-  - name: .
-  - uid: CoreRelm.Interfaces.RelmQuick
-    name: RelmQuick
-    href: CoreRelm.Interfaces.RelmQuick.html
 - uid: CoreRelm.Interfaces.IRelmModel.GenerateDTO*
   commentId: Overload:CoreRelm.Interfaces.IRelmModel.GenerateDTO
   href: CoreRelm.Interfaces.IRelmModel.html#CoreRelm_Interfaces_IRelmModel_GenerateDTO_System_Collections_Generic_IEnumerable_System_String__System_Collections_Generic_IEnumerable_System_String__System_String_System_Func_CoreRelm_Interfaces_IRelmModel_System_Collections_Generic_Dictionary_System_String_System_Object___System_Int32_

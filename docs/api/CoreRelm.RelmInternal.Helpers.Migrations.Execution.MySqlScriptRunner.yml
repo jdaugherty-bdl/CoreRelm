@@ -20,15 +20,17 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: MySqlScriptRunner
     path: ../CoreRelm/RelmInternal/Helpers/Migrations/Execution/MySqlScriptRunner.cs
-    startLine: 10
+    startLine: 11
   assemblies:
   - CoreRelm
   namespace: CoreRelm.RelmInternal.Helpers.Migrations.Execution
   syntax:
-    content: public sealed class MySqlScriptRunner
-    content.vb: Public NotInheritable Class MySqlScriptRunner
+    content: 'public sealed class MySqlScriptRunner : IRelmSqlScriptRunner'
+    content.vb: Public NotInheritable Class MySqlScriptRunner Implements IRelmSqlScriptRunner
   inheritance:
   - System.Object
+  implements:
+  - CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -54,10 +56,11 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ExecuteScriptAsync
     path: ../CoreRelm/RelmInternal/Helpers/Migrations/Execution/MySqlScriptRunner.cs
-    startLine: 12
+    startLine: 13
   assemblies:
   - CoreRelm
   namespace: CoreRelm.RelmInternal.Helpers.Migrations.Execution
+  example: []
   syntax:
     content: public Task ExecuteScriptAsync(IRelmContext context, string sql, CancellationToken ct = default)
     parameters:
@@ -71,6 +74,8 @@ items:
       type: System.Threading.Tasks.Task
     content.vb: Public Function ExecuteScriptAsync(context As IRelmContext, sql As String, ct As CancellationToken = Nothing) As Task
   overload: CoreRelm.RelmInternal.Helpers.Migrations.Execution.MySqlScriptRunner.ExecuteScriptAsync*
+  implements:
+  - CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync(CoreRelm.Interfaces.IRelmContext,System.String,System.Threading.CancellationToken)
   nameWithType.vb: MySqlScriptRunner.ExecuteScriptAsync(IRelmContext, String, CancellationToken)
   fullName.vb: CoreRelm.RelmInternal.Helpers.Migrations.Execution.MySqlScriptRunner.ExecuteScriptAsync(CoreRelm.Interfaces.IRelmContext, String, System.Threading.CancellationToken)
   name.vb: ExecuteScriptAsync(IRelmContext, String, CancellationToken)
@@ -132,6 +137,13 @@ references:
   nameWithType.vb: Object
   fullName.vb: Object
   name.vb: Object
+- uid: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner
+  commentId: T:CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner
+  parent: CoreRelm.Interfaces.Migrations
+  href: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.html
+  name: IRelmSqlScriptRunner
+  nameWithType: IRelmSqlScriptRunner
+  fullName: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -334,12 +346,95 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: CoreRelm.Interfaces.Migrations
+  commentId: N:CoreRelm.Interfaces.Migrations
+  href: CoreRelm.html
+  name: CoreRelm.Interfaces.Migrations
+  nameWithType: CoreRelm.Interfaces.Migrations
+  fullName: CoreRelm.Interfaces.Migrations
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations
+    name: Migrations
+    href: CoreRelm.Interfaces.Migrations.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations
+    name: Migrations
+    href: CoreRelm.Interfaces.Migrations.html
 - uid: CoreRelm.RelmInternal.Helpers.Migrations.Execution.MySqlScriptRunner.ExecuteScriptAsync*
   commentId: Overload:CoreRelm.RelmInternal.Helpers.Migrations.Execution.MySqlScriptRunner.ExecuteScriptAsync
   href: CoreRelm.RelmInternal.Helpers.Migrations.Execution.MySqlScriptRunner.html#CoreRelm_RelmInternal_Helpers_Migrations_Execution_MySqlScriptRunner_ExecuteScriptAsync_CoreRelm_Interfaces_IRelmContext_System_String_System_Threading_CancellationToken_
   name: ExecuteScriptAsync
   nameWithType: MySqlScriptRunner.ExecuteScriptAsync
   fullName: CoreRelm.RelmInternal.Helpers.Migrations.Execution.MySqlScriptRunner.ExecuteScriptAsync
+- uid: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync(CoreRelm.Interfaces.IRelmContext,System.String,System.Threading.CancellationToken)
+  commentId: M:CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync(CoreRelm.Interfaces.IRelmContext,System.String,System.Threading.CancellationToken)
+  parent: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner
+  isExternal: true
+  href: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.html#CoreRelm_Interfaces_Migrations_IRelmSqlScriptRunner_ExecuteScriptAsync_CoreRelm_Interfaces_IRelmContext_System_String_System_Threading_CancellationToken_
+  name: ExecuteScriptAsync(IRelmContext, string, CancellationToken)
+  nameWithType: IRelmSqlScriptRunner.ExecuteScriptAsync(IRelmContext, string, CancellationToken)
+  fullName: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync(CoreRelm.Interfaces.IRelmContext, string, System.Threading.CancellationToken)
+  nameWithType.vb: IRelmSqlScriptRunner.ExecuteScriptAsync(IRelmContext, String, CancellationToken)
+  fullName.vb: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync(CoreRelm.Interfaces.IRelmContext, String, System.Threading.CancellationToken)
+  name.vb: ExecuteScriptAsync(IRelmContext, String, CancellationToken)
+  spec.csharp:
+  - uid: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync(CoreRelm.Interfaces.IRelmContext,System.String,System.Threading.CancellationToken)
+    name: ExecuteScriptAsync
+    href: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.html#CoreRelm_Interfaces_Migrations_IRelmSqlScriptRunner_ExecuteScriptAsync_CoreRelm_Interfaces_IRelmContext_System_String_System_Threading_CancellationToken_
+  - name: (
+  - uid: CoreRelm.Interfaces.IRelmContext
+    name: IRelmContext
+    href: CoreRelm.Interfaces.IRelmContext.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync(CoreRelm.Interfaces.IRelmContext,System.String,System.Threading.CancellationToken)
+    name: ExecuteScriptAsync
+    href: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.html#CoreRelm_Interfaces_Migrations_IRelmSqlScriptRunner_ExecuteScriptAsync_CoreRelm_Interfaces_IRelmContext_System_String_System_Threading_CancellationToken_
+  - name: (
+  - uid: CoreRelm.Interfaces.IRelmContext
+    name: IRelmContext
+    href: CoreRelm.Interfaces.IRelmContext.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
 - uid: CoreRelm.Interfaces.IRelmContext
   commentId: T:CoreRelm.Interfaces.IRelmContext
   parent: CoreRelm.Interfaces

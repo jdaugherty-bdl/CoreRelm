@@ -1,0 +1,231 @@
+### YamlMime:ManagedReference
+items:
+- uid: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner
+  commentId: T:CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner
+  id: IRelmSqlScriptRunner
+  parent: CoreRelm.Interfaces.Migrations
+  children:
+  - CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync(CoreRelm.Interfaces.IRelmContext,System.String,System.Threading.CancellationToken)
+  langs:
+  - csharp
+  - vb
+  name: IRelmSqlScriptRunner
+  nameWithType: IRelmSqlScriptRunner
+  fullName: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner
+  type: Interface
+  source:
+    remote:
+      path: CoreRelm/Interfaces/Migrations/IRelmSqlScriptRunner.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: IRelmSqlScriptRunner
+    path: ../CoreRelm/Interfaces/Migrations/IRelmSqlScriptRunner.cs
+    startLine: 8
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces.Migrations
+  syntax:
+    content: public interface IRelmSqlScriptRunner
+    content.vb: Public Interface IRelmSqlScriptRunner
+- uid: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync(CoreRelm.Interfaces.IRelmContext,System.String,System.Threading.CancellationToken)
+  commentId: M:CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync(CoreRelm.Interfaces.IRelmContext,System.String,System.Threading.CancellationToken)
+  id: ExecuteScriptAsync(CoreRelm.Interfaces.IRelmContext,System.String,System.Threading.CancellationToken)
+  parent: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner
+  langs:
+  - csharp
+  - vb
+  name: ExecuteScriptAsync(IRelmContext, string, CancellationToken)
+  nameWithType: IRelmSqlScriptRunner.ExecuteScriptAsync(IRelmContext, string, CancellationToken)
+  fullName: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync(CoreRelm.Interfaces.IRelmContext, string, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Interfaces/Migrations/IRelmSqlScriptRunner.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: ExecuteScriptAsync
+    path: ../CoreRelm/Interfaces/Migrations/IRelmSqlScriptRunner.cs
+    startLine: 10
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces.Migrations
+  syntax:
+    content: Task ExecuteScriptAsync(IRelmContext context, string sql, CancellationToken ct = default)
+    parameters:
+    - id: context
+      type: CoreRelm.Interfaces.IRelmContext
+    - id: sql
+      type: System.String
+    - id: ct
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Function ExecuteScriptAsync(context As IRelmContext, sql As String, ct As CancellationToken = Nothing) As Task
+  overload: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync*
+  nameWithType.vb: IRelmSqlScriptRunner.ExecuteScriptAsync(IRelmContext, String, CancellationToken)
+  fullName.vb: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync(CoreRelm.Interfaces.IRelmContext, String, System.Threading.CancellationToken)
+  name.vb: ExecuteScriptAsync(IRelmContext, String, CancellationToken)
+references:
+- uid: CoreRelm.Interfaces.Migrations
+  commentId: N:CoreRelm.Interfaces.Migrations
+  href: CoreRelm.html
+  name: CoreRelm.Interfaces.Migrations
+  nameWithType: CoreRelm.Interfaces.Migrations
+  fullName: CoreRelm.Interfaces.Migrations
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations
+    name: Migrations
+    href: CoreRelm.Interfaces.Migrations.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations
+    name: Migrations
+    href: CoreRelm.Interfaces.Migrations.html
+- uid: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync*
+  commentId: Overload:CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync
+  href: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.html#CoreRelm_Interfaces_Migrations_IRelmSqlScriptRunner_ExecuteScriptAsync_CoreRelm_Interfaces_IRelmContext_System_String_System_Threading_CancellationToken_
+  name: ExecuteScriptAsync
+  nameWithType: IRelmSqlScriptRunner.ExecuteScriptAsync
+  fullName: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync
+- uid: CoreRelm.Interfaces.IRelmContext
+  commentId: T:CoreRelm.Interfaces.IRelmContext
+  parent: CoreRelm.Interfaces
+  href: CoreRelm.Interfaces.IRelmContext.html
+  name: IRelmContext
+  nameWithType: IRelmContext
+  fullName: CoreRelm.Interfaces.IRelmContext
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: CoreRelm.Interfaces
+  commentId: N:CoreRelm.Interfaces
+  href: CoreRelm.html
+  name: CoreRelm.Interfaces
+  nameWithType: CoreRelm.Interfaces
+  fullName: CoreRelm.Interfaces
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks

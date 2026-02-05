@@ -8,13 +8,14 @@ items:
   - CoreRelm.Interfaces.IRelmContext.BulkTableWrite``1(``0,System.String,MySql.Data.MySqlClient.MySqlTransaction,System.Type,System.Int32,System.Boolean,System.Boolean,System.Boolean)
   - CoreRelm.Interfaces.IRelmContext.CommitTransaction
   - CoreRelm.Interfaces.IRelmContext.ContextOptions
-  - CoreRelm.Interfaces.IRelmContext.DoDatabaseWork(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
-  - CoreRelm.Interfaces.IRelmContext.DoDatabaseWork(System.String,System.Func{MySql.Data.MySqlClient.MySqlCommand,System.Object},System.Boolean,System.Boolean)
-  - CoreRelm.Interfaces.IRelmContext.DoDatabaseWork``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
-  - CoreRelm.Interfaces.IRelmContext.DoDatabaseWork``1(System.String,System.Func{MySql.Data.MySqlClient.MySqlCommand,System.Object},System.Boolean,System.Boolean)
+  - CoreRelm.Interfaces.IRelmContext.DoDatabaseWork(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
+  - CoreRelm.Interfaces.IRelmContext.DoDatabaseWork(System.String,System.Func{MySql.Data.MySqlClient.MySqlCommand,System.Object},System.Boolean)
+  - CoreRelm.Interfaces.IRelmContext.DoDatabaseWork``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
+  - CoreRelm.Interfaces.IRelmContext.DoDatabaseWork``1(System.String,System.Func{MySql.Data.MySqlClient.MySqlCommand,System.Object},System.Boolean)
   - CoreRelm.Interfaces.IRelmContext.EndConnection(System.Boolean)
   - CoreRelm.Interfaces.IRelmContext.FirstOrDefault``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Boolean)
-  - CoreRelm.Interfaces.IRelmContext.GetBulkTableWriter``1(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  - CoreRelm.Interfaces.IRelmContext.GetBulkTableWriter``1(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  - CoreRelm.Interfaces.IRelmContext.GetDataListAsync``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Threading.CancellationToken)
   - CoreRelm.Interfaces.IRelmContext.GetDataList``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
   - CoreRelm.Interfaces.IRelmContext.GetDataObject``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
   - CoreRelm.Interfaces.IRelmContext.GetDataObjects``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
@@ -30,6 +31,7 @@ items:
   - CoreRelm.Interfaces.IRelmContext.GetDataTable(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
   - CoreRelm.Interfaces.IRelmContext.GetIdFromInternalId(System.String,System.String)
   - CoreRelm.Interfaces.IRelmContext.GetLastInsertId
+  - CoreRelm.Interfaces.IRelmContext.GetScalarAsync``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Threading.CancellationToken)
   - CoreRelm.Interfaces.IRelmContext.GetScalar``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
   - CoreRelm.Interfaces.IRelmContext.Get``1(System.Boolean)
   - CoreRelm.Interfaces.IRelmContext.Get``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Boolean)
@@ -445,7 +447,7 @@ items:
         interface.
   example: []
   syntax:
-    content: 'IRelmDataSet<T> GetDataSet<T>() where T : IRelmModel, new()'
+    content: 'IRelmDataSet<T>? GetDataSet<T>() where T : IRelmModel, new()'
     typeParameters:
     - id: T
       description: >-
@@ -484,7 +486,7 @@ items:
   summary: Retrieves an initialized instance of a dataset of the specified type.
   example: []
   syntax:
-    content: 'IRelmDataSet<T> GetDataSet<T>(bool throwException) where T : IRelmModel, new()'
+    content: 'IRelmDataSet<T>? GetDataSet<T>(bool throwException) where T : IRelmModel, new()'
     parameters:
     - id: throwException
       type: System.Boolean
@@ -530,7 +532,7 @@ items:
   summary: Retrieves an initialized instance of a dataset based on the specified type.
   example: []
   syntax:
-    content: IRelmDataSetBase GetDataSet(Type dataSetType)
+    content: IRelmDataSetBase? GetDataSet(Type dataSetType)
     parameters:
     - id: dataSetType
       type: System.Type
@@ -567,7 +569,7 @@ items:
   summary: Retrieves an initialized instance of a dataset of the specified type.
   example: []
   syntax:
-    content: IRelmDataSetBase GetDataSet(Type dataSetType, bool throwException)
+    content: IRelmDataSetBase? GetDataSet(Type dataSetType, bool throwException)
     parameters:
     - id: dataSetType
       type: System.Type
@@ -615,7 +617,7 @@ items:
         the constraints.
   example: []
   syntax:
-    content: 'IRelmDataSet<T> GetDataSetType<T>() where T : IRelmModel, new()'
+    content: 'IRelmDataSet<T>? GetDataSetType<T>() where T : IRelmModel, new()'
     typeParameters:
     - id: T
       description: >-
@@ -654,7 +656,7 @@ items:
   summary: Retrieves an uninitialized dataset of the specified type.
   example: []
   syntax:
-    content: 'IRelmDataSet<T> GetDataSetType<T>(bool throwException) where T : IRelmModel, new()'
+    content: 'IRelmDataSet<T>? GetDataSetType<T>(bool throwException) where T : IRelmModel, new()'
     parameters:
     - id: throwException
       type: System.Boolean
@@ -697,7 +699,7 @@ items:
   summary: Retrieves an uninitialized dataset of type specified by <code class="paramref">dataSetType</code>.
   example: []
   syntax:
-    content: IRelmDataSetBase GetDataSetType(Type dataSetType)
+    content: IRelmDataSetBase? GetDataSetType(Type dataSetType)
     parameters:
     - id: dataSetType
       type: System.Type
@@ -732,7 +734,7 @@ items:
   summary: Retrieves an uninitialized dataset of type specified by <code class="paramref">dataSetType</code>.
   example: []
   syntax:
-    content: IRelmDataSetBase GetDataSetType(Type dataSetType, bool throwException)
+    content: IRelmDataSetBase? GetDataSetType(Type dataSetType, bool throwException)
     parameters:
     - id: dataSetType
       type: System.Type
@@ -778,7 +780,7 @@ items:
   summary: Retrieves a collection of entities of type <code class="typeparamref">T</code> from the data source.
   example: []
   syntax:
-    content: 'ICollection<T> Get<T>(bool loadDataLoaders = false) where T : IRelmModel, new()'
+    content: 'ICollection<T>? Get<T>(bool loadDataLoaders = false) where T : IRelmModel, new()'
     parameters:
     - id: loadDataLoaders
       type: System.Boolean
@@ -825,7 +827,7 @@ items:
   summary: Retrieves a collection of entities of type <code class="typeparamref">T</code> from the data source that satisfy the specified predicate.
   example: []
   syntax:
-    content: 'ICollection<T> Get<T>(Expression<Func<T, bool>> predicate, bool loadDataLoaders = false) where T : IRelmModel, new()'
+    content: 'ICollection<T>? Get<T>(Expression<Func<T, bool>> predicate, bool loadDataLoaders = false) where T : IRelmModel, new()'
     parameters:
     - id: predicate
       type: System.Linq.Expressions.Expression{System.Func{{T},System.Boolean}}
@@ -876,7 +878,7 @@ items:
     such element is found.
   example: []
   syntax:
-    content: 'T FirstOrDefault<T>(Expression<Func<T, bool>> predicate, bool loadDataLoaders = false) where T : IRelmModel, new()'
+    content: 'T? FirstOrDefault<T>(Expression<Func<T, bool>> predicate, bool loadDataLoaders = false) where T : IRelmModel, new()'
     parameters:
     - id: predicate
       type: System.Linq.Expressions.Expression{System.Func{{T},System.Boolean}}
@@ -970,7 +972,7 @@ items:
   summary: Executes the specified query and returns a collection of results mapped to the specified type.
   example: []
   syntax:
-    content: 'ICollection<T> Run<T>(string query, Dictionary<string, object> parameters = null) where T : IRelmModel, new()'
+    content: 'ICollection<T?> Run<T>(string query, Dictionary<string, object> parameters = null) where T : IRelmModel, new()'
     parameters:
     - id: query
       type: System.String
@@ -1098,7 +1100,7 @@ items:
   summary: Executes the specified query and retrieves the first row of the result set as a <xref href="System.Data.DataRow" data-throw-if-not-resolved="false"></xref>.
   example: []
   syntax:
-    content: DataRow GetDataRow(string query, Dictionary<string, object> parameters = null, bool throwException = true)
+    content: DataRow? GetDataRow(string query, Dictionary<string, object> parameters = null, bool throwException = true)
     parameters:
     - id: query
       type: System.String
@@ -1152,7 +1154,7 @@ items:
         is not intended for executing queries that modify data (e.g., INSERT, UPDATE, DELETE).
   example: []
   syntax:
-    content: DataTable GetDataTable(string query, Dictionary<string, object> parameters = null, bool throwException = true)
+    content: DataTable? GetDataTable(string query, Dictionary<string, object> parameters = null, bool throwException = true)
     parameters:
     - id: query
       type: System.String
@@ -1200,7 +1202,7 @@ items:
   summary: Executes the specified query and retrieves a data object of the specified type.
   example: []
   syntax:
-    content: 'T GetDataObject<T>(string query, Dictionary<string, object> parameters = null, bool throwException = true) where T : IRelmModel, new()'
+    content: 'T? GetDataObject<T>(string query, Dictionary<string, object> parameters = null, bool throwException = true) where T : IRelmModel, new()'
     parameters:
     - id: query
       type: System.String
@@ -1253,7 +1255,7 @@ items:
   summary: Executes a query and retrieves a collection of data objects of the specified type.
   example: []
   syntax:
-    content: 'IEnumerable<T> GetDataObjects<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new()'
+    content: 'IEnumerable<T?>? GetDataObjects<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new()'
     parameters:
     - id: query
       type: System.String
@@ -1307,7 +1309,7 @@ items:
   summary: Executes the specified query and retrieves a collection of data mapped to the specified type.
   example: []
   syntax:
-    content: IEnumerable<T> GetDataList<T>(string query, Dictionary<string, object> parameters = null, bool throwException = true)
+    content: IEnumerable<T>? GetDataList<T>(string query, Dictionary<string, object> parameters = null, bool throwException = true)
     parameters:
     - id: query
       type: System.String
@@ -1335,6 +1337,65 @@ items:
   nameWithType.vb: IRelmContext.GetDataList(Of T)(String, Dictionary(Of String, Object), Boolean)
   fullName.vb: CoreRelm.Interfaces.IRelmContext.GetDataList(Of T)(String, System.Collections.Generic.Dictionary(Of String, Object), Boolean)
   name.vb: GetDataList(Of T)(String, Dictionary(Of String, Object), Boolean)
+- uid: CoreRelm.Interfaces.IRelmContext.GetDataListAsync``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Threading.CancellationToken)
+  commentId: M:CoreRelm.Interfaces.IRelmContext.GetDataListAsync``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Threading.CancellationToken)
+  id: GetDataListAsync``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Threading.CancellationToken)
+  parent: CoreRelm.Interfaces.IRelmContext
+  langs:
+  - csharp
+  - vb
+  name: GetDataListAsync<T>(string, Dictionary<string, object>?, bool, CancellationToken)
+  nameWithType: IRelmContext.GetDataListAsync<T>(string, Dictionary<string, object>?, bool, CancellationToken)
+  fullName: CoreRelm.Interfaces.IRelmContext.GetDataListAsync<T>(string, System.Collections.Generic.Dictionary<string, object>?, bool, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Interfaces/IRelmContext.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: GetDataListAsync
+    path: ../CoreRelm/Interfaces/IRelmContext.cs
+    startLine: 358
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces
+  summary: Executes the specified query asynchronously and returns a collection of results mapped to the specified type.
+  remarks: >-
+    The method maps each row in the result set to an instance of type T. If
+        throwException is false and an error occurs during query execution, the method returns an empty collection
+        instead of throwing an exception.
+  example: []
+  syntax:
+    content: Task<IEnumerable<T>?> GetDataListAsync<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+    parameters:
+    - id: query
+      type: System.String
+      description: The SQL query to execute against the data source.
+    - id: parameters
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+      description: >-
+        An optional dictionary of parameter names and values to be applied to the query. If null, the query is
+            executed without parameters.
+    - id: throwException
+      type: System.Boolean
+      description: >-
+        true to throw an exception if the query fails; otherwise, false to suppress exceptions and return an empty
+            collection.
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+    typeParameters:
+    - id: T
+      description: The type to which each result row will be mapped.
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{{T}}}
+      description: >-
+        An enumerable collection of objects of type T representing the query results. Returns an empty collection if
+            no results are found or if an error occurs and throwException is false.
+    content.vb: Function GetDataListAsync(Of T)(query As String, parameters As Dictionary(Of String, Object) = Nothing, throwException As Boolean = True, cancellationToken As CancellationToken = Nothing) As Task(Of IEnumerable(Of T))
+  overload: CoreRelm.Interfaces.IRelmContext.GetDataListAsync*
+  nameWithType.vb: IRelmContext.GetDataListAsync(Of T)(String, Dictionary(Of String, Object), Boolean, CancellationToken)
+  fullName.vb: CoreRelm.Interfaces.IRelmContext.GetDataListAsync(Of T)(String, System.Collections.Generic.Dictionary(Of String, Object), Boolean, System.Threading.CancellationToken)
+  name.vb: GetDataListAsync(Of T)(String, Dictionary(Of String, Object), Boolean, CancellationToken)
 - uid: CoreRelm.Interfaces.IRelmContext.GetScalar``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
   commentId: M:CoreRelm.Interfaces.IRelmContext.GetScalar``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
   id: GetScalar``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
@@ -1342,9 +1403,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetScalar<T>(string, Dictionary<string, object>, bool)
-  nameWithType: IRelmContext.GetScalar<T>(string, Dictionary<string, object>, bool)
-  fullName: CoreRelm.Interfaces.IRelmContext.GetScalar<T>(string, System.Collections.Generic.Dictionary<string, object>, bool)
+  name: GetScalar<T>(string, Dictionary<string, object>?, bool)
+  nameWithType: IRelmContext.GetScalar<T>(string, Dictionary<string, object>?, bool)
+  fullName: CoreRelm.Interfaces.IRelmContext.GetScalar<T>(string, System.Collections.Generic.Dictionary<string, object>?, bool)
   type: Method
   source:
     remote:
@@ -1353,7 +1414,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetScalar
     path: ../CoreRelm/Interfaces/IRelmContext.cs
-    startLine: 360
+    startLine: 376
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Interfaces
@@ -1364,7 +1425,7 @@ items:
         occur.
   example: []
   syntax:
-    content: T GetScalar<T>(string query, Dictionary<string, object> parameters = null, bool throwException = true)
+    content: T? GetScalar<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true)
     parameters:
     - id: query
       type: System.String
@@ -1390,16 +1451,80 @@ items:
   nameWithType.vb: IRelmContext.GetScalar(Of T)(String, Dictionary(Of String, Object), Boolean)
   fullName.vb: CoreRelm.Interfaces.IRelmContext.GetScalar(Of T)(String, System.Collections.Generic.Dictionary(Of String, Object), Boolean)
   name.vb: GetScalar(Of T)(String, Dictionary(Of String, Object), Boolean)
-- uid: CoreRelm.Interfaces.IRelmContext.GetBulkTableWriter``1(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  commentId: M:CoreRelm.Interfaces.IRelmContext.GetBulkTableWriter``1(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  id: GetBulkTableWriter``1(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+- uid: CoreRelm.Interfaces.IRelmContext.GetScalarAsync``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Threading.CancellationToken)
+  commentId: M:CoreRelm.Interfaces.IRelmContext.GetScalarAsync``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Threading.CancellationToken)
+  id: GetScalarAsync``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Threading.CancellationToken)
   parent: CoreRelm.Interfaces.IRelmContext
   langs:
   - csharp
   - vb
-  name: GetBulkTableWriter<T>(string, bool, bool, bool, bool, bool)
-  nameWithType: IRelmContext.GetBulkTableWriter<T>(string, bool, bool, bool, bool, bool)
-  fullName: CoreRelm.Interfaces.IRelmContext.GetBulkTableWriter<T>(string, bool, bool, bool, bool, bool)
+  name: GetScalarAsync<T>(string, Dictionary<string, object>?, bool, CancellationToken)
+  nameWithType: IRelmContext.GetScalarAsync<T>(string, Dictionary<string, object>?, bool, CancellationToken)
+  fullName: CoreRelm.Interfaces.IRelmContext.GetScalarAsync<T>(string, System.Collections.Generic.Dictionary<string, object>?, bool, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Interfaces/IRelmContext.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: GetScalarAsync
+    path: ../CoreRelm/Interfaces/IRelmContext.cs
+    startLine: 395
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces
+  summary: >-
+    Asynchronously executes a SQL query and returns the first column of the first row in the result set as a
+
+    scalar value of the specified type.
+  remarks: >-
+    Use this method to efficiently retrieve a single value from the database, such as a
+        count or aggregate. If throwException is set to false and the query yields no result, the method returns
+        default(T) instead of throwing an exception.
+  example: []
+  syntax:
+    content: Task<T?> GetScalarAsync<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+    parameters:
+    - id: query
+      type: System.String
+      description: The SQL query to execute. The query should return a single value.
+    - id: parameters
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+      description: >-
+        An optional dictionary of parameter names and values to be applied to the query. Can be null if the query
+            does not require parameters.
+    - id: throwException
+      type: System.Boolean
+      description: >-
+        true to throw an exception if the query returns no result or if an error occurs; otherwise, false to return
+            the default value of type T.
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+      description: A cancellation token that can be used to cancel the asynchronous operation.
+    typeParameters:
+    - id: T
+      description: The type to which the scalar result is cast. Must be compatible with the value returned by the query.
+    return:
+      type: System.Threading.Tasks.Task{{T}}
+      description: >-
+        A task that represents the asynchronous operation. The task result contains the scalar value of type T if
+            the query succeeds; otherwise, the default value of type T if throwException is false and no result is
+            found.
+    content.vb: Function GetScalarAsync(Of T)(query As String, parameters As Dictionary(Of String, Object) = Nothing, throwException As Boolean = True, cancellationToken As CancellationToken = Nothing) As Task(Of T)
+  overload: CoreRelm.Interfaces.IRelmContext.GetScalarAsync*
+  nameWithType.vb: IRelmContext.GetScalarAsync(Of T)(String, Dictionary(Of String, Object), Boolean, CancellationToken)
+  fullName.vb: CoreRelm.Interfaces.IRelmContext.GetScalarAsync(Of T)(String, System.Collections.Generic.Dictionary(Of String, Object), Boolean, System.Threading.CancellationToken)
+  name.vb: GetScalarAsync(Of T)(String, Dictionary(Of String, Object), Boolean, CancellationToken)
+- uid: CoreRelm.Interfaces.IRelmContext.GetBulkTableWriter``1(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  commentId: M:CoreRelm.Interfaces.IRelmContext.GetBulkTableWriter``1(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  id: GetBulkTableWriter``1(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  parent: CoreRelm.Interfaces.IRelmContext
+  langs:
+  - csharp
+  - vb
+  name: GetBulkTableWriter<T>(string?, bool, bool, bool, bool)
+  nameWithType: IRelmContext.GetBulkTableWriter<T>(string?, bool, bool, bool, bool)
+  fullName: CoreRelm.Interfaces.IRelmContext.GetBulkTableWriter<T>(string?, bool, bool, bool, bool)
   type: Method
   source:
     remote:
@@ -1408,7 +1533,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetBulkTableWriter
     path: ../CoreRelm/Interfaces/IRelmContext.cs
-    startLine: 383
+    startLine: 416
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Interfaces
@@ -1422,18 +1547,13 @@ items:
         operation, such as enabling transactions or allowing specific column types.
   example: []
   syntax:
-    content: BulkTableWriter<T> GetBulkTableWriter<T>(string insertQuery = null, bool useTransaction = false, bool throwException = true, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
+    content: BulkTableWriter<T> GetBulkTableWriter<T>(string? insertQuery = null, bool throwException = true, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
     parameters:
     - id: insertQuery
       type: System.String
       description: >-
         An optional SQL insert query to use for the bulk operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, a default query is
             generated based on the type <code class="typeparamref">T</code>.
-    - id: useTransaction
-      type: System.Boolean
-      description: >-
-        Specifies whether the bulk operation should be performed within a transaction. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>,
-            the operation is transactional; otherwise, it is not.
     - id: throwException
       type: System.Boolean
       description: Specifies whether exceptions should be thrown if an error occurs during the bulk operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, exceptions are thrown; otherwise, errors are suppressed.
@@ -1458,11 +1578,11 @@ items:
     return:
       type: CoreRelm.Persistence.BulkTableWriter{{T}}
       description: A <xref href="CoreRelm.Persistence.BulkTableWriter%601" data-throw-if-not-resolved="false"></xref> instance configured for the specified bulk operation settings.
-    content.vb: Function GetBulkTableWriter(Of T)(insertQuery As String = Nothing, useTransaction As Boolean = False, throwException As Boolean = True, allowAutoIncrementColumns As Boolean = False, allowPrimaryKeyColumns As Boolean = False, allowUniqueColumns As Boolean = False) As BulkTableWriter(Of T)
+    content.vb: Function GetBulkTableWriter(Of T)(insertQuery As String = Nothing, throwException As Boolean = True, allowAutoIncrementColumns As Boolean = False, allowPrimaryKeyColumns As Boolean = False, allowUniqueColumns As Boolean = False) As BulkTableWriter(Of T)
   overload: CoreRelm.Interfaces.IRelmContext.GetBulkTableWriter*
-  nameWithType.vb: IRelmContext.GetBulkTableWriter(Of T)(String, Boolean, Boolean, Boolean, Boolean, Boolean)
-  fullName.vb: CoreRelm.Interfaces.IRelmContext.GetBulkTableWriter(Of T)(String, Boolean, Boolean, Boolean, Boolean, Boolean)
-  name.vb: GetBulkTableWriter(Of T)(String, Boolean, Boolean, Boolean, Boolean, Boolean)
+  nameWithType.vb: IRelmContext.GetBulkTableWriter(Of T)(String, Boolean, Boolean, Boolean, Boolean)
+  fullName.vb: CoreRelm.Interfaces.IRelmContext.GetBulkTableWriter(Of T)(String, Boolean, Boolean, Boolean, Boolean)
+  name.vb: GetBulkTableWriter(Of T)(String, Boolean, Boolean, Boolean, Boolean)
 - uid: CoreRelm.Interfaces.IRelmContext.BulkTableWrite``1(``0,System.String,MySql.Data.MySqlClient.MySqlTransaction,System.Type,System.Int32,System.Boolean,System.Boolean,System.Boolean)
   commentId: M:CoreRelm.Interfaces.IRelmContext.BulkTableWrite``1(``0,System.String,MySql.Data.MySqlClient.MySqlTransaction,System.Type,System.Int32,System.Boolean,System.Boolean,System.Boolean)
   id: BulkTableWrite``1(``0,System.String,MySql.Data.MySqlClient.MySqlTransaction,System.Type,System.Int32,System.Boolean,System.Boolean,System.Boolean)
@@ -1470,9 +1590,9 @@ items:
   langs:
   - csharp
   - vb
-  name: BulkTableWrite<T>(T, string, MySqlTransaction, Type, int, bool, bool, bool)
-  nameWithType: IRelmContext.BulkTableWrite<T>(T, string, MySqlTransaction, Type, int, bool, bool, bool)
-  fullName: CoreRelm.Interfaces.IRelmContext.BulkTableWrite<T>(T, string, MySql.Data.MySqlClient.MySqlTransaction, System.Type, int, bool, bool, bool)
+  name: BulkTableWrite<T>(T, string?, MySqlTransaction, Type, int, bool, bool, bool)
+  nameWithType: IRelmContext.BulkTableWrite<T>(T, string?, MySqlTransaction, Type, int, bool, bool, bool)
+  fullName: CoreRelm.Interfaces.IRelmContext.BulkTableWrite<T>(T, string?, MySql.Data.MySqlClient.MySqlTransaction, System.Type, int, bool, bool, bool)
   type: Method
   source:
     remote:
@@ -1481,7 +1601,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: BulkTableWrite
     path: ../CoreRelm/Interfaces/IRelmContext.cs
-    startLine: 410
+    startLine: 443
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Interfaces
@@ -1492,7 +1612,7 @@ items:
         target table to avoid runtime errors.
   example: []
   syntax:
-    content: int BulkTableWrite<T>(T sourceData, string tableName = null, MySqlTransaction sqlTransaction = null, Type forceType = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
+    content: int BulkTableWrite<T>(T sourceData, string? tableName = null, MySqlTransaction sqlTransaction = null, Type forceType = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
     parameters:
     - id: sourceData
       type: '{T}'
@@ -1543,16 +1663,16 @@ items:
   nameWithType.vb: IRelmContext.BulkTableWrite(Of T)(T, String, MySqlTransaction, Type, Integer, Boolean, Boolean, Boolean)
   fullName.vb: CoreRelm.Interfaces.IRelmContext.BulkTableWrite(Of T)(T, String, MySql.Data.MySqlClient.MySqlTransaction, System.Type, Integer, Boolean, Boolean, Boolean)
   name.vb: BulkTableWrite(Of T)(T, String, MySqlTransaction, Type, Integer, Boolean, Boolean, Boolean)
-- uid: CoreRelm.Interfaces.IRelmContext.DoDatabaseWork(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
-  commentId: M:CoreRelm.Interfaces.IRelmContext.DoDatabaseWork(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
-  id: DoDatabaseWork(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
+- uid: CoreRelm.Interfaces.IRelmContext.DoDatabaseWork(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
+  commentId: M:CoreRelm.Interfaces.IRelmContext.DoDatabaseWork(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
+  id: DoDatabaseWork(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
   parent: CoreRelm.Interfaces.IRelmContext
   langs:
   - csharp
   - vb
-  name: DoDatabaseWork(string, Dictionary<string, object>, bool, bool)
-  nameWithType: IRelmContext.DoDatabaseWork(string, Dictionary<string, object>, bool, bool)
-  fullName: CoreRelm.Interfaces.IRelmContext.DoDatabaseWork(string, System.Collections.Generic.Dictionary<string, object>, bool, bool)
+  name: DoDatabaseWork(string, Dictionary<string, object>?, bool)
+  nameWithType: IRelmContext.DoDatabaseWork(string, Dictionary<string, object>?, bool)
+  fullName: CoreRelm.Interfaces.IRelmContext.DoDatabaseWork(string, System.Collections.Generic.Dictionary<string, object>?, bool)
   type: Method
   source:
     remote:
@@ -1561,7 +1681,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DoDatabaseWork
     path: ../CoreRelm/Interfaces/IRelmContext.cs
-    startLine: 424
+    startLine: 455
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Interfaces
@@ -1571,7 +1691,7 @@ items:
         support.  Use the <code class="paramref">throwException</code> parameter to control error handling behavior.
   example: []
   syntax:
-    content: void DoDatabaseWork(string query, Dictionary<string, object> parameters = null, bool throwException = true, bool useTransaction = false)
+    content: void DoDatabaseWork(string query, Dictionary<string, object>? parameters = null, bool throwException = true)
     parameters:
     - id: query
       type: System.String
@@ -1586,24 +1706,21 @@ items:
       description: >-
         A value indicating whether an exception should be thrown if the operation fails.  If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>,
             an exception is thrown on failure; otherwise, the failure is silently handled.
-    - id: useTransaction
-      type: System.Boolean
-      description: A value indicating whether the operation should be executed within a transaction.  If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, the operation is wrapped in a transaction; otherwise, it is executed without one.
-    content.vb: Sub DoDatabaseWork(query As String, parameters As Dictionary(Of String, Object) = Nothing, throwException As Boolean = True, useTransaction As Boolean = False)
+    content.vb: Sub DoDatabaseWork(query As String, parameters As Dictionary(Of String, Object) = Nothing, throwException As Boolean = True)
   overload: CoreRelm.Interfaces.IRelmContext.DoDatabaseWork*
-  nameWithType.vb: IRelmContext.DoDatabaseWork(String, Dictionary(Of String, Object), Boolean, Boolean)
-  fullName.vb: CoreRelm.Interfaces.IRelmContext.DoDatabaseWork(String, System.Collections.Generic.Dictionary(Of String, Object), Boolean, Boolean)
-  name.vb: DoDatabaseWork(String, Dictionary(Of String, Object), Boolean, Boolean)
-- uid: CoreRelm.Interfaces.IRelmContext.DoDatabaseWork``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
-  commentId: M:CoreRelm.Interfaces.IRelmContext.DoDatabaseWork``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
-  id: DoDatabaseWork``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
+  nameWithType.vb: IRelmContext.DoDatabaseWork(String, Dictionary(Of String, Object), Boolean)
+  fullName.vb: CoreRelm.Interfaces.IRelmContext.DoDatabaseWork(String, System.Collections.Generic.Dictionary(Of String, Object), Boolean)
+  name.vb: DoDatabaseWork(String, Dictionary(Of String, Object), Boolean)
+- uid: CoreRelm.Interfaces.IRelmContext.DoDatabaseWork``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
+  commentId: M:CoreRelm.Interfaces.IRelmContext.DoDatabaseWork``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
+  id: DoDatabaseWork``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
   parent: CoreRelm.Interfaces.IRelmContext
   langs:
   - csharp
   - vb
-  name: DoDatabaseWork<T>(string, Dictionary<string, object>, bool, bool)
-  nameWithType: IRelmContext.DoDatabaseWork<T>(string, Dictionary<string, object>, bool, bool)
-  fullName: CoreRelm.Interfaces.IRelmContext.DoDatabaseWork<T>(string, System.Collections.Generic.Dictionary<string, object>, bool, bool)
+  name: DoDatabaseWork<T>(string, Dictionary<string, object>?, bool)
+  nameWithType: IRelmContext.DoDatabaseWork<T>(string, Dictionary<string, object>?, bool)
+  fullName: CoreRelm.Interfaces.IRelmContext.DoDatabaseWork<T>(string, System.Collections.Generic.Dictionary<string, object>?, bool)
   type: Method
   source:
     remote:
@@ -1612,7 +1729,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DoDatabaseWork
     path: ../CoreRelm/Interfaces/IRelmContext.cs
-    startLine: 443
+    startLine: 472
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Interfaces
@@ -1623,7 +1740,7 @@ items:
         runtime errors.
   example: []
   syntax:
-    content: T DoDatabaseWork<T>(string query, Dictionary<string, object> parameters = null, bool throwException = true, bool useTransaction = false)
+    content: T? DoDatabaseWork<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true)
     parameters:
     - id: query
       type: System.String
@@ -1638,11 +1755,6 @@ items:
       description: >-
         Specifies whether an exception should be thrown if the query fails. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, an exception
             is thrown on failure; otherwise, the method returns the default value of <code class="typeparamref">T</code>.
-    - id: useTransaction
-      type: System.Boolean
-      description: >-
-        Specifies whether the query should be executed within a transaction. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, the query is
-            executed in a transactional context; otherwise, it is executed without a transaction.
     typeParameters:
     - id: T
       description: The type of the result expected from the query.
@@ -1652,21 +1764,21 @@ items:
         The result of the query as an instance of type <code class="typeparamref">T</code>. Returns the default value of
             <code class="typeparamref">T</code> if <code class="paramref">throwException</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> and the query
             fails.
-    content.vb: Function DoDatabaseWork(Of T)(query As String, parameters As Dictionary(Of String, Object) = Nothing, throwException As Boolean = True, useTransaction As Boolean = False) As T
+    content.vb: Function DoDatabaseWork(Of T)(query As String, parameters As Dictionary(Of String, Object) = Nothing, throwException As Boolean = True) As T
   overload: CoreRelm.Interfaces.IRelmContext.DoDatabaseWork*
-  nameWithType.vb: IRelmContext.DoDatabaseWork(Of T)(String, Dictionary(Of String, Object), Boolean, Boolean)
-  fullName.vb: CoreRelm.Interfaces.IRelmContext.DoDatabaseWork(Of T)(String, System.Collections.Generic.Dictionary(Of String, Object), Boolean, Boolean)
-  name.vb: DoDatabaseWork(Of T)(String, Dictionary(Of String, Object), Boolean, Boolean)
-- uid: CoreRelm.Interfaces.IRelmContext.DoDatabaseWork(System.String,System.Func{MySql.Data.MySqlClient.MySqlCommand,System.Object},System.Boolean,System.Boolean)
-  commentId: M:CoreRelm.Interfaces.IRelmContext.DoDatabaseWork(System.String,System.Func{MySql.Data.MySqlClient.MySqlCommand,System.Object},System.Boolean,System.Boolean)
-  id: DoDatabaseWork(System.String,System.Func{MySql.Data.MySqlClient.MySqlCommand,System.Object},System.Boolean,System.Boolean)
+  nameWithType.vb: IRelmContext.DoDatabaseWork(Of T)(String, Dictionary(Of String, Object), Boolean)
+  fullName.vb: CoreRelm.Interfaces.IRelmContext.DoDatabaseWork(Of T)(String, System.Collections.Generic.Dictionary(Of String, Object), Boolean)
+  name.vb: DoDatabaseWork(Of T)(String, Dictionary(Of String, Object), Boolean)
+- uid: CoreRelm.Interfaces.IRelmContext.DoDatabaseWork(System.String,System.Func{MySql.Data.MySqlClient.MySqlCommand,System.Object},System.Boolean)
+  commentId: M:CoreRelm.Interfaces.IRelmContext.DoDatabaseWork(System.String,System.Func{MySql.Data.MySqlClient.MySqlCommand,System.Object},System.Boolean)
+  id: DoDatabaseWork(System.String,System.Func{MySql.Data.MySqlClient.MySqlCommand,System.Object},System.Boolean)
   parent: CoreRelm.Interfaces.IRelmContext
   langs:
   - csharp
   - vb
-  name: DoDatabaseWork(string, Func<MySqlCommand, object>, bool, bool)
-  nameWithType: IRelmContext.DoDatabaseWork(string, Func<MySqlCommand, object>, bool, bool)
-  fullName: CoreRelm.Interfaces.IRelmContext.DoDatabaseWork(string, System.Func<MySql.Data.MySqlClient.MySqlCommand, object>, bool, bool)
+  name: DoDatabaseWork(string, Func<MySqlCommand, object>, bool)
+  nameWithType: IRelmContext.DoDatabaseWork(string, Func<MySqlCommand, object>, bool)
+  fullName: CoreRelm.Interfaces.IRelmContext.DoDatabaseWork(string, System.Func<MySql.Data.MySqlClient.MySqlCommand, object>, bool)
   type: Method
   source:
     remote:
@@ -1675,7 +1787,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DoDatabaseWork
     path: ../CoreRelm/Interfaces/IRelmContext.cs
-    startLine: 458
+    startLine: 485
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Interfaces
@@ -1686,7 +1798,7 @@ items:
         <code class="paramref">query</code> is properly sanitized to prevent SQL injection attacks.
   example: []
   syntax:
-    content: void DoDatabaseWork(string query, Func<MySqlCommand, object> actionCallback, bool throwException = true, bool useTransaction = false)
+    content: void DoDatabaseWork(string query, Func<MySqlCommand, object> actionCallback, bool throwException = true)
     parameters:
     - id: query
       type: System.String
@@ -1699,24 +1811,21 @@ items:
     - id: throwException
       type: System.Boolean
       description: A value indicating whether to throw an exception if an error occurs during the operation.  If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, exceptions will be thrown; otherwise, errors will be suppressed.
-    - id: useTransaction
-      type: System.Boolean
-      description: A value indicating whether the operation should be executed within a database transaction.  If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, the operation will be wrapped in a transaction; otherwise, it will not.
-    content.vb: Sub DoDatabaseWork(query As String, actionCallback As Func(Of MySqlCommand, Object), throwException As Boolean = True, useTransaction As Boolean = False)
+    content.vb: Sub DoDatabaseWork(query As String, actionCallback As Func(Of MySqlCommand, Object), throwException As Boolean = True)
   overload: CoreRelm.Interfaces.IRelmContext.DoDatabaseWork*
-  nameWithType.vb: IRelmContext.DoDatabaseWork(String, Func(Of MySqlCommand, Object), Boolean, Boolean)
-  fullName.vb: CoreRelm.Interfaces.IRelmContext.DoDatabaseWork(String, System.Func(Of MySql.Data.MySqlClient.MySqlCommand, Object), Boolean, Boolean)
-  name.vb: DoDatabaseWork(String, Func(Of MySqlCommand, Object), Boolean, Boolean)
-- uid: CoreRelm.Interfaces.IRelmContext.DoDatabaseWork``1(System.String,System.Func{MySql.Data.MySqlClient.MySqlCommand,System.Object},System.Boolean,System.Boolean)
-  commentId: M:CoreRelm.Interfaces.IRelmContext.DoDatabaseWork``1(System.String,System.Func{MySql.Data.MySqlClient.MySqlCommand,System.Object},System.Boolean,System.Boolean)
-  id: DoDatabaseWork``1(System.String,System.Func{MySql.Data.MySqlClient.MySqlCommand,System.Object},System.Boolean,System.Boolean)
+  nameWithType.vb: IRelmContext.DoDatabaseWork(String, Func(Of MySqlCommand, Object), Boolean)
+  fullName.vb: CoreRelm.Interfaces.IRelmContext.DoDatabaseWork(String, System.Func(Of MySql.Data.MySqlClient.MySqlCommand, Object), Boolean)
+  name.vb: DoDatabaseWork(String, Func(Of MySqlCommand, Object), Boolean)
+- uid: CoreRelm.Interfaces.IRelmContext.DoDatabaseWork``1(System.String,System.Func{MySql.Data.MySqlClient.MySqlCommand,System.Object},System.Boolean)
+  commentId: M:CoreRelm.Interfaces.IRelmContext.DoDatabaseWork``1(System.String,System.Func{MySql.Data.MySqlClient.MySqlCommand,System.Object},System.Boolean)
+  id: DoDatabaseWork``1(System.String,System.Func{MySql.Data.MySqlClient.MySqlCommand,System.Object},System.Boolean)
   parent: CoreRelm.Interfaces.IRelmContext
   langs:
   - csharp
   - vb
-  name: DoDatabaseWork<T>(string, Func<MySqlCommand, object>, bool, bool)
-  nameWithType: IRelmContext.DoDatabaseWork<T>(string, Func<MySqlCommand, object>, bool, bool)
-  fullName: CoreRelm.Interfaces.IRelmContext.DoDatabaseWork<T>(string, System.Func<MySql.Data.MySqlClient.MySqlCommand, object>, bool, bool)
+  name: DoDatabaseWork<T>(string, Func<MySqlCommand, object>, bool)
+  nameWithType: IRelmContext.DoDatabaseWork<T>(string, Func<MySqlCommand, object>, bool)
+  fullName: CoreRelm.Interfaces.IRelmContext.DoDatabaseWork<T>(string, System.Func<MySql.Data.MySqlClient.MySqlCommand, object>, bool)
   type: Method
   source:
     remote:
@@ -1725,7 +1834,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DoDatabaseWork
     path: ../CoreRelm/Interfaces/IRelmContext.cs
-    startLine: 477
+    startLine: 502
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Interfaces
@@ -1738,7 +1847,7 @@ items:
         operation.
   example: []
   syntax:
-    content: T DoDatabaseWork<T>(string query, Func<MySqlCommand, object> actionCallback, bool throwException = true, bool useTransaction = false)
+    content: T? DoDatabaseWork<T>(string query, Func<MySqlCommand, object> actionCallback, bool throwException = true)
     parameters:
     - id: query
       type: System.String
@@ -1753,22 +1862,17 @@ items:
       description: >-
         A value indicating whether an exception should be thrown if an error occurs during the operation. The
             default value is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>.
-    - id: useTransaction
-      type: System.Boolean
-      description: >-
-        A value indicating whether the operation should be executed within a database transaction. The default value
-            is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
     typeParameters:
     - id: T
       description: The type of the result returned by the callback function.
     return:
       type: '{T}'
       description: The result of the operation, as returned by the <code class="paramref">actionCallback</code> function.
-    content.vb: Function DoDatabaseWork(Of T)(query As String, actionCallback As Func(Of MySqlCommand, Object), throwException As Boolean = True, useTransaction As Boolean = False) As T
+    content.vb: Function DoDatabaseWork(Of T)(query As String, actionCallback As Func(Of MySqlCommand, Object), throwException As Boolean = True) As T
   overload: CoreRelm.Interfaces.IRelmContext.DoDatabaseWork*
-  nameWithType.vb: IRelmContext.DoDatabaseWork(Of T)(String, Func(Of MySqlCommand, Object), Boolean, Boolean)
-  fullName.vb: CoreRelm.Interfaces.IRelmContext.DoDatabaseWork(Of T)(String, System.Func(Of MySql.Data.MySqlClient.MySqlCommand, Object), Boolean, Boolean)
-  name.vb: DoDatabaseWork(Of T)(String, Func(Of MySqlCommand, Object), Boolean, Boolean)
+  nameWithType.vb: IRelmContext.DoDatabaseWork(Of T)(String, Func(Of MySqlCommand, Object), Boolean)
+  fullName.vb: CoreRelm.Interfaces.IRelmContext.DoDatabaseWork(Of T)(String, System.Func(Of MySql.Data.MySqlClient.MySqlCommand, Object), Boolean)
+  name.vb: DoDatabaseWork(Of T)(String, Func(Of MySqlCommand, Object), Boolean)
 - uid: CoreRelm.Interfaces.IRelmContext.WriteToDatabase(CoreRelm.Interfaces.IRelmModel,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
   commentId: M:CoreRelm.Interfaces.IRelmContext.WriteToDatabase(CoreRelm.Interfaces.IRelmModel,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
   id: WriteToDatabase(CoreRelm.Interfaces.IRelmModel,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
@@ -1787,7 +1891,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WriteToDatabase
     path: ../CoreRelm/Interfaces/IRelmContext.cs
-    startLine: 498
+    startLine: 523
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Interfaces
@@ -1851,7 +1955,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WriteToDatabase
     path: ../CoreRelm/Interfaces/IRelmContext.cs
-    startLine: 522
+    startLine: 547
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Interfaces
@@ -2796,12 +2900,196 @@ references:
   name: GetDataList
   nameWithType: IRelmContext.GetDataList
   fullName: CoreRelm.Interfaces.IRelmContext.GetDataList
+- uid: CoreRelm.Interfaces.IRelmContext.GetDataListAsync*
+  commentId: Overload:CoreRelm.Interfaces.IRelmContext.GetDataListAsync
+  href: CoreRelm.Interfaces.IRelmContext.html#CoreRelm_Interfaces_IRelmContext_GetDataListAsync__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Threading_CancellationToken_
+  name: GetDataListAsync
+  nameWithType: IRelmContext.GetDataListAsync
+  fullName: CoreRelm.Interfaces.IRelmContext.GetDataListAsync
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{{T}}}
+  commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{``0}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<IEnumerable<T>>
+  nameWithType: Task<IEnumerable<T>>
+  fullName: System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<T>>
+  nameWithType.vb: Task(Of IEnumerable(Of T))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Generic.IEnumerable(Of T))
+  name.vb: Task(Of IEnumerable(Of T))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
 - uid: CoreRelm.Interfaces.IRelmContext.GetScalar*
   commentId: Overload:CoreRelm.Interfaces.IRelmContext.GetScalar
   href: CoreRelm.Interfaces.IRelmContext.html#CoreRelm_Interfaces_IRelmContext_GetScalar__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_
   name: GetScalar
   nameWithType: IRelmContext.GetScalar
   fullName: CoreRelm.Interfaces.IRelmContext.GetScalar
+- uid: CoreRelm.Interfaces.IRelmContext.GetScalarAsync*
+  commentId: Overload:CoreRelm.Interfaces.IRelmContext.GetScalarAsync
+  href: CoreRelm.Interfaces.IRelmContext.html#CoreRelm_Interfaces_IRelmContext_GetScalarAsync__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Threading_CancellationToken_
+  name: GetScalarAsync
+  nameWithType: IRelmContext.GetScalarAsync
+  fullName: CoreRelm.Interfaces.IRelmContext.GetScalarAsync
+- uid: System.Threading.Tasks.Task{{T}}
+  commentId: T:System.Threading.Tasks.Task{``0}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<T>
+  nameWithType: Task<T>
+  fullName: System.Threading.Tasks.Task<T>
+  nameWithType.vb: Task(Of T)
+  fullName.vb: System.Threading.Tasks.Task(Of T)
+  name.vb: Task(Of T)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: CoreRelm.Persistence.BulkTableWriter`1
   commentId: T:CoreRelm.Persistence.BulkTableWriter`1
   parent: CoreRelm.Persistence
@@ -2830,7 +3118,7 @@ references:
   - name: )
 - uid: CoreRelm.Interfaces.IRelmContext.GetBulkTableWriter*
   commentId: Overload:CoreRelm.Interfaces.IRelmContext.GetBulkTableWriter
-  href: CoreRelm.Interfaces.IRelmContext.html#CoreRelm_Interfaces_IRelmContext_GetBulkTableWriter__1_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  href: CoreRelm.Interfaces.IRelmContext.html#CoreRelm_Interfaces_IRelmContext_GetBulkTableWriter__1_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
   name: GetBulkTableWriter
   nameWithType: IRelmContext.GetBulkTableWriter
   fullName: CoreRelm.Interfaces.IRelmContext.GetBulkTableWriter
@@ -2928,7 +3216,7 @@ references:
     isExternal: true
 - uid: CoreRelm.Interfaces.IRelmContext.DoDatabaseWork*
   commentId: Overload:CoreRelm.Interfaces.IRelmContext.DoDatabaseWork
-  href: CoreRelm.Interfaces.IRelmContext.html#CoreRelm_Interfaces_IRelmContext_DoDatabaseWork_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Boolean_
+  href: CoreRelm.Interfaces.IRelmContext.html#CoreRelm_Interfaces_IRelmContext_DoDatabaseWork_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_
   name: DoDatabaseWork
   nameWithType: IRelmContext.DoDatabaseWork
   fullName: CoreRelm.Interfaces.IRelmContext.DoDatabaseWork

@@ -6,7 +6,6 @@ items:
   parent: CoreRelm.Models
   children:
   - CoreRelm.Models.RelmDataSet`1.#ctor(CoreRelm.Interfaces.IRelmContext,CoreRelm.Interfaces.IRelmDataLoader{`0})
-  - CoreRelm.Models.RelmDataSet`1.#ctor(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,CoreRelm.Interfaces.IRelmDataLoader{`0})
   - CoreRelm.Models.RelmDataSet`1.Add(System.Collections.Generic.ICollection{`0})
   - CoreRelm.Models.RelmDataSet`1.Add(System.Collections.Generic.ICollection{`0},System.Boolean)
   - CoreRelm.Models.RelmDataSet`1.Add(`0)
@@ -49,7 +48,6 @@ items:
   - CoreRelm.Models.RelmDataSet`1.Set(System.Linq.Expressions.Expression{System.Func{`0,`0}})
   - CoreRelm.Models.RelmDataSet`1.SetDataLoader(CoreRelm.Interfaces.IRelmDataLoader{`0})
   - CoreRelm.Models.RelmDataSet`1.SetFieldLoader(System.String,CoreRelm.Interfaces.IRelmFieldLoader)
-  - CoreRelm.Models.RelmDataSet`1.SetFieldLoader(System.String,CoreRelm.Interfaces.RelmQuick.IRelmQuickFieldLoader)
   - CoreRelm.Models.RelmDataSet`1.Where(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})
   - CoreRelm.Models.RelmDataSet`1.Write
   langs:
@@ -108,16 +106,11 @@ items:
   - System.Object.ToString
   extensionMethods:
   - System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadDataLoaderField``2(CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{{T},{R}}})
-  - System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadDataLoaderField``2(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{{T},{R}}})
   - System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadDataLoaderField``2(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{{T},{R}}})
   - System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{{T},System.Collections.Generic.ICollection{{R}}}})
   - System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{{T},System.Collections.Generic.ICollection{{R}}}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
   - System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{{T},{R}}})
   - System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{{T},{R}}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
-  - System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{{T},System.Collections.Generic.ICollection{{R}}}})
-  - System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{{T},System.Collections.Generic.ICollection{{R}}}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
-  - System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{{T},{R}}})
-  - System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{{T},{R}}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
   - System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{{T},System.Collections.Generic.ICollection{{R}}}})
   - System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{{T},System.Collections.Generic.ICollection{{R}}}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
   - System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{{T},{R}}})
@@ -126,10 +119,6 @@ items:
   - System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{{T},System.Collections.Generic.ICollection{{R}}}},CoreRelm.Interfaces.IRelmDataLoader{{S}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
   - System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{{T},{R}}},CoreRelm.Interfaces.IRelmDataLoader{{S}})
   - System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{{T},{R}}},CoreRelm.Interfaces.IRelmDataLoader{{S}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
-  - System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{{T},System.Collections.Generic.ICollection{{R}}}},CoreRelm.Interfaces.IRelmDataLoader{{S}})
-  - System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{{T},System.Collections.Generic.ICollection{{R}}}},CoreRelm.Interfaces.IRelmDataLoader{{S}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
-  - System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{{T},{R}}},CoreRelm.Interfaces.IRelmDataLoader{{S}})
-  - System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{{T},{R}}},CoreRelm.Interfaces.IRelmDataLoader{{S}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
   - System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{{T},System.Collections.Generic.ICollection{{R}}}},CoreRelm.Interfaces.IRelmDataLoader{{S}})
   - System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{{T},System.Collections.Generic.ICollection{{R}}}},CoreRelm.Interfaces.IRelmDataLoader{{S}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
   - System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{{T},{R}}},CoreRelm.Interfaces.IRelmDataLoader{{S}})
@@ -137,8 +126,8 @@ items:
   - System.Collections.Generic.IEnumerable{`0}.CoreRelm.Extensions.ListExtensions.FlattenTreeObject``1(System.Func{{T},System.Collections.Generic.ICollection{{T}}})
   - System.Collections.Generic.IEnumerable{`0}.CoreRelm.Extensions.ListExtensions.GenerateDTO``1(System.Collections.Generic.ICollection{System.String},System.Collections.Generic.ICollection{System.String},System.String,System.Func{CoreRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}})
   - System.Collections.Generic.IEnumerable{`0}.CoreRelm.Extensions.ListExtensions.WriteToDatabase``1(CoreRelm.Interfaces.IRelmContext,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  - System.Collections.Generic.IEnumerable{`0}.CoreRelm.Extensions.ListExtensions.WriteToDatabase``1(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
   - System.Collections.Generic.IEnumerable{`0}.CoreRelm.Extensions.ListExtensions.WriteToDatabase``1(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  - System.Collections.Generic.IEnumerable{`0}.CoreRelm.Extensions.ListExtensions.WriteToDatabase``1(MySql.Data.MySqlClient.MySqlConnection,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
   - System.Collections.Generic.IEnumerable{`0}.CoreRelm.Extensions.ListExtensions.WriteToDatabase``1(System.Enum,System.String,System.Type,System.Boolean,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
   nameWithType.vb: RelmDataSet(Of T)
   fullName.vb: CoreRelm.Models.RelmDataSet(Of T)
@@ -229,7 +218,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 68
+    startLine: 66
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -256,51 +245,6 @@ items:
   nameWithType.vb: RelmDataSet(Of T).New(IRelmContext, IRelmDataLoader(Of T))
   fullName.vb: CoreRelm.Models.RelmDataSet(Of T).New(CoreRelm.Interfaces.IRelmContext, CoreRelm.Interfaces.IRelmDataLoader(Of T))
   name.vb: New(IRelmContext, IRelmDataLoader(Of T))
-- uid: CoreRelm.Models.RelmDataSet`1.#ctor(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,CoreRelm.Interfaces.IRelmDataLoader{`0})
-  commentId: M:CoreRelm.Models.RelmDataSet`1.#ctor(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,CoreRelm.Interfaces.IRelmDataLoader{`0})
-  id: '#ctor(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,CoreRelm.Interfaces.IRelmDataLoader{`0})'
-  parent: CoreRelm.Models.RelmDataSet`1
-  langs:
-  - csharp
-  - vb
-  name: RelmDataSet(IRelmQuickContext, IRelmDataLoader<T>)
-  nameWithType: RelmDataSet<T>.RelmDataSet(IRelmQuickContext, IRelmDataLoader<T>)
-  fullName: CoreRelm.Models.RelmDataSet<T>.RelmDataSet(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, CoreRelm.Interfaces.IRelmDataLoader<T>)
-  type: Constructor
-  source:
-    remote:
-      path: CoreRelm/Models/RelmDataSet.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: .ctor
-    path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 82
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Models
-  summary: >-
-    Initializes a new instance of the <xref href="CoreRelm.Models.RelmDataSet%601" data-throw-if-not-resolved="false"></xref> class with the specified context and data
-
-    loader.
-  example: []
-  syntax:
-    content: public RelmDataSet(IRelmQuickContext currentContext, IRelmDataLoader<T> dataLoader)
-    parameters:
-    - id: currentContext
-      type: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-      description: The current quick context used to manage the dataset's operational scope. Cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
-    - id: dataLoader
-      type: CoreRelm.Interfaces.IRelmDataLoader{{T}}
-      description: The data loader responsible for loading and managing the dataset's data. Cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
-    content.vb: Public Sub New(currentContext As IRelmQuickContext, dataLoader As IRelmDataLoader(Of T))
-  overload: CoreRelm.Models.RelmDataSet`1.#ctor*
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: Thrown if <code class="paramref">currentContext</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
-  nameWithType.vb: RelmDataSet(Of T).New(IRelmQuickContext, IRelmDataLoader(Of T))
-  fullName.vb: CoreRelm.Models.RelmDataSet(Of T).New(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, CoreRelm.Interfaces.IRelmDataLoader(Of T))
-  name.vb: New(IRelmQuickContext, IRelmDataLoader(Of T))
 - uid: CoreRelm.Models.RelmDataSet`1.GetEnumerator
   commentId: M:CoreRelm.Models.RelmDataSet`1.GetEnumerator
   id: GetEnumerator
@@ -319,7 +263,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetEnumerator
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 105
+    startLine: 83
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -357,7 +301,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetFieldLoader
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 134
+    startLine: 112
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -389,54 +333,6 @@ items:
   nameWithType.vb: RelmDataSet(Of T).SetFieldLoader(String, IRelmFieldLoader)
   fullName.vb: CoreRelm.Models.RelmDataSet(Of T).SetFieldLoader(String, CoreRelm.Interfaces.IRelmFieldLoader)
   name.vb: SetFieldLoader(String, IRelmFieldLoader)
-- uid: CoreRelm.Models.RelmDataSet`1.SetFieldLoader(System.String,CoreRelm.Interfaces.RelmQuick.IRelmQuickFieldLoader)
-  commentId: M:CoreRelm.Models.RelmDataSet`1.SetFieldLoader(System.String,CoreRelm.Interfaces.RelmQuick.IRelmQuickFieldLoader)
-  id: SetFieldLoader(System.String,CoreRelm.Interfaces.RelmQuick.IRelmQuickFieldLoader)
-  parent: CoreRelm.Models.RelmDataSet`1
-  langs:
-  - csharp
-  - vb
-  name: SetFieldLoader(string, IRelmQuickFieldLoader)
-  nameWithType: RelmDataSet<T>.SetFieldLoader(string, IRelmQuickFieldLoader)
-  fullName: CoreRelm.Models.RelmDataSet<T>.SetFieldLoader(string, CoreRelm.Interfaces.RelmQuick.IRelmQuickFieldLoader)
-  type: Method
-  source:
-    remote:
-      path: CoreRelm/Models/RelmDataSet.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: SetFieldLoader
-    path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 153
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Models
-  summary: Registers a field loader for the specified field name.
-  remarks: This method ensures that the specified field exists on the model type <code class="typeparamref">T</code> before registering the loader.
-  example: []
-  syntax:
-    content: public IRelmQuickFieldLoader SetFieldLoader(string fieldName, IRelmQuickFieldLoader dataLoader)
-    parameters:
-    - id: fieldName
-      type: System.String
-      description: >-
-        The name of the field on the model for which the loader is being registered.  The field must exist on the
-            model type <code class="typeparamref">T</code>.
-    - id: dataLoader
-      type: CoreRelm.Interfaces.RelmQuick.IRelmQuickFieldLoader
-      description: An instance of <xref href="CoreRelm.Interfaces.RelmQuick.IRelmQuickFieldLoader" data-throw-if-not-resolved="false"></xref> that provides the logic for loading the field's data.
-    return:
-      type: CoreRelm.Interfaces.RelmQuick.IRelmQuickFieldLoader
-      description: The registered <xref href="CoreRelm.Interfaces.RelmQuick.IRelmQuickFieldLoader" data-throw-if-not-resolved="false"></xref> instance for the specified field.
-    content.vb: Public Function SetFieldLoader(fieldName As String, dataLoader As IRelmQuickFieldLoader) As IRelmQuickFieldLoader
-  overload: CoreRelm.Models.RelmDataSet`1.SetFieldLoader*
-  exceptions:
-  - type: System.ArgumentException
-    commentId: T:System.ArgumentException
-    description: Thrown if the specified <code class="paramref">fieldName</code> does not exist on the model type <code class="typeparamref">T</code>.
-  nameWithType.vb: RelmDataSet(Of T).SetFieldLoader(String, IRelmQuickFieldLoader)
-  fullName.vb: CoreRelm.Models.RelmDataSet(Of T).SetFieldLoader(String, CoreRelm.Interfaces.RelmQuick.IRelmQuickFieldLoader)
-  name.vb: SetFieldLoader(String, IRelmQuickFieldLoader)
 - uid: CoreRelm.Models.RelmDataSet`1.SetDataLoader(CoreRelm.Interfaces.IRelmDataLoader{`0})
   commentId: M:CoreRelm.Models.RelmDataSet`1.SetDataLoader(CoreRelm.Interfaces.IRelmDataLoader{`0})
   id: SetDataLoader(CoreRelm.Interfaces.IRelmDataLoader{`0})
@@ -455,7 +351,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetDataLoader
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 166
+    startLine: 125
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -495,7 +391,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Where
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 193
+    startLine: 152
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -542,7 +438,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Reference
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 208
+    startLine: 167
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -577,9 +473,9 @@ items:
   langs:
   - csharp
   - vb
-  name: Reference<S>(Expression<Func<T, ICollection<S>>>, Expression<Func<S, object>>)
-  nameWithType: RelmDataSet<T>.Reference<S>(Expression<Func<T, ICollection<S>>>, Expression<Func<S, object>>)
-  fullName: CoreRelm.Models.RelmDataSet<T>.Reference<S>(System.Linq.Expressions.Expression<System.Func<T, System.Collections.Generic.ICollection<S>>>, System.Linq.Expressions.Expression<System.Func<S, object>>)
+  name: Reference<S>(Expression<Func<T, ICollection<S>>>, Expression<Func<S, object>>?)
+  nameWithType: RelmDataSet<T>.Reference<S>(Expression<Func<T, ICollection<S>>>, Expression<Func<S, object>>?)
+  fullName: CoreRelm.Models.RelmDataSet<T>.Reference<S>(System.Linq.Expressions.Expression<System.Func<T, System.Collections.Generic.ICollection<S>>>, System.Linq.Expressions.Expression<System.Func<S, object>>?)
   type: Method
   source:
     remote:
@@ -588,7 +484,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Reference
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 224
+    startLine: 183
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -601,7 +497,7 @@ items:
         and apply additional filtering or constraints to the related entities.
   example: []
   syntax:
-    content: public IRelmDataSet<T> Reference<S>(Expression<Func<T, ICollection<S>>> predicate, Expression<Func<S, object>> additionalConstraints)
+    content: public IRelmDataSet<T> Reference<S>(Expression<Func<T, ICollection<S>>> predicate, Expression<Func<S, object>>? additionalConstraints)
     parameters:
     - id: predicate
       type: System.Linq.Expressions.Expression{System.Func{{T},System.Collections.Generic.ICollection{{S}}}}
@@ -631,9 +527,9 @@ items:
   langs:
   - csharp
   - vb
-  name: Reference<S>(Expression<Func<T, S>>, Expression<Func<S, object>>)
-  nameWithType: RelmDataSet<T>.Reference<S>(Expression<Func<T, S>>, Expression<Func<S, object>>)
-  fullName: CoreRelm.Models.RelmDataSet<T>.Reference<S>(System.Linq.Expressions.Expression<System.Func<T, S>>, System.Linq.Expressions.Expression<System.Func<S, object>>)
+  name: Reference<S>(Expression<Func<T, S>>, Expression<Func<S, object>>?)
+  nameWithType: RelmDataSet<T>.Reference<S>(Expression<Func<T, S>>, Expression<Func<S, object>>?)
+  fullName: CoreRelm.Models.RelmDataSet<T>.Reference<S>(System.Linq.Expressions.Expression<System.Func<T, S>>, System.Linq.Expressions.Expression<System.Func<S, object>>?)
   type: Method
   source:
     remote:
@@ -642,7 +538,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Reference
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 240
+    startLine: 199
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -653,7 +549,7 @@ items:
         method when you need to reference a related  dataset with specific filtering criteria.
   example: []
   syntax:
-    content: public IRelmDataSet<T> Reference<S>(Expression<Func<T, S>> predicate, Expression<Func<S, object>> additionalConstraints)
+    content: public IRelmDataSet<T> Reference<S>(Expression<Func<T, S>> predicate, Expression<Func<S, object>>? additionalConstraints)
     parameters:
     - id: predicate
       type: System.Linq.Expressions.Expression{System.Func{{T},{S}}}
@@ -683,9 +579,9 @@ items:
   langs:
   - csharp
   - vb
-  name: Reference<S>(Expression<Func<T, ICollection<S>>>, ICollection<Expression<Func<S, object>>>)
-  nameWithType: RelmDataSet<T>.Reference<S>(Expression<Func<T, ICollection<S>>>, ICollection<Expression<Func<S, object>>>)
-  fullName: CoreRelm.Models.RelmDataSet<T>.Reference<S>(System.Linq.Expressions.Expression<System.Func<T, System.Collections.Generic.ICollection<S>>>, System.Collections.Generic.ICollection<System.Linq.Expressions.Expression<System.Func<S, object>>>)
+  name: Reference<S>(Expression<Func<T, ICollection<S>>>, ICollection<Expression<Func<S, object>>?>?)
+  nameWithType: RelmDataSet<T>.Reference<S>(Expression<Func<T, ICollection<S>>>, ICollection<Expression<Func<S, object>>?>?)
+  fullName: CoreRelm.Models.RelmDataSet<T>.Reference<S>(System.Linq.Expressions.Expression<System.Func<T, System.Collections.Generic.ICollection<S>>>, System.Collections.Generic.ICollection<System.Linq.Expressions.Expression<System.Func<S, object>>?>?)
   type: Method
   source:
     remote:
@@ -694,7 +590,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Reference
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 257
+    startLine: 216
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -709,7 +605,7 @@ items:
         specifying further conditions on the related entities.
   example: []
   syntax:
-    content: public IRelmDataSet<T> Reference<S>(Expression<Func<T, ICollection<S>>> predicate, ICollection<Expression<Func<S, object>>> additionalConstraints)
+    content: public IRelmDataSet<T> Reference<S>(Expression<Func<T, ICollection<S>>> predicate, ICollection<Expression<Func<S, object>>?>? additionalConstraints)
     parameters:
     - id: predicate
       type: System.Linq.Expressions.Expression{System.Func{{T},System.Collections.Generic.ICollection{{S}}}}
@@ -737,9 +633,9 @@ items:
   langs:
   - csharp
   - vb
-  name: Reference<S>(Expression<Func<T, S>>, ICollection<Expression<Func<S, object>>>)
-  nameWithType: RelmDataSet<T>.Reference<S>(Expression<Func<T, S>>, ICollection<Expression<Func<S, object>>>)
-  fullName: CoreRelm.Models.RelmDataSet<T>.Reference<S>(System.Linq.Expressions.Expression<System.Func<T, S>>, System.Collections.Generic.ICollection<System.Linq.Expressions.Expression<System.Func<S, object>>>)
+  name: Reference<S>(Expression<Func<T, S>>, ICollection<Expression<Func<S, object>>?>?)
+  nameWithType: RelmDataSet<T>.Reference<S>(Expression<Func<T, S>>, ICollection<Expression<Func<S, object>>?>?)
+  fullName: CoreRelm.Models.RelmDataSet<T>.Reference<S>(System.Linq.Expressions.Expression<System.Func<T, S>>, System.Collections.Generic.ICollection<System.Linq.Expressions.Expression<System.Func<S, object>>?>?)
   type: Method
   source:
     remote:
@@ -748,14 +644,14 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Reference
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 270
+    startLine: 229
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
   summary: Creates a reference to a related dataset based on the specified predicate and additional constraints.
   example: []
   syntax:
-    content: public IRelmDataSet<T> Reference<S>(Expression<Func<T, S>> predicate, ICollection<Expression<Func<S, object>>> additionalConstraints)
+    content: public IRelmDataSet<T> Reference<S>(Expression<Func<T, S>> predicate, ICollection<Expression<Func<S, object>>?>? additionalConstraints)
     parameters:
     - id: predicate
       type: System.Linq.Expressions.Expression{System.Func{{T},{S}}}
@@ -796,7 +692,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Find
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 301
+    startLine: 260
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -806,7 +702,7 @@ items:
         share the same identifier, only the first match is returned.
   example: []
   syntax:
-    content: public T Find(int id)
+    content: public T? Find(int id)
     parameters:
     - id: id
       type: System.Int32
@@ -839,14 +735,14 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Find
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 312
+    startLine: 271
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
   summary: Finds and returns the first element in the collection that matches the specified internal identifier.
   example: []
   syntax:
-    content: public T Find(string InternalId)
+    content: public T? Find(string InternalId)
     parameters:
     - id: InternalId
       type: System.String
@@ -881,7 +777,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: FirstOrDefault
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 325
+    startLine: 284
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -892,7 +788,7 @@ items:
         for reference types,  or the default zero value for value types).
   example: []
   syntax:
-    content: public T FirstOrDefault()
+    content: public T? FirstOrDefault()
     return:
       type: '{T}'
       description: >-
@@ -922,7 +818,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: FirstOrDefault
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 338
+    startLine: 297
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -932,7 +828,7 @@ items:
         items are loaded into the collection before attempting to retrieve the first element.
   example: []
   syntax:
-    content: public T FirstOrDefault(bool loadItems)
+    content: public T? FirstOrDefault(bool loadItems)
     parameters:
     - id: loadItems
       type: System.Boolean
@@ -967,7 +863,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: FirstOrDefault
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 350
+    startLine: 309
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -977,7 +873,7 @@ items:
     the specified condition,  or the default value for the type if no such element is found.
   example: []
   syntax:
-    content: public T FirstOrDefault(Expression<Func<T, bool>> predicate)
+    content: public T? FirstOrDefault(Expression<Func<T, bool>> predicate)
     parameters:
     - id: predicate
       type: System.Linq.Expressions.Expression{System.Func{{T},System.Boolean}}
@@ -1001,9 +897,9 @@ items:
   langs:
   - csharp
   - vb
-  name: FirstOrDefault(Expression<Func<T, bool>>, bool)
-  nameWithType: RelmDataSet<T>.FirstOrDefault(Expression<Func<T, bool>>, bool)
-  fullName: CoreRelm.Models.RelmDataSet<T>.FirstOrDefault(System.Linq.Expressions.Expression<System.Func<T, bool>>, bool)
+  name: FirstOrDefault(Expression<Func<T, bool>>?, bool)
+  nameWithType: RelmDataSet<T>.FirstOrDefault(Expression<Func<T, bool>>?, bool)
+  fullName: CoreRelm.Models.RelmDataSet<T>.FirstOrDefault(System.Linq.Expressions.Expression<System.Func<T, bool>>?, bool)
   type: Method
   source:
     remote:
@@ -1012,7 +908,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: FirstOrDefault
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 369
+    startLine: 328
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1026,7 +922,7 @@ items:
         <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>, the method evaluates the condition on the existing items.
   example: []
   syntax:
-    content: public T FirstOrDefault(Expression<Func<T, bool>> predicate, bool loadItems)
+    content: public T? FirstOrDefault(Expression<Func<T, bool>>? predicate, bool loadItems)
     parameters:
     - id: predicate
       type: System.Linq.Expressions.Expression{System.Func{{T},System.Boolean}}
@@ -1069,7 +965,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: LoadAsDataSet
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 393
+    startLine: 352
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1107,7 +1003,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Load
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 407
+    startLine: 366
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1117,7 +1013,7 @@ items:
         includes all items unless specified otherwise in an overload.
   example: []
   syntax:
-    content: public ICollection<T> Load()
+    content: public ICollection<T>? Load()
     return:
       type: System.Collections.Generic.ICollection{{T}}
       description: >-
@@ -1147,7 +1043,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Load
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 425
+    startLine: 384
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1159,7 +1055,7 @@ items:
         references, the method also loads all references associated with the data.
   example: []
   syntax:
-    content: public ICollection<T> Load(bool loadDataLoaders)
+    content: public ICollection<T>? Load(bool loadDataLoaders)
     parameters:
     - id: loadDataLoaders
       type: System.Boolean
@@ -1196,7 +1092,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Write
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 489
+    startLine: 442
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1231,7 +1127,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Entry
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 528
+    startLine: 479
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1273,7 +1169,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Entry
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 547
+    startLine: 498
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1319,7 +1215,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: OrderBy
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 565
+    startLine: 516
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1362,7 +1258,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: OrderByDescending
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 581
+    startLine: 532
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1407,7 +1303,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Set
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 597
+    startLine: 548
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1452,7 +1348,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GroupBy
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 613
+    startLine: 564
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1496,7 +1392,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Limit
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 626
+    startLine: 577
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1536,7 +1432,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Offset
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 638
+    startLine: 589
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1576,7 +1472,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Count
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 651
+    startLine: 602
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1614,7 +1510,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Count
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 666
+    startLine: 617
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1659,7 +1555,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DistinctBy
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 682
+    startLine: 633
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1705,7 +1601,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Save
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 699
+    startLine: 650
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1753,7 +1649,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Save
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 720
+    startLine: 671
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1793,7 +1689,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: New
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 740
+    startLine: 691
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1835,7 +1731,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: New
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 757
+    startLine: 708
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1887,7 +1783,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Add
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 789
+    startLine: 740
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1926,7 +1822,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Add
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 807
+    startLine: 758
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1978,7 +1874,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Add
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 835
+    startLine: 786
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2018,7 +1914,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Add
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 849
+    startLine: 800
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2063,7 +1959,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Clear
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 869
+    startLine: 820
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2098,7 +1994,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Contains
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 880
+    startLine: 831
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2138,7 +2034,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: CopyTo
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 893
+    startLine: 844
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2183,7 +2079,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Remove
     path: ../CoreRelm/Models/RelmDataSet.cs
-    startLine: 905
+    startLine: 856
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2671,109 +2567,6 @@ references:
   - uid: CoreRelm.Interfaces.IRelmContext
     name: IRelmContext
     href: CoreRelm.Interfaces.IRelmContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: )
-  - name: )
-  - name: )
-- uid: System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadDataLoaderField``2(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{{T},{R}}})
-  commentId: M:CoreRelm.Extensions.ListExtensions.LoadDataLoaderField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  parent: CoreRelm.Extensions.ListExtensions
-  definition: CoreRelm.Extensions.ListExtensions.LoadDataLoaderField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadDataLoaderField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___
-  name: LoadDataLoaderField<T, R>(ICollection<T>, IRelmQuickContext, Expression<Func<T, R>>)
-  nameWithType: ListExtensions.LoadDataLoaderField<T, R>(ICollection<T>, IRelmQuickContext, Expression<Func<T, R>>)
-  fullName: CoreRelm.Extensions.ListExtensions.LoadDataLoaderField<T, R>(System.Collections.Generic.ICollection<T>, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression<System.Func<T, R>>)
-  nameWithType.vb: ListExtensions.LoadDataLoaderField(Of T, R)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, R)))
-  fullName.vb: CoreRelm.Extensions.ListExtensions.LoadDataLoaderField(Of T, R)(System.Collections.Generic.ICollection(Of T), CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression(Of System.Func(Of T, R)))
-  name.vb: LoadDataLoaderField(Of T, R)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, R)))
-  spec.csharp:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadDataLoaderField``2(System.Collections.Generic.ICollection{`0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{`0,``1}})
-    name: LoadDataLoaderField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadDataLoaderField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: '>'
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: <
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: '>'
-  - name: '>'
-  - name: )
-  spec.vb:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadDataLoaderField``2(System.Collections.Generic.ICollection{`0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{`0,``1}})
-    name: LoadDataLoaderField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadDataLoaderField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: )
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -3384,538 +3177,6 @@ references:
   - uid: CoreRelm.Interfaces.IRelmContext
     name: IRelmContext
     href: CoreRelm.Interfaces.IRelmContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: )
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: (
-  - name: Of
-  - name: " "
-  - name: R
-  - name: ','
-  - name: " "
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-  - name: )
-  - name: )
-- uid: System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{{T},System.Collections.Generic.ICollection{{R}}}})
-  commentId: M:CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})
-  parent: CoreRelm.Extensions.ListExtensions
-  definition: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})
-  href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____
-  name: LoadForeignKeyField<T, R>(ICollection<T>, IRelmQuickContext, Expression<Func<T, ICollection<R>>>)
-  nameWithType: ListExtensions.LoadForeignKeyField<T, R>(ICollection<T>, IRelmQuickContext, Expression<Func<T, ICollection<R>>>)
-  fullName: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField<T, R>(System.Collections.Generic.ICollection<T>, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression<System.Func<T, System.Collections.Generic.ICollection<R>>>)
-  nameWithType.vb: ListExtensions.LoadForeignKeyField(Of T, R)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, ICollection(Of R))))
-  fullName.vb: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField(Of T, R)(System.Collections.Generic.ICollection(Of T), CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression(Of System.Func(Of T, System.Collections.Generic.ICollection(Of R))))
-  name.vb: LoadForeignKeyField(Of T, R)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, ICollection(Of R))))
-  spec.csharp:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{`0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.ICollection{``1}}})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: '>'
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: <
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: <
-  - name: R
-  - name: '>'
-  - name: '>'
-  - name: '>'
-  - name: )
-  spec.vb:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{`0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.ICollection{``1}}})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: )
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: R
-  - name: )
-  - name: )
-  - name: )
-  - name: )
-- uid: System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{{T},System.Collections.Generic.ICollection{{R}}}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
-  commentId: M:CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  parent: CoreRelm.Extensions.ListExtensions
-  definition: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  name: LoadForeignKeyField<T, R>(ICollection<T>, IRelmQuickContext, Expression<Func<T, ICollection<R>>>, Expression<Func<R, object>>)
-  nameWithType: ListExtensions.LoadForeignKeyField<T, R>(ICollection<T>, IRelmQuickContext, Expression<Func<T, ICollection<R>>>, Expression<Func<R, object>>)
-  fullName: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField<T, R>(System.Collections.Generic.ICollection<T>, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression<System.Func<T, System.Collections.Generic.ICollection<R>>>, System.Linq.Expressions.Expression<System.Func<R, object>>)
-  nameWithType.vb: ListExtensions.LoadForeignKeyField(Of T, R)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, ICollection(Of R))), Expression(Of Func(Of R, Object)))
-  fullName.vb: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField(Of T, R)(System.Collections.Generic.ICollection(Of T), CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression(Of System.Func(Of T, System.Collections.Generic.ICollection(Of R))), System.Linq.Expressions.Expression(Of System.Func(Of R, Object)))
-  name.vb: LoadForeignKeyField(Of T, R)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, ICollection(Of R))), Expression(Of Func(Of R, Object)))
-  spec.csharp:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{`0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: '>'
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: <
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: <
-  - name: R
-  - name: '>'
-  - name: '>'
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: <
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: <
-  - name: R
-  - name: ','
-  - name: " "
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: '>'
-  - name: '>'
-  - name: )
-  spec.vb:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{`0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: )
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: R
-  - name: )
-  - name: )
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: (
-  - name: Of
-  - name: " "
-  - name: R
-  - name: ','
-  - name: " "
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-  - name: )
-  - name: )
-- uid: System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{{T},{R}}})
-  commentId: M:CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  parent: CoreRelm.Extensions.ListExtensions
-  definition: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___
-  name: LoadForeignKeyField<T, R>(ICollection<T>, IRelmQuickContext, Expression<Func<T, R>>)
-  nameWithType: ListExtensions.LoadForeignKeyField<T, R>(ICollection<T>, IRelmQuickContext, Expression<Func<T, R>>)
-  fullName: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField<T, R>(System.Collections.Generic.ICollection<T>, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression<System.Func<T, R>>)
-  nameWithType.vb: ListExtensions.LoadForeignKeyField(Of T, R)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, R)))
-  fullName.vb: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField(Of T, R)(System.Collections.Generic.ICollection(Of T), CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression(Of System.Func(Of T, R)))
-  name.vb: LoadForeignKeyField(Of T, R)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, R)))
-  spec.csharp:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{`0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{`0,``1}})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: '>'
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: <
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: '>'
-  - name: '>'
-  - name: )
-  spec.vb:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{`0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{`0,``1}})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: )
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: )
-  - name: )
-  - name: )
-- uid: System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{{T},{R}}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
-  commentId: M:CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  parent: CoreRelm.Extensions.ListExtensions
-  definition: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  name: LoadForeignKeyField<T, R>(ICollection<T>, IRelmQuickContext, Expression<Func<T, R>>, Expression<Func<R, object>>)
-  nameWithType: ListExtensions.LoadForeignKeyField<T, R>(ICollection<T>, IRelmQuickContext, Expression<Func<T, R>>, Expression<Func<R, object>>)
-  fullName: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField<T, R>(System.Collections.Generic.ICollection<T>, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression<System.Func<T, R>>, System.Linq.Expressions.Expression<System.Func<R, object>>)
-  nameWithType.vb: ListExtensions.LoadForeignKeyField(Of T, R)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, R)), Expression(Of Func(Of R, Object)))
-  fullName.vb: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField(Of T, R)(System.Collections.Generic.ICollection(Of T), CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression(Of System.Func(Of T, R)), System.Linq.Expressions.Expression(Of System.Func(Of R, Object)))
-  name.vb: LoadForeignKeyField(Of T, R)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, R)), Expression(Of Func(Of R, Object)))
-  spec.csharp:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{`0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{`0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: '>'
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: <
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: '>'
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: <
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: <
-  - name: R
-  - name: ','
-  - name: " "
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: '>'
-  - name: '>'
-  - name: )
-  spec.vb:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{`0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{`0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: )
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -5124,634 +4385,6 @@ references:
   - name: )
   - name: )
   - name: )
-- uid: System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{{T},System.Collections.Generic.ICollection{{R}}}},CoreRelm.Interfaces.IRelmDataLoader{{S}})
-  commentId: M:CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
-  parent: CoreRelm.Extensions.ListExtensions
-  definition: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
-  href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__
-  name: LoadForeignKeyField<T, R, S>(ICollection<T>, IRelmQuickContext, Expression<Func<T, ICollection<R>>>, IRelmDataLoader<S>)
-  nameWithType: ListExtensions.LoadForeignKeyField<T, R, S>(ICollection<T>, IRelmQuickContext, Expression<Func<T, ICollection<R>>>, IRelmDataLoader<S>)
-  fullName: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField<T, R, S>(System.Collections.Generic.ICollection<T>, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression<System.Func<T, System.Collections.Generic.ICollection<R>>>, CoreRelm.Interfaces.IRelmDataLoader<S>)
-  nameWithType.vb: ListExtensions.LoadForeignKeyField(Of T, R, S)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, ICollection(Of R))), IRelmDataLoader(Of S))
-  fullName.vb: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField(Of T, R, S)(System.Collections.Generic.ICollection(Of T), CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression(Of System.Func(Of T, System.Collections.Generic.ICollection(Of R))), CoreRelm.Interfaces.IRelmDataLoader(Of S))
-  name.vb: LoadForeignKeyField(Of T, R, S)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, ICollection(Of R))), IRelmDataLoader(Of S))
-  spec.csharp:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{`0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: ','
-  - name: " "
-  - name: S
-  - name: '>'
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: <
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: <
-  - name: R
-  - name: '>'
-  - name: '>'
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.IRelmDataLoader`1
-    name: IRelmDataLoader
-    href: CoreRelm.Interfaces.IRelmDataLoader-1.html
-  - name: <
-  - name: S
-  - name: '>'
-  - name: )
-  spec.vb:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{`0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: ','
-  - name: " "
-  - name: S
-  - name: )
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: R
-  - name: )
-  - name: )
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.IRelmDataLoader`1
-    name: IRelmDataLoader
-    href: CoreRelm.Interfaces.IRelmDataLoader-1.html
-  - name: (
-  - name: Of
-  - name: " "
-  - name: S
-  - name: )
-  - name: )
-- uid: System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{{T},System.Collections.Generic.ICollection{{R}}}},CoreRelm.Interfaces.IRelmDataLoader{{S}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
-  commentId: M:CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  parent: CoreRelm.Extensions.ListExtensions
-  definition: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  name: LoadForeignKeyField<T, R, S>(ICollection<T>, IRelmQuickContext, Expression<Func<T, ICollection<R>>>, IRelmDataLoader<S>, Expression<Func<R, object>>)
-  nameWithType: ListExtensions.LoadForeignKeyField<T, R, S>(ICollection<T>, IRelmQuickContext, Expression<Func<T, ICollection<R>>>, IRelmDataLoader<S>, Expression<Func<R, object>>)
-  fullName: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField<T, R, S>(System.Collections.Generic.ICollection<T>, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression<System.Func<T, System.Collections.Generic.ICollection<R>>>, CoreRelm.Interfaces.IRelmDataLoader<S>, System.Linq.Expressions.Expression<System.Func<R, object>>)
-  nameWithType.vb: ListExtensions.LoadForeignKeyField(Of T, R, S)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, ICollection(Of R))), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
-  fullName.vb: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField(Of T, R, S)(System.Collections.Generic.ICollection(Of T), CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression(Of System.Func(Of T, System.Collections.Generic.ICollection(Of R))), CoreRelm.Interfaces.IRelmDataLoader(Of S), System.Linq.Expressions.Expression(Of System.Func(Of R, Object)))
-  name.vb: LoadForeignKeyField(Of T, R, S)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, ICollection(Of R))), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
-  spec.csharp:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{`0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: ','
-  - name: " "
-  - name: S
-  - name: '>'
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: <
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: <
-  - name: R
-  - name: '>'
-  - name: '>'
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.IRelmDataLoader`1
-    name: IRelmDataLoader
-    href: CoreRelm.Interfaces.IRelmDataLoader-1.html
-  - name: <
-  - name: S
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: <
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: <
-  - name: R
-  - name: ','
-  - name: " "
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: '>'
-  - name: '>'
-  - name: )
-  spec.vb:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{`0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: ','
-  - name: " "
-  - name: S
-  - name: )
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: R
-  - name: )
-  - name: )
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.IRelmDataLoader`1
-    name: IRelmDataLoader
-    href: CoreRelm.Interfaces.IRelmDataLoader-1.html
-  - name: (
-  - name: Of
-  - name: " "
-  - name: S
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: (
-  - name: Of
-  - name: " "
-  - name: R
-  - name: ','
-  - name: " "
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-  - name: )
-  - name: )
-- uid: System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{{T},{R}}},CoreRelm.Interfaces.IRelmDataLoader{{S}})
-  commentId: M:CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})
-  parent: CoreRelm.Extensions.ListExtensions
-  definition: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})
-  href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__
-  name: LoadForeignKeyField<T, R, S>(ICollection<T>, IRelmQuickContext, Expression<Func<T, R>>, IRelmDataLoader<S>)
-  nameWithType: ListExtensions.LoadForeignKeyField<T, R, S>(ICollection<T>, IRelmQuickContext, Expression<Func<T, R>>, IRelmDataLoader<S>)
-  fullName: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField<T, R, S>(System.Collections.Generic.ICollection<T>, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression<System.Func<T, R>>, CoreRelm.Interfaces.IRelmDataLoader<S>)
-  nameWithType.vb: ListExtensions.LoadForeignKeyField(Of T, R, S)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, R)), IRelmDataLoader(Of S))
-  fullName.vb: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField(Of T, R, S)(System.Collections.Generic.ICollection(Of T), CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression(Of System.Func(Of T, R)), CoreRelm.Interfaces.IRelmDataLoader(Of S))
-  name.vb: LoadForeignKeyField(Of T, R, S)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, R)), IRelmDataLoader(Of S))
-  spec.csharp:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{`0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{`0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: ','
-  - name: " "
-  - name: S
-  - name: '>'
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: <
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: '>'
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.IRelmDataLoader`1
-    name: IRelmDataLoader
-    href: CoreRelm.Interfaces.IRelmDataLoader-1.html
-  - name: <
-  - name: S
-  - name: '>'
-  - name: )
-  spec.vb:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{`0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{`0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: ','
-  - name: " "
-  - name: S
-  - name: )
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: )
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.IRelmDataLoader`1
-    name: IRelmDataLoader
-    href: CoreRelm.Interfaces.IRelmDataLoader-1.html
-  - name: (
-  - name: Of
-  - name: " "
-  - name: S
-  - name: )
-  - name: )
-- uid: System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{{T},{R}}},CoreRelm.Interfaces.IRelmDataLoader{{S}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
-  commentId: M:CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  parent: CoreRelm.Extensions.ListExtensions
-  definition: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  name: LoadForeignKeyField<T, R, S>(ICollection<T>, IRelmQuickContext, Expression<Func<T, R>>, IRelmDataLoader<S>, Expression<Func<R, object>>)
-  nameWithType: ListExtensions.LoadForeignKeyField<T, R, S>(ICollection<T>, IRelmQuickContext, Expression<Func<T, R>>, IRelmDataLoader<S>, Expression<Func<R, object>>)
-  fullName: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField<T, R, S>(System.Collections.Generic.ICollection<T>, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression<System.Func<T, R>>, CoreRelm.Interfaces.IRelmDataLoader<S>, System.Linq.Expressions.Expression<System.Func<R, object>>)
-  nameWithType.vb: ListExtensions.LoadForeignKeyField(Of T, R, S)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, R)), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
-  fullName.vb: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField(Of T, R, S)(System.Collections.Generic.ICollection(Of T), CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression(Of System.Func(Of T, R)), CoreRelm.Interfaces.IRelmDataLoader(Of S), System.Linq.Expressions.Expression(Of System.Func(Of R, Object)))
-  name.vb: LoadForeignKeyField(Of T, R, S)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, R)), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
-  spec.csharp:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{`0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{`0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: ','
-  - name: " "
-  - name: S
-  - name: '>'
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: <
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: '>'
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.IRelmDataLoader`1
-    name: IRelmDataLoader
-    href: CoreRelm.Interfaces.IRelmDataLoader-1.html
-  - name: <
-  - name: S
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: <
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: <
-  - name: R
-  - name: ','
-  - name: " "
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: '>'
-  - name: '>'
-  - name: )
-  spec.vb:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{`0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{`0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: ','
-  - name: " "
-  - name: S
-  - name: )
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: )
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.IRelmDataLoader`1
-    name: IRelmDataLoader
-    href: CoreRelm.Interfaces.IRelmDataLoader-1.html
-  - name: (
-  - name: Of
-  - name: " "
-  - name: S
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: (
-  - name: Of
-  - name: " "
-  - name: R
-  - name: ','
-  - name: " "
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-  - name: )
-  - name: )
 - uid: System.Collections.Generic.ICollection{`0}.CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{{T},System.Collections.Generic.ICollection{{R}}}},CoreRelm.Interfaces.IRelmDataLoader{{S}})
   commentId: M:CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
   parent: CoreRelm.Extensions.ListExtensions
@@ -6793,159 +5426,6 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
-- uid: System.Collections.Generic.IEnumerable{`0}.CoreRelm.Extensions.ListExtensions.WriteToDatabase``1(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  commentId: M:CoreRelm.Extensions.ListExtensions.WriteToDatabase``1(System.Collections.Generic.IEnumerable{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  parent: CoreRelm.Extensions.ListExtensions
-  definition: CoreRelm.Extensions.ListExtensions.WriteToDatabase``1(System.Collections.Generic.IEnumerable{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_WriteToDatabase__1_System_Collections_Generic_IEnumerable___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_String_System_Type_System_Int32_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
-  name: WriteToDatabase<T>(IEnumerable<T>, IRelmQuickContext, string, Type, int, string, bool, bool, bool, bool)
-  nameWithType: ListExtensions.WriteToDatabase<T>(IEnumerable<T>, IRelmQuickContext, string, Type, int, string, bool, bool, bool, bool)
-  fullName: CoreRelm.Extensions.ListExtensions.WriteToDatabase<T>(System.Collections.Generic.IEnumerable<T>, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, string, System.Type, int, string, bool, bool, bool, bool)
-  nameWithType.vb: ListExtensions.WriteToDatabase(Of T)(IEnumerable(Of T), IRelmQuickContext, String, Type, Integer, String, Boolean, Boolean, Boolean, Boolean)
-  fullName.vb: CoreRelm.Extensions.ListExtensions.WriteToDatabase(Of T)(System.Collections.Generic.IEnumerable(Of T), CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, String, System.Type, Integer, String, Boolean, Boolean, Boolean, Boolean)
-  name.vb: WriteToDatabase(Of T)(IEnumerable(Of T), IRelmQuickContext, String, Type, Integer, String, Boolean, Boolean, Boolean, Boolean)
-  spec.csharp:
-  - uid: CoreRelm.Extensions.ListExtensions.WriteToDatabase``1(System.Collections.Generic.IEnumerable{`0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-    name: WriteToDatabase
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_WriteToDatabase__1_System_Collections_Generic_IEnumerable___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_String_System_Type_System_Int32_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
-  - name: <
-  - name: T
-  - name: '>'
-  - name: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: ','
-  - name: " "
-  - uid: System.Type
-    name: Type
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.type
-  - name: ','
-  - name: " "
-  - uid: System.Int32
-    name: int
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: ','
-  - name: " "
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: ','
-  - name: " "
-  - uid: System.Boolean
-    name: bool
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
-  - name: ','
-  - name: " "
-  - uid: System.Boolean
-    name: bool
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
-  - name: ','
-  - name: " "
-  - uid: System.Boolean
-    name: bool
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
-  - name: ','
-  - name: " "
-  - uid: System.Boolean
-    name: bool
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
-  - name: )
-  spec.vb:
-  - uid: CoreRelm.Extensions.ListExtensions.WriteToDatabase``1(System.Collections.Generic.IEnumerable{`0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-    name: WriteToDatabase
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_WriteToDatabase__1_System_Collections_Generic_IEnumerable___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_String_System_Type_System_Int32_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: ','
-  - name: " "
-  - uid: System.Type
-    name: Type
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.type
-  - name: ','
-  - name: " "
-  - uid: System.Int32
-    name: Integer
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: ','
-  - name: " "
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: ','
-  - name: " "
-  - uid: System.Boolean
-    name: Boolean
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
-  - name: ','
-  - name: " "
-  - uid: System.Boolean
-    name: Boolean
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
-  - name: ','
-  - name: " "
-  - uid: System.Boolean
-    name: Boolean
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
-  - name: ','
-  - name: " "
-  - uid: System.Boolean
-    name: Boolean
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
-  - name: )
 - uid: System.Collections.Generic.IEnumerable{`0}.CoreRelm.Extensions.ListExtensions.WriteToDatabase``1(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
   commentId: M:CoreRelm.Extensions.ListExtensions.WriteToDatabase``1(System.Collections.Generic.IEnumerable{``0},MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
   parent: CoreRelm.Extensions.ListExtensions
@@ -7059,6 +5539,159 @@ references:
   - name: " "
   - uid: MySql.Data.MySqlClient.MySqlTransaction
     name: MySqlTransaction
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Collections.Generic.IEnumerable{`0}.CoreRelm.Extensions.ListExtensions.WriteToDatabase``1(MySql.Data.MySqlClient.MySqlConnection,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  commentId: M:CoreRelm.Extensions.ListExtensions.WriteToDatabase``1(System.Collections.Generic.IEnumerable{``0},MySql.Data.MySqlClient.MySqlConnection,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  parent: CoreRelm.Extensions.ListExtensions
+  definition: CoreRelm.Extensions.ListExtensions.WriteToDatabase``1(System.Collections.Generic.IEnumerable{``0},MySql.Data.MySqlClient.MySqlConnection,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_WriteToDatabase__1_System_Collections_Generic_IEnumerable___0__MySql_Data_MySqlClient_MySqlConnection_System_String_System_Type_System_Int32_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  name: WriteToDatabase<T>(IEnumerable<T>, MySqlConnection, string, Type, int, string, bool, bool, bool, bool)
+  nameWithType: ListExtensions.WriteToDatabase<T>(IEnumerable<T>, MySqlConnection, string, Type, int, string, bool, bool, bool, bool)
+  fullName: CoreRelm.Extensions.ListExtensions.WriteToDatabase<T>(System.Collections.Generic.IEnumerable<T>, MySql.Data.MySqlClient.MySqlConnection, string, System.Type, int, string, bool, bool, bool, bool)
+  nameWithType.vb: ListExtensions.WriteToDatabase(Of T)(IEnumerable(Of T), MySqlConnection, String, Type, Integer, String, Boolean, Boolean, Boolean, Boolean)
+  fullName.vb: CoreRelm.Extensions.ListExtensions.WriteToDatabase(Of T)(System.Collections.Generic.IEnumerable(Of T), MySql.Data.MySqlClient.MySqlConnection, String, System.Type, Integer, String, Boolean, Boolean, Boolean, Boolean)
+  name.vb: WriteToDatabase(Of T)(IEnumerable(Of T), MySqlConnection, String, Type, Integer, String, Boolean, Boolean, Boolean, Boolean)
+  spec.csharp:
+  - uid: CoreRelm.Extensions.ListExtensions.WriteToDatabase``1(System.Collections.Generic.IEnumerable{`0},MySql.Data.MySqlClient.MySqlConnection,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+    name: WriteToDatabase
+    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_WriteToDatabase__1_System_Collections_Generic_IEnumerable___0__MySql_Data_MySqlClient_MySqlConnection_System_String_System_Type_System_Int32_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: MySql.Data.MySqlClient.MySqlConnection
+    name: MySqlConnection
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Extensions.ListExtensions.WriteToDatabase``1(System.Collections.Generic.IEnumerable{`0},MySql.Data.MySqlClient.MySqlConnection,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+    name: WriteToDatabase
+    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_WriteToDatabase__1_System_Collections_Generic_IEnumerable___0__MySql_Data_MySqlClient_MySqlConnection_System_String_System_Type_System_Int32_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: MySql.Data.MySqlClient.MySqlConnection
+    name: MySqlConnection
     isExternal: true
   - name: ','
   - name: " "
@@ -7560,108 +6193,6 @@ references:
   name: ListExtensions
   nameWithType: ListExtensions
   fullName: CoreRelm.Extensions.ListExtensions
-- uid: CoreRelm.Extensions.ListExtensions.LoadDataLoaderField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  commentId: M:CoreRelm.Extensions.ListExtensions.LoadDataLoaderField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  isExternal: true
-  href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadDataLoaderField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___
-  name: LoadDataLoaderField<T, R>(ICollection<T>, IRelmQuickContext, Expression<Func<T, R>>)
-  nameWithType: ListExtensions.LoadDataLoaderField<T, R>(ICollection<T>, IRelmQuickContext, Expression<Func<T, R>>)
-  fullName: CoreRelm.Extensions.ListExtensions.LoadDataLoaderField<T, R>(System.Collections.Generic.ICollection<T>, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression<System.Func<T, R>>)
-  nameWithType.vb: ListExtensions.LoadDataLoaderField(Of T, R)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, R)))
-  fullName.vb: CoreRelm.Extensions.ListExtensions.LoadDataLoaderField(Of T, R)(System.Collections.Generic.ICollection(Of T), CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression(Of System.Func(Of T, R)))
-  name.vb: LoadDataLoaderField(Of T, R)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, R)))
-  spec.csharp:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadDataLoaderField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-    name: LoadDataLoaderField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadDataLoaderField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: '>'
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: <
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: '>'
-  - name: '>'
-  - name: )
-  spec.vb:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadDataLoaderField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-    name: LoadDataLoaderField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadDataLoaderField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: )
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: )
-  - name: )
-  - name: )
 - uid: CoreRelm.Extensions.ListExtensions.LoadDataLoaderField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}})
   commentId: M:CoreRelm.Extensions.ListExtensions.LoadDataLoaderField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}})
   isExternal: true
@@ -8244,534 +6775,6 @@ references:
   - uid: CoreRelm.Interfaces.IRelmContext
     name: IRelmContext
     href: CoreRelm.Interfaces.IRelmContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: )
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: (
-  - name: Of
-  - name: " "
-  - name: R
-  - name: ','
-  - name: " "
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-  - name: )
-  - name: )
-- uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})
-  commentId: M:CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})
-  isExternal: true
-  href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____
-  name: LoadForeignKeyField<T, R>(ICollection<T>, IRelmQuickContext, Expression<Func<T, ICollection<R>>>)
-  nameWithType: ListExtensions.LoadForeignKeyField<T, R>(ICollection<T>, IRelmQuickContext, Expression<Func<T, ICollection<R>>>)
-  fullName: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField<T, R>(System.Collections.Generic.ICollection<T>, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression<System.Func<T, System.Collections.Generic.ICollection<R>>>)
-  nameWithType.vb: ListExtensions.LoadForeignKeyField(Of T, R)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, ICollection(Of R))))
-  fullName.vb: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField(Of T, R)(System.Collections.Generic.ICollection(Of T), CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression(Of System.Func(Of T, System.Collections.Generic.ICollection(Of R))))
-  name.vb: LoadForeignKeyField(Of T, R)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, ICollection(Of R))))
-  spec.csharp:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: '>'
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: <
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: <
-  - name: R
-  - name: '>'
-  - name: '>'
-  - name: '>'
-  - name: )
-  spec.vb:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: )
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: R
-  - name: )
-  - name: )
-  - name: )
-  - name: )
-- uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  commentId: M:CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  isExternal: true
-  href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  name: LoadForeignKeyField<T, R>(ICollection<T>, IRelmQuickContext, Expression<Func<T, ICollection<R>>>, Expression<Func<R, object>>)
-  nameWithType: ListExtensions.LoadForeignKeyField<T, R>(ICollection<T>, IRelmQuickContext, Expression<Func<T, ICollection<R>>>, Expression<Func<R, object>>)
-  fullName: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField<T, R>(System.Collections.Generic.ICollection<T>, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression<System.Func<T, System.Collections.Generic.ICollection<R>>>, System.Linq.Expressions.Expression<System.Func<R, object>>)
-  nameWithType.vb: ListExtensions.LoadForeignKeyField(Of T, R)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, ICollection(Of R))), Expression(Of Func(Of R, Object)))
-  fullName.vb: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField(Of T, R)(System.Collections.Generic.ICollection(Of T), CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression(Of System.Func(Of T, System.Collections.Generic.ICollection(Of R))), System.Linq.Expressions.Expression(Of System.Func(Of R, Object)))
-  name.vb: LoadForeignKeyField(Of T, R)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, ICollection(Of R))), Expression(Of Func(Of R, Object)))
-  spec.csharp:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: '>'
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: <
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: <
-  - name: R
-  - name: '>'
-  - name: '>'
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: <
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: <
-  - name: R
-  - name: ','
-  - name: " "
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: '>'
-  - name: '>'
-  - name: )
-  spec.vb:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: )
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: R
-  - name: )
-  - name: )
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: (
-  - name: Of
-  - name: " "
-  - name: R
-  - name: ','
-  - name: " "
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-  - name: )
-  - name: )
-- uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  commentId: M:CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  isExternal: true
-  href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___
-  name: LoadForeignKeyField<T, R>(ICollection<T>, IRelmQuickContext, Expression<Func<T, R>>)
-  nameWithType: ListExtensions.LoadForeignKeyField<T, R>(ICollection<T>, IRelmQuickContext, Expression<Func<T, R>>)
-  fullName: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField<T, R>(System.Collections.Generic.ICollection<T>, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression<System.Func<T, R>>)
-  nameWithType.vb: ListExtensions.LoadForeignKeyField(Of T, R)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, R)))
-  fullName.vb: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField(Of T, R)(System.Collections.Generic.ICollection(Of T), CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression(Of System.Func(Of T, R)))
-  name.vb: LoadForeignKeyField(Of T, R)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, R)))
-  spec.csharp:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: '>'
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: <
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: '>'
-  - name: '>'
-  - name: )
-  spec.vb:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: )
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: )
-  - name: )
-  - name: )
-- uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  commentId: M:CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  isExternal: true
-  href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  name: LoadForeignKeyField<T, R>(ICollection<T>, IRelmQuickContext, Expression<Func<T, R>>, Expression<Func<R, object>>)
-  nameWithType: ListExtensions.LoadForeignKeyField<T, R>(ICollection<T>, IRelmQuickContext, Expression<Func<T, R>>, Expression<Func<R, object>>)
-  fullName: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField<T, R>(System.Collections.Generic.ICollection<T>, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression<System.Func<T, R>>, System.Linq.Expressions.Expression<System.Func<R, object>>)
-  nameWithType.vb: ListExtensions.LoadForeignKeyField(Of T, R)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, R)), Expression(Of Func(Of R, Object)))
-  fullName.vb: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField(Of T, R)(System.Collections.Generic.ICollection(Of T), CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression(Of System.Func(Of T, R)), System.Linq.Expressions.Expression(Of System.Func(Of R, Object)))
-  name.vb: LoadForeignKeyField(Of T, R)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, R)), Expression(Of Func(Of R, Object)))
-  spec.csharp:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: '>'
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: <
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: '>'
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: <
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: <
-  - name: R
-  - name: ','
-  - name: " "
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: '>'
-  - name: '>'
-  - name: )
-  spec.vb:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: )
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -9972,630 +7975,6 @@ references:
   - name: )
   - name: )
   - name: )
-- uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
-  commentId: M:CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
-  isExternal: true
-  href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__
-  name: LoadForeignKeyField<T, R, S>(ICollection<T>, IRelmQuickContext, Expression<Func<T, ICollection<R>>>, IRelmDataLoader<S>)
-  nameWithType: ListExtensions.LoadForeignKeyField<T, R, S>(ICollection<T>, IRelmQuickContext, Expression<Func<T, ICollection<R>>>, IRelmDataLoader<S>)
-  fullName: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField<T, R, S>(System.Collections.Generic.ICollection<T>, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression<System.Func<T, System.Collections.Generic.ICollection<R>>>, CoreRelm.Interfaces.IRelmDataLoader<S>)
-  nameWithType.vb: ListExtensions.LoadForeignKeyField(Of T, R, S)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, ICollection(Of R))), IRelmDataLoader(Of S))
-  fullName.vb: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField(Of T, R, S)(System.Collections.Generic.ICollection(Of T), CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression(Of System.Func(Of T, System.Collections.Generic.ICollection(Of R))), CoreRelm.Interfaces.IRelmDataLoader(Of S))
-  name.vb: LoadForeignKeyField(Of T, R, S)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, ICollection(Of R))), IRelmDataLoader(Of S))
-  spec.csharp:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: ','
-  - name: " "
-  - name: S
-  - name: '>'
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: <
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: <
-  - name: R
-  - name: '>'
-  - name: '>'
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.IRelmDataLoader`1
-    name: IRelmDataLoader
-    href: CoreRelm.Interfaces.IRelmDataLoader-1.html
-  - name: <
-  - name: S
-  - name: '>'
-  - name: )
-  spec.vb:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: ','
-  - name: " "
-  - name: S
-  - name: )
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: R
-  - name: )
-  - name: )
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.IRelmDataLoader`1
-    name: IRelmDataLoader
-    href: CoreRelm.Interfaces.IRelmDataLoader-1.html
-  - name: (
-  - name: Of
-  - name: " "
-  - name: S
-  - name: )
-  - name: )
-- uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  commentId: M:CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  isExternal: true
-  href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  name: LoadForeignKeyField<T, R, S>(ICollection<T>, IRelmQuickContext, Expression<Func<T, ICollection<R>>>, IRelmDataLoader<S>, Expression<Func<R, object>>)
-  nameWithType: ListExtensions.LoadForeignKeyField<T, R, S>(ICollection<T>, IRelmQuickContext, Expression<Func<T, ICollection<R>>>, IRelmDataLoader<S>, Expression<Func<R, object>>)
-  fullName: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField<T, R, S>(System.Collections.Generic.ICollection<T>, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression<System.Func<T, System.Collections.Generic.ICollection<R>>>, CoreRelm.Interfaces.IRelmDataLoader<S>, System.Linq.Expressions.Expression<System.Func<R, object>>)
-  nameWithType.vb: ListExtensions.LoadForeignKeyField(Of T, R, S)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, ICollection(Of R))), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
-  fullName.vb: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField(Of T, R, S)(System.Collections.Generic.ICollection(Of T), CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression(Of System.Func(Of T, System.Collections.Generic.ICollection(Of R))), CoreRelm.Interfaces.IRelmDataLoader(Of S), System.Linq.Expressions.Expression(Of System.Func(Of R, Object)))
-  name.vb: LoadForeignKeyField(Of T, R, S)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, ICollection(Of R))), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
-  spec.csharp:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: ','
-  - name: " "
-  - name: S
-  - name: '>'
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: <
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: <
-  - name: R
-  - name: '>'
-  - name: '>'
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.IRelmDataLoader`1
-    name: IRelmDataLoader
-    href: CoreRelm.Interfaces.IRelmDataLoader-1.html
-  - name: <
-  - name: S
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: <
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: <
-  - name: R
-  - name: ','
-  - name: " "
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: '>'
-  - name: '>'
-  - name: )
-  spec.vb:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: ','
-  - name: " "
-  - name: S
-  - name: )
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: R
-  - name: )
-  - name: )
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.IRelmDataLoader`1
-    name: IRelmDataLoader
-    href: CoreRelm.Interfaces.IRelmDataLoader-1.html
-  - name: (
-  - name: Of
-  - name: " "
-  - name: S
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: (
-  - name: Of
-  - name: " "
-  - name: R
-  - name: ','
-  - name: " "
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-  - name: )
-  - name: )
-- uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})
-  commentId: M:CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})
-  isExternal: true
-  href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__
-  name: LoadForeignKeyField<T, R, S>(ICollection<T>, IRelmQuickContext, Expression<Func<T, R>>, IRelmDataLoader<S>)
-  nameWithType: ListExtensions.LoadForeignKeyField<T, R, S>(ICollection<T>, IRelmQuickContext, Expression<Func<T, R>>, IRelmDataLoader<S>)
-  fullName: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField<T, R, S>(System.Collections.Generic.ICollection<T>, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression<System.Func<T, R>>, CoreRelm.Interfaces.IRelmDataLoader<S>)
-  nameWithType.vb: ListExtensions.LoadForeignKeyField(Of T, R, S)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, R)), IRelmDataLoader(Of S))
-  fullName.vb: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField(Of T, R, S)(System.Collections.Generic.ICollection(Of T), CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression(Of System.Func(Of T, R)), CoreRelm.Interfaces.IRelmDataLoader(Of S))
-  name.vb: LoadForeignKeyField(Of T, R, S)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, R)), IRelmDataLoader(Of S))
-  spec.csharp:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: ','
-  - name: " "
-  - name: S
-  - name: '>'
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: <
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: '>'
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.IRelmDataLoader`1
-    name: IRelmDataLoader
-    href: CoreRelm.Interfaces.IRelmDataLoader-1.html
-  - name: <
-  - name: S
-  - name: '>'
-  - name: )
-  spec.vb:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: ','
-  - name: " "
-  - name: S
-  - name: )
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: )
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.IRelmDataLoader`1
-    name: IRelmDataLoader
-    href: CoreRelm.Interfaces.IRelmDataLoader-1.html
-  - name: (
-  - name: Of
-  - name: " "
-  - name: S
-  - name: )
-  - name: )
-- uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  commentId: M:CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  isExternal: true
-  href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  name: LoadForeignKeyField<T, R, S>(ICollection<T>, IRelmQuickContext, Expression<Func<T, R>>, IRelmDataLoader<S>, Expression<Func<R, object>>)
-  nameWithType: ListExtensions.LoadForeignKeyField<T, R, S>(ICollection<T>, IRelmQuickContext, Expression<Func<T, R>>, IRelmDataLoader<S>, Expression<Func<R, object>>)
-  fullName: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField<T, R, S>(System.Collections.Generic.ICollection<T>, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression<System.Func<T, R>>, CoreRelm.Interfaces.IRelmDataLoader<S>, System.Linq.Expressions.Expression<System.Func<R, object>>)
-  nameWithType.vb: ListExtensions.LoadForeignKeyField(Of T, R, S)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, R)), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
-  fullName.vb: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField(Of T, R, S)(System.Collections.Generic.ICollection(Of T), CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression(Of System.Func(Of T, R)), CoreRelm.Interfaces.IRelmDataLoader(Of S), System.Linq.Expressions.Expression(Of System.Func(Of R, Object)))
-  name.vb: LoadForeignKeyField(Of T, R, S)(ICollection(Of T), IRelmQuickContext, Expression(Of Func(Of T, R)), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
-  spec.csharp:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: ','
-  - name: " "
-  - name: S
-  - name: '>'
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: <
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: '>'
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.IRelmDataLoader`1
-    name: IRelmDataLoader
-    href: CoreRelm.Interfaces.IRelmDataLoader-1.html
-  - name: <
-  - name: S
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: <
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: <
-  - name: R
-  - name: ','
-  - name: " "
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: '>'
-  - name: '>'
-  - name: )
-  spec.vb:
-  - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-    name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: ','
-  - name: " "
-  - name: S
-  - name: )
-  - name: (
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - name: R
-  - name: )
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.IRelmDataLoader`1
-    name: IRelmDataLoader
-    href: CoreRelm.Interfaces.IRelmDataLoader-1.html
-  - name: (
-  - name: Of
-  - name: " "
-  - name: S
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: (
-  - name: Of
-  - name: " "
-  - name: R
-  - name: ','
-  - name: " "
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-  - name: )
-  - name: )
 - uid: CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
   commentId: M:CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
   isExternal: true
@@ -11630,158 +9009,6 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
-- uid: CoreRelm.Extensions.ListExtensions.WriteToDatabase``1(System.Collections.Generic.IEnumerable{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  commentId: M:CoreRelm.Extensions.ListExtensions.WriteToDatabase``1(System.Collections.Generic.IEnumerable{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  isExternal: true
-  href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_WriteToDatabase__1_System_Collections_Generic_IEnumerable___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_String_System_Type_System_Int32_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
-  name: WriteToDatabase<T>(IEnumerable<T>, IRelmQuickContext, string, Type, int, string, bool, bool, bool, bool)
-  nameWithType: ListExtensions.WriteToDatabase<T>(IEnumerable<T>, IRelmQuickContext, string, Type, int, string, bool, bool, bool, bool)
-  fullName: CoreRelm.Extensions.ListExtensions.WriteToDatabase<T>(System.Collections.Generic.IEnumerable<T>, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, string, System.Type, int, string, bool, bool, bool, bool)
-  nameWithType.vb: ListExtensions.WriteToDatabase(Of T)(IEnumerable(Of T), IRelmQuickContext, String, Type, Integer, String, Boolean, Boolean, Boolean, Boolean)
-  fullName.vb: CoreRelm.Extensions.ListExtensions.WriteToDatabase(Of T)(System.Collections.Generic.IEnumerable(Of T), CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, String, System.Type, Integer, String, Boolean, Boolean, Boolean, Boolean)
-  name.vb: WriteToDatabase(Of T)(IEnumerable(Of T), IRelmQuickContext, String, Type, Integer, String, Boolean, Boolean, Boolean, Boolean)
-  spec.csharp:
-  - uid: CoreRelm.Extensions.ListExtensions.WriteToDatabase``1(System.Collections.Generic.IEnumerable{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-    name: WriteToDatabase
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_WriteToDatabase__1_System_Collections_Generic_IEnumerable___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_String_System_Type_System_Int32_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
-  - name: <
-  - name: T
-  - name: '>'
-  - name: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: ','
-  - name: " "
-  - uid: System.Type
-    name: Type
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.type
-  - name: ','
-  - name: " "
-  - uid: System.Int32
-    name: int
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: ','
-  - name: " "
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: ','
-  - name: " "
-  - uid: System.Boolean
-    name: bool
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
-  - name: ','
-  - name: " "
-  - uid: System.Boolean
-    name: bool
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
-  - name: ','
-  - name: " "
-  - uid: System.Boolean
-    name: bool
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
-  - name: ','
-  - name: " "
-  - uid: System.Boolean
-    name: bool
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
-  - name: )
-  spec.vb:
-  - uid: CoreRelm.Extensions.ListExtensions.WriteToDatabase``1(System.Collections.Generic.IEnumerable{``0},CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-    name: WriteToDatabase
-    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_WriteToDatabase__1_System_Collections_Generic_IEnumerable___0__CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_String_System_Type_System_Int32_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  - name: ','
-  - name: " "
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: ','
-  - name: " "
-  - uid: System.Type
-    name: Type
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.type
-  - name: ','
-  - name: " "
-  - uid: System.Int32
-    name: Integer
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: ','
-  - name: " "
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: ','
-  - name: " "
-  - uid: System.Boolean
-    name: Boolean
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
-  - name: ','
-  - name: " "
-  - uid: System.Boolean
-    name: Boolean
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
-  - name: ','
-  - name: " "
-  - uid: System.Boolean
-    name: Boolean
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
-  - name: ','
-  - name: " "
-  - uid: System.Boolean
-    name: Boolean
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
-  - name: )
 - uid: CoreRelm.Extensions.ListExtensions.WriteToDatabase``1(System.Collections.Generic.IEnumerable{``0},MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
   commentId: M:CoreRelm.Extensions.ListExtensions.WriteToDatabase``1(System.Collections.Generic.IEnumerable{``0},MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
   isExternal: true
@@ -11894,6 +9121,158 @@ references:
   - name: " "
   - uid: MySql.Data.MySqlClient.MySqlTransaction
     name: MySqlTransaction
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: CoreRelm.Extensions.ListExtensions.WriteToDatabase``1(System.Collections.Generic.IEnumerable{``0},MySql.Data.MySqlClient.MySqlConnection,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  commentId: M:CoreRelm.Extensions.ListExtensions.WriteToDatabase``1(System.Collections.Generic.IEnumerable{``0},MySql.Data.MySqlClient.MySqlConnection,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  isExternal: true
+  href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_WriteToDatabase__1_System_Collections_Generic_IEnumerable___0__MySql_Data_MySqlClient_MySqlConnection_System_String_System_Type_System_Int32_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  name: WriteToDatabase<T>(IEnumerable<T>, MySqlConnection, string, Type, int, string, bool, bool, bool, bool)
+  nameWithType: ListExtensions.WriteToDatabase<T>(IEnumerable<T>, MySqlConnection, string, Type, int, string, bool, bool, bool, bool)
+  fullName: CoreRelm.Extensions.ListExtensions.WriteToDatabase<T>(System.Collections.Generic.IEnumerable<T>, MySql.Data.MySqlClient.MySqlConnection, string, System.Type, int, string, bool, bool, bool, bool)
+  nameWithType.vb: ListExtensions.WriteToDatabase(Of T)(IEnumerable(Of T), MySqlConnection, String, Type, Integer, String, Boolean, Boolean, Boolean, Boolean)
+  fullName.vb: CoreRelm.Extensions.ListExtensions.WriteToDatabase(Of T)(System.Collections.Generic.IEnumerable(Of T), MySql.Data.MySqlClient.MySqlConnection, String, System.Type, Integer, String, Boolean, Boolean, Boolean, Boolean)
+  name.vb: WriteToDatabase(Of T)(IEnumerable(Of T), MySqlConnection, String, Type, Integer, String, Boolean, Boolean, Boolean, Boolean)
+  spec.csharp:
+  - uid: CoreRelm.Extensions.ListExtensions.WriteToDatabase``1(System.Collections.Generic.IEnumerable{``0},MySql.Data.MySqlClient.MySqlConnection,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+    name: WriteToDatabase
+    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_WriteToDatabase__1_System_Collections_Generic_IEnumerable___0__MySql_Data_MySqlClient_MySqlConnection_System_String_System_Type_System_Int32_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: MySql.Data.MySqlClient.MySqlConnection
+    name: MySqlConnection
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Extensions.ListExtensions.WriteToDatabase``1(System.Collections.Generic.IEnumerable{``0},MySql.Data.MySqlClient.MySqlConnection,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+    name: WriteToDatabase
+    href: CoreRelm.Extensions.ListExtensions.html#CoreRelm_Extensions_ListExtensions_WriteToDatabase__1_System_Collections_Generic_IEnumerable___0__MySql_Data_MySqlClient_MySqlConnection_System_String_System_Type_System_Int32_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: MySql.Data.MySqlClient.MySqlConnection
+    name: MySqlConnection
     isExternal: true
   - name: ','
   - name: " "
@@ -12253,43 +9632,6 @@ references:
   - name: " "
   - name: T
   - name: )
-- uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-  commentId: T:CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-  parent: CoreRelm.Interfaces.RelmQuick
-  href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  name: IRelmQuickContext
-  nameWithType: IRelmQuickContext
-  fullName: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-- uid: CoreRelm.Interfaces.RelmQuick
-  commentId: N:CoreRelm.Interfaces.RelmQuick
-  href: CoreRelm.html
-  name: CoreRelm.Interfaces.RelmQuick
-  nameWithType: CoreRelm.Interfaces.RelmQuick
-  fullName: CoreRelm.Interfaces.RelmQuick
-  spec.csharp:
-  - uid: CoreRelm
-    name: CoreRelm
-    href: CoreRelm.html
-  - name: .
-  - uid: CoreRelm.Interfaces
-    name: Interfaces
-    href: CoreRelm.Interfaces.html
-  - name: .
-  - uid: CoreRelm.Interfaces.RelmQuick
-    name: RelmQuick
-    href: CoreRelm.Interfaces.RelmQuick.html
-  spec.vb:
-  - uid: CoreRelm
-    name: CoreRelm
-    href: CoreRelm.html
-  - name: .
-  - uid: CoreRelm.Interfaces
-    name: Interfaces
-    href: CoreRelm.Interfaces.html
-  - name: .
-  - uid: CoreRelm.Interfaces.RelmQuick
-    name: RelmQuick
-    href: CoreRelm.Interfaces.RelmQuick.html
 - uid: CoreRelm.Models.RelmDataSet`1.GetEnumerator*
   commentId: Overload:CoreRelm.Models.RelmDataSet`1.GetEnumerator
   href: CoreRelm.Models.RelmDataSet-1.html#CoreRelm_Models_RelmDataSet_1_GetEnumerator
@@ -12516,13 +9858,6 @@ references:
     name: IRelmFieldLoader
     href: CoreRelm.Interfaces.IRelmFieldLoader.html
   - name: )
-- uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickFieldLoader
-  commentId: T:CoreRelm.Interfaces.RelmQuick.IRelmQuickFieldLoader
-  parent: CoreRelm.Interfaces.RelmQuick
-  href: CoreRelm.Interfaces.RelmQuick.IRelmQuickFieldLoader.html
-  name: IRelmQuickFieldLoader
-  nameWithType: IRelmQuickFieldLoader
-  fullName: CoreRelm.Interfaces.RelmQuick.IRelmQuickFieldLoader
 - uid: CoreRelm.Models.RelmDataSet`1.SetDataLoader*
   commentId: Overload:CoreRelm.Models.RelmDataSet`1.SetDataLoader
   href: CoreRelm.Models.RelmDataSet-1.html#CoreRelm_Models_RelmDataSet_1_SetDataLoader_CoreRelm_Interfaces_IRelmDataLoader__0__

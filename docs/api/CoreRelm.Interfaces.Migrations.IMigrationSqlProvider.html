@@ -122,8 +122,8 @@ Interface IMigrationSqlProvider  <a class="header-action link-secondary" title="
 
   <a id="CoreRelm_Interfaces_Migrations_IMigrationSqlProvider_Generate_" data-uid="CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate*"></a>
 
-  <h3 id="CoreRelm_Interfaces_Migrations_IMigrationSqlProvider_Generate_System_String_System_String_System_String_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__System_Boolean_System_Threading_CancellationToken_System_Boolean_System_Boolean_CoreRelm_RelmInternal_Helpers_Migrations_Provisioning_MySqlDatabaseProvisioner_" data-uid="CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(System.String,System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},System.Boolean,System.Threading.CancellationToken,System.Boolean,System.Boolean,CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)">
-  Generate(string, string, string, string, List&lt;ValidatedModelType&gt;, bool, CancellationToken, bool, bool, MySqlDatabaseProvisioner)
+  <h3 id="CoreRelm_Interfaces_Migrations_IMigrationSqlProvider_Generate_System_String_System_String_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__CoreRelm_RelmInternal_Helpers_Migrations_Provisioning_MySqlDatabaseProvisioner_" data-uid="CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)">
+  Generate(string, string, string, List&lt;ValidatedModelType&gt;, MySqlDatabaseProvisioner)
   <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/Migrations/IRelmMigrationSqlProvider.cs/#L13"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -131,7 +131,7 @@ Interface IMigrationSqlProvider  <a class="header-action link-secondary" title="
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;MigrationGenerateResult&gt; Generate(string migrationName, string stampUtc, string setName, string dbName, List&lt;ValidatedModelType&gt; modelsForDb, bool destructive, CancellationToken cancellationToken, bool quiet, bool apply, MySqlDatabaseProvisioner provisioner)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;MigrationGenerateResult&gt; Generate(string migrationName, string stampUtc, string dbName, List&lt;ValidatedModelType&gt; modelsForDb, MySqlDatabaseProvisioner provisioner)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -140,19 +140,9 @@ Interface IMigrationSqlProvider  <a class="header-action link-secondary" title="
     <dd></dd>
     <dt><code>stampUtc</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
-    <dt><code>setName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
     <dt><code>dbName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
     <dt><code>modelsForDb</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="CoreRelm.Models.Migrations.ValidatedModelType.html">ValidatedModelType</a>&gt;</dt>
-    <dd></dd>
-    <dt><code>destructive</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
-    <dd></dd>
-    <dt><code>quiet</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-    <dt><code>apply</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd></dd>
     <dt><code>provisioner</code> <a class="xref" href="CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.html">MySqlDatabaseProvisioner</a></dt>
     <dd></dd>

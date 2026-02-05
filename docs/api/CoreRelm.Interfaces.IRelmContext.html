@@ -178,8 +178,8 @@ threads.</p>
   <a id="CoreRelm_Interfaces_IRelmContext_BulkTableWrite_" data-uid="CoreRelm.Interfaces.IRelmContext.BulkTableWrite*"></a>
 
   <h3 id="CoreRelm_Interfaces_IRelmContext_BulkTableWrite__1___0_System_String_MySql_Data_MySqlClient_MySqlTransaction_System_Type_System_Int32_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Interfaces.IRelmContext.BulkTableWrite``1(``0,System.String,MySql.Data.MySqlClient.MySqlTransaction,System.Type,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
-  BulkTableWrite&lt;T&gt;(T, string, MySqlTransaction, Type, int, bool, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmContext.cs/#L411"><i class="bi bi-code-slash"></i></a>
+  BulkTableWrite&lt;T&gt;(T, string?, MySqlTransaction, Type, int, bool, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmContext.cs/#L444"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Performs a bulk write operation to insert or update data in the specified database table.</p>
@@ -187,7 +187,7 @@ threads.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">int BulkTableWrite&lt;T&gt;(T sourceData, string tableName = null, MySqlTransaction sqlTransaction = null, Type forceType = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)</code></pre>
+    <pre><code class="lang-csharp hljs">int BulkTableWrite&lt;T&gt;(T sourceData, string? tableName = null, MySqlTransaction sqlTransaction = null, Type forceType = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -282,9 +282,9 @@ target table to avoid runtime errors.</p>
 
   <a id="CoreRelm_Interfaces_IRelmContext_DoDatabaseWork_" data-uid="CoreRelm.Interfaces.IRelmContext.DoDatabaseWork*"></a>
 
-  <h3 id="CoreRelm_Interfaces_IRelmContext_DoDatabaseWork_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Boolean_" data-uid="CoreRelm.Interfaces.IRelmContext.DoDatabaseWork(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)">
-  DoDatabaseWork(string, Dictionary&lt;string, object&gt;, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmContext.cs/#L425"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Interfaces_IRelmContext_DoDatabaseWork_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_" data-uid="CoreRelm.Interfaces.IRelmContext.DoDatabaseWork(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)">
+  DoDatabaseWork(string, Dictionary&lt;string, object&gt;?, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmContext.cs/#L456"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Executes a database operation using the specified query and parameters.</p>
@@ -292,7 +292,7 @@ target table to avoid runtime errors.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void DoDatabaseWork(string query, Dictionary&lt;string, object&gt; parameters = null, bool throwException = true, bool useTransaction = false)</code></pre>
+    <pre><code class="lang-csharp hljs">void DoDatabaseWork(string query, Dictionary&lt;string, object&gt;? parameters = null, bool throwException = true)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -308,9 +308,6 @@ applied.</p>
     <dd><p>A value indicating whether an exception should be thrown if the operation fails.  If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>,
 an exception is thrown on failure; otherwise, the failure is silently handled.</p>
 </dd>
-    <dt><code>useTransaction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>A value indicating whether the operation should be executed within a transaction.  If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, the operation is wrapped in a transaction; otherwise, it is executed without one.</p>
-</dd>
   </dl>
 
 
@@ -320,7 +317,7 @@ an exception is thrown on failure; otherwise, the failure is silently handled.</
 
 
 
-  <h4 class="section" id="CoreRelm_Interfaces_IRelmContext_DoDatabaseWork_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Boolean__remarks">Remarks</h4>
+  <h4 class="section" id="CoreRelm_Interfaces_IRelmContext_DoDatabaseWork_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean__remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>This method allows for executing parameterized SQL queries with optional transaction
 support.  Use the <code class="paramref">throwException</code> parameter to control error handling behavior.</p>
 </div>
@@ -330,9 +327,9 @@ support.  Use the <code class="paramref">throwException</code> parameter to cont
 
   <a id="CoreRelm_Interfaces_IRelmContext_DoDatabaseWork_" data-uid="CoreRelm.Interfaces.IRelmContext.DoDatabaseWork*"></a>
 
-  <h3 id="CoreRelm_Interfaces_IRelmContext_DoDatabaseWork_System_String_System_Func_MySql_Data_MySqlClient_MySqlCommand_System_Object__System_Boolean_System_Boolean_" data-uid="CoreRelm.Interfaces.IRelmContext.DoDatabaseWork(System.String,System.Func{MySql.Data.MySqlClient.MySqlCommand,System.Object},System.Boolean,System.Boolean)">
-  DoDatabaseWork(string, Func&lt;MySqlCommand, object&gt;, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmContext.cs/#L459"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Interfaces_IRelmContext_DoDatabaseWork_System_String_System_Func_MySql_Data_MySqlClient_MySqlCommand_System_Object__System_Boolean_" data-uid="CoreRelm.Interfaces.IRelmContext.DoDatabaseWork(System.String,System.Func{MySql.Data.MySqlClient.MySqlCommand,System.Object},System.Boolean)">
+  DoDatabaseWork(string, Func&lt;MySqlCommand, object&gt;, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmContext.cs/#L486"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Executes a database operation using the specified query and callback function.</p>
@@ -340,7 +337,7 @@ support.  Use the <code class="paramref">throwException</code> parameter to cont
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void DoDatabaseWork(string query, Func&lt;MySqlCommand, object&gt; actionCallback, bool throwException = true, bool useTransaction = false)</code></pre>
+    <pre><code class="lang-csharp hljs">void DoDatabaseWork(string query, Func&lt;MySqlCommand, object&gt; actionCallback, bool throwException = true)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -355,9 +352,6 @@ must not be null.</p>
     <dt><code>throwException</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd><p>A value indicating whether to throw an exception if an error occurs during the operation.  If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, exceptions will be thrown; otherwise, errors will be suppressed.</p>
 </dd>
-    <dt><code>useTransaction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>A value indicating whether the operation should be executed within a database transaction.  If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, the operation will be wrapped in a transaction; otherwise, it will not.</p>
-</dd>
   </dl>
 
 
@@ -367,7 +361,7 @@ must not be null.</p>
 
 
 
-  <h4 class="section" id="CoreRelm_Interfaces_IRelmContext_DoDatabaseWork_System_String_System_Func_MySql_Data_MySqlClient_MySqlCommand_System_Object__System_Boolean_System_Boolean__remarks">Remarks</h4>
+  <h4 class="section" id="CoreRelm_Interfaces_IRelmContext_DoDatabaseWork_System_String_System_Func_MySql_Data_MySqlClient_MySqlCommand_System_Object__System_Boolean__remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>This method provides a flexible way to execute database operations by allowing the
 caller to  define custom logic through the <code class="paramref">actionCallback</code> parameter. Ensure that the
 <code class="paramref">query</code> is properly sanitized to prevent SQL injection attacks.</p>
@@ -378,9 +372,9 @@ caller to  define custom logic through the <code class="paramref">actionCallback
 
   <a id="CoreRelm_Interfaces_IRelmContext_DoDatabaseWork_" data-uid="CoreRelm.Interfaces.IRelmContext.DoDatabaseWork*"></a>
 
-  <h3 id="CoreRelm_Interfaces_IRelmContext_DoDatabaseWork__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Boolean_" data-uid="CoreRelm.Interfaces.IRelmContext.DoDatabaseWork``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)">
-  DoDatabaseWork&lt;T&gt;(string, Dictionary&lt;string, object&gt;, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmContext.cs/#L444"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Interfaces_IRelmContext_DoDatabaseWork__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_" data-uid="CoreRelm.Interfaces.IRelmContext.DoDatabaseWork``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)">
+  DoDatabaseWork&lt;T&gt;(string, Dictionary&lt;string, object&gt;?, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmContext.cs/#L473"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Executes a database query and returns the result as the specified type.</p>
@@ -388,7 +382,7 @@ caller to  define custom logic through the <code class="paramref">actionCallback
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">T DoDatabaseWork&lt;T&gt;(string query, Dictionary&lt;string, object&gt; parameters = null, bool throwException = true, bool useTransaction = false)</code></pre>
+    <pre><code class="lang-csharp hljs">T? DoDatabaseWork&lt;T&gt;(string query, Dictionary&lt;string, object&gt;? parameters = null, bool throwException = true)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -403,10 +397,6 @@ are required.</p>
     <dt><code>throwException</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd><p>Specifies whether an exception should be thrown if the query fails. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, an exception
 is thrown on failure; otherwise, the method returns the default value of <code class="typeparamref">T</code>.</p>
-</dd>
-    <dt><code>useTransaction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>Specifies whether the query should be executed within a transaction. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, the query is
-executed in a transactional context; otherwise, it is executed without a transaction.</p>
 </dd>
   </dl>
 
@@ -431,7 +421,7 @@ fails.</p>
 
 
 
-  <h4 class="section" id="CoreRelm_Interfaces_IRelmContext_DoDatabaseWork__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Boolean__remarks">Remarks</h4>
+  <h4 class="section" id="CoreRelm_Interfaces_IRelmContext_DoDatabaseWork__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean__remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>Use this method to execute queries that return a single result, such as scalar values
 or objects.  Ensure that the type <code class="typeparamref">T</code> matches the expected result of the query to avoid
 runtime errors.</p>
@@ -442,9 +432,9 @@ runtime errors.</p>
 
   <a id="CoreRelm_Interfaces_IRelmContext_DoDatabaseWork_" data-uid="CoreRelm.Interfaces.IRelmContext.DoDatabaseWork*"></a>
 
-  <h3 id="CoreRelm_Interfaces_IRelmContext_DoDatabaseWork__1_System_String_System_Func_MySql_Data_MySqlClient_MySqlCommand_System_Object__System_Boolean_System_Boolean_" data-uid="CoreRelm.Interfaces.IRelmContext.DoDatabaseWork``1(System.String,System.Func{MySql.Data.MySqlClient.MySqlCommand,System.Object},System.Boolean,System.Boolean)">
-  DoDatabaseWork&lt;T&gt;(string, Func&lt;MySqlCommand, object&gt;, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmContext.cs/#L478"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Interfaces_IRelmContext_DoDatabaseWork__1_System_String_System_Func_MySql_Data_MySqlClient_MySqlCommand_System_Object__System_Boolean_" data-uid="CoreRelm.Interfaces.IRelmContext.DoDatabaseWork``1(System.String,System.Func{MySql.Data.MySqlClient.MySqlCommand,System.Object},System.Boolean)">
+  DoDatabaseWork&lt;T&gt;(string, Func&lt;MySqlCommand, object&gt;, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmContext.cs/#L503"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Executes a database operation using the specified query and callback function.</p>
@@ -452,7 +442,7 @@ runtime errors.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">T DoDatabaseWork&lt;T&gt;(string query, Func&lt;MySqlCommand, object&gt; actionCallback, bool throwException = true, bool useTransaction = false)</code></pre>
+    <pre><code class="lang-csharp hljs">T? DoDatabaseWork&lt;T&gt;(string query, Func&lt;MySqlCommand, object&gt; actionCallback, bool throwException = true)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -467,10 +457,6 @@ function should return an object of type <code class="typeparamref">T</code>.</p
     <dt><code>throwException</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd><p>A value indicating whether an exception should be thrown if an error occurs during the operation. The
 default value is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>.</p>
-</dd>
-    <dt><code>useTransaction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>A value indicating whether the operation should be executed within a database transaction. The default value
-is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
 </dd>
   </dl>
 
@@ -493,7 +479,7 @@ is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin
 
 
 
-  <h4 class="section" id="CoreRelm_Interfaces_IRelmContext_DoDatabaseWork__1_System_String_System_Func_MySql_Data_MySqlClient_MySqlCommand_System_Object__System_Boolean_System_Boolean__remarks">Remarks</h4>
+  <h4 class="section" id="CoreRelm_Interfaces_IRelmContext_DoDatabaseWork__1_System_String_System_Func_MySql_Data_MySqlClient_MySqlCommand_System_Object__System_Boolean__remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>This method provides a flexible way to execute database operations by allowing the
 caller to define the specific action to perform using the provided <span class="xref">MySql.Data.MySqlClient.MySqlCommand</span> object. If
 <code class="paramref">useTransaction</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, the operation will be executed within a
@@ -556,7 +542,7 @@ such element is found.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">T FirstOrDefault&lt;T&gt;(Expression&lt;Func&lt;T, bool&gt;&gt; predicate, bool loadDataLoaders = false) where T : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">T? FirstOrDefault&lt;T&gt;(Expression&lt;Func&lt;T, bool&gt;&gt; predicate, bool loadDataLoaders = false) where T : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -596,9 +582,9 @@ constructor.</p>
 
   <a id="CoreRelm_Interfaces_IRelmContext_GetBulkTableWriter_" data-uid="CoreRelm.Interfaces.IRelmContext.GetBulkTableWriter*"></a>
 
-  <h3 id="CoreRelm_Interfaces_IRelmContext_GetBulkTableWriter__1_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Interfaces.IRelmContext.GetBulkTableWriter``1(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
-  GetBulkTableWriter&lt;T&gt;(string, bool, bool, bool, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmContext.cs/#L384"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Interfaces_IRelmContext_GetBulkTableWriter__1_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Interfaces.IRelmContext.GetBulkTableWriter``1(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+  GetBulkTableWriter&lt;T&gt;(string?, bool, bool, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmContext.cs/#L417"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Creates and returns a <a class="xref" href="CoreRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter&lt;T&gt;</a> instance for performing bulk insert operations on a
@@ -607,7 +593,7 @@ database table.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">BulkTableWriter&lt;T&gt; GetBulkTableWriter&lt;T&gt;(string insertQuery = null, bool useTransaction = false, bool throwException = true, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)</code></pre>
+    <pre><code class="lang-csharp hljs">BulkTableWriter&lt;T&gt; GetBulkTableWriter&lt;T&gt;(string? insertQuery = null, bool throwException = true, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -615,10 +601,6 @@ database table.</p>
     <dt><code>insertQuery</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd><p>An optional SQL insert query to use for the bulk operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, a default query is
 generated based on the type <code class="typeparamref">T</code>.</p>
-</dd>
-    <dt><code>useTransaction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>Specifies whether the bulk operation should be performed within a transaction. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>,
-the operation is transactional; otherwise, it is not.</p>
 </dd>
     <dt><code>throwException</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd><p>Specifies whether exceptions should be thrown if an error occurs during the bulk operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, exceptions are thrown; otherwise, errors are suppressed.</p>
@@ -656,10 +638,71 @@ operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-refere
 
 
 
-  <h4 class="section" id="CoreRelm_Interfaces_IRelmContext_GetBulkTableWriter__1_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Boolean__remarks">Remarks</h4>
+  <h4 class="section" id="CoreRelm_Interfaces_IRelmContext_GetBulkTableWriter__1_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean__remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>The <a class="xref" href="CoreRelm.Persistence.BulkTableWriter-1.html">BulkTableWriter&lt;T&gt;</a> provides an efficient way to insert large
 amounts of data into a database table.  Use the optional parameters to customize the behavior of the bulk
 operation, such as enabling transactions or allowing specific column types.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Interfaces_IRelmContext_GetDataListAsync_" data-uid="CoreRelm.Interfaces.IRelmContext.GetDataListAsync*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmContext_GetDataListAsync__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Threading_CancellationToken_" data-uid="CoreRelm.Interfaces.IRelmContext.GetDataListAsync``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Threading.CancellationToken)">
+  GetDataListAsync&lt;T&gt;(string, Dictionary&lt;string, object&gt;?, bool, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmContext.cs/#L359"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Executes the specified query asynchronously and returns a collection of results mapped to the specified type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;IEnumerable&lt;T&gt;?&gt; GetDataListAsync&lt;T&gt;(string query, Dictionary&lt;string, object&gt;? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The SQL query to execute against the data source.</p>
+</dd>
+    <dt><code>parameters</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
+    <dd><p>An optional dictionary of parameter names and values to be applied to the query. If null, the query is
+executed without parameters.</p>
+</dd>
+    <dt><code>throwException</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>true to throw an exception if the query fails; otherwise, false to suppress exceptions and return an empty
+collection.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;&gt;</dt>
+    <dd><p>An enumerable collection of objects of type T representing the query results. Returns an empty collection if
+no results are found or if an error occurs and throwException is false.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type to which each result row will be mapped.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Interfaces_IRelmContext_GetDataListAsync__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The method maps each row in the result set to an instance of type T. If
+throwException is false and an error occurs during query execution, the method returns an empty collection
+instead of throwing an exception.</p>
 </div>
 
 
@@ -677,7 +720,7 @@ operation, such as enabling transactions or allowing specific column types.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IEnumerable&lt;T&gt; GetDataList&lt;T&gt;(string query, Dictionary&lt;string, object&gt; parameters = null, bool throwException = true)</code></pre>
+    <pre><code class="lang-csharp hljs">IEnumerable&lt;T&gt;? GetDataList&lt;T&gt;(string query, Dictionary&lt;string, object&gt; parameters = null, bool throwException = true)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -731,7 +774,7 @@ an empty collection if no results are found or if <code class="paramref">throwEx
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">T GetDataObject&lt;T&gt;(string query, Dictionary&lt;string, object&gt; parameters = null, bool throwException = true) where T : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">T? GetDataObject&lt;T&gt;(string query, Dictionary&lt;string, object&gt; parameters = null, bool throwException = true) where T : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -785,7 +828,7 @@ constructor.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IEnumerable&lt;T&gt; GetDataObjects&lt;T&gt;(string query, Dictionary&lt;string, object&gt;? parameters = null, bool throwException = true) where T : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">IEnumerable&lt;T?&gt;? GetDataObjects&lt;T&gt;(string query, Dictionary&lt;string, object&gt;? parameters = null, bool throwException = true) where T : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -840,7 +883,7 @@ constructor.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">DataRow GetDataRow(string query, Dictionary&lt;string, object&gt; parameters = null, bool throwException = true)</code></pre>
+    <pre><code class="lang-csharp hljs">DataRow? GetDataRow(string query, Dictionary&lt;string, object&gt; parameters = null, bool throwException = true)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -889,7 +932,7 @@ are found  and <code class="paramref">throwException</code> is set to <a href="h
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IRelmDataSetBase GetDataSet(Type dataSetType)</code></pre>
+    <pre><code class="lang-csharp hljs">IRelmDataSetBase? GetDataSet(Type dataSetType)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -929,7 +972,7 @@ dataset is found.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IRelmDataSetBase GetDataSet(Type dataSetType, bool throwException)</code></pre>
+    <pre><code class="lang-csharp hljs">IRelmDataSetBase? GetDataSet(Type dataSetType, bool throwException)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -973,7 +1016,7 @@ if the dataset is not found and <code class="paramref">throwException</code> is 
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IRelmDataSetBase GetDataSetType(Type dataSetType)</code></pre>
+    <pre><code class="lang-csharp hljs">IRelmDataSetBase? GetDataSetType(Type dataSetType)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1012,7 +1055,7 @@ if the dataset is not found and <code class="paramref">throwException</code> is 
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IRelmDataSetBase GetDataSetType(Type dataSetType, bool throwException)</code></pre>
+    <pre><code class="lang-csharp hljs">IRelmDataSetBase? GetDataSetType(Type dataSetType, bool throwException)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1057,7 +1100,7 @@ dataset type is invalid.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IRelmDataSet&lt;T&gt; GetDataSetType&lt;T&gt;() where T : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">IRelmDataSet&lt;T&gt;? GetDataSetType&lt;T&gt;() where T : IRelmModel, new()</code></pre>
   </div>
 
 
@@ -1101,7 +1144,7 @@ the constraints.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IRelmDataSet&lt;T&gt; GetDataSetType&lt;T&gt;(bool throwException) where T : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">IRelmDataSet&lt;T&gt;? GetDataSetType&lt;T&gt;(bool throwException) where T : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1147,7 +1190,7 @@ constructor.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IRelmDataSet&lt;T&gt; GetDataSet&lt;T&gt;() where T : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">IRelmDataSet&lt;T&gt;? GetDataSet&lt;T&gt;() where T : IRelmModel, new()</code></pre>
   </div>
 
 
@@ -1192,7 +1235,7 @@ interface.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IRelmDataSet&lt;T&gt; GetDataSet&lt;T&gt;(bool throwException) where T : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">IRelmDataSet&lt;T&gt;? GetDataSet&lt;T&gt;(bool throwException) where T : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1240,7 +1283,7 @@ constructor.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">DataTable GetDataTable(string query, Dictionary&lt;string, object&gt; parameters = null, bool throwException = true)</code></pre>
+    <pre><code class="lang-csharp hljs">DataTable? GetDataTable(string query, Dictionary&lt;string, object&gt; parameters = null, bool throwException = true)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1360,11 +1403,75 @@ configured before calling this method.</p>
 
 
 
+  <a id="CoreRelm_Interfaces_IRelmContext_GetScalarAsync_" data-uid="CoreRelm.Interfaces.IRelmContext.GetScalarAsync*"></a>
+
+  <h3 id="CoreRelm_Interfaces_IRelmContext_GetScalarAsync__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Threading_CancellationToken_" data-uid="CoreRelm.Interfaces.IRelmContext.GetScalarAsync``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Threading.CancellationToken)">
+  GetScalarAsync&lt;T&gt;(string, Dictionary&lt;string, object&gt;?, bool, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmContext.cs/#L396"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Asynchronously executes a SQL query and returns the first column of the first row in the result set as a
+scalar value of the specified type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;T?&gt; GetScalarAsync&lt;T&gt;(string query, Dictionary&lt;string, object&gt;? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The SQL query to execute. The query should return a single value.</p>
+</dd>
+    <dt><code>parameters</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
+    <dd><p>An optional dictionary of parameter names and values to be applied to the query. Can be null if the query
+does not require parameters.</p>
+</dd>
+    <dt><code>throwException</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>true to throw an exception if the query returns no result or if an error occurs; otherwise, false to return
+the default value of type T.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>A cancellation token that can be used to cancel the asynchronous operation.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;</dt>
+    <dd><p>A task that represents the asynchronous operation. The task result contains the scalar value of type T if
+the query succeeds; otherwise, the default value of type T if throwException is false and no result is
+found.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type to which the scalar result is cast. Must be compatible with the value returned by the query.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Interfaces_IRelmContext_GetScalarAsync__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Use this method to efficiently retrieve a single value from the database, such as a
+count or aggregate. If throwException is set to false and the query yields no result, the method returns
+default(T) instead of throwing an exception.</p>
+</div>
+
+
+
+
   <a id="CoreRelm_Interfaces_IRelmContext_GetScalar_" data-uid="CoreRelm.Interfaces.IRelmContext.GetScalar*"></a>
 
   <h3 id="CoreRelm_Interfaces_IRelmContext_GetScalar__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_" data-uid="CoreRelm.Interfaces.IRelmContext.GetScalar``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)">
-  GetScalar&lt;T&gt;(string, Dictionary&lt;string, object&gt;, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmContext.cs/#L361"><i class="bi bi-code-slash"></i></a>
+  GetScalar&lt;T&gt;(string, Dictionary&lt;string, object&gt;?, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmContext.cs/#L377"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Executes the specified SQL query and retrieves a single scalar value of the specified type.</p>
@@ -1372,7 +1479,7 @@ configured before calling this method.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">T GetScalar&lt;T&gt;(string query, Dictionary&lt;string, object&gt; parameters = null, bool throwException = true)</code></pre>
+    <pre><code class="lang-csharp hljs">T? GetScalar&lt;T&gt;(string query, Dictionary&lt;string, object&gt;? parameters = null, bool throwException = true)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1430,7 +1537,7 @@ occur.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">ICollection&lt;T&gt; Get&lt;T&gt;(bool loadDataLoaders = false) where T : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">ICollection&lt;T&gt;? Get&lt;T&gt;(bool loadDataLoaders = false) where T : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1478,7 +1585,7 @@ constructor.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">ICollection&lt;T&gt; Get&lt;T&gt;(Expression&lt;Func&lt;T, bool&gt;&gt; predicate, bool loadDataLoaders = false) where T : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">ICollection&lt;T&gt;? Get&lt;T&gt;(Expression&lt;Func&lt;T, bool&gt;&gt; predicate, bool loadDataLoaders = false) where T : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1681,7 +1788,7 @@ method; otherwise, an exception may be thrown.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">ICollection&lt;T&gt; Run&lt;T&gt;(string query, Dictionary&lt;string, object&gt; parameters = null) where T : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">ICollection&lt;T?&gt; Run&lt;T&gt;(string query, Dictionary&lt;string, object&gt; parameters = null) where T : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1857,7 +1964,7 @@ for which the predicate returns <a href="https://learn.microsoft.com/dotnet/csha
 
   <h3 id="CoreRelm_Interfaces_IRelmContext_WriteToDatabase_CoreRelm_Interfaces_IRelmModel_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Interfaces.IRelmContext.WriteToDatabase(CoreRelm.Interfaces.IRelmModel,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
   WriteToDatabase(IRelmModel, int, bool, bool, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmContext.cs/#L499"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmContext.cs/#L524"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Writes the specified <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a> to the database in batches.</p>
@@ -1920,7 +2027,7 @@ specific column types.</p>
 
   <h3 id="CoreRelm_Interfaces_IRelmContext_WriteToDatabase_System_Collections_Generic_IEnumerable_CoreRelm_Interfaces_IRelmModel__System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Interfaces.IRelmContext.WriteToDatabase(System.Collections.Generic.IEnumerable{CoreRelm.Interfaces.IRelmModel},System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
   WriteToDatabase(IEnumerable&lt;IRelmModel&gt;, int, bool, bool, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmContext.cs/#L523"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmContext.cs/#L548"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Writes a collection of Relm models to the database in batches.</p>

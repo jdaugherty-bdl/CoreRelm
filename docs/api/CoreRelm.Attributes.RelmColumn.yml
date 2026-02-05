@@ -5,11 +5,12 @@ items:
   id: RelmColumn
   parent: CoreRelm.Attributes
   children:
-  - CoreRelm.Attributes.RelmColumn.#ctor(System.String,System.Int32,System.Int32[],System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.String,System.Boolean,System.Boolean,System.Boolean)
+  - CoreRelm.Attributes.RelmColumn.#ctor(System.String,System.String,System.Int32,System.Int32[],System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
   - CoreRelm.Attributes.RelmColumn.AllowDataTruncation
   - CoreRelm.Attributes.RelmColumn.Autonumber
   - CoreRelm.Attributes.RelmColumn.ColumnName
   - CoreRelm.Attributes.RelmColumn.ColumnSize
+  - CoreRelm.Attributes.RelmColumn.ColumnType
   - CoreRelm.Attributes.RelmColumn.CompoundColumnSize
   - CoreRelm.Attributes.RelmColumn.DefaultValue
   - CoreRelm.Attributes.RelmColumn.Index
@@ -32,7 +33,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: RelmColumn
     path: ../CoreRelm/Attributes/RelmColumn.cs
-    startLine: 17
+    startLine: 42
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
@@ -105,6 +106,123 @@ items:
     arguments:
     - type: System.AttributeTargets
       value: 136
+- uid: CoreRelm.Attributes.RelmColumn.#ctor(System.String,System.String,System.Int32,System.Int32[],System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  commentId: M:CoreRelm.Attributes.RelmColumn.#ctor(System.String,System.String,System.Int32,System.Int32[],System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  id: '#ctor(System.String,System.String,System.Int32,System.Int32[],System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)'
+  parent: CoreRelm.Attributes.RelmColumn
+  langs:
+  - csharp
+  - vb
+  name: RelmColumn(string?, string?, int, int[]?, bool, bool, bool, bool, string?, bool, bool, bool, bool)
+  nameWithType: RelmColumn.RelmColumn(string?, string?, int, int[]?, bool, bool, bool, bool, string?, bool, bool, bool, bool)
+  fullName: CoreRelm.Attributes.RelmColumn.RelmColumn(string?, string?, int, int[]?, bool, bool, bool, bool, string?, bool, bool, bool, bool)
+  type: Constructor
+  source:
+    remote:
+      path: CoreRelm/Attributes/RelmColumn.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: .ctor
+    path: ../CoreRelm/Attributes/RelmColumn.cs
+    startLine: 42
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Attributes
+  summary: Specifies metadata for a database column, including its name, size, constraints, and other properties.
+  remarks: >-
+    This attribute is used to annotate properties or structs that represent database columns. It
+        provides detailed configuration options such as column name, size, nullability, uniqueness, default values, and
+        indexing. The attribute can be applied to define primary keys, auto-incrementing columns, and virtual columns,
+        among other features.  When applied, the annotated property or struct is treated as a database column with the
+        specified characteristics. This attribute is commonly used in object-relational mapping (ORM) scenarios to
+        define the schema of a database table.
+  example: []
+  syntax:
+    content: public RelmColumn(string? columnType = null, string? columnName = null, int columnSize = -1, int[]? compoundColumnSize = null, bool isNullable = true, bool primaryKey = false, bool autonumber = false, bool unique = false, string? defaultValue = null, bool index = false, bool indexDescending = false, bool allowDataTruncation = false, bool isVirtual = false)
+    parameters:
+    - id: columnType
+      type: System.String
+      description: The type of the column. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> or empty, the column will use the property's type.
+    - id: columnName
+      type: System.String
+      description: The name of the column. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> or empty, the column will use the property's underscore name.
+    - id: columnSize
+      type: System.Int32
+      description: >-
+        The size of the column, typically used for fixed-length data types (e.g., strings). A value of -1 indicates
+            that the size is unspecified.
+    - id: compoundColumnSize
+      type: System.Int32[]
+      description: >-
+        An array specifying the sizes of compound columns, if applicable. Can be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if the
+            column is not part of a compound structure.
+    - id: isNullable
+      type: System.Boolean
+      description: A value indicating whether the column allows <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> values. The default is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>.
+    - id: primaryKey
+      type: System.Boolean
+      description: A value indicating whether the column is part of the primary key. The default is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    - id: autonumber
+      type: System.Boolean
+      description: A value indicating whether the column is an auto-incrementing identity column. The default is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    - id: unique
+      type: System.Boolean
+      description: A value indicating whether the column enforces uniqueness. The default is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    - id: defaultValue
+      type: System.String
+      description: >-
+        The default value for the column, represented as a string. Can be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if no default value
+            is specified.
+    - id: index
+      type: System.Boolean
+      description: A value indicating whether the column is indexed. The default is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    - id: indexDescending
+      type: System.Boolean
+      description: A value indicating whether the index on the column is sorted in descending order. The default is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    - id: allowDataTruncation
+      type: System.Boolean
+      description: A value indicating whether data truncation is allowed for this column. The default is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    - id: isVirtual
+      type: System.Boolean
+      description: >-
+        A value indicating whether the column is a virtual column (i.e., its value is computed rather than stored).
+            The default is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Public Sub New(columnType As String = Nothing, columnName As String = Nothing, columnSize As Integer = -1, compoundColumnSize As Integer() = Nothing, isNullable As Boolean = True, primaryKey As Boolean = False, autonumber As Boolean = False, unique As Boolean = False, defaultValue As String = Nothing, index As Boolean = False, indexDescending As Boolean = False, allowDataTruncation As Boolean = False, isVirtual As Boolean = False)
+  overload: CoreRelm.Attributes.RelmColumn.#ctor*
+  nameWithType.vb: RelmColumn.New(String, String, Integer, Integer(), Boolean, Boolean, Boolean, Boolean, String, Boolean, Boolean, Boolean, Boolean)
+  fullName.vb: CoreRelm.Attributes.RelmColumn.New(String, String, Integer, Integer(), Boolean, Boolean, Boolean, Boolean, String, Boolean, Boolean, Boolean, Boolean)
+  name.vb: New(String, String, Integer, Integer(), Boolean, Boolean, Boolean, Boolean, String, Boolean, Boolean, Boolean, Boolean)
+- uid: CoreRelm.Attributes.RelmColumn.ColumnType
+  commentId: P:CoreRelm.Attributes.RelmColumn.ColumnType
+  id: ColumnType
+  parent: CoreRelm.Attributes.RelmColumn
+  langs:
+  - csharp
+  - vb
+  name: ColumnType
+  nameWithType: RelmColumn.ColumnType
+  fullName: CoreRelm.Attributes.RelmColumn.ColumnType
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Attributes/RelmColumn.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: ColumnType
+    path: ../CoreRelm/Attributes/RelmColumn.cs
+    startLine: 48
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Attributes
+  summary: Gets or sets the database column type to use for this property. Will override default type mapping.
+  example: []
+  syntax:
+    content: public string? ColumnType { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ColumnType As String
+  overload: CoreRelm.Attributes.RelmColumn.ColumnType*
 - uid: CoreRelm.Attributes.RelmColumn.ColumnName
   commentId: P:CoreRelm.Attributes.RelmColumn.ColumnName
   id: ColumnName
@@ -123,7 +241,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ColumnName
     path: ../CoreRelm/Attributes/RelmColumn.cs
-    startLine: 24
+    startLine: 54
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
@@ -133,7 +251,7 @@ items:
     of the property or struct name is used as the column name.
   example: []
   syntax:
-    content: public string ColumnName { get; }
+    content: public string? ColumnName { get; }
     parameters: []
     return:
       type: System.String
@@ -157,7 +275,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ColumnSize
     path: ../CoreRelm/Attributes/RelmColumn.cs
-    startLine: 30
+    startLine: 60
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
@@ -191,14 +309,14 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: CompoundColumnSize
     path: ../CoreRelm/Attributes/RelmColumn.cs
-    startLine: 35
+    startLine: 65
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
   summary: Gets the sizes of the compound columns, such as decimal.
   example: []
   syntax:
-    content: public int[] CompoundColumnSize { get; }
+    content: public int[]? CompoundColumnSize { get; }
     parameters: []
     return:
       type: System.Int32[]
@@ -222,7 +340,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AllowDataTruncation
     path: ../CoreRelm/Attributes/RelmColumn.cs
-    startLine: 40
+    startLine: 70
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
@@ -253,7 +371,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: IsNullable
     path: ../CoreRelm/Attributes/RelmColumn.cs
-    startLine: 45
+    startLine: 75
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
@@ -284,7 +402,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: PrimaryKey
     path: ../CoreRelm/Attributes/RelmColumn.cs
-    startLine: 50
+    startLine: 80
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
@@ -315,7 +433,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Autonumber
     path: ../CoreRelm/Attributes/RelmColumn.cs
-    startLine: 55
+    startLine: 85
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
@@ -346,7 +464,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Unique
     path: ../CoreRelm/Attributes/RelmColumn.cs
-    startLine: 60
+    startLine: 90
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
@@ -377,14 +495,14 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DefaultValue
     path: ../CoreRelm/Attributes/RelmColumn.cs
-    startLine: 65
+    startLine: 95
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
   summary: Gets the default value associated with this column.
   example: []
   syntax:
-    content: public string DefaultValue { get; }
+    content: public string? DefaultValue { get; }
     parameters: []
     return:
       type: System.String
@@ -408,18 +526,18 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Index
     path: ../CoreRelm/Attributes/RelmColumn.cs
-    startLine: 70
+    startLine: 100
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
-  summary: Gets the value indicating which index this property is attached to.
+  summary: Gets a value indicating whether indexing is enabled for this column.
   example: []
   syntax:
-    content: public string Index { get; }
+    content: public bool Index { get; }
     parameters: []
     return:
-      type: System.String
-    content.vb: Public Property Index As String
+      type: System.Boolean
+    content.vb: Public Property Index As Boolean
   overload: CoreRelm.Attributes.RelmColumn.Index*
 - uid: CoreRelm.Attributes.RelmColumn.IndexDescending
   commentId: P:CoreRelm.Attributes.RelmColumn.IndexDescending
@@ -439,7 +557,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: IndexDescending
     path: ../CoreRelm/Attributes/RelmColumn.cs
-    startLine: 75
+    startLine: 105
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
@@ -470,7 +588,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Virtual
     path: ../CoreRelm/Attributes/RelmColumn.cs
-    startLine: 80
+    startLine: 110
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
@@ -483,88 +601,14 @@ items:
       type: System.Boolean
     content.vb: Public Property Virtual As Boolean
   overload: CoreRelm.Attributes.RelmColumn.Virtual*
-- uid: CoreRelm.Attributes.RelmColumn.#ctor(System.String,System.Int32,System.Int32[],System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.String,System.Boolean,System.Boolean,System.Boolean)
-  commentId: M:CoreRelm.Attributes.RelmColumn.#ctor(System.String,System.Int32,System.Int32[],System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.String,System.Boolean,System.Boolean,System.Boolean)
-  id: '#ctor(System.String,System.Int32,System.Int32[],System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.String,System.Boolean,System.Boolean,System.Boolean)'
-  parent: CoreRelm.Attributes.RelmColumn
-  langs:
-  - csharp
-  - vb
-  name: RelmColumn(string, int, int[], bool, bool, bool, bool, string, string, bool, bool, bool)
-  nameWithType: RelmColumn.RelmColumn(string, int, int[], bool, bool, bool, bool, string, string, bool, bool, bool)
-  fullName: CoreRelm.Attributes.RelmColumn.RelmColumn(string, int, int[], bool, bool, bool, bool, string, string, bool, bool, bool)
-  type: Constructor
-  source:
-    remote:
-      path: CoreRelm/Attributes/RelmColumn.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: .ctor
-    path: ../CoreRelm/Attributes/RelmColumn.cs
-    startLine: 107
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Attributes
-  summary: >-
-    Initializes a new instance of the <xref href="CoreRelm.Attributes.RelmColumn" data-throw-if-not-resolved="false"></xref> class, representing a column definition with
-
-    various configuration options for database schema design.
-  example: []
-  syntax:
-    content: public RelmColumn(string columnName = null, int columnSize = -1, int[] compoundColumnSize = null, bool isNullable = true, bool primaryKey = false, bool autonumber = false, bool unique = false, string defaultValue = null, string index = null, bool indexDescending = false, bool allowDataTruncation = false, bool isVirtual = false)
-    parameters:
-    - id: columnName
-      type: System.String
-      description: The name of the column. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> or empty, the column will use the property's underscore name.
-    - id: columnSize
-      type: System.Int32
-      description: >-
-        The size of the column, typically used for fixed-length data types (e.g., strings). A value of -1 indicates
-            that the size is unspecified.
-    - id: compoundColumnSize
-      type: System.Int32[]
-      description: >-
-        An array specifying the sizes of compound columns, if applicable. Can be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if the
-            column is not part of a compound structure.
-    - id: isNullable
-      type: System.Boolean
-      description: A value indicating whether the column allows <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> values. The default is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>.
-    - id: primaryKey
-      type: System.Boolean
-      description: A value indicating whether the column is part of the primary key. The default is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
-    - id: autonumber
-      type: System.Boolean
-      description: A value indicating whether the column is an auto-incrementing identity column. The default is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
-    - id: unique
-      type: System.Boolean
-      description: A value indicating whether the column enforces uniqueness. The default is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
-    - id: defaultValue
-      type: System.String
-      description: >-
-        The default value for the column, represented as a string. Can be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if no default value
-            is specified.
-    - id: index
-      type: System.String
-      description: >-
-        The name of the index associated with the column, if any. Can be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if the column is not
-            indexed.
-    - id: indexDescending
-      type: System.Boolean
-      description: A value indicating whether the index on the column is sorted in descending order. The default is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
-    - id: allowDataTruncation
-      type: System.Boolean
-      description: A value indicating whether data truncation is allowed for this column. The default is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
-    - id: isVirtual
-      type: System.Boolean
-      description: >-
-        A value indicating whether the column is a virtual column (i.e., its value is computed rather than stored).
-            The default is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
-    content.vb: Public Sub New(columnName As String = Nothing, columnSize As Integer = -1, compoundColumnSize As Integer() = Nothing, isNullable As Boolean = True, primaryKey As Boolean = False, autonumber As Boolean = False, unique As Boolean = False, defaultValue As String = Nothing, index As String = Nothing, indexDescending As Boolean = False, allowDataTruncation As Boolean = False, isVirtual As Boolean = False)
-  overload: CoreRelm.Attributes.RelmColumn.#ctor*
-  nameWithType.vb: RelmColumn.New(String, Integer, Integer(), Boolean, Boolean, Boolean, Boolean, String, String, Boolean, Boolean, Boolean)
-  fullName.vb: CoreRelm.Attributes.RelmColumn.New(String, Integer, Integer(), Boolean, Boolean, Boolean, Boolean, String, String, Boolean, Boolean, Boolean)
-  name.vb: New(String, Integer, Integer(), Boolean, Boolean, Boolean, Boolean, String, String, Boolean, Boolean, Boolean)
 references:
+- uid: CoreRelm.Attributes.RelmColumn
+  commentId: T:CoreRelm.Attributes.RelmColumn
+  parent: CoreRelm.Attributes
+  href: CoreRelm.Attributes.RelmColumn.html
+  name: RelmColumn
+  nameWithType: RelmColumn
+  fullName: CoreRelm.Attributes.RelmColumn
 - uid: CoreRelm.Attributes
   commentId: N:CoreRelm.Attributes
   href: CoreRelm.html
@@ -2357,12 +2401,15 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: CoreRelm.Attributes.RelmColumn.ColumnName*
-  commentId: Overload:CoreRelm.Attributes.RelmColumn.ColumnName
-  href: CoreRelm.Attributes.RelmColumn.html#CoreRelm_Attributes_RelmColumn_ColumnName
-  name: ColumnName
-  nameWithType: RelmColumn.ColumnName
-  fullName: CoreRelm.Attributes.RelmColumn.ColumnName
+- uid: CoreRelm.Attributes.RelmColumn.#ctor*
+  commentId: Overload:CoreRelm.Attributes.RelmColumn.#ctor
+  href: CoreRelm.Attributes.RelmColumn.html#CoreRelm_Attributes_RelmColumn__ctor_System_String_System_String_System_Int32_System_Int32___System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  name: RelmColumn
+  nameWithType: RelmColumn.RelmColumn
+  fullName: CoreRelm.Attributes.RelmColumn.RelmColumn
+  nameWithType.vb: RelmColumn.New
+  fullName.vb: CoreRelm.Attributes.RelmColumn.New
+  name.vb: New
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -2374,12 +2421,6 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
-- uid: CoreRelm.Attributes.RelmColumn.ColumnSize*
-  commentId: Overload:CoreRelm.Attributes.RelmColumn.ColumnSize
-  href: CoreRelm.Attributes.RelmColumn.html#CoreRelm_Attributes_RelmColumn_ColumnSize
-  name: ColumnSize
-  nameWithType: RelmColumn.ColumnSize
-  fullName: CoreRelm.Attributes.RelmColumn.ColumnSize
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -2391,12 +2432,6 @@ references:
   nameWithType.vb: Integer
   fullName.vb: Integer
   name.vb: Integer
-- uid: CoreRelm.Attributes.RelmColumn.CompoundColumnSize*
-  commentId: Overload:CoreRelm.Attributes.RelmColumn.CompoundColumnSize
-  href: CoreRelm.Attributes.RelmColumn.html#CoreRelm_Attributes_RelmColumn_CompoundColumnSize
-  name: CompoundColumnSize
-  nameWithType: RelmColumn.CompoundColumnSize
-  fullName: CoreRelm.Attributes.RelmColumn.CompoundColumnSize
 - uid: System.Int32[]
   isExternal: true
   href: https://learn.microsoft.com/dotnet/api/system.int32
@@ -2420,12 +2455,6 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: (
   - name: )
-- uid: CoreRelm.Attributes.RelmColumn.AllowDataTruncation*
-  commentId: Overload:CoreRelm.Attributes.RelmColumn.AllowDataTruncation
-  href: CoreRelm.Attributes.RelmColumn.html#CoreRelm_Attributes_RelmColumn_AllowDataTruncation
-  name: AllowDataTruncation
-  nameWithType: RelmColumn.AllowDataTruncation
-  fullName: CoreRelm.Attributes.RelmColumn.AllowDataTruncation
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -2437,6 +2466,36 @@ references:
   nameWithType.vb: Boolean
   fullName.vb: Boolean
   name.vb: Boolean
+- uid: CoreRelm.Attributes.RelmColumn.ColumnType*
+  commentId: Overload:CoreRelm.Attributes.RelmColumn.ColumnType
+  href: CoreRelm.Attributes.RelmColumn.html#CoreRelm_Attributes_RelmColumn_ColumnType
+  name: ColumnType
+  nameWithType: RelmColumn.ColumnType
+  fullName: CoreRelm.Attributes.RelmColumn.ColumnType
+- uid: CoreRelm.Attributes.RelmColumn.ColumnName*
+  commentId: Overload:CoreRelm.Attributes.RelmColumn.ColumnName
+  href: CoreRelm.Attributes.RelmColumn.html#CoreRelm_Attributes_RelmColumn_ColumnName
+  name: ColumnName
+  nameWithType: RelmColumn.ColumnName
+  fullName: CoreRelm.Attributes.RelmColumn.ColumnName
+- uid: CoreRelm.Attributes.RelmColumn.ColumnSize*
+  commentId: Overload:CoreRelm.Attributes.RelmColumn.ColumnSize
+  href: CoreRelm.Attributes.RelmColumn.html#CoreRelm_Attributes_RelmColumn_ColumnSize
+  name: ColumnSize
+  nameWithType: RelmColumn.ColumnSize
+  fullName: CoreRelm.Attributes.RelmColumn.ColumnSize
+- uid: CoreRelm.Attributes.RelmColumn.CompoundColumnSize*
+  commentId: Overload:CoreRelm.Attributes.RelmColumn.CompoundColumnSize
+  href: CoreRelm.Attributes.RelmColumn.html#CoreRelm_Attributes_RelmColumn_CompoundColumnSize
+  name: CompoundColumnSize
+  nameWithType: RelmColumn.CompoundColumnSize
+  fullName: CoreRelm.Attributes.RelmColumn.CompoundColumnSize
+- uid: CoreRelm.Attributes.RelmColumn.AllowDataTruncation*
+  commentId: Overload:CoreRelm.Attributes.RelmColumn.AllowDataTruncation
+  href: CoreRelm.Attributes.RelmColumn.html#CoreRelm_Attributes_RelmColumn_AllowDataTruncation
+  name: AllowDataTruncation
+  nameWithType: RelmColumn.AllowDataTruncation
+  fullName: CoreRelm.Attributes.RelmColumn.AllowDataTruncation
 - uid: CoreRelm.Attributes.RelmColumn.IsNullable*
   commentId: Overload:CoreRelm.Attributes.RelmColumn.IsNullable
   href: CoreRelm.Attributes.RelmColumn.html#CoreRelm_Attributes_RelmColumn_IsNullable
@@ -2485,19 +2544,3 @@ references:
   name: Virtual
   nameWithType: RelmColumn.Virtual
   fullName: CoreRelm.Attributes.RelmColumn.Virtual
-- uid: CoreRelm.Attributes.RelmColumn
-  commentId: T:CoreRelm.Attributes.RelmColumn
-  parent: CoreRelm.Attributes
-  href: CoreRelm.Attributes.RelmColumn.html
-  name: RelmColumn
-  nameWithType: RelmColumn
-  fullName: CoreRelm.Attributes.RelmColumn
-- uid: CoreRelm.Attributes.RelmColumn.#ctor*
-  commentId: Overload:CoreRelm.Attributes.RelmColumn.#ctor
-  href: CoreRelm.Attributes.RelmColumn.html#CoreRelm_Attributes_RelmColumn__ctor_System_String_System_Int32_System_Int32___System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_String_System_String_System_Boolean_System_Boolean_System_Boolean_
-  name: RelmColumn
-  nameWithType: RelmColumn.RelmColumn
-  fullName: CoreRelm.Attributes.RelmColumn.RelmColumn
-  nameWithType.vb: RelmColumn.New
-  fullName.vb: CoreRelm.Attributes.RelmColumn.New
-  name.vb: New

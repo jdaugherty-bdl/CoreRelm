@@ -5,8 +5,8 @@ items:
   id: MySqlDatabaseProvisioner
   parent: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
   children:
-  - CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.DatabaseExistsAsync(System.String,System.String,System.Threading.CancellationToken)
-  - CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.EnsureDatabaseExistsAsync(System.String,System.String,System.String,System.String,System.Threading.CancellationToken)
+  - CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.DatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String)
+  - CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.EnsureDatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String)
   langs:
   - csharp
   - vb
@@ -21,7 +21,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: MySqlDatabaseProvisioner
     path: ../CoreRelm/RelmInternal/Helpers/Migrations/Provisioning/MySqlDatabaseProvisioner.cs
-    startLine: 11
+    startLine: 12
   assemblies:
   - CoreRelm
   namespace: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
@@ -39,16 +39,16 @@ items:
   - System.Object.GetType
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.DatabaseExistsAsync(System.String,System.String,System.Threading.CancellationToken)
-  commentId: M:CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.DatabaseExistsAsync(System.String,System.String,System.Threading.CancellationToken)
-  id: DatabaseExistsAsync(System.String,System.String,System.Threading.CancellationToken)
+- uid: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.DatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String)
+  commentId: M:CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.DatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String)
+  id: DatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String)
   parent: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner
   langs:
   - csharp
   - vb
-  name: DatabaseExistsAsync(string, string, CancellationToken)
-  nameWithType: MySqlDatabaseProvisioner.DatabaseExistsAsync(string, string, CancellationToken)
-  fullName: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.DatabaseExistsAsync(string, string, System.Threading.CancellationToken)
+  name: DatabaseExistsAsync(MigrationOptions, string)
+  nameWithType: MySqlDatabaseProvisioner.DatabaseExistsAsync(MigrationOptions, string)
+  fullName: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.DatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions, string)
   type: Method
   source:
     remote:
@@ -57,39 +57,37 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DatabaseExistsAsync
     path: ../CoreRelm/RelmInternal/Helpers/Migrations/Provisioning/MySqlDatabaseProvisioner.cs
-    startLine: 15
+    startLine: 16
   assemblies:
   - CoreRelm
   namespace: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
   example: []
   syntax:
-    content: public Task<bool> DatabaseExistsAsync(string serverConnectionString, string databaseName, CancellationToken ct = default)
+    content: public Task<bool> DatabaseExistsAsync(MigrationOptions migrationOptions, string databaseName)
     parameters:
-    - id: serverConnectionString
-      type: System.String
+    - id: migrationOptions
+      type: CoreRelm.Models.Migrations.MigrationOptions
     - id: databaseName
       type: System.String
-    - id: ct
-      type: System.Threading.CancellationToken
     return:
       type: System.Threading.Tasks.Task{System.Boolean}
-    content.vb: Public Function DatabaseExistsAsync(serverConnectionString As String, databaseName As String, ct As CancellationToken = Nothing) As Task(Of Boolean)
+    content.vb: Public Function DatabaseExistsAsync(migrationOptions As MigrationOptions, databaseName As String) As Task(Of Boolean)
   overload: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.DatabaseExistsAsync*
   implements:
-  - CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync(System.String,System.String,System.Threading.CancellationToken)
-  nameWithType.vb: MySqlDatabaseProvisioner.DatabaseExistsAsync(String, String, CancellationToken)
-  fullName.vb: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.DatabaseExistsAsync(String, String, System.Threading.CancellationToken)
-  name.vb: DatabaseExistsAsync(String, String, CancellationToken)
-- uid: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.EnsureDatabaseExistsAsync(System.String,System.String,System.String,System.String,System.Threading.CancellationToken)
-  commentId: M:CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.EnsureDatabaseExistsAsync(System.String,System.String,System.String,System.String,System.Threading.CancellationToken)
-  id: EnsureDatabaseExistsAsync(System.String,System.String,System.String,System.String,System.Threading.CancellationToken)
+  - CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String)
+  nameWithType.vb: MySqlDatabaseProvisioner.DatabaseExistsAsync(MigrationOptions, String)
+  fullName.vb: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.DatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions, String)
+  name.vb: DatabaseExistsAsync(MigrationOptions, String)
+- uid: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.EnsureDatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String)
+  commentId: M:CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.EnsureDatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String)
+  id: EnsureDatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String)
   parent: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner
   langs:
   - csharp
   - vb
-  name: EnsureDatabaseExistsAsync(string, string, string?, string?, CancellationToken)
-  nameWithType: MySqlDatabaseProvisioner.EnsureDatabaseExistsAsync(string, string, string?, string?, CancellationToken)
-  fullName: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.EnsureDatabaseExistsAsync(string, string, string?, string?, System.Threading.CancellationToken)
+  name: EnsureDatabaseExistsAsync(MigrationOptions, string, string?, string?)
+  nameWithType: MySqlDatabaseProvisioner.EnsureDatabaseExistsAsync(MigrationOptions, string, string?, string?)
+  fullName: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.EnsureDatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions, string, string?, string?)
   type: Method
   source:
     remote:
@@ -98,33 +96,31 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: EnsureDatabaseExistsAsync
     path: ../CoreRelm/RelmInternal/Helpers/Migrations/Provisioning/MySqlDatabaseProvisioner.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - CoreRelm
   namespace: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
   example: []
   syntax:
-    content: public Task EnsureDatabaseExistsAsync(string serverConnectionString, string databaseName, string? charset = null, string? collation = null, CancellationToken ct = default)
+    content: public Task EnsureDatabaseExistsAsync(MigrationOptions migrationOptions, string databaseName, string? charset = null, string? collation = null)
     parameters:
-    - id: serverConnectionString
-      type: System.String
+    - id: migrationOptions
+      type: CoreRelm.Models.Migrations.MigrationOptions
     - id: databaseName
       type: System.String
     - id: charset
       type: System.String
     - id: collation
       type: System.String
-    - id: ct
-      type: System.Threading.CancellationToken
     return:
       type: System.Threading.Tasks.Task
-    content.vb: Public Function EnsureDatabaseExistsAsync(serverConnectionString As String, databaseName As String, charset As String = Nothing, collation As String = Nothing, ct As CancellationToken = Nothing) As Task
+    content.vb: Public Function EnsureDatabaseExistsAsync(migrationOptions As MigrationOptions, databaseName As String, charset As String = Nothing, collation As String = Nothing) As Task
   overload: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.EnsureDatabaseExistsAsync*
   implements:
-  - CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.EnsureDatabaseExistsAsync(System.String,System.String,System.String,System.String,System.Threading.CancellationToken)
-  nameWithType.vb: MySqlDatabaseProvisioner.EnsureDatabaseExistsAsync(String, String, String, String, CancellationToken)
-  fullName.vb: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.EnsureDatabaseExistsAsync(String, String, String, String, System.Threading.CancellationToken)
-  name.vb: EnsureDatabaseExistsAsync(String, String, String, String, CancellationToken)
+  - CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.EnsureDatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String)
+  nameWithType.vb: MySqlDatabaseProvisioner.EnsureDatabaseExistsAsync(MigrationOptions, String, String, String)
+  fullName.vb: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.EnsureDatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions, String, String, String)
+  name.vb: EnsureDatabaseExistsAsync(MigrationOptions, String, String, String)
 references:
 - uid: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
   commentId: N:CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
@@ -424,65 +420,58 @@ references:
     href: CoreRelm.Interfaces.Migrations.html
 - uid: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.DatabaseExistsAsync*
   commentId: Overload:CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.DatabaseExistsAsync
-  href: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.html#CoreRelm_RelmInternal_Helpers_Migrations_Provisioning_MySqlDatabaseProvisioner_DatabaseExistsAsync_System_String_System_String_System_Threading_CancellationToken_
+  href: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.html#CoreRelm_RelmInternal_Helpers_Migrations_Provisioning_MySqlDatabaseProvisioner_DatabaseExistsAsync_CoreRelm_Models_Migrations_MigrationOptions_System_String_
   name: DatabaseExistsAsync
   nameWithType: MySqlDatabaseProvisioner.DatabaseExistsAsync
   fullName: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.DatabaseExistsAsync
-- uid: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync(System.String,System.String,System.Threading.CancellationToken)
-  commentId: M:CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync(System.String,System.String,System.Threading.CancellationToken)
+- uid: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String)
+  commentId: M:CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String)
   parent: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner
   isExternal: true
-  href: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.html#CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_DatabaseExistsAsync_System_String_System_String_System_Threading_CancellationToken_
-  name: DatabaseExistsAsync(string, string, CancellationToken)
-  nameWithType: IRelmDatabaseProvisioner.DatabaseExistsAsync(string, string, CancellationToken)
-  fullName: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync(string, string, System.Threading.CancellationToken)
-  nameWithType.vb: IRelmDatabaseProvisioner.DatabaseExistsAsync(String, String, CancellationToken)
-  fullName.vb: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync(String, String, System.Threading.CancellationToken)
-  name.vb: DatabaseExistsAsync(String, String, CancellationToken)
+  href: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.html#CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_DatabaseExistsAsync_CoreRelm_Models_Migrations_MigrationOptions_System_String_
+  name: DatabaseExistsAsync(MigrationOptions, string)
+  nameWithType: IRelmDatabaseProvisioner.DatabaseExistsAsync(MigrationOptions, string)
+  fullName: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions, string)
+  nameWithType.vb: IRelmDatabaseProvisioner.DatabaseExistsAsync(MigrationOptions, String)
+  fullName.vb: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions, String)
+  name.vb: DatabaseExistsAsync(MigrationOptions, String)
   spec.csharp:
-  - uid: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync(System.String,System.String,System.Threading.CancellationToken)
+  - uid: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String)
     name: DatabaseExistsAsync
-    href: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.html#CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_DatabaseExistsAsync_System_String_System_String_System_Threading_CancellationToken_
+    href: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.html#CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_DatabaseExistsAsync_CoreRelm_Models_Migrations_MigrationOptions_System_String_
   - name: (
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
+  - uid: CoreRelm.Models.Migrations.MigrationOptions
+    name: MigrationOptions
+    href: CoreRelm.Models.Migrations.MigrationOptions.html
   - name: ','
   - name: " "
   - uid: System.String
     name: string
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: ','
-  - name: " "
-  - uid: System.Threading.CancellationToken
-    name: CancellationToken
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   - name: )
   spec.vb:
-  - uid: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync(System.String,System.String,System.Threading.CancellationToken)
+  - uid: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String)
     name: DatabaseExistsAsync
-    href: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.html#CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_DatabaseExistsAsync_System_String_System_String_System_Threading_CancellationToken_
+    href: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.html#CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_DatabaseExistsAsync_CoreRelm_Models_Migrations_MigrationOptions_System_String_
   - name: (
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
+  - uid: CoreRelm.Models.Migrations.MigrationOptions
+    name: MigrationOptions
+    href: CoreRelm.Models.Migrations.MigrationOptions.html
   - name: ','
   - name: " "
   - uid: System.String
     name: String
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: ','
-  - name: " "
-  - uid: System.Threading.CancellationToken
-    name: CancellationToken
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   - name: )
+- uid: CoreRelm.Models.Migrations.MigrationOptions
+  commentId: T:CoreRelm.Models.Migrations.MigrationOptions
+  parent: CoreRelm.Models.Migrations
+  href: CoreRelm.Models.Migrations.MigrationOptions.html
+  name: MigrationOptions
+  nameWithType: MigrationOptions
+  fullName: CoreRelm.Models.Migrations.MigrationOptions
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -494,14 +483,6 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
-- uid: System.Threading.CancellationToken
-  commentId: T:System.Threading.CancellationToken
-  parent: System.Threading
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
-  name: CancellationToken
-  nameWithType: CancellationToken
-  fullName: System.Threading.CancellationToken
 - uid: System.Threading.Tasks.Task{System.Boolean}
   commentId: T:System.Threading.Tasks.Task{System.Boolean}
   parent: System.Threading.Tasks
@@ -537,33 +518,36 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
-- uid: System.Threading
-  commentId: N:System.Threading
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System.Threading
-  nameWithType: System.Threading
-  fullName: System.Threading
+- uid: CoreRelm.Models.Migrations
+  commentId: N:CoreRelm.Models.Migrations
+  href: CoreRelm.html
+  name: CoreRelm.Models.Migrations
+  nameWithType: CoreRelm.Models.Migrations
+  fullName: CoreRelm.Models.Migrations
   spec.csharp:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
   - name: .
-  - uid: System.Threading
-    name: Threading
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
   spec.vb:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
   - name: .
-  - uid: System.Threading
-    name: Threading
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
 - uid: System.Threading.Tasks.Task`1
   commentId: T:System.Threading.Tasks.Task`1
   isExternal: true
@@ -631,30 +615,29 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
 - uid: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.EnsureDatabaseExistsAsync*
   commentId: Overload:CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.EnsureDatabaseExistsAsync
-  href: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.html#CoreRelm_RelmInternal_Helpers_Migrations_Provisioning_MySqlDatabaseProvisioner_EnsureDatabaseExistsAsync_System_String_System_String_System_String_System_String_System_Threading_CancellationToken_
+  href: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.html#CoreRelm_RelmInternal_Helpers_Migrations_Provisioning_MySqlDatabaseProvisioner_EnsureDatabaseExistsAsync_CoreRelm_Models_Migrations_MigrationOptions_System_String_System_String_System_String_
   name: EnsureDatabaseExistsAsync
   nameWithType: MySqlDatabaseProvisioner.EnsureDatabaseExistsAsync
   fullName: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.EnsureDatabaseExistsAsync
-- uid: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.EnsureDatabaseExistsAsync(System.String,System.String,System.String,System.String,System.Threading.CancellationToken)
-  commentId: M:CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.EnsureDatabaseExistsAsync(System.String,System.String,System.String,System.String,System.Threading.CancellationToken)
+- uid: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.EnsureDatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String)
+  commentId: M:CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.EnsureDatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String)
   parent: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner
   isExternal: true
-  href: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.html#CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_EnsureDatabaseExistsAsync_System_String_System_String_System_String_System_String_System_Threading_CancellationToken_
-  name: EnsureDatabaseExistsAsync(string, string, string, string, CancellationToken)
-  nameWithType: IRelmDatabaseProvisioner.EnsureDatabaseExistsAsync(string, string, string, string, CancellationToken)
-  fullName: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.EnsureDatabaseExistsAsync(string, string, string, string, System.Threading.CancellationToken)
-  nameWithType.vb: IRelmDatabaseProvisioner.EnsureDatabaseExistsAsync(String, String, String, String, CancellationToken)
-  fullName.vb: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.EnsureDatabaseExistsAsync(String, String, String, String, System.Threading.CancellationToken)
-  name.vb: EnsureDatabaseExistsAsync(String, String, String, String, CancellationToken)
+  href: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.html#CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_EnsureDatabaseExistsAsync_CoreRelm_Models_Migrations_MigrationOptions_System_String_System_String_System_String_
+  name: EnsureDatabaseExistsAsync(MigrationOptions, string, string, string)
+  nameWithType: IRelmDatabaseProvisioner.EnsureDatabaseExistsAsync(MigrationOptions, string, string, string)
+  fullName: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.EnsureDatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions, string, string, string)
+  nameWithType.vb: IRelmDatabaseProvisioner.EnsureDatabaseExistsAsync(MigrationOptions, String, String, String)
+  fullName.vb: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.EnsureDatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions, String, String, String)
+  name.vb: EnsureDatabaseExistsAsync(MigrationOptions, String, String, String)
   spec.csharp:
-  - uid: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.EnsureDatabaseExistsAsync(System.String,System.String,System.String,System.String,System.Threading.CancellationToken)
+  - uid: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.EnsureDatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String)
     name: EnsureDatabaseExistsAsync
-    href: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.html#CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_EnsureDatabaseExistsAsync_System_String_System_String_System_String_System_String_System_Threading_CancellationToken_
+    href: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.html#CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_EnsureDatabaseExistsAsync_CoreRelm_Models_Migrations_MigrationOptions_System_String_System_String_System_String_
   - name: (
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
+  - uid: CoreRelm.Models.Migrations.MigrationOptions
+    name: MigrationOptions
+    href: CoreRelm.Models.Migrations.MigrationOptions.html
   - name: ','
   - name: " "
   - uid: System.String
@@ -673,22 +656,15 @@ references:
     name: string
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: ','
-  - name: " "
-  - uid: System.Threading.CancellationToken
-    name: CancellationToken
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   - name: )
   spec.vb:
-  - uid: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.EnsureDatabaseExistsAsync(System.String,System.String,System.String,System.String,System.Threading.CancellationToken)
+  - uid: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.EnsureDatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String)
     name: EnsureDatabaseExistsAsync
-    href: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.html#CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_EnsureDatabaseExistsAsync_System_String_System_String_System_String_System_String_System_Threading_CancellationToken_
+    href: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.html#CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_EnsureDatabaseExistsAsync_CoreRelm_Models_Migrations_MigrationOptions_System_String_System_String_System_String_
   - name: (
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
+  - uid: CoreRelm.Models.Migrations.MigrationOptions
+    name: MigrationOptions
+    href: CoreRelm.Models.Migrations.MigrationOptions.html
   - name: ','
   - name: " "
   - uid: System.String
@@ -707,12 +683,6 @@ references:
     name: String
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: ','
-  - name: " "
-  - uid: System.Threading.CancellationToken
-    name: CancellationToken
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   - name: )
 - uid: System.Threading.Tasks.Task
   commentId: T:System.Threading.Tasks.Task

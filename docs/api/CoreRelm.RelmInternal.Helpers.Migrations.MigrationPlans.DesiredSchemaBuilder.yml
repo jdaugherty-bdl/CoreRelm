@@ -1,0 +1,851 @@
+### YamlMime:ManagedReference
+items:
+- uid: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder
+  commentId: T:CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder
+  id: DesiredSchemaBuilder
+  parent: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
+  children:
+  - CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder.Build(System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType})
+  - CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder.BuildAsync(System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
+  langs:
+  - csharp
+  - vb
+  name: DesiredSchemaBuilder
+  nameWithType: DesiredSchemaBuilder
+  fullName: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder
+  type: Class
+  source:
+    remote:
+      path: CoreRelm/RelmInternal/Helpers/Migrations/MigrationPlans/DesiredSchemaBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: DesiredSchemaBuilder
+    path: ../CoreRelm/RelmInternal/Helpers/Migrations/MigrationPlans/DesiredSchemaBuilder.cs
+    startLine: 13
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
+  syntax:
+    content: 'public sealed class DesiredSchemaBuilder : IRelmDesiredSchemaBuilder'
+    content.vb: Public NotInheritable Class DesiredSchemaBuilder Implements IRelmDesiredSchemaBuilder
+  inheritance:
+  - System.Object
+  implements:
+  - CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder.BuildAsync(System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
+  commentId: M:CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder.BuildAsync(System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
+  id: BuildAsync(System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
+  parent: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder
+  langs:
+  - csharp
+  - vb
+  name: BuildAsync(string, List<ValidatedModelType>)
+  nameWithType: DesiredSchemaBuilder.BuildAsync(string, List<ValidatedModelType>)
+  fullName: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder.BuildAsync(string, System.Collections.Generic.List<CoreRelm.Models.Migrations.ValidatedModelType>)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/RelmInternal/Helpers/Migrations/MigrationPlans/DesiredSchemaBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: BuildAsync
+    path: ../CoreRelm/RelmInternal/Helpers/Migrations/MigrationPlans/DesiredSchemaBuilder.cs
+    startLine: 15
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
+  example: []
+  syntax:
+    content: public Task<SchemaSnapshot> BuildAsync(string dbName, List<ValidatedModelType> modelsForDb)
+    parameters:
+    - id: dbName
+      type: System.String
+    - id: modelsForDb
+      type: System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType}
+    return:
+      type: System.Threading.Tasks.Task{CoreRelm.Models.Migrations.Introspection.SchemaSnapshot}
+    content.vb: Public Function BuildAsync(dbName As String, modelsForDb As List(Of ValidatedModelType)) As Task(Of SchemaSnapshot)
+  overload: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder.BuildAsync*
+  implements:
+  - CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder.BuildAsync(System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
+  nameWithType.vb: DesiredSchemaBuilder.BuildAsync(String, List(Of ValidatedModelType))
+  fullName.vb: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder.BuildAsync(String, System.Collections.Generic.List(Of CoreRelm.Models.Migrations.ValidatedModelType))
+  name.vb: BuildAsync(String, List(Of ValidatedModelType))
+- uid: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder.Build(System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType})
+  commentId: M:CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder.Build(System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType})
+  id: Build(System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType})
+  parent: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder
+  langs:
+  - csharp
+  - vb
+  name: Build(string, IReadOnlyList<ValidatedModelType>)
+  nameWithType: DesiredSchemaBuilder.Build(string, IReadOnlyList<ValidatedModelType>)
+  fullName: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder.Build(string, System.Collections.Generic.IReadOnlyList<CoreRelm.Models.Migrations.ValidatedModelType>)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/RelmInternal/Helpers/Migrations/MigrationPlans/DesiredSchemaBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: Build
+    path: ../CoreRelm/RelmInternal/Helpers/Migrations/MigrationPlans/DesiredSchemaBuilder.cs
+    startLine: 22
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
+  example: []
+  syntax:
+    content: public SchemaSnapshot Build(string databaseName, IReadOnlyList<ValidatedModelType> modelsForDb)
+    parameters:
+    - id: databaseName
+      type: System.String
+    - id: modelsForDb
+      type: System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType}
+    return:
+      type: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot
+    content.vb: Public Function Build(databaseName As String, modelsForDb As IReadOnlyList(Of ValidatedModelType)) As SchemaSnapshot
+  overload: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder.Build*
+  implements:
+  - CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder.Build(System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType})
+  nameWithType.vb: DesiredSchemaBuilder.Build(String, IReadOnlyList(Of ValidatedModelType))
+  fullName.vb: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder.Build(String, System.Collections.Generic.IReadOnlyList(Of CoreRelm.Models.Migrations.ValidatedModelType))
+  name.vb: Build(String, IReadOnlyList(Of ValidatedModelType))
+references:
+- uid: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
+  commentId: N:CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
+  href: CoreRelm.html
+  name: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
+  nameWithType: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
+  fullName: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.RelmInternal
+    name: RelmInternal
+    href: CoreRelm.RelmInternal.html
+  - name: .
+  - uid: CoreRelm.RelmInternal.Helpers
+    name: Helpers
+    href: CoreRelm.RelmInternal.Helpers.html
+  - name: .
+  - uid: CoreRelm.RelmInternal.Helpers.Migrations
+    name: Migrations
+    href: CoreRelm.RelmInternal.Helpers.Migrations.html
+  - name: .
+  - uid: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
+    name: MigrationPlans
+    href: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.RelmInternal
+    name: RelmInternal
+    href: CoreRelm.RelmInternal.html
+  - name: .
+  - uid: CoreRelm.RelmInternal.Helpers
+    name: Helpers
+    href: CoreRelm.RelmInternal.Helpers.html
+  - name: .
+  - uid: CoreRelm.RelmInternal.Helpers.Migrations
+    name: Migrations
+    href: CoreRelm.RelmInternal.Helpers.Migrations.html
+  - name: .
+  - uid: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
+    name: MigrationPlans
+    href: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder
+  commentId: T:CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder
+  parent: CoreRelm.Interfaces.Migrations
+  href: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder.html
+  name: IRelmDesiredSchemaBuilder
+  nameWithType: IRelmDesiredSchemaBuilder
+  fullName: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CoreRelm.Interfaces.Migrations
+  commentId: N:CoreRelm.Interfaces.Migrations
+  href: CoreRelm.html
+  name: CoreRelm.Interfaces.Migrations
+  nameWithType: CoreRelm.Interfaces.Migrations
+  fullName: CoreRelm.Interfaces.Migrations
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations
+    name: Migrations
+    href: CoreRelm.Interfaces.Migrations.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations
+    name: Migrations
+    href: CoreRelm.Interfaces.Migrations.html
+- uid: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder.BuildAsync*
+  commentId: Overload:CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder.BuildAsync
+  href: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder.html#CoreRelm_RelmInternal_Helpers_Migrations_MigrationPlans_DesiredSchemaBuilder_BuildAsync_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__
+  name: BuildAsync
+  nameWithType: DesiredSchemaBuilder.BuildAsync
+  fullName: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder.BuildAsync
+- uid: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder.BuildAsync(System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
+  commentId: M:CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder.BuildAsync(System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
+  parent: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder
+  isExternal: true
+  href: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder.html#CoreRelm_Interfaces_Migrations_IRelmDesiredSchemaBuilder_BuildAsync_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__
+  name: BuildAsync(string, List<ValidatedModelType>)
+  nameWithType: IRelmDesiredSchemaBuilder.BuildAsync(string, List<ValidatedModelType>)
+  fullName: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder.BuildAsync(string, System.Collections.Generic.List<CoreRelm.Models.Migrations.ValidatedModelType>)
+  nameWithType.vb: IRelmDesiredSchemaBuilder.BuildAsync(String, List(Of ValidatedModelType))
+  fullName.vb: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder.BuildAsync(String, System.Collections.Generic.List(Of CoreRelm.Models.Migrations.ValidatedModelType))
+  name.vb: BuildAsync(String, List(Of ValidatedModelType))
+  spec.csharp:
+  - uid: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder.BuildAsync(System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
+    name: BuildAsync
+    href: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder.html#CoreRelm_Interfaces_Migrations_IRelmDesiredSchemaBuilder_BuildAsync_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: CoreRelm.Models.Migrations.ValidatedModelType
+    name: ValidatedModelType
+    href: CoreRelm.Models.Migrations.ValidatedModelType.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder.BuildAsync(System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
+    name: BuildAsync
+    href: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder.html#CoreRelm_Interfaces_Migrations_IRelmDesiredSchemaBuilder_BuildAsync_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.ValidatedModelType
+    name: ValidatedModelType
+    href: CoreRelm.Models.Migrations.ValidatedModelType.html
+  - name: )
+  - name: )
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType}
+  commentId: T:System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<ValidatedModelType>
+  nameWithType: List<ValidatedModelType>
+  fullName: System.Collections.Generic.List<CoreRelm.Models.Migrations.ValidatedModelType>
+  nameWithType.vb: List(Of ValidatedModelType)
+  fullName.vb: System.Collections.Generic.List(Of CoreRelm.Models.Migrations.ValidatedModelType)
+  name.vb: List(Of ValidatedModelType)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: CoreRelm.Models.Migrations.ValidatedModelType
+    name: ValidatedModelType
+    href: CoreRelm.Models.Migrations.ValidatedModelType.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.ValidatedModelType
+    name: ValidatedModelType
+    href: CoreRelm.Models.Migrations.ValidatedModelType.html
+  - name: )
+- uid: System.Threading.Tasks.Task{CoreRelm.Models.Migrations.Introspection.SchemaSnapshot}
+  commentId: T:System.Threading.Tasks.Task{CoreRelm.Models.Migrations.Introspection.SchemaSnapshot}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<SchemaSnapshot>
+  nameWithType: Task<SchemaSnapshot>
+  fullName: System.Threading.Tasks.Task<CoreRelm.Models.Migrations.Introspection.SchemaSnapshot>
+  nameWithType.vb: Task(Of SchemaSnapshot)
+  fullName.vb: System.Threading.Tasks.Task(Of CoreRelm.Models.Migrations.Introspection.SchemaSnapshot)
+  name.vb: Task(Of SchemaSnapshot)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot
+    name: SchemaSnapshot
+    href: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot
+    name: SchemaSnapshot
+    href: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder.Build*
+  commentId: Overload:CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder.Build
+  href: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder.html#CoreRelm_RelmInternal_Helpers_Migrations_MigrationPlans_DesiredSchemaBuilder_Build_System_String_System_Collections_Generic_IReadOnlyList_CoreRelm_Models_Migrations_ValidatedModelType__
+  name: Build
+  nameWithType: DesiredSchemaBuilder.Build
+  fullName: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder.Build
+- uid: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder.Build(System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType})
+  commentId: M:CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder.Build(System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType})
+  parent: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder
+  isExternal: true
+  href: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder.html#CoreRelm_Interfaces_Migrations_IRelmDesiredSchemaBuilder_Build_System_String_System_Collections_Generic_IReadOnlyList_CoreRelm_Models_Migrations_ValidatedModelType__
+  name: Build(string, IReadOnlyList<ValidatedModelType>)
+  nameWithType: IRelmDesiredSchemaBuilder.Build(string, IReadOnlyList<ValidatedModelType>)
+  fullName: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder.Build(string, System.Collections.Generic.IReadOnlyList<CoreRelm.Models.Migrations.ValidatedModelType>)
+  nameWithType.vb: IRelmDesiredSchemaBuilder.Build(String, IReadOnlyList(Of ValidatedModelType))
+  fullName.vb: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder.Build(String, System.Collections.Generic.IReadOnlyList(Of CoreRelm.Models.Migrations.ValidatedModelType))
+  name.vb: Build(String, IReadOnlyList(Of ValidatedModelType))
+  spec.csharp:
+  - uid: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder.Build(System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType})
+    name: Build
+    href: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder.html#CoreRelm_Interfaces_Migrations_IRelmDesiredSchemaBuilder_Build_System_String_System_Collections_Generic_IReadOnlyList_CoreRelm_Models_Migrations_ValidatedModelType__
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: CoreRelm.Models.Migrations.ValidatedModelType
+    name: ValidatedModelType
+    href: CoreRelm.Models.Migrations.ValidatedModelType.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder.Build(System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType})
+    name: Build
+    href: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder.html#CoreRelm_Interfaces_Migrations_IRelmDesiredSchemaBuilder_Build_System_String_System_Collections_Generic_IReadOnlyList_CoreRelm_Models_Migrations_ValidatedModelType__
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.ValidatedModelType
+    name: ValidatedModelType
+    href: CoreRelm.Models.Migrations.ValidatedModelType.html
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType}
+  commentId: T:System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<ValidatedModelType>
+  nameWithType: IReadOnlyList<ValidatedModelType>
+  fullName: System.Collections.Generic.IReadOnlyList<CoreRelm.Models.Migrations.ValidatedModelType>
+  nameWithType.vb: IReadOnlyList(Of ValidatedModelType)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of CoreRelm.Models.Migrations.ValidatedModelType)
+  name.vb: IReadOnlyList(Of ValidatedModelType)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: CoreRelm.Models.Migrations.ValidatedModelType
+    name: ValidatedModelType
+    href: CoreRelm.Models.Migrations.ValidatedModelType.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.ValidatedModelType
+    name: ValidatedModelType
+    href: CoreRelm.Models.Migrations.ValidatedModelType.html
+  - name: )
+- uid: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot
+  commentId: T:CoreRelm.Models.Migrations.Introspection.SchemaSnapshot
+  parent: CoreRelm.Models.Migrations.Introspection
+  href: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.html
+  name: SchemaSnapshot
+  nameWithType: SchemaSnapshot
+  fullName: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: CoreRelm.Models.Migrations.Introspection
+  commentId: N:CoreRelm.Models.Migrations.Introspection
+  href: CoreRelm.html
+  name: CoreRelm.Models.Migrations.Introspection
+  nameWithType: CoreRelm.Models.Migrations.Introspection
+  fullName: CoreRelm.Models.Migrations.Introspection
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Introspection
+    name: Introspection
+    href: CoreRelm.Models.Migrations.Introspection.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Introspection
+    name: Introspection
+    href: CoreRelm.Models.Migrations.Introspection.html

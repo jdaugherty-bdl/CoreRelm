@@ -5,8 +5,8 @@ items:
   id: DbAvailabilityHelper
   parent: CoreRelm.RelmInternal.Helpers.Migrations.Introspection
   children:
-  - CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.EnsureForApplyOrMigrateAsync(CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner,System.String,System.String,System.Action{System.String},System.Action{System.String},System.Threading.CancellationToken)
-  - CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.WarnIfMissingAsync(CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner,System.String,System.String,System.Action{System.String},System.Threading.CancellationToken)
+  - CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.EnsureForApplyOrMigrateAsync(CoreRelm.Models.Migrations.MigrationOptions,CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner,System.String,System.Action{System.String},System.Action{System.String})
+  - CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.WarnIfMissingAsync(CoreRelm.Models.Migrations.MigrationOptions,CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner,System.String,System.Action{System.String})
   langs:
   - csharp
   - vb
@@ -21,7 +21,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DbAvailabilityHelper
     path: ../CoreRelm/RelmInternal/Helpers/Migrations/Introspection/DbAvailabilityHelper.cs
-    startLine: 9
+    startLine: 10
   assemblies:
   - CoreRelm
   namespace: CoreRelm.RelmInternal.Helpers.Migrations.Introspection
@@ -38,16 +38,16 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.EnsureForApplyOrMigrateAsync(CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner,System.String,System.String,System.Action{System.String},System.Action{System.String},System.Threading.CancellationToken)
-  commentId: M:CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.EnsureForApplyOrMigrateAsync(CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner,System.String,System.String,System.Action{System.String},System.Action{System.String},System.Threading.CancellationToken)
-  id: EnsureForApplyOrMigrateAsync(CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner,System.String,System.String,System.Action{System.String},System.Action{System.String},System.Threading.CancellationToken)
+- uid: CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.EnsureForApplyOrMigrateAsync(CoreRelm.Models.Migrations.MigrationOptions,CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner,System.String,System.Action{System.String},System.Action{System.String})
+  commentId: M:CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.EnsureForApplyOrMigrateAsync(CoreRelm.Models.Migrations.MigrationOptions,CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner,System.String,System.Action{System.String},System.Action{System.String})
+  id: EnsureForApplyOrMigrateAsync(CoreRelm.Models.Migrations.MigrationOptions,CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner,System.String,System.Action{System.String},System.Action{System.String})
   parent: CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper
   langs:
   - csharp
   - vb
-  name: EnsureForApplyOrMigrateAsync(IRelmDatabaseProvisioner, string, string, Action<string>, Action<string>, CancellationToken)
-  nameWithType: DbAvailabilityHelper.EnsureForApplyOrMigrateAsync(IRelmDatabaseProvisioner, string, string, Action<string>, Action<string>, CancellationToken)
-  fullName: CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.EnsureForApplyOrMigrateAsync(CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner, string, string, System.Action<string>, System.Action<string>, System.Threading.CancellationToken)
+  name: EnsureForApplyOrMigrateAsync(MigrationOptions, IRelmDatabaseProvisioner, string, Action<string>, Action<string>)
+  nameWithType: DbAvailabilityHelper.EnsureForApplyOrMigrateAsync(MigrationOptions, IRelmDatabaseProvisioner, string, Action<string>, Action<string>)
+  fullName: CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.EnsureForApplyOrMigrateAsync(CoreRelm.Models.Migrations.MigrationOptions, CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner, string, System.Action<string>, System.Action<string>)
   type: Method
   source:
     remote:
@@ -56,42 +56,40 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: EnsureForApplyOrMigrateAsync
     path: ../CoreRelm/RelmInternal/Helpers/Migrations/Introspection/DbAvailabilityHelper.cs
-    startLine: 11
+    startLine: 12
   assemblies:
   - CoreRelm
   namespace: CoreRelm.RelmInternal.Helpers.Migrations.Introspection
   syntax:
-    content: public static Task<bool> EnsureForApplyOrMigrateAsync(IRelmDatabaseProvisioner provisioner, string serverConnectionString, string databaseName, Action<string> logInfo, Action<string> logWarn, CancellationToken ct)
+    content: public static Task<bool> EnsureForApplyOrMigrateAsync(MigrationOptions migrationOptions, IRelmDatabaseProvisioner provisioner, string databaseName, Action<string> logInfo, Action<string> logWarn)
     parameters:
+    - id: migrationOptions
+      type: CoreRelm.Models.Migrations.MigrationOptions
     - id: provisioner
       type: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner
-    - id: serverConnectionString
-      type: System.String
     - id: databaseName
       type: System.String
     - id: logInfo
       type: System.Action{System.String}
     - id: logWarn
       type: System.Action{System.String}
-    - id: ct
-      type: System.Threading.CancellationToken
     return:
       type: System.Threading.Tasks.Task{System.Boolean}
-    content.vb: Public Shared Function EnsureForApplyOrMigrateAsync(provisioner As IRelmDatabaseProvisioner, serverConnectionString As String, databaseName As String, logInfo As Action(Of String), logWarn As Action(Of String), ct As CancellationToken) As Task(Of Boolean)
+    content.vb: Public Shared Function EnsureForApplyOrMigrateAsync(migrationOptions As MigrationOptions, provisioner As IRelmDatabaseProvisioner, databaseName As String, logInfo As Action(Of String), logWarn As Action(Of String)) As Task(Of Boolean)
   overload: CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.EnsureForApplyOrMigrateAsync*
-  nameWithType.vb: DbAvailabilityHelper.EnsureForApplyOrMigrateAsync(IRelmDatabaseProvisioner, String, String, Action(Of String), Action(Of String), CancellationToken)
-  fullName.vb: CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.EnsureForApplyOrMigrateAsync(CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner, String, String, System.Action(Of String), System.Action(Of String), System.Threading.CancellationToken)
-  name.vb: EnsureForApplyOrMigrateAsync(IRelmDatabaseProvisioner, String, String, Action(Of String), Action(Of String), CancellationToken)
-- uid: CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.WarnIfMissingAsync(CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner,System.String,System.String,System.Action{System.String},System.Threading.CancellationToken)
-  commentId: M:CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.WarnIfMissingAsync(CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner,System.String,System.String,System.Action{System.String},System.Threading.CancellationToken)
-  id: WarnIfMissingAsync(CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner,System.String,System.String,System.Action{System.String},System.Threading.CancellationToken)
+  nameWithType.vb: DbAvailabilityHelper.EnsureForApplyOrMigrateAsync(MigrationOptions, IRelmDatabaseProvisioner, String, Action(Of String), Action(Of String))
+  fullName.vb: CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.EnsureForApplyOrMigrateAsync(CoreRelm.Models.Migrations.MigrationOptions, CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner, String, System.Action(Of String), System.Action(Of String))
+  name.vb: EnsureForApplyOrMigrateAsync(MigrationOptions, IRelmDatabaseProvisioner, String, Action(Of String), Action(Of String))
+- uid: CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.WarnIfMissingAsync(CoreRelm.Models.Migrations.MigrationOptions,CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner,System.String,System.Action{System.String})
+  commentId: M:CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.WarnIfMissingAsync(CoreRelm.Models.Migrations.MigrationOptions,CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner,System.String,System.Action{System.String})
+  id: WarnIfMissingAsync(CoreRelm.Models.Migrations.MigrationOptions,CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner,System.String,System.Action{System.String})
   parent: CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper
   langs:
   - csharp
   - vb
-  name: WarnIfMissingAsync(IRelmDatabaseProvisioner, string, string, Action<string>, CancellationToken)
-  nameWithType: DbAvailabilityHelper.WarnIfMissingAsync(IRelmDatabaseProvisioner, string, string, Action<string>, CancellationToken)
-  fullName: CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.WarnIfMissingAsync(CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner, string, string, System.Action<string>, System.Threading.CancellationToken)
+  name: WarnIfMissingAsync(MigrationOptions, IRelmDatabaseProvisioner, string, Action<string>)
+  nameWithType: DbAvailabilityHelper.WarnIfMissingAsync(MigrationOptions, IRelmDatabaseProvisioner, string, Action<string>)
+  fullName: CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.WarnIfMissingAsync(CoreRelm.Models.Migrations.MigrationOptions, CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner, string, System.Action<string>)
   type: Method
   source:
     remote:
@@ -100,30 +98,28 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WarnIfMissingAsync
     path: ../CoreRelm/RelmInternal/Helpers/Migrations/Introspection/DbAvailabilityHelper.cs
-    startLine: 40
+    startLine: 39
   assemblies:
   - CoreRelm
   namespace: CoreRelm.RelmInternal.Helpers.Migrations.Introspection
   syntax:
-    content: public static Task<bool> WarnIfMissingAsync(IRelmDatabaseProvisioner provisioner, string serverConnectionString, string databaseName, Action<string> logWarn, CancellationToken ct)
+    content: public static Task<bool> WarnIfMissingAsync(MigrationOptions migrationOptions, IRelmDatabaseProvisioner provisioner, string databaseName, Action<string> logWarn)
     parameters:
+    - id: migrationOptions
+      type: CoreRelm.Models.Migrations.MigrationOptions
     - id: provisioner
       type: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner
-    - id: serverConnectionString
-      type: System.String
     - id: databaseName
       type: System.String
     - id: logWarn
       type: System.Action{System.String}
-    - id: ct
-      type: System.Threading.CancellationToken
     return:
       type: System.Threading.Tasks.Task{System.Boolean}
-    content.vb: Public Shared Function WarnIfMissingAsync(provisioner As IRelmDatabaseProvisioner, serverConnectionString As String, databaseName As String, logWarn As Action(Of String), ct As CancellationToken) As Task(Of Boolean)
+    content.vb: Public Shared Function WarnIfMissingAsync(migrationOptions As MigrationOptions, provisioner As IRelmDatabaseProvisioner, databaseName As String, logWarn As Action(Of String)) As Task(Of Boolean)
   overload: CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.WarnIfMissingAsync*
-  nameWithType.vb: DbAvailabilityHelper.WarnIfMissingAsync(IRelmDatabaseProvisioner, String, String, Action(Of String), CancellationToken)
-  fullName.vb: CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.WarnIfMissingAsync(CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner, String, String, System.Action(Of String), System.Threading.CancellationToken)
-  name.vb: WarnIfMissingAsync(IRelmDatabaseProvisioner, String, String, Action(Of String), CancellationToken)
+  nameWithType.vb: DbAvailabilityHelper.WarnIfMissingAsync(MigrationOptions, IRelmDatabaseProvisioner, String, Action(Of String))
+  fullName.vb: CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.WarnIfMissingAsync(CoreRelm.Models.Migrations.MigrationOptions, CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner, String, System.Action(Of String))
+  name.vb: WarnIfMissingAsync(MigrationOptions, IRelmDatabaseProvisioner, String, Action(Of String))
 references:
 - uid: CoreRelm.RelmInternal.Helpers.Migrations.Introspection
   commentId: N:CoreRelm.RelmInternal.Helpers.Migrations.Introspection
@@ -410,10 +406,17 @@ references:
   fullName: System
 - uid: CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.EnsureForApplyOrMigrateAsync*
   commentId: Overload:CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.EnsureForApplyOrMigrateAsync
-  href: CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.html#CoreRelm_RelmInternal_Helpers_Migrations_Introspection_DbAvailabilityHelper_EnsureForApplyOrMigrateAsync_CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_System_String_System_String_System_Action_System_String__System_Action_System_String__System_Threading_CancellationToken_
+  href: CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.html#CoreRelm_RelmInternal_Helpers_Migrations_Introspection_DbAvailabilityHelper_EnsureForApplyOrMigrateAsync_CoreRelm_Models_Migrations_MigrationOptions_CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_System_String_System_Action_System_String__System_Action_System_String__
   name: EnsureForApplyOrMigrateAsync
   nameWithType: DbAvailabilityHelper.EnsureForApplyOrMigrateAsync
   fullName: CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.EnsureForApplyOrMigrateAsync
+- uid: CoreRelm.Models.Migrations.MigrationOptions
+  commentId: T:CoreRelm.Models.Migrations.MigrationOptions
+  parent: CoreRelm.Models.Migrations
+  href: CoreRelm.Models.Migrations.MigrationOptions.html
+  name: MigrationOptions
+  nameWithType: MigrationOptions
+  fullName: CoreRelm.Models.Migrations.MigrationOptions
 - uid: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner
   commentId: T:CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner
   parent: CoreRelm.Interfaces.Migrations
@@ -467,14 +470,6 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
-- uid: System.Threading.CancellationToken
-  commentId: T:System.Threading.CancellationToken
-  parent: System.Threading
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
-  name: CancellationToken
-  nameWithType: CancellationToken
-  fullName: System.Threading.CancellationToken
 - uid: System.Threading.Tasks.Task{System.Boolean}
   commentId: T:System.Threading.Tasks.Task{System.Boolean}
   parent: System.Threading.Tasks
@@ -510,6 +505,36 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
+- uid: CoreRelm.Models.Migrations
+  commentId: N:CoreRelm.Models.Migrations
+  href: CoreRelm.html
+  name: CoreRelm.Models.Migrations
+  nameWithType: CoreRelm.Models.Migrations
+  fullName: CoreRelm.Models.Migrations
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
 - uid: CoreRelm.Interfaces.Migrations
   commentId: N:CoreRelm.Interfaces.Migrations
   href: CoreRelm.html
@@ -568,33 +593,6 @@ references:
   - name: " "
   - name: T
   - name: )
-- uid: System.Threading
-  commentId: N:System.Threading
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System.Threading
-  nameWithType: System.Threading
-  fullName: System.Threading
-  spec.csharp:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Threading
-    name: Threading
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading
-  spec.vb:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Threading
-    name: Threading
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading
 - uid: System.Threading.Tasks.Task`1
   commentId: T:System.Threading.Tasks.Task`1
   isExternal: true
@@ -662,7 +660,7 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
 - uid: CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.WarnIfMissingAsync*
   commentId: Overload:CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.WarnIfMissingAsync
-  href: CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.html#CoreRelm_RelmInternal_Helpers_Migrations_Introspection_DbAvailabilityHelper_WarnIfMissingAsync_CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_System_String_System_String_System_Action_System_String__System_Threading_CancellationToken_
+  href: CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.html#CoreRelm_RelmInternal_Helpers_Migrations_Introspection_DbAvailabilityHelper_WarnIfMissingAsync_CoreRelm_Models_Migrations_MigrationOptions_CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_System_String_System_Action_System_String__
   name: WarnIfMissingAsync
   nameWithType: DbAvailabilityHelper.WarnIfMissingAsync
   fullName: CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper.WarnIfMissingAsync

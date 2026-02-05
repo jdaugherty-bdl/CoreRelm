@@ -23,7 +23,6 @@ items:
   - CoreRelm.Persistence.BulkTableWriter`1.SetTableName(System.String)
   - CoreRelm.Persistence.BulkTableWriter`1.SetTransaction(MySql.Data.MySqlClient.MySqlTransaction)
   - CoreRelm.Persistence.BulkTableWriter`1.ThrowException(System.Boolean)
-  - CoreRelm.Persistence.BulkTableWriter`1.UseTransaction(System.Boolean)
   - CoreRelm.Persistence.BulkTableWriter`1.Write
   - CoreRelm.Persistence.BulkTableWriter`1.Write(System.Func{System.String,`0,System.Object})
   langs:
@@ -95,7 +94,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Write
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 234
+    startLine: 229
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -118,9 +117,9 @@ items:
   langs:
   - csharp
   - vb
-  name: Write(Func<string, T, object>)
-  nameWithType: BulkTableWriter<T>.Write(Func<string, T, object>)
-  fullName: CoreRelm.Persistence.BulkTableWriter<T>.Write(System.Func<string, T, object>)
+  name: Write(Func<string, T, object>?)
+  nameWithType: BulkTableWriter<T>.Write(Func<string, T, object>?)
+  fullName: CoreRelm.Persistence.BulkTableWriter<T>.Write(System.Func<string, T, object>?)
   type: Method
   source:
     remote:
@@ -129,7 +128,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Write
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 250
+    startLine: 245
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -143,7 +142,7 @@ items:
         connections, and it uses the appropriate one based on the current configuration.
   example: []
   syntax:
-    content: public int Write(Func<string, T, object> DataTableFunction)
+    content: public int Write(Func<string, T, object>? DataTableFunction)
     parameters:
     - id: DataTableFunction
       type: System.Func{System.String,{T},System.Object}
@@ -160,46 +159,6 @@ items:
   nameWithType.vb: BulkTableWriter(Of T).Write(Func(Of String, T, Object))
   fullName.vb: CoreRelm.Persistence.BulkTableWriter(Of T).Write(System.Func(Of String, T, Object))
   name.vb: Write(Func(Of String, T, Object))
-- uid: CoreRelm.Persistence.BulkTableWriter`1.UseTransaction(System.Boolean)
-  commentId: M:CoreRelm.Persistence.BulkTableWriter`1.UseTransaction(System.Boolean)
-  id: UseTransaction(System.Boolean)
-  parent: CoreRelm.Persistence.BulkTableWriter`1
-  langs:
-  - csharp
-  - vb
-  name: UseTransaction(bool)
-  nameWithType: BulkTableWriter<T>.UseTransaction(bool)
-  fullName: CoreRelm.Persistence.BulkTableWriter<T>.UseTransaction(bool)
-  type: Method
-  source:
-    remote:
-      path: CoreRelm/Persistence/BulkTableWriter.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: UseTransaction
-    path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 576
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Persistence
-  summary: Configures whether the bulk table writer should use a transaction during its operations.
-  example: []
-  syntax:
-    content: public BulkTableWriter<T> UseTransaction(bool useTransaction)
-    parameters:
-    - id: useTransaction
-      type: System.Boolean
-      description: >-
-        A value indicating whether to enable transaction usage.  <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to use a transaction;
-            otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
-    return:
-      type: CoreRelm.Persistence.BulkTableWriter`1
-      description: The current instance of <xref href="CoreRelm.Persistence.BulkTableWriter%601" data-throw-if-not-resolved="false"></xref>, allowing for method chaining.
-    content.vb: Public Function UseTransaction(useTransaction As Boolean) As BulkTableWriter(Of T)
-  overload: CoreRelm.Persistence.BulkTableWriter`1.UseTransaction*
-  nameWithType.vb: BulkTableWriter(Of T).UseTransaction(Boolean)
-  fullName.vb: CoreRelm.Persistence.BulkTableWriter(Of T).UseTransaction(Boolean)
-  name.vb: UseTransaction(Boolean)
 - uid: CoreRelm.Persistence.BulkTableWriter`1.SetTransaction(MySql.Data.MySqlClient.MySqlTransaction)
   commentId: M:CoreRelm.Persistence.BulkTableWriter`1.SetTransaction(MySql.Data.MySqlClient.MySqlTransaction)
   id: SetTransaction(MySql.Data.MySqlClient.MySqlTransaction)
@@ -218,7 +177,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetTransaction
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 589
+    startLine: 595
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -257,7 +216,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ThrowException
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 602
+    startLine: 608
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -297,7 +256,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AllowUserVariables
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 615
+    startLine: 621
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -337,7 +296,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AllowAutoDateColumns
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 628
+    startLine: 634
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -377,7 +336,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AllowAutoIncrementColumns
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 641
+    startLine: 647
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -417,7 +376,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AllowPrimaryKeyColumns
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 657
+    startLine: 663
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -461,7 +420,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AllowUniqueColumns
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 670
+    startLine: 676
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -501,7 +460,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetInsertQuery
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 683
+    startLine: 689
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -541,7 +500,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetSourceData
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 695
+    startLine: 701
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -579,7 +538,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetSourceData
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 707
+    startLine: 713
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -605,9 +564,9 @@ items:
   langs:
   - csharp
   - vb
-  name: AddColumn(string, MySqlDbType, int, string, string)
-  nameWithType: BulkTableWriter<T>.AddColumn(string, MySqlDbType, int, string, string)
-  fullName: CoreRelm.Persistence.BulkTableWriter<T>.AddColumn(string, MySql.Data.MySqlClient.MySqlDbType, int, string, string)
+  name: AddColumn(string, MySqlDbType, int, string?, string?)
+  nameWithType: BulkTableWriter<T>.AddColumn(string, MySqlDbType, int, string?, string?)
+  fullName: CoreRelm.Persistence.BulkTableWriter<T>.AddColumn(string, MySql.Data.MySqlClient.MySqlDbType, int, string?, string?)
   type: Method
   source:
     remote:
@@ -616,14 +575,14 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AddColumn
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 724
+    startLine: 730
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
   summary: Adds a column definition to the bulk table writer.
   example: []
   syntax:
-    content: public BulkTableWriter<T> AddColumn(string columnName, MySqlDbType dbType, int size, string alternatePropertyName = null, string columnDefault = null)
+    content: public BulkTableWriter<T> AddColumn(string columnName, MySqlDbType dbType, int size, string? alternatePropertyName = null, string? columnDefault = null)
     parameters:
     - id: columnName
       type: System.String
@@ -657,9 +616,9 @@ items:
   langs:
   - csharp
   - vb
-  name: AddColumns(IEnumerable<Tuple<string, MySqlDbType, int, string, string>>)
-  nameWithType: BulkTableWriter<T>.AddColumns(IEnumerable<Tuple<string, MySqlDbType, int, string, string>>)
-  fullName: CoreRelm.Persistence.BulkTableWriter<T>.AddColumns(System.Collections.Generic.IEnumerable<System.Tuple<string, MySql.Data.MySqlClient.MySqlDbType, int, string, string>>)
+  name: AddColumns(IEnumerable<Tuple<string, MySqlDbType, int, string?, string?>?>?)
+  nameWithType: BulkTableWriter<T>.AddColumns(IEnumerable<Tuple<string, MySqlDbType, int, string?, string?>?>?)
+  fullName: CoreRelm.Persistence.BulkTableWriter<T>.AddColumns(System.Collections.Generic.IEnumerable<System.Tuple<string, MySql.Data.MySqlClient.MySqlDbType, int, string?, string?>?>?)
   type: Method
   source:
     remote:
@@ -668,7 +627,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AddColumns
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 743
+    startLine: 749
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -678,7 +637,7 @@ items:
         <code class="paramref">columns</code> parameter is null, no columns are added.
   example: []
   syntax:
-    content: public BulkTableWriter<T> AddColumns(IEnumerable<Tuple<string, MySqlDbType, int, string, string>> columns)
+    content: public BulkTableWriter<T> AddColumns(IEnumerable<Tuple<string, MySqlDbType, int, string?, string?>?>? columns)
     parameters:
     - id: columns
       type: System.Collections.Generic.IEnumerable{System.Tuple{System.String,MySql.Data.MySqlClient.MySqlDbType,System.Int32,System.String,System.String}}
@@ -711,7 +670,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AddColumns
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 765
+    startLine: 771
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -755,7 +714,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetTableName
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 775
+    startLine: 781
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -793,7 +752,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetDatabaseName
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 787
+    startLine: 793
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -831,7 +790,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: RemoveColumn
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 801
+    startLine: 807
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -872,7 +831,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetBatchSize
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 817
+    startLine: 823
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -914,7 +873,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ResetBatchSize
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 830
+    startLine: 836
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -1392,25 +1351,6 @@ references:
   - name: " "
   - name: TResult
   - name: )
-- uid: CoreRelm.Persistence.BulkTableWriter`1.UseTransaction*
-  commentId: Overload:CoreRelm.Persistence.BulkTableWriter`1.UseTransaction
-  href: CoreRelm.Persistence.BulkTableWriter-1.html#CoreRelm_Persistence_BulkTableWriter_1_UseTransaction_System_Boolean_
-  name: UseTransaction
-  nameWithType: BulkTableWriter<T>.UseTransaction
-  fullName: CoreRelm.Persistence.BulkTableWriter<T>.UseTransaction
-  nameWithType.vb: BulkTableWriter(Of T).UseTransaction
-  fullName.vb: CoreRelm.Persistence.BulkTableWriter(Of T).UseTransaction
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.boolean
-  name: bool
-  nameWithType: bool
-  fullName: bool
-  nameWithType.vb: Boolean
-  fullName.vb: Boolean
-  name.vb: Boolean
 - uid: MySql.Data.MySqlClient.MySqlTransaction
   commentId: T:MySql.Data.MySqlClient.MySqlTransaction
   parent: MySql.Data.MySqlClient
@@ -1464,6 +1404,17 @@ references:
   fullName: CoreRelm.Persistence.BulkTableWriter<T>.ThrowException
   nameWithType.vb: BulkTableWriter(Of T).ThrowException
   fullName.vb: CoreRelm.Persistence.BulkTableWriter(Of T).ThrowException
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: CoreRelm.Persistence.BulkTableWriter`1.AllowUserVariables*
   commentId: Overload:CoreRelm.Persistence.BulkTableWriter`1.AllowUserVariables
   href: CoreRelm.Persistence.BulkTableWriter-1.html#CoreRelm_Persistence_BulkTableWriter_1_AllowUserVariables_System_Boolean_

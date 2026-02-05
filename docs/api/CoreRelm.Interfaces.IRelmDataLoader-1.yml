@@ -197,9 +197,9 @@ items:
   langs:
   - csharp
   - vb
-  name: AddSingleExpression(Command, Expression)
-  nameWithType: IRelmDataLoader<T>.AddSingleExpression(Commands.Command, Expression)
-  fullName: CoreRelm.Interfaces.IRelmDataLoader<T>.AddSingleExpression(CoreRelm.Enums.Commands.Command, System.Linq.Expressions.Expression)
+  name: AddSingleExpression(Command, Expression?)
+  nameWithType: IRelmDataLoader<T>.AddSingleExpression(Commands.Command, Expression?)
+  fullName: CoreRelm.Interfaces.IRelmDataLoader<T>.AddSingleExpression(CoreRelm.Enums.Commands.Command, System.Linq.Expressions.Expression?)
   type: Method
   source:
     remote:
@@ -215,7 +215,7 @@ items:
   summary: Adds a single expression to the specified command and returns the resulting execution command.
   example: []
   syntax:
-    content: IRelmExecutionCommand AddSingleExpression(Commands.Command command, Expression expression)
+    content: IRelmExecutionCommand AddSingleExpression(Commands.Command command, Expression? expression)
     parameters:
     - id: command
       type: CoreRelm.Enums.Commands.Command
@@ -230,6 +230,7 @@ items:
   overload: CoreRelm.Interfaces.IRelmDataLoader`1.AddSingleExpression*
   nameWithType.vb: IRelmDataLoader(Of T).AddSingleExpression(Commands.Command, Expression)
   fullName.vb: CoreRelm.Interfaces.IRelmDataLoader(Of T).AddSingleExpression(CoreRelm.Enums.Commands.Command, System.Linq.Expressions.Expression)
+  name.vb: AddSingleExpression(Command, Expression)
 - uid: CoreRelm.Interfaces.IRelmDataLoader`1.HasUnderscoreProperty(System.String)
   commentId: M:CoreRelm.Interfaces.IRelmDataLoader`1.HasUnderscoreProperty(System.String)
   id: HasUnderscoreProperty(System.String)

@@ -5,7 +5,7 @@ items:
   id: IMigrationSqlProvider
   parent: CoreRelm.Interfaces.Migrations
   children:
-  - CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(System.String,System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},System.Boolean,System.Threading.CancellationToken,System.Boolean,System.Boolean,CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
+  - CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
   langs:
   - csharp
   - vb
@@ -27,16 +27,16 @@ items:
   syntax:
     content: public interface IMigrationSqlProvider
     content.vb: Public Interface IMigrationSqlProvider
-- uid: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(System.String,System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},System.Boolean,System.Threading.CancellationToken,System.Boolean,System.Boolean,CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
-  commentId: M:CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(System.String,System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},System.Boolean,System.Threading.CancellationToken,System.Boolean,System.Boolean,CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
-  id: Generate(System.String,System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},System.Boolean,System.Threading.CancellationToken,System.Boolean,System.Boolean,CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
+- uid: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
+  commentId: M:CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
+  id: Generate(System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
   parent: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider
   langs:
   - csharp
   - vb
-  name: Generate(string, string, string, string, List<ValidatedModelType>, bool, CancellationToken, bool, bool, MySqlDatabaseProvisioner)
-  nameWithType: IMigrationSqlProvider.Generate(string, string, string, string, List<ValidatedModelType>, bool, CancellationToken, bool, bool, MySqlDatabaseProvisioner)
-  fullName: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(string, string, string, string, System.Collections.Generic.List<CoreRelm.Models.Migrations.ValidatedModelType>, bool, System.Threading.CancellationToken, bool, bool, CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
+  name: Generate(string, string, string, List<ValidatedModelType>, MySqlDatabaseProvisioner)
+  nameWithType: IMigrationSqlProvider.Generate(string, string, string, List<ValidatedModelType>, MySqlDatabaseProvisioner)
+  fullName: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(string, string, string, System.Collections.Generic.List<CoreRelm.Models.Migrations.ValidatedModelType>, CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
   type: Method
   source:
     remote:
@@ -50,35 +50,25 @@ items:
   - CoreRelm
   namespace: CoreRelm.Interfaces.Migrations
   syntax:
-    content: Task<MigrationGenerateResult> Generate(string migrationName, string stampUtc, string setName, string dbName, List<ValidatedModelType> modelsForDb, bool destructive, CancellationToken cancellationToken, bool quiet, bool apply, MySqlDatabaseProvisioner provisioner)
+    content: Task<MigrationGenerateResult> Generate(string migrationName, string stampUtc, string dbName, List<ValidatedModelType> modelsForDb, MySqlDatabaseProvisioner provisioner)
     parameters:
     - id: migrationName
       type: System.String
     - id: stampUtc
       type: System.String
-    - id: setName
-      type: System.String
     - id: dbName
       type: System.String
     - id: modelsForDb
       type: System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType}
-    - id: destructive
-      type: System.Boolean
-    - id: cancellationToken
-      type: System.Threading.CancellationToken
-    - id: quiet
-      type: System.Boolean
-    - id: apply
-      type: System.Boolean
     - id: provisioner
       type: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner
     return:
       type: System.Threading.Tasks.Task{CoreRelm.Models.Migrations.MigrationGenerateResult}
-    content.vb: Function Generate(migrationName As String, stampUtc As String, setName As String, dbName As String, modelsForDb As List(Of ValidatedModelType), destructive As Boolean, cancellationToken As CancellationToken, quiet As Boolean, apply As Boolean, provisioner As MySqlDatabaseProvisioner) As Task(Of MigrationGenerateResult)
+    content.vb: Function Generate(migrationName As String, stampUtc As String, dbName As String, modelsForDb As List(Of ValidatedModelType), provisioner As MySqlDatabaseProvisioner) As Task(Of MigrationGenerateResult)
   overload: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate*
-  nameWithType.vb: IMigrationSqlProvider.Generate(String, String, String, String, List(Of ValidatedModelType), Boolean, CancellationToken, Boolean, Boolean, MySqlDatabaseProvisioner)
-  fullName.vb: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(String, String, String, String, System.Collections.Generic.List(Of CoreRelm.Models.Migrations.ValidatedModelType), Boolean, System.Threading.CancellationToken, Boolean, Boolean, CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
-  name.vb: Generate(String, String, String, String, List(Of ValidatedModelType), Boolean, CancellationToken, Boolean, Boolean, MySqlDatabaseProvisioner)
+  nameWithType.vb: IMigrationSqlProvider.Generate(String, String, String, List(Of ValidatedModelType), MySqlDatabaseProvisioner)
+  fullName.vb: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(String, String, String, System.Collections.Generic.List(Of CoreRelm.Models.Migrations.ValidatedModelType), CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
+  name.vb: Generate(String, String, String, List(Of ValidatedModelType), MySqlDatabaseProvisioner)
 references:
 - uid: CoreRelm.Interfaces.Migrations
   commentId: N:CoreRelm.Interfaces.Migrations
@@ -112,7 +102,7 @@ references:
     href: CoreRelm.Interfaces.Migrations.html
 - uid: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate*
   commentId: Overload:CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate
-  href: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.html#CoreRelm_Interfaces_Migrations_IMigrationSqlProvider_Generate_System_String_System_String_System_String_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__System_Boolean_System_Threading_CancellationToken_System_Boolean_System_Boolean_CoreRelm_RelmInternal_Helpers_Migrations_Provisioning_MySqlDatabaseProvisioner_
+  href: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.html#CoreRelm_Interfaces_Migrations_IMigrationSqlProvider_Generate_System_String_System_String_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__CoreRelm_RelmInternal_Helpers_Migrations_Provisioning_MySqlDatabaseProvisioner_
   name: Generate
   nameWithType: IMigrationSqlProvider.Generate
   fullName: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate
@@ -160,25 +150,6 @@ references:
     name: ValidatedModelType
     href: CoreRelm.Models.Migrations.ValidatedModelType.html
   - name: )
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.boolean
-  name: bool
-  nameWithType: bool
-  fullName: bool
-  nameWithType.vb: Boolean
-  fullName.vb: Boolean
-  name.vb: Boolean
-- uid: System.Threading.CancellationToken
-  commentId: T:System.Threading.CancellationToken
-  parent: System.Threading
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
-  name: CancellationToken
-  nameWithType: CancellationToken
-  fullName: System.Threading.CancellationToken
 - uid: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner
   commentId: T:CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner
   parent: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
@@ -291,33 +262,6 @@ references:
     name: Generic
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.collections.generic
-- uid: System.Threading
-  commentId: N:System.Threading
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System.Threading
-  nameWithType: System.Threading
-  fullName: System.Threading
-  spec.csharp:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Threading
-    name: Threading
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading
-  spec.vb:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Threading
-    name: Threading
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading
 - uid: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
   commentId: N:CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
   href: CoreRelm.html

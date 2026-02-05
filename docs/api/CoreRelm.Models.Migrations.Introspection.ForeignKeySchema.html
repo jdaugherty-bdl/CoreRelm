@@ -89,7 +89,7 @@
 
 
   <h1 id="CoreRelm_Models_Migrations_Introspection_ForeignKeySchema" data-uid="CoreRelm.Models.Migrations.Introspection.ForeignKeySchema" class="text-break">
-Class ForeignKeySchema  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs/#L9"><i class="bi bi-code-slash"></i></a>
+Class ForeignKeySchema  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs/#L10"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -101,7 +101,7 @@ Class ForeignKeySchema  <a class="header-action link-secondary" title="View sour
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed record ForeignKeySchema : IEquatable&lt;ForeignKeySchema&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public class ForeignKeySchema : RelmModel, IRelmModel</code></pre>
   </div>
 
 
@@ -111,6 +111,7 @@ Class ForeignKeySchema  <a class="header-action link-secondary" title="View sour
     <dt>Inheritance</dt>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="CoreRelm.Models.RelmModel.html">RelmModel</a></div>
       <div><span class="xref">ForeignKeySchema</span></div>
     </dd>
   </dl>
@@ -118,7 +119,7 @@ Class ForeignKeySchema  <a class="header-action link-secondary" title="View sour
   <dl class="typelist implements">
     <dt>Implements</dt>
     <dd>
-      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.html">ForeignKeySchema</a>&gt;</div>
+      <div><a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a></div>
     </dd>
   </dl>
 
@@ -126,6 +127,57 @@ Class ForeignKeySchema  <a class="header-action link-secondary" title="View sour
   <dl class="typelist inheritedMembers">
     <dt>Inherited Members</dt>
     <dd>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_DtoTypeProcessor">RelmModel.DtoTypeProcessor</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_Id">RelmModel.Id</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_Active">RelmModel.Active</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_InternalId">RelmModel.InternalId</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_CreateDate">RelmModel.CreateDate</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_LastUpdated">RelmModel.LastUpdated</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_ResetCoreAttributes_System_Boolean_System_Boolean_">RelmModel.ResetCoreAttributes(bool, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_ResetWithData_System_Data_DataRow_System_String_">RelmModel.ResetWithData(DataRow, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_GetUnderscoreProperties_System_Boolean_">RelmModel.GetUnderscoreProperties(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModel.WriteToDatabase(Enum, int, bool, bool, bool, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModel.WriteToDatabase(MySqlConnection, int, bool, bool, bool, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModel.WriteToDatabase(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModel.WriteToDatabase(IRelmContext, int, bool, bool, bool, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_CoreRelm_Options_RelmContextOptionsBuilder_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModel.WriteToDatabase(RelmContextOptionsBuilder, int, bool, bool, bool, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_CopyFromSource__1___0_">RelmModel.CopyFromSource&lt;T&gt;(T)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_GenerateDTO_System_Collections_Generic_IEnumerable_System_String__System_Collections_Generic_IEnumerable_System_String__System_String_System_Func_CoreRelm_Interfaces_IRelmModel_System_Collections_Generic_Dictionary_System_String_System_Object___System_Int32_">RelmModel.GenerateDTO(IEnumerable&lt;string&gt;, IEnumerable&lt;string&gt;, string, Func&lt;IRelmModel, Dictionary&lt;string, object&gt;&gt;, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_Duplicate">RelmModel.Duplicate()</a>
+    </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
@@ -139,6 +191,9 @@ Class ForeignKeySchema  <a class="header-action link-secondary" title="View sour
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
     </div>
     <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
     </div>
     <div>
@@ -146,53 +201,64 @@ Class ForeignKeySchema  <a class="header-action link-secondary" title="View sour
     </div>
   </dd></dl>
 
-
-
-
-
-
-  <h2 class="section" id="constructors">Constructors
-</h2>
-
-
-  <a id="CoreRelm_Models_Migrations_Introspection_ForeignKeySchema__ctor_" data-uid="CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.#ctor*"></a>
-
-  <h3 id="CoreRelm_Models_Migrations_Introspection_ForeignKeySchema__ctor_System_String_System_String_System_Collections_Generic_IReadOnlyList_System_String__System_String_System_Collections_Generic_IReadOnlyList_System_String__System_String_System_String_" data-uid="CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.#ctor(System.String,System.String,System.Collections.Generic.IReadOnlyList{System.String},System.String,System.Collections.Generic.IReadOnlyList{System.String},System.String,System.String)">
-  ForeignKeySchema(string, string, IReadOnlyList&lt;string&gt;, string, IReadOnlyList&lt;string&gt;, string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs/#L9"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ForeignKeySchema(string ConstraintName, string TableName, IReadOnlyList&lt;string&gt; ColumnNames, string ReferencedTableName, IReadOnlyList&lt;string&gt; ReferencedColumnNames, string UpdateRule, string DeleteRule)</code></pre>
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadDataLoaderField__2___0_CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___">ModelExtensions.LoadDataLoaderField&lt;T, S&gt;(T, IRelmContext, Expression&lt;Func&lt;T, S&gt;&gt;)</a>
   </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>ConstraintName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-    <dt><code>TableName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-    <dt><code>ColumnNames</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
-    <dd></dd>
-    <dt><code>ReferencedTableName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-    <dt><code>ReferencedColumnNames</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
-    <dd></dd>
-    <dt><code>UpdateRule</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-    <dt><code>DeleteRule</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadDataLoaderField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___">ModelExtensions.LoadDataLoaderField&lt;T, S&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, S&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, IRelmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, IRelmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, IRelmContext, Expression&lt;Func&lt;T, R&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, IRelmContext, Expression&lt;Func&lt;T, R&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmContext, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmContext, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  </dd></dl>
 
 
 
@@ -206,14 +272,15 @@ Class ForeignKeySchema  <a class="header-action link-secondary" title="View sour
 
   <h3 id="CoreRelm_Models_Migrations_Introspection_ForeignKeySchema_ColumnNames" data-uid="CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.ColumnNames">
   ColumnNames
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs/#L18"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;string&gt; ColumnNames { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+public IReadOnlyList&lt;string&gt;? ColumnNames { get; set; }</code></pre>
   </div>
 
 
@@ -237,14 +304,15 @@ Class ForeignKeySchema  <a class="header-action link-secondary" title="View sour
 
   <h3 id="CoreRelm_Models_Migrations_Introspection_ForeignKeySchema_ConstraintName" data-uid="CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.ConstraintName">
   ConstraintName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs/#L12"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string ConstraintName { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+public string? ConstraintName { get; set; }</code></pre>
   </div>
 
 
@@ -268,14 +336,79 @@ Class ForeignKeySchema  <a class="header-action link-secondary" title="View sour
 
   <h3 id="CoreRelm_Models_Migrations_Introspection_ForeignKeySchema_DeleteRule" data-uid="CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.DeleteRule">
   DeleteRule
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs/#L33"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string DeleteRule { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+public string? DeleteRule { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_Migrations_Introspection_ForeignKeySchema_OrdinalPosition_" data-uid="CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.OrdinalPosition*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Introspection_ForeignKeySchema_OrdinalPosition" data-uid="CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.OrdinalPosition">
+  OrdinalPosition
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+public int OrdinalPosition { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_Migrations_Introspection_ForeignKeySchema_ReferencedColumnName_" data-uid="CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.ReferencedColumnName*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Introspection_ForeignKeySchema_ReferencedColumnName" data-uid="CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.ReferencedColumnName">
+  ReferencedColumnName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+public string? ReferencedColumnName { get; set; }</code></pre>
   </div>
 
 
@@ -299,14 +432,15 @@ Class ForeignKeySchema  <a class="header-action link-secondary" title="View sour
 
   <h3 id="CoreRelm_Models_Migrations_Introspection_ForeignKeySchema_ReferencedColumnNames" data-uid="CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.ReferencedColumnNames">
   ReferencedColumnNames
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs/#L27"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;string&gt; ReferencedColumnNames { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+public IReadOnlyList&lt;string&gt;? ReferencedColumnNames { get; set; }</code></pre>
   </div>
 
 
@@ -330,14 +464,15 @@ Class ForeignKeySchema  <a class="header-action link-secondary" title="View sour
 
   <h3 id="CoreRelm_Models_Migrations_Introspection_ForeignKeySchema_ReferencedTableName" data-uid="CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.ReferencedTableName">
   ReferencedTableName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string ReferencedTableName { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+public string? ReferencedTableName { get; set; }</code></pre>
   </div>
 
 
@@ -361,14 +496,15 @@ Class ForeignKeySchema  <a class="header-action link-secondary" title="View sour
 
   <h3 id="CoreRelm_Models_Migrations_Introspection_ForeignKeySchema_TableName" data-uid="CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.TableName">
   TableName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs/#L15"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string TableName { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+public string? TableName { get; set; }</code></pre>
   </div>
 
 
@@ -392,14 +528,15 @@ Class ForeignKeySchema  <a class="header-action link-secondary" title="View sour
 
   <h3 id="CoreRelm_Models_Migrations_Introspection_ForeignKeySchema_UpdateRule" data-uid="CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.UpdateRule">
   UpdateRule
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs/#L30"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string UpdateRule { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+public string? UpdateRule { get; set; }</code></pre>
   </div>
 
 
@@ -423,7 +560,7 @@ Class ForeignKeySchema  <a class="header-action link-secondary" title="View sour
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs/#L9" class="edit-link">Edit this page</a>
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs/#L10" class="edit-link">Edit this page</a>
         </div>
 
 

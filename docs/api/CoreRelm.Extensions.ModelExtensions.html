@@ -156,7 +156,7 @@ Class ModelExtensions  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="CoreRelm_Extensions_ModelExtensions_LoadDataLoaderField__2___0_CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___" data-uid="CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField``2(``0,CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
   LoadDataLoaderField&lt;T, S&gt;(T, IRelmContext, Expression&lt;Func&lt;T, S&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L462"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L317"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads a related data field for the specified model using the provided predicate.</p>
@@ -164,7 +164,7 @@ Class ModelExtensions  <a class="header-action link-secondary" title="View sourc
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T LoadDataLoaderField&lt;T, S&gt;(this T inputModel, IRelmContext relmContext, Expression&lt;Func&lt;T, S&gt;&gt; predicate) where T : IRelmModel, new() where S : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static T? LoadDataLoaderField&lt;T, S&gt;(this T inputModel, IRelmContext relmContext, Expression&lt;Func&lt;T, S&gt;&gt; predicate) where T : IRelmModel, new() where S : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -213,70 +213,9 @@ loaded.</p>
 
   <a id="CoreRelm_Extensions_ModelExtensions_LoadDataLoaderField_" data-uid="CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField*"></a>
 
-  <h3 id="CoreRelm_Extensions_ModelExtensions_LoadDataLoaderField__2___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___" data-uid="CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField``2(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
-  LoadDataLoaderField&lt;T, S&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, S&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L479"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Loads a related data loader field for the specified model using the provided context and predicate.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T LoadDataLoaderField&lt;T, S&gt;(this T inputModel, IRelmQuickContext relmQuickContext, Expression&lt;Func&lt;T, S&gt;&gt; predicate) where T : IRelmModel, new() where S : IRelmModel, new()</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>inputModel</code> <span class="xref">T</span></dt>
-    <dd><p>The model instance for which the data loader field is to be loaded.</p>
-</dd>
-    <dt><code>relmQuickContext</code> <a class="xref" href="CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html">IRelmQuickContext</a></dt>
-    <dd><p>The context used to resolve the data loader field.</p>
-</dd>
-    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, S&gt;&gt;</dt>
-    <dd><p>An expression specifying the property of the input model that represents the related data loader field.</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><span class="xref">T</span></dt>
-    <dd><p>The input model with the specified data loader field loaded.</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Type Parameters</h4>
-  <dl class="parameters">
-    <dt><code>T</code></dt>
-    <dd><p>The type of the input model, which must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a> and have a parameterless
-constructor.</p>
-</dd>
-    <dt><code>S</code></dt>
-    <dd><p>The type of the related model, which must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a> and have a parameterless
-constructor.</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-  <h4 class="section" id="CoreRelm_Extensions_ModelExtensions_LoadDataLoaderField__2___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1____remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>This method is an extension method that facilitates the loading of related data
-fields in a model. It uses the provided predicate to identify the field to be loaded and the context to
-resolve the data.</p>
-</div>
-
-
-
-
-  <a id="CoreRelm_Extensions_ModelExtensions_LoadDataLoaderField_" data-uid="CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField*"></a>
-
   <h3 id="CoreRelm_Extensions_ModelExtensions_LoadDataLoaderField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___" data-uid="CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
   LoadDataLoaderField&lt;T, S&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, S&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L497"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L335"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads a related data loader field for the specified input model using the provided context options and
@@ -285,7 +224,7 @@ predicate.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T LoadDataLoaderField&lt;T, S&gt;(this T inputModel, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, S&gt;&gt; predicate) where T : IRelmModel, new() where S : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static T? LoadDataLoaderField&lt;T, S&gt;(this T inputModel, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, S&gt;&gt; predicate) where T : IRelmModel, new() where S : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -338,7 +277,7 @@ builder and applies the specified predicate to determine the field to load.</p>
 
   <h3 id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____" data-uid="CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})">
   LoadForeignKeyField&lt;T, R&gt;(T, IRelmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L253"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L179"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads a foreign key collection property for the specified target model using the provided context and
@@ -347,7 +286,7 @@ predicate.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T LoadForeignKeyField&lt;T, R&gt;(this T target, IRelmContext relmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static T? LoadForeignKeyField&lt;T, R&gt;(this T target, IRelmContext relmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -397,7 +336,7 @@ key collection property for a model. It uses the provided <code class="paramref"
 
   <h3 id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___" data-uid="CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})">
   LoadForeignKeyField&lt;T, R&gt;(T, IRelmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L266"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L192"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads and initializes a foreign key collection property for the specified target model, applying the given constraints.</p>
@@ -405,7 +344,7 @@ key collection property for a model. It uses the provided <code class="paramref"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T LoadForeignKeyField&lt;T, R&gt;(this T target, IRelmContext relmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static T? LoadForeignKeyField&lt;T, R&gt;(this T target, IRelmContext relmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -462,7 +401,7 @@ key collection property for a model. It uses the provided <code class="paramref"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T LoadForeignKeyField&lt;T, R&gt;(this T target, IRelmContext relmContext, Expression&lt;Func&lt;T, R&gt;&gt; predicate) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static T? LoadForeignKeyField&lt;T, R&gt;(this T target, IRelmContext relmContext, Expression&lt;Func&lt;T, R&gt;&gt; predicate) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -522,7 +461,7 @@ additional constraints.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T LoadForeignKeyField&lt;T, R&gt;(this T target, IRelmContext relmContext, Expression&lt;Func&lt;T, R&gt;&gt; predicate, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static T? LoadForeignKeyField&lt;T, R&gt;(this T target, IRelmContext relmContext, Expression&lt;Func&lt;T, R&gt;&gt; predicate, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -573,249 +512,9 @@ key fields in models. It uses the provided context and constraints to load the r
 
   <a id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField_" data-uid="CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField*"></a>
 
-  <h3 id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____" data-uid="CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})">
-  LoadForeignKeyField&lt;T, R&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L319"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Loads a foreign key collection property for the specified target model.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T LoadForeignKeyField&lt;T, R&gt;(this T target, IRelmQuickContext relmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>target</code> <span class="xref">T</span></dt>
-    <dd><p>The target model instance for which the foreign key collection property will be loaded.</p>
-</dd>
-    <dt><code>relmContext</code> <a class="xref" href="CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html">IRelmQuickContext</a></dt>
-    <dd><p>The context providing access to the database and configuration options.</p>
-</dd>
-    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;R&gt;&gt;&gt;</dt>
-    <dd><p>An expression identifying the foreign key collection property to load.</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><span class="xref">T</span></dt>
-    <dd><p>The target model instance with the specified foreign key collection property loaded.</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Type Parameters</h4>
-  <dl class="parameters">
-    <dt><code>T</code></dt>
-    <dd><p>The type of the target model, which must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
-</dd>
-    <dt><code>R</code></dt>
-    <dd><p>The type of the related model in the collection, which must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-  <h4 class="section" id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1_____remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>This method is an extension method that simplifies loading a foreign key collection
-property for a model. It uses the provided context and predicate to retrieve and populate the related
-data.</p>
-</div>
-
-
-
-
-  <a id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField_" data-uid="CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField*"></a>
-
-  <h3 id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___" data-uid="CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})">
-  LoadForeignKeyField&lt;T, R&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L333"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Loads a foreign key collection property for the specified target model, resolving the related collection based on the
-provided predicate and additional constraints.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T LoadForeignKeyField&lt;T, R&gt;(this T target, IRelmQuickContext relmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>target</code> <span class="xref">T</span></dt>
-    <dd><p>The target model instance for which the foreign key field is being loaded.</p>
-</dd>
-    <dt><code>relmContext</code> <a class="xref" href="CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html">IRelmQuickContext</a></dt>
-    <dd><p>The context providing access to the database and configuration options.</p>
-</dd>
-    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;R&gt;&gt;&gt;</dt>
-    <dd><p>An expression specifying the foreign key collection property on the target model.</p>
-</dd>
-    <dt><code>additionalConstraints</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;R, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</dt>
-    <dd><p>An expression defining additional constraints to filter the related models.</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><span class="xref">T</span></dt>
-    <dd><p>The target model instance with the foreign key field loaded.</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Type Parameters</h4>
-  <dl class="parameters">
-    <dt><code>T</code></dt>
-    <dd><p>The type of the target model. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
-</dd>
-    <dt><code>R</code></dt>
-    <dd><p>The type of the related model in the foreign key relationship. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-  <a id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField_" data-uid="CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField*"></a>
-
-  <h3 id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___" data-uid="CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
-  LoadForeignKeyField&lt;T, R&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, R&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L104"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Loads the foreign key field specified by the given predicate for the target model.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T LoadForeignKeyField&lt;T, R&gt;(this T target, IRelmQuickContext relmContext, Expression&lt;Func&lt;T, R&gt;&gt; predicate) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>target</code> <span class="xref">T</span></dt>
-    <dd><p>The target model instance for which the foreign key field will be loaded.</p>
-</dd>
-    <dt><code>relmContext</code> <a class="xref" href="CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html">IRelmQuickContext</a></dt>
-    <dd><p>The context used to access the database or data source.</p>
-</dd>
-    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, R&gt;&gt;</dt>
-    <dd><p>An expression specifying the foreign key field to load.</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><span class="xref">T</span></dt>
-    <dd><p>The target model instance with the specified foreign key field loaded.</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Type Parameters</h4>
-  <dl class="parameters">
-    <dt><code>T</code></dt>
-    <dd><p>The type of the target model, which must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
-</dd>
-    <dt><code>R</code></dt>
-    <dd><p>The type of the related model, which must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-  <h4 class="section" id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1____remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>This method is an extension method that simplifies loading a specific foreign key
-field for a model. The <code class="paramref">predicate</code> parameter should specify the property representing the
-foreign key relationship.</p>
-</div>
-
-
-
-
-  <a id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField_" data-uid="CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField*"></a>
-
-  <h3 id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___" data-uid="CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})">
-  LoadForeignKeyField&lt;T, R&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, R&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L122"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Loads a foreign key field for the specified target model, applying the given predicate and additional
-constraints.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T LoadForeignKeyField&lt;T, R&gt;(this T target, IRelmQuickContext relmContext, Expression&lt;Func&lt;T, R&gt;&gt; predicate, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>target</code> <span class="xref">T</span></dt>
-    <dd><p>The target model instance for which the foreign key field is to be loaded.</p>
-</dd>
-    <dt><code>relmContext</code> <a class="xref" href="CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html">IRelmQuickContext</a></dt>
-    <dd><p>The context used to access the database or data source.</p>
-</dd>
-    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, R&gt;&gt;</dt>
-    <dd><p>An expression specifying the foreign key relationship between the target model and the related model.</p>
-</dd>
-    <dt><code>additionalConstraints</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;R, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</dt>
-    <dd><p>An expression specifying additional constraints to apply when loading the related model.</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><span class="xref">T</span></dt>
-    <dd><p>The target model instance with the foreign key field loaded based on the specified predicate and
-constraints.</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Type Parameters</h4>
-  <dl class="parameters">
-    <dt><code>T</code></dt>
-    <dd><p>The type of the target model. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a> and have a parameterless constructor.</p>
-</dd>
-    <dt><code>R</code></dt>
-    <dd><p>The type of the related model. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a> and have a parameterless constructor.</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-  <h4 class="section" id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object____remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>This method is an extension method that simplifies loading related data for a model
-by resolving foreign key relationships. Ensure that the <code class="paramref">relmContext</code> is properly
-configured to access the underlying data source.</p>
-</div>
-
-
-
-
-  <a id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField_" data-uid="CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField*"></a>
-
   <h3 id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____" data-uid="CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})">
   LoadForeignKeyField&lt;T, R&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L391"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L246"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads a foreign key collection property for the specified target model and returns the first related entity.</p>
@@ -823,7 +522,7 @@ configured to access the underlying data source.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T LoadForeignKeyField&lt;T, R&gt;(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static T? LoadForeignKeyField&lt;T, R&gt;(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -874,7 +573,7 @@ based on the specified predicate.</p>
 
   <h3 id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___" data-uid="CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})">
   LoadForeignKeyField&lt;T, R&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L406"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L261"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads a foreign key collection property for the specified target model, applying the given predicate and additional
@@ -883,7 +582,7 @@ constraints.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T LoadForeignKeyField&lt;T, R&gt;(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static T? LoadForeignKeyField&lt;T, R&gt;(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -933,7 +632,7 @@ no match is found.</p>
 
   <h3 id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___" data-uid="CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
   LoadForeignKeyField&lt;T, R&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L178"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L104"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads a foreign key field for the specified target model using the provided context options and predicate.</p>
@@ -941,7 +640,7 @@ no match is found.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T LoadForeignKeyField&lt;T, R&gt;(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt; predicate) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static T? LoadForeignKeyField&lt;T, R&gt;(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt; predicate) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -992,7 +691,7 @@ based on the provided predicate.</p>
 
   <h3 id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___" data-uid="CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})">
   LoadForeignKeyField&lt;T, R&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L196"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L122"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads a foreign key field for the specified target model, applying the given predicate and additional
@@ -1001,7 +700,7 @@ constraints.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T LoadForeignKeyField&lt;T, R&gt;(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt; predicate, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static T? LoadForeignKeyField&lt;T, R&gt;(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt; predicate, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1056,7 +755,7 @@ underlying data context.</p>
 
   <h3 id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__" data-uid="CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})">
   LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L280"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L206"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads and initializes a foreign key collection property for the specified target model using the provided data loader.</p>
@@ -1064,7 +763,7 @@ underlying data context.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T LoadForeignKeyField&lt;T, R, S&gt;(this T target, IRelmContext relmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static T? LoadForeignKeyField&lt;T, R, S&gt;(this T target, IRelmContext relmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1116,7 +815,7 @@ underlying data context.</p>
 
   <h3 id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___" data-uid="CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})">
   LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L300"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L226"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads a foreign key collection property for the specified target model, resolving related entities based on the provided
@@ -1125,7 +824,7 @@ predicate and constraints.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T LoadForeignKeyField&lt;T, R, S&gt;(this T target, IRelmContext relmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static T? LoadForeignKeyField&lt;T, R, S&gt;(this T target, IRelmContext relmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1194,7 +893,7 @@ filter the related entities.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T LoadForeignKeyField&lt;T, R, S&gt;(this T target, IRelmContext relmContext, Expression&lt;Func&lt;T, R&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static T? LoadForeignKeyField&lt;T, R, S&gt;(this T target, IRelmContext relmContext, Expression&lt;Func&lt;T, R&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1255,7 +954,7 @@ constraints.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T LoadForeignKeyField&lt;T, R, S&gt;(this T target, IRelmContext relmContext, Expression&lt;Func&lt;T, R&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static T? LoadForeignKeyField&lt;T, R, S&gt;(this T target, IRelmContext relmContext, Expression&lt;Func&lt;T, R&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1313,279 +1012,9 @@ the default data loading behavior needs to be customized or extended.</p>
 
   <a id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField_" data-uid="CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField*"></a>
 
-  <h3 id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__" data-uid="CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})">
-  LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L352"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Loads and initializes a foreign key collection property for the specified target model, using the provided data loader and
-predicate.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T LoadForeignKeyField&lt;T, R, S&gt;(this T target, IRelmQuickContext relmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>target</code> <span class="xref">T</span></dt>
-    <dd><p>The target model instance for which the foreign key field will be loaded.</p>
-</dd>
-    <dt><code>relmContext</code> <a class="xref" href="CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html">IRelmQuickContext</a></dt>
-    <dd><p>The context providing configuration and options for the operation.</p>
-</dd>
-    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;R&gt;&gt;&gt;</dt>
-    <dd><p>An expression specifying the foreign key collection property on the target model.</p>
-</dd>
-    <dt><code>customDataLoader</code> <a class="xref" href="CoreRelm.Interfaces.IRelmDataLoader-1.html">IRelmDataLoader</a>&lt;S&gt;</dt>
-    <dd><p>A custom data loader used to retrieve the related data.</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><span class="xref">T</span></dt>
-    <dd><p>The target model instance with the foreign key field loaded.</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Type Parameters</h4>
-  <dl class="parameters">
-    <dt><code>T</code></dt>
-    <dd><p>The type of the target model. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
-</dd>
-    <dt><code>R</code></dt>
-    <dd><p>The type of the related model in the foreign key collection. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
-</dd>
-    <dt><code>S</code></dt>
-    <dd><p>The type of the model used by the custom data loader. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-  <h4 class="section" id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2___remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>This method is an extension method that simplifies the process of loading and
-initializing foreign key fields for models in a relational context. The <code class="paramref">customDataLoader</code>
-is used to retrieve the related data, and the <code class="paramref">predicate</code> specifies the foreign key
-collection to be populated.</p>
-</div>
-
-
-
-
-  <a id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField_" data-uid="CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField*"></a>
-
-  <h3 id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___" data-uid="CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})">
-  LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L371"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Loads and populates a foreign key collection property for the specified target model using the provided data loader and
-constraints.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T LoadForeignKeyField&lt;T, R, S&gt;(this T target, IRelmQuickContext relmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>target</code> <span class="xref">T</span></dt>
-    <dd><p>The target model instance for which the foreign key field will be loaded.</p>
-</dd>
-    <dt><code>relmContext</code> <a class="xref" href="CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html">IRelmQuickContext</a></dt>
-    <dd><p>The context providing configuration and services for data loading.</p>
-</dd>
-    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;R&gt;&gt;&gt;</dt>
-    <dd><p>An expression identifying the foreign key collection property on the target model.</p>
-</dd>
-    <dt><code>customDataLoader</code> <a class="xref" href="CoreRelm.Interfaces.IRelmDataLoader-1.html">IRelmDataLoader</a>&lt;S&gt;</dt>
-    <dd><p>A custom data loader used to retrieve the related data.</p>
-</dd>
-    <dt><code>additionalConstraints</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;R, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</dt>
-    <dd><p>An expression specifying additional constraints to apply when loading the related data.</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><span class="xref">T</span></dt>
-    <dd><p>The target model instance with the foreign key field populated.</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Type Parameters</h4>
-  <dl class="parameters">
-    <dt><code>T</code></dt>
-    <dd><p>The type of the target model that contains the foreign key field. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
-</dd>
-    <dt><code>R</code></dt>
-    <dd><p>The type of the related model in the foreign key collection. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
-</dd>
-    <dt><code>S</code></dt>
-    <dd><p>The type of the model used by the custom data loader. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-  <h4 class="section" id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object____remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>This method is an extension method that simplifies the process of loading related
-data for a foreign key field. It uses the provided <code class="paramref">customDataLoader</code> and <code class="paramref">additionalConstraints</code> to retrieve and populate the related data.</p>
-</div>
-
-
-
-
-  <a id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField_" data-uid="CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField*"></a>
-
-  <h3 id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__" data-uid="CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})">
-  LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L140"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Loads and initializes a foreign key field for the specified model using the provided data loader and
-context.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T LoadForeignKeyField&lt;T, R, S&gt;(this T target, IRelmQuickContext relmContext, Expression&lt;Func&lt;T, R&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>target</code> <span class="xref">T</span></dt>
-    <dd><p>The target model instance for which the foreign key field will be loaded.</p>
-</dd>
-    <dt><code>relmContext</code> <a class="xref" href="CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html">IRelmQuickContext</a></dt>
-    <dd><p>The context providing configuration and options for the operation.</p>
-</dd>
-    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, R&gt;&gt;</dt>
-    <dd><p>An expression identifying the foreign key field to be loaded.</p>
-</dd>
-    <dt><code>customDataLoader</code> <a class="xref" href="CoreRelm.Interfaces.IRelmDataLoader-1.html">IRelmDataLoader</a>&lt;S&gt;</dt>
-    <dd><p>A custom data loader used to retrieve the foreign key field data.</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><span class="xref">T</span></dt>
-    <dd><p>The target model instance with the specified foreign key field loaded.</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Type Parameters</h4>
-  <dl class="parameters">
-    <dt><code>T</code></dt>
-    <dd><p>The type of the target model. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
-</dd>
-    <dt><code>R</code></dt>
-    <dd><p>The type of the foreign key field to be loaded. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
-</dd>
-    <dt><code>S</code></dt>
-    <dd><p>The type of the model used by the custom data loader. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-  <h4 class="section" id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2___remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>This method is an extension method that simplifies the process of loading foreign key
-fields for models in the Relm framework. It delegates the operation to an overload that uses the context
-options from the provided <code class="paramref">relmContext</code>.</p>
-</div>
-
-
-
-
-  <a id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField_" data-uid="CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField*"></a>
-
-  <h3 id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___" data-uid="CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})">
-  LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L159"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Loads and initializes a foreign key field for the specified target model using the provided context,
-predicate, and data loader.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T LoadForeignKeyField&lt;T, R, S&gt;(this T target, IRelmQuickContext relmContext, Expression&lt;Func&lt;T, R&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>target</code> <span class="xref">T</span></dt>
-    <dd><p>The target model instance for which the foreign key field will be loaded.</p>
-</dd>
-    <dt><code>relmContext</code> <a class="xref" href="CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html">IRelmQuickContext</a></dt>
-    <dd><p>The context used to configure and manage the data loading operation.</p>
-</dd>
-    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, R&gt;&gt;</dt>
-    <dd><p>An expression identifying the foreign key field to be loaded on the target model.</p>
-</dd>
-    <dt><code>customDataLoader</code> <a class="xref" href="CoreRelm.Interfaces.IRelmDataLoader-1.html">IRelmDataLoader</a>&lt;S&gt;</dt>
-    <dd><p>A custom data loader used to retrieve the foreign key data.</p>
-</dd>
-    <dt><code>additionalConstraints</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;R, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</dt>
-    <dd><p>An optional expression specifying additional constraints to apply when loading the foreign key data.</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><span class="xref">T</span></dt>
-    <dd><p>The target model instance with the specified foreign key field loaded and initialized.</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Type Parameters</h4>
-  <dl class="parameters">
-    <dt><code>T</code></dt>
-    <dd><p>The type of the target model. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
-</dd>
-    <dt><code>R</code></dt>
-    <dd><p>The type of the foreign key model. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
-</dd>
-    <dt><code>S</code></dt>
-    <dd><p>The type of the model used by the custom data loader. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-  <h4 class="section" id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object____remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>This method is an extension method that simplifies the process of loading foreign key
-fields in models. It delegates the operation to an overload that uses the context options from the provided
-<code class="paramref">relmContext</code>.</p>
-</div>
-
-
-
-
-  <a id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField_" data-uid="CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField*"></a>
-
   <h3 id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__" data-uid="CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})">
   LoadForeignKeyField&lt;T, R, S&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L425"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L280"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads a foreign key collection property for the specified target model using the provided predicate and custom data
@@ -1594,7 +1023,7 @@ loader.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T LoadForeignKeyField&lt;T, R, S&gt;(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static T? LoadForeignKeyField&lt;T, R, S&gt;(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1652,7 +1081,7 @@ related model from the collection.</p>
 
   <h3 id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___" data-uid="CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})">
   LoadForeignKeyField&lt;T, R, S&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L443"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L298"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads a foreign key collection property for the specified target model, applying the given constraints and using a custom
@@ -1661,7 +1090,7 @@ data loader.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T LoadForeignKeyField&lt;T, R, S&gt;(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static T? LoadForeignKeyField&lt;T, R, S&gt;(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1718,7 +1147,7 @@ entity is found.</p>
 
   <h3 id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__" data-uid="CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})">
   LoadForeignKeyField&lt;T, R, S&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L214"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L140"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads a foreign key field for the specified target model using the provided predicate and data loader.</p>
@@ -1726,7 +1155,7 @@ entity is found.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T LoadForeignKeyField&lt;T, R, S&gt;(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static T? LoadForeignKeyField&lt;T, R, S&gt;(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1783,7 +1212,7 @@ based on the provided predicate and custom data loader. The method returns the f
 
   <h3 id="CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___" data-uid="CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})">
   LoadForeignKeyField&lt;T, R, S&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L233"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ModelExtensions.cs/#L159"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads a foreign key field for the specified target model using the provided predicate, data loader, and
@@ -1792,7 +1221,7 @@ additional constraints.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T LoadForeignKeyField&lt;T, R, S&gt;(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static T? LoadForeignKeyField&lt;T, R, S&gt;(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>

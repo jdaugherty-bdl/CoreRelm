@@ -5,10 +5,11 @@ items:
   id: RelmForeignKey
   parent: CoreRelm.Attributes
   children:
-  - CoreRelm.Attributes.RelmForeignKey.#ctor(System.String,System.String,System.String)
-  - CoreRelm.Attributes.RelmForeignKey.#ctor(System.String[],System.String[],System.String[])
+  - CoreRelm.Attributes.RelmForeignKey.#ctor(System.String,System.String,System.String,CoreRelm.Enums.ForeignKeys.ReferentialAction)
+  - CoreRelm.Attributes.RelmForeignKey.#ctor(System.String[],System.String[],System.String[],CoreRelm.Enums.ForeignKeys.ReferentialAction)
   - CoreRelm.Attributes.RelmForeignKey.ForeignKeys
   - CoreRelm.Attributes.RelmForeignKey.LocalKeys
+  - CoreRelm.Attributes.RelmForeignKey.OnDelete
   - CoreRelm.Attributes.RelmForeignKey.OrderBy
   langs:
   - csharp
@@ -24,7 +25,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: RelmForeignKey
     path: ../CoreRelm/Attributes/RelmForeignKey.cs
-    startLine: 14
+    startLine: 15
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
@@ -112,14 +113,14 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ForeignKeys
     path: ../CoreRelm/Attributes/RelmForeignKey.cs
-    startLine: 20
+    startLine: 21
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
   summary: Gets the collection of foreign key names associated with the entity.
   example: []
   syntax:
-    content: public string[] ForeignKeys { get; }
+    content: public string[]? ForeignKeys { get; }
     parameters: []
     return:
       type: System.String[]
@@ -143,14 +144,14 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: LocalKeys
     path: ../CoreRelm/Attributes/RelmForeignKey.cs
-    startLine: 25
+    startLine: 26
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
   summary: Gets the collection of local keys associated with the entity.
   example: []
   syntax:
-    content: public string[] LocalKeys { get; }
+    content: public string[]? LocalKeys { get; }
     parameters: []
     return:
       type: System.String[]
@@ -174,29 +175,64 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: OrderBy
     path: ../CoreRelm/Attributes/RelmForeignKey.cs
-    startLine: 30
+    startLine: 31
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
   summary: Gets the list of fields used to determine the order of items.
   example: []
   syntax:
-    content: public string[] OrderBy { get; }
+    content: public string[]? OrderBy { get; }
     parameters: []
     return:
       type: System.String[]
     content.vb: Public Property OrderBy As String()
   overload: CoreRelm.Attributes.RelmForeignKey.OrderBy*
-- uid: CoreRelm.Attributes.RelmForeignKey.#ctor(System.String,System.String,System.String)
-  commentId: M:CoreRelm.Attributes.RelmForeignKey.#ctor(System.String,System.String,System.String)
-  id: '#ctor(System.String,System.String,System.String)'
+- uid: CoreRelm.Attributes.RelmForeignKey.OnDelete
+  commentId: P:CoreRelm.Attributes.RelmForeignKey.OnDelete
+  id: OnDelete
   parent: CoreRelm.Attributes.RelmForeignKey
   langs:
   - csharp
   - vb
-  name: RelmForeignKey(string, string, string)
-  nameWithType: RelmForeignKey.RelmForeignKey(string, string, string)
-  fullName: CoreRelm.Attributes.RelmForeignKey.RelmForeignKey(string, string, string)
+  name: OnDelete
+  nameWithType: RelmForeignKey.OnDelete
+  fullName: CoreRelm.Attributes.RelmForeignKey.OnDelete
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Attributes/RelmForeignKey.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: OnDelete
+    path: ../CoreRelm/Attributes/RelmForeignKey.cs
+    startLine: 39
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Attributes
+  summary: Gets the referential action to perform when a related entity is deleted.
+  remarks: >-
+    Use this property to determine how deletions in the principal table affect related
+        entities in the dependent table. The value specifies whether related rows are deleted, set to null,
+        restricted, or left unchanged, depending on the configured referential action.
+  example: []
+  syntax:
+    content: public ForeignKeys.ReferentialAction OnDelete { get; }
+    parameters: []
+    return:
+      type: CoreRelm.Enums.ForeignKeys.ReferentialAction
+    content.vb: Public Property OnDelete As ForeignKeys.ReferentialAction
+  overload: CoreRelm.Attributes.RelmForeignKey.OnDelete*
+- uid: CoreRelm.Attributes.RelmForeignKey.#ctor(System.String,System.String,System.String,CoreRelm.Enums.ForeignKeys.ReferentialAction)
+  commentId: M:CoreRelm.Attributes.RelmForeignKey.#ctor(System.String,System.String,System.String,CoreRelm.Enums.ForeignKeys.ReferentialAction)
+  id: '#ctor(System.String,System.String,System.String,CoreRelm.Enums.ForeignKeys.ReferentialAction)'
+  parent: CoreRelm.Attributes.RelmForeignKey
+  langs:
+  - csharp
+  - vb
+  name: RelmForeignKey(string?, string?, string?, ReferentialAction)
+  nameWithType: RelmForeignKey.RelmForeignKey(string?, string?, string?, ForeignKeys.ReferentialAction)
+  fullName: CoreRelm.Attributes.RelmForeignKey.RelmForeignKey(string?, string?, string?, CoreRelm.Enums.ForeignKeys.ReferentialAction)
   type: Constructor
   source:
     remote:
@@ -205,7 +241,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Attributes/RelmForeignKey.cs
-    startLine: 42
+    startLine: 52
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
@@ -215,7 +251,7 @@ items:
     and order-by values.
   example: []
   syntax:
-    content: public RelmForeignKey(string foreignKey = null, string localKey = null, string orderBy = null)
+    content: public RelmForeignKey(string? foreignKey = null, string? localKey = null, string? orderBy = null, ForeignKeys.ReferentialAction onDelete = ReferentialAction.NoAction)
     parameters:
     - id: foreignKey
       type: System.String
@@ -232,21 +268,24 @@ items:
       description: >-
         An optional order-by clause used to define the sorting of the relationship. If provided, it will be stored
             as a single-element array in the <xref href="CoreRelm.Attributes.RelmForeignKey.OrderBy" data-throw-if-not-resolved="false"></xref> property.
-    content.vb: Public Sub New(foreignKey As String = Nothing, localKey As String = Nothing, orderBy As String = Nothing)
+    - id: onDelete
+      type: CoreRelm.Enums.ForeignKeys.ReferentialAction
+      description: An optional referential action to specify the behavior when the related entity is deleted.
+    content.vb: Public Sub New(foreignKey As String = Nothing, localKey As String = Nothing, orderBy As String = Nothing, onDelete As ForeignKeys.ReferentialAction = ReferentialAction.NoAction)
   overload: CoreRelm.Attributes.RelmForeignKey.#ctor*
-  nameWithType.vb: RelmForeignKey.New(String, String, String)
-  fullName.vb: CoreRelm.Attributes.RelmForeignKey.New(String, String, String)
-  name.vb: New(String, String, String)
-- uid: CoreRelm.Attributes.RelmForeignKey.#ctor(System.String[],System.String[],System.String[])
-  commentId: M:CoreRelm.Attributes.RelmForeignKey.#ctor(System.String[],System.String[],System.String[])
-  id: '#ctor(System.String[],System.String[],System.String[])'
+  nameWithType.vb: RelmForeignKey.New(String, String, String, ForeignKeys.ReferentialAction)
+  fullName.vb: CoreRelm.Attributes.RelmForeignKey.New(String, String, String, CoreRelm.Enums.ForeignKeys.ReferentialAction)
+  name.vb: New(String, String, String, ReferentialAction)
+- uid: CoreRelm.Attributes.RelmForeignKey.#ctor(System.String[],System.String[],System.String[],CoreRelm.Enums.ForeignKeys.ReferentialAction)
+  commentId: M:CoreRelm.Attributes.RelmForeignKey.#ctor(System.String[],System.String[],System.String[],CoreRelm.Enums.ForeignKeys.ReferentialAction)
+  id: '#ctor(System.String[],System.String[],System.String[],CoreRelm.Enums.ForeignKeys.ReferentialAction)'
   parent: CoreRelm.Attributes.RelmForeignKey
   langs:
   - csharp
   - vb
-  name: RelmForeignKey(string[], string[], string[])
-  nameWithType: RelmForeignKey.RelmForeignKey(string[], string[], string[])
-  fullName: CoreRelm.Attributes.RelmForeignKey.RelmForeignKey(string[], string[], string[])
+  name: RelmForeignKey(string[]?, string[]?, string[]?, ReferentialAction)
+  nameWithType: RelmForeignKey.RelmForeignKey(string[]?, string[]?, string[]?, ForeignKeys.ReferentialAction)
+  fullName: CoreRelm.Attributes.RelmForeignKey.RelmForeignKey(string[]?, string[]?, string[]?, CoreRelm.Enums.ForeignKeys.ReferentialAction)
   type: Constructor
   source:
     remote:
@@ -255,7 +294,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Attributes/RelmForeignKey.cs
-    startLine: 65
+    startLine: 78
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
@@ -265,7 +304,7 @@ items:
     keys, and optional ordering criteria.
   example: []
   syntax:
-    content: public RelmForeignKey(string[] foreignKeys = null, string[] localKeys = null, string[] orderBy = null)
+    content: public RelmForeignKey(string[]? foreignKeys = null, string[]? localKeys = null, string[]? orderBy = null, ForeignKeys.ReferentialAction onDelete = ReferentialAction.NoAction)
     parameters:
     - id: foreignKeys
       type: System.String[]
@@ -282,11 +321,14 @@ items:
       description: >-
         An array of strings specifying the ordering criteria for the related data. Each string represents a column
             name, optionally followed by a direction (e.g., "ColumnName ASC" or "ColumnName DESC"). Can be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if no ordering is required.
-    content.vb: Public Sub New(foreignKeys As String() = Nothing, localKeys As String() = Nothing, orderBy As String() = Nothing)
+    - id: onDelete
+      type: CoreRelm.Enums.ForeignKeys.ReferentialAction
+      description: An optional referential action to specify the behavior when the related entity is deleted.
+    content.vb: Public Sub New(foreignKeys As String() = Nothing, localKeys As String() = Nothing, orderBy As String() = Nothing, onDelete As ForeignKeys.ReferentialAction = ReferentialAction.NoAction)
   overload: CoreRelm.Attributes.RelmForeignKey.#ctor*
-  nameWithType.vb: RelmForeignKey.New(String(), String(), String())
-  fullName.vb: CoreRelm.Attributes.RelmForeignKey.New(String(), String(), String())
-  name.vb: New(String(), String(), String())
+  nameWithType.vb: RelmForeignKey.New(String(), String(), String(), ForeignKeys.ReferentialAction)
+  fullName.vb: CoreRelm.Attributes.RelmForeignKey.New(String(), String(), String(), CoreRelm.Enums.ForeignKeys.ReferentialAction)
+  name.vb: New(String(), String(), String(), ReferentialAction)
 references:
 - uid: CoreRelm.Attributes
   commentId: N:CoreRelm.Attributes
@@ -2121,6 +2163,57 @@ references:
   name: OrderBy
   nameWithType: RelmForeignKey.OrderBy
   fullName: CoreRelm.Attributes.RelmForeignKey.OrderBy
+- uid: CoreRelm.Attributes.RelmForeignKey.OnDelete*
+  commentId: Overload:CoreRelm.Attributes.RelmForeignKey.OnDelete
+  href: CoreRelm.Attributes.RelmForeignKey.html#CoreRelm_Attributes_RelmForeignKey_OnDelete
+  name: OnDelete
+  nameWithType: RelmForeignKey.OnDelete
+  fullName: CoreRelm.Attributes.RelmForeignKey.OnDelete
+- uid: CoreRelm.Enums.ForeignKeys.ReferentialAction
+  commentId: T:CoreRelm.Enums.ForeignKeys.ReferentialAction
+  parent: CoreRelm.Enums
+  href: CoreRelm.Enums.ForeignKeys.html
+  name: ForeignKeys.ReferentialAction
+  nameWithType: ForeignKeys.ReferentialAction
+  fullName: CoreRelm.Enums.ForeignKeys.ReferentialAction
+  spec.csharp:
+  - uid: CoreRelm.Enums.ForeignKeys
+    name: ForeignKeys
+    href: CoreRelm.Enums.ForeignKeys.html
+  - name: .
+  - uid: CoreRelm.Enums.ForeignKeys.ReferentialAction
+    name: ReferentialAction
+    href: CoreRelm.Enums.ForeignKeys.ReferentialAction.html
+  spec.vb:
+  - uid: CoreRelm.Enums.ForeignKeys
+    name: ForeignKeys
+    href: CoreRelm.Enums.ForeignKeys.html
+  - name: .
+  - uid: CoreRelm.Enums.ForeignKeys.ReferentialAction
+    name: ReferentialAction
+    href: CoreRelm.Enums.ForeignKeys.ReferentialAction.html
+- uid: CoreRelm.Enums
+  commentId: N:CoreRelm.Enums
+  href: CoreRelm.html
+  name: CoreRelm.Enums
+  nameWithType: CoreRelm.Enums
+  fullName: CoreRelm.Enums
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Enums
+    name: Enums
+    href: CoreRelm.Enums.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Enums
+    name: Enums
+    href: CoreRelm.Enums.html
 - uid: CoreRelm.Attributes.RelmForeignKey
   commentId: T:CoreRelm.Attributes.RelmForeignKey
   href: CoreRelm.Attributes.RelmForeignKey.html
@@ -2147,7 +2240,7 @@ references:
   fullName: CoreRelm.Attributes.RelmForeignKey.OrderBy
 - uid: CoreRelm.Attributes.RelmForeignKey.#ctor*
   commentId: Overload:CoreRelm.Attributes.RelmForeignKey.#ctor
-  href: CoreRelm.Attributes.RelmForeignKey.html#CoreRelm_Attributes_RelmForeignKey__ctor_System_String_System_String_System_String_
+  href: CoreRelm.Attributes.RelmForeignKey.html#CoreRelm_Attributes_RelmForeignKey__ctor_System_String_System_String_System_String_CoreRelm_Enums_ForeignKeys_ReferentialAction_
   name: RelmForeignKey
   nameWithType: RelmForeignKey.RelmForeignKey
   fullName: CoreRelm.Attributes.RelmForeignKey.RelmForeignKey

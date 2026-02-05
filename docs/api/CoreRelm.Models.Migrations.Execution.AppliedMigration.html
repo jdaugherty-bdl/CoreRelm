@@ -89,7 +89,7 @@
 
 
   <h1 id="CoreRelm_Models_Migrations_Execution_AppliedMigration" data-uid="CoreRelm.Models.Migrations.Execution.AppliedMigration" class="text-break">
-Class AppliedMigration  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Execution/AppliedMigration.cs/#L9"><i class="bi bi-code-slash"></i></a>
+Class AppliedMigration  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Execution/AppliedMigration.cs/#L10"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -101,7 +101,9 @@ Class AppliedMigration  <a class="header-action link-secondary" title="View sour
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class AppliedMigration : RelmModel, IRelmModel</code></pre>
+    <pre><code class="lang-csharp hljs">[RelmDatabase(&quot;ledgerlite&quot;)]
+[RelmTable(&quot;schema_migrations&quot;)]
+public class AppliedMigration : RelmModel, IRelmModel</code></pre>
   </div>
 
 
@@ -158,13 +160,13 @@ Class AppliedMigration  <a class="header-action link-secondary" title="View sour
       <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModel.WriteToDatabase(Enum, int, bool, bool, bool, bool)</a>
     </div>
     <div>
+      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModel.WriteToDatabase(MySqlConnection, int, bool, bool, bool, bool)</a>
+    </div>
+    <div>
       <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModel.WriteToDatabase(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool)</a>
     </div>
     <div>
       <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModel.WriteToDatabase(IRelmContext, int, bool, bool, bool, bool)</a>
-    </div>
-    <div>
-      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModel.WriteToDatabase(IRelmQuickContext, int, bool, bool, bool, bool)</a>
     </div>
     <div>
       <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_CoreRelm_Options_RelmContextOptionsBuilder_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModel.WriteToDatabase(RelmContextOptionsBuilder, int, bool, bool, bool, bool)</a>
@@ -208,9 +210,6 @@ Class AppliedMigration  <a class="header-action link-secondary" title="View sour
       <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadDataLoaderField__2___0_CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___">ModelExtensions.LoadDataLoaderField&lt;T, S&gt;(T, IRelmContext, Expression&lt;Func&lt;T, S&gt;&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadDataLoaderField__2___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___">ModelExtensions.LoadDataLoaderField&lt;T, S&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, S&gt;&gt;)</a>
-  </div>
-  <div>
       <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadDataLoaderField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___">ModelExtensions.LoadDataLoaderField&lt;T, S&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, S&gt;&gt;)</a>
   </div>
   <div>
@@ -224,18 +223,6 @@ Class AppliedMigration  <a class="header-action link-secondary" title="View sour
   </div>
   <div>
       <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, IRelmContext, Expression&lt;Func&lt;T, R&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
-  </div>
-  <div>
-      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;)</a>
-  </div>
-  <div>
-      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
-  </div>
-  <div>
-      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, R&gt;&gt;)</a>
-  </div>
-  <div>
-      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, R&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
   </div>
   <div>
       <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;)</a>
@@ -260,18 +247,6 @@ Class AppliedMigration  <a class="header-action link-secondary" title="View sour
   </div>
   <div>
       <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmContext, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
-  </div>
-  <div>
-      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;)</a>
-  </div>
-  <div>
-      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
-  </div>
-  <div>
-      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;)</a>
-  </div>
-  <div>
-      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
   </div>
   <div>
       <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;)</a>
@@ -299,7 +274,7 @@ Class AppliedMigration  <a class="header-action link-secondary" title="View sour
 
   <h3 id="CoreRelm_Models_Migrations_Execution_AppliedMigration__ctor" data-uid="CoreRelm.Models.Migrations.Execution.AppliedMigration.#ctor">
   AppliedMigration()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Execution/AppliedMigration.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Execution/AppliedMigration.cs/#L23"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -325,7 +300,7 @@ Class AppliedMigration  <a class="header-action link-secondary" title="View sour
 
   <h3 id="CoreRelm_Models_Migrations_Execution_AppliedMigration__ctor_System_String_System_String_System_DateTime_" data-uid="CoreRelm.Models.Migrations.Execution.AppliedMigration.#ctor(System.String,System.String,System.DateTime)">
   AppliedMigration(string, string, DateTime)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Execution/AppliedMigration.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Execution/AppliedMigration.cs/#L30"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -364,14 +339,15 @@ Class AppliedMigration  <a class="header-action link-secondary" title="View sour
 
   <h3 id="CoreRelm_Models_Migrations_Execution_AppliedMigration_AppliedUtc" data-uid="CoreRelm.Models.Migrations.Execution.AppliedMigration.AppliedUtc">
   AppliedUtc
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Execution/AppliedMigration.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Execution/AppliedMigration.cs/#L20"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DateTime AppliedUtc { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+public DateTime AppliedUtc { get; init; }</code></pre>
   </div>
 
 
@@ -395,14 +371,15 @@ Class AppliedMigration  <a class="header-action link-secondary" title="View sour
 
   <h3 id="CoreRelm_Models_Migrations_Execution_AppliedMigration_ChecksumSha256" data-uid="CoreRelm.Models.Migrations.Execution.AppliedMigration.ChecksumSha256">
   ChecksumSha256
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Execution/AppliedMigration.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Execution/AppliedMigration.cs/#L17"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string ChecksumSha256 { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+public string ChecksumSha256 { get; init; }</code></pre>
   </div>
 
 
@@ -426,14 +403,15 @@ Class AppliedMigration  <a class="header-action link-secondary" title="View sour
 
   <h3 id="CoreRelm_Models_Migrations_Execution_AppliedMigration_FileName" data-uid="CoreRelm.Models.Migrations.Execution.AppliedMigration.FileName">
   FileName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Execution/AppliedMigration.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Execution/AppliedMigration.cs/#L14"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string FileName { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+public string FileName { get; init; }</code></pre>
   </div>
 
 
@@ -457,7 +435,7 @@ Class AppliedMigration  <a class="header-action link-secondary" title="View sour
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Execution/AppliedMigration.cs/#L9" class="edit-link">Edit this page</a>
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Execution/AppliedMigration.cs/#L10" class="edit-link">Edit this page</a>
         </div>
 
 

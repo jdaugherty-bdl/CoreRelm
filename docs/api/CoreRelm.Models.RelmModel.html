@@ -128,6 +128,11 @@ manipulation, database operations, and DTO generation.</p>
     <dt>Derived</dt>
     <dd>
       <div><a class="xref" href="CoreRelm.Models.Migrations.Execution.AppliedMigration.html">AppliedMigration</a></div>
+      <div><a class="xref" href="CoreRelm.Models.Migrations.Introspection.ColumnSchema.html">ColumnSchema</a></div>
+      <div><a class="xref" href="CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.html">ForeignKeySchema</a></div>
+      <div><a class="xref" href="CoreRelm.Models.Migrations.Introspection.FunctionSchema.html">FunctionSchema</a></div>
+      <div><a class="xref" href="CoreRelm.Models.Migrations.Introspection.IndexSchema.html">IndexSchema</a></div>
+      <div><a class="xref" href="CoreRelm.Models.Migrations.Introspection.TriggerSchema.html">TriggerSchema</a></div>
       <div><a class="xref" href="CoreRelm.Models.RelmModelApartment.html">RelmModelApartment</a></div>
     </dd>
   </dl>
@@ -165,9 +170,6 @@ manipulation, database operations, and DTO generation.</p>
       <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadDataLoaderField__2___0_CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___">ModelExtensions.LoadDataLoaderField&lt;T, S&gt;(T, IRelmContext, Expression&lt;Func&lt;T, S&gt;&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadDataLoaderField__2___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___">ModelExtensions.LoadDataLoaderField&lt;T, S&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, S&gt;&gt;)</a>
-  </div>
-  <div>
       <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadDataLoaderField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___">ModelExtensions.LoadDataLoaderField&lt;T, S&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, S&gt;&gt;)</a>
   </div>
   <div>
@@ -181,18 +183,6 @@ manipulation, database operations, and DTO generation.</p>
   </div>
   <div>
       <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, IRelmContext, Expression&lt;Func&lt;T, R&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
-  </div>
-  <div>
-      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;)</a>
-  </div>
-  <div>
-      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
-  </div>
-  <div>
-      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, R&gt;&gt;)</a>
-  </div>
-  <div>
-      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, R&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
   </div>
   <div>
       <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;)</a>
@@ -219,18 +209,6 @@ manipulation, database operations, and DTO generation.</p>
       <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmContext, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;)</a>
-  </div>
-  <div>
-      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
-  </div>
-  <div>
-      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;)</a>
-  </div>
-  <div>
-      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmQuickContext, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
-  </div>
-  <div>
       <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;)</a>
   </div>
   <div>
@@ -250,8 +228,8 @@ manipulation, database operations, and DTO generation.</p>
   <div class="markdown level0 remarks"><p>The <a class="xref" href="CoreRelm.Models.RelmModel.html">RelmModel</a> class serves as a foundational class for entities, offering
 features such as: <ul><li>Core attributes like <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_Id">Id</a>, <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_Active">Active</a>, <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_InternalId">InternalId</a>, <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_CreateDate">CreateDate</a>, and <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_LastUpdated">LastUpdated</a>.</li><li>Support for resetting
 attributes to default values using <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_ResetCoreAttributes_System_Boolean_System_Boolean_">ResetCoreAttributes(bool, bool)</a>.</li><li>Data population from database
-rows via <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_ResetWithData_System_Data_DataRow_System_String_">ResetWithData(DataRow, string)</a>.</li><li>Bulk database write operations through various
-<code>WriteToDatabase</code> overloads.</li><li>Dynamic Data Transfer Object (DTO) generation with <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_GenerateDTO_System_Collections_Generic_IEnumerable_System_String__System_Collections_Generic_IEnumerable_System_String__System_String_System_Func_CoreRelm_Interfaces_IRelmModel_System_Collections_Generic_Dictionary_System_String_System_Object___System_Int32_">GenerateDTO(IEnumerable&lt;string&gt;, IEnumerable&lt;string&gt;, string, Func&lt;IRelmModel, Dictionary&lt;string, object&gt;&gt;, int)</a>.</li></ul> This class is designed to be extended by specific entity types and provides
+rows via <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_ResetWithData_System_Data_DataRow_System_String_">ResetWithData(DataRow, string?)</a>.</li><li>Bulk database write operations through various
+<code>WriteToDatabase</code> overloads.</li><li>Dynamic Data Transfer Object (DTO) generation with <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_GenerateDTO_System_Collections_Generic_IEnumerable_System_String__System_Collections_Generic_IEnumerable_System_String__System_String_System_Func_CoreRelm_Interfaces_IRelmModel_System_Collections_Generic_Dictionary_System_String_System_Object___System_Int32_">GenerateDTO(IEnumerable&lt;string&gt;?, IEnumerable&lt;string&gt;?, string?, Func&lt;IRelmModel, Dictionary&lt;string, object&gt;&gt;?, int)</a>.</li></ul> This class is designed to be extended by specific entity types and provides
 a flexible foundation for working with relational data in the Relm framework.
 </div>
 
@@ -339,8 +317,8 @@ target model  are ignored.</p>
   <a id="CoreRelm_Models_RelmModel__ctor_" data-uid="CoreRelm.Models.RelmModel.#ctor*"></a>
 
   <h3 id="CoreRelm_Models_RelmModel__ctor_System_Data_DataRow_System_String_" data-uid="CoreRelm.Models.RelmModel.#ctor(System.Data.DataRow,System.String)">
-  RelmModel(DataRow, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L158"><i class="bi bi-code-slash"></i></a>
+  RelmModel(DataRow, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L157"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="CoreRelm.Models.RelmModel.html">RelmModel</a> class and populates its properties  using data
@@ -349,7 +327,7 @@ from the specified database row.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RelmModel(DataRow modelData, string alternateTableName = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public RelmModel(DataRow modelData, string? alternateTableName = null)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -394,7 +372,7 @@ in the  <code class="paramref">modelData</code> match the property names of the 
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[RelmColumn(null, -1, null, false, false, false, false, &quot;1&quot;, null, false, false, false)]
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, 1, null, false, false, false, false, &quot;1&quot;, false, false, false, false)]
 public bool Active { get; set; }</code></pre>
   </div>
 
@@ -427,7 +405,7 @@ public bool Active { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[RelmColumn(null, -1, null, false, false, false, false, &quot;CURRENT_TIMESTAMP&quot;, null, false, false, false)]
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, false, false, false, false, &quot;CURRENT_TIMESTAMP&quot;, false, false, false, false)]
 public DateTime CreateDate { get; set; }</code></pre>
   </div>
 
@@ -460,7 +438,7 @@ public DateTime CreateDate { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[RelmColumn(null, -1, null, false, true, true, false, null, null, false, false, false)]
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, false, true, true, false, null, false, false, false, false)]
 public long? Id { get; set; }</code></pre>
   </div>
 
@@ -493,8 +471,8 @@ public long? Id { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[RelmColumn(null, -1, null, false, false, false, true, null, null, false, false, false)]
-public string InternalId { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, 45, null, false, false, false, true, null, false, false, false, false)]
+public string? InternalId { get; set; }</code></pre>
   </div>
 
 
@@ -526,7 +504,7 @@ public string InternalId { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[RelmColumn(null, -1, null, false, false, false, false, &quot;CURRENT_TIMESTAMP&quot;, null, false, false, false)]
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, false, false, false, false, &quot;CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP&quot;, false, false, false, false)]
 public DateTime LastUpdated { get; set; }</code></pre>
   </div>
 
@@ -555,7 +533,7 @@ public DateTime LastUpdated { get; set; }</code></pre>
 
   <h3 id="CoreRelm_Models_RelmModel_CopyFromSource__1___0_" data-uid="CoreRelm.Models.RelmModel.CopyFromSource``1(``0)">
   CopyFromSource&lt;T&gt;(T)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L420"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L426"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Creates a new instance of the specified type <code class="typeparamref">T</code> and copies all public properties and
@@ -613,7 +591,7 @@ accessibility.</p>
 
   <h3 id="CoreRelm_Models_RelmModel_Duplicate" data-uid="CoreRelm.Models.RelmModel.Duplicate">
   Duplicate()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L657"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L799"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Creates a shallow copy of the current <a class="xref" href="CoreRelm.Models.RelmModel.html">RelmModel</a> instance.</p>
@@ -649,8 +627,8 @@ object are duplicated.  References to other objects within the instance are not 
   <a id="CoreRelm_Models_RelmModel_GenerateDTO_" data-uid="CoreRelm.Models.RelmModel.GenerateDTO*"></a>
 
   <h3 id="CoreRelm_Models_RelmModel_GenerateDTO_System_Collections_Generic_IEnumerable_System_String__System_Collections_Generic_IEnumerable_System_String__System_String_System_Func_CoreRelm_Interfaces_IRelmModel_System_Collections_Generic_Dictionary_System_String_System_Object___System_Int32_" data-uid="CoreRelm.Models.RelmModel.GenerateDTO(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String,System.Func{CoreRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}},System.Int32)">
-  GenerateDTO(IEnumerable&lt;string&gt;, IEnumerable&lt;string&gt;, string, Func&lt;IRelmModel, Dictionary&lt;string, object&gt;&gt;, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L463"><i class="bi bi-code-slash"></i></a>
+  GenerateDTO(IEnumerable&lt;string&gt;?, IEnumerable&lt;string&gt;?, string?, Func&lt;IRelmModel, Dictionary&lt;string, object&gt;&gt;?, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L468"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Generates a dynamic Data Transfer Object (DTO) containing properties from the current object based on
@@ -659,7 +637,7 @@ specific inclusion and exclusion criteria.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public dynamic GenerateDTO(IEnumerable&lt;string&gt; includeProperties = null, IEnumerable&lt;string&gt; excludeProperties = null, string sourceObjectName = null, Func&lt;IRelmModel, Dictionary&lt;string, object&gt;&gt; getAdditionalObjectProperties = null, int iteration = 0)</code></pre>
+    <pre><code class="lang-csharp hljs">public dynamic GenerateDTO(IEnumerable&lt;string&gt;? includeProperties = null, IEnumerable&lt;string&gt;? excludeProperties = null, string? sourceObjectName = null, Func&lt;IRelmModel, Dictionary&lt;string, object&gt;&gt;? getAdditionalObjectProperties = null, int iteration = 0)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -711,7 +689,7 @@ the <a class="xref" href="CoreRelm.Attributes.RelmDto.html">RelmDto</a> attribut
 
   <h3 id="CoreRelm_Models_RelmModel_GetUnderscoreProperties_System_Boolean_" data-uid="CoreRelm.Models.RelmModel.GetUnderscoreProperties(System.Boolean)">
   GetUnderscoreProperties(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L276"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L287"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Retrieves a list of properties for the current object, with their names converted to underscore-separated
@@ -795,8 +773,8 @@ identifier.</p>
   <a id="CoreRelm_Models_RelmModel_ResetWithData_" data-uid="CoreRelm.Models.RelmModel.ResetWithData*"></a>
 
   <h3 id="CoreRelm_Models_RelmModel_ResetWithData_System_Data_DataRow_System_String_" data-uid="CoreRelm.Models.RelmModel.ResetWithData(System.Data.DataRow,System.String)">
-  ResetWithData(DataRow, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L175"><i class="bi bi-code-slash"></i></a>
+  ResetWithData(DataRow, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L174"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Resets the current model instance with data from the specified <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.datarow">DataRow</a>.</p>
@@ -804,7 +782,7 @@ identifier.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IRelmModel ResetWithData(DataRow modelData, string alternateTableName = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public IRelmModel ResetWithData(DataRow modelData, string? alternateTableName = null)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -845,7 +823,7 @@ and column names suffixed with the table name.</p>
 
   <h3 id="CoreRelm_Models_RelmModel_WriteToDatabase_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
   WriteToDatabase(IRelmContext, int, bool, bool, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L352"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L386"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Writes the current object to the database using the table specified in the <code>RelmTable</code> attribute.</p>
@@ -910,76 +888,9 @@ type.</p>
 
   <a id="CoreRelm_Models_RelmModel_WriteToDatabase_" data-uid="CoreRelm.Models.RelmModel.WriteToDatabase*"></a>
 
-  <h3 id="CoreRelm_Models_RelmModel_WriteToDatabase_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
-  WriteToDatabase(IRelmQuickContext, int, bool, bool, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L380"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Writes the current object to the database using the table specified in the <code>RelmTable</code> attribute.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int WriteToDatabase(IRelmQuickContext relmContext, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>relmContext</code> <a class="xref" href="CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html">IRelmQuickContext</a></dt>
-    <dd><p>The database context used to perform the write operation. This context must be properly configured<br>
-to connect to the target database.</p>
-</dd>
-    <dt><code>batchSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>The number of records to include in each batch during the bulk write operation. The default value is 100.</p>
-</dd>
-    <dt><code>allowAutoIncrementColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>A value indicating whether columns with auto-increment constraints are allowed to be written. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>,         auto-increment columns will be included in the write operation; otherwise, they
-will be excluded. The default value is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
-</dd>
-    <dt><code>allowPrimaryKeyColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>A value indicating whether primary key columns are allowed to be written. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>,<br>
-primary key columns will be included in the write operation; otherwise, they will be excluded. The default
-value is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
-</dd>
-    <dt><code>allowUniqueColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>A value indicating whether columns with unique constraints are allowed to be written. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>,         unique columns will be included in the write operation; otherwise, they will be
-excluded. The default value is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
-</dd>
-    <dt><code>allowAutoDateColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>A value indicating whether columns with automatic date constraints (e.g., timestamps) are allowed to be
-written.         If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, such columns will be included in the write operation; otherwise,
-they will be excluded.         The default value is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>The number of records successfully written to the database.</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-  <h4 class="section" id="CoreRelm_Models_RelmModel_WriteToDatabase_CoreRelm_Interfaces_RelmQuick_IRelmQuickContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>This method performs a bulk write operation, which can improve performance when
-writing large amounts of data. Ensure that the provided <code class="paramref">relmContext</code> is properly
-configured and that the database schema matches the structure of the data being written. The behavior of the
-write operation can be customized using the provided options.</p>
-</div>
-
-
-
-
-  <a id="CoreRelm_Models_RelmModel_WriteToDatabase_" data-uid="CoreRelm.Models.RelmModel.WriteToDatabase*"></a>
-
   <h3 id="CoreRelm_Models_RelmModel_WriteToDatabase_CoreRelm_Options_RelmContextOptionsBuilder_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Options.RelmContextOptionsBuilder,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
   WriteToDatabase(RelmContextOptionsBuilder, int, bool, bool, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L402"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L408"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Writes the current object to the database using the table specified in the <code>RelmTable</code> attribute.</p>
@@ -1040,7 +951,7 @@ avoid runtime errors.</p>
 
   <h3 id="CoreRelm_Models_RelmModel_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Models.RelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
   WriteToDatabase(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L324"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L358"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Writes the current object to the database using the table specified in the <code>RelmTable</code> attribute.</p>
@@ -1048,7 +959,7 @@ avoid runtime errors.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int WriteToDatabase(MySqlConnection existingConnection, MySqlTransaction sqlTransaction = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public int WriteToDatabase(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1103,9 +1014,70 @@ database schema matches the structure of the object being written.</p>
 
   <a id="CoreRelm_Models_RelmModel_WriteToDatabase_" data-uid="CoreRelm.Models.RelmModel.WriteToDatabase*"></a>
 
+  <h3 id="CoreRelm_Models_RelmModel_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Models.RelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+  WriteToDatabase(MySqlConnection, int, bool, bool, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L333"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Writes the current object to the database using the table specified in the <code>RelmTable</code> attribute.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int WriteToDatabase(MySqlConnection existingConnection, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>existingConnection</code> <span class="xref">MySqlConnection</span></dt>
+    <dd><p>An existing and open <span class="xref">MySql.Data.MySqlClient.MySqlConnection</span> to use for writing the data. The connection must remain
+open for the duration of the operation.</p>
+</dd>
+    <dt><code>batchSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of rows to write to the database in each batch. Must be greater than zero. Defaults to 100.</p>
+</dd>
+    <dt><code>allowAutoIncrementColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether auto-increment columns should be included in the write operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, auto-increment columns will be written; otherwise, they will be excluded.</p>
+</dd>
+    <dt><code>allowPrimaryKeyColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether primary key columns should be included in the write operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, primary key columns will be written; otherwise, they will be excluded.</p>
+</dd>
+    <dt><code>allowUniqueColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether unique columns should be included in the write operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, unique columns will be written; otherwise, they will be excluded.</p>
+</dd>
+    <dt><code>allowAutoDateColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether auto-generated date columns (e.g., timestamps) should be included in the write
+operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, auto-date columns will be written; otherwise, they will be excluded.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of rows successfully written to the database.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Models_RelmModel_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method performs a bulk write operation to the database. The table to which the
+data is written is determined by the <code>RelmTable</code> attribute applied to the object's type. Ensure that the
+database schema matches the structure of the object being written.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Models_RelmModel_WriteToDatabase_" data-uid="CoreRelm.Models.RelmModel.WriteToDatabase*"></a>
+
   <h3 id="CoreRelm_Models_RelmModel_WriteToDatabase_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Models.RelmModel.WriteToDatabase(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
   WriteToDatabase(Enum, int, bool, bool, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L299"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L310"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Writes the current object to the database using the table specified in the <code>RelmTable</code> attribute.</p>
@@ -1177,7 +1149,7 @@ Ensure that the database schema matches the structure of the object being writte
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler&lt;DtoEventArgs&gt; DtoTypeProcessor</code></pre>
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;DtoEventArgs&gt;? DtoTypeProcessor</code></pre>
   </div>
 
 

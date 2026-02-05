@@ -225,7 +225,7 @@ connection.</p>
   <a id="CoreRelm_Options_RelmContextOptionsBuilder__ctor_" data-uid="CoreRelm.Options.RelmContextOptionsBuilder.#ctor*"></a>
 
   <h3 id="CoreRelm_Options_RelmContextOptionsBuilder__ctor_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_" data-uid="CoreRelm.Options.RelmContextOptionsBuilder.#ctor(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction)">
-  RelmContextOptionsBuilder(MySqlConnection, MySqlTransaction)
+  RelmContextOptionsBuilder(MySqlConnection, MySqlTransaction?)
   <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L208"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -235,7 +235,7 @@ MySqlTransaction.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RelmContextOptionsBuilder(MySqlConnection connection, MySqlTransaction transaction)</code></pre>
+    <pre><code class="lang-csharp hljs">public RelmContextOptionsBuilder(MySqlConnection connection, MySqlTransaction? transaction)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -558,7 +558,7 @@ established.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Enum ConnectionStringType { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Enum? ConnectionStringType { get; }</code></pre>
   </div>
 
 
@@ -628,7 +628,7 @@ This option is useful when working with databases that allow zero date values.</
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MySqlConnection DatabaseConnection { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public MySqlConnection? DatabaseConnection { get; }</code></pre>
   </div>
 
 
@@ -660,7 +660,7 @@ This option is useful when working with databases that allow zero date values.</
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string DatabaseConnectionString { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string? DatabaseConnectionString { get; }</code></pre>
   </div>
 
 
@@ -692,7 +692,7 @@ This option is useful when working with databases that allow zero date values.</
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string DatabaseName { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string? DatabaseName { get; }</code></pre>
   </div>
 
 
@@ -724,7 +724,7 @@ This option is useful when working with databases that allow zero date values.</
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string DatabasePassword { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string? DatabasePassword { get; }</code></pre>
   </div>
 
 
@@ -756,7 +756,7 @@ This option is useful when working with databases that allow zero date values.</
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string DatabaseServer { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string? DatabaseServer { get; }</code></pre>
   </div>
 
 
@@ -788,7 +788,7 @@ This option is useful when working with databases that allow zero date values.</
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MySqlTransaction DatabaseTransaction { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public MySqlTransaction? DatabaseTransaction { get; }</code></pre>
   </div>
 
 
@@ -824,7 +824,7 @@ within a transactional context. The property is null if no transaction is in pro
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string DatabaseUser { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string? DatabaseUser { get; }</code></pre>
   </div>
 
 
@@ -888,7 +888,7 @@ within a transactional context. The property is null if no transaction is in pro
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string NamedConnection { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string? NamedConnection { get; set; }</code></pre>
   </div>
 
 
@@ -999,7 +999,7 @@ connection parameters.</p>
 
   <h3 id="CoreRelm_Options_RelmContextOptionsBuilder_SetAllowUserVariables_System_Boolean_" data-uid="CoreRelm.Options.RelmContextOptionsBuilder.SetAllowUserVariables(System.Boolean)">
   SetAllowUserVariables(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L596"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L597"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Enables or disables the use of user-defined variables in SQL statements.</p>
@@ -1038,7 +1038,7 @@ connection parameters.</p>
 
   <h3 id="CoreRelm_Options_RelmContextOptionsBuilder_SetAutoInitializeDataSets_System_Boolean_" data-uid="CoreRelm.Options.RelmContextOptionsBuilder.SetAutoInitializeDataSets(System.Boolean)">
   SetAutoInitializeDataSets(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L638"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L639"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Enables or disables automatic initialization of data sets.</p>
@@ -1077,7 +1077,7 @@ connection parameters.</p>
 
   <h3 id="CoreRelm_Options_RelmContextOptionsBuilder_SetAutoOpenConnection_System_Boolean_" data-uid="CoreRelm.Options.RelmContextOptionsBuilder.SetAutoOpenConnection(System.Boolean)">
   SetAutoOpenConnection(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L572"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L573"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Enables or disables automatic opening of the connection when required by operations.</p>
@@ -1121,7 +1121,7 @@ before performing such operations.</p>
 
   <h3 id="CoreRelm_Options_RelmContextOptionsBuilder_SetAutoOpenTransaction_System_Boolean_" data-uid="CoreRelm.Options.RelmContextOptionsBuilder.SetAutoOpenTransaction(System.Boolean)">
   SetAutoOpenTransaction(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L584"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L585"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Enables or disables automatic opening of a transaction when executing database operations.</p>
@@ -1160,7 +1160,7 @@ before performing such operations.</p>
 
   <h3 id="CoreRelm_Options_RelmContextOptionsBuilder_SetAutoVerifyTables_System_Boolean_" data-uid="CoreRelm.Options.RelmContextOptionsBuilder.SetAutoVerifyTables(System.Boolean)">
   SetAutoVerifyTables(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L650"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L651"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Enables or disables automatic verification of tables before performing operations.</p>
@@ -1286,7 +1286,7 @@ before performing such operations.</p>
 
   <h3 id="CoreRelm_Options_RelmContextOptionsBuilder_SetConvertZeroDateTime_System_Boolean_" data-uid="CoreRelm.Options.RelmContextOptionsBuilder.SetConvertZeroDateTime(System.Boolean)">
   SetConvertZeroDateTime(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L611"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L612"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Specifies whether zero date values should be converted to DateTime.MinValue when retrieving data.</p>
@@ -1329,7 +1329,7 @@ simplify handling of missing dates in application code.</p>
   <a id="CoreRelm_Options_RelmContextOptionsBuilder_SetDatabaseConnection_" data-uid="CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseConnection*"></a>
 
   <h3 id="CoreRelm_Options_RelmContextOptionsBuilder_SetDatabaseConnection_MySql_Data_MySqlClient_MySqlConnection_" data-uid="CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseConnection(MySql.Data.MySqlClient.MySqlConnection)">
-  SetDatabaseConnection(MySqlConnection)
+  SetDatabaseConnection(MySqlConnection?)
   <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L223"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -1338,7 +1338,7 @@ simplify handling of missing dates in application code.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RelmContextOptionsBuilder SetDatabaseConnection(MySqlConnection connection)</code></pre>
+    <pre><code class="lang-csharp hljs">public RelmContextOptionsBuilder SetDatabaseConnection(MySqlConnection? connection)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1564,7 +1564,7 @@ underscores (_), dollar signs ($), or Unicode characters in the range U+0080 to 
   <a id="CoreRelm_Options_RelmContextOptionsBuilder_SetDatabaseTransaction_" data-uid="CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseTransaction*"></a>
 
   <h3 id="CoreRelm_Options_RelmContextOptionsBuilder_SetDatabaseTransaction_MySql_Data_MySqlClient_MySqlTransaction_" data-uid="CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseTransaction(MySql.Data.MySqlClient.MySqlTransaction)">
-  SetDatabaseTransaction(MySqlTransaction)
+  SetDatabaseTransaction(MySqlTransaction?)
   <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L241"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -1573,7 +1573,7 @@ underscores (_), dollar signs ($), or Unicode characters in the range U+0080 to 
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RelmContextOptionsBuilder SetDatabaseTransaction(MySqlTransaction transaction)</code></pre>
+    <pre><code class="lang-csharp hljs">public RelmContextOptionsBuilder SetDatabaseTransaction(MySqlTransaction? transaction)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1655,7 +1655,7 @@ it is cleared or replaced.</p>
 
   <h3 id="CoreRelm_Options_RelmContextOptionsBuilder_SetLockWaitTimeoutSeconds_System_Int32_" data-uid="CoreRelm.Options.RelmContextOptionsBuilder.SetLockWaitTimeoutSeconds(System.Int32)">
   SetLockWaitTimeoutSeconds(int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L626"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L627"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Sets the lock wait timeout period, in seconds, for acquiring a lock.</p>

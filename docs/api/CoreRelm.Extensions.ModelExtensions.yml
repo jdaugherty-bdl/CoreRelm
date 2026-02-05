@@ -6,16 +6,11 @@ items:
   parent: CoreRelm.Extensions
   children:
   - CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField``2(``0,CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  - CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField``2(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}})
   - CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}})
   - CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})
   - CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
   - CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,``1}})
   - CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  - CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})
-  - CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  - CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  - CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
   - CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})
   - CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
   - CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}})
@@ -24,10 +19,6 @@ items:
   - CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
   - CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})
   - CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  - CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
-  - CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  - CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})
-  - CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
   - CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
   - CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
   - CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})
@@ -93,7 +84,7 @@ items:
         field is populated based on the context's configuration.
   example: []
   syntax:
-    content: 'public static T LoadForeignKeyField<T, R>(this T target, IRelmContext relmContext, Expression<Func<T, R>> predicate) where T : IRelmModel, new() where R : IRelmModel, new()'
+    content: 'public static T? LoadForeignKeyField<T, R>(this T target, IRelmContext relmContext, Expression<Func<T, R>> predicate) where T : IRelmModel, new() where R : IRelmModel, new()'
     parameters:
     - id: target
       type: '{T}'
@@ -149,7 +140,7 @@ items:
         key fields in models. It uses the provided context and constraints to load the related model data.
   example: []
   syntax:
-    content: 'public static T LoadForeignKeyField<T, R>(this T target, IRelmContext relmContext, Expression<Func<T, R>> predicate, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()'
+    content: 'public static T? LoadForeignKeyField<T, R>(this T target, IRelmContext relmContext, Expression<Func<T, R>> predicate, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()'
     parameters:
     - id: target
       type: '{T}'
@@ -202,7 +193,7 @@ items:
   summary: Loads and assigns a foreign key field for the specified target model using the provided data loader.
   example: []
   syntax:
-    content: 'public static T LoadForeignKeyField<T, R, S>(this T target, IRelmContext relmContext, Expression<Func<T, R>> predicate, IRelmDataLoader<S> customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()'
+    content: 'public static T? LoadForeignKeyField<T, R, S>(this T target, IRelmContext relmContext, Expression<Func<T, R>> predicate, IRelmDataLoader<S> customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()'
     parameters:
     - id: target
       type: '{T}'
@@ -264,7 +255,7 @@ items:
         the default data loading behavior needs to be customized or extended.
   example: []
   syntax:
-    content: 'public static T LoadForeignKeyField<T, R, S>(this T target, IRelmContext relmContext, Expression<Func<T, R>> predicate, IRelmDataLoader<S> customDataLoader, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()'
+    content: 'public static T? LoadForeignKeyField<T, R, S>(this T target, IRelmContext relmContext, Expression<Func<T, R>> predicate, IRelmDataLoader<S> customDataLoader, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()'
     parameters:
     - id: target
       type: '{T}'
@@ -296,249 +287,6 @@ items:
   nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of T, R, S)(T, IRelmContext, Expression(Of Func(Of T, R)), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
   fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of T, R, S)(T, CoreRelm.Interfaces.IRelmContext, System.Linq.Expressions.Expression(Of System.Func(Of T, R)), CoreRelm.Interfaces.IRelmDataLoader(Of S), System.Linq.Expressions.Expression(Of System.Func(Of R, Object)))
   name.vb: LoadForeignKeyField(Of T, R, S)(T, IRelmContext, Expression(Of Func(Of T, R)), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
-- uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  id: LoadForeignKeyField``2(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  isExtensionMethod: true
-  parent: CoreRelm.Extensions.ModelExtensions
-  langs:
-  - csharp
-  - vb
-  name: LoadForeignKeyField<T, R>(T, IRelmQuickContext, Expression<Func<T, R>>)
-  nameWithType: ModelExtensions.LoadForeignKeyField<T, R>(T, IRelmQuickContext, Expression<Func<T, R>>)
-  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<T, R>(T, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression<System.Func<T, R>>)
-  type: Method
-  source:
-    remote:
-      path: CoreRelm/Extensions/ModelExtensions.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: LoadForeignKeyField
-    path: ../CoreRelm/Extensions/ModelExtensions.cs
-    startLine: 103
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Extensions
-  summary: Loads the foreign key field specified by the given predicate for the target model.
-  remarks: >-
-    This method is an extension method that simplifies loading a specific foreign key
-        field for a model. The <code class="paramref">predicate</code> parameter should specify the property representing the
-        foreign key relationship.
-  example: []
-  syntax:
-    content: 'public static T LoadForeignKeyField<T, R>(this T target, IRelmQuickContext relmContext, Expression<Func<T, R>> predicate) where T : IRelmModel, new() where R : IRelmModel, new()'
-    parameters:
-    - id: target
-      type: '{T}'
-      description: The target model instance for which the foreign key field will be loaded.
-    - id: relmContext
-      type: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-      description: The context used to access the database or data source.
-    - id: predicate
-      type: System.Linq.Expressions.Expression{System.Func{{T},{R}}}
-      description: An expression specifying the foreign key field to load.
-    typeParameters:
-    - id: T
-      description: The type of the target model, which must implement <xref href="CoreRelm.Interfaces.IRelmModel" data-throw-if-not-resolved="false"></xref>.
-    - id: R
-      description: The type of the related model, which must implement <xref href="CoreRelm.Interfaces.IRelmModel" data-throw-if-not-resolved="false"></xref>.
-    return:
-      type: '{T}'
-      description: The target model instance with the specified foreign key field loaded.
-    content.vb: Public Shared Function LoadForeignKeyField(Of T As {IRelmModel, New}, R As {IRelmModel, New})(target As T, relmContext As IRelmQuickContext, predicate As Expression(Of Func(Of T, R))) As T
-  overload: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField*
-  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of T, R)(T, IRelmQuickContext, Expression(Of Func(Of T, R)))
-  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of T, R)(T, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression(Of System.Func(Of T, R)))
-  name.vb: LoadForeignKeyField(Of T, R)(T, IRelmQuickContext, Expression(Of Func(Of T, R)))
-- uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  id: LoadForeignKeyField``2(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  isExtensionMethod: true
-  parent: CoreRelm.Extensions.ModelExtensions
-  langs:
-  - csharp
-  - vb
-  name: LoadForeignKeyField<T, R>(T, IRelmQuickContext, Expression<Func<T, R>>, Expression<Func<R, object>>)
-  nameWithType: ModelExtensions.LoadForeignKeyField<T, R>(T, IRelmQuickContext, Expression<Func<T, R>>, Expression<Func<R, object>>)
-  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<T, R>(T, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression<System.Func<T, R>>, System.Linq.Expressions.Expression<System.Func<R, object>>)
-  type: Method
-  source:
-    remote:
-      path: CoreRelm/Extensions/ModelExtensions.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: LoadForeignKeyField
-    path: ../CoreRelm/Extensions/ModelExtensions.cs
-    startLine: 121
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Extensions
-  summary: >-
-    Loads a foreign key field for the specified target model, applying the given predicate and additional
-
-    constraints.
-  remarks: >-
-    This method is an extension method that simplifies loading related data for a model
-        by resolving foreign key relationships. Ensure that the <code class="paramref">relmContext</code> is properly
-        configured to access the underlying data source.
-  example: []
-  syntax:
-    content: 'public static T LoadForeignKeyField<T, R>(this T target, IRelmQuickContext relmContext, Expression<Func<T, R>> predicate, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()'
-    parameters:
-    - id: target
-      type: '{T}'
-      description: The target model instance for which the foreign key field is to be loaded.
-    - id: relmContext
-      type: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-      description: The context used to access the database or data source.
-    - id: predicate
-      type: System.Linq.Expressions.Expression{System.Func{{T},{R}}}
-      description: An expression specifying the foreign key relationship between the target model and the related model.
-    - id: additionalConstraints
-      type: System.Linq.Expressions.Expression{System.Func{{R},System.Object}}
-      description: An expression specifying additional constraints to apply when loading the related model.
-    typeParameters:
-    - id: T
-      description: The type of the target model. Must implement <xref href="CoreRelm.Interfaces.IRelmModel" data-throw-if-not-resolved="false"></xref> and have a parameterless constructor.
-    - id: R
-      description: The type of the related model. Must implement <xref href="CoreRelm.Interfaces.IRelmModel" data-throw-if-not-resolved="false"></xref> and have a parameterless constructor.
-    return:
-      type: '{T}'
-      description: >-
-        The target model instance with the foreign key field loaded based on the specified predicate and
-            constraints.
-    content.vb: Public Shared Function LoadForeignKeyField(Of T As {IRelmModel, New}, R As {IRelmModel, New})(target As T, relmContext As IRelmQuickContext, predicate As Expression(Of Func(Of T, R)), additionalConstraints As Expression(Of Func(Of R, Object))) As T
-  overload: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField*
-  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of T, R)(T, IRelmQuickContext, Expression(Of Func(Of T, R)), Expression(Of Func(Of R, Object)))
-  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of T, R)(T, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression(Of System.Func(Of T, R)), System.Linq.Expressions.Expression(Of System.Func(Of R, Object)))
-  name.vb: LoadForeignKeyField(Of T, R)(T, IRelmQuickContext, Expression(Of Func(Of T, R)), Expression(Of Func(Of R, Object)))
-- uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})
-  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})
-  id: LoadForeignKeyField``3(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})
-  isExtensionMethod: true
-  parent: CoreRelm.Extensions.ModelExtensions
-  langs:
-  - csharp
-  - vb
-  name: LoadForeignKeyField<T, R, S>(T, IRelmQuickContext, Expression<Func<T, R>>, IRelmDataLoader<S>)
-  nameWithType: ModelExtensions.LoadForeignKeyField<T, R, S>(T, IRelmQuickContext, Expression<Func<T, R>>, IRelmDataLoader<S>)
-  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<T, R, S>(T, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression<System.Func<T, R>>, CoreRelm.Interfaces.IRelmDataLoader<S>)
-  type: Method
-  source:
-    remote:
-      path: CoreRelm/Extensions/ModelExtensions.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: LoadForeignKeyField
-    path: ../CoreRelm/Extensions/ModelExtensions.cs
-    startLine: 139
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Extensions
-  summary: >-
-    Loads and initializes a foreign key field for the specified model using the provided data loader and
-
-    context.
-  remarks: >-
-    This method is an extension method that simplifies the process of loading foreign key
-        fields for models in the Relm framework. It delegates the operation to an overload that uses the context
-        options from the provided <code class="paramref">relmContext</code>.
-  example: []
-  syntax:
-    content: 'public static T LoadForeignKeyField<T, R, S>(this T target, IRelmQuickContext relmContext, Expression<Func<T, R>> predicate, IRelmDataLoader<S> customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()'
-    parameters:
-    - id: target
-      type: '{T}'
-      description: The target model instance for which the foreign key field will be loaded.
-    - id: relmContext
-      type: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-      description: The context providing configuration and options for the operation.
-    - id: predicate
-      type: System.Linq.Expressions.Expression{System.Func{{T},{R}}}
-      description: An expression identifying the foreign key field to be loaded.
-    - id: customDataLoader
-      type: CoreRelm.Interfaces.IRelmDataLoader{{S}}
-      description: A custom data loader used to retrieve the foreign key field data.
-    typeParameters:
-    - id: T
-      description: The type of the target model. Must implement <xref href="CoreRelm.Interfaces.IRelmModel" data-throw-if-not-resolved="false"></xref>.
-    - id: R
-      description: The type of the foreign key field to be loaded. Must implement <xref href="CoreRelm.Interfaces.IRelmModel" data-throw-if-not-resolved="false"></xref>.
-    - id: S
-      description: The type of the model used by the custom data loader. Must implement <xref href="CoreRelm.Interfaces.IRelmModel" data-throw-if-not-resolved="false"></xref>.
-    return:
-      type: '{T}'
-      description: The target model instance with the specified foreign key field loaded.
-    content.vb: Public Shared Function LoadForeignKeyField(Of T As {IRelmModel, New}, R As {IRelmModel, New}, S As {IRelmModel, New})(target As T, relmContext As IRelmQuickContext, predicate As Expression(Of Func(Of T, R)), customDataLoader As IRelmDataLoader(Of S)) As T
-  overload: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField*
-  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of T, R, S)(T, IRelmQuickContext, Expression(Of Func(Of T, R)), IRelmDataLoader(Of S))
-  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of T, R, S)(T, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression(Of System.Func(Of T, R)), CoreRelm.Interfaces.IRelmDataLoader(Of S))
-  name.vb: LoadForeignKeyField(Of T, R, S)(T, IRelmQuickContext, Expression(Of Func(Of T, R)), IRelmDataLoader(Of S))
-- uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  id: LoadForeignKeyField``3(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  isExtensionMethod: true
-  parent: CoreRelm.Extensions.ModelExtensions
-  langs:
-  - csharp
-  - vb
-  name: LoadForeignKeyField<T, R, S>(T, IRelmQuickContext, Expression<Func<T, R>>, IRelmDataLoader<S>, Expression<Func<R, object>>)
-  nameWithType: ModelExtensions.LoadForeignKeyField<T, R, S>(T, IRelmQuickContext, Expression<Func<T, R>>, IRelmDataLoader<S>, Expression<Func<R, object>>)
-  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<T, R, S>(T, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression<System.Func<T, R>>, CoreRelm.Interfaces.IRelmDataLoader<S>, System.Linq.Expressions.Expression<System.Func<R, object>>)
-  type: Method
-  source:
-    remote:
-      path: CoreRelm/Extensions/ModelExtensions.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: LoadForeignKeyField
-    path: ../CoreRelm/Extensions/ModelExtensions.cs
-    startLine: 158
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Extensions
-  summary: >-
-    Loads and initializes a foreign key field for the specified target model using the provided context,
-
-    predicate, and data loader.
-  remarks: >-
-    This method is an extension method that simplifies the process of loading foreign key
-        fields in models. It delegates the operation to an overload that uses the context options from the provided
-        <code class="paramref">relmContext</code>.
-  example: []
-  syntax:
-    content: 'public static T LoadForeignKeyField<T, R, S>(this T target, IRelmQuickContext relmContext, Expression<Func<T, R>> predicate, IRelmDataLoader<S> customDataLoader, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()'
-    parameters:
-    - id: target
-      type: '{T}'
-      description: The target model instance for which the foreign key field will be loaded.
-    - id: relmContext
-      type: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-      description: The context used to configure and manage the data loading operation.
-    - id: predicate
-      type: System.Linq.Expressions.Expression{System.Func{{T},{R}}}
-      description: An expression identifying the foreign key field to be loaded on the target model.
-    - id: customDataLoader
-      type: CoreRelm.Interfaces.IRelmDataLoader{{S}}
-      description: A custom data loader used to retrieve the foreign key data.
-    - id: additionalConstraints
-      type: System.Linq.Expressions.Expression{System.Func{{R},System.Object}}
-      description: An optional expression specifying additional constraints to apply when loading the foreign key data.
-    typeParameters:
-    - id: T
-      description: The type of the target model. Must implement <xref href="CoreRelm.Interfaces.IRelmModel" data-throw-if-not-resolved="false"></xref>.
-    - id: R
-      description: The type of the foreign key model. Must implement <xref href="CoreRelm.Interfaces.IRelmModel" data-throw-if-not-resolved="false"></xref>.
-    - id: S
-      description: The type of the model used by the custom data loader. Must implement <xref href="CoreRelm.Interfaces.IRelmModel" data-throw-if-not-resolved="false"></xref>.
-    return:
-      type: '{T}'
-      description: The target model instance with the specified foreign key field loaded and initialized.
-    content.vb: Public Shared Function LoadForeignKeyField(Of T As {IRelmModel, New}, R As {IRelmModel, New}, S As {IRelmModel, New})(target As T, relmContext As IRelmQuickContext, predicate As Expression(Of Func(Of T, R)), customDataLoader As IRelmDataLoader(Of S), additionalConstraints As Expression(Of Func(Of R, Object))) As T
-  overload: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField*
-  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of T, R, S)(T, IRelmQuickContext, Expression(Of Func(Of T, R)), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
-  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of T, R, S)(T, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression(Of System.Func(Of T, R)), CoreRelm.Interfaces.IRelmDataLoader(Of S), System.Linq.Expressions.Expression(Of System.Func(Of R, Object)))
-  name.vb: LoadForeignKeyField(Of T, R, S)(T, IRelmQuickContext, Expression(Of Func(Of T, R)), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
 - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}})
   commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}})
   id: LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}})
@@ -558,7 +306,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: LoadForeignKeyField
     path: ../CoreRelm/Extensions/ModelExtensions.cs
-    startLine: 177
+    startLine: 103
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Extensions
@@ -568,7 +316,7 @@ items:
         based on the provided predicate.
   example: []
   syntax:
-    content: 'public static T LoadForeignKeyField<T, R>(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, R>> predicate) where T : IRelmModel, new() where R : IRelmModel, new()'
+    content: 'public static T? LoadForeignKeyField<T, R>(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, R>> predicate) where T : IRelmModel, new() where R : IRelmModel, new()'
     parameters:
     - id: target
       type: '{T}'
@@ -613,7 +361,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: LoadForeignKeyField
     path: ../CoreRelm/Extensions/ModelExtensions.cs
-    startLine: 195
+    startLine: 121
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Extensions
@@ -627,7 +375,7 @@ items:
         underlying data context.
   example: []
   syntax:
-    content: 'public static T LoadForeignKeyField<T, R>(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, R>> predicate, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()'
+    content: 'public static T? LoadForeignKeyField<T, R>(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, R>> predicate, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()'
     parameters:
     - id: target
       type: '{T}'
@@ -675,7 +423,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: LoadForeignKeyField
     path: ../CoreRelm/Extensions/ModelExtensions.cs
-    startLine: 213
+    startLine: 139
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Extensions
@@ -686,7 +434,7 @@ items:
         <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if no data matches.
   example: []
   syntax:
-    content: 'public static T LoadForeignKeyField<T, R, S>(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, R>> predicate, IRelmDataLoader<S> customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()'
+    content: 'public static T? LoadForeignKeyField<T, R, S>(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, R>> predicate, IRelmDataLoader<S> customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()'
     parameters:
     - id: target
       type: '{T}'
@@ -734,7 +482,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: LoadForeignKeyField
     path: ../CoreRelm/Extensions/ModelExtensions.cs
-    startLine: 232
+    startLine: 158
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Extensions
@@ -744,7 +492,7 @@ items:
     additional constraints.
   example: []
   syntax:
-    content: 'public static T LoadForeignKeyField<T, R, S>(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, R>> predicate, IRelmDataLoader<S> customDataLoader, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()'
+    content: 'public static T? LoadForeignKeyField<T, R, S>(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, R>> predicate, IRelmDataLoader<S> customDataLoader, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()'
     parameters:
     - id: target
       type: '{T}'
@@ -801,7 +549,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: LoadForeignKeyField
     path: ../CoreRelm/Extensions/ModelExtensions.cs
-    startLine: 252
+    startLine: 178
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Extensions
@@ -814,7 +562,7 @@ items:
         key collection property for a model. It uses the provided <code class="paramref">relmContext</code> and <code class="paramref">predicate</code> to determine which collection property to load.
   example: []
   syntax:
-    content: 'public static T LoadForeignKeyField<T, R>(this T target, IRelmContext relmContext, Expression<Func<T, ICollection<R>>> predicate) where T : IRelmModel, new() where R : IRelmModel, new()'
+    content: 'public static T? LoadForeignKeyField<T, R>(this T target, IRelmContext relmContext, Expression<Func<T, ICollection<R>>> predicate) where T : IRelmModel, new() where R : IRelmModel, new()'
     parameters:
     - id: target
       type: '{T}'
@@ -857,14 +605,14 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: LoadForeignKeyField
     path: ../CoreRelm/Extensions/ModelExtensions.cs
-    startLine: 265
+    startLine: 191
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Extensions
   summary: Loads and initializes a foreign key collection property for the specified target model, applying the given constraints.
   example: []
   syntax:
-    content: 'public static T LoadForeignKeyField<T, R>(this T target, IRelmContext relmContext, Expression<Func<T, ICollection<R>>> predicate, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()'
+    content: 'public static T? LoadForeignKeyField<T, R>(this T target, IRelmContext relmContext, Expression<Func<T, ICollection<R>>> predicate, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()'
     parameters:
     - id: target
       type: '{T}'
@@ -910,14 +658,14 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: LoadForeignKeyField
     path: ../CoreRelm/Extensions/ModelExtensions.cs
-    startLine: 279
+    startLine: 205
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Extensions
   summary: Loads and initializes a foreign key collection property for the specified target model using the provided data loader.
   example: []
   syntax:
-    content: 'public static T LoadForeignKeyField<T, R, S>(this T target, IRelmContext relmContext, Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S> customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()'
+    content: 'public static T? LoadForeignKeyField<T, R, S>(this T target, IRelmContext relmContext, Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S> customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()'
     parameters:
     - id: target
       type: '{T}'
@@ -965,7 +713,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: LoadForeignKeyField
     path: ../CoreRelm/Extensions/ModelExtensions.cs
-    startLine: 299
+    startLine: 225
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Extensions
@@ -980,7 +728,7 @@ items:
         filter the related entities.
   example: []
   syntax:
-    content: 'public static T LoadForeignKeyField<T, R, S>(this T target, IRelmContext relmContext, Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S> customDataLoader, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()'
+    content: 'public static T? LoadForeignKeyField<T, R, S>(this T target, IRelmContext relmContext, Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S> customDataLoader, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()'
     parameters:
     - id: target
       type: '{T}'
@@ -1012,243 +760,6 @@ items:
   nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of T, R, S)(T, IRelmContext, Expression(Of Func(Of T, ICollection(Of R))), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
   fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of T, R, S)(T, CoreRelm.Interfaces.IRelmContext, System.Linq.Expressions.Expression(Of System.Func(Of T, System.Collections.Generic.ICollection(Of R))), CoreRelm.Interfaces.IRelmDataLoader(Of S), System.Linq.Expressions.Expression(Of System.Func(Of R, Object)))
   name.vb: LoadForeignKeyField(Of T, R, S)(T, IRelmContext, Expression(Of Func(Of T, ICollection(Of R))), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
-- uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})
-  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})
-  id: LoadForeignKeyField``2(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})
-  isExtensionMethod: true
-  parent: CoreRelm.Extensions.ModelExtensions
-  langs:
-  - csharp
-  - vb
-  name: LoadForeignKeyField<T, R>(T, IRelmQuickContext, Expression<Func<T, ICollection<R>>>)
-  nameWithType: ModelExtensions.LoadForeignKeyField<T, R>(T, IRelmQuickContext, Expression<Func<T, ICollection<R>>>)
-  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<T, R>(T, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression<System.Func<T, System.Collections.Generic.ICollection<R>>>)
-  type: Method
-  source:
-    remote:
-      path: CoreRelm/Extensions/ModelExtensions.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: LoadForeignKeyField
-    path: ../CoreRelm/Extensions/ModelExtensions.cs
-    startLine: 318
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Extensions
-  summary: Loads a foreign key collection property for the specified target model.
-  remarks: >-
-    This method is an extension method that simplifies loading a foreign key collection
-        property for a model. It uses the provided context and predicate to retrieve and populate the related
-        data.
-  example: []
-  syntax:
-    content: 'public static T LoadForeignKeyField<T, R>(this T target, IRelmQuickContext relmContext, Expression<Func<T, ICollection<R>>> predicate) where T : IRelmModel, new() where R : IRelmModel, new()'
-    parameters:
-    - id: target
-      type: '{T}'
-      description: The target model instance for which the foreign key collection property will be loaded.
-    - id: relmContext
-      type: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-      description: The context providing access to the database and configuration options.
-    - id: predicate
-      type: System.Linq.Expressions.Expression{System.Func{{T},System.Collections.Generic.ICollection{{R}}}}
-      description: An expression identifying the foreign key collection property to load.
-    typeParameters:
-    - id: T
-      description: The type of the target model, which must implement <xref href="CoreRelm.Interfaces.IRelmModel" data-throw-if-not-resolved="false"></xref>.
-    - id: R
-      description: The type of the related model in the collection, which must implement <xref href="CoreRelm.Interfaces.IRelmModel" data-throw-if-not-resolved="false"></xref>.
-    return:
-      type: '{T}'
-      description: The target model instance with the specified foreign key collection property loaded.
-    content.vb: Public Shared Function LoadForeignKeyField(Of T As {IRelmModel, New}, R As {IRelmModel, New})(target As T, relmContext As IRelmQuickContext, predicate As Expression(Of Func(Of T, ICollection(Of R)))) As T
-  overload: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField*
-  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of T, R)(T, IRelmQuickContext, Expression(Of Func(Of T, ICollection(Of R))))
-  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of T, R)(T, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression(Of System.Func(Of T, System.Collections.Generic.ICollection(Of R))))
-  name.vb: LoadForeignKeyField(Of T, R)(T, IRelmQuickContext, Expression(Of Func(Of T, ICollection(Of R))))
-- uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  id: LoadForeignKeyField``2(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  isExtensionMethod: true
-  parent: CoreRelm.Extensions.ModelExtensions
-  langs:
-  - csharp
-  - vb
-  name: LoadForeignKeyField<T, R>(T, IRelmQuickContext, Expression<Func<T, ICollection<R>>>, Expression<Func<R, object>>)
-  nameWithType: ModelExtensions.LoadForeignKeyField<T, R>(T, IRelmQuickContext, Expression<Func<T, ICollection<R>>>, Expression<Func<R, object>>)
-  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<T, R>(T, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression<System.Func<T, System.Collections.Generic.ICollection<R>>>, System.Linq.Expressions.Expression<System.Func<R, object>>)
-  type: Method
-  source:
-    remote:
-      path: CoreRelm/Extensions/ModelExtensions.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: LoadForeignKeyField
-    path: ../CoreRelm/Extensions/ModelExtensions.cs
-    startLine: 332
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Extensions
-  summary: >-
-    Loads a foreign key collection property for the specified target model, resolving the related collection based on the
-
-    provided predicate and additional constraints.
-  example: []
-  syntax:
-    content: 'public static T LoadForeignKeyField<T, R>(this T target, IRelmQuickContext relmContext, Expression<Func<T, ICollection<R>>> predicate, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()'
-    parameters:
-    - id: target
-      type: '{T}'
-      description: The target model instance for which the foreign key field is being loaded.
-    - id: relmContext
-      type: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-      description: The context providing access to the database and configuration options.
-    - id: predicate
-      type: System.Linq.Expressions.Expression{System.Func{{T},System.Collections.Generic.ICollection{{R}}}}
-      description: An expression specifying the foreign key collection property on the target model.
-    - id: additionalConstraints
-      type: System.Linq.Expressions.Expression{System.Func{{R},System.Object}}
-      description: An expression defining additional constraints to filter the related models.
-    typeParameters:
-    - id: T
-      description: The type of the target model. Must implement <xref href="CoreRelm.Interfaces.IRelmModel" data-throw-if-not-resolved="false"></xref>.
-    - id: R
-      description: The type of the related model in the foreign key relationship. Must implement <xref href="CoreRelm.Interfaces.IRelmModel" data-throw-if-not-resolved="false"></xref>.
-    return:
-      type: '{T}'
-      description: The target model instance with the foreign key field loaded.
-    content.vb: Public Shared Function LoadForeignKeyField(Of T As {IRelmModel, New}, R As {IRelmModel, New})(target As T, relmContext As IRelmQuickContext, predicate As Expression(Of Func(Of T, ICollection(Of R))), additionalConstraints As Expression(Of Func(Of R, Object))) As T
-  overload: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField*
-  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of T, R)(T, IRelmQuickContext, Expression(Of Func(Of T, ICollection(Of R))), Expression(Of Func(Of R, Object)))
-  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of T, R)(T, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression(Of System.Func(Of T, System.Collections.Generic.ICollection(Of R))), System.Linq.Expressions.Expression(Of System.Func(Of R, Object)))
-  name.vb: LoadForeignKeyField(Of T, R)(T, IRelmQuickContext, Expression(Of Func(Of T, ICollection(Of R))), Expression(Of Func(Of R, Object)))
-- uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
-  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
-  id: LoadForeignKeyField``3(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
-  isExtensionMethod: true
-  parent: CoreRelm.Extensions.ModelExtensions
-  langs:
-  - csharp
-  - vb
-  name: LoadForeignKeyField<T, R, S>(T, IRelmQuickContext, Expression<Func<T, ICollection<R>>>, IRelmDataLoader<S>)
-  nameWithType: ModelExtensions.LoadForeignKeyField<T, R, S>(T, IRelmQuickContext, Expression<Func<T, ICollection<R>>>, IRelmDataLoader<S>)
-  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<T, R, S>(T, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression<System.Func<T, System.Collections.Generic.ICollection<R>>>, CoreRelm.Interfaces.IRelmDataLoader<S>)
-  type: Method
-  source:
-    remote:
-      path: CoreRelm/Extensions/ModelExtensions.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: LoadForeignKeyField
-    path: ../CoreRelm/Extensions/ModelExtensions.cs
-    startLine: 351
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Extensions
-  summary: >-
-    Loads and initializes a foreign key collection property for the specified target model, using the provided data loader and
-
-    predicate.
-  remarks: >-
-    This method is an extension method that simplifies the process of loading and
-        initializing foreign key fields for models in a relational context. The <code class="paramref">customDataLoader</code>
-        is used to retrieve the related data, and the <code class="paramref">predicate</code> specifies the foreign key
-        collection to be populated.
-  example: []
-  syntax:
-    content: 'public static T LoadForeignKeyField<T, R, S>(this T target, IRelmQuickContext relmContext, Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S> customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()'
-    parameters:
-    - id: target
-      type: '{T}'
-      description: The target model instance for which the foreign key field will be loaded.
-    - id: relmContext
-      type: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-      description: The context providing configuration and options for the operation.
-    - id: predicate
-      type: System.Linq.Expressions.Expression{System.Func{{T},System.Collections.Generic.ICollection{{R}}}}
-      description: An expression specifying the foreign key collection property on the target model.
-    - id: customDataLoader
-      type: CoreRelm.Interfaces.IRelmDataLoader{{S}}
-      description: A custom data loader used to retrieve the related data.
-    typeParameters:
-    - id: T
-      description: The type of the target model. Must implement <xref href="CoreRelm.Interfaces.IRelmModel" data-throw-if-not-resolved="false"></xref>.
-    - id: R
-      description: The type of the related model in the foreign key collection. Must implement <xref href="CoreRelm.Interfaces.IRelmModel" data-throw-if-not-resolved="false"></xref>.
-    - id: S
-      description: The type of the model used by the custom data loader. Must implement <xref href="CoreRelm.Interfaces.IRelmModel" data-throw-if-not-resolved="false"></xref>.
-    return:
-      type: '{T}'
-      description: The target model instance with the foreign key field loaded.
-    content.vb: Public Shared Function LoadForeignKeyField(Of T As {IRelmModel, New}, R As {IRelmModel, New}, S As {IRelmModel, New})(target As T, relmContext As IRelmQuickContext, predicate As Expression(Of Func(Of T, ICollection(Of R))), customDataLoader As IRelmDataLoader(Of S)) As T
-  overload: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField*
-  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of T, R, S)(T, IRelmQuickContext, Expression(Of Func(Of T, ICollection(Of R))), IRelmDataLoader(Of S))
-  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of T, R, S)(T, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression(Of System.Func(Of T, System.Collections.Generic.ICollection(Of R))), CoreRelm.Interfaces.IRelmDataLoader(Of S))
-  name.vb: LoadForeignKeyField(Of T, R, S)(T, IRelmQuickContext, Expression(Of Func(Of T, ICollection(Of R))), IRelmDataLoader(Of S))
-- uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  id: LoadForeignKeyField``3(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  isExtensionMethod: true
-  parent: CoreRelm.Extensions.ModelExtensions
-  langs:
-  - csharp
-  - vb
-  name: LoadForeignKeyField<T, R, S>(T, IRelmQuickContext, Expression<Func<T, ICollection<R>>>, IRelmDataLoader<S>, Expression<Func<R, object>>)
-  nameWithType: ModelExtensions.LoadForeignKeyField<T, R, S>(T, IRelmQuickContext, Expression<Func<T, ICollection<R>>>, IRelmDataLoader<S>, Expression<Func<R, object>>)
-  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<T, R, S>(T, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression<System.Func<T, System.Collections.Generic.ICollection<R>>>, CoreRelm.Interfaces.IRelmDataLoader<S>, System.Linq.Expressions.Expression<System.Func<R, object>>)
-  type: Method
-  source:
-    remote:
-      path: CoreRelm/Extensions/ModelExtensions.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: LoadForeignKeyField
-    path: ../CoreRelm/Extensions/ModelExtensions.cs
-    startLine: 370
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Extensions
-  summary: >-
-    Loads and populates a foreign key collection property for the specified target model using the provided data loader and
-
-    constraints.
-  remarks: >-
-    This method is an extension method that simplifies the process of loading related
-        data for a foreign key field. It uses the provided <code class="paramref">customDataLoader</code> and <code class="paramref">additionalConstraints</code> to retrieve and populate the related data.
-  example: []
-  syntax:
-    content: 'public static T LoadForeignKeyField<T, R, S>(this T target, IRelmQuickContext relmContext, Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S> customDataLoader, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()'
-    parameters:
-    - id: target
-      type: '{T}'
-      description: The target model instance for which the foreign key field will be loaded.
-    - id: relmContext
-      type: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-      description: The context providing configuration and services for data loading.
-    - id: predicate
-      type: System.Linq.Expressions.Expression{System.Func{{T},System.Collections.Generic.ICollection{{R}}}}
-      description: An expression identifying the foreign key collection property on the target model.
-    - id: customDataLoader
-      type: CoreRelm.Interfaces.IRelmDataLoader{{S}}
-      description: A custom data loader used to retrieve the related data.
-    - id: additionalConstraints
-      type: System.Linq.Expressions.Expression{System.Func{{R},System.Object}}
-      description: An expression specifying additional constraints to apply when loading the related data.
-    typeParameters:
-    - id: T
-      description: The type of the target model that contains the foreign key field. Must implement <xref href="CoreRelm.Interfaces.IRelmModel" data-throw-if-not-resolved="false"></xref>.
-    - id: R
-      description: The type of the related model in the foreign key collection. Must implement <xref href="CoreRelm.Interfaces.IRelmModel" data-throw-if-not-resolved="false"></xref>.
-    - id: S
-      description: The type of the model used by the custom data loader. Must implement <xref href="CoreRelm.Interfaces.IRelmModel" data-throw-if-not-resolved="false"></xref>.
-    return:
-      type: '{T}'
-      description: The target model instance with the foreign key field populated.
-    content.vb: Public Shared Function LoadForeignKeyField(Of T As {IRelmModel, New}, R As {IRelmModel, New}, S As {IRelmModel, New})(target As T, relmContext As IRelmQuickContext, predicate As Expression(Of Func(Of T, ICollection(Of R))), customDataLoader As IRelmDataLoader(Of S), additionalConstraints As Expression(Of Func(Of R, Object))) As T
-  overload: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField*
-  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of T, R, S)(T, IRelmQuickContext, Expression(Of Func(Of T, ICollection(Of R))), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
-  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of T, R, S)(T, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression(Of System.Func(Of T, System.Collections.Generic.ICollection(Of R))), CoreRelm.Interfaces.IRelmDataLoader(Of S), System.Linq.Expressions.Expression(Of System.Func(Of R, Object)))
-  name.vb: LoadForeignKeyField(Of T, R, S)(T, IRelmQuickContext, Expression(Of Func(Of T, ICollection(Of R))), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
 - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})
   commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})
   id: LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})
@@ -1268,7 +779,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: LoadForeignKeyField
     path: ../CoreRelm/Extensions/ModelExtensions.cs
-    startLine: 390
+    startLine: 245
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Extensions
@@ -1278,7 +789,7 @@ items:
         based on the specified predicate.
   example: []
   syntax:
-    content: 'public static T LoadForeignKeyField<T, R>(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, ICollection<R>>> predicate) where T : IRelmModel, new() where R : IRelmModel, new()'
+    content: 'public static T? LoadForeignKeyField<T, R>(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, ICollection<R>>> predicate) where T : IRelmModel, new() where R : IRelmModel, new()'
     parameters:
     - id: target
       type: '{T}'
@@ -1323,7 +834,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: LoadForeignKeyField
     path: ../CoreRelm/Extensions/ModelExtensions.cs
-    startLine: 405
+    startLine: 260
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Extensions
@@ -1333,7 +844,7 @@ items:
     constraints.
   example: []
   syntax:
-    content: 'public static T LoadForeignKeyField<T, R>(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, ICollection<R>>> predicate, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()'
+    content: 'public static T? LoadForeignKeyField<T, R>(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, ICollection<R>>> predicate, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()'
     parameters:
     - id: target
       type: '{T}'
@@ -1381,7 +892,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: LoadForeignKeyField
     path: ../CoreRelm/Extensions/ModelExtensions.cs
-    startLine: 424
+    startLine: 279
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Extensions
@@ -1395,7 +906,7 @@ items:
         related model from the collection.
   example: []
   syntax:
-    content: 'public static T LoadForeignKeyField<T, R, S>(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S> customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()'
+    content: 'public static T? LoadForeignKeyField<T, R, S>(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S> customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()'
     parameters:
     - id: target
       type: '{T}'
@@ -1445,7 +956,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: LoadForeignKeyField
     path: ../CoreRelm/Extensions/ModelExtensions.cs
-    startLine: 442
+    startLine: 297
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Extensions
@@ -1455,7 +966,7 @@ items:
     data loader.
   example: []
   syntax:
-    content: 'public static T LoadForeignKeyField<T, R, S>(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S> customDataLoader, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()'
+    content: 'public static T? LoadForeignKeyField<T, R, S>(this T target, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S> customDataLoader, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()'
     parameters:
     - id: target
       type: '{T}'
@@ -1510,7 +1021,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: LoadDataLoaderField
     path: ../CoreRelm/Extensions/ModelExtensions.cs
-    startLine: 461
+    startLine: 316
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Extensions
@@ -1521,7 +1032,7 @@ items:
         loaded.
   example: []
   syntax:
-    content: 'public static T LoadDataLoaderField<T, S>(this T inputModel, IRelmContext relmContext, Expression<Func<T, S>> predicate) where T : IRelmModel, new() where S : IRelmModel, new()'
+    content: 'public static T? LoadDataLoaderField<T, S>(this T inputModel, IRelmContext relmContext, Expression<Func<T, S>> predicate) where T : IRelmModel, new() where S : IRelmModel, new()'
     parameters:
     - id: inputModel
       type: '{T}'
@@ -1545,64 +1056,6 @@ items:
   nameWithType.vb: ModelExtensions.LoadDataLoaderField(Of T, S)(T, IRelmContext, Expression(Of Func(Of T, S)))
   fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField(Of T, S)(T, CoreRelm.Interfaces.IRelmContext, System.Linq.Expressions.Expression(Of System.Func(Of T, S)))
   name.vb: LoadDataLoaderField(Of T, S)(T, IRelmContext, Expression(Of Func(Of T, S)))
-- uid: CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField``2(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField``2(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  id: LoadDataLoaderField``2(``0,CoreRelm.Interfaces.RelmQuick.IRelmQuickContext,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  isExtensionMethod: true
-  parent: CoreRelm.Extensions.ModelExtensions
-  langs:
-  - csharp
-  - vb
-  name: LoadDataLoaderField<T, S>(T, IRelmQuickContext, Expression<Func<T, S>>)
-  nameWithType: ModelExtensions.LoadDataLoaderField<T, S>(T, IRelmQuickContext, Expression<Func<T, S>>)
-  fullName: CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField<T, S>(T, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression<System.Func<T, S>>)
-  type: Method
-  source:
-    remote:
-      path: CoreRelm/Extensions/ModelExtensions.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: LoadDataLoaderField
-    path: ../CoreRelm/Extensions/ModelExtensions.cs
-    startLine: 478
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Extensions
-  summary: Loads a related data loader field for the specified model using the provided context and predicate.
-  remarks: >-
-    This method is an extension method that facilitates the loading of related data
-        fields in a model. It uses the provided predicate to identify the field to be loaded and the context to
-        resolve the data.
-  example: []
-  syntax:
-    content: 'public static T LoadDataLoaderField<T, S>(this T inputModel, IRelmQuickContext relmQuickContext, Expression<Func<T, S>> predicate) where T : IRelmModel, new() where S : IRelmModel, new()'
-    parameters:
-    - id: inputModel
-      type: '{T}'
-      description: The model instance for which the data loader field is to be loaded.
-    - id: relmQuickContext
-      type: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-      description: The context used to resolve the data loader field.
-    - id: predicate
-      type: System.Linq.Expressions.Expression{System.Func{{T},{S}}}
-      description: An expression specifying the property of the input model that represents the related data loader field.
-    typeParameters:
-    - id: T
-      description: >-
-        The type of the input model, which must implement <xref href="CoreRelm.Interfaces.IRelmModel" data-throw-if-not-resolved="false"></xref> and have a parameterless
-            constructor.
-    - id: S
-      description: >-
-        The type of the related model, which must implement <xref href="CoreRelm.Interfaces.IRelmModel" data-throw-if-not-resolved="false"></xref> and have a parameterless
-            constructor.
-    return:
-      type: '{T}'
-      description: The input model with the specified data loader field loaded.
-    content.vb: Public Shared Function LoadDataLoaderField(Of T As {IRelmModel, New}, S As {IRelmModel, New})(inputModel As T, relmQuickContext As IRelmQuickContext, predicate As Expression(Of Func(Of T, S))) As T
-  overload: CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField*
-  nameWithType.vb: ModelExtensions.LoadDataLoaderField(Of T, S)(T, IRelmQuickContext, Expression(Of Func(Of T, S)))
-  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField(Of T, S)(T, CoreRelm.Interfaces.RelmQuick.IRelmQuickContext, System.Linq.Expressions.Expression(Of System.Func(Of T, S)))
-  name.vb: LoadDataLoaderField(Of T, S)(T, IRelmQuickContext, Expression(Of Func(Of T, S)))
 - uid: CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}})
   commentId: M:CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}})
   id: LoadDataLoaderField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}})
@@ -1622,7 +1075,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: LoadDataLoaderField
     path: ../CoreRelm/Extensions/ModelExtensions.cs
-    startLine: 496
+    startLine: 334
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Extensions
@@ -1636,7 +1089,7 @@ items:
         builder and applies the specified predicate to determine the field to load.
   example: []
   syntax:
-    content: 'public static T LoadDataLoaderField<T, S>(this T inputModel, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, S>> predicate) where T : IRelmModel, new() where S : IRelmModel, new()'
+    content: 'public static T? LoadDataLoaderField<T, S>(this T inputModel, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, S>> predicate) where T : IRelmModel, new() where S : IRelmModel, new()'
     parameters:
     - id: inputModel
       type: '{T}'
@@ -2197,43 +1650,6 @@ references:
   - name: " "
   - name: T
   - name: )
-- uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-  commentId: T:CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-  parent: CoreRelm.Interfaces.RelmQuick
-  href: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.html
-  name: IRelmQuickContext
-  nameWithType: IRelmQuickContext
-  fullName: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-- uid: CoreRelm.Interfaces.RelmQuick
-  commentId: N:CoreRelm.Interfaces.RelmQuick
-  href: CoreRelm.html
-  name: CoreRelm.Interfaces.RelmQuick
-  nameWithType: CoreRelm.Interfaces.RelmQuick
-  fullName: CoreRelm.Interfaces.RelmQuick
-  spec.csharp:
-  - uid: CoreRelm
-    name: CoreRelm
-    href: CoreRelm.html
-  - name: .
-  - uid: CoreRelm.Interfaces
-    name: Interfaces
-    href: CoreRelm.Interfaces.html
-  - name: .
-  - uid: CoreRelm.Interfaces.RelmQuick
-    name: RelmQuick
-    href: CoreRelm.Interfaces.RelmQuick.html
-  spec.vb:
-  - uid: CoreRelm
-    name: CoreRelm
-    href: CoreRelm.html
-  - name: .
-  - uid: CoreRelm.Interfaces
-    name: Interfaces
-    href: CoreRelm.Interfaces.html
-  - name: .
-  - uid: CoreRelm.Interfaces.RelmQuick
-    name: RelmQuick
-    href: CoreRelm.Interfaces.RelmQuick.html
 - uid: CoreRelm.RelmInternal.Helpers.Utilities.ForeignKeyLoader`1
   commentId: T:CoreRelm.RelmInternal.Helpers.Utilities.ForeignKeyLoader`1
   name: ForeignKeyLoader<T>

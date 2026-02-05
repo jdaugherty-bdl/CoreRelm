@@ -1,0 +1,300 @@
+### YamlMime:ManagedReference
+items:
+- uid: CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector
+  commentId: T:CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector
+  id: IRelmSchemaIntrospector
+  parent: CoreRelm.Interfaces.Metadata
+  children:
+  - CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector.LoadSchemaAsync(System.String,CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions,System.Threading.CancellationToken)
+  langs:
+  - csharp
+  - vb
+  name: IRelmSchemaIntrospector
+  nameWithType: IRelmSchemaIntrospector
+  fullName: CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector
+  type: Interface
+  source:
+    remote:
+      path: CoreRelm/Interfaces/Metadata/IRelmSchemaIntrospector.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: IRelmSchemaIntrospector
+    path: ../CoreRelm/Interfaces/Metadata/IRelmSchemaIntrospector.cs
+    startLine: 10
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces.Metadata
+  syntax:
+    content: public interface IRelmSchemaIntrospector
+    content.vb: Public Interface IRelmSchemaIntrospector
+- uid: CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector.LoadSchemaAsync(System.String,CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions,System.Threading.CancellationToken)
+  commentId: M:CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector.LoadSchemaAsync(System.String,CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions,System.Threading.CancellationToken)
+  id: LoadSchemaAsync(System.String,CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions,System.Threading.CancellationToken)
+  parent: CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector
+  langs:
+  - csharp
+  - vb
+  name: LoadSchemaAsync(string?, SchemaIntrospectionOptions?, CancellationToken)
+  nameWithType: IRelmSchemaIntrospector.LoadSchemaAsync(string?, SchemaIntrospectionOptions?, CancellationToken)
+  fullName: CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector.LoadSchemaAsync(string?, CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions?, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Interfaces/Metadata/IRelmSchemaIntrospector.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: LoadSchemaAsync
+    path: ../CoreRelm/Interfaces/Metadata/IRelmSchemaIntrospector.cs
+    startLine: 12
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces.Metadata
+  syntax:
+    content: Task<SchemaSnapshot> LoadSchemaAsync(string? connectionString, SchemaIntrospectionOptions? options = null, CancellationToken ct = default)
+    parameters:
+    - id: connectionString
+      type: System.String
+    - id: options
+      type: CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions
+    - id: ct
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task{CoreRelm.Models.Migrations.Introspection.SchemaSnapshot}
+    content.vb: Function LoadSchemaAsync(connectionString As String, options As SchemaIntrospectionOptions = Nothing, ct As CancellationToken = Nothing) As Task(Of SchemaSnapshot)
+  overload: CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector.LoadSchemaAsync*
+  nameWithType.vb: IRelmSchemaIntrospector.LoadSchemaAsync(String, SchemaIntrospectionOptions, CancellationToken)
+  fullName.vb: CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector.LoadSchemaAsync(String, CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions, System.Threading.CancellationToken)
+  name.vb: LoadSchemaAsync(String, SchemaIntrospectionOptions, CancellationToken)
+references:
+- uid: CoreRelm.Interfaces.Metadata
+  commentId: N:CoreRelm.Interfaces.Metadata
+  href: CoreRelm.html
+  name: CoreRelm.Interfaces.Metadata
+  nameWithType: CoreRelm.Interfaces.Metadata
+  fullName: CoreRelm.Interfaces.Metadata
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Metadata
+    name: Metadata
+    href: CoreRelm.Interfaces.Metadata.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Metadata
+    name: Metadata
+    href: CoreRelm.Interfaces.Metadata.html
+- uid: CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector.LoadSchemaAsync*
+  commentId: Overload:CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector.LoadSchemaAsync
+  href: CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector.html#CoreRelm_Interfaces_Metadata_IRelmSchemaIntrospector_LoadSchemaAsync_System_String_CoreRelm_Models_Migrations_Introspection_SchemaIntrospectionOptions_System_Threading_CancellationToken_
+  name: LoadSchemaAsync
+  nameWithType: IRelmSchemaIntrospector.LoadSchemaAsync
+  fullName: CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector.LoadSchemaAsync
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions
+  commentId: T:CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions
+  parent: CoreRelm.Models.Migrations.Introspection
+  href: CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions.html
+  name: SchemaIntrospectionOptions
+  nameWithType: SchemaIntrospectionOptions
+  fullName: CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading.Tasks.Task{CoreRelm.Models.Migrations.Introspection.SchemaSnapshot}
+  commentId: T:System.Threading.Tasks.Task{CoreRelm.Models.Migrations.Introspection.SchemaSnapshot}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<SchemaSnapshot>
+  nameWithType: Task<SchemaSnapshot>
+  fullName: System.Threading.Tasks.Task<CoreRelm.Models.Migrations.Introspection.SchemaSnapshot>
+  nameWithType.vb: Task(Of SchemaSnapshot)
+  fullName.vb: System.Threading.Tasks.Task(Of CoreRelm.Models.Migrations.Introspection.SchemaSnapshot)
+  name.vb: Task(Of SchemaSnapshot)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot
+    name: SchemaSnapshot
+    href: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot
+    name: SchemaSnapshot
+    href: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.html
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CoreRelm.Models.Migrations.Introspection
+  commentId: N:CoreRelm.Models.Migrations.Introspection
+  href: CoreRelm.html
+  name: CoreRelm.Models.Migrations.Introspection
+  nameWithType: CoreRelm.Models.Migrations.Introspection
+  fullName: CoreRelm.Models.Migrations.Introspection
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Introspection
+    name: Introspection
+    href: CoreRelm.Models.Migrations.Introspection.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Introspection
+    name: Introspection
+    href: CoreRelm.Models.Migrations.Introspection.html
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
