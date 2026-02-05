@@ -1,6 +1,5 @@
 ﻿using CoreRelm.Attributes;
 using CoreRelm.Interfaces;
-using CoreRelm.Interfaces.RelmQuick;
 using CoreRelm.Models;
 using CoreRelm.Options;
 using CoreRelm.RelmInternal.Helpers.Utilities;
@@ -48,9 +47,9 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// Initializes a new instance of the <see cref="DataLoaderHelper{T}"/> class with the specified context options
         /// and target object.
         /// </summary>
-        /// <remarks>This constructor sets up the <see cref="RelmQuickContext"/> using the provided
+        /// <remarks>This constructor sets up the <see cref="RelmContext"/> using the provided
         /// options builder and initializes the helper with a single target object.</remarks>
-        /// <param name="relmContextOptionsBuilder">The options builder used to configure the <see cref="RelmQuickContext"/> instance.</param>
+        /// <param name="relmContextOptionsBuilder">The options builder used to configure the <see cref="RelmContext"/> instance.</param>
         /// <param name="targetObject">The target object of type <typeparamref name="T"/> to be associated with this helper.</param>
         public DataLoaderHelper(RelmContextOptionsBuilder relmContextOptionsBuilder, T targetObject)
         {
@@ -63,9 +62,9 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// into the specified target collection using the provided context options.
         /// </summary>
         /// <remarks>This class is designed to streamline data loading processes by leveraging the
-        /// provided <see cref="RelmQuickContext"/> configured with the specified options. Ensure that the <paramref
+        /// provided <see cref="RelmContext"/> configured with the specified options. Ensure that the <paramref
         /// name="targetObjects"/> collection is properly initialized before using this helper.</remarks>
-        /// <param name="relmContextOptionsBuilder">The options builder used to configure the <see cref="RelmQuickContext"/> for data operations.</param>
+        /// <param name="relmContextOptionsBuilder">The options builder used to configure the <see cref="RelmContext"/> for data operations.</param>
         /// <param name="targetObjects">The collection of objects of type <typeparamref name="T"/> that will be the target of data loading
         /// operations.</param>
         public DataLoaderHelper(RelmContextOptionsBuilder relmContextOptionsBuilder, ICollection<T> targetObjects)
@@ -79,8 +78,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// expression.
         /// </summary>
         /// <remarks>This method uses the <see cref="RelmDataLoader"/> attribute on the specified field to
-        /// determine the appropriate loader type. The loader type must implement either <see
-        /// cref="IRelmQuickFieldLoader"/> or <see cref="IRelmFieldLoader"/>, depending on the context.</remarks>
+        /// determine the appropriate loader type. The loader type must implement <see cref="IRelmFieldLoader"/>, depending on the context.</remarks>
         /// <typeparam name="R">The type of the field being loaded.</typeparam>
         /// <param name="predicate">A lambda expression representing the field to load, in the form of <c>x => x.PropertyName</c>. The field
         /// must be decorated with a <see cref="RelmDataLoader"/> attribute.</param>

@@ -71,7 +71,7 @@ namespace CoreRelm.Models
         /// </summary>
         /// <param name="command">The command to be executed as part of the execution command. Cannot be null.</param>
         /// <param name="expression">The expression associated with the execution command. Cannot be null.</param>
-        public RelmExecutionCommand(Command command, Expression expression)
+        public RelmExecutionCommand(Command command, Expression? expression)
         {
             ExecutionCommand = command;
             ExecutionExpression = expression;

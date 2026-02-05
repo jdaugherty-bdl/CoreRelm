@@ -20,7 +20,7 @@ namespace CoreRelm.Attributes
         /// </summary>
         /// <remarks>The specified type is expected to define the behavior for loading data or resources.
         /// Ensure  that the type is compatible with the intended usage context.</remarks>
-        public Type LoaderType { get; set; } = default;
+        public Type? LoaderType { get; set; } = default;
 
         /// <summary>
         /// Gets or sets the collection of key field names used to uniquely identify an entity.
@@ -28,7 +28,7 @@ namespace CoreRelm.Attributes
         /// <remarks>Key fields are typically used to identify unique records in a dataset or entity.
         /// Ensure that the field names provided correspond to valid and unique identifiers within the context of the
         /// entity.</remarks>
-        public string[] KeyFields { get; set; } = default;
+        public string[]? KeyFields { get; set; } = default;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RelmDataLoader"/> class with the specified loader type.
@@ -53,7 +53,7 @@ namespace CoreRelm.Attributes
             this.LoaderType = loaderType;
 
             if (keyField != null)
-                this.KeyFields = new string[] { keyField };
+                this.KeyFields = [keyField];
         }
 
         /// <summary>

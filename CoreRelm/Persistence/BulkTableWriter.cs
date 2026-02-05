@@ -1,7 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using CoreRelm.Attributes;
 using CoreRelm.Interfaces;
-using CoreRelm.Interfaces.RelmQuick;
 using CoreRelm.Models;
 using CoreRelm.RelmInternal.Extensions;
 using CoreRelm.RelmInternal.Helpers.DataTransfer;

@@ -7,7 +7,6 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
-using CoreRelm.Interfaces.RelmQuick;
 
 namespace CoreRelm.Interfaces
 {
@@ -68,7 +67,7 @@ namespace CoreRelm.Interfaces
         /// <param name="alternateTableName">An optional alternate table name to associate with the model. If <see langword="null"/>, the default table
         /// name is used.</param>
         /// <returns>An updated instance of the model implementing <see cref="IRelmModel"/> with the new data applied.</returns>
-        IRelmModel ResetWithData(DataRow modelData, string alternateTableName = null);
+        IRelmModel ResetWithData(DataRow modelData, string? alternateTableName = null);
 
         /// <summary>
         /// Retrieves a list of properties with each name converted to underscore case.
@@ -104,6 +103,23 @@ namespace CoreRelm.Interfaces
         /// </summary>
         /// <param name="existingConnection">An open <see cref="MySqlConnection"/> to the database where the data will be written. The connection must
         /// remain open for the duration of the operation.</param>
+        /// <param name="BatchSize">The number of rows to write in each batch. Must be greater than zero. Defaults to 10.</param>
+        /// <param name="allowAutoIncrementColumns">A value indicating whether columns with auto-increment constraints are allowed to be written. If <see
+        /// langword="true"/>, auto-increment columns will be included; otherwise, they will be excluded.</param>
+        /// <param name="allowPrimaryKeyColumns">A value indicating whether primary key columns are allowed to be written. If <see langword="true"/>, primary
+        /// key columns will be included; otherwise, they will be excluded.</param>
+        /// <param name="allowUniqueColumns">A value indicating whether unique columns are allowed to be written. If <see langword="true"/>, unique
+        /// columns will be included; otherwise, they will be excluded.</param>
+        /// <param name="allowAutoDateColumns">A value indicating whether columns with automatic date generation constraints are allowed to be written. If
+        /// <see langword="true"/>, such columns will be included; otherwise, they will be excluded.</param>
+        /// <returns>The number of rows successfully written to the database.</returns>
+        int WriteToDatabase(MySqlConnection existingConnection, int BatchSize = 10, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false);
+
+        /// <summary>
+        /// Writes data to the database using the specified connection and optional transaction.
+        /// </summary>
+        /// <param name="existingConnection">An open <see cref="MySqlConnection"/> to the database where the data will be written. The connection must
+        /// remain open for the duration of the operation.</param>
         /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to use for the operation. If null, the operation will not be part
         /// of a transaction.</param>
         /// <param name="BatchSize">The number of rows to write in each batch. Must be greater than zero. Defaults to 10.</param>
@@ -116,7 +132,7 @@ namespace CoreRelm.Interfaces
         /// <param name="allowAutoDateColumns">A value indicating whether columns with automatic date generation constraints are allowed to be written. If
         /// <see langword="true"/>, such columns will be included; otherwise, they will be excluded.</param>
         /// <returns>The number of rows successfully written to the database.</returns>
-        int WriteToDatabase(MySqlConnection existingConnection, MySqlTransaction sqlTransaction = null, int BatchSize = 10, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false);
+        int WriteToDatabase(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, int BatchSize = 10, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false);
 
         /// <summary>
         /// Writes data to the database using the specified context and batch size, with options to control column

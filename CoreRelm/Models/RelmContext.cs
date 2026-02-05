@@ -782,7 +782,7 @@ namespace CoreRelm.Models
         /// Retrieves the identifier of the most recently inserted row for the current context.
         /// </summary>
         /// <returns>A string containing the last inserted row identifier. Returns an empty string if no row has been inserted.</returns>
-        public string GetLastInsertId()
+        public string? GetLastInsertId()
             => RowIdentityHelper.GetLastInsertId(this);
 
         /// <summary>
@@ -792,7 +792,7 @@ namespace CoreRelm.Models
         /// <param name="InternalId">The internal identifier whose corresponding external identifier is to be retrieved. Cannot be null or empty.</param>
         /// <returns>A string containing the external identifier corresponding to the specified internal identifier. Returns null
         /// if no matching identifier is found.</returns>
-        public string GetIdFromInternalId(string table, string InternalId)
+        public string? GetIdFromInternalId(string table, string InternalId)
             => RowIdentityHelper.GetIdFromInternalId(this, table, InternalId);
 
         /// <summary>
@@ -975,7 +975,7 @@ namespace CoreRelm.Models
         /// <param name="allowUniqueColumns">Indicates whether unique columns are included in the write operation. If <see langword="true"/>, unique
         /// columns are written; otherwise, they are excluded.</param>
         /// <returns>The number of rows successfully written to the database table.</returns>
-        public int BulkTableWrite<T>(T source, string? table = null, MySqlTransaction? sqlTransaction = null, Type? forceType = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
+        public int BulkTableWrite<T>(T source, string? table = null, Type? forceType = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false)
             => DataOutputOperations.BulkTableWrite<T>(this, source, table, forceType, batchSize: batchSize, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns);
 
         /// <summary>

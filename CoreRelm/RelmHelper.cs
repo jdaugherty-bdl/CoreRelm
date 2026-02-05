@@ -1,7 +1,6 @@
 ﻿using CoreRelm.Attributes;
 using CoreRelm.Extensions;
 using CoreRelm.Interfaces;
-using CoreRelm.Interfaces.RelmQuick;
 using CoreRelm.Interfaces.Resolvers;
 using CoreRelm.Models;
 using CoreRelm.Options;
@@ -1330,7 +1329,7 @@ namespace CoreRelm
         /// <typeparam name="T">The type of the data model. Must implement <see cref="IRelmModel"/> and have a parameterless constructor.</typeparam>
         /// <returns>A <see cref="string"/> representing the name of the database table associated with the specified data model
         /// type.</returns>
-        public static string GetDalTable<T>() where T : IRelmModel, new() 
+        public static string? GetDalTable<T>() where T : IRelmModel, new() 
             => TableOperationsHelper.GetDalTable<T>();
 
         /// <summary>
@@ -1339,7 +1338,7 @@ namespace CoreRelm
         /// <param name="DalObjectType">The type of the DAL object for which the table name is being retrieved. This parameter cannot be <see
         /// langword="null"/>.</param>
         /// <returns>The name of the database table associated with the specified DAL object type.</returns>
-        public static string GetDalTable(Type DalObjectType) 
+        public static string? GetDalTable(Type DalObjectType) 
             => TableOperationsHelper.GetDalTable(DalObjectType);
 
         /// <summary>
@@ -1349,7 +1348,7 @@ namespace CoreRelm
         /// <param name="predicate">An expression that specifies the property or field for which to retrieve the column name. The expression
         /// should be in the form of a lambda, such as <c>x => x.PropertyName</c>.</param>
         /// <returns>The name of the database column corresponding to the specified property or field.</returns>
-        public static string GetColumnName<T>(Expression<Func<T, object>> predicate) where T : IRelmModel
+        public static string? GetColumnName<T>(Expression<Func<T, object>> predicate) where T : IRelmModel
             => TableOperationsHelper.GetColumnName(predicate);
 
         /// <summary>

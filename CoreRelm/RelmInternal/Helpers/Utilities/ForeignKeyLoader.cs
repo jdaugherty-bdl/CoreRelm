@@ -1,7 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using CoreRelm.Attributes;
 using CoreRelm.Interfaces;
-using CoreRelm.Interfaces.RelmQuick;
 using CoreRelm.Models;
 using CoreRelm.Options;
 using CoreRelm.RelmInternal.Helpers.DataTransfer;
@@ -32,18 +31,7 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
         /// <param name="relmContext">The context that provides configuration options for the operation. This parameter must not be null.</param>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="targetObject"/> is <see langword="null"/> or if <paramref name="relmContext"/> is <see langword="null"/>.</exception>
         /// <exception cref="ArgumentException">Thrown if <paramref name="targetObject"/> is <see langword="null"/>.</exception>
-        public ForeignKeyLoader(T targetObject, IRelmContext relmContext) : this(new[] { targetObject }, relmContext?.ContextOptions)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ForeignKeyLoader{T}"/> class for the specified target object.
-        /// </summary>
-        /// <param name="targetObject">The target object for which the foreign key data will be loaded.</param>
-        /// <param name="relmQuickContext">The context providing configuration options for the loader. This parameter must not be null.</param>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="targetObject"/> is <see langword="null"/> or if <paramref name="relmQuickContext"/> is <see langword="null"/>.</exception>
-        /// <exception cref="ArgumentException">Thrown if <paramref name="targetObject"/> is <see langword="null"/>.</exception>
-        public ForeignKeyLoader(T targetObject, IRelmQuickContext relmQuickContext) : this(new[] { targetObject }, relmQuickContext?.ContextOptions)
+        public ForeignKeyLoader(T targetObject, IRelmContext relmContext) : this([targetObject], relmContext?.ContextOptions)
         {
         }
 
@@ -55,7 +43,7 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
         /// <param name="contextOptions">The options used to configure the context for loading foreign key relationships.This parameter must not be null.</param>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="targetObject"/> is <see langword="null"/> or if <paramref name="contextOptions"/> is <see langword="null"/>.</exception>
         /// <exception cref="ArgumentException">Thrown if <paramref name="targetObject"/> is <see langword="null"/>.</exception>
-        public ForeignKeyLoader(T targetObject, RelmContextOptionsBuilder contextOptions) : this(new[] { targetObject }, contextOptions)
+        public ForeignKeyLoader(T targetObject, RelmContextOptionsBuilder contextOptions) : this([targetObject], contextOptions)
         {
         }
 
@@ -68,19 +56,6 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="targetObjects"/> is <see langword="null"/> or if <paramref name="relmContext"/> is <see langword="null"/>.</exception>
         /// <exception cref="ArgumentException">Thrown if <paramref name="targetObjects"/> is empty or contains <see langword="null"/> values.</exception>
         public ForeignKeyLoader(ICollection<T> targetObjects, IRelmContext relmContext) : this(targetObjects, relmContext?.ContextOptions)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ForeignKeyLoader{T}"/> class with the specified target objects
-        /// and context.
-        /// </summary>
-        /// <param name="targetObjects">A collection of target objects to be loaded. This collection cannot be null.</param>
-        /// <param name="relmQuickContext">The context providing configuration options for the loader. This parameter must not be
-        /// null.</param>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="targetObjects"/> is <see langword="null"/> or if <paramref name="relmQuickContext"/> is <see langword="null"/>.</exception>
-        /// <exception cref="ArgumentException">Thrown if <paramref name="targetObjects"/> is empty or contains <see langword="null"/> values.</exception>
-        public ForeignKeyLoader(ICollection<T> targetObjects, IRelmQuickContext relmQuickContext) : this(targetObjects, relmQuickContext?.ContextOptions)
         {
         }
 
@@ -198,7 +173,7 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
         /// <param name="additionalConstraints">An expression that defines additional constraints to apply when loading the related entities.</param>
         /// <returns>A collection of related entities of type <typeparamref name="T"/> that satisfy the specified foreign key
         /// relationship and constraints.</returns>
-        internal ICollection<T> LoadForeignKey<R, S>(Expression<Func<T, R>> predicate, IRelmDataLoader<S> customDataLoader, Expression<Func<R, object>> additionalConstraints) where R : IRelmModel, new() where S : IRelmModel, new()
+        internal ICollection<T> LoadForeignKey<R, S>(Expression<Func<T, R>> predicate, IRelmDataLoader<S>? customDataLoader, Expression<Func<R, object>>? additionalConstraints) where R : IRelmModel, new() where S : IRelmModel, new()
         {
             return LoadForeignKeyInternal(predicate, customDataLoader, additionalConstraints);
         }
@@ -214,7 +189,7 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
         /// <param name="customDataLoader">An optional custom data loader to use for retrieving the related entities.</param>
         /// <param name="additionalConstraints">An expression specifying additional constraints to apply when loading the related entities.</param>
         /// <returns>A collection of related entities that match the specified foreign key relationship and constraints.</returns>
-        internal ICollection<T> LoadForeignKey<R, S>(Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S> customDataLoader, Expression<Func<R, object>> additionalConstraints) where R : IRelmModel, new() where S : IRelmModel, new()
+        internal ICollection<T> LoadForeignKey<R, S>(Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S>? customDataLoader, Expression<Func<R, object>>? additionalConstraints) where R : IRelmModel, new() where S : IRelmModel, new()
         {
             return LoadForeignKeyInternal(predicate, customDataLoader, additionalConstraints);
         }
@@ -245,7 +220,7 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
         /// a lambda expression.</exception>
         /// <exception cref="CustomAttributeFormatException">Thrown if the foreign key property specified by <paramref name="predicate"/> is marked with the <see
         /// cref="RelmDataLoader"/> attribute.</exception>
-        private ICollection<T> LoadForeignKeyInternal<R, S>(Expression predicate, IRelmDataLoader<S> customDataLoader, Expression<Func<R, object>> additionalConstraints) where R : IRelmModel, new() where S : IRelmModel, new()
+        private ICollection<T>? LoadForeignKeyInternal<R, S>(Expression predicate, IRelmDataLoader<S>? customDataLoader, Expression<Func<R, object>>? additionalConstraints) where R : IRelmModel, new() where S : IRelmModel, new()
         {
             if ((targetObjects?.Count ?? 0) == 0)
                 return null;
@@ -261,14 +236,15 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
                 throw new CustomAttributeFormatException($"Field [{referenceType.Name}] is a Data Loader field, not a Foreign Key field");
 
             // find the context that contains a dataset for T
-            var relevantContext = Assembly
+            var relevantContext = (Assembly
                 .GetAssembly(typeof(T))
-                .GetTypes()
+                ?.GetTypes()
                 .Where(x => x.BaseType == typeof(RelmContext))
                 .FirstOrDefault(x => x
                     .GetProperties()
                     .Where(y => y.PropertyType == typeof(IRelmDataSet<T>))
-                    .Any());
+                    .Any())) 
+                ?? throw new InvalidOperationException($"No valid context found for type [{typeof(T).Name}].");
 
             var relevantDataSet = relevantContext.GetProperties().FirstOrDefault(x => x.PropertyType == typeof(IRelmDataSet<T>));
 
@@ -278,7 +254,7 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
             var contextArgs = new List<object> { contextOptions };
 
             // if we can't find a constructor with the builder by itself, look for one that has it plus other parameters
-            var contextConstructor = relevantContext.GetConstructor(new Type[] { typeof(RelmContextOptionsBuilder) });
+            var contextConstructor = relevantContext.GetConstructor([typeof(RelmContextOptionsBuilder)]);
             if (contextConstructor == null)
             {
                 var allConstructors = relevantContext.GetConstructors();
@@ -304,15 +280,15 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
             if (customDataLoader != null)
             {
                 var returnType = (predicate as Expression<Func<T, R>>)?.ReturnType ?? (predicate as Expression<Func<T, ICollection<R>>>)?.ReturnType;
-                if (returnType.IsGenericType && returnType.GetGenericTypeDefinition() == typeof(ICollection<>))
+                if ((returnType?.IsGenericType ?? false) && returnType.GetGenericTypeDefinition() == typeof(ICollection<>))
                     returnType = returnType.GetGenericArguments()[0];
 
                 var foreignDataSet = relevantContext.GetProperties().FirstOrDefault(x => x.PropertyType == typeof(IRelmDataSet<>).MakeGenericType(returnType));
 
                 foreignDataSet
-                    .PropertyType
+                    ?.PropertyType
                     .GetMethod(nameof(IRelmDataSet<T>.SetDataLoader))
-                    .Invoke(foreignDataSet.GetValue(currentContext), new object[] { customDataLoader });
+                    ?.Invoke(foreignDataSet.GetValue(currentContext), new object[] { customDataLoader });
             }
 
             var executionCommand = new RelmExecutionCommand(Command.Reference, member);
@@ -320,7 +296,7 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
             if (additionalConstraints != null)
                 executionCommand.AddAdditionalCommand(Command.Reference, additionalConstraints.Body);
             
-            var objectsLoader = new ForeignObjectsLoader<T>(targetObjects, currentContext);
+            var objectsLoader = new ForeignObjectsLoader<T>(targetObjects!, currentContext);
             objectsLoader.LoadForeignObjects(executionCommand);
 
             return targetObjects;

@@ -249,7 +249,7 @@ namespace CoreRelm.Interfaces
         /// applied.</param>
         /// <returns>A collection of objects of type <typeparamref name="T"/> representing the query results. The collection will
         /// be empty if no results are found.</returns>
-        ICollection<T?> Run<T>(string query, Dictionary<string, object> parameters = null) where T : IRelmModel, new();
+        ICollection<T?> Run<T>(string query, Dictionary<string, object>? parameters = null) where T : IRelmModel, new();
 
         /// <summary>
         /// Retrieves the row identifier of the most recently inserted record in the database.
@@ -280,7 +280,7 @@ namespace CoreRelm.Interfaces
         /// returned.</param>
         /// <returns>A <see cref="DataRow"/> representing the first row of the result set, or <see langword="null"/> if no rows
         /// are found  and <paramref name="throwException"/> is set to <see langword="false"/>.</returns>
-        DataRow? GetDataRow(string query, Dictionary<string, object> parameters = null, bool throwException = true);
+        DataRow? GetDataRow(string query, Dictionary<string, object>? parameters = null, bool throwException = true);
 
         /// <summary>
         /// Executes the specified SQL query and returns the results as a <see cref="DataTable"/>.
@@ -296,7 +296,7 @@ namespace CoreRelm.Interfaces
         /// langword="true"/>.</param>
         /// <returns>A <see cref="DataTable"/> containing the results of the query. Returns <see langword="null"/> if <paramref
         /// name="throwException"/> is <see langword="false"/> and an error occurs during execution.</returns>
-        DataTable? GetDataTable(string query, Dictionary<string, object> parameters = null, bool throwException = true);
+        DataTable? GetDataTable(string query, Dictionary<string, object>? parameters = null, bool throwException = true);
 
         /// <summary>
         /// Executes the specified query and retrieves a data object of the specified type.
@@ -311,7 +311,7 @@ namespace CoreRelm.Interfaces
         /// <returns>An instance of the specified type <typeparamref name="T"/> populated with the data retrieved by the query. 
         /// Returns <see langword="default"/> if no data is found and <paramref name="throwException"/> is <see
         /// langword="false"/>.</returns>
-        T? GetDataObject<T>(string query, Dictionary<string, object> parameters = null, bool throwException = true) where T : IRelmModel, new();
+        T? GetDataObject<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new();
 
         /// <summary>
         /// Executes a query and retrieves a collection of data objects of the specified type.
@@ -340,7 +340,7 @@ namespace CoreRelm.Interfaces
         /// <returns>An <see cref="IEnumerable{T}"/> containing the results of the query mapped to the specified type.  Returns
         /// an empty collection if no results are found or if <paramref name="throwException"/> is <see
         /// langword="false"/> and the query fails.</returns>
-        IEnumerable<T>? GetDataList<T>(string query, Dictionary<string, object> parameters = null, bool throwException = true);
+        IEnumerable<T>? GetDataList<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true);
 
         /// <summary>
         /// Executes the specified query asynchronously and returns a collection of results mapped to the specified type.
@@ -428,8 +428,6 @@ namespace CoreRelm.Interfaces
         /// processed in the bulk operation.</param>
         /// <param name="tableName">The name of the target database table. If null, the table name will be inferred from the type <typeparamref
         /// name="T"/>.</param>
-        /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to associate the bulk write operation with an existing
-        /// transaction. If null, the operation will execute without a transaction.</param>
         /// <param name="forceType">An optional <see cref="Type"/> to explicitly specify the type of the data being written. If null, the type
         /// will be inferred from <typeparamref name="T"/>.</param>
         /// <param name="batchSize">The maximum number of rows to include in each batch during the bulk write operation. Must be greater than
@@ -441,7 +439,7 @@ namespace CoreRelm.Interfaces
         /// <param name="allowUniqueColumns">Indicates whether unique columns in the target table are allowed to be explicitly written. Defaults to <see
         /// langword="false"/>.</param>
         /// <returns>The number of rows successfully written to the database table.</returns>
-        int BulkTableWrite<T>(T sourceData, string? tableName = null, MySqlTransaction sqlTransaction = null, Type forceType = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false);
+        int BulkTableWrite<T>(T sourceData, string? tableName = null, Type? forceType = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false);
 
         /// <summary>
         /// Executes a database operation using the specified query and parameters.
