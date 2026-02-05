@@ -460,26 +460,28 @@ namespace CoreRelm.Models
         /// properties marked with the <see cref="RelmDto"/> attribute,  explicitly included properties, and additional
         /// properties provided by the <paramref name="getAdditionalObjectProperties"/> function, while excluding
         /// explicitly excluded properties.</returns>
-        public dynamic GenerateDTO(IEnumerable<string> includeProperties = null, IEnumerable<string> excludeProperties = null, string sourceObjectName = null, Func<IRelmModel, Dictionary<string, object>> getAdditionalObjectProperties = null, int iteration = 0)
+        public dynamic GenerateDTO(IEnumerable<string>? includeProperties = null, IEnumerable<string>? excludeProperties = null, string? sourceObjectName = null, Func<IRelmModel, Dictionary<string, object>>? getAdditionalObjectProperties = null, int iteration = 0)
         {
             var baseRef = this;
             var baseRefType = this.GetType();
 
             var namespaceIterations = baseRef
-                .GetType()
+                ?.GetType()
                 .FullName
-                .Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
+                ?.Split(['.'], StringSplitOptions.RemoveEmptyEntries);
 
             var sourceObjectIterations = sourceObjectName
-                ?.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries)
+                ?.Split(['.'], StringSplitOptions.RemoveEmptyEntries)
                 ??
                 Enumerable.Empty<string>();
 
             var invocationTypeList = DtoTypeProcessor
                 ?.GetInvocationList()
-                .ToDictionary(x => x.GetMethodInfo().GetGenericArguments().FirstOrDefault(), x => x);
+                .Where(x => x.GetMethodInfo().GetGenericArguments().FirstOrDefault() != null)
+                .ToDictionary(x => x.GetMethodInfo().GetGenericArguments().FirstOrDefault()!, x => x);
 
             // get object properties, if any are DALBaseModels marked with RelmDto then GenerateDTO() on those recursively, otherwise just return the value. if there are any IEnumerables, DTO each item in the enumerable.
+            /*
             return (ExpandoObject)baseRefType
                 .GetRuntimeProperties()
                 .Select(x => new KeyValuePair<PropertyInfo, IEnumerable<string>>(x, namespaceIterations
@@ -500,8 +502,7 @@ namespace CoreRelm.Models
                         if (property
                                 .PropertyType
                                 .GetInterfaces()
-                                .Intersect(typeof(IEnumerable<>)
-                                    .GetInterfaces())
+                                .Intersect(typeof(IEnumerable<>).GetInterfaces())
                                 .Count()
                                 > 0
                             &&
@@ -512,6 +513,7 @@ namespace CoreRelm.Models
                                     ? null
                                     : new Type[] { x.BaseType })
                                 .Contains(typeof(RelmModel)))
+                        {
                         /*
                         var isEnumerable = property.PropertyType.GetInterfaces().Any(y => y.IsGenericType && y.GetGenericTypeDefinition() == typeof(IEnumerable<>));
                         var isRelmModel = property
@@ -520,12 +522,17 @@ namespace CoreRelm.Models
                             .FlattenTreeObject(x => string.IsNullOrWhiteSpace(x?.BaseType?.Name) ? null : new Type[] { x.BaseType })
                             .Contains(typeof(RelmModel));
                         if (isEnumerable && isRelmModel)
-                        */
-                        {
+                            * /
+                            /*
                             seed.Add(property.Name,
                                 ((IEnumerable<RelmModel>)property
                                     .GetValue(baseRef))
                                     ?.Select(x => x.GenerateDTO(includeProperties: includeProperties, excludeProperties: excludeProperties, sourceObjectName: string.Join(".", new List<string> { sourceObjectName, property.Name }.Where(y => !string.IsNullOrWhiteSpace(y))), getAdditionalObjectProperties: getAdditionalObjectProperties, iteration: iteration + 1)));
+                            * /
+                            var models = (IEnumerable<RelmModel>)property.GetValue(baseRef);
+                            var modelDtos = models?
+                                .Select(x => x.GenerateDTO(includeProperties: includeProperties, excludeProperties: excludeProperties, sourceObjectName: string.Join(".", new List<string> { sourceObjectName, property.Name }.Where(y => !string.IsNullOrWhiteSpace(y))), getAdditionalObjectProperties: getAdditionalObjectProperties, iteration: iteration + 1));
+                            seed.Add(property.Name, modelDtos);
                         }
                         else
                         {
@@ -544,7 +551,7 @@ namespace CoreRelm.Models
                                 fieldValue = ((DALBaseModel)property.GetValue(baseRef))?.GenerateDTO(BaseRef: baseRef, includeProperties: includeProperties, excludeProperties: excludeProperties, SourceObjectName: string.Join(".", new List<string> { SourceObjectName, property.Name }.Where(y => !string.IsNullOrWhiteSpace(y))));
 
                             seed.Add(property.Name, fieldValue);
-                            */
+                            * /
                             // convert a property
                             seed.Add(property.Name,
                                 (property
@@ -578,7 +585,7 @@ namespace CoreRelm.Models
                                 // if the property is a RelmDto, but not a RelmModel, then just return the value as is
                                 seed.Add(property.Name, property.GetValue(baseRef));
                             }
-                            */
+                            * /
                         }
 
                         if (invocationTypeList?.ContainsKey(baseRefType) ?? false)
@@ -618,6 +625,136 @@ namespace CoreRelm.Models
 
                         return seed;
                     });
+
+            */
+            var propertyStringValues = new ExpandoObject() as IDictionary<string, object?>;
+            foreach (var property in baseRefType.GetRuntimeProperties())
+            {
+                var dtoCandidates = new List<string>();
+
+                if (namespaceIterations != null)
+                { 
+                    for (int index = 0; index < namespaceIterations.Length; index++)
+                    {
+                        var currentIteration = string.Join(".", namespaceIterations.Skip(index).Append(property.Name));
+
+                        if (!string.IsNullOrWhiteSpace(currentIteration))
+                            dtoCandidates.Add(currentIteration);
+                    }
+                    if (!string.IsNullOrWhiteSpace(property.Name))
+                        dtoCandidates.Add(property.Name);
+                }
+
+                for (var i = 0; i < sourceObjectIterations.Count(); i++)
+                {
+                    var currentIteration = string.Join(".", sourceObjectIterations.Skip(i).Append(property.Name));
+
+                    if (!string.IsNullOrWhiteSpace(currentIteration))
+                        dtoCandidates.Add(currentIteration);
+        }
+                if (!string.IsNullOrWhiteSpace(property.Name))
+                    dtoCandidates.Add(property.Name);
+
+                if (!((property.GetCustomAttribute<RelmDto>() != null
+                        || ((includeProperties?.Intersect(dtoCandidates, StringComparer.InvariantCultureIgnoreCase)?.Count() ?? 0) > 0))
+                    && !((excludeProperties?.Intersect(dtoCandidates, StringComparer.InvariantCultureIgnoreCase).Count() ?? 0) > 0)))
+                {
+                    continue;
+                }
+
+                // look for enumerables, DTO each item within
+                var enumerablePropertyCount = property
+                        .PropertyType
+                        ?.GetInterfaces()
+                        .Intersect(typeof(IEnumerable<>).GetInterfaces())
+                        .Count()
+                        ?? 0;
+
+                var hasRelmModelProperties = property
+                        .PropertyType
+                        ?.GenericTypeArguments
+                        .FlattenTreeObject(x => (string.IsNullOrWhiteSpace(x?.BaseType?.Name) ? null : new Type[] { x.BaseType })
+                            ?? [])
+                        .Contains(typeof(RelmModel))
+                        ?? false;
+
+                if (enumerablePropertyCount > 0 && hasRelmModelProperties)
+                {
+                    var models = (IEnumerable<RelmModel>?)property.GetValue(baseRef);
+                    var modelDtos = models?
+                        .Select(x => x.GenerateDTO(includeProperties: includeProperties, excludeProperties: excludeProperties, sourceObjectName: string.Join(".", new List<string> { sourceObjectName, property.Name }.Where(y => !string.IsNullOrWhiteSpace(y))), getAdditionalObjectProperties: getAdditionalObjectProperties, iteration: iteration + 1));
+
+                    propertyStringValues.Add(property.Name, modelDtos);
+                }
+                else
+                {
+                    // convert a property
+                    var hasDtoProperty = property
+                            .PropertyType
+                            ?.GetRuntimeProperties()
+                            ?.Any(x => x.GetCustomAttribute<RelmDto>() != null)
+                            ??
+                            false;
+
+                    var propertyValue = property.PropertyType?.BaseType == typeof(Enum)
+                            ? property.GetValue(baseRef)?.ToString()
+                            : property.GetValue(baseRef);
+
+                    var dtoValue = ((RelmModel?)property.GetValue(baseRef))
+                        ?.GenerateDTO(
+                            includeProperties: includeProperties, 
+                            excludeProperties: excludeProperties, 
+                            sourceObjectName: string.Join(".", new List<string> { sourceObjectName, property.Name }.Where(y => !string.IsNullOrWhiteSpace(y))), 
+                            getAdditionalObjectProperties: getAdditionalObjectProperties, 
+                            iteration: iteration + 1);
+
+                    var hasRelmModelProperty = new Type[] { property.PropertyType }
+                            .FlattenTreeObject(x => (string.IsNullOrWhiteSpace(x?.BaseType?.Name) ? null : new Type[] { x.BaseType })
+                                ?? [])
+                            .Contains(typeof(RelmModel));
+
+                    var finalValue = hasRelmModelProperty ? dtoValue : propertyValue;
+
+                    propertyStringValues.Add(property.Name, hasDtoProperty && hasRelmModelProperty);
+                }
+
+                if (invocationTypeList?.ContainsKey(baseRefType) ?? false)
+                {
+                    var additionalProperties = new DtoEventArgs();
+
+                    invocationTypeList[baseRefType].DynamicInvoke(this, additionalProperties);
+
+                    var filteredProperties = additionalProperties
+                        .AdditionalObjectProperties
+                        ?.Where(x => !propertyStringValues.ContainsKey(x.Key) && !(excludeProperties?.Contains(x.Key) ?? false))
+                        .ToList();
+
+                    if (filteredProperties != null)
+                    {
+                        foreach (var filteredProperty in filteredProperties)
+                        {
+                            propertyStringValues.Add(filteredProperty);
+                        }
+                    }
+                }
+
+                if (iteration == 0 && getAdditionalObjectProperties != null)
+                {
+                    var additionalProperties = getAdditionalObjectProperties(this)
+                        ?.Where(x => !propertyStringValues.ContainsKey(x.Key) && !(excludeProperties?.Contains(x.Key) ?? false))
+                        .ToList();
+
+                    if (additionalProperties != null)
+                    {
+                        foreach (var additionalProperty in additionalProperties)
+                        {
+                            propertyStringValues.Add(additionalProperty);
+                        }
+                    }
+                }
+            }
+
+            return (ExpandoObject)propertyStringValues;
         }
 
         /// <summary>
