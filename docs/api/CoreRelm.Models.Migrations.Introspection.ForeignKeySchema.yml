@@ -5,6 +5,7 @@ items:
   id: ForeignKeySchema
   parent: CoreRelm.Models.Migrations.Introspection
   children:
+  - CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.ColumnName
   - CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.ColumnNames
   - CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.ConstraintName
   - CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.DeleteRule
@@ -51,9 +52,13 @@ items:
   - CoreRelm.Models.RelmModel.ResetWithData(System.Data.DataRow,System.String)
   - CoreRelm.Models.RelmModel.GetUnderscoreProperties(System.Boolean)
   - CoreRelm.Models.RelmModel.WriteToDatabase(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  - CoreRelm.Models.RelmModel.WriteToDatabaseAsync(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
   - CoreRelm.Models.RelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
   - CoreRelm.Models.RelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  - CoreRelm.Models.RelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  - CoreRelm.Models.RelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
   - CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  - CoreRelm.Models.RelmModel.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
   - CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Options.RelmContextOptionsBuilder,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
   - CoreRelm.Models.RelmModel.CopyFromSource``1({T})
   - CoreRelm.Models.RelmModel.GenerateDTO(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String,System.Func{CoreRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}},System.Int32)
@@ -154,6 +159,41 @@ items:
 
       Public Property TableName As String
   overload: CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.TableName*
+- uid: CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.ColumnName
+  commentId: P:CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.ColumnName
+  id: ColumnName
+  parent: CoreRelm.Models.Migrations.Introspection.ForeignKeySchema
+  langs:
+  - csharp
+  - vb
+  name: ColumnName
+  nameWithType: ForeignKeySchema.ColumnName
+  fullName: CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.ColumnName
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: ColumnName
+    path: ../CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs
+    startLine: 17
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Introspection
+  syntax:
+    content: >-
+      [RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+
+      public string? ColumnName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <RelmColumn(Nothing, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False, False, False)>
+
+      Public Property ColumnName As String
+  overload: CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.ColumnName*
 - uid: CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.ColumnNames
   commentId: P:CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.ColumnNames
   id: ColumnNames
@@ -172,7 +212,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ColumnNames
     path: ../CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs
-    startLine: 17
+    startLine: 20
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -180,7 +220,7 @@ items:
     content: >-
       [RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
 
-      public IReadOnlyList<string>? ColumnNames { get; set; }
+      public IReadOnlyList<string?>? ColumnNames { get; set; }
     parameters: []
     return:
       type: System.Collections.Generic.IReadOnlyList{System.String}
@@ -207,7 +247,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ReferencedTableName
     path: ../CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs
-    startLine: 20
+    startLine: 23
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -242,7 +282,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ReferencedColumnName
     path: ../CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs
-    startLine: 23
+    startLine: 26
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -277,7 +317,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ReferencedColumnNames
     path: ../CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs
-    startLine: 26
+    startLine: 29
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -285,7 +325,7 @@ items:
     content: >-
       [RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
 
-      public IReadOnlyList<string>? ReferencedColumnNames { get; set; }
+      public IReadOnlyList<string?>? ReferencedColumnNames { get; set; }
     parameters: []
     return:
       type: System.Collections.Generic.IReadOnlyList{System.String}
@@ -312,7 +352,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: UpdateRule
     path: ../CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs
-    startLine: 29
+    startLine: 32
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -347,7 +387,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DeleteRule
     path: ../CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs
-    startLine: 32
+    startLine: 35
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -382,7 +422,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: OrdinalPosition
     path: ../CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs
-    startLine: 35
+    startLine: 38
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -713,6 +753,109 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
+- uid: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  commentId: M:CoreRelm.Models.RelmModel.WriteToDatabaseAsync(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  parent: CoreRelm.Models.RelmModel
+  isExternal: true
+  href: CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabaseAsync_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  name: WriteToDatabaseAsync(Enum, int, bool, bool, bool, bool, CancellationToken)
+  nameWithType: RelmModel.WriteToDatabaseAsync(Enum, int, bool, bool, bool, bool, CancellationToken)
+  fullName: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(System.Enum, int, bool, bool, bool, bool, System.Threading.CancellationToken)
+  nameWithType.vb: RelmModel.WriteToDatabaseAsync(Enum, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+  fullName.vb: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(System.Enum, Integer, Boolean, Boolean, Boolean, Boolean, System.Threading.CancellationToken)
+  name.vb: WriteToDatabaseAsync(Enum, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+  spec.csharp:
+  - uid: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+    name: WriteToDatabaseAsync
+    href: CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabaseAsync_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Enum
+    name: Enum
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.enum
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+    name: WriteToDatabaseAsync
+    href: CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabaseAsync_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Enum
+    name: Enum
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.enum
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
 - uid: CoreRelm.Models.RelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
   commentId: M:CoreRelm.Models.RelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
   parent: CoreRelm.Models.RelmModel
@@ -901,6 +1044,218 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
+- uid: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  commentId: M:CoreRelm.Models.RelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  parent: CoreRelm.Models.RelmModel
+  isExternal: true
+  href: CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  name: WriteToDatabaseAsync(MySqlConnection, int, bool, bool, bool, bool, CancellationToken)
+  nameWithType: RelmModel.WriteToDatabaseAsync(MySqlConnection, int, bool, bool, bool, bool, CancellationToken)
+  fullName: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection, int, bool, bool, bool, bool, System.Threading.CancellationToken)
+  nameWithType.vb: RelmModel.WriteToDatabaseAsync(MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+  fullName.vb: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean, System.Threading.CancellationToken)
+  name.vb: WriteToDatabaseAsync(MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+  spec.csharp:
+  - uid: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+    name: WriteToDatabaseAsync
+    href: CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  - name: (
+  - uid: MySql.Data.MySqlClient.MySqlConnection
+    name: MySqlConnection
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+    name: WriteToDatabaseAsync
+    href: CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  - name: (
+  - uid: MySql.Data.MySqlClient.MySqlConnection
+    name: MySqlConnection
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  commentId: M:CoreRelm.Models.RelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  parent: CoreRelm.Models.RelmModel
+  isExternal: true
+  href: CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  name: WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool, CancellationToken)
+  nameWithType: RelmModel.WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool, CancellationToken)
+  fullName: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, int, bool, bool, bool, bool, System.Threading.CancellationToken)
+  nameWithType.vb: RelmModel.WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+  fullName.vb: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean, System.Threading.CancellationToken)
+  name.vb: WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+  spec.csharp:
+  - uid: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+    name: WriteToDatabaseAsync
+    href: CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  - name: (
+  - uid: MySql.Data.MySqlClient.MySqlConnection
+    name: MySqlConnection
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: MySql.Data.MySqlClient.MySqlTransaction
+    name: MySqlTransaction
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+    name: WriteToDatabaseAsync
+    href: CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  - name: (
+  - uid: MySql.Data.MySqlClient.MySqlConnection
+    name: MySqlConnection
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: MySql.Data.MySqlClient.MySqlTransaction
+    name: MySqlTransaction
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
 - uid: CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
   commentId: M:CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
   parent: CoreRelm.Models.RelmModel
@@ -989,6 +1344,107 @@ references:
     name: Boolean
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  commentId: M:CoreRelm.Models.RelmModel.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  parent: CoreRelm.Models.RelmModel
+  isExternal: true
+  href: CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabaseAsync_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  name: WriteToDatabaseAsync(IRelmContext, int, bool, bool, bool, bool, CancellationToken)
+  nameWithType: RelmModel.WriteToDatabaseAsync(IRelmContext, int, bool, bool, bool, bool, CancellationToken)
+  fullName: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext, int, bool, bool, bool, bool, System.Threading.CancellationToken)
+  nameWithType.vb: RelmModel.WriteToDatabaseAsync(IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+  fullName.vb: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean, System.Threading.CancellationToken)
+  name.vb: WriteToDatabaseAsync(IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+  spec.csharp:
+  - uid: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+    name: WriteToDatabaseAsync
+    href: CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabaseAsync_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  - name: (
+  - uid: CoreRelm.Interfaces.IRelmContext
+    name: IRelmContext
+    href: CoreRelm.Interfaces.IRelmContext.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+    name: WriteToDatabaseAsync
+    href: CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabaseAsync_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  - name: (
+  - uid: CoreRelm.Interfaces.IRelmContext
+    name: IRelmContext
+    href: CoreRelm.Interfaces.IRelmContext.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   - name: )
 - uid: CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Options.RelmContextOptionsBuilder,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
   commentId: M:CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Options.RelmContextOptionsBuilder,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
@@ -6387,6 +6843,12 @@ references:
   name: TableName
   nameWithType: ForeignKeySchema.TableName
   fullName: CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.TableName
+- uid: CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.ColumnName*
+  commentId: Overload:CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.ColumnName
+  href: CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.html#CoreRelm_Models_Migrations_Introspection_ForeignKeySchema_ColumnName
+  name: ColumnName
+  nameWithType: ForeignKeySchema.ColumnName
+  fullName: CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.ColumnName
 - uid: CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.ColumnNames*
   commentId: Overload:CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.ColumnNames
   href: CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.html#CoreRelm_Models_Migrations_Introspection_ForeignKeySchema_ColumnNames

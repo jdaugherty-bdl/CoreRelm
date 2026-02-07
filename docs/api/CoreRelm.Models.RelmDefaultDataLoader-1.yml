@@ -10,10 +10,13 @@ items:
   - CoreRelm.Models.RelmDefaultDataLoader`1.AddExpression(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
   - CoreRelm.Models.RelmDefaultDataLoader`1.AddSingleExpression(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
   - CoreRelm.Models.RelmDefaultDataLoader`1.GetLoadData
+  - CoreRelm.Models.RelmDefaultDataLoader`1.GetLoadDataAsync(System.Threading.CancellationToken)
   - CoreRelm.Models.RelmDefaultDataLoader`1.HasUnderscoreProperty(System.String)
   - CoreRelm.Models.RelmDefaultDataLoader`1.LastCommandsExecuted
   - CoreRelm.Models.RelmDefaultDataLoader`1.PullData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - CoreRelm.Models.RelmDefaultDataLoader`1.PullDataAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)
   - CoreRelm.Models.RelmDefaultDataLoader`1.WriteData
+  - CoreRelm.Models.RelmDefaultDataLoader`1.WriteDataAsync(System.Threading.CancellationToken)
   langs:
   - csharp
   - vb
@@ -94,7 +97,7 @@ items:
         command executions.
   example: []
   syntax:
-    content: public Dictionary<Commands.Command, List<IRelmExecutionCommand>> LastCommandsExecuted { get; set; }
+    content: public Dictionary<Commands.Command, List<IRelmExecutionCommand?>>? LastCommandsExecuted { get; set; }
     parameters: []
     return:
       type: System.Collections.Generic.Dictionary{CoreRelm.Enums.Commands.Command,System.Collections.Generic.List{CoreRelm.Interfaces.IRelmExecutionCommand}}
@@ -194,7 +197,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: HasUnderscoreProperty
     path: ../CoreRelm/Models/RelmDefaultDataLoader.cs
-    startLine: 111
+    startLine: 112
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -237,7 +240,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AddExpression
     path: ../CoreRelm/Models/RelmDefaultDataLoader.cs
-    startLine: 122
+    startLine: 123
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -272,9 +275,9 @@ items:
   langs:
   - csharp
   - vb
-  name: AddSingleExpression(Command, Expression)
-  nameWithType: RelmDefaultDataLoader<T>.AddSingleExpression(Commands.Command, Expression)
-  fullName: CoreRelm.Models.RelmDefaultDataLoader<T>.AddSingleExpression(CoreRelm.Enums.Commands.Command, System.Linq.Expressions.Expression)
+  name: AddSingleExpression(Command, Expression?)
+  nameWithType: RelmDefaultDataLoader<T>.AddSingleExpression(Commands.Command, Expression?)
+  fullName: CoreRelm.Models.RelmDefaultDataLoader<T>.AddSingleExpression(CoreRelm.Enums.Commands.Command, System.Linq.Expressions.Expression?)
   type: Method
   source:
     remote:
@@ -283,7 +286,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AddSingleExpression
     path: ../CoreRelm/Models/RelmDefaultDataLoader.cs
-    startLine: 140
+    startLine: 141
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -293,7 +296,7 @@ items:
         command is created.
   example: []
   syntax:
-    content: public IRelmExecutionCommand AddSingleExpression(Commands.Command command, Expression expression)
+    content: public IRelmExecutionCommand? AddSingleExpression(Commands.Command command, Expression? expression)
     parameters:
     - id: command
       type: CoreRelm.Enums.Commands.Command
@@ -312,6 +315,7 @@ items:
   - CoreRelm.Interfaces.IRelmDataLoader{{T}}.AddSingleExpression(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
   nameWithType.vb: RelmDefaultDataLoader(Of T).AddSingleExpression(Commands.Command, Expression)
   fullName.vb: CoreRelm.Models.RelmDefaultDataLoader(Of T).AddSingleExpression(CoreRelm.Enums.Commands.Command, System.Linq.Expressions.Expression)
+  name.vb: AddSingleExpression(Command, Expression)
 - uid: CoreRelm.Models.RelmDefaultDataLoader`1.GetLoadData
   commentId: M:CoreRelm.Models.RelmDefaultDataLoader`1.GetLoadData
   id: GetLoadData
@@ -340,7 +344,7 @@ items:
         corresponding data entities. The returned collection may be empty if no matching data is found.
   example: []
   syntax:
-    content: public virtual ICollection<T> GetLoadData()
+    content: public virtual ICollection<T?>? GetLoadData()
     return:
       type: System.Collections.Generic.ICollection{{T}}
       description: >-
@@ -352,6 +356,49 @@ items:
   - CoreRelm.Interfaces.IRelmDataLoader{{T}}.GetLoadData
   nameWithType.vb: RelmDefaultDataLoader(Of T).GetLoadData()
   fullName.vb: CoreRelm.Models.RelmDefaultDataLoader(Of T).GetLoadData()
+- uid: CoreRelm.Models.RelmDefaultDataLoader`1.GetLoadDataAsync(System.Threading.CancellationToken)
+  commentId: M:CoreRelm.Models.RelmDefaultDataLoader`1.GetLoadDataAsync(System.Threading.CancellationToken)
+  id: GetLoadDataAsync(System.Threading.CancellationToken)
+  parent: CoreRelm.Models.RelmDefaultDataLoader`1
+  langs:
+  - csharp
+  - vb
+  name: GetLoadDataAsync(CancellationToken)
+  nameWithType: RelmDefaultDataLoader<T>.GetLoadDataAsync(CancellationToken)
+  fullName: CoreRelm.Models.RelmDefaultDataLoader<T>.GetLoadDataAsync(System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Models/RelmDefaultDataLoader.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: GetLoadDataAsync
+    path: ../CoreRelm/Models/RelmDefaultDataLoader.cs
+    startLine: 193
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models
+  summary: Retrieves a collection of data entities based on the current query configuration.
+  remarks: >-
+    This method constructs a query using the current configuration and retrieves the
+        corresponding data entities. The returned collection may be empty if no matching data is found.
+  example: []
+  syntax:
+    content: public virtual Task<ICollection<T?>?> GetLoadDataAsync(CancellationToken cancellationToken = default)
+    parameters:
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.ICollection{{T}}}
+      description: >-
+        A collection of data entities of type <code class="typeparamref">T</code>. The collection will be empty if no data
+            matches the query.
+    content.vb: Public Overridable Function GetLoadDataAsync(cancellationToken As CancellationToken = Nothing) As Task(Of ICollection(Of T))
+  overload: CoreRelm.Models.RelmDefaultDataLoader`1.GetLoadDataAsync*
+  implements:
+  - CoreRelm.Interfaces.IRelmDataLoader{{T}}.GetLoadDataAsync(System.Threading.CancellationToken)
+  nameWithType.vb: RelmDefaultDataLoader(Of T).GetLoadDataAsync(CancellationToken)
+  fullName.vb: CoreRelm.Models.RelmDefaultDataLoader(Of T).GetLoadDataAsync(System.Threading.CancellationToken)
 - uid: CoreRelm.Models.RelmDefaultDataLoader`1.PullData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
   commentId: M:CoreRelm.Models.RelmDefaultDataLoader`1.PullData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
   id: PullData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
@@ -370,7 +417,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: PullData
     path: ../CoreRelm/Models/RelmDefaultDataLoader.cs
-    startLine: 200
+    startLine: 214
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -381,7 +428,7 @@ items:
         Otherwise, the query is executed using the configured connection string type.
   example: []
   syntax:
-    content: public virtual ICollection<T?> PullData(string selectQuery, Dictionary<string, object> findOptions)
+    content: public virtual ICollection<T?>? PullData(string selectQuery, Dictionary<string, object> findOptions)
     parameters:
     - id: selectQuery
       type: System.String
@@ -403,6 +450,59 @@ items:
   nameWithType.vb: RelmDefaultDataLoader(Of T).PullData(String, Dictionary(Of String, Object))
   fullName.vb: CoreRelm.Models.RelmDefaultDataLoader(Of T).PullData(String, System.Collections.Generic.Dictionary(Of String, Object))
   name.vb: PullData(String, Dictionary(Of String, Object))
+- uid: CoreRelm.Models.RelmDefaultDataLoader`1.PullDataAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)
+  commentId: M:CoreRelm.Models.RelmDefaultDataLoader`1.PullDataAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)
+  id: PullDataAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)
+  parent: CoreRelm.Models.RelmDefaultDataLoader`1
+  langs:
+  - csharp
+  - vb
+  name: PullDataAsync(string, Dictionary<string, object>, CancellationToken)
+  nameWithType: RelmDefaultDataLoader<T>.PullDataAsync(string, Dictionary<string, object>, CancellationToken)
+  fullName: CoreRelm.Models.RelmDefaultDataLoader<T>.PullDataAsync(string, System.Collections.Generic.Dictionary<string, object>, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Models/RelmDefaultDataLoader.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: PullDataAsync
+    path: ../CoreRelm/Models/RelmDefaultDataLoader.cs
+    startLine: 234
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models
+  summary: Executes the specified SQL query and retrieves a collection of data objects of type <code class="typeparamref">T</code>.
+  remarks: >-
+    This method supports two modes of database connection: - If the context is configured
+        with an open database connection, the query is executed using the provided connection and transaction. -
+        Otherwise, the query is executed using the configured connection string type.
+  example: []
+  syntax:
+    content: public virtual Task<ICollection<T?>?> PullDataAsync(string selectQuery, Dictionary<string, object> findOptions, CancellationToken cancellationToken = default)
+    parameters:
+    - id: selectQuery
+      type: System.String
+      description: >-
+        The SQL query to execute. This query should be a valid SELECT statement that matches the structure of the
+            data objects being retrieved.
+    - id: findOptions
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+      description: >-
+        A dictionary of parameters to be used in the query. The keys represent parameter names, and the values
+            represent their corresponding values.
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.ICollection{{T}}}
+      description: >-
+        A collection of data objects of type <code class="typeparamref">T</code> that match the results of the query.  Returns
+            an empty collection if no data is found.
+    content.vb: Public Overridable Function PullDataAsync(selectQuery As String, findOptions As Dictionary(Of String, Object), cancellationToken As CancellationToken = Nothing) As Task(Of ICollection(Of T))
+  overload: CoreRelm.Models.RelmDefaultDataLoader`1.PullDataAsync*
+  nameWithType.vb: RelmDefaultDataLoader(Of T).PullDataAsync(String, Dictionary(Of String, Object), CancellationToken)
+  fullName.vb: CoreRelm.Models.RelmDefaultDataLoader(Of T).PullDataAsync(String, System.Collections.Generic.Dictionary(Of String, Object), System.Threading.CancellationToken)
+  name.vb: PullDataAsync(String, Dictionary(Of String, Object), CancellationToken)
 - uid: CoreRelm.Models.RelmDefaultDataLoader`1.WriteData
   commentId: M:CoreRelm.Models.RelmDefaultDataLoader`1.WriteData
   id: WriteData
@@ -421,7 +521,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WriteData
     path: ../CoreRelm/Models/RelmDefaultDataLoader.cs
-    startLine: 216
+    startLine: 250
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -444,6 +544,50 @@ items:
   - CoreRelm.Interfaces.IRelmDataLoader{{T}}.WriteData
   nameWithType.vb: RelmDefaultDataLoader(Of T).WriteData()
   fullName.vb: CoreRelm.Models.RelmDefaultDataLoader(Of T).WriteData()
+- uid: CoreRelm.Models.RelmDefaultDataLoader`1.WriteDataAsync(System.Threading.CancellationToken)
+  commentId: M:CoreRelm.Models.RelmDefaultDataLoader`1.WriteDataAsync(System.Threading.CancellationToken)
+  id: WriteDataAsync(System.Threading.CancellationToken)
+  parent: CoreRelm.Models.RelmDefaultDataLoader`1
+  langs:
+  - csharp
+  - vb
+  name: WriteDataAsync(CancellationToken)
+  nameWithType: RelmDefaultDataLoader<T>.WriteDataAsync(CancellationToken)
+  fullName: CoreRelm.Models.RelmDefaultDataLoader<T>.WriteDataAsync(System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Models/RelmDefaultDataLoader.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: WriteDataAsync
+    path: ../CoreRelm/Models/RelmDefaultDataLoader.cs
+    startLine: 265
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models
+  summary: Executes a database operation to write data and returns the result of the operation.
+  remarks: >-
+    This method constructs an update query and performs the database operation based on
+        the  configuration of the context options. It supports both open database connections and  connection
+        strings, depending on the specified options.
+  example: []
+  syntax:
+    content: public Task<int> WriteDataAsync(CancellationToken cancellationToken = default)
+    parameters:
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task{System.Int32}
+      description: >-
+        The result of the database operation as an integer. The value typically represents the number of rows
+            affected by the operation.
+    content.vb: Public Function WriteDataAsync(cancellationToken As CancellationToken = Nothing) As Task(Of Integer)
+  overload: CoreRelm.Models.RelmDefaultDataLoader`1.WriteDataAsync*
+  implements:
+  - CoreRelm.Interfaces.IRelmDataLoader{{T}}.WriteDataAsync(System.Threading.CancellationToken)
+  nameWithType.vb: RelmDefaultDataLoader(Of T).WriteDataAsync(CancellationToken)
+  fullName.vb: CoreRelm.Models.RelmDefaultDataLoader(Of T).WriteDataAsync(System.Threading.CancellationToken)
 references:
 - uid: CoreRelm.Interfaces.IRelmDataLoader`1
   commentId: T:CoreRelm.Interfaces.IRelmDataLoader`1
@@ -1496,6 +1640,216 @@ references:
   - name: " "
   - name: T
   - name: )
+- uid: CoreRelm.Models.RelmDefaultDataLoader`1.GetLoadDataAsync*
+  commentId: Overload:CoreRelm.Models.RelmDefaultDataLoader`1.GetLoadDataAsync
+  href: CoreRelm.Models.RelmDefaultDataLoader-1.html#CoreRelm_Models_RelmDefaultDataLoader_1_GetLoadDataAsync_System_Threading_CancellationToken_
+  name: GetLoadDataAsync
+  nameWithType: RelmDefaultDataLoader<T>.GetLoadDataAsync
+  fullName: CoreRelm.Models.RelmDefaultDataLoader<T>.GetLoadDataAsync
+  nameWithType.vb: RelmDefaultDataLoader(Of T).GetLoadDataAsync
+  fullName.vb: CoreRelm.Models.RelmDefaultDataLoader(Of T).GetLoadDataAsync
+- uid: CoreRelm.Interfaces.IRelmDataLoader{{T}}.GetLoadDataAsync(System.Threading.CancellationToken)
+  commentId: M:CoreRelm.Interfaces.IRelmDataLoader{`0}.GetLoadDataAsync(System.Threading.CancellationToken)
+  parent: CoreRelm.Interfaces.IRelmDataLoader{{T}}
+  definition: CoreRelm.Interfaces.IRelmDataLoader`1.GetLoadDataAsync(System.Threading.CancellationToken)
+  href: CoreRelm.Interfaces.IRelmDataLoader-1.html#CoreRelm_Interfaces_IRelmDataLoader_1_GetLoadDataAsync_System_Threading_CancellationToken_
+  name: GetLoadDataAsync(CancellationToken)
+  nameWithType: IRelmDataLoader<T>.GetLoadDataAsync(CancellationToken)
+  fullName: CoreRelm.Interfaces.IRelmDataLoader<T>.GetLoadDataAsync(System.Threading.CancellationToken)
+  nameWithType.vb: IRelmDataLoader(Of T).GetLoadDataAsync(CancellationToken)
+  fullName.vb: CoreRelm.Interfaces.IRelmDataLoader(Of T).GetLoadDataAsync(System.Threading.CancellationToken)
+  spec.csharp:
+  - uid: CoreRelm.Interfaces.IRelmDataLoader{`0}.GetLoadDataAsync(System.Threading.CancellationToken)
+    name: GetLoadDataAsync
+    href: CoreRelm.Interfaces.IRelmDataLoader-1.html#CoreRelm_Interfaces_IRelmDataLoader_1_GetLoadDataAsync_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Interfaces.IRelmDataLoader{`0}.GetLoadDataAsync(System.Threading.CancellationToken)
+    name: GetLoadDataAsync
+    href: CoreRelm.Interfaces.IRelmDataLoader-1.html#CoreRelm_Interfaces_IRelmDataLoader_1_GetLoadDataAsync_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading.Tasks.Task{System.Collections.Generic.ICollection{{T}}}
+  commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.ICollection{``0}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<ICollection<T>>
+  nameWithType: Task<ICollection<T>>
+  fullName: System.Threading.Tasks.Task<System.Collections.Generic.ICollection<T>>
+  nameWithType.vb: Task(Of ICollection(Of T))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Generic.ICollection(Of T))
+  name.vb: Task(Of ICollection(Of T))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+- uid: CoreRelm.Interfaces.IRelmDataLoader`1.GetLoadDataAsync(System.Threading.CancellationToken)
+  commentId: M:CoreRelm.Interfaces.IRelmDataLoader`1.GetLoadDataAsync(System.Threading.CancellationToken)
+  isExternal: true
+  href: CoreRelm.Interfaces.IRelmDataLoader-1.html#CoreRelm_Interfaces_IRelmDataLoader_1_GetLoadDataAsync_System_Threading_CancellationToken_
+  name: GetLoadDataAsync(CancellationToken)
+  nameWithType: IRelmDataLoader<T>.GetLoadDataAsync(CancellationToken)
+  fullName: CoreRelm.Interfaces.IRelmDataLoader<T>.GetLoadDataAsync(System.Threading.CancellationToken)
+  nameWithType.vb: IRelmDataLoader(Of T).GetLoadDataAsync(CancellationToken)
+  fullName.vb: CoreRelm.Interfaces.IRelmDataLoader(Of T).GetLoadDataAsync(System.Threading.CancellationToken)
+  spec.csharp:
+  - uid: CoreRelm.Interfaces.IRelmDataLoader`1.GetLoadDataAsync(System.Threading.CancellationToken)
+    name: GetLoadDataAsync
+    href: CoreRelm.Interfaces.IRelmDataLoader-1.html#CoreRelm_Interfaces_IRelmDataLoader_1_GetLoadDataAsync_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Interfaces.IRelmDataLoader`1.GetLoadDataAsync(System.Threading.CancellationToken)
+    name: GetLoadDataAsync
+    href: CoreRelm.Interfaces.IRelmDataLoader-1.html#CoreRelm_Interfaces_IRelmDataLoader_1_GetLoadDataAsync_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
 - uid: CoreRelm.Models.RelmDefaultDataLoader`1.PullData*
   commentId: Overload:CoreRelm.Models.RelmDefaultDataLoader`1.PullData
   href: CoreRelm.Models.RelmDefaultDataLoader-1.html#CoreRelm_Models_RelmDefaultDataLoader_1_PullData_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__
@@ -1551,6 +1905,14 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
+- uid: CoreRelm.Models.RelmDefaultDataLoader`1.PullDataAsync*
+  commentId: Overload:CoreRelm.Models.RelmDefaultDataLoader`1.PullDataAsync
+  href: CoreRelm.Models.RelmDefaultDataLoader-1.html#CoreRelm_Models_RelmDefaultDataLoader_1_PullDataAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Threading_CancellationToken_
+  name: PullDataAsync
+  nameWithType: RelmDefaultDataLoader<T>.PullDataAsync
+  fullName: CoreRelm.Models.RelmDefaultDataLoader<T>.PullDataAsync
+  nameWithType.vb: RelmDefaultDataLoader(Of T).PullDataAsync
+  fullName.vb: CoreRelm.Models.RelmDefaultDataLoader(Of T).PullDataAsync
 - uid: CoreRelm.Models.RelmDefaultDataLoader`1.WriteData*
   commentId: Overload:CoreRelm.Models.RelmDefaultDataLoader`1.WriteData
   href: CoreRelm.Models.RelmDefaultDataLoader-1.html#CoreRelm_Models_RelmDefaultDataLoader_1_WriteData
@@ -1611,4 +1973,106 @@ references:
     name: WriteData
     href: CoreRelm.Interfaces.IRelmDataLoader-1.html#CoreRelm_Interfaces_IRelmDataLoader_1_WriteData
   - name: (
+  - name: )
+- uid: CoreRelm.Models.RelmDefaultDataLoader`1.WriteDataAsync*
+  commentId: Overload:CoreRelm.Models.RelmDefaultDataLoader`1.WriteDataAsync
+  href: CoreRelm.Models.RelmDefaultDataLoader-1.html#CoreRelm_Models_RelmDefaultDataLoader_1_WriteDataAsync_System_Threading_CancellationToken_
+  name: WriteDataAsync
+  nameWithType: RelmDefaultDataLoader<T>.WriteDataAsync
+  fullName: CoreRelm.Models.RelmDefaultDataLoader<T>.WriteDataAsync
+  nameWithType.vb: RelmDefaultDataLoader(Of T).WriteDataAsync
+  fullName.vb: CoreRelm.Models.RelmDefaultDataLoader(Of T).WriteDataAsync
+- uid: CoreRelm.Interfaces.IRelmDataLoader{{T}}.WriteDataAsync(System.Threading.CancellationToken)
+  commentId: M:CoreRelm.Interfaces.IRelmDataLoader{`0}.WriteDataAsync(System.Threading.CancellationToken)
+  parent: CoreRelm.Interfaces.IRelmDataLoader{{T}}
+  definition: CoreRelm.Interfaces.IRelmDataLoader`1.WriteDataAsync(System.Threading.CancellationToken)
+  href: CoreRelm.Interfaces.IRelmDataLoader-1.html#CoreRelm_Interfaces_IRelmDataLoader_1_WriteDataAsync_System_Threading_CancellationToken_
+  name: WriteDataAsync(CancellationToken)
+  nameWithType: IRelmDataLoader<T>.WriteDataAsync(CancellationToken)
+  fullName: CoreRelm.Interfaces.IRelmDataLoader<T>.WriteDataAsync(System.Threading.CancellationToken)
+  nameWithType.vb: IRelmDataLoader(Of T).WriteDataAsync(CancellationToken)
+  fullName.vb: CoreRelm.Interfaces.IRelmDataLoader(Of T).WriteDataAsync(System.Threading.CancellationToken)
+  spec.csharp:
+  - uid: CoreRelm.Interfaces.IRelmDataLoader{`0}.WriteDataAsync(System.Threading.CancellationToken)
+    name: WriteDataAsync
+    href: CoreRelm.Interfaces.IRelmDataLoader-1.html#CoreRelm_Interfaces_IRelmDataLoader_1_WriteDataAsync_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Interfaces.IRelmDataLoader{`0}.WriteDataAsync(System.Threading.CancellationToken)
+    name: WriteDataAsync
+    href: CoreRelm.Interfaces.IRelmDataLoader-1.html#CoreRelm_Interfaces_IRelmDataLoader_1_WriteDataAsync_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: System.Threading.Tasks.Task{System.Int32}
+  commentId: T:System.Threading.Tasks.Task{System.Int32}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<int>
+  nameWithType: Task<int>
+  fullName: System.Threading.Tasks.Task<int>
+  nameWithType.vb: Task(Of Integer)
+  fullName.vb: System.Threading.Tasks.Task(Of Integer)
+  name.vb: Task(Of Integer)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: CoreRelm.Interfaces.IRelmDataLoader`1.WriteDataAsync(System.Threading.CancellationToken)
+  commentId: M:CoreRelm.Interfaces.IRelmDataLoader`1.WriteDataAsync(System.Threading.CancellationToken)
+  isExternal: true
+  href: CoreRelm.Interfaces.IRelmDataLoader-1.html#CoreRelm_Interfaces_IRelmDataLoader_1_WriteDataAsync_System_Threading_CancellationToken_
+  name: WriteDataAsync(CancellationToken)
+  nameWithType: IRelmDataLoader<T>.WriteDataAsync(CancellationToken)
+  fullName: CoreRelm.Interfaces.IRelmDataLoader<T>.WriteDataAsync(System.Threading.CancellationToken)
+  nameWithType.vb: IRelmDataLoader(Of T).WriteDataAsync(CancellationToken)
+  fullName.vb: CoreRelm.Interfaces.IRelmDataLoader(Of T).WriteDataAsync(System.Threading.CancellationToken)
+  spec.csharp:
+  - uid: CoreRelm.Interfaces.IRelmDataLoader`1.WriteDataAsync(System.Threading.CancellationToken)
+    name: WriteDataAsync
+    href: CoreRelm.Interfaces.IRelmDataLoader-1.html#CoreRelm_Interfaces_IRelmDataLoader_1_WriteDataAsync_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Interfaces.IRelmDataLoader`1.WriteDataAsync(System.Threading.CancellationToken)
+    name: WriteDataAsync
+    href: CoreRelm.Interfaces.IRelmDataLoader-1.html#CoreRelm_Interfaces_IRelmDataLoader_1_WriteDataAsync_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   - name: )

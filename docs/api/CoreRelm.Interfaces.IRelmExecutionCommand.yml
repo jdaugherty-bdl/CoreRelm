@@ -6,13 +6,11 @@ items:
   parent: CoreRelm.Interfaces
   children:
   - CoreRelm.Interfaces.IRelmExecutionCommand.AddAdditionalCommand(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
-  - CoreRelm.Interfaces.IRelmExecutionCommand.AdditionalCommandCount
+  - CoreRelm.Interfaces.IRelmExecutionCommand.ChildCommandCount
   - CoreRelm.Interfaces.IRelmExecutionCommand.ExecutionCommand
   - CoreRelm.Interfaces.IRelmExecutionCommand.ExecutionExpression
   - CoreRelm.Interfaces.IRelmExecutionCommand.GetAdditionalCommands
   - CoreRelm.Interfaces.IRelmExecutionCommand.GetForeignKeyNavigationOptions``1(System.Collections.Generic.ICollection{``0})
-  - CoreRelm.Interfaces.IRelmExecutionCommand.InitialCommand
-  - CoreRelm.Interfaces.IRelmExecutionCommand.InitialExpression
   langs:
   - csharp
   - vb
@@ -100,105 +98,43 @@ items:
   summary: Gets the initial expression associated with this execution command.
   example: []
   syntax:
-    content: Expression ExecutionExpression { get; }
+    content: Expression? ExecutionExpression { get; }
     parameters: []
     return:
       type: System.Linq.Expressions.Expression
     content.vb: ReadOnly Property ExecutionExpression As Expression
   overload: CoreRelm.Interfaces.IRelmExecutionCommand.ExecutionExpression*
-- uid: CoreRelm.Interfaces.IRelmExecutionCommand.InitialCommand
-  commentId: P:CoreRelm.Interfaces.IRelmExecutionCommand.InitialCommand
-  id: InitialCommand
+- uid: CoreRelm.Interfaces.IRelmExecutionCommand.ChildCommandCount
+  commentId: P:CoreRelm.Interfaces.IRelmExecutionCommand.ChildCommandCount
+  id: ChildCommandCount
   parent: CoreRelm.Interfaces.IRelmExecutionCommand
   langs:
   - csharp
   - vb
-  name: InitialCommand
-  nameWithType: IRelmExecutionCommand.InitialCommand
-  fullName: CoreRelm.Interfaces.IRelmExecutionCommand.InitialCommand
+  name: ChildCommandCount
+  nameWithType: IRelmExecutionCommand.ChildCommandCount
+  fullName: CoreRelm.Interfaces.IRelmExecutionCommand.ChildCommandCount
   type: Property
   source:
     remote:
       path: CoreRelm/Interfaces/IRelmExecutionCommand.cs
       branch: master
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: InitialCommand
+    id: ChildCommandCount
     path: ../CoreRelm/Interfaces/IRelmExecutionCommand.cs
     startLine: 35
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Interfaces
-  summary: Gets the initial command that was associated with this execution command.
+  summary: Gets the number of child commands associated with the current context.
   example: []
   syntax:
-    content: Commands.Command InitialCommand { get; }
-    parameters: []
-    return:
-      type: CoreRelm.Enums.Commands.Command
-    content.vb: ReadOnly Property InitialCommand As Commands.Command
-  overload: CoreRelm.Interfaces.IRelmExecutionCommand.InitialCommand*
-- uid: CoreRelm.Interfaces.IRelmExecutionCommand.InitialExpression
-  commentId: P:CoreRelm.Interfaces.IRelmExecutionCommand.InitialExpression
-  id: InitialExpression
-  parent: CoreRelm.Interfaces.IRelmExecutionCommand
-  langs:
-  - csharp
-  - vb
-  name: InitialExpression
-  nameWithType: IRelmExecutionCommand.InitialExpression
-  fullName: CoreRelm.Interfaces.IRelmExecutionCommand.InitialExpression
-  type: Property
-  source:
-    remote:
-      path: CoreRelm/Interfaces/IRelmExecutionCommand.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: InitialExpression
-    path: ../CoreRelm/Interfaces/IRelmExecutionCommand.cs
-    startLine: 40
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Interfaces
-  summary: Gets the initial expression associated with this execution command.
-  example: []
-  syntax:
-    content: Expression InitialExpression { get; }
-    parameters: []
-    return:
-      type: System.Linq.Expressions.Expression
-    content.vb: ReadOnly Property InitialExpression As Expression
-  overload: CoreRelm.Interfaces.IRelmExecutionCommand.InitialExpression*
-- uid: CoreRelm.Interfaces.IRelmExecutionCommand.AdditionalCommandCount
-  commentId: P:CoreRelm.Interfaces.IRelmExecutionCommand.AdditionalCommandCount
-  id: AdditionalCommandCount
-  parent: CoreRelm.Interfaces.IRelmExecutionCommand
-  langs:
-  - csharp
-  - vb
-  name: AdditionalCommandCount
-  nameWithType: IRelmExecutionCommand.AdditionalCommandCount
-  fullName: CoreRelm.Interfaces.IRelmExecutionCommand.AdditionalCommandCount
-  type: Property
-  source:
-    remote:
-      path: CoreRelm/Interfaces/IRelmExecutionCommand.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: AdditionalCommandCount
-    path: ../CoreRelm/Interfaces/IRelmExecutionCommand.cs
-    startLine: 45
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Interfaces
-  summary: Gets the number of additional commands associated with the current context.
-  example: []
-  syntax:
-    content: int AdditionalCommandCount { get; }
+    content: int ChildCommandCount { get; }
     parameters: []
     return:
       type: System.Int32
-    content.vb: ReadOnly Property AdditionalCommandCount As Integer
-  overload: CoreRelm.Interfaces.IRelmExecutionCommand.AdditionalCommandCount*
+    content.vb: ReadOnly Property ChildCommandCount As Integer
+  overload: CoreRelm.Interfaces.IRelmExecutionCommand.ChildCommandCount*
 - uid: CoreRelm.Interfaces.IRelmExecutionCommand.AddAdditionalCommand(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
   commentId: M:CoreRelm.Interfaces.IRelmExecutionCommand.AddAdditionalCommand(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
   id: AddAdditionalCommand(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
@@ -217,7 +153,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AddAdditionalCommand
     path: ../CoreRelm/Interfaces/IRelmExecutionCommand.cs
-    startLine: 54
+    startLine: 44
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Interfaces
@@ -261,7 +197,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetAdditionalCommands
     path: ../CoreRelm/Interfaces/IRelmExecutionCommand.cs
-    startLine: 61
+    startLine: 51
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Interfaces
@@ -294,7 +230,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetForeignKeyNavigationOptions
     path: ../CoreRelm/Interfaces/IRelmExecutionCommand.cs
-    startLine: 70
+    startLine: 60
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Interfaces
@@ -444,24 +380,12 @@ references:
     name: Expressions
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.linq.expressions
-- uid: CoreRelm.Interfaces.IRelmExecutionCommand.InitialCommand*
-  commentId: Overload:CoreRelm.Interfaces.IRelmExecutionCommand.InitialCommand
-  href: CoreRelm.Interfaces.IRelmExecutionCommand.html#CoreRelm_Interfaces_IRelmExecutionCommand_InitialCommand
-  name: InitialCommand
-  nameWithType: IRelmExecutionCommand.InitialCommand
-  fullName: CoreRelm.Interfaces.IRelmExecutionCommand.InitialCommand
-- uid: CoreRelm.Interfaces.IRelmExecutionCommand.InitialExpression*
-  commentId: Overload:CoreRelm.Interfaces.IRelmExecutionCommand.InitialExpression
-  href: CoreRelm.Interfaces.IRelmExecutionCommand.html#CoreRelm_Interfaces_IRelmExecutionCommand_InitialExpression
-  name: InitialExpression
-  nameWithType: IRelmExecutionCommand.InitialExpression
-  fullName: CoreRelm.Interfaces.IRelmExecutionCommand.InitialExpression
-- uid: CoreRelm.Interfaces.IRelmExecutionCommand.AdditionalCommandCount*
-  commentId: Overload:CoreRelm.Interfaces.IRelmExecutionCommand.AdditionalCommandCount
-  href: CoreRelm.Interfaces.IRelmExecutionCommand.html#CoreRelm_Interfaces_IRelmExecutionCommand_AdditionalCommandCount
-  name: AdditionalCommandCount
-  nameWithType: IRelmExecutionCommand.AdditionalCommandCount
-  fullName: CoreRelm.Interfaces.IRelmExecutionCommand.AdditionalCommandCount
+- uid: CoreRelm.Interfaces.IRelmExecutionCommand.ChildCommandCount*
+  commentId: Overload:CoreRelm.Interfaces.IRelmExecutionCommand.ChildCommandCount
+  href: CoreRelm.Interfaces.IRelmExecutionCommand.html#CoreRelm_Interfaces_IRelmExecutionCommand_ChildCommandCount
+  name: ChildCommandCount
+  nameWithType: IRelmExecutionCommand.ChildCommandCount
+  fullName: CoreRelm.Interfaces.IRelmExecutionCommand.ChildCommandCount
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System

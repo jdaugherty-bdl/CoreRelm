@@ -158,7 +158,7 @@ Class SchemaSnapshot  <a class="header-action link-secondary" title="View source
   <a id="CoreRelm_Models_Migrations_Introspection_SchemaSnapshot__ctor_" data-uid="CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.#ctor*"></a>
 
   <h3 id="CoreRelm_Models_Migrations_Introspection_SchemaSnapshot__ctor_System_String_System_Collections_Generic_IReadOnlyDictionary_System_String_CoreRelm_Models_Migrations_Introspection_TableSchema__System_Collections_Generic_IReadOnlyDictionary_System_String_CoreRelm_Models_Migrations_Introspection_FunctionSchema__" data-uid="CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.#ctor(System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,CoreRelm.Models.Migrations.Introspection.TableSchema},System.Collections.Generic.IReadOnlyDictionary{System.String,CoreRelm.Models.Migrations.Introspection.FunctionSchema})">
-  SchemaSnapshot(string, IReadOnlyDictionary&lt;string, TableSchema&gt;, IReadOnlyDictionary&lt;string, FunctionSchema&gt;)
+  SchemaSnapshot(string, IReadOnlyDictionary&lt;string, TableSchema&gt;, IReadOnlyDictionary&lt;string, FunctionSchema&gt;?)
   <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/SchemaSnapshot.cs/#L9"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -166,7 +166,7 @@ Class SchemaSnapshot  <a class="header-action link-secondary" title="View source
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SchemaSnapshot(string DatabaseName, IReadOnlyDictionary&lt;string, TableSchema&gt; Tables, IReadOnlyDictionary&lt;string, FunctionSchema&gt; Functions)</code></pre>
+    <pre><code class="lang-csharp hljs">public SchemaSnapshot(string DatabaseName, IReadOnlyDictionary&lt;string, TableSchema&gt; Tables, IReadOnlyDictionary&lt;string, FunctionSchema&gt;? Functions)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -236,7 +236,7 @@ Class SchemaSnapshot  <a class="header-action link-secondary" title="View source
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IReadOnlyDictionary&lt;string, FunctionSchema&gt; Functions { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">public IReadOnlyDictionary&lt;string, FunctionSchema&gt;? Functions { get; init; }</code></pre>
   </div>
 
 

@@ -122,29 +122,73 @@ Interface IMigrationSqlProvider  <a class="header-action link-secondary" title="
 
   <a id="CoreRelm_Interfaces_Migrations_IMigrationSqlProvider_Generate_" data-uid="CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate*"></a>
 
-  <h3 id="CoreRelm_Interfaces_Migrations_IMigrationSqlProvider_Generate_System_String_System_String_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__CoreRelm_RelmInternal_Helpers_Migrations_Provisioning_MySqlDatabaseProvisioner_" data-uid="CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)">
-  Generate(string, string, string, List&lt;ValidatedModelType&gt;, MySqlDatabaseProvisioner)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/Migrations/IRelmMigrationSqlProvider.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Interfaces_Migrations_IMigrationSqlProvider_Generate_CoreRelm_Models_Migrations_MigrationOptions_System_String_System_DateTime_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__" data-uid="CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.DateTime,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})">
+  Generate(MigrationOptions, string, DateTime, string, List&lt;ValidatedModelType&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/Migrations/IRelmMigrationSqlProvider.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;MigrationGenerateResult&gt; Generate(string migrationName, string stampUtc, string dbName, List&lt;ValidatedModelType&gt; modelsForDb, MySqlDatabaseProvisioner provisioner)</code></pre>
+    <pre><code class="lang-csharp hljs">MigrationGenerateResult Generate(MigrationOptions migrationOptions, string migrationName, DateTime stampUtc, string dbName, List&lt;ValidatedModelType&gt; modelsForDb)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
+    <dt><code>migrationOptions</code> <a class="xref" href="CoreRelm.Models.Migrations.MigrationOptions.html">MigrationOptions</a></dt>
+    <dd></dd>
     <dt><code>migrationName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
-    <dt><code>stampUtc</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dt><code>stampUtc</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
     <dd></dd>
     <dt><code>dbName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
     <dt><code>modelsForDb</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="CoreRelm.Models.Migrations.ValidatedModelType.html">ValidatedModelType</a>&gt;</dt>
     <dd></dd>
-    <dt><code>provisioner</code> <a class="xref" href="CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.html">MySqlDatabaseProvisioner</a></dt>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Models.Migrations.MigrationGenerateResult.html">MigrationGenerateResult</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_Migrations_IMigrationSqlProvider_GenerateAsync_" data-uid="CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.GenerateAsync*"></a>
+
+  <h3 id="CoreRelm_Interfaces_Migrations_IMigrationSqlProvider_GenerateAsync_CoreRelm_Models_Migrations_MigrationOptions_System_String_System_DateTime_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__" data-uid="CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.GenerateAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.DateTime,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})">
+  GenerateAsync(MigrationOptions, string, DateTime, string, List&lt;ValidatedModelType&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/Migrations/IRelmMigrationSqlProvider.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;MigrationGenerateResult&gt; GenerateAsync(MigrationOptions migrationOptions, string migrationName, DateTime stampUtc, string dbName, List&lt;ValidatedModelType&gt; modelsForDb)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>migrationOptions</code> <a class="xref" href="CoreRelm.Models.Migrations.MigrationOptions.html">MigrationOptions</a></dt>
+    <dd></dd>
+    <dt><code>migrationName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>stampUtc</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd></dd>
+    <dt><code>dbName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>modelsForDb</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="CoreRelm.Models.Migrations.ValidatedModelType.html">ValidatedModelType</a>&gt;</dt>
     <dd></dd>
   </dl>
 

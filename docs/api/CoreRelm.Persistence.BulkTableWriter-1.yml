@@ -25,6 +25,8 @@ items:
   - CoreRelm.Persistence.BulkTableWriter`1.ThrowException(System.Boolean)
   - CoreRelm.Persistence.BulkTableWriter`1.Write
   - CoreRelm.Persistence.BulkTableWriter`1.Write(System.Func{System.String,`0,System.Object})
+  - CoreRelm.Persistence.BulkTableWriter`1.WriteAsync(System.Func{System.String,`0,System.Object},System.Threading.CancellationToken)
+  - CoreRelm.Persistence.BulkTableWriter`1.WriteAsync(System.Threading.CancellationToken)
   langs:
   - csharp
   - vb
@@ -39,7 +41,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: BulkTableWriter
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 32
+    startLine: 31
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -94,7 +96,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Write
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 229
+    startLine: 228
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -110,6 +112,43 @@ items:
   overload: CoreRelm.Persistence.BulkTableWriter`1.Write*
   nameWithType.vb: BulkTableWriter(Of T).Write()
   fullName.vb: CoreRelm.Persistence.BulkTableWriter(Of T).Write()
+- uid: CoreRelm.Persistence.BulkTableWriter`1.WriteAsync(System.Threading.CancellationToken)
+  commentId: M:CoreRelm.Persistence.BulkTableWriter`1.WriteAsync(System.Threading.CancellationToken)
+  id: WriteAsync(System.Threading.CancellationToken)
+  parent: CoreRelm.Persistence.BulkTableWriter`1
+  langs:
+  - csharp
+  - vb
+  name: WriteAsync(CancellationToken)
+  nameWithType: BulkTableWriter<T>.WriteAsync(CancellationToken)
+  fullName: CoreRelm.Persistence.BulkTableWriter<T>.WriteAsync(System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Persistence/BulkTableWriter.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: WriteAsync
+    path: ../CoreRelm/Persistence/BulkTableWriter.cs
+    startLine: 239
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Persistence
+  summary: Writes data to the underlying output stream.
+  remarks: This overload calls the <xref href="CoreRelm.Persistence.BulkTableWriter%601.Write(System.Func%7bSystem.String%2c%600%2cSystem.Object%7d)" data-throw-if-not-resolved="false"></xref> method with a <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> argument.
+  example: []
+  syntax:
+    content: public Task<int> WriteAsync(CancellationToken cancellationToken = default)
+    parameters:
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task{System.Int32}
+      description: The result of the write operation, as returned by the <xref href="CoreRelm.Persistence.BulkTableWriter%601.Write(System.Func%7bSystem.String%2c%600%2cSystem.Object%7d)" data-throw-if-not-resolved="false"></xref> method.
+    content.vb: Public Function WriteAsync(cancellationToken As CancellationToken = Nothing) As Task(Of Integer)
+  overload: CoreRelm.Persistence.BulkTableWriter`1.WriteAsync*
+  nameWithType.vb: BulkTableWriter(Of T).WriteAsync(CancellationToken)
+  fullName.vb: CoreRelm.Persistence.BulkTableWriter(Of T).WriteAsync(System.Threading.CancellationToken)
 - uid: CoreRelm.Persistence.BulkTableWriter`1.Write(System.Func{System.String,`0,System.Object})
   commentId: M:CoreRelm.Persistence.BulkTableWriter`1.Write(System.Func{System.String,`0,System.Object})
   id: Write(System.Func{System.String,`0,System.Object})
@@ -128,7 +167,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Write
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 245
+    startLine: 255
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -159,6 +198,57 @@ items:
   nameWithType.vb: BulkTableWriter(Of T).Write(Func(Of String, T, Object))
   fullName.vb: CoreRelm.Persistence.BulkTableWriter(Of T).Write(System.Func(Of String, T, Object))
   name.vb: Write(Func(Of String, T, Object))
+- uid: CoreRelm.Persistence.BulkTableWriter`1.WriteAsync(System.Func{System.String,`0,System.Object},System.Threading.CancellationToken)
+  commentId: M:CoreRelm.Persistence.BulkTableWriter`1.WriteAsync(System.Func{System.String,`0,System.Object},System.Threading.CancellationToken)
+  id: WriteAsync(System.Func{System.String,`0,System.Object},System.Threading.CancellationToken)
+  parent: CoreRelm.Persistence.BulkTableWriter`1
+  langs:
+  - csharp
+  - vb
+  name: WriteAsync(Func<string, T, object>?, CancellationToken)
+  nameWithType: BulkTableWriter<T>.WriteAsync(Func<string, T, object>?, CancellationToken)
+  fullName: CoreRelm.Persistence.BulkTableWriter<T>.WriteAsync(System.Func<string, T, object>?, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Persistence/BulkTableWriter.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: WriteAsync
+    path: ../CoreRelm/Persistence/BulkTableWriter.cs
+    startLine: 273
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Persistence
+  summary: >-
+    Executes a batch operation to process and insert data into a database using the specified function to
+
+    populate a data table.
+  remarks: >-
+    This method processes the source data in batches, determined by the configured batch
+        size, and inserts the data into the database. The method supports multiple database contexts and
+        connections, and it uses the appropriate one based on the current configuration.
+  example: []
+  syntax:
+    content: public Task<int> WriteAsync(Func<string, T, object>? DataTableFunction, CancellationToken cancellationToken = default)
+    parameters:
+    - id: DataTableFunction
+      type: System.Func{System.String,{T},System.Object}
+      description: >-
+        A function that takes a column name and a data item of type <code class="typeparamref">T</code> and returns the value
+            to be inserted into the data table.
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task{System.Int32}
+      description: >-
+        The total number of records successfully inserted into the database. Returns 0 if there is no source data to
+            process.
+    content.vb: Public Function WriteAsync(DataTableFunction As Func(Of String, T, Object), cancellationToken As CancellationToken = Nothing) As Task(Of Integer)
+  overload: CoreRelm.Persistence.BulkTableWriter`1.WriteAsync*
+  nameWithType.vb: BulkTableWriter(Of T).WriteAsync(Func(Of String, T, Object), CancellationToken)
+  fullName.vb: CoreRelm.Persistence.BulkTableWriter(Of T).WriteAsync(System.Func(Of String, T, Object), System.Threading.CancellationToken)
+  name.vb: WriteAsync(Func(Of String, T, Object), CancellationToken)
 - uid: CoreRelm.Persistence.BulkTableWriter`1.SetTransaction(MySql.Data.MySqlClient.MySqlTransaction)
   commentId: M:CoreRelm.Persistence.BulkTableWriter`1.SetTransaction(MySql.Data.MySqlClient.MySqlTransaction)
   id: SetTransaction(MySql.Data.MySqlClient.MySqlTransaction)
@@ -177,7 +267,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetTransaction
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 595
+    startLine: 626
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -216,7 +306,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ThrowException
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 608
+    startLine: 639
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -256,7 +346,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AllowUserVariables
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 621
+    startLine: 652
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -296,7 +386,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AllowAutoDateColumns
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 634
+    startLine: 665
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -336,7 +426,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AllowAutoIncrementColumns
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 647
+    startLine: 678
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -376,7 +466,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AllowPrimaryKeyColumns
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 663
+    startLine: 694
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -420,7 +510,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AllowUniqueColumns
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 676
+    startLine: 707
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -460,7 +550,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetInsertQuery
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 689
+    startLine: 720
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -500,7 +590,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetSourceData
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 701
+    startLine: 732
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -538,7 +628,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetSourceData
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 713
+    startLine: 744
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -575,7 +665,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AddColumn
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 730
+    startLine: 761
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -627,7 +717,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AddColumns
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 749
+    startLine: 780
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -670,7 +760,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AddColumns
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 771
+    startLine: 802
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -714,7 +804,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetTableName
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 781
+    startLine: 812
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -752,7 +842,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetDatabaseName
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 793
+    startLine: 827
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -790,7 +880,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: RemoveColumn
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 807
+    startLine: 844
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -831,7 +921,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetBatchSize
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 823
+    startLine: 860
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -873,7 +963,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ResetBatchSize
     path: ../CoreRelm/Persistence/BulkTableWriter.cs
-    startLine: 836
+    startLine: 873
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Persistence
@@ -1258,6 +1348,149 @@ references:
   nameWithType.vb: Integer
   fullName.vb: Integer
   name.vb: Integer
+- uid: CoreRelm.Persistence.BulkTableWriter`1.WriteAsync*
+  commentId: Overload:CoreRelm.Persistence.BulkTableWriter`1.WriteAsync
+  href: CoreRelm.Persistence.BulkTableWriter-1.html#CoreRelm_Persistence_BulkTableWriter_1_WriteAsync_System_Threading_CancellationToken_
+  name: WriteAsync
+  nameWithType: BulkTableWriter<T>.WriteAsync
+  fullName: CoreRelm.Persistence.BulkTableWriter<T>.WriteAsync
+  nameWithType.vb: BulkTableWriter(Of T).WriteAsync
+  fullName.vb: CoreRelm.Persistence.BulkTableWriter(Of T).WriteAsync
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading.Tasks.Task{System.Int32}
+  commentId: T:System.Threading.Tasks.Task{System.Int32}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<int>
+  nameWithType: Task<int>
+  fullName: System.Threading.Tasks.Task<int>
+  nameWithType.vb: Task(Of Integer)
+  fullName.vb: System.Threading.Tasks.Task(Of Integer)
+  name.vb: Task(Of Integer)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
 - uid: System.Func{System.String,{T},System.Object}
   commentId: T:System.Func{System.String,`0,System.Object}
   parent: System

@@ -171,7 +171,7 @@ synchronization is required.</p>
 
   <h3 id="CoreRelm_Models_RelmExecutionCommand__ctor" data-uid="CoreRelm.Models.RelmExecutionCommand.#ctor">
   RelmExecutionCommand()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmExecutionCommand.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmExecutionCommand.cs/#L47"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the RelmExecutionCommand class.</p>
@@ -197,8 +197,8 @@ synchronization is required.</p>
   <a id="CoreRelm_Models_RelmExecutionCommand__ctor_" data-uid="CoreRelm.Models.RelmExecutionCommand.#ctor*"></a>
 
   <h3 id="CoreRelm_Models_RelmExecutionCommand__ctor_CoreRelm_Enums_Commands_Command_System_Linq_Expressions_Expression_" data-uid="CoreRelm.Models.RelmExecutionCommand.#ctor(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)">
-  RelmExecutionCommand(Command, Expression)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmExecutionCommand.cs/#L74"><i class="bi bi-code-slash"></i></a>
+  RelmExecutionCommand(Command, Expression?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmExecutionCommand.cs/#L56"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the RelmExecutionCommand class with the specified command and expression.</p>
@@ -206,7 +206,7 @@ synchronization is required.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RelmExecutionCommand(Commands.Command command, Expression expression)</code></pre>
+    <pre><code class="lang-csharp hljs">public RelmExecutionCommand(Commands.Command command, Expression? expression)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -234,44 +234,11 @@ synchronization is required.</p>
 </h2>
 
 
-  <a id="CoreRelm_Models_RelmExecutionCommand_AdditionalCommandCount_" data-uid="CoreRelm.Models.RelmExecutionCommand.AdditionalCommandCount*"></a>
-
-  <h3 id="CoreRelm_Models_RelmExecutionCommand_AdditionalCommandCount" data-uid="CoreRelm.Models.RelmExecutionCommand.AdditionalCommandCount">
-  AdditionalCommandCount
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmExecutionCommand.cs/#L57"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Gets the number of additional commands associated with this instance.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;AdditionalCommandCount is deprecated, please use ChildCommandCount instead.&quot;)]
-public int AdditionalCommandCount { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
   <a id="CoreRelm_Models_RelmExecutionCommand_ChildCommandCount_" data-uid="CoreRelm.Models.RelmExecutionCommand.ChildCommandCount*"></a>
 
   <h3 id="CoreRelm_Models_RelmExecutionCommand_ChildCommandCount" data-uid="CoreRelm.Models.RelmExecutionCommand.ChildCommandCount">
   ChildCommandCount
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmExecutionCommand.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmExecutionCommand.cs/#L40"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the number of child commands associated with this instance.</p>
@@ -335,7 +302,7 @@ public int AdditionalCommandCount { get; }</code></pre>
 
   <h3 id="CoreRelm_Models_RelmExecutionCommand_ExecutionExpression" data-uid="CoreRelm.Models.RelmExecutionCommand.ExecutionExpression">
   ExecutionExpression
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmExecutionCommand.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmExecutionCommand.cs/#L35"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the expression that represents the execution logic for this instance.</p>
@@ -343,73 +310,7 @@ public int AdditionalCommandCount { get; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Expression ExecutionExpression { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression">Expression</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="CoreRelm_Models_RelmExecutionCommand_InitialCommand_" data-uid="CoreRelm.Models.RelmExecutionCommand.InitialCommand*"></a>
-
-  <h3 id="CoreRelm_Models_RelmExecutionCommand_InitialCommand" data-uid="CoreRelm.Models.RelmExecutionCommand.InitialCommand">
-  InitialCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmExecutionCommand.cs/#L35"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Gets the command that is executed when the associated component is initialized.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;InitialCommand is deprecated, please use ExecutionCommand instead.&quot;)]
-public Commands.Command InitialCommand { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="CoreRelm.Enums.Commands.html">Commands</a>.<a class="xref" href="CoreRelm.Enums.Commands.Command.html">Command</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="CoreRelm_Models_RelmExecutionCommand_InitialExpression_" data-uid="CoreRelm.Models.RelmExecutionCommand.InitialExpression*"></a>
-
-  <h3 id="CoreRelm_Models_RelmExecutionCommand_InitialExpression" data-uid="CoreRelm.Models.RelmExecutionCommand.InitialExpression">
-  InitialExpression
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmExecutionCommand.cs/#L46"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Gets the initial expression used to define the starting state or value for this instance.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;InitialExpression is deprecated, please use ExecutionExpression instead.&quot;)]
-public Expression InitialExpression { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Expression? ExecutionExpression { get; }</code></pre>
   </div>
 
 
@@ -436,8 +337,8 @@ public Expression InitialExpression { get; }</code></pre>
   <a id="CoreRelm_Models_RelmExecutionCommand_AddAdditionalCommand_" data-uid="CoreRelm.Models.RelmExecutionCommand.AddAdditionalCommand*"></a>
 
   <h3 id="CoreRelm_Models_RelmExecutionCommand_AddAdditionalCommand_CoreRelm_Enums_Commands_Command_System_Linq_Expressions_Expression_" data-uid="CoreRelm.Models.RelmExecutionCommand.AddAdditionalCommand(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)">
-  AddAdditionalCommand(Command, Expression)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmExecutionCommand.cs/#L88"><i class="bi bi-code-slash"></i></a>
+  AddAdditionalCommand(Command, Expression?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmExecutionCommand.cs/#L70"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Adds an additional command and its associated expression to the current execution command sequence.</p>
@@ -445,7 +346,7 @@ public Expression InitialExpression { get; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RelmExecutionCommand AddAdditionalCommand(Commands.Command command, Expression expression)</code></pre>
+    <pre><code class="lang-csharp hljs">public RelmExecutionCommand AddAdditionalCommand(Commands.Command command, Expression? expression)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -483,7 +384,7 @@ command and expression.</p>
 
   <h3 id="CoreRelm_Models_RelmExecutionCommand_AddAdditionalCommand__1_CoreRelm_Enums_Commands_Command_System_Linq_Expressions_Expression_System_Func___0_System_Object___" data-uid="CoreRelm.Models.RelmExecutionCommand.AddAdditionalCommand``1(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
   AddAdditionalCommand&lt;T&gt;(Command, Expression&lt;Func&lt;T, object&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmExecutionCommand.cs/#L103"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmExecutionCommand.cs/#L85"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Adds an additional command to the execution pipeline using a strongly typed expression to specify the target
@@ -532,7 +433,7 @@ property or member.</p>
 
   <h3 id="CoreRelm_Models_RelmExecutionCommand_GetAdditionalCommands" data-uid="CoreRelm.Models.RelmExecutionCommand.GetAdditionalCommands">
   GetAdditionalCommands()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmExecutionCommand.cs/#L115"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmExecutionCommand.cs/#L97"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the list of additional execution commands associated with this instance.</p>
@@ -566,7 +467,7 @@ if no additional commands are present.</p>
 
   <h3 id="CoreRelm_Models_RelmExecutionCommand_GetForeignKeyNavigationOptions__1_System_Collections_Generic_ICollection___0__" data-uid="CoreRelm.Models.RelmExecutionCommand.GetForeignKeyNavigationOptions``1(System.Collections.Generic.ICollection{``0})">
   GetForeignKeyNavigationOptions&lt;T&gt;(ICollection&lt;T&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmExecutionCommand.cs/#L135"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmExecutionCommand.cs/#L117"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Retrieves navigation and foreign key mapping options for a collection of entities, enabling resolution of

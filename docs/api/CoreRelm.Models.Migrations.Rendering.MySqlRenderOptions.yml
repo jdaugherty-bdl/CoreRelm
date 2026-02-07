@@ -5,9 +5,11 @@ items:
   id: MySqlRenderOptions
   parent: CoreRelm.Models.Migrations.Rendering
   children:
-  - CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.#ctor(System.Boolean,System.Boolean,System.String)
+  - CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.#ctor(System.Boolean,System.Boolean,System.String,System.Boolean,System.String)
+  - CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.FunctionDelimiter
   - CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.IncludeUseDatabase
   - CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.TriggerDelimiter
+  - CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.WrapFunctionsWithDelimiter
   - CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.WrapTriggersWithDelimiter
   langs:
   - csharp
@@ -41,16 +43,16 @@ items:
   - System.Object.GetType
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.#ctor(System.Boolean,System.Boolean,System.String)
-  commentId: M:CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.#ctor(System.Boolean,System.Boolean,System.String)
-  id: '#ctor(System.Boolean,System.Boolean,System.String)'
+- uid: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.#ctor(System.Boolean,System.Boolean,System.String,System.Boolean,System.String)
+  commentId: M:CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.#ctor(System.Boolean,System.Boolean,System.String,System.Boolean,System.String)
+  id: '#ctor(System.Boolean,System.Boolean,System.String,System.Boolean,System.String)'
   parent: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions
   langs:
   - csharp
   - vb
-  name: MySqlRenderOptions(bool, bool, string)
-  nameWithType: MySqlRenderOptions.MySqlRenderOptions(bool, bool, string)
-  fullName: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.MySqlRenderOptions(bool, bool, string)
+  name: MySqlRenderOptions(bool, bool, string, bool, string)
+  nameWithType: MySqlRenderOptions.MySqlRenderOptions(bool, bool, string, bool, string)
+  fullName: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.MySqlRenderOptions(bool, bool, string, bool, string)
   type: Constructor
   source:
     remote:
@@ -64,7 +66,7 @@ items:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Rendering
   syntax:
-    content: public MySqlRenderOptions(bool IncludeUseDatabase = true, bool WrapTriggersWithDelimiter = true, string TriggerDelimiter = "$$")
+    content: public MySqlRenderOptions(bool IncludeUseDatabase = true, bool WrapTriggersWithDelimiter = true, string TriggerDelimiter = "$$", bool WrapFunctionsWithDelimiter = true, string FunctionDelimiter = "$$")
     parameters:
     - id: IncludeUseDatabase
       type: System.Boolean
@@ -72,11 +74,15 @@ items:
       type: System.Boolean
     - id: TriggerDelimiter
       type: System.String
-    content.vb: Public Sub New(IncludeUseDatabase As Boolean = True, WrapTriggersWithDelimiter As Boolean = True, TriggerDelimiter As String = "$$")
+    - id: WrapFunctionsWithDelimiter
+      type: System.Boolean
+    - id: FunctionDelimiter
+      type: System.String
+    content.vb: Public Sub New(IncludeUseDatabase As Boolean = True, WrapTriggersWithDelimiter As Boolean = True, TriggerDelimiter As String = "$$", WrapFunctionsWithDelimiter As Boolean = True, FunctionDelimiter As String = "$$")
   overload: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.#ctor*
-  nameWithType.vb: MySqlRenderOptions.New(Boolean, Boolean, String)
-  fullName.vb: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.New(Boolean, Boolean, String)
-  name.vb: New(Boolean, Boolean, String)
+  nameWithType.vb: MySqlRenderOptions.New(Boolean, Boolean, String, Boolean, String)
+  fullName.vb: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.New(Boolean, Boolean, String, Boolean, String)
+  name.vb: New(Boolean, Boolean, String, Boolean, String)
 - uid: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.IncludeUseDatabase
   commentId: P:CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.IncludeUseDatabase
   id: IncludeUseDatabase
@@ -164,6 +170,64 @@ items:
       type: System.String
     content.vb: Public Property TriggerDelimiter As String
   overload: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.TriggerDelimiter*
+- uid: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.WrapFunctionsWithDelimiter
+  commentId: P:CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.WrapFunctionsWithDelimiter
+  id: WrapFunctionsWithDelimiter
+  parent: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions
+  langs:
+  - csharp
+  - vb
+  name: WrapFunctionsWithDelimiter
+  nameWithType: MySqlRenderOptions.WrapFunctionsWithDelimiter
+  fullName: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.WrapFunctionsWithDelimiter
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Rendering/MySqlRenderOptions.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: WrapFunctionsWithDelimiter
+    path: ../CoreRelm/Models/Migrations/Rendering/MySqlRenderOptions.cs
+    startLine: 12
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Rendering
+  syntax:
+    content: public bool WrapFunctionsWithDelimiter { get; init; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property WrapFunctionsWithDelimiter As Boolean
+  overload: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.WrapFunctionsWithDelimiter*
+- uid: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.FunctionDelimiter
+  commentId: P:CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.FunctionDelimiter
+  id: FunctionDelimiter
+  parent: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions
+  langs:
+  - csharp
+  - vb
+  name: FunctionDelimiter
+  nameWithType: MySqlRenderOptions.FunctionDelimiter
+  fullName: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.FunctionDelimiter
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Rendering/MySqlRenderOptions.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: FunctionDelimiter
+    path: ../CoreRelm/Models/Migrations/Rendering/MySqlRenderOptions.cs
+    startLine: 13
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Rendering
+  syntax:
+    content: public string FunctionDelimiter { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property FunctionDelimiter As String
+  overload: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.FunctionDelimiter*
 references:
 - uid: CoreRelm.Models.Migrations.Rendering
   commentId: N:CoreRelm.Models.Migrations.Rendering
@@ -479,7 +543,7 @@ references:
   - name: )
 - uid: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.#ctor*
   commentId: Overload:CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.#ctor
-  href: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.html#CoreRelm_Models_Migrations_Rendering_MySqlRenderOptions__ctor_System_Boolean_System_Boolean_System_String_
+  href: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.html#CoreRelm_Models_Migrations_Rendering_MySqlRenderOptions__ctor_System_Boolean_System_Boolean_System_String_System_Boolean_System_String_
   name: MySqlRenderOptions
   nameWithType: MySqlRenderOptions.MySqlRenderOptions
   fullName: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.MySqlRenderOptions
@@ -526,3 +590,15 @@ references:
   name: TriggerDelimiter
   nameWithType: MySqlRenderOptions.TriggerDelimiter
   fullName: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.TriggerDelimiter
+- uid: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.WrapFunctionsWithDelimiter*
+  commentId: Overload:CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.WrapFunctionsWithDelimiter
+  href: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.html#CoreRelm_Models_Migrations_Rendering_MySqlRenderOptions_WrapFunctionsWithDelimiter
+  name: WrapFunctionsWithDelimiter
+  nameWithType: MySqlRenderOptions.WrapFunctionsWithDelimiter
+  fullName: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.WrapFunctionsWithDelimiter
+- uid: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.FunctionDelimiter*
+  commentId: Overload:CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.FunctionDelimiter
+  href: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.html#CoreRelm_Models_Migrations_Rendering_MySqlRenderOptions_FunctionDelimiter
+  name: FunctionDelimiter
+  nameWithType: MySqlRenderOptions.FunctionDelimiter
+  fullName: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.FunctionDelimiter

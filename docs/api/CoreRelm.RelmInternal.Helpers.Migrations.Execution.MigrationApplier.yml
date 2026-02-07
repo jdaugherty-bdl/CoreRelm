@@ -5,6 +5,7 @@ items:
   id: MigrationApplier
   parent: CoreRelm.RelmInternal.Helpers.Migrations.Execution
   children:
+  - CoreRelm.RelmInternal.Helpers.Migrations.Execution.MigrationApplier.#ctor(CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory)
   - CoreRelm.RelmInternal.Helpers.Migrations.Execution.MigrationApplier.ApplyAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String)
   langs:
   - csharp
@@ -36,6 +37,38 @@ items:
   - System.Object.GetType
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+- uid: CoreRelm.RelmInternal.Helpers.Migrations.Execution.MigrationApplier.#ctor(CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory)
+  commentId: M:CoreRelm.RelmInternal.Helpers.Migrations.Execution.MigrationApplier.#ctor(CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory)
+  id: '#ctor(CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory)'
+  parent: CoreRelm.RelmInternal.Helpers.Migrations.Execution.MigrationApplier
+  langs:
+  - csharp
+  - vb
+  name: MigrationApplier(IRelmMigrationSqlProviderFactory)
+  nameWithType: MigrationApplier.MigrationApplier(IRelmMigrationSqlProviderFactory)
+  fullName: CoreRelm.RelmInternal.Helpers.Migrations.Execution.MigrationApplier.MigrationApplier(CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory)
+  type: Constructor
+  source:
+    remote:
+      path: CoreRelm/RelmInternal/Helpers/Migrations/Execution/MigrationApplier.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: .ctor
+    path: ../CoreRelm/RelmInternal/Helpers/Migrations/Execution/MigrationApplier.cs
+    startLine: 16
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.RelmInternal.Helpers.Migrations.Execution
+  syntax:
+    content: public MigrationApplier(IRelmMigrationSqlProviderFactory providerFactory)
+    parameters:
+    - id: providerFactory
+      type: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory
+    content.vb: Public Sub New(providerFactory As IRelmMigrationSqlProviderFactory)
+  overload: CoreRelm.RelmInternal.Helpers.Migrations.Execution.MigrationApplier.#ctor*
+  nameWithType.vb: MigrationApplier.New(IRelmMigrationSqlProviderFactory)
+  fullName.vb: CoreRelm.RelmInternal.Helpers.Migrations.Execution.MigrationApplier.New(CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory)
+  name.vb: New(IRelmMigrationSqlProviderFactory)
 - uid: CoreRelm.RelmInternal.Helpers.Migrations.Execution.MigrationApplier.ApplyAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String)
   commentId: M:CoreRelm.RelmInternal.Helpers.Migrations.Execution.MigrationApplier.ApplyAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String)
   id: ApplyAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String)
@@ -336,6 +369,52 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: CoreRelm.RelmInternal.Helpers.Migrations.Execution.MigrationApplier.#ctor*
+  commentId: Overload:CoreRelm.RelmInternal.Helpers.Migrations.Execution.MigrationApplier.#ctor
+  href: CoreRelm.RelmInternal.Helpers.Migrations.Execution.MigrationApplier.html#CoreRelm_RelmInternal_Helpers_Migrations_Execution_MigrationApplier__ctor_CoreRelm_Interfaces_Migrations_IRelmMigrationSqlProviderFactory_
+  name: MigrationApplier
+  nameWithType: MigrationApplier.MigrationApplier
+  fullName: CoreRelm.RelmInternal.Helpers.Migrations.Execution.MigrationApplier.MigrationApplier
+  nameWithType.vb: MigrationApplier.New
+  fullName.vb: CoreRelm.RelmInternal.Helpers.Migrations.Execution.MigrationApplier.New
+  name.vb: New
+- uid: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory
+  commentId: T:CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory
+  parent: CoreRelm.Interfaces.Migrations
+  href: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory.html
+  name: IRelmMigrationSqlProviderFactory
+  nameWithType: IRelmMigrationSqlProviderFactory
+  fullName: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory
+- uid: CoreRelm.Interfaces.Migrations
+  commentId: N:CoreRelm.Interfaces.Migrations
+  href: CoreRelm.html
+  name: CoreRelm.Interfaces.Migrations
+  nameWithType: CoreRelm.Interfaces.Migrations
+  fullName: CoreRelm.Interfaces.Migrations
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations
+    name: Migrations
+    href: CoreRelm.Interfaces.Migrations.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations
+    name: Migrations
+    href: CoreRelm.Interfaces.Migrations.html
 - uid: CoreRelm.RelmInternal.Helpers.Migrations.Execution.MigrationApplier.ApplyAsync*
   commentId: Overload:CoreRelm.RelmInternal.Helpers.Migrations.Execution.MigrationApplier.ApplyAsync
   href: CoreRelm.RelmInternal.Helpers.Migrations.Execution.MigrationApplier.html#CoreRelm_RelmInternal_Helpers_Migrations_Execution_MigrationApplier_ApplyAsync_CoreRelm_Models_Migrations_MigrationOptions_System_String_System_String_System_String_

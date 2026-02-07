@@ -89,7 +89,7 @@
 
 
   <h1 id="CoreRelm_Models_Migrations_Rendering_CreateFunctionOperation" data-uid="CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation" class="text-break">
-Class CreateFunctionOperation  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L56"><i class="bi bi-code-slash"></i></a>
+Class CreateFunctionOperation  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L61"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -158,23 +158,23 @@ Class CreateFunctionOperation  <a class="header-action link-secondary" title="Vi
 
   <a id="CoreRelm_Models_Migrations_Rendering_CreateFunctionOperation__ctor_" data-uid="CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.#ctor*"></a>
 
-  <h3 id="CoreRelm_Models_Migrations_Rendering_CreateFunctionOperation__ctor_System_String_System_String_" data-uid="CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.#ctor(System.String,System.String)">
-  CreateFunctionOperation(string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Models_Migrations_Rendering_CreateFunctionOperation__ctor_System_String_CoreRelm_Models_Migrations_Introspection_FunctionSchema_" data-uid="CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.#ctor(System.String,CoreRelm.Models.Migrations.Introspection.FunctionSchema)">
+  CreateFunctionOperation(string, FunctionSchema)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L61"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public CreateFunctionOperation(string FunctionName, string CreateSql)</code></pre>
+    <pre><code class="lang-csharp hljs">public CreateFunctionOperation(string FunctionName, FunctionSchema Function)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>FunctionName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
-    <dt><code>CreateSql</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dt><code>Function</code> <a class="xref" href="CoreRelm.Models.Migrations.Introspection.FunctionSchema.html">FunctionSchema</a></dt>
     <dd></dd>
   </dl>
 
@@ -193,42 +193,11 @@ Class CreateFunctionOperation  <a class="header-action link-secondary" title="Vi
 </h2>
 
 
-  <a id="CoreRelm_Models_Migrations_Rendering_CreateFunctionOperation_CreateSql_" data-uid="CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.CreateSql*"></a>
-
-  <h3 id="CoreRelm_Models_Migrations_Rendering_CreateFunctionOperation_CreateSql" data-uid="CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.CreateSql">
-  CreateSql
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L56"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string CreateSql { get; init; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
   <a id="CoreRelm_Models_Migrations_Rendering_CreateFunctionOperation_Description_" data-uid="CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.Description*"></a>
 
   <h3 id="CoreRelm_Models_Migrations_Rendering_CreateFunctionOperation_Description" data-uid="CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.Description">
   Description
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L63"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -255,11 +224,42 @@ Class CreateFunctionOperation  <a class="header-action link-secondary" title="Vi
 
 
 
+  <a id="CoreRelm_Models_Migrations_Rendering_CreateFunctionOperation_Function_" data-uid="CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.Function*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Rendering_CreateFunctionOperation_Function" data-uid="CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.Function">
+  Function
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FunctionSchema Function { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Models.Migrations.Introspection.FunctionSchema.html">FunctionSchema</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="CoreRelm_Models_Migrations_Rendering_CreateFunctionOperation_FunctionName_" data-uid="CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.FunctionName*"></a>
 
   <h3 id="CoreRelm_Models_Migrations_Rendering_CreateFunctionOperation_FunctionName" data-uid="CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.FunctionName">
   FunctionName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L61"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -290,7 +290,7 @@ Class CreateFunctionOperation  <a class="header-action link-secondary" title="Vi
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L56" class="edit-link">Edit this page</a>
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L61" class="edit-link">Edit this page</a>
         </div>
 
 

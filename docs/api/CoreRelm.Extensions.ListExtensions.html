@@ -89,7 +89,7 @@
 
 
   <h1 id="CoreRelm_Extensions_ListExtensions" data-uid="CoreRelm.Extensions.ListExtensions" class="text-break">
-Class ListExtensions  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L29"><i class="bi bi-code-slash"></i></a>
+Class ListExtensions  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L28"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -167,7 +167,7 @@ with dependency injection and context-based database operations.</p>
 
   <h3 id="CoreRelm_Extensions_ListExtensions_FlattenTreeObject__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Collections_Generic_ICollection___0___" data-uid="CoreRelm.Extensions.ListExtensions.FlattenTreeObject``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.ICollection{``0}})">
   FlattenTreeObject&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, ICollection&lt;T?&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L478"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L886"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Flattens a hierarchical structure of objects into a single collection.</p>
@@ -220,7 +220,7 @@ children, it is included as-is.</p>
 
   <h3 id="CoreRelm_Extensions_ListExtensions_GenerateDTO__1_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_ICollection_System_String__System_Collections_Generic_ICollection_System_String__System_String_System_Func_CoreRelm_Interfaces_IRelmModel_System_Collections_Generic_Dictionary_System_String_System_Object___" data-uid="CoreRelm.Extensions.ListExtensions.GenerateDTO``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.ICollection{System.String},System.Collections.Generic.ICollection{System.String},System.String,System.Func{CoreRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}})">
   GenerateDTO&lt;T&gt;(IEnumerable&lt;T&gt;, ICollection&lt;string&gt;?, ICollection&lt;string&gt;?, string?, Func&lt;IRelmModel, Dictionary&lt;string, object&gt;&gt;?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L509"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L917"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Generates a collection of dynamic objects (DTOs) from the specified collection of base objects,  including
@@ -286,7 +286,7 @@ include or exclude,  and by adding custom properties through the <code class="pa
 
   <h3 id="CoreRelm_Extensions_ListExtensions_GetEntry__2_System_Collections_Generic_IDictionary___0___1____0_" data-uid="CoreRelm.Extensions.ListExtensions.GetEntry``2(System.Collections.Generic.IDictionary{``0,``1},``0)">
   GetEntry&lt;TKey, TValue&gt;(IDictionary&lt;TKey, TValue&gt;, TKey)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L520"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L928"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Retrieves the key-value pair associated with the specified key in the dictionary.</p>
@@ -333,11 +333,134 @@ include or exclude,  and by adding custom properties through the <code class="pa
 
 
 
+  <a id="CoreRelm_Extensions_ListExtensions_LoadDataLoaderFieldAsync_" data-uid="CoreRelm.Extensions.ListExtensions.LoadDataLoaderFieldAsync*"></a>
+
+  <h3 id="CoreRelm_Extensions_ListExtensions_LoadDataLoaderFieldAsync__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___System_Threading_CancellationToken_" data-uid="CoreRelm.Extensions.ListExtensions.LoadDataLoaderFieldAsync``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Threading.CancellationToken)">
+  LoadDataLoaderFieldAsync&lt;T, R&gt;(ICollection&lt;T&gt;, IRelmContext, Expression&lt;Func&lt;T, R&gt;&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L835"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Loads and initializes a specific field for a collection of models using a data loader.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;ICollection&lt;T&gt;&gt; LoadDataLoaderFieldAsync&lt;T, R&gt;(this ICollection&lt;T&gt; modelData, IRelmContext relmContext, Expression&lt;Func&lt;T, R&gt;&gt; predicate, CancellationToken cancellationToken = default) where T : IRelmModel, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>modelData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;</dt>
+    <dd><p>The collection of models for which the field will be loaded. Cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+    <dt><code>relmContext</code> <a class="xref" href="CoreRelm.Interfaces.IRelmContext.html">IRelmContext</a></dt>
+    <dd><p>The context used to access the data loader. Cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, R&gt;&gt;</dt>
+    <dd><p>An expression specifying the field to be loaded. Cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;&gt;</dt>
+    <dd><p>The original collection of models with the specified field loaded.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the model in the collection. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+    <dt><code>R</code></dt>
+    <dd><p>The type of the field to be loaded.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Extensions_ListExtensions_LoadDataLoaderFieldAsync__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method uses a data loader to populate the specified field for each model in the
+collection. The field to be loaded is determined by the provided <code class="paramref">predicate</code>
+expression.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Extensions_ListExtensions_LoadDataLoaderFieldAsync_" data-uid="CoreRelm.Extensions.ListExtensions.LoadDataLoaderFieldAsync*"></a>
+
+  <h3 id="CoreRelm_Extensions_ListExtensions_LoadDataLoaderFieldAsync__2_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___System_Threading_CancellationToken_" data-uid="CoreRelm.Extensions.ListExtensions.LoadDataLoaderFieldAsync``2(System.Collections.Generic.ICollection{``0},CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Threading.CancellationToken)">
+  LoadDataLoaderFieldAsync&lt;T, R&gt;(ICollection&lt;T&gt;, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L867"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Loads and populates a specified field for a collection of models using a data loader.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;ICollection&lt;T&gt;&gt; LoadDataLoaderFieldAsync&lt;T, R&gt;(this ICollection&lt;T&gt; modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt; predicate, CancellationToken cancellationToken = default) where T : IRelmModel, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>modelData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;</dt>
+    <dd><p>The collection of models to be updated with the loaded field data.</p>
+</dd>
+    <dt><code>relmContextOptionsBuilder</code> <a class="xref" href="CoreRelm.Options.RelmContextOptionsBuilder.html">RelmContextOptionsBuilder</a></dt>
+    <dd><p>The options builder used to configure the database context for loading the field.</p>
+</dd>
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, R&gt;&gt;</dt>
+    <dd><p>An expression specifying the field to be loaded for each model in the collection.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;&gt;</dt>
+    <dd><p>The updated collection of models with the specified field populated.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the model in the collection. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a> and have a parameterless
+constructor.</p>
+</dd>
+    <dt><code>R</code></dt>
+    <dd><p>The type of the field to be loaded, as specified by the predicate.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Extensions_ListExtensions_LoadDataLoaderFieldAsync__2_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method uses a data loader to populate the specified field in the provided
+collection of models. Ensure that the <code class="paramref">relmContextOptionsBuilder</code> is properly configured to
+access the required data source.</p>
+</div>
+
+
+
+
   <a id="CoreRelm_Extensions_ListExtensions_LoadDataLoaderField_" data-uid="CoreRelm.Extensions.ListExtensions.LoadDataLoaderField*"></a>
 
   <h3 id="CoreRelm_Extensions_ListExtensions_LoadDataLoaderField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___" data-uid="CoreRelm.Extensions.ListExtensions.LoadDataLoaderField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
   LoadDataLoaderField&lt;T, R&gt;(ICollection&lt;T&gt;, IRelmContext, Expression&lt;Func&lt;T, R&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L443"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L820"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads and initializes a specific field for a collection of models using a data loader.</p>
@@ -396,7 +519,7 @@ expression.</p>
 
   <h3 id="CoreRelm_Extensions_ListExtensions_LoadDataLoaderField__2_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___" data-uid="CoreRelm.Extensions.ListExtensions.LoadDataLoaderField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
   LoadDataLoaderField&lt;T, R&gt;(ICollection&lt;T&gt;, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L459"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L851"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads and populates a specified field for a collection of models using a data loader.</p>
@@ -452,11 +575,11 @@ access the required data source.</p>
 
 
 
-  <a id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyField_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyField*"></a>
+  <a id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync*"></a>
 
-  <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})">
-  LoadForeignKeyField&lt;T, R&gt;(ICollection&lt;T&gt;, IRelmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L297"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___System_Threading_CancellationToken_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}},System.Threading.CancellationToken)">
+  LoadForeignKeyFieldAsync&lt;T, R&gt;(ICollection&lt;T&gt;, IRelmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L585"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads and populates a foreign key collection field for a collection of models.</p>
@@ -464,7 +587,1059 @@ access the required data source.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt; LoadForeignKeyField&lt;T, R&gt;(this ICollection&lt;T&gt; modelData, IRelmContext relmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;ICollection&lt;T&gt;?&gt; LoadForeignKeyFieldAsync&lt;T, R&gt;(this ICollection&lt;T&gt; modelData, IRelmContext relmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>modelData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;</dt>
+    <dd><p>The collection of primary models for which the foreign key field will be loaded.</p>
+</dd>
+    <dt><code>relmContext</code> <a class="xref" href="CoreRelm.Interfaces.IRelmContext.html">IRelmContext</a></dt>
+    <dd><p>The context used to access the data source and resolve the foreign key relationships.</p>
+</dd>
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;R&gt;&gt;&gt;</dt>
+    <dd><p>An expression specifying the foreign key field to populate in the primary model.</p>
+</dd>
+    <dt><code>additionalConstraints</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;R, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</dt>
+    <dd><p>An optional expression specifying additional constraints to apply when loading the related models.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;&gt;</dt>
+    <dd><p>A collection of the primary models with the specified foreign key field populated.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the primary model in the collection. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+    <dt><code>R</code></dt>
+    <dd><p>The type of the related model representing the foreign key. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method is an extension method that simplifies the process of loading related
+data for a collection of models. It uses the provided <code class="paramref">relmContext</code> to resolve the foreign
+key relationships and applies any additional constraints specified by <code class="paramref">additionalConstraints</code>.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync*"></a>
+
+  <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Threading_CancellationToken_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Threading.CancellationToken)">
+  LoadForeignKeyFieldAsync&lt;T, R&gt;(ICollection&lt;T&gt;, IRelmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L551"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Loads and populates a foreign key collection field for a collection of models.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;ICollection&lt;T&gt;?&gt; LoadForeignKeyFieldAsync&lt;T, R&gt;(this ICollection&lt;T&gt; modelData, IRelmContext relmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>modelData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;</dt>
+    <dd><p>The collection of primary models for which the foreign key field will be loaded.</p>
+</dd>
+    <dt><code>relmContext</code> <a class="xref" href="CoreRelm.Interfaces.IRelmContext.html">IRelmContext</a></dt>
+    <dd><p>The context used to access the data source and resolve the foreign key relationships.</p>
+</dd>
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;R&gt;&gt;&gt;</dt>
+    <dd><p>An expression specifying the foreign key collection property to load for each model in <code class="paramref">modelData</code>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;&gt;</dt>
+    <dd><p>The original collection of primary models with the specified foreign key field populated for each model.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the primary model in the collection. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+    <dt><code>R</code></dt>
+    <dd><p>The type of the related model in the foreign key collection. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method uses the provided <code class="paramref">relmContext</code> to resolve and populate
+the foreign key collection specified by the <code class="paramref">predicate</code> for each model in the <code class="paramref">modelData</code> collection.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync*"></a>
+
+  <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___System_Threading_CancellationToken_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}},System.Threading.CancellationToken)">
+  LoadForeignKeyFieldAsync&lt;T, R&gt;(ICollection&lt;T&gt;, IRelmContext, Expression&lt;Func&lt;T, R&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L303"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Loads and resolves a foreign key field for a collection of models, applying the specified predicate and
+additional constraints.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;ICollection&lt;T&gt;?&gt; LoadForeignKeyFieldAsync&lt;T, R&gt;(this ICollection&lt;T&gt; modelData, IRelmContext relmContext, Expression&lt;Func&lt;T, R&gt;&gt; predicate, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>modelData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;</dt>
+    <dd><p>The collection of primary models for which the foreign key field will be loaded.</p>
+</dd>
+    <dt><code>relmContext</code> <a class="xref" href="CoreRelm.Interfaces.IRelmContext.html">IRelmContext</a></dt>
+    <dd><p>The context used to resolve the foreign key relationships.</p>
+</dd>
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, R&gt;&gt;</dt>
+    <dd><p>An expression specifying the foreign key relationship between the primary and related models.</p>
+</dd>
+    <dt><code>additionalConstraints</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;R, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</dt>
+    <dd><p>An optional expression specifying additional constraints to apply when resolving the foreign key field.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;&gt;</dt>
+    <dd><p>A collection of the primary models with the foreign key field resolved based on the specified predicate and
+constraints.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the primary model in the collection. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+    <dt><code>R</code></dt>
+    <dd><p>The type of the related model to be loaded. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method is an extension method that simplifies the process of resolving foreign
+key relationships for a collection of models. It uses the provided <code class="paramref">relmContext</code> to perform
+the resolution and applies the specified <code class="paramref">predicate</code> to define the relationship. Additional
+constraints can be applied using the <code class="paramref">additionalConstraints</code> parameter.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync*"></a>
+
+  <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___System_Threading_CancellationToken_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Threading.CancellationToken)">
+  LoadForeignKeyFieldAsync&lt;T, R&gt;(ICollection&lt;T&gt;, IRelmContext, Expression&lt;Func&lt;T, R&gt;&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L265"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Loads and resolves a foreign key field for a collection of models.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;ICollection&lt;T&gt;?&gt; LoadForeignKeyFieldAsync&lt;T, R&gt;(this ICollection&lt;T&gt; modelData, IRelmContext relmContext, Expression&lt;Func&lt;T, R&gt;&gt; predicate, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>modelData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;</dt>
+    <dd><p>The collection of models for which the foreign key field will be loaded.</p>
+</dd>
+    <dt><code>relmContext</code> <a class="xref" href="CoreRelm.Interfaces.IRelmContext.html">IRelmContext</a></dt>
+    <dd><p>The context used to resolve the foreign key relationships.</p>
+</dd>
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, R&gt;&gt;</dt>
+    <dd><p>An expression specifying the foreign key field to load.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;&gt;</dt>
+    <dd><p>A collection of models with the specified foreign key field resolved.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the model in the collection. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+    <dt><code>R</code></dt>
+    <dd><p>The type of the related model to be loaded. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method uses the provided <code class="paramref">relmContext</code> to resolve the foreign
+key relationships for the specified field in the collection of models. The <code class="paramref">predicate</code>
+determines which foreign key field to load.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync*"></a>
+
+  <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync__2_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___System_Threading_CancellationToken_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync``2(System.Collections.Generic.ICollection{``0},CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}},System.Threading.CancellationToken)">
+  LoadForeignKeyFieldAsync&lt;T, R&gt;(ICollection&lt;T&gt;, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L727"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Loads and populates a foreign key collection field for the specified model data.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;ICollection&lt;T&gt;?&gt; LoadForeignKeyFieldAsync&lt;T, R&gt;(this ICollection&lt;T&gt; modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>modelData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;</dt>
+    <dd><p>The collection of primary model instances for which the foreign key field will be loaded.</p>
+</dd>
+    <dt><code>relmContextOptionsBuilder</code> <a class="xref" href="CoreRelm.Options.RelmContextOptionsBuilder.html">RelmContextOptionsBuilder</a></dt>
+    <dd><p>The options builder used to configure the database context for the operation.</p>
+</dd>
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;R&gt;&gt;&gt;</dt>
+    <dd><p>An expression specifying the foreign key collection property to populate.</p>
+</dd>
+    <dt><code>additionalConstraints</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;R, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</dt>
+    <dd><p>An optional expression defining additional constraints to apply when loading the related data.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;&gt;</dt>
+    <dd><p>A collection of the primary model instances with the specified foreign key field populated.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the primary model, which must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+    <dt><code>R</code></dt>
+    <dd><p>The type of the related model, which must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync__2_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method uses the provided <code class="paramref">relmContextOptionsBuilder</code> to
+configure the database context and loads the related data for the specified foreign key field. The <code class="paramref">additionalConstraints</code> parameter can be used to filter the related data further, if
+needed.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync*"></a>
+
+  <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync__2_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Threading_CancellationToken_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync``2(System.Collections.Generic.ICollection{``0},CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Threading.CancellationToken)">
+  LoadForeignKeyFieldAsync&lt;T, R&gt;(ICollection&lt;T&gt;, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L693"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Loads and populates a foreign key collection field for the specified collection of model data.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;ICollection&lt;T&gt;?&gt; LoadForeignKeyFieldAsync&lt;T, R&gt;(this ICollection&lt;T&gt; modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>modelData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;</dt>
+    <dd><p>The collection of primary model data for which the foreign key field will be loaded.</p>
+</dd>
+    <dt><code>relmContextOptionsBuilder</code> <a class="xref" href="CoreRelm.Options.RelmContextOptionsBuilder.html">RelmContextOptionsBuilder</a></dt>
+    <dd><p>The context options builder used to configure the data loading process.</p>
+</dd>
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;R&gt;&gt;&gt;</dt>
+    <dd><p>An expression specifying the foreign key field to load, represented as a navigation property.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;&gt;</dt>
+    <dd><p>A collection of the primary model data with the specified foreign key field populated.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the primary model in the collection. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+    <dt><code>R</code></dt>
+    <dd><p>The type of the related model representing the foreign key. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync__2_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method uses the provided <code class="paramref">relmContextOptionsBuilder</code> to
+configure the loading process and populates the foreign key field specified by the <code class="paramref">predicate</code> for each item in the <code class="paramref">modelData</code> collection.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync*"></a>
+
+  <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync__2_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___System_Threading_CancellationToken_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync``2(System.Collections.Generic.ICollection{``0},CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}},System.Threading.CancellationToken)">
+  LoadForeignKeyFieldAsync&lt;T, R&gt;(ICollection&lt;T&gt;, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L447"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Loads and populates a foreign key field for a collection of models based on the specified predicate and
+additional constraints.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;ICollection&lt;T&gt;?&gt; LoadForeignKeyFieldAsync&lt;T, R&gt;(this ICollection&lt;T&gt; modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt; predicate, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>modelData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;</dt>
+    <dd><p>The collection of primary models for which the foreign key field will be loaded.</p>
+</dd>
+    <dt><code>relmContextOptionsBuilder</code> <a class="xref" href="CoreRelm.Options.RelmContextOptionsBuilder.html">RelmContextOptionsBuilder</a></dt>
+    <dd><p>The options builder used to configure the database context for loading the foreign key data.</p>
+</dd>
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, R&gt;&gt;</dt>
+    <dd><p>An expression specifying the foreign key relationship between the primary model and the related model.</p>
+</dd>
+    <dt><code>additionalConstraints</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;R, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</dt>
+    <dd><p>An optional expression specifying additional constraints to apply when loading the foreign key data.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;&gt;</dt>
+    <dd><p>A collection of primary models with the specified foreign key field populated.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the primary model in the collection. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+    <dt><code>R</code></dt>
+    <dd><p>The type of the related model representing the foreign key. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync__2_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method uses the provided <code class="paramref">relmContextOptionsBuilder</code> to
+configure the database context and load the related data. The <code class="paramref">predicate</code> defines the
+relationship between the primary and related models, while the <code class="paramref">additionalConstraints</code> can
+be used to further filter the related data being loaded.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync*"></a>
+
+  <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync__2_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___System_Threading_CancellationToken_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync``2(System.Collections.Generic.ICollection{``0},CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Threading.CancellationToken)">
+  LoadForeignKeyFieldAsync&lt;T, R&gt;(ICollection&lt;T&gt;, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L411"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Loads and resolves a foreign key field for the specified model data collection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;ICollection&lt;T&gt;?&gt; LoadForeignKeyFieldAsync&lt;T, R&gt;(this ICollection&lt;T&gt; modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt; predicate, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>modelData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;</dt>
+    <dd><p>The collection of models for which the foreign key field will be loaded.</p>
+</dd>
+    <dt><code>relmContextOptionsBuilder</code> <a class="xref" href="CoreRelm.Options.RelmContextOptionsBuilder.html">RelmContextOptionsBuilder</a></dt>
+    <dd><p>The context options builder used to configure the loading process.</p>
+</dd>
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, R&gt;&gt;</dt>
+    <dd><p>An expression specifying the foreign key field to load.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;&gt;</dt>
+    <dd><p>A collection of models with the specified foreign key field resolved.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the model in the collection. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+    <dt><code>R</code></dt>
+    <dd><p>The type of the related model to be loaded. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync__2_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method uses a <span class="xref">CoreRelm.RelmInternal.Helpers.Utilities.ForeignKeyLoader&lt;T&gt;</span> to load the foreign key field
+specified by the <code class="paramref">predicate</code>. The foreign key field is resolved based on the provided
+context options and the relationship defined in the model.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync*"></a>
+
+  <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___System_Threading_CancellationToken_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}},System.Threading.CancellationToken)">
+  LoadForeignKeyFieldAsync&lt;T, R, S&gt;(ICollection&lt;T&gt;, IRelmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L659"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Loads and populates a foreign key collection field for a collection of models using the specified data loader and
+constraints.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;ICollection&lt;T&gt;?&gt; LoadForeignKeyFieldAsync&lt;T, R, S&gt;(this ICollection&lt;T&gt; modelData, IRelmContext relmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>modelData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;</dt>
+    <dd><p>The collection of primary models for which the foreign key field will be loaded.</p>
+</dd>
+    <dt><code>relmContext</code> <a class="xref" href="CoreRelm.Interfaces.IRelmContext.html">IRelmContext</a></dt>
+    <dd><p>The context used to manage the data loading operation.</p>
+</dd>
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;R&gt;&gt;&gt;</dt>
+    <dd><p>An expression specifying the foreign key field to populate in the primary model.</p>
+</dd>
+    <dt><code>customDataLoader</code> <a class="xref" href="CoreRelm.Interfaces.IRelmDataLoader-1.html">IRelmDataLoader</a>&lt;S&gt;</dt>
+    <dd><p>A custom data loader used to retrieve the related data.</p>
+</dd>
+    <dt><code>additionalConstraints</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;R, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</dt>
+    <dd><p>An expression specifying additional constraints to apply when loading the related data.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;&gt;</dt>
+    <dd><p>A collection of the primary models with the specified foreign key field populated.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the primary model in the collection.</p>
+</dd>
+    <dt><code>R</code></dt>
+    <dd><p>The type of the related model representing the foreign key field.</p>
+</dd>
+    <dt><code>S</code></dt>
+    <dd><p>The type of the model used by the custom data loader.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method uses a custom data loader and optional constraints to populate a foreign
+key field in the primary models. It is designed to work with models that implement the <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a> interface.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync*"></a>
+
+  <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Threading_CancellationToken_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Threading.CancellationToken)">
+  LoadForeignKeyFieldAsync&lt;T, R, S&gt;(ICollection&lt;T&gt;, IRelmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L621"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Loads and populates a foreign key collection field for a collection of models using the specified predicate and data
+loader.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;ICollection&lt;T&gt;?&gt; LoadForeignKeyFieldAsync&lt;T, R, S&gt;(this ICollection&lt;T&gt; modelData, IRelmContext relmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>modelData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;</dt>
+    <dd><p>The collection of primary models for which the foreign key field will be loaded.</p>
+</dd>
+    <dt><code>relmContext</code> <a class="xref" href="CoreRelm.Interfaces.IRelmContext.html">IRelmContext</a></dt>
+    <dd><p>The context used to interact with the data source.</p>
+</dd>
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;R&gt;&gt;&gt;</dt>
+    <dd><p>An expression specifying the foreign key field to be loaded.</p>
+</dd>
+    <dt><code>customDataLoader</code> <a class="xref" href="CoreRelm.Interfaces.IRelmDataLoader-1.html">IRelmDataLoader</a>&lt;S&gt;</dt>
+    <dd><p>A custom data loader used to retrieve the related data.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;&gt;</dt>
+    <dd><p>A collection of primary models with the specified foreign key field populated.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the primary model in the collection.</p>
+</dd>
+    <dt><code>R</code></dt>
+    <dd><p>The type of the related model representing the foreign key field.</p>
+</dd>
+    <dt><code>S</code></dt>
+    <dd><p>The type of the model used by the custom data loader.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method uses the provided <code class="paramref">customDataLoader</code> to load the related
+data for the foreign key field specified by <code class="paramref">predicate</code>. The method is an extension method
+and operates on the collection of primary models (<code class="paramref">modelData</code>).</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync*"></a>
+
+  <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___System_Threading_CancellationToken_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}},System.Threading.CancellationToken)">
+  LoadForeignKeyFieldAsync&lt;T, R, S&gt;(ICollection&lt;T&gt;, IRelmContext, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L377"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Loads and resolves a foreign key field for a collection of models, applying optional constraints and using a
+custom data loader.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;ICollection&lt;T&gt;?&gt; LoadForeignKeyFieldAsync&lt;T, R, S&gt;(this ICollection&lt;T&gt; modelData, IRelmContext relmContext, Expression&lt;Func&lt;T, R&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>modelData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;</dt>
+    <dd><p>The collection of primary models for which the foreign key field will be loaded.</p>
+</dd>
+    <dt><code>relmContext</code> <a class="xref" href="CoreRelm.Interfaces.IRelmContext.html">IRelmContext</a></dt>
+    <dd><p>The context used to interact with the data source.</p>
+</dd>
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, R&gt;&gt;</dt>
+    <dd><p>An expression specifying the foreign key field to load in the primary model.</p>
+</dd>
+    <dt><code>customDataLoader</code> <a class="xref" href="CoreRelm.Interfaces.IRelmDataLoader-1.html">IRelmDataLoader</a>&lt;S&gt;</dt>
+    <dd><p>A custom data loader used to retrieve the related data for the foreign key field.</p>
+</dd>
+    <dt><code>additionalConstraints</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;R, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</dt>
+    <dd><p>An optional expression specifying additional constraints to apply when resolving the foreign key field.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;&gt;</dt>
+    <dd><p>A collection of the primary models with the specified foreign key field resolved and populated.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the primary model in the collection. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+    <dt><code>R</code></dt>
+    <dd><p>The type of the related model representing the foreign key. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+    <dt><code>S</code></dt>
+    <dd><p>The type of the model used by the custom data loader. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method is an extension method designed to simplify the process of resolving
+foreign key relationships in a collection of models. It allows for the use of a custom data loader and
+additional constraints to tailor the loading process to specific requirements.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync*"></a>
+
+  <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Threading_CancellationToken_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Threading.CancellationToken)">
+  LoadForeignKeyFieldAsync&lt;T, R, S&gt;(ICollection&lt;T&gt;, IRelmContext, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L339"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Loads and resolves a foreign key field for a collection of models, using the specified predicate and custom
+data loader.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;ICollection&lt;T&gt;?&gt; LoadForeignKeyFieldAsync&lt;T, R, S&gt;(this ICollection&lt;T&gt; modelData, IRelmContext relmContext, Expression&lt;Func&lt;T, R&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>modelData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;</dt>
+    <dd><p>The collection of models for which the foreign key field will be loaded.</p>
+</dd>
+    <dt><code>relmContext</code> <a class="xref" href="CoreRelm.Interfaces.IRelmContext.html">IRelmContext</a></dt>
+    <dd><p>The context used to interact with the data source.</p>
+</dd>
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, R&gt;&gt;</dt>
+    <dd><p>An expression specifying the foreign key field to load.</p>
+</dd>
+    <dt><code>customDataLoader</code> <a class="xref" href="CoreRelm.Interfaces.IRelmDataLoader-1.html">IRelmDataLoader</a>&lt;S&gt;</dt>
+    <dd><p>A custom data loader used to retrieve the related data.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;&gt;</dt>
+    <dd><p>The original collection of models with the specified foreign key field resolved.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the model in the collection. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+    <dt><code>R</code></dt>
+    <dd><p>The type of the related model being loaded. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+    <dt><code>S</code></dt>
+    <dd><p>The type of the model used by the custom data loader. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method is an extension method that facilitates the resolution of foreign key
+relationships for a collection of models. The <code class="paramref">customDataLoader</code> allows for custom logic to
+be applied when loading the related data.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync*"></a>
+
+  <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync__3_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___System_Threading_CancellationToken_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync``3(System.Collections.Generic.ICollection{``0},CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}},System.Threading.CancellationToken)">
+  LoadForeignKeyFieldAsync&lt;T, R, S&gt;(ICollection&lt;T&gt;, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L801"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Loads and populates a foreign key collection field for a collection of model data.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;ICollection&lt;T&gt;?&gt; LoadForeignKeyFieldAsync&lt;T, R, S&gt;(this ICollection&lt;T&gt; modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>modelData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;</dt>
+    <dd><p>The collection of primary model data for which the foreign key field will be loaded.</p>
+</dd>
+    <dt><code>relmContextOptionsBuilder</code> <a class="xref" href="CoreRelm.Options.RelmContextOptionsBuilder.html">RelmContextOptionsBuilder</a></dt>
+    <dd><p>The options builder used to configure the data loading context.</p>
+</dd>
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;R&gt;&gt;&gt;</dt>
+    <dd><p>An expression specifying the foreign key field to be loaded.</p>
+</dd>
+    <dt><code>customDataLoader</code> <a class="xref" href="CoreRelm.Interfaces.IRelmDataLoader-1.html">IRelmDataLoader</a>&lt;S&gt;</dt>
+    <dd><p>A custom data loader used to retrieve the related data.</p>
+</dd>
+    <dt><code>additionalConstraints</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;R, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</dt>
+    <dd><p>An expression specifying additional constraints to apply when loading the foreign key field.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;&gt;</dt>
+    <dd><p>A collection of the primary model data with the specified foreign key field populated.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the primary model in the collection.</p>
+</dd>
+    <dt><code>R</code></dt>
+    <dd><p>The type of the related model representing the foreign key field.</p>
+</dd>
+    <dt><code>S</code></dt>
+    <dd><p>The type of the model used by the custom data loader.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync__3_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method uses a foreign key loader to populate the specified foreign key field for
+the provided collection of model data. The <code class="paramref">customDataLoader</code> allows for custom logic to
+retrieve the related data, and the <code class="paramref">additionalConstraints</code> parameter can be used to apply
+additional filtering or constraints.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync*"></a>
+
+  <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync__3_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Threading_CancellationToken_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync``3(System.Collections.Generic.ICollection{``0},CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Threading.CancellationToken)">
+  LoadForeignKeyFieldAsync&lt;T, R, S&gt;(ICollection&lt;T&gt;, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L763"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Loads and populates a foreign key collection field for the specified model data.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;ICollection&lt;T&gt;?&gt; LoadForeignKeyFieldAsync&lt;T, R, S&gt;(this ICollection&lt;T&gt; modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>modelData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;</dt>
+    <dd><p>The collection of primary model instances for which the foreign key field will be loaded.</p>
+</dd>
+    <dt><code>relmContextOptionsBuilder</code> <a class="xref" href="CoreRelm.Options.RelmContextOptionsBuilder.html">RelmContextOptionsBuilder</a></dt>
+    <dd><p>The options builder used to configure the data loading context.</p>
+</dd>
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;R&gt;&gt;&gt;</dt>
+    <dd><p>An expression specifying the foreign key collection property to populate.</p>
+</dd>
+    <dt><code>customDataLoader</code> <a class="xref" href="CoreRelm.Interfaces.IRelmDataLoader-1.html">IRelmDataLoader</a>&lt;S&gt;</dt>
+    <dd><p>A custom data loader used to retrieve the related data.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;&gt;</dt>
+    <dd><p>The original collection of primary model instances with the specified foreign key field populated.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the primary model in the collection.</p>
+</dd>
+    <dt><code>R</code></dt>
+    <dd><p>The type of the related model in the foreign key collection.</p>
+</dd>
+    <dt><code>S</code></dt>
+    <dd><p>The type of the model used by the custom data loader.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync__3_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method uses a <span class="xref">CoreRelm.RelmInternal.Helpers.Utilities.ForeignKeyLoader&lt;T&gt;</span> to load the foreign key
+collection field for each model instance in the provided <code class="paramref">modelData</code> collection. The
+<code class="paramref">customDataLoader</code> is used to retrieve the related data, and the <code class="paramref">predicate</code> specifies the foreign key collection property to populate.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync*"></a>
+
+  <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync__3_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___System_Threading_CancellationToken_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync``3(System.Collections.Generic.ICollection{``0},CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}},System.Threading.CancellationToken)">
+  LoadForeignKeyFieldAsync&lt;T, R, S&gt;(ICollection&lt;T&gt;, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L515"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Loads and resolves a foreign key field for a collection of models, applying additional constraints if
+specified.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;ICollection&lt;T&gt;?&gt; LoadForeignKeyFieldAsync&lt;T, R, S&gt;(this ICollection&lt;T&gt; modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>modelData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;</dt>
+    <dd><p>The collection of primary models for which the foreign key field will be loaded.</p>
+</dd>
+    <dt><code>relmContextOptionsBuilder</code> <a class="xref" href="CoreRelm.Options.RelmContextOptionsBuilder.html">RelmContextOptionsBuilder</a></dt>
+    <dd><p>The options builder used to configure the data loading context.</p>
+</dd>
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, R&gt;&gt;</dt>
+    <dd><p>An expression specifying the foreign key relationship between the primary model and the related model.</p>
+</dd>
+    <dt><code>customDataLoader</code> <a class="xref" href="CoreRelm.Interfaces.IRelmDataLoader-1.html">IRelmDataLoader</a>&lt;S&gt;</dt>
+    <dd><p>A custom data loader used to fetch the related data.</p>
+</dd>
+    <dt><code>additionalConstraints</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;R, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</dt>
+    <dd><p>An optional expression specifying additional constraints to apply when resolving the foreign key field.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;&gt;</dt>
+    <dd><p>A collection of the primary models with the foreign key field resolved and loaded.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the primary model in the collection. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+    <dt><code>R</code></dt>
+    <dd><p>The type of the related model representing the foreign key. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+    <dt><code>S</code></dt>
+    <dd><p>The type of the model used by the custom data loader. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync*"></a>
+
+  <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync__3_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Threading_CancellationToken_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyFieldAsync``3(System.Collections.Generic.ICollection{``0},CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Threading.CancellationToken)">
+  LoadForeignKeyFieldAsync&lt;T, R, S&gt;(ICollection&lt;T&gt;, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L483"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Loads and resolves a foreign key field for a collection of models, using the specified predicate and custom
+data loader.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;ICollection&lt;T&gt;?&gt; LoadForeignKeyFieldAsync&lt;T, R, S&gt;(this ICollection&lt;T&gt; modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>modelData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;</dt>
+    <dd><p>The collection of primary models for which the foreign key field will be loaded.</p>
+</dd>
+    <dt><code>relmContextOptionsBuilder</code> <a class="xref" href="CoreRelm.Options.RelmContextOptionsBuilder.html">RelmContextOptionsBuilder</a></dt>
+    <dd><p>The options builder used to configure the data loading context.</p>
+</dd>
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, R&gt;&gt;</dt>
+    <dd><p>An expression specifying the foreign key relationship to resolve.</p>
+</dd>
+    <dt><code>customDataLoader</code> <a class="xref" href="CoreRelm.Interfaces.IRelmDataLoader-1.html">IRelmDataLoader</a>&lt;S&gt;</dt>
+    <dd><p>A custom data loader used to fetch the related data.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;&gt;</dt>
+    <dd><p>A collection of the primary models with the specified foreign key field resolved.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the primary model in the collection. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+    <dt><code>R</code></dt>
+    <dd><p>The type of the related model being resolved. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+    <dt><code>S</code></dt>
+    <dd><p>The type of the model used by the custom data loader. Must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyFieldAsync__3_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method uses a foreign key loader to resolve the specified relationship for the
+provided collection of models. The <code class="paramref">customDataLoader</code> allows for custom logic to be applied
+when loading the related data.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyField_" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyField*"></a>
+
+  <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})">
+  LoadForeignKeyField&lt;T, R&gt;(ICollection&lt;T&gt;, IRelmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L535"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Loads and populates a foreign key collection field for a collection of models.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt;? LoadForeignKeyField&lt;T, R&gt;(this ICollection&lt;T&gt; modelData, IRelmContext relmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -514,7 +1689,7 @@ the foreign key collection specified by the <code class="paramref">predicate</co
 
   <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})">
   LoadForeignKeyField&lt;T, R&gt;(ICollection&lt;T&gt;, IRelmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L314"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L568"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads and populates a foreign key collection field for a collection of models.</p>
@@ -522,7 +1697,7 @@ the foreign key collection specified by the <code class="paramref">predicate</co
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt; LoadForeignKeyField&lt;T, R&gt;(this ICollection&lt;T&gt; modelData, IRelmContext relmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt;? LoadForeignKeyField&lt;T, R&gt;(this ICollection&lt;T&gt; modelData, IRelmContext relmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -576,7 +1751,7 @@ key relationships and applies any additional constraints specified by <code clas
 
   <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
   LoadForeignKeyField&lt;T, R&gt;(ICollection&lt;T&gt;, IRelmContext, Expression&lt;Func&lt;T, R&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L150"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L250"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads and resolves a foreign key field for a collection of models.</p>
@@ -584,7 +1759,7 @@ key relationships and applies any additional constraints specified by <code clas
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt; LoadForeignKeyField&lt;T, R&gt;(this ICollection&lt;T&gt; modelData, IRelmContext relmContext, Expression&lt;Func&lt;T, R&gt;&gt; predicate) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt;? LoadForeignKeyField&lt;T, R&gt;(this ICollection&lt;T&gt; modelData, IRelmContext relmContext, Expression&lt;Func&lt;T, R&gt;&gt; predicate) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -635,7 +1810,7 @@ determines which foreign key field to load.</p>
 
   <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})">
   LoadForeignKeyField&lt;T, R&gt;(ICollection&lt;T&gt;, IRelmContext, Expression&lt;Func&lt;T, R&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L169"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L284"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads and resolves a foreign key field for a collection of models, applying the specified predicate and
@@ -644,7 +1819,7 @@ additional constraints.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt; LoadForeignKeyField&lt;T, R&gt;(this ICollection&lt;T&gt; modelData, IRelmContext relmContext, Expression&lt;Func&lt;T, R&gt;&gt; predicate, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt;? LoadForeignKeyField&lt;T, R&gt;(this ICollection&lt;T&gt; modelData, IRelmContext relmContext, Expression&lt;Func&lt;T, R&gt;&gt; predicate, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -700,7 +1875,7 @@ constraints can be applied using the <code class="paramref">additionalConstraint
 
   <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})">
   LoadForeignKeyField&lt;T, R&gt;(ICollection&lt;T&gt;, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L370"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L678"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads and populates a foreign key collection field for the specified collection of model data.</p>
@@ -708,7 +1883,7 @@ constraints can be applied using the <code class="paramref">additionalConstraint
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt; LoadForeignKeyField&lt;T, R&gt;(this ICollection&lt;T&gt; modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt;? LoadForeignKeyField&lt;T, R&gt;(this ICollection&lt;T&gt; modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -758,7 +1933,7 @@ configure the loading process and populates the foreign key field specified by t
 
   <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})">
   LoadForeignKeyField&lt;T, R&gt;(ICollection&lt;T&gt;, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L387"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L710"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads and populates a foreign key collection field for the specified model data.</p>
@@ -766,7 +1941,7 @@ configure the loading process and populates the foreign key field specified by t
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt; LoadForeignKeyField&lt;T, R&gt;(this ICollection&lt;T&gt; modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt;? LoadForeignKeyField&lt;T, R&gt;(this ICollection&lt;T&gt; modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -820,7 +1995,7 @@ needed.</p>
 
   <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
   LoadForeignKeyField&lt;T, R&gt;(ICollection&lt;T&gt;, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L225"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L396"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads and resolves a foreign key field for the specified model data collection.</p>
@@ -828,7 +2003,7 @@ needed.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt; LoadForeignKeyField&lt;T, R&gt;(this ICollection&lt;T&gt; modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt; predicate) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt;? LoadForeignKeyField&lt;T, R&gt;(this ICollection&lt;T&gt; modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt; predicate) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -879,7 +2054,7 @@ context options and the relationship defined in the model.</p>
 
   <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__2_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``2(System.Collections.Generic.ICollection{``0},CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})">
   LoadForeignKeyField&lt;T, R&gt;(ICollection&lt;T&gt;, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L243"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L429"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads and populates a foreign key field for a collection of models based on the specified predicate and
@@ -888,7 +2063,7 @@ additional constraints.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt; LoadForeignKeyField&lt;T, R&gt;(this ICollection&lt;T&gt; modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt; predicate, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt;? LoadForeignKeyField&lt;T, R&gt;(this ICollection&lt;T&gt; modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt; predicate, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -943,7 +2118,7 @@ be used to further filter the related data being loaded.</p>
 
   <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})">
   LoadForeignKeyField&lt;T, R, S&gt;(ICollection&lt;T&gt;, IRelmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L332"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L603"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads and populates a foreign key collection field for a collection of models using the specified predicate and data
@@ -952,7 +2127,7 @@ loader.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt; LoadForeignKeyField&lt;T, R, S&gt;(this ICollection&lt;T&gt; modelData, IRelmContext relmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt;? LoadForeignKeyField&lt;T, R, S&gt;(this ICollection&lt;T&gt; modelData, IRelmContext relmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1009,7 +2184,7 @@ and operates on the collection of primary models (<code class="paramref">modelDa
 
   <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})">
   LoadForeignKeyField&lt;T, R, S&gt;(ICollection&lt;T&gt;, IRelmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L351"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L640"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads and populates a foreign key collection field for a collection of models using the specified data loader and
@@ -1018,7 +2193,7 @@ constraints.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt; LoadForeignKeyField&lt;T, R, S&gt;(this ICollection&lt;T&gt; modelData, IRelmContext relmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt;? LoadForeignKeyField&lt;T, R, S&gt;(this ICollection&lt;T&gt; modelData, IRelmContext relmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1077,7 +2252,7 @@ key field in the primary models. It is designed to work with models that impleme
 
   <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})">
   LoadForeignKeyField&lt;T, R, S&gt;(ICollection&lt;T&gt;, IRelmContext, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L187"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L321"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads and resolves a foreign key field for a collection of models, using the specified predicate and custom
@@ -1086,7 +2261,7 @@ data loader.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt; LoadForeignKeyField&lt;T, R, S&gt;(this ICollection&lt;T&gt; modelData, IRelmContext relmContext, Expression&lt;Func&lt;T, R&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt;? LoadForeignKeyField&lt;T, R, S&gt;(this ICollection&lt;T&gt; modelData, IRelmContext relmContext, Expression&lt;Func&lt;T, R&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1143,7 +2318,7 @@ be applied when loading the related data.</p>
 
   <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})">
   LoadForeignKeyField&lt;T, R, S&gt;(ICollection&lt;T&gt;, IRelmContext, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L206"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L358"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads and resolves a foreign key field for a collection of models, applying optional constraints and using a
@@ -1152,7 +2327,7 @@ custom data loader.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt; LoadForeignKeyField&lt;T, R, S&gt;(this ICollection&lt;T&gt; modelData, IRelmContext relmContext, Expression&lt;Func&lt;T, R&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt;? LoadForeignKeyField&lt;T, R, S&gt;(this ICollection&lt;T&gt; modelData, IRelmContext relmContext, Expression&lt;Func&lt;T, R&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1212,7 +2387,7 @@ additional constraints to tailor the loading process to specific requirements.</
 
   <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})">
   LoadForeignKeyField&lt;T, R, S&gt;(ICollection&lt;T&gt;, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L405"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L745"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads and populates a foreign key collection field for the specified model data.</p>
@@ -1220,7 +2395,7 @@ additional constraints to tailor the loading process to specific requirements.</
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt; LoadForeignKeyField&lt;T, R, S&gt;(this ICollection&lt;T&gt; modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt;? LoadForeignKeyField&lt;T, R, S&gt;(this ICollection&lt;T&gt; modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1277,7 +2452,7 @@ collection field for each model instance in the provided <code class="paramref">
 
   <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})">
   LoadForeignKeyField&lt;T, R, S&gt;(ICollection&lt;T&gt;, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L424"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L782"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads and populates a foreign key collection field for a collection of model data.</p>
@@ -1285,7 +2460,7 @@ collection field for each model instance in the provided <code class="paramref">
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt; LoadForeignKeyField&lt;T, R, S&gt;(this ICollection&lt;T&gt; modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt;? LoadForeignKeyField&lt;T, R, S&gt;(this ICollection&lt;T&gt; modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1346,7 +2521,7 @@ additional filtering or constraints.</p>
 
   <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})">
   LoadForeignKeyField&lt;T, R, S&gt;(ICollection&lt;T&gt;, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L261"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L465"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads and resolves a foreign key field for a collection of models, using the specified predicate and custom
@@ -1355,7 +2530,7 @@ data loader.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt; LoadForeignKeyField&lt;T, R, S&gt;(this ICollection&lt;T&gt; modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt;? LoadForeignKeyField&lt;T, R, S&gt;(this ICollection&lt;T&gt; modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1412,7 +2587,7 @@ when loading the related data.</p>
 
   <h3 id="CoreRelm_Extensions_ListExtensions_LoadForeignKeyField__3_System_Collections_Generic_ICollection___0__CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___" data-uid="CoreRelm.Extensions.ListExtensions.LoadForeignKeyField``3(System.Collections.Generic.ICollection{``0},CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})">
   LoadForeignKeyField&lt;T, R, S&gt;(ICollection&lt;T&gt;, RelmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L277"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L499"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads and resolves a foreign key field for a collection of models, applying additional constraints if
@@ -1421,7 +2596,7 @@ specified.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt; LoadForeignKeyField&lt;T, R, S&gt;(this ICollection&lt;T&gt; modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static ICollection&lt;T&gt;? LoadForeignKeyField&lt;T, R, S&gt;(this ICollection&lt;T&gt; modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression&lt;Func&lt;T, R&gt;&gt; predicate, IRelmDataLoader&lt;S&gt; customDataLoader, Expression&lt;Func&lt;R, object&gt;&gt; additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1472,11 +2647,336 @@ specified.</p>
 
 
 
+  <a id="CoreRelm_Extensions_ListExtensions_WriteToDatabaseAsync_" data-uid="CoreRelm.Extensions.ListExtensions.WriteToDatabaseAsync*"></a>
+
+  <h3 id="CoreRelm_Extensions_ListExtensions_WriteToDatabaseAsync__1_System_Collections_Generic_IEnumerable___0__CoreRelm_Interfaces_IRelmContext_System_String_System_Type_System_Int32_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_" data-uid="CoreRelm.Extensions.ListExtensions.WriteToDatabaseAsync``1(System.Collections.Generic.IEnumerable{``0},CoreRelm.Interfaces.IRelmContext,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
+  WriteToDatabaseAsync&lt;T&gt;(IEnumerable&lt;T&gt;, IRelmContext, string?, Type?, int, string?, bool, bool, bool, bool, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L231"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Writes the specified collection of data to a database table in bulk.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;int&gt; WriteToDatabaseAsync&lt;T&gt;(this IEnumerable&lt;T&gt; modelData, IRelmContext relmContext, string? tableName = null, Type? forceType = null, int batchSize = 100, string? databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>modelData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</dt>
+    <dd><p>The collection of data objects to write to the database. Cannot be null or empty.</p>
+</dd>
+    <dt><code>relmContext</code> <a class="xref" href="CoreRelm.Interfaces.IRelmContext.html">IRelmContext</a></dt>
+    <dd><p>The database context used to perform the write operation. Cannot be null.</p>
+</dd>
+    <dt><code>tableName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the database table to write to. If null, the table name is inferred from the type <code class="typeparamref">T</code>.</p>
+</dd>
+    <dt><code>forceType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd><p>An optional type to enforce for the database table schema. If null, the schema is inferred from
+<code class="typeparamref">T</code>.</p>
+</dd>
+    <dt><code>batchSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of records to write in each batch. Defaults to 100. Must be greater than zero.</p>
+</dd>
+    <dt><code>databaseName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the database to write to. If null, the default database is used.</p>
+</dd>
+    <dt><code>allowAutoIncrementColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Indicates whether auto-increment columns are allowed in the table. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>allowPrimaryKeyColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Indicates whether primary key columns are allowed in the table. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>allowUniqueColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Indicates whether unique columns are allowed in the table. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>allowAutoDateColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Indicates whether auto-generated date columns are allowed in the table. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>The number of records successfully written to the database.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the data objects to be written to the database.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Extensions_ListExtensions_WriteToDatabaseAsync__1_System_Collections_Generic_IEnumerable___0__CoreRelm_Interfaces_IRelmContext_System_String_System_Type_System_Int32_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method performs a bulk write operation, which is optimized for performance when
+inserting large amounts of data. The table schema is inferred from the type <code class="typeparamref">T</code> unless
+a specific schema is enforced using the <code class="paramref">forceType</code> parameter.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Extensions_ListExtensions_WriteToDatabaseAsync_" data-uid="CoreRelm.Extensions.ListExtensions.WriteToDatabaseAsync*"></a>
+
+  <h3 id="CoreRelm_Extensions_ListExtensions_WriteToDatabaseAsync__1_System_Collections_Generic_IEnumerable___0__MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_String_System_Type_System_Int32_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_" data-uid="CoreRelm.Extensions.ListExtensions.WriteToDatabaseAsync``1(System.Collections.Generic.IEnumerable{``0},MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
+  WriteToDatabaseAsync&lt;T&gt;(IEnumerable&lt;T&gt;, MySqlConnection, MySqlTransaction, string?, Type?, int, string?, bool, bool, bool, bool, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L185"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Writes a collection of model data to a database table in bulk.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;int&gt; WriteToDatabaseAsync&lt;T&gt;(this IEnumerable&lt;T&gt; modelData, MySqlConnection existingConnection, MySqlTransaction sqlTransaction, string? tableName = null, Type? forceType = null, int batchSize = 100, string? databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false, CancellationToken cancellationToken = default) where T : IRelmModel</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>modelData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</dt>
+    <dd><p>The collection of model data to write to the database.</p>
+</dd>
+    <dt><code>existingConnection</code> <span class="xref">MySqlConnection</span></dt>
+    <dd><p>An open <span class="xref">MySql.Data.MySqlClient.MySqlConnection</span> to the database where the data will be written.</p>
+</dd>
+    <dt><code>sqlTransaction</code> <span class="xref">MySqlTransaction</span></dt>
+    <dd><p>An optional <span class="xref">MySql.Data.MySqlClient.MySqlTransaction</span> to use for the operation. If null, no transaction is used.</p>
+</dd>
+    <dt><code>tableName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the database table to write to. If null, the table name is inferred from the model type.</p>
+</dd>
+    <dt><code>forceType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd><p>An optional <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a> to enforce a specific model type for the operation. If null, the type of
+<code class="typeparamref">T</code> is used.</p>
+</dd>
+    <dt><code>batchSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of rows to write in each batch. Defaults to 100.</p>
+</dd>
+    <dt><code>databaseName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the database to write to. If null, the default database for the connection is used.</p>
+</dd>
+    <dt><code>allowAutoIncrementColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Indicates whether auto-increment columns are allowed to be written. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>allowPrimaryKeyColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Indicates whether primary key columns are allowed to be written. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>allowUniqueColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Indicates whether unique columns are allowed to be written. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>allowAutoDateColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Indicates whether auto-generated date columns are allowed to be written. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>The number of rows successfully written to the database.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the model data, which must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Extensions_ListExtensions_WriteToDatabaseAsync__1_System_Collections_Generic_IEnumerable___0__MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_String_System_Type_System_Int32_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method performs a bulk write operation, which is optimized for inserting large
+amounts of data efficiently. The caller is responsible for ensuring that the <code class="paramref">existingConnection</code> is open and valid before calling this method. If <code class="paramref">sqlTransaction</code> is provided, the operation will be part of the specified transaction.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Extensions_ListExtensions_WriteToDatabaseAsync_" data-uid="CoreRelm.Extensions.ListExtensions.WriteToDatabaseAsync*"></a>
+
+  <h3 id="CoreRelm_Extensions_ListExtensions_WriteToDatabaseAsync__1_System_Collections_Generic_IEnumerable___0__MySql_Data_MySqlClient_MySqlConnection_System_String_System_Type_System_Int32_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_" data-uid="CoreRelm.Extensions.ListExtensions.WriteToDatabaseAsync``1(System.Collections.Generic.IEnumerable{``0},MySql.Data.MySqlClient.MySqlConnection,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
+  WriteToDatabaseAsync&lt;T&gt;(IEnumerable&lt;T&gt;, MySqlConnection, string?, Type?, int, string?, bool, bool, bool, bool, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L160"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Writes a collection of model data to a database table in bulk.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;int&gt; WriteToDatabaseAsync&lt;T&gt;(this IEnumerable&lt;T&gt; modelData, MySqlConnection existingConnection, string? tableName = null, Type? forceType = null, int batchSize = 100, string? databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false, CancellationToken cancellationToken = default) where T : IRelmModel</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>modelData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</dt>
+    <dd><p>The collection of model data to write to the database.</p>
+</dd>
+    <dt><code>existingConnection</code> <span class="xref">MySqlConnection</span></dt>
+    <dd><p>An open <span class="xref">MySql.Data.MySqlClient.MySqlConnection</span> to the database where the data will be written.</p>
+</dd>
+    <dt><code>tableName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the database table to write to. If null, the table name is inferred from the model type.</p>
+</dd>
+    <dt><code>forceType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd><p>An optional <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a> to enforce a specific model type for the operation. If null, the type of
+<code class="typeparamref">T</code> is used.</p>
+</dd>
+    <dt><code>batchSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of rows to write in each batch. Defaults to 100.</p>
+</dd>
+    <dt><code>databaseName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the database to write to. If null, the default database for the connection is used.</p>
+</dd>
+    <dt><code>allowAutoIncrementColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Indicates whether auto-increment columns are allowed to be written. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>allowPrimaryKeyColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Indicates whether primary key columns are allowed to be written. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>allowUniqueColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Indicates whether unique columns are allowed to be written. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>allowAutoDateColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Indicates whether auto-generated date columns are allowed to be written. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>The number of rows successfully written to the database.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the model data, which must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Extensions_ListExtensions_WriteToDatabaseAsync__1_System_Collections_Generic_IEnumerable___0__MySql_Data_MySqlClient_MySqlConnection_System_String_System_Type_System_Int32_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method performs a bulk write operation, which is optimized for inserting large
+amounts of data efficiently. The caller is responsible for ensuring that the <code class="paramref">existingConnection</code> is open and valid before calling this method. If <code class="paramref">sqlTransaction</code> is provided, the operation will be part of the specified transaction.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Extensions_ListExtensions_WriteToDatabaseAsync_" data-uid="CoreRelm.Extensions.ListExtensions.WriteToDatabaseAsync*"></a>
+
+  <h3 id="CoreRelm_Extensions_ListExtensions_WriteToDatabaseAsync__1_System_Collections_Generic_IEnumerable___0__System_Enum_System_String_System_Type_System_Boolean_System_Int32_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_" data-uid="CoreRelm.Extensions.ListExtensions.WriteToDatabaseAsync``1(System.Collections.Generic.IEnumerable{``0},System.Enum,System.String,System.Type,System.Boolean,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
+  WriteToDatabaseAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Enum, string?, Type?, bool, int, string?, bool, bool, bool, bool, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L87"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Writes a collection of model data to a database table in bulk.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;int&gt; WriteToDatabaseAsync&lt;T&gt;(this IEnumerable&lt;T&gt; modelData, Enum connectionName, string? tableName = null, Type? forceType = null, bool allowUserVariables = false, int batchSize = 100, string? databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false, CancellationToken cancellationToken = default) where T : IRelmModel</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>modelData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</dt>
+    <dd><p>The collection of model data to be written to the database.</p>
+</dd>
+    <dt><code>connectionName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.enum">Enum</a></dt>
+    <dd><p>The database connection identifier, represented as an enumeration value.</p>
+</dd>
+    <dt><code>tableName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the database table to write to. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, the default table name for the model
+type <code class="typeparamref">T</code> is used.</p>
+</dd>
+    <dt><code>forceType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd><p>An optional type to enforce during the write operation. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, the type of <code class="typeparamref">T</code> is used.</p>
+</dd>
+    <dt><code>allowUserVariables</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether user-defined variables are allowed in the database operation. The default is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>batchSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of records to write in each batch. The default is 100.</p>
+</dd>
+    <dt><code>databaseName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the database to write to. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, the default database for the connection is
+used.</p>
+</dd>
+    <dt><code>allowAutoIncrementColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether auto-increment columns are allowed to be written. The default is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>allowPrimaryKeyColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether primary key columns are allowed to be written. The default is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>allowUniqueColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether unique columns are allowed to be written. The default is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>allowAutoDateColumns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether auto-generated date columns are allowed to be written. The default is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>The number of records successfully written to the database.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the model data, which must implement <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Extensions_ListExtensions_WriteToDatabaseAsync__1_System_Collections_Generic_IEnumerable___0__System_Enum_System_String_System_Type_System_Boolean_System_Int32_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method performs a bulk write operation, which is optimized for high performance
+when inserting large amounts of data. Ensure that the database schema matches the structure of the model
+data to avoid runtime errors.</p>
+</div>
+
+
+
+
   <a id="CoreRelm_Extensions_ListExtensions_WriteToDatabase_" data-uid="CoreRelm.Extensions.ListExtensions.WriteToDatabase*"></a>
 
   <h3 id="CoreRelm_Extensions_ListExtensions_WriteToDatabase__1_System_Collections_Generic_IEnumerable___0__CoreRelm_Interfaces_IRelmContext_System_String_System_Type_System_Int32_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Extensions.ListExtensions.WriteToDatabase``1(System.Collections.Generic.IEnumerable{``0},CoreRelm.Interfaces.IRelmContext,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
   WriteToDatabase&lt;T&gt;(IEnumerable&lt;T&gt;, IRelmContext, string?, Type?, int, string?, bool, bool, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L131"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L208"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Writes the specified collection of data to a database table in bulk.</p>
@@ -1554,7 +3054,7 @@ a specific schema is enforced using the <code class="paramref">forceType</code> 
 
   <h3 id="CoreRelm_Extensions_ListExtensions_WriteToDatabase__1_System_Collections_Generic_IEnumerable___0__MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_String_System_Type_System_Int32_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Extensions.ListExtensions.WriteToDatabase``1(System.Collections.Generic.IEnumerable{``0},MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
   WriteToDatabase&lt;T&gt;(IEnumerable&lt;T&gt;, MySqlConnection, MySqlTransaction, string?, Type?, int, string?, bool, bool, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L108"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L136"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Writes a collection of model data to a database table in bulk.</p>
@@ -1634,7 +3134,7 @@ amounts of data efficiently. The caller is responsible for ensuring that the <co
 
   <h3 id="CoreRelm_Extensions_ListExtensions_WriteToDatabase__1_System_Collections_Generic_IEnumerable___0__MySql_Data_MySqlClient_MySqlConnection_System_String_System_Type_System_Int32_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Extensions.ListExtensions.WriteToDatabase``1(System.Collections.Generic.IEnumerable{``0},MySql.Data.MySqlClient.MySqlConnection,System.String,System.Type,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
   WriteToDatabase&lt;T&gt;(IEnumerable&lt;T&gt;, MySqlConnection, string?, Type?, int, string?, bool, bool, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L83"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L111"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Writes a collection of model data to a database table in bulk.</p>
@@ -1711,7 +3211,7 @@ amounts of data efficiently. The caller is responsible for ensuring that the <co
 
   <h3 id="CoreRelm_Extensions_ListExtensions_WriteToDatabase__1_System_Collections_Generic_IEnumerable___0__System_Enum_System_String_System_Type_System_Boolean_System_Int32_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Extensions.ListExtensions.WriteToDatabase``1(System.Collections.Generic.IEnumerable{``0},System.Enum,System.String,System.Type,System.Boolean,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
   WriteToDatabase&lt;T&gt;(IEnumerable&lt;T&gt;, Enum, string?, Type?, bool, int, string?, bool, bool, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L58"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Writes a collection of model data to a database table in bulk.</p>
@@ -1793,7 +3293,7 @@ data to avoid runtime errors.</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L29" class="edit-link">Edit this page</a>
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Extensions/ListExtensions.cs/#L28" class="edit-link">Edit this page</a>
         </div>
 
 

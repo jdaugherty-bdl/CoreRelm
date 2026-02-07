@@ -103,7 +103,7 @@ with a Relm database.</p>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[AttributeUsage(AttributeTargets.Class|AttributeTargets.Struct, AllowMultiple = true)]
+    <pre><code class="lang-csharp hljs">[AttributeUsage(AttributeTargets.Class|AttributeTargets.Struct|AttributeTargets.Property, AllowMultiple = true)]
 public sealed class RelmIndex : Attribute</code></pre>
   </div>
 
@@ -266,9 +266,9 @@ database.</p>
 
   <a id="CoreRelm_Attributes_RelmIndex__ctor_" data-uid="CoreRelm.Attributes.RelmIndex.#ctor*"></a>
 
-  <h3 id="CoreRelm_Attributes_RelmIndex__ctor_System_String___" data-uid="CoreRelm.Attributes.RelmIndex.#ctor(System.String[])">
-  RelmIndex(string[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Attributes/RelmIndex.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Attributes_RelmIndex__ctor_System_String___System_String_System_Boolean_System_Boolean_" data-uid="CoreRelm.Attributes.RelmIndex.#ctor(System.String[],System.String,System.Boolean,System.Boolean)">
+  RelmIndex(string[]?, string?, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Attributes/RelmIndex.cs/#L47"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the RelmIndex class with the specified properties to be indexed.</p>
@@ -276,7 +276,7 @@ database.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RelmIndex(string[] indexedProperties)</code></pre>
+    <pre><code class="lang-csharp hljs">public RelmIndex(string[]? indexedProperties = null, string? indexName = null, bool descending = false, bool unique = false)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -284,6 +284,14 @@ database.</p>
     <dt><code>indexedProperties</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</dt>
     <dd><p>An array of property names to be indexed. Must contain at least one element.</p>
 </dd>
+    <dt><code>indexName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the index. If null, a default name will be generated based on the indexed properties.</p>
+</dd>
+    <dt><code>descending</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A value indicating whether the index should be created in descending order. Default is false (ascending order).</p>
+</dd>
+    <dt><code>unique</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
   </dl>
 
 
@@ -305,6 +313,70 @@ database.</p>
 
   <h2 class="section" id="properties">Properties
 </h2>
+
+
+  <a id="CoreRelm_Attributes_RelmIndex_Descending_" data-uid="CoreRelm.Attributes.RelmIndex.Descending*"></a>
+
+  <h3 id="CoreRelm_Attributes_RelmIndex_Descending" data-uid="CoreRelm.Attributes.RelmIndex.Descending">
+  Descending
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Attributes/RelmIndex.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets a value indicating whether the sort order is descending.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Descending { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Attributes_RelmIndex_IndexName_" data-uid="CoreRelm.Attributes.RelmIndex.IndexName*"></a>
+
+  <h3 id="CoreRelm_Attributes_RelmIndex_IndexName" data-uid="CoreRelm.Attributes.RelmIndex.IndexName">
+  IndexName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Attributes/RelmIndex.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the name of the index to be used for operations.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? IndexName { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
 
 
   <a id="CoreRelm_Attributes_RelmIndex_IndexedProperties_" data-uid="CoreRelm.Attributes.RelmIndex.IndexedProperties*"></a>
@@ -329,6 +401,38 @@ database.</p>
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Attributes_RelmIndex_Unique_" data-uid="CoreRelm.Attributes.RelmIndex.Unique*"></a>
+
+  <h3 id="CoreRelm_Attributes_RelmIndex_Unique" data-uid="CoreRelm.Attributes.RelmIndex.Unique">
+  Unique
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Attributes/RelmIndex.cs/#L38"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets a value indicating whether this is a unique index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Unique { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd></dd>
   </dl>
 

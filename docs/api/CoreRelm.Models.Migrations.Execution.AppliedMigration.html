@@ -160,13 +160,25 @@ public class AppliedMigration : RelmModel, IRelmModel</code></pre>
       <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModel.WriteToDatabase(Enum, int, bool, bool, bool, bool)</a>
     </div>
     <div>
+      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabaseAsync_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_">RelmModel.WriteToDatabaseAsync(Enum, int, bool, bool, bool, bool, CancellationToken)</a>
+    </div>
+    <div>
       <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModel.WriteToDatabase(MySqlConnection, int, bool, bool, bool, bool)</a>
     </div>
     <div>
       <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModel.WriteToDatabase(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool)</a>
     </div>
     <div>
+      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_">RelmModel.WriteToDatabaseAsync(MySqlConnection, int, bool, bool, bool, bool, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_">RelmModel.WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool, CancellationToken)</a>
+    </div>
+    <div>
       <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModel.WriteToDatabase(IRelmContext, int, bool, bool, bool, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabaseAsync_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_">RelmModel.WriteToDatabaseAsync(IRelmContext, int, bool, bool, bool, bool, CancellationToken)</a>
     </div>
     <div>
       <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_CoreRelm_Options_RelmContextOptionsBuilder_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModel.WriteToDatabase(RelmContextOptionsBuilder, int, bool, bool, bool, bool)</a>
@@ -346,7 +358,7 @@ public class AppliedMigration : RelmModel, IRelmModel</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, false, false, false, false, null, false, false, false, false)]
 public DateTime AppliedUtc { get; init; }</code></pre>
   </div>
 
@@ -378,7 +390,7 @@ public DateTime AppliedUtc { get; init; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+    <pre><code class="lang-csharp hljs">[RelmColumn(&quot;char&quot;, null, 64, null, false, false, false, false, null, false, false, false, false)]
 public string ChecksumSha256 { get; init; }</code></pre>
   </div>
 
@@ -410,7 +422,7 @@ public string ChecksumSha256 { get; init; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, 255, null, false, false, false, true, null, false, false, false, false)]
 public string FileName { get; init; }</code></pre>
   </div>
 

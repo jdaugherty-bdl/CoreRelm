@@ -8,9 +8,11 @@ items:
   - CoreRelm.Interfaces.IRelmDataLoader`1.AddExpression(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
   - CoreRelm.Interfaces.IRelmDataLoader`1.AddSingleExpression(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
   - CoreRelm.Interfaces.IRelmDataLoader`1.GetLoadData
+  - CoreRelm.Interfaces.IRelmDataLoader`1.GetLoadDataAsync(System.Threading.CancellationToken)
   - CoreRelm.Interfaces.IRelmDataLoader`1.HasUnderscoreProperty(System.String)
   - CoreRelm.Interfaces.IRelmDataLoader`1.LastCommandsExecuted
   - CoreRelm.Interfaces.IRelmDataLoader`1.WriteData
+  - CoreRelm.Interfaces.IRelmDataLoader`1.WriteDataAsync(System.Threading.CancellationToken)
   langs:
   - csharp
   - vb
@@ -107,7 +109,7 @@ items:
         collection may be empty if no data is available.
   example: []
   syntax:
-    content: ICollection<T> GetLoadData()
+    content: ICollection<T?>? GetLoadData()
     return:
       type: System.Collections.Generic.ICollection{{T}}
       description: >-
@@ -215,7 +217,7 @@ items:
   summary: Adds a single expression to the specified command and returns the resulting execution command.
   example: []
   syntax:
-    content: IRelmExecutionCommand AddSingleExpression(Commands.Command command, Expression? expression)
+    content: IRelmExecutionCommand? AddSingleExpression(Commands.Command command, Expression? expression)
     parameters:
     - id: command
       type: CoreRelm.Enums.Commands.Command
@@ -269,6 +271,83 @@ items:
   nameWithType.vb: IRelmDataLoader(Of T).HasUnderscoreProperty(String)
   fullName.vb: CoreRelm.Interfaces.IRelmDataLoader(Of T).HasUnderscoreProperty(String)
   name.vb: HasUnderscoreProperty(String)
+- uid: CoreRelm.Interfaces.IRelmDataLoader`1.GetLoadDataAsync(System.Threading.CancellationToken)
+  commentId: M:CoreRelm.Interfaces.IRelmDataLoader`1.GetLoadDataAsync(System.Threading.CancellationToken)
+  id: GetLoadDataAsync(System.Threading.CancellationToken)
+  parent: CoreRelm.Interfaces.IRelmDataLoader`1
+  langs:
+  - csharp
+  - vb
+  name: GetLoadDataAsync(CancellationToken)
+  nameWithType: IRelmDataLoader<T>.GetLoadDataAsync(CancellationToken)
+  fullName: CoreRelm.Interfaces.IRelmDataLoader<T>.GetLoadDataAsync(System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Interfaces/IRelmDataLoader.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: GetLoadDataAsync
+    path: ../CoreRelm/Interfaces/IRelmDataLoader.cs
+    startLine: 75
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces
+  summary: Retrieves a collection of data items of type <code class="typeparamref">T</code>.
+  remarks: >-
+    The returned collection contains the data items that are to be loaded.  The
+        collection may be empty if no data is available.
+  example: []
+  syntax:
+    content: Task<ICollection<T?>?> GetLoadDataAsync(CancellationToken cancellationToken)
+    parameters:
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.ICollection{{T}}}
+      description: >-
+        A collection of data items of type <code class="typeparamref">T</code>. The collection will be empty if no data is
+            available.
+    content.vb: Function GetLoadDataAsync(cancellationToken As CancellationToken) As Task(Of ICollection(Of T))
+  overload: CoreRelm.Interfaces.IRelmDataLoader`1.GetLoadDataAsync*
+  nameWithType.vb: IRelmDataLoader(Of T).GetLoadDataAsync(CancellationToken)
+  fullName.vb: CoreRelm.Interfaces.IRelmDataLoader(Of T).GetLoadDataAsync(System.Threading.CancellationToken)
+- uid: CoreRelm.Interfaces.IRelmDataLoader`1.WriteDataAsync(System.Threading.CancellationToken)
+  commentId: M:CoreRelm.Interfaces.IRelmDataLoader`1.WriteDataAsync(System.Threading.CancellationToken)
+  id: WriteDataAsync(System.Threading.CancellationToken)
+  parent: CoreRelm.Interfaces.IRelmDataLoader`1
+  langs:
+  - csharp
+  - vb
+  name: WriteDataAsync(CancellationToken)
+  nameWithType: IRelmDataLoader<T>.WriteDataAsync(CancellationToken)
+  fullName: CoreRelm.Interfaces.IRelmDataLoader<T>.WriteDataAsync(System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Interfaces/IRelmDataLoader.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: WriteDataAsync
+    path: ../CoreRelm/Interfaces/IRelmDataLoader.cs
+    startLine: 81
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces
+  summary: Writes data to the underlying storage and returns the number of rows written.
+  example: []
+  syntax:
+    content: Task<int> WriteDataAsync(CancellationToken cancellationToken)
+    parameters:
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task{System.Int32}
+      description: The number of rows successfully written to the storage.
+    content.vb: Function WriteDataAsync(cancellationToken As CancellationToken) As Task(Of Integer)
+  overload: CoreRelm.Interfaces.IRelmDataLoader`1.WriteDataAsync*
+  nameWithType.vb: IRelmDataLoader(Of T).WriteDataAsync(CancellationToken)
+  fullName.vb: CoreRelm.Interfaces.IRelmDataLoader(Of T).WriteDataAsync(System.Threading.CancellationToken)
 references:
 - uid: CoreRelm.Interfaces
   commentId: N:CoreRelm.Interfaces
@@ -670,3 +749,197 @@ references:
   nameWithType.vb: Boolean
   fullName.vb: Boolean
   name.vb: Boolean
+- uid: CoreRelm.Interfaces.IRelmDataLoader`1.GetLoadDataAsync*
+  commentId: Overload:CoreRelm.Interfaces.IRelmDataLoader`1.GetLoadDataAsync
+  href: CoreRelm.Interfaces.IRelmDataLoader-1.html#CoreRelm_Interfaces_IRelmDataLoader_1_GetLoadDataAsync_System_Threading_CancellationToken_
+  name: GetLoadDataAsync
+  nameWithType: IRelmDataLoader<T>.GetLoadDataAsync
+  fullName: CoreRelm.Interfaces.IRelmDataLoader<T>.GetLoadDataAsync
+  nameWithType.vb: IRelmDataLoader(Of T).GetLoadDataAsync
+  fullName.vb: CoreRelm.Interfaces.IRelmDataLoader(Of T).GetLoadDataAsync
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading.Tasks.Task{System.Collections.Generic.ICollection{{T}}}
+  commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.ICollection{``0}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<ICollection<T>>
+  nameWithType: Task<ICollection<T>>
+  fullName: System.Threading.Tasks.Task<System.Collections.Generic.ICollection<T>>
+  nameWithType.vb: Task(Of ICollection(Of T))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Generic.ICollection(Of T))
+  name.vb: Task(Of ICollection(Of T))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: CoreRelm.Interfaces.IRelmDataLoader`1.WriteDataAsync*
+  commentId: Overload:CoreRelm.Interfaces.IRelmDataLoader`1.WriteDataAsync
+  href: CoreRelm.Interfaces.IRelmDataLoader-1.html#CoreRelm_Interfaces_IRelmDataLoader_1_WriteDataAsync_System_Threading_CancellationToken_
+  name: WriteDataAsync
+  nameWithType: IRelmDataLoader<T>.WriteDataAsync
+  fullName: CoreRelm.Interfaces.IRelmDataLoader<T>.WriteDataAsync
+  nameWithType.vb: IRelmDataLoader(Of T).WriteDataAsync
+  fullName.vb: CoreRelm.Interfaces.IRelmDataLoader(Of T).WriteDataAsync
+- uid: System.Threading.Tasks.Task{System.Int32}
+  commentId: T:System.Threading.Tasks.Task{System.Int32}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<int>
+  nameWithType: Task<int>
+  fullName: System.Threading.Tasks.Task<int>
+  nameWithType.vb: Task(Of Integer)
+  fullName.vb: System.Threading.Tasks.Task(Of Integer)
+  name.vb: Task(Of Integer)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )

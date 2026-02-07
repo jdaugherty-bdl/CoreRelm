@@ -157,8 +157,8 @@ Class MySqlRenderOptions  <a class="header-action link-secondary" title="View so
 
   <a id="CoreRelm_Models_Migrations_Rendering_MySqlRenderOptions__ctor_" data-uid="CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.#ctor*"></a>
 
-  <h3 id="CoreRelm_Models_Migrations_Rendering_MySqlRenderOptions__ctor_System_Boolean_System_Boolean_System_String_" data-uid="CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.#ctor(System.Boolean,System.Boolean,System.String)">
-  MySqlRenderOptions(bool, bool, string)
+  <h3 id="CoreRelm_Models_Migrations_Rendering_MySqlRenderOptions__ctor_System_Boolean_System_Boolean_System_String_System_Boolean_System_String_" data-uid="CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.#ctor(System.Boolean,System.Boolean,System.String,System.Boolean,System.String)">
+  MySqlRenderOptions(bool, bool, string, bool, string)
   <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/MySqlRenderOptions.cs/#L9"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -166,7 +166,7 @@ Class MySqlRenderOptions  <a class="header-action link-secondary" title="View so
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MySqlRenderOptions(bool IncludeUseDatabase = true, bool WrapTriggersWithDelimiter = true, string TriggerDelimiter = &quot;$$&quot;)</code></pre>
+    <pre><code class="lang-csharp hljs">public MySqlRenderOptions(bool IncludeUseDatabase = true, bool WrapTriggersWithDelimiter = true, string TriggerDelimiter = &quot;$$&quot;, bool WrapFunctionsWithDelimiter = true, string FunctionDelimiter = &quot;$$&quot;)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -176,6 +176,10 @@ Class MySqlRenderOptions  <a class="header-action link-secondary" title="View so
     <dt><code>WrapTriggersWithDelimiter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd></dd>
     <dt><code>TriggerDelimiter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>WrapFunctionsWithDelimiter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>FunctionDelimiter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
   </dl>
 
@@ -192,6 +196,37 @@ Class MySqlRenderOptions  <a class="header-action link-secondary" title="View so
 
   <h2 class="section" id="properties">Properties
 </h2>
+
+
+  <a id="CoreRelm_Models_Migrations_Rendering_MySqlRenderOptions_FunctionDelimiter_" data-uid="CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.FunctionDelimiter*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Rendering_MySqlRenderOptions_FunctionDelimiter" data-uid="CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.FunctionDelimiter">
+  FunctionDelimiter
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/MySqlRenderOptions.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string FunctionDelimiter { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
 
 
   <a id="CoreRelm_Models_Migrations_Rendering_MySqlRenderOptions_IncludeUseDatabase_" data-uid="CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.IncludeUseDatabase*"></a>
@@ -246,6 +281,37 @@ Class MySqlRenderOptions  <a class="header-action link-secondary" title="View so
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_Migrations_Rendering_MySqlRenderOptions_WrapFunctionsWithDelimiter_" data-uid="CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.WrapFunctionsWithDelimiter*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Rendering_MySqlRenderOptions_WrapFunctionsWithDelimiter" data-uid="CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions.WrapFunctionsWithDelimiter">
+  WrapFunctionsWithDelimiter
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/MySqlRenderOptions.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool WrapFunctionsWithDelimiter { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd></dd>
   </dl>
 

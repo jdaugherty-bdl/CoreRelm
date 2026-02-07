@@ -6,6 +6,7 @@ items:
   parent: CoreRelm.Interfaces
   children:
   - CoreRelm.Interfaces.IRelmFieldLoaderBase.FieldName
+  - CoreRelm.Interfaces.IRelmFieldLoaderBase.GetFieldDataAsync``1(System.Collections.Generic.ICollection{``0[]},System.Threading.CancellationToken)
   - CoreRelm.Interfaces.IRelmFieldLoaderBase.GetFieldData``1(System.Collections.Generic.ICollection{``0[]})
   - CoreRelm.Interfaces.IRelmFieldLoaderBase.KeyFields
   langs:
@@ -104,9 +105,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetFieldData<S>(ICollection<S[]>)
-  nameWithType: IRelmFieldLoaderBase.GetFieldData<S>(ICollection<S[]>)
-  fullName: CoreRelm.Interfaces.IRelmFieldLoaderBase.GetFieldData<S>(System.Collections.Generic.ICollection<S[]>)
+  name: GetFieldData<S>(ICollection<S[]>?)
+  nameWithType: IRelmFieldLoaderBase.GetFieldData<S>(ICollection<S[]>?)
+  fullName: CoreRelm.Interfaces.IRelmFieldLoaderBase.GetFieldData<S>(System.Collections.Generic.ICollection<S[]>?)
   type: Method
   source:
     remote:
@@ -122,7 +123,7 @@ items:
   summary: Retrieves field data for the specified collection of key arrays.
   example: []
   syntax:
-    content: Dictionary<S[], object> GetFieldData<S>(ICollection<S[]> keyData)
+    content: Dictionary<S[], object> GetFieldData<S>(ICollection<S[]>? keyData)
     parameters:
     - id: keyData
       type: System.Collections.Generic.ICollection{{S}[]}
@@ -140,6 +141,51 @@ items:
   nameWithType.vb: IRelmFieldLoaderBase.GetFieldData(Of S)(ICollection(Of S()))
   fullName.vb: CoreRelm.Interfaces.IRelmFieldLoaderBase.GetFieldData(Of S)(System.Collections.Generic.ICollection(Of S()))
   name.vb: GetFieldData(Of S)(ICollection(Of S()))
+- uid: CoreRelm.Interfaces.IRelmFieldLoaderBase.GetFieldDataAsync``1(System.Collections.Generic.ICollection{``0[]},System.Threading.CancellationToken)
+  commentId: M:CoreRelm.Interfaces.IRelmFieldLoaderBase.GetFieldDataAsync``1(System.Collections.Generic.ICollection{``0[]},System.Threading.CancellationToken)
+  id: GetFieldDataAsync``1(System.Collections.Generic.ICollection{``0[]},System.Threading.CancellationToken)
+  parent: CoreRelm.Interfaces.IRelmFieldLoaderBase
+  langs:
+  - csharp
+  - vb
+  name: GetFieldDataAsync<S>(ICollection<S[]>?, CancellationToken)
+  nameWithType: IRelmFieldLoaderBase.GetFieldDataAsync<S>(ICollection<S[]>?, CancellationToken)
+  fullName: CoreRelm.Interfaces.IRelmFieldLoaderBase.GetFieldDataAsync<S>(System.Collections.Generic.ICollection<S[]>?, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Interfaces/IRelmFieldLoaderBase.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: GetFieldDataAsync
+    path: ../CoreRelm/Interfaces/IRelmFieldLoaderBase.cs
+    startLine: 46
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces
+  summary: Retrieves field data for the specified collection of key arrays.
+  example: []
+  syntax:
+    content: Task<Dictionary<S[], object>> GetFieldDataAsync<S>(ICollection<S[]>? keyData, CancellationToken cancellationToken = default)
+    parameters:
+    - id: keyData
+      type: System.Collections.Generic.ICollection{{S}[]}
+      description: A collection of key arrays for which to retrieve associated field data. Cannot be null.
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+    typeParameters:
+    - id: S
+      description: The type of the elements in each key array.
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.Dictionary{{S}[],System.Object}}
+      description: >-
+        A dictionary mapping each input key array to its corresponding field data. If a key array has no associated
+            data, it may be omitted from the dictionary.
+    content.vb: Function GetFieldDataAsync(Of S)(keyData As ICollection(Of S()), cancellationToken As CancellationToken = Nothing) As Task(Of Dictionary(Of S(), Object))
+  overload: CoreRelm.Interfaces.IRelmFieldLoaderBase.GetFieldDataAsync*
+  nameWithType.vb: IRelmFieldLoaderBase.GetFieldDataAsync(Of S)(ICollection(Of S()), CancellationToken)
+  fullName.vb: CoreRelm.Interfaces.IRelmFieldLoaderBase.GetFieldDataAsync(Of S)(System.Collections.Generic.ICollection(Of S()), System.Threading.CancellationToken)
+  name.vb: GetFieldDataAsync(Of S)(ICollection(Of S()), CancellationToken)
 references:
 - uid: CoreRelm.Interfaces
   commentId: N:CoreRelm.Interfaces
@@ -399,3 +445,168 @@ references:
   - name: " "
   - name: TValue
   - name: )
+- uid: CoreRelm.Interfaces.IRelmFieldLoaderBase.GetFieldDataAsync*
+  commentId: Overload:CoreRelm.Interfaces.IRelmFieldLoaderBase.GetFieldDataAsync
+  href: CoreRelm.Interfaces.IRelmFieldLoaderBase.html#CoreRelm_Interfaces_IRelmFieldLoaderBase_GetFieldDataAsync__1_System_Collections_Generic_ICollection___0____System_Threading_CancellationToken_
+  name: GetFieldDataAsync
+  nameWithType: IRelmFieldLoaderBase.GetFieldDataAsync
+  fullName: CoreRelm.Interfaces.IRelmFieldLoaderBase.GetFieldDataAsync
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading.Tasks.Task{System.Collections.Generic.Dictionary{{S}[],System.Object}}
+  commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.Dictionary{``0[],System.Object}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<Dictionary<S[], object>>
+  nameWithType: Task<Dictionary<S[], object>>
+  fullName: System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<S[], object>>
+  nameWithType.vb: Task(Of Dictionary(Of S(), Object))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Generic.Dictionary(Of S(), Object))
+  name.vb: Task(Of Dictionary(Of S(), Object))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - name: S
+  - name: '['
+  - name: ']'
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: S
+  - name: (
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  - name: )
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks

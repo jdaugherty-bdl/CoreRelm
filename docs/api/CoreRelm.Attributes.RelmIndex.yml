@@ -5,8 +5,11 @@ items:
   id: RelmIndex
   parent: CoreRelm.Attributes
   children:
-  - CoreRelm.Attributes.RelmIndex.#ctor(System.String[])
+  - CoreRelm.Attributes.RelmIndex.#ctor(System.String[],System.String,System.Boolean,System.Boolean)
+  - CoreRelm.Attributes.RelmIndex.Descending
+  - CoreRelm.Attributes.RelmIndex.IndexName
   - CoreRelm.Attributes.RelmIndex.IndexedProperties
+  - CoreRelm.Attributes.RelmIndex.Unique
   langs:
   - csharp
   - vb
@@ -37,11 +40,11 @@ items:
   example: []
   syntax:
     content: >-
-      [AttributeUsage(AttributeTargets.Class|AttributeTargets.Struct, AllowMultiple = true)]
+      [AttributeUsage(AttributeTargets.Class|AttributeTargets.Struct|AttributeTargets.Property, AllowMultiple = true)]
 
       public sealed class RelmIndex : Attribute
     content.vb: >-
-      <AttributeUsage(AttributeTargets.ClassOrAttributeTargets.Struct, AllowMultiple:=True)>
+      <AttributeUsage(AttributeTargets.ClassOrAttributeTargets.StructOrAttributeTargets.Property, AllowMultiple:=True)>
 
       Public NotInheritable Class RelmIndex Inherits Attribute
   inheritance:
@@ -94,7 +97,7 @@ items:
     ctor: System.AttributeUsageAttribute.#ctor(System.AttributeTargets)
     arguments:
     - type: System.AttributeTargets
-      value: 12
+      value: 140
     namedArguments:
     - name: AllowMultiple
       type: System.Boolean
@@ -130,16 +133,109 @@ items:
       type: System.String[]
     content.vb: Public Property IndexedProperties As String()
   overload: CoreRelm.Attributes.RelmIndex.IndexedProperties*
-- uid: CoreRelm.Attributes.RelmIndex.#ctor(System.String[])
-  commentId: M:CoreRelm.Attributes.RelmIndex.#ctor(System.String[])
-  id: '#ctor(System.String[])'
+- uid: CoreRelm.Attributes.RelmIndex.IndexName
+  commentId: P:CoreRelm.Attributes.RelmIndex.IndexName
+  id: IndexName
   parent: CoreRelm.Attributes.RelmIndex
   langs:
   - csharp
   - vb
-  name: RelmIndex(string[])
-  nameWithType: RelmIndex.RelmIndex(string[])
-  fullName: CoreRelm.Attributes.RelmIndex.RelmIndex(string[])
+  name: IndexName
+  nameWithType: RelmIndex.IndexName
+  fullName: CoreRelm.Attributes.RelmIndex.IndexName
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Attributes/RelmIndex.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: IndexName
+    path: ../CoreRelm/Attributes/RelmIndex.cs
+    startLine: 27
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Attributes
+  summary: Gets or sets the name of the index to be used for operations.
+  example: []
+  syntax:
+    content: public string? IndexName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property IndexName As String
+  overload: CoreRelm.Attributes.RelmIndex.IndexName*
+- uid: CoreRelm.Attributes.RelmIndex.Descending
+  commentId: P:CoreRelm.Attributes.RelmIndex.Descending
+  id: Descending
+  parent: CoreRelm.Attributes.RelmIndex
+  langs:
+  - csharp
+  - vb
+  name: Descending
+  nameWithType: RelmIndex.Descending
+  fullName: CoreRelm.Attributes.RelmIndex.Descending
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Attributes/RelmIndex.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: Descending
+    path: ../CoreRelm/Attributes/RelmIndex.cs
+    startLine: 32
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Attributes
+  summary: Gets or sets a value indicating whether the sort order is descending.
+  example: []
+  syntax:
+    content: public bool Descending { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property Descending As Boolean
+  overload: CoreRelm.Attributes.RelmIndex.Descending*
+- uid: CoreRelm.Attributes.RelmIndex.Unique
+  commentId: P:CoreRelm.Attributes.RelmIndex.Unique
+  id: Unique
+  parent: CoreRelm.Attributes.RelmIndex
+  langs:
+  - csharp
+  - vb
+  name: Unique
+  nameWithType: RelmIndex.Unique
+  fullName: CoreRelm.Attributes.RelmIndex.Unique
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Attributes/RelmIndex.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: Unique
+    path: ../CoreRelm/Attributes/RelmIndex.cs
+    startLine: 37
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Attributes
+  summary: Gets or sets a value indicating whether this is a unique index.
+  example: []
+  syntax:
+    content: public bool Unique { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property Unique As Boolean
+  overload: CoreRelm.Attributes.RelmIndex.Unique*
+- uid: CoreRelm.Attributes.RelmIndex.#ctor(System.String[],System.String,System.Boolean,System.Boolean)
+  commentId: M:CoreRelm.Attributes.RelmIndex.#ctor(System.String[],System.String,System.Boolean,System.Boolean)
+  id: '#ctor(System.String[],System.String,System.Boolean,System.Boolean)'
+  parent: CoreRelm.Attributes.RelmIndex
+  langs:
+  - csharp
+  - vb
+  name: RelmIndex(string[]?, string?, bool, bool)
+  nameWithType: RelmIndex.RelmIndex(string[]?, string?, bool, bool)
+  fullName: CoreRelm.Attributes.RelmIndex.RelmIndex(string[]?, string?, bool, bool)
   type: Constructor
   source:
     remote:
@@ -148,27 +244,35 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Attributes/RelmIndex.cs
-    startLine: 29
+    startLine: 46
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
   summary: Initializes a new instance of the RelmIndex class with the specified properties to be indexed.
   example: []
   syntax:
-    content: public RelmIndex(string[] indexedProperties)
+    content: public RelmIndex(string[]? indexedProperties = null, string? indexName = null, bool descending = false, bool unique = false)
     parameters:
     - id: indexedProperties
       type: System.String[]
       description: An array of property names to be indexed. Must contain at least one element.
-    content.vb: Public Sub New(indexedProperties As String())
+    - id: indexName
+      type: System.String
+      description: The name of the index. If null, a default name will be generated based on the indexed properties.
+    - id: descending
+      type: System.Boolean
+      description: A value indicating whether the index should be created in descending order. Default is false (ascending order).
+    - id: unique
+      type: System.Boolean
+    content.vb: Public Sub New(indexedProperties As String() = Nothing, indexName As String = Nothing, descending As Boolean = False, unique As Boolean = False)
   overload: CoreRelm.Attributes.RelmIndex.#ctor*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
     description: Thrown if indexedProperties is null or empty.
-  nameWithType.vb: RelmIndex.New(String())
-  fullName.vb: CoreRelm.Attributes.RelmIndex.New(String())
-  name.vb: New(String())
+  nameWithType.vb: RelmIndex.New(String(), String, Boolean, Boolean)
+  fullName.vb: CoreRelm.Attributes.RelmIndex.New(String(), String, Boolean, Boolean)
+  name.vb: New(String(), String, Boolean, Boolean)
 references:
 - uid: CoreRelm.Attributes
   commentId: N:CoreRelm.Attributes
@@ -1991,6 +2095,46 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.string
   - name: (
   - name: )
+- uid: CoreRelm.Attributes.RelmIndex.IndexName*
+  commentId: Overload:CoreRelm.Attributes.RelmIndex.IndexName
+  href: CoreRelm.Attributes.RelmIndex.html#CoreRelm_Attributes_RelmIndex_IndexName
+  name: IndexName
+  nameWithType: RelmIndex.IndexName
+  fullName: CoreRelm.Attributes.RelmIndex.IndexName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: CoreRelm.Attributes.RelmIndex.Descending*
+  commentId: Overload:CoreRelm.Attributes.RelmIndex.Descending
+  href: CoreRelm.Attributes.RelmIndex.html#CoreRelm_Attributes_RelmIndex_Descending
+  name: Descending
+  nameWithType: RelmIndex.Descending
+  fullName: CoreRelm.Attributes.RelmIndex.Descending
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: CoreRelm.Attributes.RelmIndex.Unique*
+  commentId: Overload:CoreRelm.Attributes.RelmIndex.Unique
+  href: CoreRelm.Attributes.RelmIndex.html#CoreRelm_Attributes_RelmIndex_Unique
+  name: Unique
+  nameWithType: RelmIndex.Unique
+  fullName: CoreRelm.Attributes.RelmIndex.Unique
 - uid: System.ArgumentException
   commentId: T:System.ArgumentException
   isExternal: true
@@ -2000,7 +2144,7 @@ references:
   fullName: System.ArgumentException
 - uid: CoreRelm.Attributes.RelmIndex.#ctor*
   commentId: Overload:CoreRelm.Attributes.RelmIndex.#ctor
-  href: CoreRelm.Attributes.RelmIndex.html#CoreRelm_Attributes_RelmIndex__ctor_System_String___
+  href: CoreRelm.Attributes.RelmIndex.html#CoreRelm_Attributes_RelmIndex__ctor_System_String___System_String_System_Boolean_System_Boolean_
   name: RelmIndex
   nameWithType: RelmIndex.RelmIndex
   fullName: CoreRelm.Attributes.RelmIndex.RelmIndex

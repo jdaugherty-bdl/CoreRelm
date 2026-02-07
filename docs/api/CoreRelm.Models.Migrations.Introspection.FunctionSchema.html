@@ -89,7 +89,7 @@
 
 
   <h1 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema" class="text-break">
-Class FunctionSchema  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L10"><i class="bi bi-code-slash"></i></a>
+Class FunctionSchema  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L11"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -158,13 +158,25 @@ Class FunctionSchema  <a class="header-action link-secondary" title="View source
       <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModel.WriteToDatabase(Enum, int, bool, bool, bool, bool)</a>
     </div>
     <div>
+      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabaseAsync_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_">RelmModel.WriteToDatabaseAsync(Enum, int, bool, bool, bool, bool, CancellationToken)</a>
+    </div>
+    <div>
       <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModel.WriteToDatabase(MySqlConnection, int, bool, bool, bool, bool)</a>
     </div>
     <div>
       <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModel.WriteToDatabase(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool)</a>
     </div>
     <div>
+      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_">RelmModel.WriteToDatabaseAsync(MySqlConnection, int, bool, bool, bool, bool, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_">RelmModel.WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool, CancellationToken)</a>
+    </div>
+    <div>
       <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModel.WriteToDatabase(IRelmContext, int, bool, bool, bool, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabaseAsync_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_">RelmModel.WriteToDatabaseAsync(IRelmContext, int, bool, bool, bool, bool, CancellationToken)</a>
     </div>
     <div>
       <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_CoreRelm_Options_RelmContextOptionsBuilder_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModel.WriteToDatabase(RelmContextOptionsBuilder, int, bool, bool, bool, bool)</a>
@@ -268,6 +280,37 @@ Class FunctionSchema  <a class="header-action link-secondary" title="View source
 </h2>
 
 
+  <a id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_Delimiter_" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.Delimiter*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_Delimiter" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.Delimiter">
+  Delimiter
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? Delimiter { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_DtdIdentifier_" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.DtdIdentifier*"></a>
 
   <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_DtdIdentifier" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.DtdIdentifier">
@@ -300,11 +343,11 @@ public string? DtdIdentifier { get; set; }</code></pre>
 
 
 
-  <a id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_FunctionName_" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.FunctionName*"></a>
+  <a id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_IsDeterministic_" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.IsDeterministic*"></a>
 
-  <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_FunctionName" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.FunctionName">
-  FunctionName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_IsDeterministic" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.IsDeterministic">
+  IsDeterministic
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L33"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -312,7 +355,7 @@ public string? DtdIdentifier { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
-public string? FunctionName { get; set; }</code></pre>
+public string? IsDeterministic { get; set; }</code></pre>
   </div>
 
 
@@ -332,10 +375,42 @@ public string? FunctionName { get; set; }</code></pre>
 
 
 
-  <a id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_ReturnType_" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.ReturnType*"></a>
+  <a id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_IsDeterministicBool_" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.IsDeterministicBool*"></a>
 
-  <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_ReturnType" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.ReturnType">
-  ReturnType
+  <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_IsDeterministicBool" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.IsDeterministicBool">
+  IsDeterministicBool
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+public bool IsDeterministicBool { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_RoutineComment_" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.RoutineComment*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_RoutineComment" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.RoutineComment">
+  RoutineComment
   <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L18"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -344,7 +419,7 @@ public string? FunctionName { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
-public string? ReturnType { get; set; }</code></pre>
+public string? RoutineComment { get; set; }</code></pre>
   </div>
 
 
@@ -428,11 +503,75 @@ public string? RoutineName { get; set; }</code></pre>
 
 
 
+  <a id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_SecurityType_" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.SecurityType*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_SecurityType" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.SecurityType">
+  SecurityType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+public SecurityEnums.SqlSecurityLevel SecurityType { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Enums.SecurityEnums.html">SecurityEnums</a>.<a class="xref" href="CoreRelm.Enums.SecurityEnums.SqlSecurityLevel.html">SqlSecurityLevel</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_SqlDataAccess_" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.SqlDataAccess*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_SqlDataAccess" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.SqlDataAccess">
+  SqlDataAccess
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+public string? SqlDataAccess { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L10" class="edit-link">Edit this page</a>
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L11" class="edit-link">Edit this page</a>
         </div>
 
 

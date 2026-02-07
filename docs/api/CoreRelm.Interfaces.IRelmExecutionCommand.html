@@ -128,19 +128,19 @@ in data access or object-relational mapping contexts.</p>
 </h2>
 
 
-  <a id="CoreRelm_Interfaces_IRelmExecutionCommand_AdditionalCommandCount_" data-uid="CoreRelm.Interfaces.IRelmExecutionCommand.AdditionalCommandCount*"></a>
+  <a id="CoreRelm_Interfaces_IRelmExecutionCommand_ChildCommandCount_" data-uid="CoreRelm.Interfaces.IRelmExecutionCommand.ChildCommandCount*"></a>
 
-  <h3 id="CoreRelm_Interfaces_IRelmExecutionCommand_AdditionalCommandCount" data-uid="CoreRelm.Interfaces.IRelmExecutionCommand.AdditionalCommandCount">
-  AdditionalCommandCount
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmExecutionCommand.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Interfaces_IRelmExecutionCommand_ChildCommandCount" data-uid="CoreRelm.Interfaces.IRelmExecutionCommand.ChildCommandCount">
+  ChildCommandCount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmExecutionCommand.cs/#L36"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets the number of additional commands associated with the current context.</p>
+  <div class="markdown level1 summary"><p>Gets the number of child commands associated with the current context.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">int AdditionalCommandCount { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">int ChildCommandCount { get; }</code></pre>
   </div>
 
 
@@ -204,71 +204,7 @@ in data access or object-relational mapping contexts.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Expression ExecutionExpression { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression">Expression</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="CoreRelm_Interfaces_IRelmExecutionCommand_InitialCommand_" data-uid="CoreRelm.Interfaces.IRelmExecutionCommand.InitialCommand*"></a>
-
-  <h3 id="CoreRelm_Interfaces_IRelmExecutionCommand_InitialCommand" data-uid="CoreRelm.Interfaces.IRelmExecutionCommand.InitialCommand">
-  InitialCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmExecutionCommand.cs/#L36"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Gets the initial command that was associated with this execution command.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Commands.Command InitialCommand { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="CoreRelm.Enums.Commands.html">Commands</a>.<a class="xref" href="CoreRelm.Enums.Commands.Command.html">Command</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="CoreRelm_Interfaces_IRelmExecutionCommand_InitialExpression_" data-uid="CoreRelm.Interfaces.IRelmExecutionCommand.InitialExpression*"></a>
-
-  <h3 id="CoreRelm_Interfaces_IRelmExecutionCommand_InitialExpression" data-uid="CoreRelm.Interfaces.IRelmExecutionCommand.InitialExpression">
-  InitialExpression
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmExecutionCommand.cs/#L41"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Gets the initial expression associated with this execution command.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Expression InitialExpression { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">Expression? ExecutionExpression { get; }</code></pre>
   </div>
 
 
@@ -296,7 +232,7 @@ in data access or object-relational mapping contexts.</p>
 
   <h3 id="CoreRelm_Interfaces_IRelmExecutionCommand_AddAdditionalCommand_CoreRelm_Enums_Commands_Command_System_Linq_Expressions_Expression_" data-uid="CoreRelm.Interfaces.IRelmExecutionCommand.AddAdditionalCommand(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)">
   AddAdditionalCommand(Command, Expression?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmExecutionCommand.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmExecutionCommand.cs/#L45"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Adds an additional execution command to the current context using the specified command and associated
@@ -339,7 +275,7 @@ expression.</p>
 
   <h3 id="CoreRelm_Interfaces_IRelmExecutionCommand_GetAdditionalCommands" data-uid="CoreRelm.Interfaces.IRelmExecutionCommand.GetAdditionalCommands">
   GetAdditionalCommands()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmExecutionCommand.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmExecutionCommand.cs/#L52"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Retrieves a list of additional execution commands to be processed.</p>
@@ -373,7 +309,7 @@ if there are no additional commands to process.</p>
 
   <h3 id="CoreRelm_Interfaces_IRelmExecutionCommand_GetForeignKeyNavigationOptions__1_System_Collections_Generic_ICollection___0__" data-uid="CoreRelm.Interfaces.IRelmExecutionCommand.GetForeignKeyNavigationOptions``1(System.Collections.Generic.ICollection{``0})">
   GetForeignKeyNavigationOptions&lt;T&gt;(ICollection&lt;T&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmExecutionCommand.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/IRelmExecutionCommand.cs/#L61"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Retrieves navigation options for foreign key relationships based on the provided collection of items.</p>

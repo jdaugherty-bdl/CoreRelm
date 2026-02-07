@@ -5,9 +5,9 @@ items:
   id: CreateFunctionOperation
   parent: CoreRelm.Models.Migrations.Rendering
   children:
-  - CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.#ctor(System.String,System.String)
-  - CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.CreateSql
+  - CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.#ctor(System.String,CoreRelm.Models.Migrations.Introspection.FunctionSchema)
   - CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.Description
+  - CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.Function
   - CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.FunctionName
   langs:
   - csharp
@@ -23,7 +23,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: CreateFunctionOperation
     path: ../CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
-    startLine: 55
+    startLine: 60
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Rendering
@@ -42,16 +42,16 @@ items:
   - System.Object.GetType
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.#ctor(System.String,System.String)
-  commentId: M:CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.#ctor(System.String,System.String)
-  id: '#ctor(System.String,System.String)'
+- uid: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.#ctor(System.String,CoreRelm.Models.Migrations.Introspection.FunctionSchema)
+  commentId: M:CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.#ctor(System.String,CoreRelm.Models.Migrations.Introspection.FunctionSchema)
+  id: '#ctor(System.String,CoreRelm.Models.Migrations.Introspection.FunctionSchema)'
   parent: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation
   langs:
   - csharp
   - vb
-  name: CreateFunctionOperation(string, string)
-  nameWithType: CreateFunctionOperation.CreateFunctionOperation(string, string)
-  fullName: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.CreateFunctionOperation(string, string)
+  name: CreateFunctionOperation(string, FunctionSchema)
+  nameWithType: CreateFunctionOperation.CreateFunctionOperation(string, FunctionSchema)
+  fullName: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.CreateFunctionOperation(string, CoreRelm.Models.Migrations.Introspection.FunctionSchema)
   type: Constructor
   source:
     remote:
@@ -60,22 +60,22 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
-    startLine: 55
+    startLine: 60
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Rendering
   syntax:
-    content: public CreateFunctionOperation(string FunctionName, string CreateSql)
+    content: public CreateFunctionOperation(string FunctionName, FunctionSchema Function)
     parameters:
     - id: FunctionName
       type: System.String
-    - id: CreateSql
-      type: System.String
-    content.vb: Public Sub New(FunctionName As String, CreateSql As String)
+    - id: Function
+      type: CoreRelm.Models.Migrations.Introspection.FunctionSchema
+    content.vb: Public Sub New(FunctionName As String, [Function] As FunctionSchema)
   overload: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.#ctor*
-  nameWithType.vb: CreateFunctionOperation.New(String, String)
-  fullName.vb: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.New(String, String)
-  name.vb: New(String, String)
+  nameWithType.vb: CreateFunctionOperation.New(String, FunctionSchema)
+  fullName.vb: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.New(String, CoreRelm.Models.Migrations.Introspection.FunctionSchema)
+  name.vb: New(String, FunctionSchema)
 - uid: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.FunctionName
   commentId: P:CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.FunctionName
   id: FunctionName
@@ -94,7 +94,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: FunctionName
     path: ../CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
-    startLine: 55
+    startLine: 60
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Rendering
@@ -105,35 +105,35 @@ items:
       type: System.String
     content.vb: Public Property FunctionName As String
   overload: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.FunctionName*
-- uid: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.CreateSql
-  commentId: P:CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.CreateSql
-  id: CreateSql
+- uid: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.Function
+  commentId: P:CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.Function
+  id: Function
   parent: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation
   langs:
   - csharp
   - vb
-  name: CreateSql
-  nameWithType: CreateFunctionOperation.CreateSql
-  fullName: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.CreateSql
+  name: Function
+  nameWithType: CreateFunctionOperation.Function
+  fullName: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.Function
   type: Property
   source:
     remote:
       path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
       branch: master
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: CreateSql
+    id: Function
     path: ../CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
-    startLine: 55
+    startLine: 60
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Rendering
   syntax:
-    content: public string CreateSql { get; init; }
+    content: public FunctionSchema Function { get; init; }
     parameters: []
     return:
-      type: System.String
-    content.vb: Public Property CreateSql As String
-  overload: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.CreateSql*
+      type: CoreRelm.Models.Migrations.Introspection.FunctionSchema
+    content.vb: Public Property [Function] As FunctionSchema
+  overload: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.Function*
 - uid: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.Description
   commentId: P:CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.Description
   id: Description
@@ -152,7 +152,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Description
     path: ../CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
-    startLine: 57
+    startLine: 62
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Rendering
@@ -518,7 +518,7 @@ references:
   - name: )
 - uid: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.#ctor*
   commentId: Overload:CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.#ctor
-  href: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.html#CoreRelm_Models_Migrations_Rendering_CreateFunctionOperation__ctor_System_String_System_String_
+  href: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.html#CoreRelm_Models_Migrations_Rendering_CreateFunctionOperation__ctor_System_String_CoreRelm_Models_Migrations_Introspection_FunctionSchema_
   name: CreateFunctionOperation
   nameWithType: CreateFunctionOperation.CreateFunctionOperation
   fullName: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.CreateFunctionOperation
@@ -536,18 +536,63 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
+- uid: CoreRelm.Models.Migrations.Introspection.FunctionSchema
+  commentId: T:CoreRelm.Models.Migrations.Introspection.FunctionSchema
+  parent: CoreRelm.Models.Migrations.Introspection
+  href: CoreRelm.Models.Migrations.Introspection.FunctionSchema.html
+  name: FunctionSchema
+  nameWithType: FunctionSchema
+  fullName: CoreRelm.Models.Migrations.Introspection.FunctionSchema
+- uid: CoreRelm.Models.Migrations.Introspection
+  commentId: N:CoreRelm.Models.Migrations.Introspection
+  href: CoreRelm.html
+  name: CoreRelm.Models.Migrations.Introspection
+  nameWithType: CoreRelm.Models.Migrations.Introspection
+  fullName: CoreRelm.Models.Migrations.Introspection
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Introspection
+    name: Introspection
+    href: CoreRelm.Models.Migrations.Introspection.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Introspection
+    name: Introspection
+    href: CoreRelm.Models.Migrations.Introspection.html
 - uid: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.FunctionName*
   commentId: Overload:CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.FunctionName
   href: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.html#CoreRelm_Models_Migrations_Rendering_CreateFunctionOperation_FunctionName
   name: FunctionName
   nameWithType: CreateFunctionOperation.FunctionName
   fullName: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.FunctionName
-- uid: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.CreateSql*
-  commentId: Overload:CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.CreateSql
-  href: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.html#CoreRelm_Models_Migrations_Rendering_CreateFunctionOperation_CreateSql
-  name: CreateSql
-  nameWithType: CreateFunctionOperation.CreateSql
-  fullName: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.CreateSql
+- uid: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.Function*
+  commentId: Overload:CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.Function
+  href: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.html#CoreRelm_Models_Migrations_Rendering_CreateFunctionOperation_Function
+  name: Function
+  nameWithType: CreateFunctionOperation.Function
+  fullName: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.Function
 - uid: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.Description*
   commentId: Overload:CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.Description
   href: CoreRelm.Models.Migrations.Rendering.CreateFunctionOperation.html#CoreRelm_Models_Migrations_Rendering_CreateFunctionOperation_Description

@@ -89,7 +89,7 @@
 
 
   <h1 id="CoreRelm_Migrations_DefaultRelmMigrationSqlProvider" data-uid="CoreRelm.Migrations.DefaultRelmMigrationSqlProvider" class="text-break">
-Class DefaultRelmMigrationSqlProvider  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Migrations/DefaultRelmMigrationSqlProvider.cs/#L19"><i class="bi bi-code-slash"></i></a>
+Class DefaultRelmMigrationSqlProvider  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Migrations/DefaultRelmMigrationSqlProvider.cs/#L20"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -159,7 +159,7 @@ Class DefaultRelmMigrationSqlProvider  <a class="header-action link-secondary" t
 
   <h3 id="CoreRelm_Migrations_DefaultRelmMigrationSqlProvider__ctor_CoreRelm_Interfaces_Metadata_IRelmSchemaIntrospector_CoreRelm_Interfaces_Migrations_IRelmMigrationPlanner_CoreRelm_Interfaces_Migrations_IRelmMigrationSqlRenderer_CoreRelm_RelmInternal_Helpers_Migrations_Provisioning_MySqlDatabaseProvisioner_CoreRelm_Interfaces_Migrations_IRelmDesiredSchemaBuilder_CoreRelm_Models_Migrations_MigrationOptions_" data-uid="CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.#ctor(CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector,CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner,CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer,CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner,CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder,CoreRelm.Models.Migrations.MigrationOptions)">
   DefaultRelmMigrationSqlProvider(IRelmSchemaIntrospector, IRelmMigrationPlanner, IRelmMigrationSqlRenderer, MySqlDatabaseProvisioner, IRelmDesiredSchemaBuilder, MigrationOptions)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Migrations/DefaultRelmMigrationSqlProvider.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Migrations/DefaultRelmMigrationSqlProvider.cs/#L29"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -202,16 +202,16 @@ Class DefaultRelmMigrationSqlProvider  <a class="header-action link-secondary" t
 
   <a id="CoreRelm_Migrations_DefaultRelmMigrationSqlProvider_Generate_" data-uid="CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate*"></a>
 
-  <h3 id="CoreRelm_Migrations_DefaultRelmMigrationSqlProvider_Generate_CoreRelm_Models_Migrations_MigrationOptions_System_String_System_String_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__" data-uid="CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})">
-  Generate(MigrationOptions, string, string, string, List&lt;ValidatedModelType&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Migrations/DefaultRelmMigrationSqlProvider.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Migrations_DefaultRelmMigrationSqlProvider_Generate_CoreRelm_Models_Migrations_MigrationOptions_System_String_System_DateTime_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__" data-uid="CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.DateTime,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})">
+  Generate(MigrationOptions, string, DateTime, string, List&lt;ValidatedModelType&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Migrations/DefaultRelmMigrationSqlProvider.cs/#L74"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MigrationGenerateResult Generate(MigrationOptions migrationOptions, string migrationName, string stampUtc, string dbName, List&lt;ValidatedModelType&gt; modelsForDb)</code></pre>
+    <pre><code class="lang-csharp hljs">public MigrationGenerateResult Generate(MigrationOptions migrationOptions, string migrationName, DateTime stampUtc, string dbName, List&lt;ValidatedModelType&gt; modelsForDb)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -220,7 +220,7 @@ Class DefaultRelmMigrationSqlProvider  <a class="header-action link-secondary" t
     <dd></dd>
     <dt><code>migrationName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
-    <dt><code>stampUtc</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dt><code>stampUtc</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
     <dd></dd>
     <dt><code>dbName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
@@ -244,31 +244,31 @@ Class DefaultRelmMigrationSqlProvider  <a class="header-action link-secondary" t
 
 
 
-  <a id="CoreRelm_Migrations_DefaultRelmMigrationSqlProvider_Generate_" data-uid="CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate*"></a>
+  <a id="CoreRelm_Migrations_DefaultRelmMigrationSqlProvider_GenerateAsync_" data-uid="CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.GenerateAsync*"></a>
 
-  <h3 id="CoreRelm_Migrations_DefaultRelmMigrationSqlProvider_Generate_System_String_System_String_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__CoreRelm_RelmInternal_Helpers_Migrations_Provisioning_MySqlDatabaseProvisioner_" data-uid="CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate(System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)">
-  Generate(string, string, string, List&lt;ValidatedModelType&gt;, MySqlDatabaseProvisioner)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Migrations/DefaultRelmMigrationSqlProvider.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Migrations_DefaultRelmMigrationSqlProvider_GenerateAsync_CoreRelm_Models_Migrations_MigrationOptions_System_String_System_DateTime_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__" data-uid="CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.GenerateAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.DateTime,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})">
+  GenerateAsync(MigrationOptions, string, DateTime, string, List&lt;ValidatedModelType&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Migrations/DefaultRelmMigrationSqlProvider.cs/#L90"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;MigrationGenerateResult&gt; Generate(string migrationName, string stampUtc, string dbName, List&lt;ValidatedModelType&gt; modelsForDb, MySqlDatabaseProvisioner provisioner)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;MigrationGenerateResult&gt; GenerateAsync(MigrationOptions migrationOptions, string migrationName, DateTime stampUtc, string dbName, List&lt;ValidatedModelType&gt; modelsForDb)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
+    <dt><code>migrationOptions</code> <a class="xref" href="CoreRelm.Models.Migrations.MigrationOptions.html">MigrationOptions</a></dt>
+    <dd></dd>
     <dt><code>migrationName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
-    <dt><code>stampUtc</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dt><code>stampUtc</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
     <dd></dd>
     <dt><code>dbName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
     <dt><code>modelsForDb</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="CoreRelm.Models.Migrations.ValidatedModelType.html">ValidatedModelType</a>&gt;</dt>
-    <dd></dd>
-    <dt><code>provisioner</code> <a class="xref" href="CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.html">MySqlDatabaseProvisioner</a></dt>
     <dd></dd>
   </dl>
 
@@ -292,7 +292,7 @@ Class DefaultRelmMigrationSqlProvider  <a class="header-action link-secondary" t
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Migrations/DefaultRelmMigrationSqlProvider.cs/#L19" class="edit-link">Edit this page</a>
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Migrations/DefaultRelmMigrationSqlProvider.cs/#L20" class="edit-link">Edit this page</a>
         </div>
 
 

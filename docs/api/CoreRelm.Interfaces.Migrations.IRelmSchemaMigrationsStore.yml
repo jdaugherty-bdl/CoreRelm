@@ -5,7 +5,7 @@ items:
   id: IRelmSchemaMigrationsStore
   parent: CoreRelm.Interfaces.Migrations
   children:
-  - CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.EnsureTableAsync(CoreRelm.Interfaces.IRelmContext,System.Threading.CancellationToken)
+  - CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.EnsureTableAsync(CoreRelm.Interfaces.IRelmContext,CoreRelm.Models.Migrations.MigrationOptions)
   - CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.GetAppliedAsync(CoreRelm.Interfaces.IRelmContext,System.Threading.CancellationToken)
   - CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.RecordAppliedAsync(CoreRelm.Interfaces.IRelmContext,System.String,System.String,System.Threading.CancellationToken)
   langs:
@@ -22,23 +22,23 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: IRelmSchemaMigrationsStore
     path: ../CoreRelm/Interfaces/Migrations/IRelmSchemaMigrationsStore.cs
-    startLine: 9
+    startLine: 10
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Interfaces.Migrations
   syntax:
     content: public interface IRelmSchemaMigrationsStore
     content.vb: Public Interface IRelmSchemaMigrationsStore
-- uid: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.EnsureTableAsync(CoreRelm.Interfaces.IRelmContext,System.Threading.CancellationToken)
-  commentId: M:CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.EnsureTableAsync(CoreRelm.Interfaces.IRelmContext,System.Threading.CancellationToken)
-  id: EnsureTableAsync(CoreRelm.Interfaces.IRelmContext,System.Threading.CancellationToken)
+- uid: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.EnsureTableAsync(CoreRelm.Interfaces.IRelmContext,CoreRelm.Models.Migrations.MigrationOptions)
+  commentId: M:CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.EnsureTableAsync(CoreRelm.Interfaces.IRelmContext,CoreRelm.Models.Migrations.MigrationOptions)
+  id: EnsureTableAsync(CoreRelm.Interfaces.IRelmContext,CoreRelm.Models.Migrations.MigrationOptions)
   parent: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore
   langs:
   - csharp
   - vb
-  name: EnsureTableAsync(IRelmContext, CancellationToken)
-  nameWithType: IRelmSchemaMigrationsStore.EnsureTableAsync(IRelmContext, CancellationToken)
-  fullName: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.EnsureTableAsync(CoreRelm.Interfaces.IRelmContext, System.Threading.CancellationToken)
+  name: EnsureTableAsync(IRelmContext, MigrationOptions)
+  nameWithType: IRelmSchemaMigrationsStore.EnsureTableAsync(IRelmContext, MigrationOptions)
+  fullName: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.EnsureTableAsync(CoreRelm.Interfaces.IRelmContext, CoreRelm.Models.Migrations.MigrationOptions)
   type: Method
   source:
     remote:
@@ -47,20 +47,20 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: EnsureTableAsync
     path: ../CoreRelm/Interfaces/Migrations/IRelmSchemaMigrationsStore.cs
-    startLine: 11
+    startLine: 12
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Interfaces.Migrations
   syntax:
-    content: Task<int> EnsureTableAsync(IRelmContext context, CancellationToken ct = default)
+    content: Task<int> EnsureTableAsync(IRelmContext context, MigrationOptions migrationOptions)
     parameters:
     - id: context
       type: CoreRelm.Interfaces.IRelmContext
-    - id: ct
-      type: System.Threading.CancellationToken
+    - id: migrationOptions
+      type: CoreRelm.Models.Migrations.MigrationOptions
     return:
       type: System.Threading.Tasks.Task{System.Int32}
-    content.vb: Function EnsureTableAsync(context As IRelmContext, ct As CancellationToken = Nothing) As Task(Of Integer)
+    content.vb: Function EnsureTableAsync(context As IRelmContext, migrationOptions As MigrationOptions) As Task(Of Integer)
   overload: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.EnsureTableAsync*
 - uid: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.GetAppliedAsync(CoreRelm.Interfaces.IRelmContext,System.Threading.CancellationToken)
   commentId: M:CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.GetAppliedAsync(CoreRelm.Interfaces.IRelmContext,System.Threading.CancellationToken)
@@ -80,7 +80,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetAppliedAsync
     path: ../CoreRelm/Interfaces/Migrations/IRelmSchemaMigrationsStore.cs
-    startLine: 12
+    startLine: 13
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Interfaces.Migrations
@@ -113,7 +113,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: RecordAppliedAsync
     path: ../CoreRelm/Interfaces/Migrations/IRelmSchemaMigrationsStore.cs
-    startLine: 13
+    startLine: 14
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Interfaces.Migrations
@@ -168,7 +168,7 @@ references:
     href: CoreRelm.Interfaces.Migrations.html
 - uid: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.EnsureTableAsync*
   commentId: Overload:CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.EnsureTableAsync
-  href: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.html#CoreRelm_Interfaces_Migrations_IRelmSchemaMigrationsStore_EnsureTableAsync_CoreRelm_Interfaces_IRelmContext_System_Threading_CancellationToken_
+  href: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.html#CoreRelm_Interfaces_Migrations_IRelmSchemaMigrationsStore_EnsureTableAsync_CoreRelm_Interfaces_IRelmContext_CoreRelm_Models_Migrations_MigrationOptions_
   name: EnsureTableAsync
   nameWithType: IRelmSchemaMigrationsStore.EnsureTableAsync
   fullName: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.EnsureTableAsync
@@ -179,14 +179,13 @@ references:
   name: IRelmContext
   nameWithType: IRelmContext
   fullName: CoreRelm.Interfaces.IRelmContext
-- uid: System.Threading.CancellationToken
-  commentId: T:System.Threading.CancellationToken
-  parent: System.Threading
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
-  name: CancellationToken
-  nameWithType: CancellationToken
-  fullName: System.Threading.CancellationToken
+- uid: CoreRelm.Models.Migrations.MigrationOptions
+  commentId: T:CoreRelm.Models.Migrations.MigrationOptions
+  parent: CoreRelm.Models.Migrations
+  href: CoreRelm.Models.Migrations.MigrationOptions.html
+  name: MigrationOptions
+  nameWithType: MigrationOptions
+  fullName: CoreRelm.Models.Migrations.MigrationOptions
 - uid: System.Threading.Tasks.Task{System.Int32}
   commentId: T:System.Threading.Tasks.Task{System.Int32}
   parent: System.Threading.Tasks
@@ -244,33 +243,36 @@ references:
   - uid: CoreRelm.Interfaces
     name: Interfaces
     href: CoreRelm.Interfaces.html
-- uid: System.Threading
-  commentId: N:System.Threading
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System.Threading
-  nameWithType: System.Threading
-  fullName: System.Threading
+- uid: CoreRelm.Models.Migrations
+  commentId: N:CoreRelm.Models.Migrations
+  href: CoreRelm.html
+  name: CoreRelm.Models.Migrations
+  nameWithType: CoreRelm.Models.Migrations
+  fullName: CoreRelm.Models.Migrations
   spec.csharp:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
   - name: .
-  - uid: System.Threading
-    name: Threading
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
   spec.vb:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
   - name: .
-  - uid: System.Threading
-    name: Threading
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
 - uid: System.Threading.Tasks.Task`1
   commentId: T:System.Threading.Tasks.Task`1
   isExternal: true
@@ -342,6 +344,14 @@ references:
   name: GetAppliedAsync
   nameWithType: IRelmSchemaMigrationsStore.GetAppliedAsync
   fullName: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.GetAppliedAsync
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
 - uid: System.Threading.Tasks.Task{System.Collections.Generic.Dictionary{System.String,CoreRelm.Models.Migrations.Execution.AppliedMigration}}
   commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.Dictionary{System.String,CoreRelm.Models.Migrations.Execution.AppliedMigration}}
   parent: System.Threading.Tasks
@@ -401,6 +411,33 @@ references:
     href: CoreRelm.Models.Migrations.Execution.AppliedMigration.html
   - name: )
   - name: )
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
 - uid: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.RecordAppliedAsync*
   commentId: Overload:CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.RecordAppliedAsync
   href: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.html#CoreRelm_Interfaces_Migrations_IRelmSchemaMigrationsStore_RecordAppliedAsync_CoreRelm_Interfaces_IRelmContext_System_String_System_String_System_Threading_CancellationToken_

@@ -48,9 +48,9 @@ items:
   langs:
   - csharp
   - vb
-  name: SchemaSnapshot(string, IReadOnlyDictionary<string, TableSchema>, IReadOnlyDictionary<string, FunctionSchema>)
-  nameWithType: SchemaSnapshot.SchemaSnapshot(string, IReadOnlyDictionary<string, TableSchema>, IReadOnlyDictionary<string, FunctionSchema>)
-  fullName: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.SchemaSnapshot(string, System.Collections.Generic.IReadOnlyDictionary<string, CoreRelm.Models.Migrations.Introspection.TableSchema>, System.Collections.Generic.IReadOnlyDictionary<string, CoreRelm.Models.Migrations.Introspection.FunctionSchema>)
+  name: SchemaSnapshot(string, IReadOnlyDictionary<string, TableSchema>, IReadOnlyDictionary<string, FunctionSchema>?)
+  nameWithType: SchemaSnapshot.SchemaSnapshot(string, IReadOnlyDictionary<string, TableSchema>, IReadOnlyDictionary<string, FunctionSchema>?)
+  fullName: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.SchemaSnapshot(string, System.Collections.Generic.IReadOnlyDictionary<string, CoreRelm.Models.Migrations.Introspection.TableSchema>, System.Collections.Generic.IReadOnlyDictionary<string, CoreRelm.Models.Migrations.Introspection.FunctionSchema>?)
   type: Constructor
   source:
     remote:
@@ -64,7 +64,7 @@ items:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
   syntax:
-    content: public SchemaSnapshot(string DatabaseName, IReadOnlyDictionary<string, TableSchema> Tables, IReadOnlyDictionary<string, FunctionSchema> Functions)
+    content: public SchemaSnapshot(string DatabaseName, IReadOnlyDictionary<string, TableSchema> Tables, IReadOnlyDictionary<string, FunctionSchema>? Functions)
     parameters:
     - id: DatabaseName
       type: System.String
@@ -158,7 +158,7 @@ items:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
   syntax:
-    content: public IReadOnlyDictionary<string, FunctionSchema> Functions { get; init; }
+    content: public IReadOnlyDictionary<string, FunctionSchema>? Functions { get; init; }
     parameters: []
     return:
       type: System.Collections.Generic.IReadOnlyDictionary{System.String,CoreRelm.Models.Migrations.Introspection.FunctionSchema}

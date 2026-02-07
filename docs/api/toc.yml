@@ -54,6 +54,33 @@ items:
   - uid: CoreRelm.Enums.ForeignKeys.ReferentialAction
     name: ForeignKeys.ReferentialAction
     type: Enum
+  - uid: CoreRelm.Enums.SecurityEnums
+    name: SecurityEnums
+    type: Class
+  - uid: CoreRelm.Enums.SecurityEnums.AccessLevel
+    name: SecurityEnums.AccessLevel
+    type: Enum
+  - uid: CoreRelm.Enums.SecurityEnums.AccountStatus
+    name: SecurityEnums.AccountStatus
+    type: Enum
+  - uid: CoreRelm.Enums.SecurityEnums.AuthenticationMethod
+    name: SecurityEnums.AuthenticationMethod
+    type: Enum
+  - uid: CoreRelm.Enums.SecurityEnums.EncryptionAlgorithm
+    name: SecurityEnums.EncryptionAlgorithm
+    type: Enum
+  - uid: CoreRelm.Enums.SecurityEnums.HashingAlgorithm
+    name: SecurityEnums.HashingAlgorithm
+    type: Enum
+  - uid: CoreRelm.Enums.SecurityEnums.PasswordStrength
+    name: SecurityEnums.PasswordStrength
+    type: Enum
+  - uid: CoreRelm.Enums.SecurityEnums.SqlSecurityLevel
+    name: SecurityEnums.SqlSecurityLevel
+    type: Enum
+  - uid: CoreRelm.Enums.SecurityEnums.UserRole
+    name: SecurityEnums.UserRole
+    type: Enum
   - uid: CoreRelm.Enums.Triggers
     name: Triggers
     type: Class
@@ -164,16 +191,6 @@ items:
   - uid: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner
     name: IRelmSqlScriptRunner
     type: Interface
-- uid: CoreRelm.Interfaces.RelmQuick
-  name: CoreRelm.Interfaces.RelmQuick
-  type: Namespace
-  items:
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickContext
-    name: IRelmQuickContext
-    type: Interface
-  - uid: CoreRelm.Interfaces.RelmQuick.IRelmQuickFieldLoader
-    name: IRelmQuickFieldLoader
-    type: Interface
 - uid: CoreRelm.Interfaces.Resolvers
   name: CoreRelm.Interfaces.Resolvers
   type: Namespace
@@ -215,9 +232,6 @@ items:
     type: Class
   - uid: CoreRelm.Models.RelmModelApartment
     name: RelmModelApartment
-    type: Class
-  - uid: CoreRelm.Models.RelmQuickContext
-    name: RelmQuickContext
     type: Class
   - uid: CoreRelm.Models.RelmTrigger`1
     name: RelmTrigger<T>
@@ -335,6 +349,9 @@ items:
     type: Class
   - uid: CoreRelm.Models.Migrations.Rendering.DropForeignKeyOperation
     name: DropForeignKeyOperation
+    type: Class
+  - uid: CoreRelm.Models.Migrations.Rendering.DropFunctionOperation
+    name: DropFunctionOperation
     type: Class
   - uid: CoreRelm.Models.Migrations.Rendering.DropIndexOperation
     name: DropIndexOperation

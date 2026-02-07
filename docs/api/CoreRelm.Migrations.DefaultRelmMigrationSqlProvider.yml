@@ -6,8 +6,8 @@ items:
   parent: CoreRelm.Migrations
   children:
   - CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.#ctor(CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector,CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner,CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer,CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner,CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder,CoreRelm.Models.Migrations.MigrationOptions)
-  - CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
-  - CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate(System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
+  - CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.DateTime,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
+  - CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.GenerateAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.DateTime,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
   langs:
   - csharp
   - vb
@@ -22,7 +22,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DefaultRelmMigrationSqlProvider
     path: ../CoreRelm/Migrations/DefaultRelmMigrationSqlProvider.cs
-    startLine: 18
+    startLine: 19
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Migrations
@@ -58,7 +58,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Migrations/DefaultRelmMigrationSqlProvider.cs
-    startLine: 27
+    startLine: 28
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Migrations
@@ -82,16 +82,16 @@ items:
   nameWithType.vb: DefaultRelmMigrationSqlProvider.New(IRelmSchemaIntrospector, IRelmMigrationPlanner, IRelmMigrationSqlRenderer, MySqlDatabaseProvisioner, IRelmDesiredSchemaBuilder, MigrationOptions)
   fullName.vb: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.New(CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector, CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner, CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer, CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner, CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder, CoreRelm.Models.Migrations.MigrationOptions)
   name.vb: New(IRelmSchemaIntrospector, IRelmMigrationPlanner, IRelmMigrationSqlRenderer, MySqlDatabaseProvisioner, IRelmDesiredSchemaBuilder, MigrationOptions)
-- uid: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate(System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
-  commentId: M:CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate(System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
-  id: Generate(System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
+- uid: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.DateTime,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
+  commentId: M:CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.DateTime,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
+  id: Generate(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.DateTime,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
   parent: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider
   langs:
   - csharp
   - vb
-  name: Generate(string, string, string, List<ValidatedModelType>, MySqlDatabaseProvisioner)
-  nameWithType: DefaultRelmMigrationSqlProvider.Generate(string, string, string, List<ValidatedModelType>, MySqlDatabaseProvisioner)
-  fullName: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate(string, string, string, System.Collections.Generic.List<CoreRelm.Models.Migrations.ValidatedModelType>, CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
+  name: Generate(MigrationOptions, string, DateTime, string, List<ValidatedModelType>)
+  nameWithType: DefaultRelmMigrationSqlProvider.Generate(MigrationOptions, string, DateTime, string, List<ValidatedModelType>)
+  fullName: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate(CoreRelm.Models.Migrations.MigrationOptions, string, System.DateTime, string, System.Collections.Generic.List<CoreRelm.Models.Migrations.ValidatedModelType>)
   type: Method
   source:
     remote:
@@ -100,75 +100,78 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Generate
     path: ../CoreRelm/Migrations/DefaultRelmMigrationSqlProvider.cs
-    startLine: 43
+    startLine: 73
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Migrations
   example: []
   syntax:
-    content: public Task<MigrationGenerateResult> Generate(string migrationName, string stampUtc, string dbName, List<ValidatedModelType> modelsForDb, MySqlDatabaseProvisioner provisioner)
-    parameters:
-    - id: migrationName
-      type: System.String
-    - id: stampUtc
-      type: System.String
-    - id: dbName
-      type: System.String
-    - id: modelsForDb
-      type: System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType}
-    - id: provisioner
-      type: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner
-    return:
-      type: System.Threading.Tasks.Task{CoreRelm.Models.Migrations.MigrationGenerateResult}
-    content.vb: Public Function Generate(migrationName As String, stampUtc As String, dbName As String, modelsForDb As List(Of ValidatedModelType), provisioner As MySqlDatabaseProvisioner) As Task(Of MigrationGenerateResult)
-  overload: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate*
-  implements:
-  - CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
-  nameWithType.vb: DefaultRelmMigrationSqlProvider.Generate(String, String, String, List(Of ValidatedModelType), MySqlDatabaseProvisioner)
-  fullName.vb: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate(String, String, String, System.Collections.Generic.List(Of CoreRelm.Models.Migrations.ValidatedModelType), CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
-  name.vb: Generate(String, String, String, List(Of ValidatedModelType), MySqlDatabaseProvisioner)
-- uid: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
-  commentId: M:CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
-  id: Generate(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
-  parent: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider
-  langs:
-  - csharp
-  - vb
-  name: Generate(MigrationOptions, string, string, string, List<ValidatedModelType>)
-  nameWithType: DefaultRelmMigrationSqlProvider.Generate(MigrationOptions, string, string, string, List<ValidatedModelType>)
-  fullName: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate(CoreRelm.Models.Migrations.MigrationOptions, string, string, string, System.Collections.Generic.List<CoreRelm.Models.Migrations.ValidatedModelType>)
-  type: Method
-  source:
-    remote:
-      path: CoreRelm/Migrations/DefaultRelmMigrationSqlProvider.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: Generate
-    path: ../CoreRelm/Migrations/DefaultRelmMigrationSqlProvider.cs
-    startLine: 63
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Migrations
-  syntax:
-    content: public MigrationGenerateResult Generate(MigrationOptions migrationOptions, string migrationName, string stampUtc, string dbName, List<ValidatedModelType> modelsForDb)
+    content: public MigrationGenerateResult Generate(MigrationOptions migrationOptions, string migrationName, DateTime stampUtc, string dbName, List<ValidatedModelType> modelsForDb)
     parameters:
     - id: migrationOptions
       type: CoreRelm.Models.Migrations.MigrationOptions
     - id: migrationName
       type: System.String
     - id: stampUtc
-      type: System.String
+      type: System.DateTime
     - id: dbName
       type: System.String
     - id: modelsForDb
       type: System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType}
     return:
       type: CoreRelm.Models.Migrations.MigrationGenerateResult
-    content.vb: Public Function Generate(migrationOptions As MigrationOptions, migrationName As String, stampUtc As String, dbName As String, modelsForDb As List(Of ValidatedModelType)) As MigrationGenerateResult
+    content.vb: Public Function Generate(migrationOptions As MigrationOptions, migrationName As String, stampUtc As Date, dbName As String, modelsForDb As List(Of ValidatedModelType)) As MigrationGenerateResult
   overload: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate*
-  nameWithType.vb: DefaultRelmMigrationSqlProvider.Generate(MigrationOptions, String, String, String, List(Of ValidatedModelType))
-  fullName.vb: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate(CoreRelm.Models.Migrations.MigrationOptions, String, String, String, System.Collections.Generic.List(Of CoreRelm.Models.Migrations.ValidatedModelType))
-  name.vb: Generate(MigrationOptions, String, String, String, List(Of ValidatedModelType))
+  implements:
+  - CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.DateTime,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
+  nameWithType.vb: DefaultRelmMigrationSqlProvider.Generate(MigrationOptions, String, Date, String, List(Of ValidatedModelType))
+  fullName.vb: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate(CoreRelm.Models.Migrations.MigrationOptions, String, Date, String, System.Collections.Generic.List(Of CoreRelm.Models.Migrations.ValidatedModelType))
+  name.vb: Generate(MigrationOptions, String, Date, String, List(Of ValidatedModelType))
+- uid: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.GenerateAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.DateTime,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
+  commentId: M:CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.GenerateAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.DateTime,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
+  id: GenerateAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.DateTime,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
+  parent: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider
+  langs:
+  - csharp
+  - vb
+  name: GenerateAsync(MigrationOptions, string, DateTime, string, List<ValidatedModelType>)
+  nameWithType: DefaultRelmMigrationSqlProvider.GenerateAsync(MigrationOptions, string, DateTime, string, List<ValidatedModelType>)
+  fullName: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.GenerateAsync(CoreRelm.Models.Migrations.MigrationOptions, string, System.DateTime, string, System.Collections.Generic.List<CoreRelm.Models.Migrations.ValidatedModelType>)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Migrations/DefaultRelmMigrationSqlProvider.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: GenerateAsync
+    path: ../CoreRelm/Migrations/DefaultRelmMigrationSqlProvider.cs
+    startLine: 89
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Migrations
+  example: []
+  syntax:
+    content: public Task<MigrationGenerateResult> GenerateAsync(MigrationOptions migrationOptions, string migrationName, DateTime stampUtc, string dbName, List<ValidatedModelType> modelsForDb)
+    parameters:
+    - id: migrationOptions
+      type: CoreRelm.Models.Migrations.MigrationOptions
+    - id: migrationName
+      type: System.String
+    - id: stampUtc
+      type: System.DateTime
+    - id: dbName
+      type: System.String
+    - id: modelsForDb
+      type: System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType}
+    return:
+      type: System.Threading.Tasks.Task{CoreRelm.Models.Migrations.MigrationGenerateResult}
+    content.vb: Public Function GenerateAsync(migrationOptions As MigrationOptions, migrationName As String, stampUtc As Date, dbName As String, modelsForDb As List(Of ValidatedModelType)) As Task(Of MigrationGenerateResult)
+  overload: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.GenerateAsync*
+  implements:
+  - CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.GenerateAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.DateTime,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
+  nameWithType.vb: DefaultRelmMigrationSqlProvider.GenerateAsync(MigrationOptions, String, Date, String, List(Of ValidatedModelType))
+  fullName.vb: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.GenerateAsync(CoreRelm.Models.Migrations.MigrationOptions, String, Date, String, System.Collections.Generic.List(Of CoreRelm.Models.Migrations.ValidatedModelType))
+  name.vb: GenerateAsync(MigrationOptions, String, Date, String, List(Of ValidatedModelType))
 references:
 - uid: CoreRelm.Migrations
   commentId: N:CoreRelm.Migrations
@@ -601,36 +604,41 @@ references:
     href: CoreRelm.Models.Migrations.html
 - uid: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate*
   commentId: Overload:CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate
-  href: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.html#CoreRelm_Migrations_DefaultRelmMigrationSqlProvider_Generate_System_String_System_String_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__CoreRelm_RelmInternal_Helpers_Migrations_Provisioning_MySqlDatabaseProvisioner_
+  href: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.html#CoreRelm_Migrations_DefaultRelmMigrationSqlProvider_Generate_CoreRelm_Models_Migrations_MigrationOptions_System_String_System_DateTime_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__
   name: Generate
   nameWithType: DefaultRelmMigrationSqlProvider.Generate
   fullName: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate
-- uid: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
-  commentId: M:CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
+- uid: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.DateTime,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
+  commentId: M:CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.DateTime,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
   parent: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider
   isExternal: true
-  href: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.html#CoreRelm_Interfaces_Migrations_IMigrationSqlProvider_Generate_System_String_System_String_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__CoreRelm_RelmInternal_Helpers_Migrations_Provisioning_MySqlDatabaseProvisioner_
-  name: Generate(string, string, string, List<ValidatedModelType>, MySqlDatabaseProvisioner)
-  nameWithType: IMigrationSqlProvider.Generate(string, string, string, List<ValidatedModelType>, MySqlDatabaseProvisioner)
-  fullName: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(string, string, string, System.Collections.Generic.List<CoreRelm.Models.Migrations.ValidatedModelType>, CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
-  nameWithType.vb: IMigrationSqlProvider.Generate(String, String, String, List(Of ValidatedModelType), MySqlDatabaseProvisioner)
-  fullName.vb: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(String, String, String, System.Collections.Generic.List(Of CoreRelm.Models.Migrations.ValidatedModelType), CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
-  name.vb: Generate(String, String, String, List(Of ValidatedModelType), MySqlDatabaseProvisioner)
+  href: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.html#CoreRelm_Interfaces_Migrations_IMigrationSqlProvider_Generate_CoreRelm_Models_Migrations_MigrationOptions_System_String_System_DateTime_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__
+  name: Generate(MigrationOptions, string, DateTime, string, List<ValidatedModelType>)
+  nameWithType: IMigrationSqlProvider.Generate(MigrationOptions, string, DateTime, string, List<ValidatedModelType>)
+  fullName: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(CoreRelm.Models.Migrations.MigrationOptions, string, System.DateTime, string, System.Collections.Generic.List<CoreRelm.Models.Migrations.ValidatedModelType>)
+  nameWithType.vb: IMigrationSqlProvider.Generate(MigrationOptions, String, Date, String, List(Of ValidatedModelType))
+  fullName.vb: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(CoreRelm.Models.Migrations.MigrationOptions, String, Date, String, System.Collections.Generic.List(Of CoreRelm.Models.Migrations.ValidatedModelType))
+  name.vb: Generate(MigrationOptions, String, Date, String, List(Of ValidatedModelType))
   spec.csharp:
-  - uid: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
+  - uid: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.DateTime,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
     name: Generate
-    href: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.html#CoreRelm_Interfaces_Migrations_IMigrationSqlProvider_Generate_System_String_System_String_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__CoreRelm_RelmInternal_Helpers_Migrations_Provisioning_MySqlDatabaseProvisioner_
+    href: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.html#CoreRelm_Interfaces_Migrations_IMigrationSqlProvider_Generate_CoreRelm_Models_Migrations_MigrationOptions_System_String_System_DateTime_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__
   - name: (
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
+  - uid: CoreRelm.Models.Migrations.MigrationOptions
+    name: MigrationOptions
+    href: CoreRelm.Models.Migrations.MigrationOptions.html
   - name: ','
   - name: " "
   - uid: System.String
     name: string
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.DateTime
+    name: DateTime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
   - name: ','
   - name: " "
   - uid: System.String
@@ -648,27 +656,27 @@ references:
     name: ValidatedModelType
     href: CoreRelm.Models.Migrations.ValidatedModelType.html
   - name: '>'
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner
-    name: MySqlDatabaseProvisioner
-    href: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.html
   - name: )
   spec.vb:
-  - uid: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(System.String,System.String,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
+  - uid: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.DateTime,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
     name: Generate
-    href: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.html#CoreRelm_Interfaces_Migrations_IMigrationSqlProvider_Generate_System_String_System_String_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__CoreRelm_RelmInternal_Helpers_Migrations_Provisioning_MySqlDatabaseProvisioner_
+    href: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.html#CoreRelm_Interfaces_Migrations_IMigrationSqlProvider_Generate_CoreRelm_Models_Migrations_MigrationOptions_System_String_System_DateTime_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__
   - name: (
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
+  - uid: CoreRelm.Models.Migrations.MigrationOptions
+    name: MigrationOptions
+    href: CoreRelm.Models.Migrations.MigrationOptions.html
   - name: ','
   - name: " "
   - uid: System.String
     name: String
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.DateTime
+    name: Date
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
   - name: ','
   - name: " "
   - uid: System.String
@@ -688,11 +696,6 @@ references:
     name: ValidatedModelType
     href: CoreRelm.Models.Migrations.ValidatedModelType.html
   - name: )
-  - name: ','
-  - name: " "
-  - uid: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner
-    name: MySqlDatabaseProvisioner
-    href: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.html
   - name: )
 - uid: System.String
   commentId: T:System.String
@@ -705,6 +708,17 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+  nameWithType.vb: Date
+  fullName.vb: Date
+  name.vb: Date
 - uid: System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType}
   commentId: T:System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType}
   parent: System.Collections.Generic
@@ -738,39 +752,13 @@ references:
     name: ValidatedModelType
     href: CoreRelm.Models.Migrations.ValidatedModelType.html
   - name: )
-- uid: System.Threading.Tasks.Task{CoreRelm.Models.Migrations.MigrationGenerateResult}
-  commentId: T:System.Threading.Tasks.Task{CoreRelm.Models.Migrations.MigrationGenerateResult}
-  parent: System.Threading.Tasks
-  definition: System.Threading.Tasks.Task`1
-  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
-  name: Task<MigrationGenerateResult>
-  nameWithType: Task<MigrationGenerateResult>
-  fullName: System.Threading.Tasks.Task<CoreRelm.Models.Migrations.MigrationGenerateResult>
-  nameWithType.vb: Task(Of MigrationGenerateResult)
-  fullName.vb: System.Threading.Tasks.Task(Of CoreRelm.Models.Migrations.MigrationGenerateResult)
-  name.vb: Task(Of MigrationGenerateResult)
-  spec.csharp:
-  - uid: System.Threading.Tasks.Task`1
-    name: Task
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
-  - name: <
-  - uid: CoreRelm.Models.Migrations.MigrationGenerateResult
-    name: MigrationGenerateResult
-    href: CoreRelm.Models.Migrations.MigrationGenerateResult.html
-  - name: '>'
-  spec.vb:
-  - uid: System.Threading.Tasks.Task`1
-    name: Task
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: CoreRelm.Models.Migrations.MigrationGenerateResult
-    name: MigrationGenerateResult
-    href: CoreRelm.Models.Migrations.MigrationGenerateResult.html
-  - name: )
+- uid: CoreRelm.Models.Migrations.MigrationGenerateResult
+  commentId: T:CoreRelm.Models.Migrations.MigrationGenerateResult
+  parent: CoreRelm.Models.Migrations
+  href: CoreRelm.Models.Migrations.MigrationGenerateResult.html
+  name: MigrationGenerateResult
+  nameWithType: MigrationGenerateResult
+  fullName: CoreRelm.Models.Migrations.MigrationGenerateResult
 - uid: System.Collections.Generic.List`1
   commentId: T:System.Collections.Generic.List`1
   isExternal: true
@@ -836,6 +824,134 @@ references:
     name: Generic
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.GenerateAsync*
+  commentId: Overload:CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.GenerateAsync
+  href: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.html#CoreRelm_Migrations_DefaultRelmMigrationSqlProvider_GenerateAsync_CoreRelm_Models_Migrations_MigrationOptions_System_String_System_DateTime_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__
+  name: GenerateAsync
+  nameWithType: DefaultRelmMigrationSqlProvider.GenerateAsync
+  fullName: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.GenerateAsync
+- uid: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.GenerateAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.DateTime,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
+  commentId: M:CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.GenerateAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.DateTime,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
+  parent: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider
+  isExternal: true
+  href: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.html#CoreRelm_Interfaces_Migrations_IMigrationSqlProvider_GenerateAsync_CoreRelm_Models_Migrations_MigrationOptions_System_String_System_DateTime_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__
+  name: GenerateAsync(MigrationOptions, string, DateTime, string, List<ValidatedModelType>)
+  nameWithType: IMigrationSqlProvider.GenerateAsync(MigrationOptions, string, DateTime, string, List<ValidatedModelType>)
+  fullName: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.GenerateAsync(CoreRelm.Models.Migrations.MigrationOptions, string, System.DateTime, string, System.Collections.Generic.List<CoreRelm.Models.Migrations.ValidatedModelType>)
+  nameWithType.vb: IMigrationSqlProvider.GenerateAsync(MigrationOptions, String, Date, String, List(Of ValidatedModelType))
+  fullName.vb: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.GenerateAsync(CoreRelm.Models.Migrations.MigrationOptions, String, Date, String, System.Collections.Generic.List(Of CoreRelm.Models.Migrations.ValidatedModelType))
+  name.vb: GenerateAsync(MigrationOptions, String, Date, String, List(Of ValidatedModelType))
+  spec.csharp:
+  - uid: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.GenerateAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.DateTime,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
+    name: GenerateAsync
+    href: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.html#CoreRelm_Interfaces_Migrations_IMigrationSqlProvider_GenerateAsync_CoreRelm_Models_Migrations_MigrationOptions_System_String_System_DateTime_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__
+  - name: (
+  - uid: CoreRelm.Models.Migrations.MigrationOptions
+    name: MigrationOptions
+    href: CoreRelm.Models.Migrations.MigrationOptions.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.DateTime
+    name: DateTime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: CoreRelm.Models.Migrations.ValidatedModelType
+    name: ValidatedModelType
+    href: CoreRelm.Models.Migrations.ValidatedModelType.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.GenerateAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.DateTime,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
+    name: GenerateAsync
+    href: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.html#CoreRelm_Interfaces_Migrations_IMigrationSqlProvider_GenerateAsync_CoreRelm_Models_Migrations_MigrationOptions_System_String_System_DateTime_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__
+  - name: (
+  - uid: CoreRelm.Models.Migrations.MigrationOptions
+    name: MigrationOptions
+    href: CoreRelm.Models.Migrations.MigrationOptions.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.DateTime
+    name: Date
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.ValidatedModelType
+    name: ValidatedModelType
+    href: CoreRelm.Models.Migrations.ValidatedModelType.html
+  - name: )
+  - name: )
+- uid: System.Threading.Tasks.Task{CoreRelm.Models.Migrations.MigrationGenerateResult}
+  commentId: T:System.Threading.Tasks.Task{CoreRelm.Models.Migrations.MigrationGenerateResult}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<MigrationGenerateResult>
+  nameWithType: Task<MigrationGenerateResult>
+  fullName: System.Threading.Tasks.Task<CoreRelm.Models.Migrations.MigrationGenerateResult>
+  nameWithType.vb: Task(Of MigrationGenerateResult)
+  fullName.vb: System.Threading.Tasks.Task(Of CoreRelm.Models.Migrations.MigrationGenerateResult)
+  name.vb: Task(Of MigrationGenerateResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: CoreRelm.Models.Migrations.MigrationGenerateResult
+    name: MigrationGenerateResult
+    href: CoreRelm.Models.Migrations.MigrationGenerateResult.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.MigrationGenerateResult
+    name: MigrationGenerateResult
+    href: CoreRelm.Models.Migrations.MigrationGenerateResult.html
+  - name: )
 - uid: System.Threading.Tasks.Task`1
   commentId: T:System.Threading.Tasks.Task`1
   isExternal: true
@@ -901,10 +1017,3 @@ references:
     name: Tasks
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
-- uid: CoreRelm.Models.Migrations.MigrationGenerateResult
-  commentId: T:CoreRelm.Models.Migrations.MigrationGenerateResult
-  parent: CoreRelm.Models.Migrations
-  href: CoreRelm.Models.Migrations.MigrationGenerateResult.html
-  name: MigrationGenerateResult
-  nameWithType: MigrationGenerateResult
-  fullName: CoreRelm.Models.Migrations.MigrationGenerateResult

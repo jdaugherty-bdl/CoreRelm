@@ -9,14 +9,11 @@ items:
   - CoreRelm.Models.RelmExecutionCommand.#ctor(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
   - CoreRelm.Models.RelmExecutionCommand.AddAdditionalCommand(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
   - CoreRelm.Models.RelmExecutionCommand.AddAdditionalCommand``1(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression{System.Func{``0,System.Object}})
-  - CoreRelm.Models.RelmExecutionCommand.AdditionalCommandCount
   - CoreRelm.Models.RelmExecutionCommand.ChildCommandCount
   - CoreRelm.Models.RelmExecutionCommand.ExecutionCommand
   - CoreRelm.Models.RelmExecutionCommand.ExecutionExpression
   - CoreRelm.Models.RelmExecutionCommand.GetAdditionalCommands
   - CoreRelm.Models.RelmExecutionCommand.GetForeignKeyNavigationOptions``1(System.Collections.Generic.ICollection{``0})
-  - CoreRelm.Models.RelmExecutionCommand.InitialCommand
-  - CoreRelm.Models.RelmExecutionCommand.InitialExpression
   langs:
   - csharp
   - vb
@@ -94,51 +91,6 @@ items:
   overload: CoreRelm.Models.RelmExecutionCommand.ExecutionCommand*
   implements:
   - CoreRelm.Interfaces.IRelmExecutionCommand.ExecutionCommand
-- uid: CoreRelm.Models.RelmExecutionCommand.InitialCommand
-  commentId: P:CoreRelm.Models.RelmExecutionCommand.InitialCommand
-  id: InitialCommand
-  parent: CoreRelm.Models.RelmExecutionCommand
-  langs:
-  - csharp
-  - vb
-  name: InitialCommand
-  nameWithType: RelmExecutionCommand.InitialCommand
-  fullName: CoreRelm.Models.RelmExecutionCommand.InitialCommand
-  type: Property
-  source:
-    remote:
-      path: CoreRelm/Models/RelmExecutionCommand.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: InitialCommand
-    path: ../CoreRelm/Models/RelmExecutionCommand.cs
-    startLine: 34
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Models
-  summary: Gets the command that is executed when the associated component is initialized.
-  example: []
-  syntax:
-    content: >-
-      [Obsolete("InitialCommand is deprecated, please use ExecutionCommand instead.")]
-
-      public Commands.Command InitialCommand { get; }
-    parameters: []
-    return:
-      type: CoreRelm.Enums.Commands.Command
-    content.vb: >-
-      <Obsolete("InitialCommand is deprecated, please use ExecutionCommand instead.")>
-
-      Public ReadOnly Property InitialCommand As Commands.Command
-  overload: CoreRelm.Models.RelmExecutionCommand.InitialCommand*
-  implements:
-  - CoreRelm.Interfaces.IRelmExecutionCommand.InitialCommand
-  attributes:
-  - type: System.ObsoleteAttribute
-    ctor: System.ObsoleteAttribute.#ctor(System.String)
-    arguments:
-    - type: System.String
-      value: InitialCommand is deprecated, please use ExecutionCommand instead.
 - uid: CoreRelm.Models.RelmExecutionCommand.ExecutionExpression
   commentId: P:CoreRelm.Models.RelmExecutionCommand.ExecutionExpression
   id: ExecutionExpression
@@ -157,14 +109,14 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ExecutionExpression
     path: ../CoreRelm/Models/RelmExecutionCommand.cs
-    startLine: 40
+    startLine: 34
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
   summary: Gets the expression that represents the execution logic for this instance.
   example: []
   syntax:
-    content: public Expression ExecutionExpression { get; }
+    content: public Expression? ExecutionExpression { get; }
     parameters: []
     return:
       type: System.Linq.Expressions.Expression
@@ -172,51 +124,6 @@ items:
   overload: CoreRelm.Models.RelmExecutionCommand.ExecutionExpression*
   implements:
   - CoreRelm.Interfaces.IRelmExecutionCommand.ExecutionExpression
-- uid: CoreRelm.Models.RelmExecutionCommand.InitialExpression
-  commentId: P:CoreRelm.Models.RelmExecutionCommand.InitialExpression
-  id: InitialExpression
-  parent: CoreRelm.Models.RelmExecutionCommand
-  langs:
-  - csharp
-  - vb
-  name: InitialExpression
-  nameWithType: RelmExecutionCommand.InitialExpression
-  fullName: CoreRelm.Models.RelmExecutionCommand.InitialExpression
-  type: Property
-  source:
-    remote:
-      path: CoreRelm/Models/RelmExecutionCommand.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: InitialExpression
-    path: ../CoreRelm/Models/RelmExecutionCommand.cs
-    startLine: 45
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Models
-  summary: Gets the initial expression used to define the starting state or value for this instance.
-  example: []
-  syntax:
-    content: >-
-      [Obsolete("InitialExpression is deprecated, please use ExecutionExpression instead.")]
-
-      public Expression InitialExpression { get; }
-    parameters: []
-    return:
-      type: System.Linq.Expressions.Expression
-    content.vb: >-
-      <Obsolete("InitialExpression is deprecated, please use ExecutionExpression instead.")>
-
-      Public ReadOnly Property InitialExpression As Expression
-  overload: CoreRelm.Models.RelmExecutionCommand.InitialExpression*
-  implements:
-  - CoreRelm.Interfaces.IRelmExecutionCommand.InitialExpression
-  attributes:
-  - type: System.ObsoleteAttribute
-    ctor: System.ObsoleteAttribute.#ctor(System.String)
-    arguments:
-    - type: System.String
-      value: InitialExpression is deprecated, please use ExecutionExpression instead.
 - uid: CoreRelm.Models.RelmExecutionCommand.ChildCommandCount
   commentId: P:CoreRelm.Models.RelmExecutionCommand.ChildCommandCount
   id: ChildCommandCount
@@ -235,7 +142,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ChildCommandCount
     path: ../CoreRelm/Models/RelmExecutionCommand.cs
-    startLine: 51
+    startLine: 39
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -248,51 +155,8 @@ items:
       type: System.Int32
     content.vb: Public ReadOnly Property ChildCommandCount As Integer
   overload: CoreRelm.Models.RelmExecutionCommand.ChildCommandCount*
-- uid: CoreRelm.Models.RelmExecutionCommand.AdditionalCommandCount
-  commentId: P:CoreRelm.Models.RelmExecutionCommand.AdditionalCommandCount
-  id: AdditionalCommandCount
-  parent: CoreRelm.Models.RelmExecutionCommand
-  langs:
-  - csharp
-  - vb
-  name: AdditionalCommandCount
-  nameWithType: RelmExecutionCommand.AdditionalCommandCount
-  fullName: CoreRelm.Models.RelmExecutionCommand.AdditionalCommandCount
-  type: Property
-  source:
-    remote:
-      path: CoreRelm/Models/RelmExecutionCommand.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: AdditionalCommandCount
-    path: ../CoreRelm/Models/RelmExecutionCommand.cs
-    startLine: 56
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Models
-  summary: Gets the number of additional commands associated with this instance.
-  example: []
-  syntax:
-    content: >-
-      [Obsolete("AdditionalCommandCount is deprecated, please use ChildCommandCount instead.")]
-
-      public int AdditionalCommandCount { get; }
-    parameters: []
-    return:
-      type: System.Int32
-    content.vb: >-
-      <Obsolete("AdditionalCommandCount is deprecated, please use ChildCommandCount instead.")>
-
-      Public ReadOnly Property AdditionalCommandCount As Integer
-  overload: CoreRelm.Models.RelmExecutionCommand.AdditionalCommandCount*
   implements:
-  - CoreRelm.Interfaces.IRelmExecutionCommand.AdditionalCommandCount
-  attributes:
-  - type: System.ObsoleteAttribute
-    ctor: System.ObsoleteAttribute.#ctor(System.String)
-    arguments:
-    - type: System.String
-      value: AdditionalCommandCount is deprecated, please use ChildCommandCount instead.
+  - CoreRelm.Interfaces.IRelmExecutionCommand.ChildCommandCount
 - uid: CoreRelm.Models.RelmExecutionCommand.#ctor
   commentId: M:CoreRelm.Models.RelmExecutionCommand.#ctor
   id: '#ctor'
@@ -311,7 +175,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Models/RelmExecutionCommand.cs
-    startLine: 64
+    startLine: 46
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -331,9 +195,9 @@ items:
   langs:
   - csharp
   - vb
-  name: RelmExecutionCommand(Command, Expression)
-  nameWithType: RelmExecutionCommand.RelmExecutionCommand(Commands.Command, Expression)
-  fullName: CoreRelm.Models.RelmExecutionCommand.RelmExecutionCommand(CoreRelm.Enums.Commands.Command, System.Linq.Expressions.Expression)
+  name: RelmExecutionCommand(Command, Expression?)
+  nameWithType: RelmExecutionCommand.RelmExecutionCommand(Commands.Command, Expression?)
+  fullName: CoreRelm.Models.RelmExecutionCommand.RelmExecutionCommand(CoreRelm.Enums.Commands.Command, System.Linq.Expressions.Expression?)
   type: Constructor
   source:
     remote:
@@ -342,14 +206,14 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Models/RelmExecutionCommand.cs
-    startLine: 73
+    startLine: 55
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
   summary: Initializes a new instance of the RelmExecutionCommand class with the specified command and expression.
   example: []
   syntax:
-    content: public RelmExecutionCommand(Commands.Command command, Expression expression)
+    content: public RelmExecutionCommand(Commands.Command command, Expression? expression)
     parameters:
     - id: command
       type: CoreRelm.Enums.Commands.Command
@@ -369,9 +233,9 @@ items:
   langs:
   - csharp
   - vb
-  name: AddAdditionalCommand(Command, Expression)
-  nameWithType: RelmExecutionCommand.AddAdditionalCommand(Commands.Command, Expression)
-  fullName: CoreRelm.Models.RelmExecutionCommand.AddAdditionalCommand(CoreRelm.Enums.Commands.Command, System.Linq.Expressions.Expression)
+  name: AddAdditionalCommand(Command, Expression?)
+  nameWithType: RelmExecutionCommand.AddAdditionalCommand(Commands.Command, Expression?)
+  fullName: CoreRelm.Models.RelmExecutionCommand.AddAdditionalCommand(CoreRelm.Enums.Commands.Command, System.Linq.Expressions.Expression?)
   type: Method
   source:
     remote:
@@ -380,7 +244,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AddAdditionalCommand
     path: ../CoreRelm/Models/RelmExecutionCommand.cs
-    startLine: 87
+    startLine: 69
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -390,7 +254,7 @@ items:
         command and expression.
   example: []
   syntax:
-    content: public RelmExecutionCommand AddAdditionalCommand(Commands.Command command, Expression expression)
+    content: public RelmExecutionCommand AddAdditionalCommand(Commands.Command command, Expression? expression)
     parameters:
     - id: command
       type: CoreRelm.Enums.Commands.Command
@@ -405,6 +269,9 @@ items:
   overload: CoreRelm.Models.RelmExecutionCommand.AddAdditionalCommand*
   implements:
   - CoreRelm.Interfaces.IRelmExecutionCommand.AddAdditionalCommand(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
+  nameWithType.vb: RelmExecutionCommand.AddAdditionalCommand(Commands.Command, Expression)
+  fullName.vb: CoreRelm.Models.RelmExecutionCommand.AddAdditionalCommand(CoreRelm.Enums.Commands.Command, System.Linq.Expressions.Expression)
+  name.vb: AddAdditionalCommand(Command, Expression)
 - uid: CoreRelm.Models.RelmExecutionCommand.AddAdditionalCommand``1(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression{System.Func{``0,System.Object}})
   commentId: M:CoreRelm.Models.RelmExecutionCommand.AddAdditionalCommand``1(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression{System.Func{``0,System.Object}})
   id: AddAdditionalCommand``1(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression{System.Func{``0,System.Object}})
@@ -423,7 +290,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AddAdditionalCommand
     path: ../CoreRelm/Models/RelmExecutionCommand.cs
-    startLine: 102
+    startLine: 84
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -470,7 +337,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetAdditionalCommands
     path: ../CoreRelm/Models/RelmExecutionCommand.cs
-    startLine: 114
+    startLine: 96
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -505,7 +372,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetForeignKeyNavigationOptions
     path: ../CoreRelm/Models/RelmExecutionCommand.cs
-    startLine: 134
+    startLine: 116
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -897,19 +764,6 @@ references:
   - uid: CoreRelm.Enums
     name: Enums
     href: CoreRelm.Enums.html
-- uid: CoreRelm.Models.RelmExecutionCommand.InitialCommand*
-  commentId: Overload:CoreRelm.Models.RelmExecutionCommand.InitialCommand
-  href: CoreRelm.Models.RelmExecutionCommand.html#CoreRelm_Models_RelmExecutionCommand_InitialCommand
-  name: InitialCommand
-  nameWithType: RelmExecutionCommand.InitialCommand
-  fullName: CoreRelm.Models.RelmExecutionCommand.InitialCommand
-- uid: CoreRelm.Interfaces.IRelmExecutionCommand.InitialCommand
-  commentId: P:CoreRelm.Interfaces.IRelmExecutionCommand.InitialCommand
-  parent: CoreRelm.Interfaces.IRelmExecutionCommand
-  href: CoreRelm.Interfaces.IRelmExecutionCommand.html#CoreRelm_Interfaces_IRelmExecutionCommand_InitialCommand
-  name: InitialCommand
-  nameWithType: IRelmExecutionCommand.InitialCommand
-  fullName: CoreRelm.Interfaces.IRelmExecutionCommand.InitialCommand
 - uid: CoreRelm.Models.RelmExecutionCommand.ExecutionExpression*
   commentId: Overload:CoreRelm.Models.RelmExecutionCommand.ExecutionExpression
   href: CoreRelm.Models.RelmExecutionCommand.html#CoreRelm_Models_RelmExecutionCommand_ExecutionExpression
@@ -968,25 +822,19 @@ references:
     name: Expressions
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.linq.expressions
-- uid: CoreRelm.Models.RelmExecutionCommand.InitialExpression*
-  commentId: Overload:CoreRelm.Models.RelmExecutionCommand.InitialExpression
-  href: CoreRelm.Models.RelmExecutionCommand.html#CoreRelm_Models_RelmExecutionCommand_InitialExpression
-  name: InitialExpression
-  nameWithType: RelmExecutionCommand.InitialExpression
-  fullName: CoreRelm.Models.RelmExecutionCommand.InitialExpression
-- uid: CoreRelm.Interfaces.IRelmExecutionCommand.InitialExpression
-  commentId: P:CoreRelm.Interfaces.IRelmExecutionCommand.InitialExpression
-  parent: CoreRelm.Interfaces.IRelmExecutionCommand
-  href: CoreRelm.Interfaces.IRelmExecutionCommand.html#CoreRelm_Interfaces_IRelmExecutionCommand_InitialExpression
-  name: InitialExpression
-  nameWithType: IRelmExecutionCommand.InitialExpression
-  fullName: CoreRelm.Interfaces.IRelmExecutionCommand.InitialExpression
 - uid: CoreRelm.Models.RelmExecutionCommand.ChildCommandCount*
   commentId: Overload:CoreRelm.Models.RelmExecutionCommand.ChildCommandCount
   href: CoreRelm.Models.RelmExecutionCommand.html#CoreRelm_Models_RelmExecutionCommand_ChildCommandCount
   name: ChildCommandCount
   nameWithType: RelmExecutionCommand.ChildCommandCount
   fullName: CoreRelm.Models.RelmExecutionCommand.ChildCommandCount
+- uid: CoreRelm.Interfaces.IRelmExecutionCommand.ChildCommandCount
+  commentId: P:CoreRelm.Interfaces.IRelmExecutionCommand.ChildCommandCount
+  parent: CoreRelm.Interfaces.IRelmExecutionCommand
+  href: CoreRelm.Interfaces.IRelmExecutionCommand.html#CoreRelm_Interfaces_IRelmExecutionCommand_ChildCommandCount
+  name: ChildCommandCount
+  nameWithType: IRelmExecutionCommand.ChildCommandCount
+  fullName: CoreRelm.Interfaces.IRelmExecutionCommand.ChildCommandCount
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -998,19 +846,6 @@ references:
   nameWithType.vb: Integer
   fullName.vb: Integer
   name.vb: Integer
-- uid: CoreRelm.Models.RelmExecutionCommand.AdditionalCommandCount*
-  commentId: Overload:CoreRelm.Models.RelmExecutionCommand.AdditionalCommandCount
-  href: CoreRelm.Models.RelmExecutionCommand.html#CoreRelm_Models_RelmExecutionCommand_AdditionalCommandCount
-  name: AdditionalCommandCount
-  nameWithType: RelmExecutionCommand.AdditionalCommandCount
-  fullName: CoreRelm.Models.RelmExecutionCommand.AdditionalCommandCount
-- uid: CoreRelm.Interfaces.IRelmExecutionCommand.AdditionalCommandCount
-  commentId: P:CoreRelm.Interfaces.IRelmExecutionCommand.AdditionalCommandCount
-  parent: CoreRelm.Interfaces.IRelmExecutionCommand
-  href: CoreRelm.Interfaces.IRelmExecutionCommand.html#CoreRelm_Interfaces_IRelmExecutionCommand_AdditionalCommandCount
-  name: AdditionalCommandCount
-  nameWithType: IRelmExecutionCommand.AdditionalCommandCount
-  fullName: CoreRelm.Interfaces.IRelmExecutionCommand.AdditionalCommandCount
 - uid: CoreRelm.Models.RelmExecutionCommand.#ctor*
   commentId: Overload:CoreRelm.Models.RelmExecutionCommand.#ctor
   href: CoreRelm.Models.RelmExecutionCommand.html#CoreRelm_Models_RelmExecutionCommand__ctor

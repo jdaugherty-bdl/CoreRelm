@@ -5,9 +5,10 @@ items:
   id: MigrationPlanOptions
   parent: CoreRelm.Models.Migrations.MigrationPlans
   children:
-  - CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.#ctor(System.Boolean,System.Collections.Generic.ISet{System.String})
+  - CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.#ctor(System.Boolean,System.Collections.Generic.ISet{System.String},System.DateTime)
   - CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.Destructive
   - CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.ScopeTables
+  - CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.StampUtc
   langs:
   - csharp
   - vb
@@ -40,16 +41,16 @@ items:
   - System.Object.GetType
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.#ctor(System.Boolean,System.Collections.Generic.ISet{System.String})
-  commentId: M:CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.#ctor(System.Boolean,System.Collections.Generic.ISet{System.String})
-  id: '#ctor(System.Boolean,System.Collections.Generic.ISet{System.String})'
+- uid: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.#ctor(System.Boolean,System.Collections.Generic.ISet{System.String},System.DateTime)
+  commentId: M:CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.#ctor(System.Boolean,System.Collections.Generic.ISet{System.String},System.DateTime)
+  id: '#ctor(System.Boolean,System.Collections.Generic.ISet{System.String},System.DateTime)'
   parent: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions
   langs:
   - csharp
   - vb
-  name: MigrationPlanOptions(bool, ISet<string>)
-  nameWithType: MigrationPlanOptions.MigrationPlanOptions(bool, ISet<string>)
-  fullName: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.MigrationPlanOptions(bool, System.Collections.Generic.ISet<string>)
+  name: MigrationPlanOptions(bool, ISet<string>, DateTime)
+  nameWithType: MigrationPlanOptions.MigrationPlanOptions(bool, ISet<string>, DateTime)
+  fullName: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.MigrationPlanOptions(bool, System.Collections.Generic.ISet<string>, System.DateTime)
   type: Constructor
   source:
     remote:
@@ -63,17 +64,19 @@ items:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.MigrationPlans
   syntax:
-    content: public MigrationPlanOptions(bool Destructive, ISet<string> ScopeTables)
+    content: public MigrationPlanOptions(bool Destructive, ISet<string> ScopeTables, DateTime StampUtc)
     parameters:
     - id: Destructive
       type: System.Boolean
     - id: ScopeTables
       type: System.Collections.Generic.ISet{System.String}
-    content.vb: Public Sub New(Destructive As Boolean, ScopeTables As ISet(Of String))
+    - id: StampUtc
+      type: System.DateTime
+    content.vb: Public Sub New(Destructive As Boolean, ScopeTables As ISet(Of String), StampUtc As Date)
   overload: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.#ctor*
-  nameWithType.vb: MigrationPlanOptions.New(Boolean, ISet(Of String))
-  fullName.vb: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.New(Boolean, System.Collections.Generic.ISet(Of String))
-  name.vb: New(Boolean, ISet(Of String))
+  nameWithType.vb: MigrationPlanOptions.New(Boolean, ISet(Of String), Date)
+  fullName.vb: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.New(Boolean, System.Collections.Generic.ISet(Of String), Date)
+  name.vb: New(Boolean, ISet(Of String), Date)
 - uid: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.Destructive
   commentId: P:CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.Destructive
   id: Destructive
@@ -132,6 +135,35 @@ items:
       type: System.Collections.Generic.ISet{System.String}
     content.vb: Public Property ScopeTables As ISet(Of String)
   overload: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.ScopeTables*
+- uid: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.StampUtc
+  commentId: P:CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.StampUtc
+  id: StampUtc
+  parent: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions
+  langs:
+  - csharp
+  - vb
+  name: StampUtc
+  nameWithType: MigrationPlanOptions.StampUtc
+  fullName: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.StampUtc
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/MigrationPlans/MigrationPlanOptions.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: StampUtc
+    path: ../CoreRelm/Models/Migrations/MigrationPlans/MigrationPlanOptions.cs
+    startLine: 11
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.MigrationPlans
+  syntax:
+    content: public DateTime StampUtc { get; init; }
+    parameters: []
+    return:
+      type: System.DateTime
+    content.vb: Public Property StampUtc As Date
+  overload: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.StampUtc*
 references:
 - uid: CoreRelm.Models.Migrations.MigrationPlans
   commentId: N:CoreRelm.Models.Migrations.MigrationPlans
@@ -447,7 +479,7 @@ references:
   - name: )
 - uid: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.#ctor*
   commentId: Overload:CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.#ctor
-  href: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.html#CoreRelm_Models_Migrations_MigrationPlans_MigrationPlanOptions__ctor_System_Boolean_System_Collections_Generic_ISet_System_String__
+  href: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.html#CoreRelm_Models_Migrations_MigrationPlans_MigrationPlanOptions__ctor_System_Boolean_System_Collections_Generic_ISet_System_String__System_DateTime_
   name: MigrationPlanOptions
   nameWithType: MigrationPlanOptions.MigrationPlanOptions
   fullName: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.MigrationPlanOptions
@@ -500,6 +532,17 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+  nameWithType.vb: Date
+  fullName.vb: Date
+  name.vb: Date
 - uid: System.Collections.Generic.ISet`1
   commentId: T:System.Collections.Generic.ISet`1
   isExternal: true
@@ -577,3 +620,9 @@ references:
   name: ScopeTables
   nameWithType: MigrationPlanOptions.ScopeTables
   fullName: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.ScopeTables
+- uid: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.StampUtc*
+  commentId: Overload:CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.StampUtc
+  href: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.html#CoreRelm_Models_Migrations_MigrationPlans_MigrationPlanOptions_StampUtc
+  name: StampUtc
+  nameWithType: MigrationPlanOptions.StampUtc
+  fullName: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.StampUtc
