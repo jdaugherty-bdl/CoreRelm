@@ -51,6 +51,9 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
 
             foreach (var tableName in tableNames?.OrderBy(t => t, StringComparer.Ordinal).ToArray() ?? [])
             {
+                if (string.IsNullOrWhiteSpace(tableName))
+                    continue;
+
                 var tableColumns = columns.TryGetValue(tableName, out var colDict)
                     ? new Dictionary<string, ColumnSchema>(colDict, StringComparer.Ordinal)
                     : new Dictionary<string, ColumnSchema>(StringComparer.Ordinal);
@@ -86,7 +89,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
             return currentDatabase;
         }
 
-        private static async Task<List<string>?> LoadTableNamesAsync(
+        private static async Task<List<string?>?> LoadTableNamesAsync(
             IRelmContext relmContext, 
             string databaseName,
             bool includeViews,
@@ -374,16 +377,20 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
             if (foreignKeySchemas == null)
                 return byTable;
 
+            Dictionary<string, ForeignKeySchema> foreignKeys = [];
             foreach (var kvp in foreignKeySchemas)
             {
                 var constraintName = kvp.Key;
                 var rows = kvp.Value;
 
-                var first = rows.First();
-                var table = first.TableName;
+                if (rows == null || rows.Count(x => x != null) == 0)
+                    continue;
 
-                var localCols = rows.OrderBy(r => r.OrdinalPosition).Select(r => r.ColumnName).ToList();
-                var refCols = rows.OrderBy(r => r.OrdinalPosition).Select(r => r.ReferencedColumnName).ToList();
+                var first = rows.First();
+                var table = first!.TableName;
+
+                var localCols = rows.OrderBy(r => r!.OrdinalPosition).Select(r => r!.ColumnName).ToList();
+                var refCols = rows.OrderBy(r => r!.OrdinalPosition).Select(r => r!.ReferencedColumnName).ToList();
 
                 var foreignKeySchema = new ForeignKeySchema
                 {
@@ -396,7 +403,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
                     DeleteRule = first.DeleteRule
                 };
 
-                if (!byTable.TryGetValue(table, out var foreignKeys))
+                if (!string.IsNullOrWhiteSpace(table) && !byTable.TryGetValue(table, out foreignKeys))
                 {
                     foreignKeys = new Dictionary<string, ForeignKeySchema>(StringComparer.Ordinal);
                     byTable[table] = foreignKeys;

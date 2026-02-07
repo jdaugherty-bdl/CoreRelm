@@ -781,7 +781,7 @@ namespace CoreRelm.Models
                 {
                     var models = (IEnumerable<RelmModel>?)property.GetValue(baseRef);
                     var modelDtos = models?
-                        .Select(x => x.GenerateDTO(includeProperties: includeProperties, excludeProperties: excludeProperties, sourceObjectName: string.Join(".", new List<string> { sourceObjectName, property.Name }.Where(y => !string.IsNullOrWhiteSpace(y))), getAdditionalObjectProperties: getAdditionalObjectProperties, iteration: iteration + 1));
+                        .Select(x => x.GenerateDTO(includeProperties: includeProperties, excludeProperties: excludeProperties, sourceObjectName: string.Join(".", new List<string?> { sourceObjectName, property.Name }.Where(y => !string.IsNullOrWhiteSpace(y))), getAdditionalObjectProperties: getAdditionalObjectProperties, iteration: iteration + 1));
 
                     propertyStringValues.Add(property.Name, modelDtos);
                 }
@@ -803,11 +803,11 @@ namespace CoreRelm.Models
                         ?.GenerateDTO(
                             includeProperties: includeProperties, 
                             excludeProperties: excludeProperties, 
-                            sourceObjectName: string.Join(".", new List<string> { sourceObjectName, property.Name }.Where(y => !string.IsNullOrWhiteSpace(y))), 
+                            sourceObjectName: string.Join(".", new List<string?> { sourceObjectName, property.Name }.Where(y => !string.IsNullOrWhiteSpace(y))), 
                             getAdditionalObjectProperties: getAdditionalObjectProperties, 
                             iteration: iteration + 1);
 
-                    var hasRelmModelProperty = new Type[] { property.PropertyType }
+                    var hasRelmModelProperty = new Type?[] { property.PropertyType }
                             .FlattenTreeObject(x => (string.IsNullOrWhiteSpace(x?.BaseType?.Name) ? null : new Type[] { x.BaseType })
                                 ?? [])
                             .Contains(typeof(RelmModel));

@@ -18,7 +18,6 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
 {
     internal class ExpressionEvaluator<T> where T : IRelmModel, new()
     {
-        private bool HasWhere = false;
         private bool HasOrderBy = false;
         private bool HasGroupBy = false;
 
@@ -115,10 +114,10 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
             var usedColumns = new List<string>();
 
             var set = commandExpression.Value.FirstOrDefault();
-            var currentAlias = GetTableAlias(((RelmTable?)set?.ExecutionExpression.Type.GetCustomAttributes(typeof(RelmTable), true).FirstOrDefault())?.TableName);
+            var currentAlias = GetTableAlias(((RelmTable?)set?.ExecutionExpression?.Type.GetCustomAttributes(typeof(RelmTable), true).FirstOrDefault())?.TableName);
 
             if (string.IsNullOrWhiteSpace(currentAlias))
-                throw new TypeAccessException($"Could not find 'RelmTable' custom attribute on type: [{set?.ExecutionExpression.Type.FullName}]");
+                throw new TypeAccessException($"Could not find 'RelmTable' custom attribute on type: [{set?.ExecutionExpression?.Type.FullName}]");
 
             var queryPrefix = " INSERT INTO ";
             queryPrefix += string.Join(",", setLines);
@@ -137,10 +136,10 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
             var usedColumns = new List<string?>();
 
             var set = commandExpression.Value.FirstOrDefault();
-            var currentAlias = GetTableAlias(((RelmTable?)set?.ExecutionExpression.Type.GetCustomAttributes(typeof(RelmTable), true).FirstOrDefault())?.TableName);
+            var currentAlias = GetTableAlias(((RelmTable?)set?.ExecutionExpression?.Type.GetCustomAttributes(typeof(RelmTable), true).FirstOrDefault())?.TableName);
 
             if (string.IsNullOrWhiteSpace(currentAlias))
-                throw new TypeAccessException($"Could not find 'RelmTable' custom attribute on type: [{set?.ExecutionExpression.Type.FullName}]");
+                throw new TypeAccessException($"Could not find 'RelmTable' custom attribute on type: [{set?.ExecutionExpression?.Type.FullName}]");
 
             if (set is MemberExpression memberAssignment)
             {
@@ -289,7 +288,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
                     else if (command.ExecutionExpression is UnaryExpression unaryExpression)
                         methodOperands.Add(unaryExpression.Operand as MemberExpression);
                     else if (command.ExecutionExpression is NewExpression newExpression)
-                        methodOperands = newExpression.Arguments.Select(x => x as MemberExpression).ToList();
+                        methodOperands = [.. newExpression.Arguments.Select(x => x as MemberExpression)];
                     else
                         throw new InvalidCastException();
 

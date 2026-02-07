@@ -883,7 +883,7 @@ namespace CoreRelm.Extensions
         /// cref="ICollection{T}"/> of child objects, or <see langword="null"/> if there are no children.</param>
         /// <returns>A flattened <see cref="ICollection{T}"/> containing all objects in the hierarchy, including the top-level
         /// objects and their descendants.</returns>
-        public static ICollection<T> FlattenTreeObject<T>(this IEnumerable<T> enumerableList, Func<T, ICollection<T?>> getChildrenFunction)
+        public static ICollection<T?> FlattenTreeObject<T>(this IEnumerable<T?> enumerableList, Func<T?, ICollection<T?>> getChildrenFunction)
         	=> [.. enumerableList
                 .SelectMany(enumerableItem =>
                     Enumerable

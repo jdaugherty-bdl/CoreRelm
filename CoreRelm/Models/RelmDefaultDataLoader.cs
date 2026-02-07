@@ -193,7 +193,7 @@ namespace CoreRelm.Models
         /// matches the query.</returns>
         public virtual async Task<ICollection<T?>?> GetLoadDataAsync(CancellationToken cancellationToken = default)
         {
-            var findOptions = new Dictionary<string, object>();
+            var findOptions = new Dictionary<string, object?>();
             var selectQuery = GetSelectQuery(findOptions);
 
             return await PullDataAsync(selectQuery, findOptions, cancellationToken: cancellationToken);
@@ -212,7 +212,7 @@ namespace CoreRelm.Models
         /// represent their corresponding values.</param>
         /// <returns>A collection of data objects of type <typeparamref name="T"/> that match the results of the query.  Returns
         /// an empty collection if no data is found.</returns>
-        public virtual ICollection<T?>? PullData(string selectQuery, Dictionary<string, object> findOptions)
+        public virtual ICollection<T?>? PullData(string selectQuery, Dictionary<string, object?> findOptions)
         {
             return PullDataAsync(selectQuery, findOptions)
                 .GetAwaiter()
@@ -232,7 +232,7 @@ namespace CoreRelm.Models
         /// represent their corresponding values.</param>
         /// <returns>A collection of data objects of type <typeparamref name="T"/> that match the results of the query.  Returns
         /// an empty collection if no data is found.</returns>
-        public virtual async Task<ICollection<T?>?> PullDataAsync(string selectQuery, Dictionary<string, object> findOptions, CancellationToken cancellationToken = default)
+        public virtual async Task<ICollection<T?>?> PullDataAsync(string selectQuery, Dictionary<string, object?> findOptions, CancellationToken cancellationToken = default)
         {
             if ((_contextOptionsBuilder?.OptionsBuilderType ?? RelmContextOptionsBuilder.OptionsBuilderTypes.ConnectionString) == RelmContextOptionsBuilder.OptionsBuilderTypes.OpenConnection)
                 return (await RelmHelper.GetDataObjectsAsync<T>(_contextOptionsBuilder.DatabaseConnection, selectQuery, findOptions, cancellationToken: cancellationToken))?.ToList();
@@ -265,7 +265,7 @@ namespace CoreRelm.Models
         /// affected by the operation.</returns>
         public async Task<int> WriteDataAsync(CancellationToken cancellationToken = default)
         {
-            var findOptions = new Dictionary<string, object>();
+            var findOptions = new Dictionary<string, object?>();
 
             var selectQuery = GetUpdateQuery(findOptions);
 

@@ -75,7 +75,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
             var referenceKeys = new RelmExecutionCommand().GetReferenceKeys<T>(fieldLoader.KeyFields);
 
             // get relevant data for items in the current data set all at once to reduce number of database calls
-            var fieldData = await fieldLoader.GetFieldDataAsync(targetObjects.Select(x => x?.GetType().GetProperties().Intersect(referenceKeys).Select(y => y.GetValue(x)).ToArray()).ToList(), cancellationToken);
+            var fieldData = await fieldLoader.GetFieldDataAsync(targetObjects.Select(x => x?.GetType().GetProperties().Intersect(referenceKeys).Select(y => y.GetValue(x)).ToArray() ?? []).ToList(), cancellationToken);
 
             // set the relevant field value on all items in the current data set
             foreach (var targetObject in targetObjects)

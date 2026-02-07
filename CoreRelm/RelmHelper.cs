@@ -1060,7 +1060,7 @@ namespace CoreRelm
         /// <param name="allowUserVariables">A value indicating whether user-defined variables are allowed in the query.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the results of the query mapped to the specified type. Returns an
         /// empty collection if no results are found.</returns>
-        public static IEnumerable<T>? GetDataList<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false)
+        public static IEnumerable<T?>? GetDataList<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false)
             => ObjectResultsHelper.GetDataList<T>(connectionName, query, parameters: parameters, throwException: throwException, allowUserVariables: allowUserVariables);
 
         /// <summary>
@@ -1079,7 +1079,7 @@ namespace CoreRelm
         /// <param name="allowUserVariables">A value indicating whether user-defined variables are allowed in the query.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the results of the query mapped to the specified type. Returns an
         /// empty collection if no results are found.</returns>
-        public static async Task<IEnumerable<T>?> GetDataListAsync<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
+        public static async Task<IEnumerable<T?>?> GetDataListAsync<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
             => await ObjectResultsHelper.GetDataListAsync<T>(connectionName, query, parameters: parameters, throwException: throwException, allowUserVariables: allowUserVariables, cancellationToken: cancellationToken);
 
         /// <summary>
@@ -1094,7 +1094,7 @@ namespace CoreRelm
         /// langword="true"/>, exceptions will be thrown; otherwise, errors will be suppressed.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the results of the query mapped to objects of type <typeparamref
         /// name="T"/>. Returns an empty collection if no results are found.</returns>
-        public static IEnumerable<T>? GetDataList<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        public static IEnumerable<T?>? GetDataList<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
             => ObjectResultsHelper.GetDataList<T>(establishedConnection, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
@@ -1111,7 +1111,7 @@ namespace CoreRelm
         /// transaction is required.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the results of the query mapped to objects of type <typeparamref
         /// name="T"/>. Returns an empty collection if no results are found.</returns>
-        public static IEnumerable<T>? GetDataList<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        public static IEnumerable<T?>? GetDataList<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
             => ObjectResultsHelper.GetDataList<T>(establishedConnection, sqlTransaction, query, parameters: parameters, throwException: throwException);
 
         /// <summary>

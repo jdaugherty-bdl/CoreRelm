@@ -86,26 +86,28 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
             List<string> warnings,
             List<string> blockers)
         {
-            foreach (var desiredCol in desiredTable.Columns.Values.OrderBy(c => c.OrdinalPosition))
+            foreach (var desiredColumn in desiredTable.Columns.Values.OrderBy(c => c.OrdinalPosition))
             {
-                if (!actualTable.Columns.TryGetValue(desiredCol.ColumnName, out var actualCol))
+                ColumnSchema? actualColumn = null;
+                if (!string.IsNullOrWhiteSpace(desiredColumn.ColumnName) && !actualTable.Columns.TryGetValue(desiredColumn.ColumnName, out actualColumn))
                 {
-                    ops.Add(new AddColumnOperation(tableName, desiredCol));
+                    ops.Add(new AddColumnOperation(tableName, desiredColumn));
                     continue;
                 }
 
-                var diffs = ColumnDiff(desiredCol, actualCol);
-                if (diffs.Count == 0) continue;
+                var diffs = ColumnDiff(desiredColumn, actualColumn);
+                if (diffs.Count == 0) 
+                    continue;
 
-                var safe = IsSafeColumnChange(desiredCol, actualCol);
+                var safe = IsSafeColumnChange(desiredColumn, actualColumn!);
 
                 if (safe || options.Destructive)
                 {
-                    ops.Add(new AlterColumnOperation(tableName, desiredCol, string.Join("; ", diffs)));
+                    ops.Add(new AlterColumnOperation(tableName, desiredColumn, string.Join("; ", diffs)));
                 }
                 else
                 {
-                    blockers.Add($"Table `{tableName}` column `{desiredCol.ColumnName}` differs ({string.Join("; ", diffs)}) and requires --destructive.");
+                    blockers.Add($"Table `{tableName}` column `{desiredColumn.ColumnName}` differs ({string.Join("; ", diffs)}) and requires --destructive.");
                 }
             }
 
@@ -113,8 +115,11 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
             // In destructive mode, dropping columns can be added once you’re ready.
         }
 
-        private static List<string> ColumnDiff(ColumnSchema desired, ColumnSchema actual)
+        private static List<string> ColumnDiff(ColumnSchema? desired, ColumnSchema? actual)
         {
+            if (desired == null || actual == null)
+                return []; // one is null and the other isn't
+
             var diffs = new List<string>();
 
             if (!string.Equals(NormalizeType(desired.ColumnType), NormalizeType(actual.ColumnType), StringComparison.OrdinalIgnoreCase))
@@ -199,38 +204,48 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
             List<IMigrationOperation> ops,
             List<string> warnings)
         {
-            foreach (var desiredIdx in desiredTable.Indexes.Values.OrderBy(i => i.IndexName, StringComparer.Ordinal))
+            foreach (var desiredIndex in desiredTable.Indexes.Values.OrderBy(i => i.IndexName, StringComparer.Ordinal))
             {
-                if (!actualTable.Indexes.TryGetValue(desiredIdx.IndexName, out var actualIdx))
+                IndexSchema? actualIndex = null;
+                if (!string.IsNullOrWhiteSpace(desiredIndex.IndexName) && !actualTable.Indexes.TryGetValue(desiredIndex.IndexName, out actualIndex))
                 {
-                    ops.Add(new CreateIndexOperation(tableName, desiredIdx));
+                    ops.Add(new CreateIndexOperation(tableName, desiredIndex));
                     continue;
                 }
 
-                if (IndexDiffers(desiredIdx, actualIdx))
+                if (IndexDiffers(desiredIndex, actualIndex))
                 {
+                    if (string.IsNullOrWhiteSpace(desiredIndex.IndexName))
+                    {
+                        warnings.Add($"Table `{tableName}` has an unnamed index that differs and cannot be altered; manual intervention required.");
+                        continue;
+                    }
+
                     // Meaningful differences: drop+create
-                    ops.Add(new DropIndexOperation(tableName, desiredIdx.IndexName));
-                    ops.Add(new CreateIndexOperation(tableName, desiredIdx));
+                    ops.Add(new DropIndexOperation(tableName, desiredIndex.IndexName));
+                    ops.Add(new CreateIndexOperation(tableName, desiredIndex));
                 }
             }
 
             // NOTE: index drops for indexes not in desired are handled in destructive mode in PlanDestructiveDrops.
         }
 
-        private static bool IndexDiffers(IndexSchema desiredIdx, IndexSchema actualIdx)
+        private static bool IndexDiffers(IndexSchema? desired, IndexSchema? actual)
         {
-            if (desiredIdx.IsUnique != actualIdx.IsUnique)
+            if (desired?.IsUnique != actual?.IsUnique)
                 return true;
 
             // Compare columns in order, including collation/direction
-            if (desiredIdx.Columns.Count != actualIdx.Columns.Count)
+            if (desired?.Columns.Count != actual?.Columns.Count)
                 return true;
 
-            for (int i = 0; i < desiredIdx.Columns.Count; i++)
+            if (desired == null || actual == null)
+                return desired != actual; // one is null and the other isn't
+
+            for (int i = 0; i < desired.Columns.Count; i++)
             {
-                var d = desiredIdx.Columns[i];
-                var a = actualIdx.Columns.OrderBy(c => c.SeqInIndex).ElementAt(i);
+                var d = desired.Columns[i];
+                var a = actual.Columns.OrderBy(c => c.SeqInIndex).ElementAt(i);
 
                 if (!string.Equals(d.ColumnName, a.ColumnName, StringComparison.Ordinal))
                     return true;
@@ -253,27 +268,36 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
             List<IMigrationOperation> ops,
             List<string> warnings)
         {
-            foreach (var desiredFk in desiredTable.ForeignKeys.Values.OrderBy(f => f.ConstraintName, StringComparer.Ordinal))
+            foreach (var desiredForeignKey in desiredTable.ForeignKeys.Values.OrderBy(f => f.ConstraintName, StringComparer.Ordinal))
             {
-                if (!actualTable.ForeignKeys.TryGetValue(desiredFk.ConstraintName, out var actualFk))
+                ForeignKeySchema? actualForeignKey = null;
+                if (!string.IsNullOrWhiteSpace(desiredForeignKey.ConstraintName) && !actualTable.ForeignKeys.TryGetValue(desiredForeignKey.ConstraintName, out actualForeignKey))
                 {
-                    ops.Add(new AddForeignKeyOperation(tableName, desiredFk));
+                    ops.Add(new AddForeignKeyOperation(tableName, desiredForeignKey));
                     continue;
                 }
 
-                if (ForeignKeyDiffers(desiredFk, actualFk))
+                if (ForeignKeyDiffers(desiredForeignKey, actualForeignKey))
                 {
+                    if (string.IsNullOrWhiteSpace(desiredForeignKey.ConstraintName))
+                    {
+                        warnings.Add($"Table `{tableName}` has an unnamed foreign key that differs and cannot be altered; manual intervention required.");
+                        continue;
+                    }
+
                     // Drop+add is data-safe; allow even in non-destructive mode
-                    ops.Add(new DropForeignKeyOperation(tableName, desiredFk.ConstraintName));
-                    ops.Add(new AddForeignKeyOperation(tableName, desiredFk));
+                    ops.Add(new DropForeignKeyOperation(tableName, desiredForeignKey.ConstraintName));
+                    ops.Add(new AddForeignKeyOperation(tableName, desiredForeignKey));
                 }
             }
         }
 
-        private static bool ForeignKeyDiffers(ForeignKeySchema desired, ForeignKeySchema actual)
+        private static bool ForeignKeyDiffers(ForeignKeySchema? desired, ForeignKeySchema? actual)
         {
-            if (!string.Equals(desired.ReferencedTableName, actual.ReferencedTableName, StringComparison.Ordinal))
+            if (!string.Equals(desired?.ReferencedTableName, actual?.ReferencedTableName, StringComparison.OrdinalIgnoreCase))
                 return true;
+            if (desired == null || actual == null)
+                return desired != actual; // one is null and the other isn't
 
             if (desired.ColumnNames == null
                 || actual.ColumnNames == null
@@ -312,33 +336,42 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
             List<IMigrationOperation> ops,
             List<string> warnings)
         {
-            foreach (var desiredTrg in desiredTable.Triggers.Values.OrderBy(t => t.TriggerName, StringComparer.Ordinal))
+            foreach (var desiredTrigger in desiredTable.Triggers.Values.OrderBy(t => t.TriggerName, StringComparer.Ordinal))
             {
-                if (!actualTable.Triggers.TryGetValue(desiredTrg.TriggerName, out var actualTrg))
+                TriggerSchema? actualTrigger = null;
+                if (!string.IsNullOrWhiteSpace(desiredTrigger.TriggerName) && !actualTable.Triggers.TryGetValue(desiredTrigger.TriggerName, out actualTrigger))
                 {
-                    ops.Add(new CreateTriggerOperation(tableName, desiredTrg));
+                    ops.Add(new CreateTriggerOperation(tableName, desiredTrigger));
                     continue;
                 }
 
-                if (TriggerDiffers(desiredTrg, actualTrg))
+                if (TriggerDiffers(desiredTrigger, actualTrigger))
                 {
+                    if (string.IsNullOrWhiteSpace(desiredTrigger.TriggerName))
+                    {
+                        warnings.Add($"Table `{tableName}` has an unnamed trigger that differs and cannot be altered; manual intervention required.");
+                        continue;
+                    }
+
                     // Drop+create is data-safe
-                    ops.Add(new DropTriggerOperation(tableName, desiredTrg.TriggerName));
-                    ops.Add(new CreateTriggerOperation(tableName, desiredTrg));
+                    ops.Add(new DropTriggerOperation(tableName, desiredTrigger.TriggerName));
+                    ops.Add(new CreateTriggerOperation(tableName, desiredTrigger));
                 }
             }
         }
 
-        private static bool TriggerDiffers(TriggerSchema desired, TriggerSchema actual)
+        private static bool TriggerDiffers(TriggerSchema? desired, TriggerSchema? actual)
         {
-            if (!string.Equals(desired.EventManipulation, actual.EventManipulation, StringComparison.OrdinalIgnoreCase))
+            if (!string.Equals(desired?.EventManipulation, actual?.EventManipulation, StringComparison.OrdinalIgnoreCase))
                 return true;
-            if (!string.Equals(desired.ActionTiming, actual.ActionTiming, StringComparison.OrdinalIgnoreCase))
+            if (!string.Equals(desired?.ActionTiming, actual?.ActionTiming, StringComparison.OrdinalIgnoreCase))
                 return true;
+            if (desired == null || actual == null)
+                return desired != actual; // one is null and the other isn't
 
             // Normalize whitespace for comparison
-            var dStmt = NormalizeSql(desired.ActionStatement);
-            var aStmt = NormalizeSql(actual.ActionStatement);
+            var dStmt = NormalizeSql(desired!.ActionStatement);
+            var aStmt = NormalizeSql(actual!.ActionStatement);
             return !string.Equals(dStmt, aStmt, StringComparison.OrdinalIgnoreCase);
         }
 
@@ -411,7 +444,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
         private static void EnsureUuidV4Function(SchemaSnapshot actual, List<IMigrationOperation> migrationOperations)
         {
             // If function already exists, do nothing.
-            if (actual.Functions.ContainsKey("uuid_v4"))
+            if (actual.Functions?.ContainsKey("uuid_v4") ?? false)
                 return;
 
             // Create function SQL (UUIDv4 using RANDOM_BYTES)

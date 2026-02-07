@@ -21,7 +21,7 @@ namespace CoreRelm.Interfaces
         /// </summary>
         /// <remarks>This property provides a record of the last executed commands along with their
         /// execution details.  It can be used to analyze or inspect the history of command executions.</remarks>
-        Dictionary<Command, List<IRelmExecutionCommand>> LastCommandsExecuted { get; set; }
+        Dictionary<Command, List<IRelmExecutionCommand?>>? LastCommandsExecuted { get; set; }
 
         /// <summary>
         /// Retrieves a collection of data items of type <typeparamref name="T"/>.

@@ -82,7 +82,10 @@ namespace CoreRelm.Models
         public IEnumerator<T> GetEnumerator()
         {
             // get cached items if not null, otherwise load new items list if not null, otherwise return empty collection
-            return (_items ?? Load() ?? []).GetEnumerator();
+            return (_items ?? Load() ?? [])
+                .Where(x => x != null)
+                .Select(x => x!)
+                .GetEnumerator();
         }
 
         /// <summary>
@@ -601,8 +604,11 @@ namespace CoreRelm.Models
         {
             var objectsLoader = new ForeignObjectsLoader<T>(_items, _currentContext);
 
-            foreach (var reference in _dataLoader.LastCommandsExecuted[Command.Reference])
+            foreach (var reference in _dataLoader.LastCommandsExecuted?[Command.Reference] ?? [])
             {
+                if (reference == null)
+                    continue;
+
                 await objectsLoader.LoadForeignObjectsAsync(reference, cancellationToken);
             }
         }
@@ -855,9 +861,9 @@ namespace CoreRelm.Models
             int rowsUpdated;
             var contextOptions = _currentContext?.ContextOptions ?? new();
             if (contextOptions.OptionsBuilderType == Options.RelmContextOptionsBuilder.OptionsBuilderTypes.OpenConnection)
-                rowsUpdated = _items == null ? 0 : (await _items.WriteToDatabaseAsync(contextOptions.DatabaseConnection, sqlTransaction: contextOptions.DatabaseTransaction, cancellationToken: cancellationToken));
+                rowsUpdated = _items == null ? 0 : (await _items.Where(x => x != null).Select(x => x!).WriteToDatabaseAsync(contextOptions.DatabaseConnection, sqlTransaction: contextOptions.DatabaseTransaction, cancellationToken: cancellationToken));
             else
-                rowsUpdated = _items == null ? 0 : (await _items.WriteToDatabaseAsync(contextOptions.ConnectionStringType, cancellationToken: cancellationToken));
+                rowsUpdated = _items == null ? 0 : (await _items.Where(x => x != null).Select(x => x!).WriteToDatabaseAsync(contextOptions.ConnectionStringType, cancellationToken: cancellationToken));
 
             Modified = false;
 
@@ -1001,9 +1007,9 @@ namespace CoreRelm.Models
             {
                 var contextOptions = _currentContext?.ContextOptions;
                 if (contextOptions?.OptionsBuilderType == Options.RelmContextOptionsBuilder.OptionsBuilderTypes.OpenConnection)
-                    return await _items.WriteToDatabaseAsync(contextOptions?.DatabaseConnection, sqlTransaction: contextOptions?.DatabaseTransaction);
+                    return await _items.Where(x => x != null).Select(x => x!).WriteToDatabaseAsync(contextOptions?.DatabaseConnection, sqlTransaction: contextOptions?.DatabaseTransaction);
                 else
-                    return await item.WriteToDatabaseAsync(contextOptions?.ConnectionStringType);
+                    return await _items.Where(x => x != null).Select(x => x!).WriteToDatabaseAsync(contextOptions?.ConnectionStringType);
             }
             else
                 Modified = true;
