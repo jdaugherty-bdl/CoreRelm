@@ -16,7 +16,10 @@ namespace CoreRelm.Models.Migrations.Introspection
         public string? TableName { get; set; }
 
         [RelmColumn]
-        public IReadOnlyList<string>? ColumnNames { get; set; }
+        public string? ColumnName { get; set; }
+
+        [RelmColumn]
+        public IReadOnlyList<string?>? ColumnNames { get; set; }
 
         [RelmColumn]
         public string? ReferencedTableName { get; set; }
@@ -25,7 +28,7 @@ namespace CoreRelm.Models.Migrations.Introspection
         public string? ReferencedColumnName { get; set; }
 
         [RelmColumn]
-        public IReadOnlyList<string>? ReferencedColumnNames { get; set; }
+        public IReadOnlyList<string?>? ReferencedColumnNames { get; set; }
 
         [RelmColumn]
         public string? UpdateRule { get; set; }

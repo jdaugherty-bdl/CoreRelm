@@ -15,7 +15,7 @@ namespace CoreRelm.Interfaces
         /// <summary>
         /// Gets or sets the unique identifier for the apartment.
         /// </summary>
-        string ApartmentId { get; set; }
+        string? ApartmentId { get; set; }
 
         /// <summary>
         /// Gets or sets the unique identifier for the user.
@@ -25,16 +25,16 @@ namespace CoreRelm.Interfaces
         /// <summary>
         /// Gets or sets the email address associated with the user.
         /// </summary>
-        string UserEmail { get; set; }
+        string? UserEmail { get; set; }
 
         /// <summary>
         /// Gets or sets the user name associated with the current context.
         /// </summary>
-        string UserName { get; set; }
+        string? UserName { get; set; }
 
         /// <summary>
         /// Gets or sets the associated member for this instance.
         /// </summary>
-        IRelmMember Member { get; set; }
+        IRelmMember? Member { get; set; }
     }
 }

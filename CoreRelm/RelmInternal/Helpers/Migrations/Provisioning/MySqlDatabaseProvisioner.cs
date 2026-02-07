@@ -1,4 +1,5 @@
 ﻿using CoreRelm.Interfaces.Migrations;
+using CoreRelm.Models;
 using CoreRelm.Models.Migrations;
 using MySql.Data.MySqlClient;
 using System;
@@ -21,6 +22,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
             if (string.IsNullOrWhiteSpace(databaseName))
                 throw new ArgumentException("Database name is required.", nameof(databaseName));
 
+            // use straight MySqlConnection instead of a RelmContext because we may be creating the database itself
             await using var conn = new MySqlConnection(migrationOptions.ConnectionString);
             await conn.OpenAsync(migrationOptions.CancelToken);
 

@@ -30,7 +30,7 @@ namespace CoreRelm.Interfaces
         /// collection may be empty if no data is available.</remarks>
         /// <returns>A collection of data items of type <typeparamref name="T"/>. The collection will be empty if no data is
         /// available.</returns>
-        ICollection<T> GetLoadData();
+        ICollection<T?>? GetLoadData();
 
         /// <summary>
         /// Writes data to the underlying storage and returns the number of rows written.
@@ -52,7 +52,7 @@ namespace CoreRelm.Interfaces
         /// <param name="command">The command to which the expression will be added. Cannot be <see langword="null"/>.</param>
         /// <param name="expression">The expression to add to the command. Cannot be <see langword="null"/>.</param>
         /// <returns>An <see cref="IRelmExecutionCommand"/> representing the updated command with the added expression.</returns>
-        IRelmExecutionCommand AddSingleExpression(Command command, Expression? expression);
+        IRelmExecutionCommand? AddSingleExpression(Command command, Expression? expression);
 
         /// <summary>
         /// Determines whether the specified property key contains an underscore.
@@ -61,5 +61,24 @@ namespace CoreRelm.Interfaces
         /// <returns><see langword="true"/> if the property key contains at least one underscore; otherwise, <see
         /// langword="false"/>.</returns>
         bool HasUnderscoreProperty(string propertyKey);
+
+        /*************************************************************************************************
+         *                                         ASYNC METHODS                                         *
+         *************************************************************************************************/
+
+        /// <summary>
+        /// Retrieves a collection of data items of type <typeparamref name="T"/>.
+        /// </summary>
+        /// <remarks>The returned collection contains the data items that are to be loaded.  The
+        /// collection may be empty if no data is available.</remarks>
+        /// <returns>A collection of data items of type <typeparamref name="T"/>. The collection will be empty if no data is
+        /// available.</returns>
+        Task<ICollection<T?>?> GetLoadDataAsync(CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Writes data to the underlying storage and returns the number of rows written.
+        /// </summary>
+        /// <returns>The number of rows successfully written to the storage.</returns>
+        Task<int> WriteDataAsync(CancellationToken cancellationToken);
     }
 }

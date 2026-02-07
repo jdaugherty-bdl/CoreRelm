@@ -1,4 +1,5 @@
-﻿using CoreRelm.Models.Migrations.Execution;
+﻿using CoreRelm.Models.Migrations;
+using CoreRelm.Models.Migrations.Execution;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace CoreRelm.Interfaces.Migrations
 {
     public interface IRelmSchemaMigrationsStore
     {
-        Task<int> EnsureTableAsync(IRelmContext context, CancellationToken ct = default);
+        Task<int> EnsureTableAsync(IRelmContext context, MigrationOptions migrationOptions);
         Task<Dictionary<string, AppliedMigration>> GetAppliedAsync(IRelmContext context, CancellationToken ct = default);
         Task<int> RecordAppliedAsync(IRelmContext context, string migrationFile, string checksumSha256, CancellationToken ct = default);
     }

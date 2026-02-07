@@ -11,7 +11,7 @@ namespace CoreRelm.Interfaces.Metadata
     public interface IRelmSchemaIntrospector
     {
         Task<SchemaSnapshot> LoadSchemaAsync(
-            string? connectionString,
+            IRelmContext relmContext,
             SchemaIntrospectionOptions? options = null,
             CancellationToken ct = default);
     }

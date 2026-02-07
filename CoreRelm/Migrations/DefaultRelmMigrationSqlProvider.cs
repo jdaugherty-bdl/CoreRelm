@@ -1,5 +1,6 @@
 ﻿using CoreRelm.Interfaces.Metadata;
 using CoreRelm.Interfaces.Migrations;
+using CoreRelm.Models;
 using CoreRelm.Models.Migrations;
 using CoreRelm.Models.Migrations.Introspection;
 using CoreRelm.Models.Migrations.MigrationPlans;
@@ -41,6 +42,14 @@ namespace CoreRelm.Migrations
             _migrationOptions = migrationOptions;
         }
 
+        /*
+         * This is a placeholder implementation that generates SQL without computing a diff.
+         * It demonstrates the inputs and outputs, but does not perform real diffing or SQL generation.
+         * You can replace it with a real implementation that computes the diff and generates SQL based on the plan.
+         *
+         * For example, you might call into your existing migration SQL generator here, passing in the desired and actual schemas,
+         * and any relevant options. The generator would compute the diff, create a migration plan, and render it to SQL.
+         *
         public async Task<MigrationGenerateResult> Generate(string migrationName, string stampUtc, string dbName, List<ValidatedModelType> modelsForDb, MySqlDatabaseProvisioner provisioner)
         {
             var tables = modelsForDb
@@ -60,11 +69,12 @@ namespace CoreRelm.Migrations
                 sql,
                 $"[Relm] Migration SQL generated for database '{dbName}' (diff not computed yet).");
         }
+        */
 
         public MigrationGenerateResult Generate(
             MigrationOptions migrationOptions,
             string migrationName,
-            string stampUtc,
+            DateTime stampUtc,
             string dbName,
             List<ValidatedModelType> modelsForDb)
         {
@@ -77,10 +87,10 @@ namespace CoreRelm.Migrations
                 .GetResult();
         }
 
-        private async Task<MigrationGenerateResult> GenerateAsync(
+        public async Task<MigrationGenerateResult> GenerateAsync(
             MigrationOptions migrationOptions,
             string migrationName,
-            string stampUtc,
+            DateTime stampUtc,
             string dbName,
             List<ValidatedModelType> modelsForDb)
         {
@@ -110,15 +120,20 @@ namespace CoreRelm.Migrations
             else
             {
                 var dbConn = migrationOptions.ConnectionStringTemplate?.Replace("{db}", dbName, StringComparison.Ordinal);
-                actual = await _introspector.LoadSchemaAsync(dbConn);
+                if (string.IsNullOrWhiteSpace(dbConn))
+                    throw new ArgumentException("Connection string is required.", nameof(dbConn));
+
+                var context = new RelmContext(dbConn);
+                actual = await _introspector.LoadSchemaAsync(context);
             }
 
-            var options = new MigrationPlanOptions(
+            var planOptions = new MigrationPlanOptions(
                 Destructive: migrationOptions.Destructive,
-                ScopeTables: scopeTables
+                ScopeTables: scopeTables,
+                StampUtc: stampUtc
             );
 
-            var plan = _planner.Plan(desired, actual, options);
+            var plan = _planner.Plan(desired, actual, planOptions);
 
             if (plan.Operations.Count == 0 && plan.Blockers.Count == 0)
             {
@@ -130,7 +145,8 @@ namespace CoreRelm.Migrations
             var sql = _renderer.Render(plan, new MySqlRenderOptions(
                 IncludeUseDatabase: true,
                 WrapTriggersWithDelimiter: true,
-                TriggerDelimiter: "$$"
+                TriggerDelimiter: "$$",
+                FunctionDelimiter: "$$"
             ));
 
             return MigrationGenerateResult.Changes(

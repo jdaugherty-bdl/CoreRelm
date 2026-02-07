@@ -27,29 +27,24 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
         );
 
         public async Task<SchemaSnapshot> LoadSchemaAsync(
-            string? connectionString,
+            IRelmContext relmContext,
             SchemaIntrospectionOptions? options = null,
             CancellationToken cancellationToken = default)
         {
             options ??= new SchemaIntrospectionOptions();
 
-            if (string.IsNullOrWhiteSpace(connectionString))
-                throw new ArgumentException("Connection string is required.", nameof(connectionString));
-
-            var context = new RelmContext(connectionString);
-
-            var databaseName = await GetCurrentDatabaseAsync(context, cancellationToken);
+            var databaseName = await GetCurrentDatabaseAsync(relmContext, cancellationToken);
             if (string.IsNullOrWhiteSpace(databaseName))
                 throw new InvalidOperationException("No active database selected. Ensure the connection string specifies Database=<name>.");
 
-            var tableNames = await LoadTableNamesAsync(context, databaseName, options.IncludeViews, cancellationToken);
+            var tableNames = await LoadTableNamesAsync(relmContext, databaseName, options.IncludeViews, cancellationToken);
 
             // Load all schema components
-            var columns = await LoadColumnsAsync(context, databaseName, cancellationToken);
-            var indexes = await LoadIndexesAsync(context, databaseName, cancellationToken);
-            var foreignKeys = await LoadForeignKeysAsync(context, databaseName, cancellationToken);
-            var triggers = await LoadTriggersAsync(context, databaseName, cancellationToken);
-            var functions = await LoadFunctionsAsync(context, databaseName, cancellationToken);
+            var columns = await LoadColumnsAsync(relmContext, databaseName, cancellationToken);
+            var indexes = await LoadIndexesAsync(relmContext, databaseName, cancellationToken);
+            var foreignKeys = await LoadForeignKeysAsync(relmContext, databaseName, cancellationToken);
+            var triggers = await LoadTriggersAsync(relmContext, databaseName, cancellationToken);
+            var functions = await LoadFunctionsAsync(relmContext, databaseName, cancellationToken);
 
             // Assemble per-table structures
             var tables = new Dictionary<string, TableSchema>(StringComparer.Ordinal);
@@ -84,7 +79,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
             return new SchemaSnapshot(databaseName, tables, functions);
         }
 
-        private static async Task<string?> GetCurrentDatabaseAsync(RelmContext relmContext, CancellationToken cancellationToken)
+        private static async Task<string?> GetCurrentDatabaseAsync(IRelmContext relmContext, CancellationToken cancellationToken)
         {
             var currentDatabase = await relmContext.GetScalarAsync<string>("SELECT DATABASE();", cancellationToken: cancellationToken);
 
@@ -92,7 +87,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
         }
 
         private static async Task<List<string>?> LoadTableNamesAsync(
-            RelmContext relmContext, 
+            IRelmContext relmContext, 
             string databaseName,
             bool includeViews,
             CancellationToken cancellationToken)
@@ -178,7 +173,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
                 WHERE TABLE_SCHEMA = @database_name
                 ORDER BY TABLE_NAME, ORDINAL_POSITION;";
 
-            var columnResults = (await relmContext.GetDataListAsync<ColumnSchema>(columnQuery, new Dictionary<string, object>
+            var columnResults = (await relmContext.GetDataObjectsAsync<ColumnSchema>(columnQuery, new Dictionary<string, object>
             {
                 ["@database_name"] = databaseName
             }, cancellationToken: cancellationToken))
@@ -188,6 +183,9 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
             {
                 foreach (var column in columnResults)
                 {
+                    if (column == null)
+                        continue;
+
                     if (column.ColumnKey?.Contains("PRI", StringComparison.OrdinalIgnoreCase) ?? false)
                         column.IsPrimaryKey = true;
 
@@ -259,19 +257,16 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
                 WHERE TABLE_SCHEMA = @database_name
                 ORDER BY TABLE_NAME, INDEX_NAME, SEQ_IN_INDEX;";
 
-            var indexResults = (await relmContext.GetDataListAsync<IndexSchema>(indexQuery, new Dictionary<string, object>
+            var indexResults = (await relmContext.GetDataObjectsAsync<IndexSchema>(indexQuery, new Dictionary<string, object>
             {
                 ["@database_name"] = databaseName
             }, cancellationToken: cancellationToken))
                 ?.ToList();
 
             var indexListing = indexResults
-                ?.Where(index => !string.IsNullOrWhiteSpace(index.TableName) && !string.IsNullOrWhiteSpace(index.IndexName) && !string.IsNullOrWhiteSpace(index.ColumnName))
-                .GroupBy(i => (i.TableName, i.IndexName))
-                .ToDictionary(
-                    g => (g.Key.TableName, g.Key.IndexName),
-                    g => g.ToList()
-                );
+                ?.Where(index => index != null && !string.IsNullOrWhiteSpace(index.TableName) && !string.IsNullOrWhiteSpace(index.IndexName) && !string.IsNullOrWhiteSpace(index.ColumnName))
+                .GroupBy(i => (i!.TableName, i.IndexName))
+                .ToDictionary(g => (g.Key.TableName, g.Key.IndexName), g => g.ToList());
 
             var indexSchemas = new Dictionary<string, Dictionary<string, IndexSchema>>(StringComparer.Ordinal);
             if (indexListing == null)
@@ -281,13 +276,16 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
             {
                 var tableName = group.Key.TableName!;
                 var indexName = group.Key.IndexName!;
-                var indexColumns = group.Value;
+                var indexColumns = group.Value
+                    .Where(r => r != null)
+                    .ToList();
 
-                var isUnique = !indexColumns.Any(r => r.NonUnique);
+                var isUnique = !indexColumns
+                    .Any(r => r!.NonUnique);
 
                 var columns = indexColumns
-                    .OrderBy(r => r.SeqInIndex)
-                    .Select(r => new IndexColumnSchema(r.ColumnName!, r.SeqInIndex, r.Collation))
+                    .OrderBy(r => r!.SeqInIndex)
+                    .Select(r => new IndexColumnSchema(r!.ColumnName!, r.SeqInIndex, r.Collation))
                     .ToList();
 
                 if (!indexSchemas.TryGetValue(tableName, out var indexes))
@@ -361,15 +359,16 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
                   AND kcu.REFERENCED_TABLE_NAME IS NOT NULL
                 ORDER BY kcu.TABLE_NAME, kcu.CONSTRAINT_NAME, kcu.ORDINAL_POSITION;";
 
-            var foreignKeyResults = (await relmContext.GetDataListAsync<FkRow>(foreignKeyQuery, new Dictionary<string, object>
+            var foreignKeyResults = (await relmContext.GetDataListAsync<ForeignKeySchema>(foreignKeyQuery, new Dictionary<string, object>
             {
                 ["@database_name"] = databaseName
             }, cancellationToken: cancellationToken))
                 ?.ToList();
 
             var foreignKeySchemas = foreignKeyResults
-                ?.GroupBy(fk => fk.ConstraintName)
-                .ToDictionary(x => x.Key, x => x.ToList());
+                ?.Where(fk => fk != null && !string.IsNullOrWhiteSpace(fk.ConstraintName) && !string.IsNullOrWhiteSpace(fk.TableName) && !string.IsNullOrWhiteSpace(fk.ColumnName))
+                .GroupBy(fk => fk!.ConstraintName)
+                .ToDictionary(x => x.Key!, x => x.Where(y => y != null).ToList());
 
             var byTable = new Dictionary<string, Dictionary<string, ForeignKeySchema>>(StringComparer.Ordinal);
             if (foreignKeySchemas == null)
@@ -383,8 +382,8 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
                 var first = rows.First();
                 var table = first.TableName;
 
-                var localCols = rows.OrderBy(r => r.Ordinal).Select(r => r.ColumnName).ToList();
-                var refCols = rows.OrderBy(r => r.Ordinal).Select(r => r.ReferencedColumnName).ToList();
+                var localCols = rows.OrderBy(r => r.OrdinalPosition).Select(r => r.ColumnName).ToList();
+                var refCols = rows.OrderBy(r => r.OrdinalPosition).Select(r => r.ReferencedColumnName).ToList();
 
                 var foreignKeySchema = new ForeignKeySchema
                 {
@@ -454,14 +453,16 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
                 WHERE TRIGGER_SCHEMA = @database_name
                 ORDER BY EVENT_OBJECT_TABLE, TRIGGER_NAME;";
 
-            var triggerResults = (await relmContext.GetDataListAsync<TriggerSchema>(triggerQuery, new Dictionary<string, object>
+            var triggerResults = (await relmContext.GetDataObjectsAsync<TriggerSchema>(triggerQuery, new Dictionary<string, object>
             {
                 ["@database_name"] = databaseName
             }, cancellationToken: cancellationToken))
                 ?.ToList();
 
             var triggerSchemas = triggerResults
-                ?.GroupBy(t => t.EventObjectTable)
+                ?.Where(t => t != null && !string.IsNullOrWhiteSpace(t.EventObjectTable))
+                .Cast<TriggerSchema>()
+                .GroupBy(t => t!.EventObjectTable)
                 .ToDictionary(
                     g => g.Key!,
                     g => g.ToDictionary(
@@ -508,20 +509,23 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
                 );
             }
             */
-            var functionQuery = @"SELECT ROUTINE_NAME, DTD_IDENTIFIER, ROUTINE_DEFINITION
+            var functionQuery = @"SELECT ROUTINE_NAME, ROUTINE_COMMENT, DTD_IDENTIFIER, ROUTINE_DEFINITION, 
+                    SQL_DATA_ACCESS, SECURITY_TYPE, IS_DETERMINISTIC
                 FROM INFORMATION_SCHEMA.ROUTINES
                 WHERE ROUTINE_SCHEMA = @database_name
                   AND ROUTINE_TYPE = 'FUNCTION'
                 ORDER BY ROUTINE_NAME;";
 
-            var functionResults = (await relmContext.GetDataListAsync<FunctionSchema>(functionQuery, new Dictionary<string, object>
+            var functionResults = (await relmContext.GetDataObjectsAsync<FunctionSchema>(functionQuery, new Dictionary<string, object>
             {
                 ["@database_name"] = dbName
             }, cancellationToken: ct))
                 ?.ToList();
 
             var functions = functionResults
-                ?.ToDictionary(f => f.RoutineName!, f => f, StringComparer.Ordinal)
+                ?.Where(f => f != null && !string.IsNullOrWhiteSpace(f.RoutineName))
+                .Cast<FunctionSchema>()
+                .ToDictionary(f => f!.RoutineName!, f => f, StringComparer.Ordinal)
                 ??
                 [];
 

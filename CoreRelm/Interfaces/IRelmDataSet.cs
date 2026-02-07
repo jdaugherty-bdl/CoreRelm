@@ -27,7 +27,7 @@ namespace CoreRelm.Interfaces
         /// <param name="fieldName">The name of the field for which to set the data loader. Cannot be null or empty.</param>
         /// <param name="dataLoader">The field loader to associate with the specified field. Cannot be null.</param>
         /// <returns>The updated field loader associated with the specified field name.</returns>
-        IRelmFieldLoader SetFieldLoader(string fieldName, IRelmFieldLoader dataLoader);
+        IRelmFieldLoader? SetFieldLoader(string fieldName, IRelmFieldLoader dataLoader);
         
         /// <summary>
         /// Sets the data loader to be used for retrieving data in this dataset.
@@ -169,14 +169,14 @@ namespace CoreRelm.Interfaces
         /// Loads the items in the data set.
         /// </summary>
         /// <returns>A collection of all items in the data set.</returns>
-        ICollection<T>? Load();
+        ICollection<T?>? Load();
 
         /// <summary>
         /// Loads a collection of items of type T, optionally including data loaders based on the specified flag.
         /// </summary>
         /// <param name="loadDataLoaders">true to include data loaders in the returned collection; otherwise, false to exclude them.</param>
         /// <returns>A collection of items of type T. The collection may include data loaders if loadDataLoaders is set to true.</returns>
-        ICollection<T>? Load(bool loadDataLoaders);
+        ICollection<T?>? Load(bool loadDataLoaders);
 
         /// <summary>
         /// Loads the current data as an <see cref="IRelmDataSet{T}"/> instance for querying and manipulation.
@@ -339,5 +339,168 @@ namespace CoreRelm.Interfaces
         /// are saved to the store; otherwise, the changes remain in memory until persisted.</param>
         /// <returns>The number of items successfully added to the store.</returns>
         int Add(ICollection<T> items, bool persist);
+
+        /*************************************************************************************************
+         *                                         ASYNC METHODS                                         *
+         *************************************************************************************************/
+
+        /// <summary>
+        /// Retrieves an item of type T with the specified identifier.
+        /// </summary>
+        /// <param name="itemId">The unique identifier of the item to locate.</param>
+        /// <returns>The item of type T that matches the specified identifier, or the default value for type T if no matching
+        /// item is found.</returns>
+        Task<T?> FindAsync(int itemId, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Retrieves an item of type T that matches the specified internal identifier.
+        /// </summary>
+        /// <param name="itemInternalId">The unique internal identifier of the item to locate. Cannot be null or empty.</param>
+        /// <returns>The item of type T that matches the specified internal identifier, or null if no matching item is found.</returns>
+        Task<T?> FindAsync(string itemInternalId, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Returns the first element of a sequence, or a default value if the sequence contains no elements.
+        /// </summary>
+        /// <returns>The first element in the sequence, or the default value for type <typeparamref name="T"/> if the sequence is
+        /// empty.</returns>
+        Task<T?> FirstOrDefaultAsync(CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Returns the first element of the sequence, or the default value for type T if the sequence contains no
+        /// elements.
+        /// </summary>
+        /// <param name="loadItems">true to load items before retrieving the first element; otherwise, false to use the current state of the
+        /// sequence.</param>
+        /// <returns>The first element of the sequence if it exists; otherwise, the default value for type T.</returns>
+        Task<T?> FirstOrDefaultAsync(bool loadItems, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Returns the first element that satisfies the specified condition, or the default value for the type if no
+        /// such element is found.
+        /// </summary>
+        /// <param name="predicate">An expression that defines the condition to test each element for. Cannot be null.</param>
+        /// <returns>The first element that matches the specified predicate; or the default value for type T if no such element
+        /// is found.</returns>
+        Task<T?> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Returns the first element that matches the specified predicate, or the default value for type T if no such
+        /// element is found.
+        /// </summary>
+        /// <param name="predicate">An expression that defines the condition to test each element for. Cannot be null.</param>
+        /// <param name="loadItems">true to load items before retrieving the first element; otherwise, false to use the current state of the
+        /// sequence.</param>
+        /// <returns>The first element that matches the predicate, or the default value for type T if no matching element is
+        /// found.</returns>
+        Task<T?> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate, bool loadItems, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Loads the items in the data set.
+        /// </summary>
+        /// <returns>A collection of all items in the data set.</returns>
+        Task<ICollection<T?>?> LoadAsync(CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Loads a collection of items of type T, optionally including data loaders based on the specified flag.
+        /// </summary>
+        /// <param name="loadDataLoaders">true to include data loaders in the returned collection; otherwise, false to exclude them.</param>
+        /// <returns>A collection of items of type T. The collection may include data loaders if loadDataLoaders is set to true.</returns>
+        Task<ICollection<T?>?> LoadAsync(bool loadDataLoaders, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Loads the current data as an <see cref="IRelmDataSet{T}"/> instance for querying and manipulation.
+        /// </summary>
+        /// <returns>An <see cref="IRelmDataSet{T}"/> containing the loaded data. The returned data set reflects the current
+        /// state of the underlying source at the time of the call.</returns>
+        Task<IRelmDataSet<T>> LoadAsDataSetAsync(CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Writes data to the underlying destination.
+        /// </summary>
+        /// <returns>The number of rows written to the destination.</returns>
+        Task<int> WriteAsync(CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Creates an entry in the data set for the specified item.
+        /// </summary>
+        /// <param name="item">The item to create an entry for.</param>
+        /// <returns>An <see cref="IRelmDataSet{T}"/> holding the created entry.</returns>
+        Task<IRelmDataSet<T>> EntryAsync(T item, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Creates an entry in the data set for the specified item.
+        /// </summary>
+        /// <param name="item">The item to create an entry for.</param>
+        /// <param name="persist">A value indicating whether the entry should be persisted. If <see langword="true"/>, the entry is saved to
+        /// the underlying data store; otherwise, it is not persisted.</param>
+        /// <returns>An <see cref="IRelmDataSet{T}"/> holding the created entry.</returns>
+        Task<IRelmDataSet<T>> EntryAsync(T item, bool persist = true, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Saves the specified item to the underlying data store.
+        /// </summary>
+        /// <param name="item">The item to be saved. Cannot be null.</param>
+        /// <returns>The number of records affected by the save operation. Typically returns 1 if the item was saved
+        /// successfully; otherwise, returns 0.</returns>
+        Task<int> SaveAsync(T item, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Saves the current changes to the underlying data store.
+        /// </summary>
+        /// <returns>The number of objects that were saved to the data store. Returns 0 if no changes were detected.</returns>
+        Task<int> SaveAsync(CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Creates a new instance of type T, optionally persisting it.
+        /// </summary>
+        /// <param name="persist">true to persist the new instance; otherwise, false. The default is true.</param>
+        /// <returns>A new instance of type T. The instance may be persisted depending on the value of the persist parameter.</returns>
+        Task<T> NewAsync(bool persist = true, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Creates a new instance of type T using the specified parameters.
+        /// </summary>
+        /// <remarks>If persist is set to false, the new instance will not be saved or committed to any
+        /// underlying data store. The caller is responsible for ensuring that newObjectParameters contains all
+        /// necessary information for constructing a valid instance of T.</remarks>
+        /// <param name="newObjectParameters">An object containing the parameters required to initialize the new instance. The structure and required
+        /// properties depend on the type T.</param>
+        /// <param name="persist">true to persist the new instance immediately; otherwise, false. The default is true.</param>
+        /// <returns>A new instance of type T initialized with the provided parameters.</returns>
+        Task<T> NewAsync(dynamic newObjectParameters, bool persist = true, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Adds the specified item to the data set and returns its identifier.
+        /// </summary>
+        /// <param name="item">The item to add to the data set.</param>
+        /// <returns>The identifier of the added item.</returns>
+        Task<int> AddAsync(T item, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Adds the specified item to the collection and optionally persists the change.
+        /// </summary>
+        /// <param name="item">The item to add to the collection. Cannot be null.</param>
+        /// <param name="persist">A value indicating whether the addition should be persisted. If <see langword="true"/>, the change is saved;
+        /// otherwise, it is not.</param>
+        /// <returns>The zero-based index at which the item was added.</returns>
+        Task<int> AddAsync(T item, bool persist, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Adds the elements of the specified collection to the current collection.
+        /// </summary>
+        /// <param name="items">The collection of items to add. Cannot be null. All elements in the collection will be added in enumeration
+        /// order.</param>
+        /// <returns>The number of items successfully added to the collection.</returns>
+        Task<int> AddAsync(ICollection<T> items, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Adds the specified collection of items to the underlying store, optionally persisting the changes.
+        /// </summary>
+        /// <param name="items">The collection of items to add. Cannot be null or contain null elements.</param>
+        /// <param name="persist">A value indicating whether the changes should be persisted immediately. If <see langword="true"/>, the items
+        /// are saved to the store; otherwise, the changes remain in memory until persisted.</param>
+        /// <returns>The number of items successfully added to the store.</returns>
+        Task<int> AddAsync(ICollection<T> items, bool persist, CancellationToken cancellationToken = default);
     }
 }

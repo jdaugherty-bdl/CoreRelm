@@ -19,32 +19,32 @@ namespace CoreRelm.RelmInternal.Helpers.Expressions
 {
     internal class RelmExpressionVisitor<T> : ExpressionVisitor where T : IRelmModel, new()
     {
-        public Dictionary<string, object> QueryParameters { get; private set; }
+        public Dictionary<string, object?>? QueryParameters { get; private set; }
 
-        private readonly Dictionary<string, string> _underscoreProperties;
+        private readonly Dictionary<string, string>? _underscoreProperties;
         private readonly Dictionary<string, string> _usedTableAliases;
         private readonly Dictionary<Type, Dictionary<string, string>> _objectProperties;
-        private readonly HashSet<ParameterExpression> _expressionParameters = new HashSet<ParameterExpression>();
+        private readonly HashSet<ParameterExpression> _expressionParameters = [];
 
-        internal RelmExpressionVisitor(string TableName = null, Dictionary<string, string> UnderscoreProperties = null, Dictionary<string, string> UsedTableAliases = null)
+        internal RelmExpressionVisitor(string? TableName = null, Dictionary<string, string>? UnderscoreProperties = null, Dictionary<string, string>? UsedTableAliases = null)
         {
             var _tableName = TableName;
             if (string.IsNullOrWhiteSpace(_tableName))
-                _tableName = typeof(T).GetCustomAttribute<RelmTable>(false)?.TableName ?? throw new ArgumentNullException();
+                _tableName = typeof(T).GetCustomAttribute<RelmTable>(false)?.TableName ?? throw new ArgumentNullException(nameof(_tableName));
 
-            _underscoreProperties = UnderscoreProperties;
+            _underscoreProperties = UnderscoreProperties ?? [];
             if ((_underscoreProperties?.Count ?? 0) == 0)
                 _underscoreProperties = DataNamingHelper.GetUnderscoreProperties<T>(true, false).ToDictionary(x => x.Value.Item1, x => x.Key);
 
             _objectProperties = new Dictionary<Type, Dictionary<string, string>>
             {
-                [typeof(T)] = UnderscoreProperties
+                [typeof(T)] = _underscoreProperties ?? []
             };
 
             _usedTableAliases = UsedTableAliases ?? new Dictionary<string, string> { [_tableName] = "a" }; // reserve 'a' for the main table
         }
 
-        internal ExpressionResolution Visit(Expression expression, ExpressionResolution expressionResolution = null)
+        internal ExpressionResolution? Visit(Expression? expression, ExpressionResolution? expressionResolution = null)
         {
             if (expression == null)
                 return null;
@@ -145,9 +145,12 @@ namespace CoreRelm.RelmInternal.Helpers.Expressions
         }
         */
 
-        protected virtual ExpressionResolution VisitUnary(UnaryExpression unary, ExpressionResolution expressionResolution)
+        protected virtual ExpressionResolution? VisitUnary(UnaryExpression unary, ExpressionResolution? expressionResolution)
         {
             var operand = this.Visit(unary.Operand, expressionResolution);
+
+            if (operand == null)
+                return operand;
 
             if (unary.NodeType == ExpressionType.Not)
             {
@@ -157,18 +160,18 @@ namespace CoreRelm.RelmInternal.Helpers.Expressions
             return operand;
         }
 
-        protected virtual ExpressionResolution VisitBinary(BinaryExpression binary, ExpressionResolution expressionResolution)
+        protected virtual ExpressionResolution? VisitBinary(BinaryExpression binary, ExpressionResolution? expressionResolution)
         {
             var left = this.Visit(binary.Left, expressionResolution);
-            ExpressionResolution right;
+            ExpressionResolution? right;
             if (binary.Right.NodeType == ExpressionType.ArrayIndex)
             {
                 // Evaluate lambda body (e.g., y[0]) using previously collected argument values
                 // The first collected argument is the sequence for Any/Contains; pass it to resolve indexers
-                var list = (List<object>)(expressionResolution?.ParameterValue ?? left.ParameterValue);
+                var list = ((List<object?>?)(expressionResolution?.ParameterValue ?? left?.ParameterValue)) ?? [];
 
                 if (list.All(x => x is ExpressionResolution))
-                    list = list.Cast<ExpressionResolution>().Select(x => x.ParameterValue).ToList();
+                    list = [.. list.Cast<ExpressionResolution?>().Select(x => x?.ParameterValue)];
 
                 var resolved = ExpressionUtilities.GetValueWithArguments(binary.Right, list);
                 list.Add(resolved);
@@ -182,48 +185,56 @@ namespace CoreRelm.RelmInternal.Helpers.Expressions
             {
                 right = this.Visit(binary.Right, binary.NodeType == ExpressionType.Equal ? left : expressionResolution ?? left);
 
-                if (binary.Left.NodeType == ExpressionType.Convert || binary.Left.NodeType == ExpressionType.ConvertChecked)
+                if (right != null && (binary.Left.NodeType == ExpressionType.Convert || binary.Left.NodeType == ExpressionType.ConvertChecked))
                 {
                     var convertedLeft = (UnaryExpression)binary.Left;
-                    if (convertedLeft.Operand.Type != right.ParameterValue.GetType())
+                    if (convertedLeft.Operand.Type != right?.ParameterValue?.GetType())
                     {
                         var targetType = convertedLeft.Operand.Type;
                         if (targetType.IsEnum)
                         {
-                            // Support int and string inputs
-                            if (right.ParameterValue is int i)
+                            // Support int and string inputs as special cases
+                            /*
+                            if (right!.ParameterValue is int i)
                                 right.ParameterValue = Enum.ToObject(targetType, i);
                             else if (right.ParameterValue is string s)
                                 right.ParameterValue = Enum.Parse(targetType, s, ignoreCase: true);
                             else
                                 right.ParameterValue = Enum.ToObject(targetType, Convert.ChangeType(right.ParameterValue, Enum.GetUnderlyingType(targetType)));
+                            */
+                            right!.ParameterValue = right.ParameterValue switch
+                            {
+                                int i => Enum.ToObject(targetType, i),
+                                string s => Enum.Parse(targetType, s, ignoreCase: true),
+                                _ => Enum.ToObject(targetType, Convert.ChangeType(right.ParameterValue, Enum.GetUnderlyingType(targetType)))
+                            };
                         }
                         else
                         {
-                            right.ParameterValue = Convert.ChangeType(right.ParameterValue, targetType);
+                            right!.ParameterValue = Convert.ChangeType(right.ParameterValue, targetType);
                         }
                     }
                 }
             }
             //var conversion = this.Visit(binary.Conversion);
 
-            var fieldName = left.Query;
-            var parameterName = left.ParameterName;
-            var parameterValue = right.ParameterValue;
-            var query = left.Query;
-            var tableAlias = left.TableAlias;
+            var fieldName = left?.Query;
+            var parameterName = left?.ParameterName;
+            var parameterValue = right?.ParameterValue;
+            var query = left?.Query;
+            var tableAlias = left?.TableAlias;
 
-            if (string.IsNullOrWhiteSpace(left.TableAlias))
+            if (string.IsNullOrWhiteSpace(left?.TableAlias))
             {
-                fieldName = right.Query;
-                parameterName = right.ParameterName;
-                parameterValue = left.ParameterValue;
-                query = right.Query;
-                tableAlias = right.TableAlias;
+                fieldName = right?.Query;
+                parameterName = right?.ParameterName;
+                parameterValue = left?.ParameterValue;
+                query = right?.Query;
+                tableAlias = right?.TableAlias;
             }
 
-            QueryParameters = QueryParameters ?? new Dictionary<string, object>();
-            if (!QueryParameters.ContainsKey(parameterName) && parameterValue != null)
+            QueryParameters ??= [];
+            if (!string.IsNullOrWhiteSpace(parameterName) && !QueryParameters.ContainsKey(parameterName) && parameterValue != null)
                 QueryParameters.Add(parameterName, parameterValue);
 
             var finalResolution = new ExpressionResolution
@@ -243,11 +254,11 @@ namespace CoreRelm.RelmInternal.Helpers.Expressions
                 case ExpressionType.Or:
                 case ExpressionType.OrElse:
                     finalResolution.ParameterValue = new[] { left, right };
-                    finalResolution.Query = $"({left.Query}) {ExpressionUtilities.GetSqlOperator(binary.NodeType)} ({right.Query})";
+                    finalResolution.Query = $"({left?.Query}) {ExpressionUtilities.GetSqlOperator(binary.NodeType)} ({right?.Query})";
                     break;
                 case ExpressionType.Add:
                     finalResolution.ParameterValue = new[] { left, right };
-                    finalResolution.Query = $"CONCAT_WS('', {left.Query}, {right.Query})";
+                    finalResolution.Query = $"CONCAT_WS('', {left?.Query}, {right?.Query})";
                     break;
             }
 
@@ -266,14 +277,14 @@ namespace CoreRelm.RelmInternal.Helpers.Expressions
         }
         */
 
-        protected virtual ExpressionResolution VisitConstant(ConstantExpression constant, ExpressionResolution expressionResolution)
+        protected virtual ExpressionResolution VisitConstant(ConstantExpression constant, ExpressionResolution? expressionResolution)
         {
             var constantResolution = new ExpressionResolution
             {
                 ParameterValue = ExpressionUtilities.GetValue(constant)
             };
 
-            if (constantResolution.ParameterValue.GetType() == typeof(bool))
+            if (constantResolution.ParameterValue?.GetType() == typeof(bool))
             {
                 constantResolution.Query = (bool)constantResolution.ParameterValue ? "1" : "0";
                 constantResolution.ParameterValue = (bool)constantResolution.ParameterValue ? 1 : 0;
@@ -281,7 +292,7 @@ namespace CoreRelm.RelmInternal.Helpers.Expressions
             else if (constantResolution.ParameterValue is IEnumerable valueList)
                 constantResolution.Query = string.Join(",", valueList.Cast<object>().Select(v => v.ToString()));
             else
-                constantResolution.Query = constantResolution.ParameterValue.ToString();
+                constantResolution.Query = constantResolution.ParameterValue?.ToString();
 
             return constantResolution;
         }
@@ -300,13 +311,13 @@ namespace CoreRelm.RelmInternal.Helpers.Expressions
         }
         */
 
-        protected virtual ExpressionResolution VisitParameter(ParameterExpression parameter, ExpressionResolution expressionResolution)
+        protected virtual ExpressionResolution VisitParameter(ParameterExpression parameter, ExpressionResolution? expressionResolution)
         {
             _expressionParameters.Add(parameter);
 
             if (parameter.Type.GetInterface(nameof(IRelmModel)) == null)
             {
-                var parameterValue = ExpressionUtilities.GetValueWithArguments(parameter, (List<object>)expressionResolution?.ParameterValue);
+                var parameterValue = ExpressionUtilities.GetValueWithArguments(parameter, (List<object?>?)expressionResolution?.ParameterValue);
 
                 return new ExpressionResolution
                 {
@@ -314,7 +325,7 @@ namespace CoreRelm.RelmInternal.Helpers.Expressions
                 };
             }
 
-            var currentAlias = GetTableAlias(((RelmTable)parameter.Type.GetCustomAttributes(typeof(RelmTable), true).FirstOrDefault())?.TableName);
+            var currentAlias = GetTableAlias(((RelmTable?)parameter.Type.GetCustomAttributes(typeof(RelmTable), true).FirstOrDefault())?.TableName);
 
             if (string.IsNullOrWhiteSpace(currentAlias))
                 throw new TypeAccessException($"Could not find 'RelmTable' custom attribute on type: [{parameter.Type.FullName}]");
@@ -324,35 +335,42 @@ namespace CoreRelm.RelmInternal.Helpers.Expressions
             };
         }
 
-        protected virtual ExpressionResolution VisitMemberAccess(MemberExpression member, ExpressionResolution expressionResolution)
+        protected virtual ExpressionResolution? VisitMemberAccess(MemberExpression member, ExpressionResolution? expressionResolution)
         {
+            if (member.Expression == null)
+                return null;
+
             var resolution = this.Visit(member.Expression, expressionResolution);
 
+            if (resolution == null)
+                return resolution;
+
             if (member.Expression.NodeType == ExpressionType.Constant)
-                resolution.ParameterValue = resolution.ParameterValue.GetType().GetField(member.Member.Name).GetValue(resolution.ParameterValue);
+                resolution.ParameterValue = resolution.ParameterValue?.GetType().GetField(member.Member.Name)?.GetValue(resolution.ParameterValue);
             else
             {
-                if (!_objectProperties.ContainsKey(member.Expression.Type))
+                if (!_objectProperties.TryGetValue(member.Expression.Type, out Dictionary<string, string>? value))
                 {
-                    _objectProperties[member.Expression.Type] = DataNamingHelper.GetUnderscoreProperties(member.Expression.Type, true, false).ToDictionary(x => x.Value.Item1, x => x.Key);
+                    value = DataNamingHelper.GetUnderscoreProperties(member.Expression.Type, true, false).ToDictionary(x => x.Value.Item1, x => x.Key);
+                    _objectProperties[member.Expression.Type] = value;
                 }
 
                 if (member.Expression.NodeType == ExpressionType.Call)
                 {
-                    var callValue = ExpressionUtilities.GetValueWithArguments(member, new[] { resolution.ParameterValue }.ToList());
+                    var callValue = ExpressionUtilities.GetValueWithArguments(member, [resolution.ParameterValue]);
                     resolution.ParameterValue = callValue;
                 }
 
                 resolution.FieldName = member.Member.Name;
                 resolution.ParameterName = GenerateParameterName(resolution);
 
-                resolution.Query = $"{resolution.TableAlias}.`{_objectProperties[member.Expression.Type][resolution.FieldName]}`";
+                resolution.Query = $"{resolution.TableAlias}.`{value[resolution.FieldName]}`";
             }
 
             return resolution;
         }
 
-        protected virtual ExpressionResolution VisitMethodCall(MethodCallExpression methodCall, ExpressionResolution expressionResolution)
+        protected virtual ExpressionResolution VisitMethodCall(MethodCallExpression methodCall, ExpressionResolution? expressionResolution)
         {
             var obj = this.Visit(methodCall.Object, expressionResolution);
 
@@ -364,54 +382,57 @@ namespace CoreRelm.RelmInternal.Helpers.Expressions
             {
                 if (methodCall.Method.DeclaringType == typeof(Enumerable)
                     || (methodCall.Object != null && typeof(IEnumerable).IsAssignableFrom(methodCall.Object.Type) && methodCall.Object.Type != typeof(string))
-                    || (methodCall.Method.DeclaringType.IsGenericType && (
+                    || ((methodCall.Method.DeclaringType?.IsGenericType ?? false) && (
                         methodCall.Method.DeclaringType.GetGenericTypeDefinition() == typeof(List<>) ||
                         methodCall.Method.DeclaringType.GetInterfaces().Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IEnumerable<>))
                     )))
                 {
-                    ExpressionResolution valueResolution = null;
-                    List<string> queries = new List<string>();
-                    List<string> paramNames = new List<string>();
-                    List<IEnumerable<string>> sequenceStringLists = new List<IEnumerable<string>>();
+                    ExpressionResolution? valueResolution = null;
+                    List<string?> queries = [];
+                    List<string?> paramNames = [];
+                    List<IEnumerable<string?>?> sequenceStringLists = [];
                     if (methodCall.Method.Name == nameof(Enumerable.Any))
                     {
                         valueResolution = evaluatedParams.LastOrDefault(x => x is ExpressionResolution) as ExpressionResolution;
 
-                        if (valueResolution.ParameterValue is IEnumerable<ExpressionResolution> resolutionValue)
+                        if (valueResolution?.ParameterValue is IEnumerable<ExpressionResolution> resolutionValue)
                         {
                             foreach (var res in resolutionValue)
                             {
-                                sequenceStringLists.Add((res.ParameterValue as IEnumerable<object>).Cast<string>());
+                                sequenceStringLists.Add((res.ParameterValue as IEnumerable<object>)?.Cast<string>());
                                 paramNames.Add(res.ParameterName);
                                 queries.Add(res.FieldName);
                             }
                         }
                         else
                         {
-                            sequenceStringLists.Add((valueResolution.ParameterValue as IEnumerable<object>).Cast<string>());
-                            paramNames.Add(valueResolution.ParameterName);
-                            queries.Add(valueResolution.FieldName);
+                            sequenceStringLists.Add((valueResolution?.ParameterValue as IEnumerable<object>)?.Cast<string>());
+                            paramNames.Add(valueResolution?.ParameterName);
+                            queries.Add(valueResolution?.FieldName);
                         }
                     }
                     else
                     {
                         valueResolution = this.Visit(methodCall.Arguments.Last(), expressionResolution);
 
-                        sequenceStringLists.Add(ToStringEnumerable(evaluatedParams[0] is ExpressionResolution ? obj?.ParameterValue : evaluatedParams[0]));
-                        paramNames.Add(valueResolution.ParameterName);
-                        queries.Add(valueResolution.Query);
+                        sequenceStringLists.Add(ToStringEnumerable(evaluatedParams?[0] is ExpressionResolution ? obj?.ParameterValue : evaluatedParams?[0]));
+                        paramNames.Add(valueResolution?.ParameterName);
+                        queries.Add(valueResolution?.Query);
                     }
 
-                    QueryParameters = QueryParameters ?? new Dictionary<string, object>();
-                    var finalQuery = "";
+                    QueryParameters ??= [];
+                    var finalQuery = string.Empty;
                     for (var i = 0; i < sequenceStringLists.Count; i++)
                     {
                         var paramName = paramNames[i];
+                        if (string.IsNullOrWhiteSpace(paramName))
+                            continue;
+
                         var sequenceStrings = sequenceStringLists[i];
                         if (i > 0)
-                            finalQuery += valueResolution.NodeType == ExpressionType.AndAlso ? " AND " : " OR ";
+                            finalQuery += valueResolution?.NodeType == ExpressionType.AndAlso ? " AND " : " OR ";
 
-                        QueryParameters[paramName] = string.Join(",", sequenceStrings ?? Enumerable.Empty<string>());
+                        QueryParameters[paramName] = string.Join(",", sequenceStrings ?? []);
 
                         finalQuery += $"FIND_IN_SET({queries[i]}, {paramNames[i]})";
                     }
@@ -422,27 +443,30 @@ namespace CoreRelm.RelmInternal.Helpers.Expressions
                         ParameterName = paramNames[0]
                     };
                 }
-                else if (methodCall.Object.Type == typeof(string))
+                else if (methodCall.Object?.Type == typeof(string))
                 {
-                    ExpressionResolution valueResolution = null;
-                    List<string> queries = new List<string>();
-                    List<string> paramNames = new List<string>();
-                    List<string> matchStrings = new List<string>();
+                    ExpressionResolution? valueResolution = null;
+                    List<string?> queries = [];
+                    List<string?> paramNames = [];
+                    List<string?> matchStrings = [];
 
                     valueResolution = this.Visit(methodCall.Arguments.Last(), expressionResolution);
 
                     matchStrings.Add(evaluatedParams[0] is ExpressionResolution ? obj?.ParameterValue?.ToString() : evaluatedParams[0]?.ToString());
-                    paramNames.Add(obj.ParameterName);
-                    queries.Add(obj.Query);
+                    paramNames.Add(obj?.ParameterName);
+                    queries.Add(obj?.Query);
 
-                    QueryParameters = QueryParameters ?? new Dictionary<string, object>();
-                    var finalQuery = "";
+                    QueryParameters ??= [];
+                    var finalQuery = string.Empty;
                     for (var i = 0; i < matchStrings.Count; i++)
                     {
                         var paramName = paramNames[i];
+                        if (string.IsNullOrWhiteSpace(paramName))
+                            continue;
+
                         var matchString = matchStrings[i];
                         if (i > 0)
-                            finalQuery += valueResolution.NodeType == ExpressionType.AndAlso ? " AND " : " OR ";
+                            finalQuery += valueResolution?.NodeType == ExpressionType.AndAlso ? " AND " : " OR ";
 
                         QueryParameters[paramName] = $"%{matchString}%";
 
@@ -460,38 +484,37 @@ namespace CoreRelm.RelmInternal.Helpers.Expressions
             if (methodCall.Method.Name == nameof(string.IsNullOrEmpty) || methodCall.Method.Name == nameof(string.IsNullOrWhiteSpace))
             {
                 var valueResolution = this.Visit(methodCall.Arguments[0], expressionResolution);
-                var paramName = valueResolution.ParameterName;
-                
-                if (valueResolution.ParameterValue != null)
+                var paramName = valueResolution?.ParameterName;
+
+                if (valueResolution?.ParameterValue != null && !string.IsNullOrWhiteSpace(paramName))
                 {
-                    QueryParameters = QueryParameters ?? new Dictionary<string, object>();
+                    QueryParameters ??= [];
                     QueryParameters[paramName] = valueResolution.ParameterValue;
                 }
                 
                 return new ExpressionResolution
                 {
-                    Query = $"({valueResolution.Query} IS NULL OR {valueResolution.Query} = '')",
+                    Query = $"({valueResolution?.Query} IS NULL OR {valueResolution?.Query} = '')",
                     ParameterName = paramName
                 };
             }
 
             // General invocation (avoid passing Expression[])
             var target = methodCall.Method.IsStatic ? null : obj?.ParameterValue;
-            var result = methodCall.Method.Invoke(target, evaluatedParams.ToArray());
+            var result = methodCall.Method.Invoke(target, [.. evaluatedParams]);
 
             return new ExpressionResolution { ParameterValue = result, Query = obj?.Query, TableAlias = obj?.TableAlias };
         }
 
-        private IEnumerable<string> ToStringEnumerable(object sequence)
+        private IEnumerable<string?> ToStringEnumerable(object? sequence)
         {
             if (sequence == null)
-                return Enumerable.Empty<string>();
+                return [];
 
-            var enumerable = sequence as IEnumerable;
-            if (enumerable == null)
-                return Enumerable.Empty<string>();
+            if (sequence is not IEnumerable enumerable)
+                return [];
 
-            var list = new List<string>();
+            var list = new List<string?>();
             foreach (var item in enumerable)
             {
                 list.Add(item?.ToString());
@@ -499,9 +522,9 @@ namespace CoreRelm.RelmInternal.Helpers.Expressions
             return list;
         }
 
-        protected virtual List<object> VisitExpressionList(ReadOnlyCollection<Expression> original, ExpressionResolution expressionResolution)
+        protected virtual List<object?> VisitExpressionList(ReadOnlyCollection<Expression> original, ExpressionResolution? expressionResolution)
         {
-            var list = new List<object>();
+            var list = new List<object?>();
             var originalCount = original.Count;
 
             for (var i = 0; i < originalCount; i++)
@@ -510,7 +533,7 @@ namespace CoreRelm.RelmInternal.Helpers.Expressions
                 {
                     if (lambda.Body is BinaryExpression || lambda.Body is MethodCallExpression)
                     {
-                        expressionResolution = expressionResolution ?? new ExpressionResolution();
+                        expressionResolution ??= new();
                         expressionResolution.ParameterValue = list;
                         var bodyResolution = this.Visit(lambda.Body, expressionResolution);
                         list.Add(bodyResolution);
@@ -625,17 +648,17 @@ namespace CoreRelm.RelmInternal.Helpers.Expressions
         }
         */
 
-        protected virtual ExpressionResolution VisitLambda(LambdaExpression lambda)
+        protected new ExpressionResolution? VisitLambda(LambdaExpression lambda)
         {
             var resolution = this.Visit(lambda.Body);
 
             return resolution;
         }
 
-        protected virtual ExpressionResolution VisitNew(NewExpression newExpression, ExpressionResolution expressionResolution)
+        protected virtual ExpressionResolution VisitNew(NewExpression newExpression, ExpressionResolution? expressionResolution)
         {
             var newExpressionArguments = this.VisitExpressionList(newExpression.Arguments, expressionResolution);
-            var newValue = newExpression.Constructor.Invoke(newExpressionArguments.ToArray());
+            var newValue = newExpression.Constructor?.Invoke(newExpressionArguments.ToArray());
 
             var resolution = new ExpressionResolution
             {
@@ -711,15 +734,16 @@ namespace CoreRelm.RelmInternal.Helpers.Expressions
 
         private ExpressionResolution GetNamesAndAliases(MemberExpression memberExpression)
         {
-            var expressionResolution = new ExpressionResolution();
+            var expressionResolution = new ExpressionResolution
+            {
+                TableAlias = GetTableAlias(((RelmTable?)memberExpression.Expression?.Type.GetCustomAttributes(typeof(RelmTable), true).FirstOrDefault())?.TableName),
+                FieldName = memberExpression.Member.Name
+            };
 
-            expressionResolution.TableAlias = GetTableAlias(((RelmTable)memberExpression.Expression.Type.GetCustomAttributes(typeof(RelmTable), true).FirstOrDefault())?.TableName);
-
-            expressionResolution.FieldName = memberExpression.Member.Name;
             expressionResolution.ParameterName = GenerateParameterName(expressionResolution);
 
             if (string.IsNullOrWhiteSpace(expressionResolution.TableAlias))
-                throw new TypeAccessException($"Could not find 'RelmTable' custom attribute on type: [{memberExpression.Expression.Type.FullName}]");
+                throw new TypeAccessException($"Could not find 'RelmTable' custom attribute on type: [{memberExpression.Expression?.Type.FullName}]");
 
             //return new Tuple<string, string, string>(fieldName, parameterName, currentAlias);
             return expressionResolution;
@@ -730,7 +754,7 @@ namespace CoreRelm.RelmInternal.Helpers.Expressions
             var duplicateCount = 0;
             var parameterName = $"@_{expressionResolution.FieldName}_";
 
-            QueryParameters = QueryParameters ?? new Dictionary<string, object>();
+            QueryParameters ??= [];
             while (QueryParameters.ContainsKey($"{parameterName}{++duplicateCount}_")) ;
 
             parameterName = $"{parameterName}{duplicateCount}_";
@@ -741,35 +765,38 @@ namespace CoreRelm.RelmInternal.Helpers.Expressions
             return parameterName;
         }
 
-        private string GetTableAlias(string PropertyName)
+        private string? GetTableAlias(string? PropertyName)
         {
             if (string.IsNullOrWhiteSpace(PropertyName))
                 return null;
 
-            if (_usedTableAliases.ContainsKey(PropertyName))
-                return _usedTableAliases[PropertyName];
+            if (_usedTableAliases.TryGetValue(PropertyName, out string? existingTableName))
+                return existingTableName;
 
             var aliasCount = _usedTableAliases.Count;
             var currentAlias = string.Concat(Enumerable.Repeat(((char)((aliasCount % 26) + 97)).ToString(), (int)(aliasCount / 26.0) + 1));
 
-            _usedTableAliases.Add(_underscoreProperties[PropertyName], currentAlias);
+            if (_underscoreProperties == null || !_underscoreProperties.TryGetValue(PropertyName, out string? newTableName))
+                throw new KeyNotFoundException($"Could not find property '{PropertyName}' in any of the visited expression types. Ensure that the property exists and is properly decorated with 'RelmColumn' attribute if needed.");
+
+            _usedTableAliases.Add(newTableName, currentAlias);
 
             return string.Empty;
         }
 
-        private object ResolveParameter(Expression resolvableExpression, string tableAlias, string parameterName, bool asStringValue = false)
+        private object? ResolveParameter(Expression resolvableExpression, string parameterName, bool asStringValue = false)
         {
             var parameterValue = ExpressionUtilities.GetValue(resolvableExpression);
 
             if (asStringValue)
                 parameterValue = parameterValue.ToString();
 
-            QueryParameters = QueryParameters ?? new Dictionary<string, object>();
+            QueryParameters ??= [];
             if (!QueryParameters.ContainsKey(parameterName))
                 QueryParameters.Add(parameterName, null);
 
             QueryParameters[parameterName] = resolvableExpression.Type == typeof(bool)
-                ? ((bool)parameterValue ? 1 : 0)
+                ? (((bool?)parameterValue ?? false) ? 1 : 0)
                 : parameterValue;
 
             return parameterValue;

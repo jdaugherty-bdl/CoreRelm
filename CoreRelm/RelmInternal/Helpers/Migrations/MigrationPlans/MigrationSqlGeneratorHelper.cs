@@ -1,4 +1,5 @@
-﻿using CoreRelm.Models.Migrations;
+﻿using CoreRelm.Models;
+using CoreRelm.Models.Migrations;
 using CoreRelm.Models.Migrations.Introspection;
 using CoreRelm.RelmInternal.Helpers.Migrations.Introspection;
 using CoreRelm.RelmInternal.Helpers.Migrations.Provisioning;
@@ -49,7 +50,8 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
         */
         public async static Task<string?> BuildPlaceholderMigrationSql(MigrationOptions migrationOptions, string migrationName, string stampUtc, string dbName, List<ValidatedModelType> tables, MySqlDatabaseProvisioner provisioner)
         {
-            var dbConn = migrationOptions.ConnectionStringTemplate.Replace("{db}", dbName, StringComparison.Ordinal);
+            var dbConn = migrationOptions.ConnectionStringTemplate?.Replace("{db}", dbName, StringComparison.Ordinal)
+                ?? throw new InvalidOperationException("Database connection string template is not set.");
 
             var exists = false;
             if (migrationOptions.Apply)
@@ -80,7 +82,8 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
             if (exists)
             {
                 var introspector = new MySqlSchemaIntrospector();
-                snapshot = await introspector.LoadSchemaAsync(dbConn, cancellationToken: migrationOptions.CancelToken);
+                var context = new RelmContext(dbConn);
+                snapshot = await introspector.LoadSchemaAsync(context, cancellationToken: migrationOptions.CancelToken);
             }
             else
                 snapshot = SchemaSnapshotFactory.Empty(dbName);

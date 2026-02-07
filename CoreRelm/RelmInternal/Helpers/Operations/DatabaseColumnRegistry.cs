@@ -11,24 +11,26 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
 {
     internal class DatabaseColumnRegistry<T>
     {
-        private readonly string databaseName;
-        private readonly MySqlConnection connection;
-        private readonly Enum connectionStringType;
+        private readonly string? databaseName;
+        private readonly MySqlConnection? connection;
+        private readonly Enum? connectionStringType;
 
-        private Dictionary<string, DALTableRowDescriptor> tableRowDescriptors;
-        private Dictionary<string, string> underscoreProperties;
+        private Dictionary<string, DALTableRowDescriptor>? tableRowDescriptors;
+        private Dictionary<string, string>? underscoreProperties;
 
-        public Dictionary<string, Tuple<string, DALTableRowDescriptor>> PropertyColumns { get; private set; }
-        public Dictionary<string, Tuple<string, DALTableRowDescriptor>> DatabaseColumns => PropertyColumns?.Where(x => x.Value.Item2 != null).ToDictionary(x => x.Key, x => x.Value);
-        public bool HasDatabaseColumns => DatabaseColumns?.Any() ?? false;
+        public Dictionary<string, Tuple<string, DALTableRowDescriptor?>>? PropertyColumns { get; private set; }
+        public Dictionary<string, Tuple<string, DALTableRowDescriptor?>>? DatabaseColumns => PropertyColumns?.Where(x => x.Value.Item2 != null).ToDictionary(x => x.Key, x => x.Value);
+        public bool HasDatabaseColumns => (DatabaseColumns?.Count ?? 0) > 0;
 
         public DatabaseColumnRegistry()
         {
             SetupPropertyLists();
         }
 
-        public DatabaseColumnRegistry(MySqlConnection connection)
+        public DatabaseColumnRegistry(MySqlConnection? connection)
         {
+            ArgumentNullException.ThrowIfNull(connection);
+
             this.connection = connection;
 
             databaseName = this.connection.Database;
@@ -36,11 +38,17 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
             SetupPropertyLists();
         }
 
-        public DatabaseColumnRegistry(Enum connectionStringType)
+        public DatabaseColumnRegistry(Enum? connectionStringType)
         {
+            ArgumentNullException.ThrowIfNull(connectionStringType);
+
             this.connectionStringType = connectionStringType;
 
-            databaseName = RelmHelper.GetConnectionBuilderFromConnectionType(connectionStringType).Database;
+            databaseName = RelmHelper.GetConnectionBuilderFromConnectionType(connectionStringType)?.Database;
+            if (string.IsNullOrWhiteSpace(databaseName))
+            {
+                throw new ArgumentException("The provided connection string type does not have a valid database name.");
+            }
 
             SetupPropertyLists();
         }
@@ -50,16 +58,16 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
             // get a list of all properties on T that are marked with the DALResolvable attribute
             underscoreProperties = DataNamingHelper.GetUnderscoreProperties<T>(true).ToDictionary(x => x.Value.Item1, x => x.Key);
 
-            PropertyColumns = underscoreProperties.ToDictionary(x => x.Key, x => new Tuple<string, DALTableRowDescriptor>(x.Value, null));
+            PropertyColumns = underscoreProperties.ToDictionary(x => x.Key, x => new Tuple<string, DALTableRowDescriptor?>(x.Value, null));
         }
 
         public Dictionary<string, DALTableRowDescriptor> ReadDatabaseDescriptions(string tableName)
         {
             // pull the table details from the database
             var tableRowDescriptors1 = ((connection != null)
-                ? RelmHelper.GetDataObjects<DALTableRowDescriptor>(connection, $"DESCRIBE {(string.IsNullOrWhiteSpace(databaseName) ? string.Empty : $"{databaseName}.")}{tableName}")
-                : RelmHelper.GetDataObjects<DALTableRowDescriptor>(connectionStringType, $"DESCRIBE {(string.IsNullOrWhiteSpace(databaseName) ? string.Empty : $"{databaseName}.")}{tableName}"))
-                .ToDictionary(x => x.Field, x => x);
+                    ? RelmHelper.GetDataObjects<DALTableRowDescriptor>(connection, $"DESCRIBE {(string.IsNullOrWhiteSpace(databaseName) ? string.Empty : $"{databaseName}.")}{tableName}")
+                    : RelmHelper.GetDataObjects<DALTableRowDescriptor>(connectionStringType, $"DESCRIBE {(string.IsNullOrWhiteSpace(databaseName) ? string.Empty : $"{databaseName}.")}{tableName}"))
+                ?.ToDictionary(x => x.Field, x => x);
 
             tableRowDescriptors = new Dictionary<string, DALTableRowDescriptor>(tableRowDescriptors1, StringComparer.OrdinalIgnoreCase);
 
@@ -72,7 +80,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
                 });
 
             PropertyColumns = underscoreProperties
-                .ToDictionary(x => x.Key, x => new Tuple<string, DALTableRowDescriptor>(x.Value, tableRowDescriptors.ContainsKey(x.Value) ? tableRowDescriptors[x.Value] : null));
+                .ToDictionary(x => x.Key, x => new Tuple<string, DALTableRowDescriptor?>(x.Value, tableRowDescriptors.ContainsKey(x.Value) ? tableRowDescriptors[x.Value] : null));
 
             return tableRowDescriptors;
         }

@@ -33,7 +33,7 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
         /// <returns>The converted value of type <typeparamref name="T"/>. If <paramref name="scalarValue"/> is <see
         /// langword="null"/> or <see cref="DBNull"/>,  the default value of <typeparamref name="T"/> is returned. For
         /// nullable types, <see langword="null"/> is returned in such cases.</returns>
-        internal static object ConvertScalar<T>(object scalarValue)
+        internal static object? ConvertScalar<T>(object? scalarValue)
         {
             if (scalarValue == null || scalarValue is DBNull)
                 return default(T);
@@ -54,7 +54,7 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
             else if (typeof(T) == typeof(DateTime))
                 return DateTime.TryParse(scalarValue.ToString(), out DateTime scalar) ? scalar : default;
             else if (typeof(T).IsEnum)
-                return (T)Enum.Parse(typeof(T), scalarValue.ToString(), true);
+                return (T)Enum.Parse(typeof(T), scalarValue.ToString()!, true);
             else
                 return (T)scalarValue;
         }

@@ -15,7 +15,6 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using static CoreRelm.Enums.Commands;
 
 namespace CoreRelm.Models
@@ -53,7 +52,7 @@ namespace CoreRelm.Models
         private IRelmDataLoader<T> _dataLoader;
         private FieldLoaderRegistry<IRelmFieldLoader> _fieldDataLoaders;
 
-        private ICollection<T>? _items;
+        private ICollection<T?>? _items;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RelmDataSet{T}"/> class with the specified context and data
@@ -109,7 +108,7 @@ namespace CoreRelm.Models
         /// <returns>The <see cref="IRelmFieldLoader"/> instance that was registered for the specified field.</returns>
         /// <exception cref="ArgumentException">Thrown if <paramref name="fieldName"/> does not correspond to a property on the model type <typeparamref
         /// name="T"/>.</exception>
-        public IRelmFieldLoader SetFieldLoader(string fieldName, IRelmFieldLoader dataLoader)
+        public IRelmFieldLoader? SetFieldLoader(string fieldName, IRelmFieldLoader dataLoader)
         {
             if (!typeof(T).GetProperties().Any(x => x.Name == fieldName))
                 throw new ArgumentException($"The field {fieldName} does not exist on the model {typeof(T).Name}");
@@ -259,7 +258,20 @@ namespace CoreRelm.Models
         /// <returns>The first item that matches the specified identifier, or <see langword="null"/>  if no such item is found.</returns>
         public T? Find(int id)
         {
-            return Where(x => x.Id == id).FirstOrDefault();
+            return FindAsync(id)
+                .GetAwaiter()
+                .GetResult();
+        }
+
+        /// <summary>
+        /// Retrieves an item of type T with the specified identifier.
+        /// </summary>
+        /// <param name="itemId">The unique identifier of the item to locate.</param>
+        /// <returns>The item of type T that matches the specified identifier, or the default value for type T if no matching
+        /// item is found.</returns>
+        public async Task<T?> FindAsync(int itemId, CancellationToken cancellationToken = default)
+        {
+            return await Where(x => x.Id == itemId).FirstOrDefaultAsync(cancellationToken);
         }
 
         /// <summary>
@@ -270,7 +282,19 @@ namespace CoreRelm.Models
         /// found.</returns>
         public T? Find(string InternalId)
         {
-            return Where(x => x.InternalId == InternalId).FirstOrDefault();
+            return FindAsync(InternalId)
+                .GetAwaiter()
+                .GetResult();
+        }
+
+        /// <summary>
+        /// Retrieves an item of type T that matches the specified internal identifier.
+        /// </summary>
+        /// <param name="itemInternalId">The unique internal identifier of the item to locate. Cannot be null or empty.</param>
+        /// <returns>The item of type T that matches the specified internal identifier, or null if no matching item is found.</returns>
+        public async Task<T?> FindAsync(string itemInternalId, CancellationToken cancellationToken = default)
+        {
+            return await Where(x => x.InternalId == itemInternalId).FirstOrDefaultAsync(cancellationToken);
         }
 
         /// <summary>
@@ -287,6 +311,16 @@ namespace CoreRelm.Models
         }
 
         /// <summary>
+        /// Returns the first element of a sequence, or a default value if the sequence contains no elements.
+        /// </summary>
+        /// <returns>The first element in the sequence, or the default value for type <typeparamref name="T"/> if the sequence is
+        /// empty.</returns>
+        public async Task<T?> FirstOrDefaultAsync(CancellationToken cancellationToken = default)
+        {
+            return await FirstOrDefaultAsync(null, true, cancellationToken);
+        }
+
+        /// <summary>
         /// Returns the first element of the collection, or the default value for the type if the collection is empty.
         /// </summary>
         /// <remarks>If <paramref name="loadItems"/> is <see langword="true"/>, the method ensures that
@@ -300,15 +334,39 @@ namespace CoreRelm.Models
         }
 
         /// <summary>
+        /// Returns the first element of the sequence, or the default value for type T if the sequence contains no
+        /// elements.
+        /// </summary>
+        /// <param name="loadItems">true to load items before retrieving the first element; otherwise, false to use the current state of the
+        /// sequence.</param>
+        /// <returns>The first element of the sequence if it exists; otherwise, the default value for type T.</returns>
+        public async Task<T?> FirstOrDefaultAsync(bool loadItems, CancellationToken cancellationToken = default)
+        {
+            return await FirstOrDefaultAsync(null, loadItems, cancellationToken);
+        }
+
+        /// <summary>
         /// Loads items from the database using the existing predicate conditions and then returns the first element of a sequence that satisfies 
         /// the specified condition,  or the default value for the type if no such element is found.
         /// </summary>
         /// <param name="predicate">A function to test each element for a condition. The function must not be <see langword="null"/>.</param>
         /// <returns>The first element in the sequence that satisfies the condition defined by <paramref name="predicate"/>,  or
         /// the default value of type <typeparamref name="T"/> if no such element is found.</returns>
-        public T? FirstOrDefault(Expression<Func<T, bool>> predicate)
+        public T? FirstOrDefault(Expression<Func<T, bool>>? predicate)
         {
             return FirstOrDefault(predicate, true);
+        }
+
+        /// <summary>
+        /// Returns the first element that satisfies the specified condition, or the default value for the type if no
+        /// such element is found.
+        /// </summary>
+        /// <param name="predicate">An expression that defines the condition to test each element for. Cannot be null.</param>
+        /// <returns>The first element that matches the specified predicate; or the default value for type T if no such element
+        /// is found.</returns>
+        public async Task<T?> FirstOrDefaultAsync(Expression<Func<T, bool>>? predicate, CancellationToken cancellationToken = default)
+        {
+            return await FirstOrDefaultAsync(predicate, true, cancellationToken);
         }
 
         /// <summary>
@@ -327,6 +385,22 @@ namespace CoreRelm.Models
         /// value of type <typeparamref name="T"/> if no such element is found.</returns>
         public T? FirstOrDefault(Expression<Func<T, bool>>? predicate, bool loadItems)
         {
+            return FirstOrDefaultAsync(predicate, loadItems)
+                .GetAwaiter()
+                .GetResult();
+        }
+
+        /// <summary>
+        /// Returns the first element that matches the specified predicate, or the default value for type T if no such
+        /// element is found.
+        /// </summary>
+        /// <param name="predicate">An expression that defines the condition to test each element for. Cannot be null.</param>
+        /// <param name="loadItems">true to load items before retrieving the first element; otherwise, false to use the current state of the
+        /// sequence.</param>
+        /// <returns>The first element that matches the predicate, or the default value for type T if no matching element is
+        /// found.</returns>
+        public async Task<T?> FirstOrDefaultAsync(Expression<Func<T, bool>>? predicate, bool loadItems, CancellationToken cancellationToken = default)
+        {
             if (loadItems)
             {
                 Limit(1);
@@ -334,7 +408,7 @@ namespace CoreRelm.Models
                 if (predicate != null)
                     Where(predicate);
 
-                _items = Load();
+                _items = await LoadAsync(cancellationToken);
             }
 
             if (_items == null)
@@ -357,15 +431,36 @@ namespace CoreRelm.Models
         }
 
         /// <summary>
+        /// Loads the current data as an <see cref="IRelmDataSet{T}"/> instance for querying and manipulation.
+        /// </summary>
+        /// <returns>An <see cref="IRelmDataSet{T}"/> containing the loaded data. The returned data set reflects the current
+        /// state of the underlying source at the time of the call.</returns>
+        public async Task<IRelmDataSet<T>> LoadAsDataSetAsync(CancellationToken cancellationToken = default)
+        {
+            await LoadAsync(cancellationToken);
+
+            return this;
+        }
+
+        /// <summary>
         /// Loads a collection of items of type <typeparamref name="T"/>.
         /// </summary>
         /// <remarks>This method retrieves the items and returns them as a collection.  By default, it
         /// includes all items unless specified otherwise in an overload.</remarks>
         /// <returns>A collection of items of type <typeparamref name="T"/>. The collection may be empty if no items are
         /// available.</returns>
-        public ICollection<T>? Load()
+        public ICollection<T?>? Load()
         {
             return Load(true);
+        }
+
+        /// <summary>
+        /// Loads the items in the data set.
+        /// </summary>
+        /// <returns>A collection of all items in the data set.</returns>
+        public async Task<ICollection<T?>?> LoadAsync(CancellationToken cancellationToken = default)
+        {
+            return await LoadAsync(true, cancellationToken);
         }
 
         /// <summary>
@@ -381,11 +476,23 @@ namespace CoreRelm.Models
         /// otherwise, only the data is loaded.</param>
         /// <returns>A collection of items of type <typeparamref name="T"/> representing the loaded data. The collection will be
         /// empty if no data is available.</returns>
-        public ICollection<T>? Load(bool loadDataLoaders)
+        public ICollection<T?>? Load(bool loadDataLoaders)
         {
-            _items = _dataLoader.GetLoadData();
+            return LoadAsync(loadDataLoaders)
+                .GetAwaiter()
+                .GetResult();
+        }
 
-            if (!(_items?.Any() ?? false))
+        /// <summary>
+        /// Loads a collection of items of type T, optionally including data loaders based on the specified flag.
+        /// </summary>
+        /// <param name="loadDataLoaders">true to include data loaders in the returned collection; otherwise, false to exclude them.</param>
+        /// <returns>A collection of items of type T. The collection may include data loaders if loadDataLoaders is set to true.</returns>
+        public async Task<ICollection<T?>?> LoadAsync(bool loadDataLoaders, CancellationToken cancellationToken = default)
+        {
+            _items = await _dataLoader.GetLoadDataAsync(cancellationToken);
+
+            if ((_items?.Count ?? 0) == 0)
                 return _items;
             
             if (loadDataLoaders)
@@ -401,7 +508,7 @@ namespace CoreRelm.Models
                     {
                         foreach (var dataLoaderAttribute in dataLoaderAttributes)
                         {
-                            if (dataLoaderAttribute.LoaderType.GetInterface(relevantContextName) != null)
+                            if (dataLoaderAttribute.LoaderType?.GetInterface(relevantContextName) != null)
                             {
                                 fieldLoaders.Add(property);
                                 break;
@@ -415,7 +522,7 @@ namespace CoreRelm.Models
                     if (_fieldDataLoaders.HasFieldLoader(field.Name))
                         continue;
 
-                    var dataLoaderAttribute = field.GetCustomAttributes<RelmDataLoader>().FirstOrDefault(x => x.LoaderType.GetInterfaces().FirstOrDefault(y => y.Name == relevantContextName) != null);
+                    var dataLoaderAttribute = field.GetCustomAttributes<RelmDataLoader>().FirstOrDefault(x => x.LoaderType?.GetInterfaces().FirstOrDefault(y => y.Name == relevantContextName) != null);
                     if (_currentContext != null && dataLoaderAttribute?.LoaderType != null)
                         _fieldDataLoaders.RegisterFieldLoader(field.Name, (IRelmFieldLoader?)Activator.CreateInstance(dataLoaderAttribute.LoaderType, [_currentContext, field.Name, dataLoaderAttribute.KeyFields]));
                 }
@@ -424,13 +531,13 @@ namespace CoreRelm.Models
                 var fieldHelper = new FieldLoaderHelper<T>(_items);
                 foreach (var fieldLoader in _fieldDataLoaders)
                 {
-                    fieldHelper.LoadData(fieldLoader);
+                    await fieldHelper.LoadDataAsync(fieldLoader, cancellationToken);
                 }
             }
 
             // load all references
             if (_dataLoader.LastCommandsExecuted?.ContainsKey(Command.Reference) ?? false)
-                LoadReference();
+                await LoadReferenceAsync(cancellationToken);
 
             return _items;
         }
@@ -442,6 +549,15 @@ namespace CoreRelm.Models
         public int Write()
         {
             return _dataLoader.WriteData();
+        }
+
+        /// <summary>
+        /// Writes data to the underlying destination.
+        /// </summary>
+        /// <returns>The number of rows written to the destination.</returns>
+        public async Task<int> WriteAsync(CancellationToken cancellationToken = default)
+        {
+            return await _dataLoader.WriteDataAsync(cancellationToken);
         }
 
         /// <summary>
@@ -461,11 +577,33 @@ namespace CoreRelm.Models
         /// <exception cref="Exception">General exception for unexpected issues, such as a failure to find attributes or properties.</exception>
         private void LoadReference()
         {
+            LoadReferenceAsync(CancellationToken.None)
+                .GetAwaiter()
+                .GetResult();
+        }
+
+        /// <summary>
+        /// Loads related single objects (references) into the current data set based on foreign key attributes.
+        /// </summary>
+        /// <remarks>
+        /// Uses reflection to dynamically generate the queries and collect the data for these references.
+        /// This method assumes that each "reference" refers to a property that is a single object (e.g., not a collection).
+        /// 
+        /// The process involves the following steps:
+        /// - Validate that the property representing the reference conforms to expected types.
+        /// - Locate a property in the related type that is marked with the DALForeignKey attribute, which indicates a foreign key relationship.
+        /// - Generate a WHERE clause based on the foreign key relationship to identify the specific object.
+        /// - Execute the query and fill the property in the current data set with the loaded object.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">Thrown if any of the validations or assumptions fail.</exception>
+        /// <exception cref="Exception">General exception for unexpected issues, such as a failure to find attributes or properties.</exception>
+        private async Task LoadReferenceAsync(CancellationToken cancellationToken)
+        {
             var objectsLoader = new ForeignObjectsLoader<T>(_items, _currentContext);
 
             foreach (var reference in _dataLoader.LastCommandsExecuted[Command.Reference])
             {
-                objectsLoader.LoadForeignObjects(reference);
+                await objectsLoader.LoadForeignObjectsAsync(reference, cancellationToken);
             }
         }
 
@@ -474,32 +612,52 @@ namespace CoreRelm.Models
         /// </summary>
         /// <remarks>The item is added to the cleared dataset without persisting the change. The dataset's state
         /// is marked as modified.</remarks>
-        /// <param name="Item">The item to be added to the dataset. Cannot be null.</param>
+        /// <param name="item">The item to be added to the dataset. Cannot be null.</param>
         /// <returns>The current dataset instance, allowing for method chaining.</returns>
-        public IRelmDataSet<T> Entry(T Item)
+        public IRelmDataSet<T> Entry(T item)
         {
-            _items = [];
-                
-            Add(Item, Persist: false);
+            return EntryAsync(item)
+                .GetAwaiter()
+                .GetResult();
+        }
 
-            Modified = true;
-
-            return this;
+        /// <summary>
+        /// Creates an entry in the data set for the specified item.
+        /// </summary>
+        /// <param name="item">The item to create an entry for.</param>
+        /// <returns>An <see cref="IRelmDataSet{T}"/> holding the created entry.</returns>
+        public async Task<IRelmDataSet<T>> EntryAsync(T item, CancellationToken cancellationToken = default)
+        {
+            return await EntryAsync(item, persist: false, cancellationToken: cancellationToken);
         }
 
         /// <summary>
         /// Clears the current dataset, then adds the specified item to the dataset and optionally persists it.
         /// </summary>
         /// <remarks>This method modifies the dataset by clearing then adding the specified item and marks the dataset
-        /// as modified.  If <paramref name="Persist"/> is <see langword="true"/>, the item will be persisted.</remarks>
-        /// <param name="Item">The item to add to the dataset. Cannot be <see langword="null"/>.</param>
-        /// <param name="Persist">A value indicating whether the item should be persisted.  The default value is <see langword="true"/>.</param>
+        /// as modified.  If <paramref name="persist"/> is <see langword="true"/>, the item will be persisted.</remarks>
+        /// <param name="item">The item to add to the dataset. Cannot be <see langword="null"/>.</param>
+        /// <param name="persist">A value indicating whether the item should be persisted.  The default value is <see langword="true"/>.</param>
         /// <returns>The current dataset instance with the added item.</returns>
-        public IRelmDataSet<T> Entry(T Item, bool Persist = true)
+        public IRelmDataSet<T> Entry(T item, bool persist)
+        {
+            return EntryAsync(item, persist)
+                .GetAwaiter()
+                .GetResult();
+        }
+
+        /// <summary>
+        /// Creates an entry in the data set for the specified item.
+        /// </summary>
+        /// <param name="item">The item to create an entry for.</param>
+        /// <param name="persist">A value indicating whether the entry should be persisted. If <see langword="true"/>, the entry is saved to
+        /// the underlying data store; otherwise, it is not persisted.</param>
+        /// <returns>An <see cref="IRelmDataSet{T}"/> holding the created entry.</returns>
+        public async Task<IRelmDataSet<T>> EntryAsync(T item, bool persist, CancellationToken cancellationToken = default)
         {
             _items = [];
 
-            Add(Item, Persist: Persist);
+            await AddAsync(item, persist: persist, cancellationToken: cancellationToken);
 
             Modified = true;
 
@@ -644,20 +802,33 @@ namespace CoreRelm.Models
         /// <remarks>This method ensures that the collection does not contain duplicate items based on
         /// their  internal identifiers. If an item with the same identifier already exists, it is replaced  with the
         /// new item. Otherwise, the item is added to the collection, and the operation is  persisted.</remarks>
-        /// <param name="Item">The item to save. The item must have a valid internal identifier.</param>
+        /// <param name="item">The item to save. The item must have a valid internal identifier.</param>
         /// <returns>An integer representing the result of the save operation. The exact meaning of the return  value depends on
         /// the underlying implementation of the save or add operation.</returns>
-        public int Save(T Item)
+        public int Save(T item)
+        {
+            return SaveAsync(item)
+                .GetAwaiter()
+                .GetResult();
+        }
+
+        /// <summary>
+        /// Saves the specified item to the underlying data store.
+        /// </summary>
+        /// <param name="item">The item to be saved. Cannot be null.</param>
+        /// <returns>The number of records affected by the save operation. Typically returns 1 if the item was saved
+        /// successfully; otherwise, returns 0.</returns>
+        public async Task<int> SaveAsync(T item, CancellationToken cancellationToken = default)
         {
             // check if the item is already in the list, and if so, replace it, otherwise, add it
-            if (_items?.Any(x => x.InternalId == Item.InternalId) ?? false)
+            if (_items?.Any(x => x?.InternalId == item.InternalId) ?? false)
             {
-                _items = [.. _items.Select(x => x.InternalId == Item.InternalId ? Item : x)];
+                _items = [.. _items.Select(x => x?.InternalId == item.InternalId ? item : x)];
 
-                return Save();
+                return await SaveAsync(cancellationToken: cancellationToken);
             }
             else
-                return Add(Item, Persist: true);
+                return await AddAsync(item, persist: true, cancellationToken: cancellationToken);
         }
 
         /// <summary>
@@ -670,12 +841,23 @@ namespace CoreRelm.Models
         /// <returns>The number of rows updated in the database.</returns>
         public int Save()
         {
+            return SaveAsync()
+                .GetAwaiter()
+                .GetResult();
+        }
+
+        /// <summary>
+        /// Saves the current changes to the underlying data store.
+        /// </summary>
+        /// <returns>The number of objects that were saved to the data store. Returns 0 if no changes were detected.</returns>
+        public async Task<int> SaveAsync(CancellationToken cancellationToken = default)
+        {
             int rowsUpdated;
             var contextOptions = _currentContext?.ContextOptions ?? new();
             if (contextOptions.OptionsBuilderType == Options.RelmContextOptionsBuilder.OptionsBuilderTypes.OpenConnection)
-                rowsUpdated = _items?.WriteToDatabase(contextOptions?.DatabaseConnection, sqlTransaction: contextOptions?.DatabaseTransaction) ?? 0;
+                rowsUpdated = _items == null ? 0 : (await _items.WriteToDatabaseAsync(contextOptions.DatabaseConnection, sqlTransaction: contextOptions.DatabaseTransaction, cancellationToken: cancellationToken));
             else
-                rowsUpdated = _items?.WriteToDatabase(contextOptions?.ConnectionStringType) ?? 0;
+                rowsUpdated = _items == null ? 0 : (await _items.WriteToDatabaseAsync(contextOptions.ConnectionStringType, cancellationToken: cancellationToken));
 
             Modified = false;
 
@@ -694,6 +876,16 @@ namespace CoreRelm.Models
         }
 
         /// <summary>
+        /// Creates a new instance of type T, optionally persisting it.
+        /// </summary>
+        /// <param name="persist">true to persist the new instance; otherwise, false. The default is true.</param>
+        /// <returns>A new instance of type T. The instance may be persisted depending on the value of the persist parameter.</returns>
+        public async Task<T> NewAsync(bool persist = true, CancellationToken cancellationToken = default)
+        {
+            return await NewAsync(null, persist: persist, cancellationToken: cancellationToken);
+        }
+
+        /// <summary>
         /// Creates a new instance of the specified type <typeparamref name="T"/> and initializes its properties based
         /// on the provided dynamic parameters.
         /// </summary>
@@ -705,18 +897,35 @@ namespace CoreRelm.Models
         /// <param name="Persist">A boolean value indicating whether the newly created object should be persisted.  The default value is <see
         /// langword="true"/>.</param>
         /// <returns>A new instance of <typeparamref name="T"/> with its properties initialized based on the provided parameters.</returns>
-        public T New(dynamic NewObjectParameters, bool Persist = true)
+        public T New(dynamic? NewObjectParameters, bool Persist = true)
+        {
+            return NewAsync(NewObjectParameters, persist: Persist)
+                .GetAwaiter()
+                .GetResult();
+        }
+
+        /// <summary>
+        /// Creates a new instance of type T using the specified parameters.
+        /// </summary>
+        /// <remarks>If persist is set to false, the new instance will not be saved or committed to any
+        /// underlying data store. The caller is responsible for ensuring that newObjectParameters contains all
+        /// necessary information for constructing a valid instance of T.</remarks>
+        /// <param name="newObjectParameters">An object containing the parameters required to initialize the new instance. The structure and required
+        /// properties depend on the type T.</param>
+        /// <param name="persist">true to persist the new instance immediately; otherwise, false. The default is true.</param>
+        /// <returns>A new instance of type T initialized with the provided parameters.</returns>
+        public async Task<T> NewAsync(dynamic? newObjectParameters, bool persist = true, CancellationToken cancellationToken = default)
         {
             // create a new instance of T
             var newObject = new T();
 
             // run through each property in the dynamic object, and if the name matches one of the keys in Underscore properties, use reflection to set the value of the new object
-            if (NewObjectParameters != null)
-                foreach (var property in new RouteValueDictionary(NewObjectParameters))
+            if (newObjectParameters != null)
+                foreach (var property in new RouteValueDictionary(newObjectParameters))
                     if (_dataLoader.HasUnderscoreProperty(property.Key))
                         typeof(T).GetProperty(property.Key)?.SetValue(newObject, property.Value);
 
-            Add(newObject, Persist: Persist);
+            await AddAsync(newObject, persist: persist, cancellationToken: cancellationToken);
 
             return newObject;
         }
@@ -743,6 +952,16 @@ namespace CoreRelm.Models
         }
 
         /// <summary>
+        /// Adds the specified item to the data set and returns its identifier.
+        /// </summary>
+        /// <param name="item">The item to add to the data set.</param>
+        /// <returns>The identifier of the added item.</returns>
+        public async Task<int> AddAsync(T item, CancellationToken cancellationToken = default)
+        {
+            return await AddAsync(item, persist: true, cancellationToken: cancellationToken);
+        }
+
+        /// <summary>
         /// Adds the specified item to the collection and optionally persists it to the database.
         /// </summary>
         /// <remarks>If <paramref name="Persist"/> is <see langword="true"/>, the method writes the item
@@ -757,6 +976,20 @@ namespace CoreRelm.Models
         /// langword="true"/>.</returns>
         public int Add(T item, bool Persist)
         {
+            return AddAsync(item, persist: Persist)
+                .GetAwaiter()
+                .GetResult();
+        }
+
+        /// <summary>
+        /// Adds the specified item to the collection and optionally persists the change.
+        /// </summary>
+        /// <param name="item">The item to add to the collection. Cannot be null.</param>
+        /// <param name="persist">A value indicating whether the addition should be persisted. If <see langword="true"/>, the change is saved;
+        /// otherwise, it is not.</param>
+        /// <returns>The zero-based index at which the item was added.</returns>
+        public async Task<int> AddAsync(T item, bool persist, CancellationToken cancellationToken = default)
+        {
             // Instantiate _items if it has not been initialized
             _items = _items ?? [];
 
@@ -764,13 +997,13 @@ namespace CoreRelm.Models
             _items.Add(item);
 
             // If persisting is necessary, write to database
-            if (Persist)
+            if (persist)
             {
                 var contextOptions = _currentContext?.ContextOptions;
                 if (contextOptions?.OptionsBuilderType == Options.RelmContextOptionsBuilder.OptionsBuilderTypes.OpenConnection)
-                    return _items.WriteToDatabase(contextOptions?.DatabaseConnection, sqlTransaction: contextOptions?.DatabaseTransaction);
+                    return await _items.WriteToDatabaseAsync(contextOptions?.DatabaseConnection, sqlTransaction: contextOptions?.DatabaseTransaction);
                 else
-                    return item.WriteToDatabase(contextOptions?.ConnectionStringType);
+                    return await item.WriteToDatabaseAsync(contextOptions?.ConnectionStringType);
             }
             else
                 Modified = true;
@@ -789,6 +1022,17 @@ namespace CoreRelm.Models
         }
 
         /// <summary>
+        /// Adds the elements of the specified collection to the current collection.
+        /// </summary>
+        /// <param name="items">The collection of items to add. Cannot be null. All elements in the collection will be added in enumeration
+        /// order.</param>
+        /// <returns>The number of items successfully added to the collection.</returns>
+        public async Task<int> AddAsync(ICollection<T> items, CancellationToken cancellationToken = default)
+        {
+            return await AddAsync(items, persist: true, cancellationToken: cancellationToken);
+        }
+
+        /// <summary>
         /// Adds a collection of items to the current instance and optionally persists the changes.
         /// </summary>
         /// <param name="items">The collection of items to add. Cannot be null.</param>
@@ -799,6 +1043,20 @@ namespace CoreRelm.Models
         /// save operation if <paramref name="Persist"/> is <see langword="true"/>.</returns>
         public int Add(ICollection<T> items, bool Persist)
         {
+            return AddAsync(items, persist: Persist)
+                .GetAwaiter()
+                .GetResult();
+        }
+
+        /// <summary>
+        /// Adds the specified collection of items to the underlying store, optionally persisting the changes.
+        /// </summary>
+        /// <param name="items">The collection of items to add. Cannot be null or contain null elements.</param>
+        /// <param name="persist">A value indicating whether the changes should be persisted immediately. If <see langword="true"/>, the items
+        /// are saved to the store; otherwise, the changes remain in memory until persisted.</param>
+        /// <returns>The number of items successfully added to the store.</returns>
+        public async Task<int> AddAsync(ICollection<T> items, bool persist, CancellationToken cancellationToken = default)
+        {
             var itemCounter = 0;
             foreach (T item in items)
             {
@@ -806,8 +1064,8 @@ namespace CoreRelm.Models
                 itemCounter++;
             }
 
-            if (Persist)
-                return Save();
+            if (persist)
+                return await SaveAsync(cancellationToken);
 
             return itemCounter;
         }

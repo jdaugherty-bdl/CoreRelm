@@ -2,6 +2,9 @@
 using CoreRelm.Interfaces.Migrations;
 using CoreRelm.Models.Migrations;
 using CoreRelm.Models.Migrations.Introspection;
+using CoreRelm.RelmInternal.Extensions;
+using CoreRelm.RelmInternal.Helpers.Migrations.Rendering;
+using CoreRelm.RelmInternal.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,77 +50,106 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                 var nameMap = BuildColumnNameMap(clrType);
 
                 // Columns (properties tagged with [RelmColumn], including inherited)
-                var columnProps = GetAllInstanceProperties(clrType)
-                    .Select(p => (Prop: p, Attr: p.GetCustomAttributes(true).OfType<RelmColumn>().FirstOrDefault()))
-                    .Where(x => x.Attr != null)
+                var columnProperties = GetAllInstanceProperties(clrType)
+                    .Select(p => (PropertyDetails: p, ColumnDetails: p.GetCustomAttributes(true).OfType<RelmColumn>().FirstOrDefault()))
+                    .Where(x => x.ColumnDetails != null)
                     .ToList();
 
                 var desiredColumns = new Dictionary<string, ColumnSchema>(StringComparer.Ordinal);
 
                 // Index groups: indexName -> list of (columnName, descending)
-                var indexGroups = new Dictionary<string, List<(string ColumnName, bool Desc)>>(StringComparer.Ordinal);
+                var indexGroups = new Dictionary<string, List<(string ColumnName, RelmIndex IndexDefinition)>>(StringComparer.Ordinal);
+
+                // get all relmindexes, both on class and on properties
+                var propertyRelmIndexes = GetAllInstanceProperties(clrType)
+                        .Select(p => (IndexDetails: p.GetCustomAttributes(true).OfType<RelmIndex>().FirstOrDefault(), PropertyDetails: p))
+                        .Where(p => p.IndexDetails != null)
+                        .Select(p => (IndexDetails: (RelmIndex)p.IndexDetails!, PropertyDetails: (PropertyInfo?)p.PropertyDetails)) // reselect so we get the nice naming
+                        .ToList()
+                        ?? [];
+
+                var compositeIndexes = model.ClrType
+                    .GetCustomAttributes(true)
+                    .OfType<RelmIndex>()
+                    .Select(x => (IndexDetails: x, PropertyDetails: (PropertyInfo?)null))
+                    .Concat(propertyRelmIndexes)
+                    .Where(x => x.IndexDetails != null)
+                    .ToList();
+
+                // Process composite indexes first
+                foreach (var (indexDetails, propertyDetails) in compositeIndexes)
+                {
+                    var columnNames = new List<(string ColumnName, RelmIndex IndexDefinition)>();
+
+                    if ((indexDetails.IndexedProperties is null || indexDetails.IndexedProperties.Length == 0) && propertyDetails is null)
+                        throw new InvalidOperationException($"RelmIndex on type {clrType.FullName} must either be attached to a property or specify IndexedProperties.");
+                    
+                    var propertiesNames = indexDetails.IndexedProperties ?? [propertyDetails!.Name];
+                    foreach (var indexProperty in propertiesNames)
+                    {
+                        var (columnPropertyDetails, columnDetails) = columnProperties.FirstOrDefault(x => x.PropertyDetails.Name == indexProperty);
+                        if (columnDetails is null)
+                            throw new InvalidOperationException($"Unable to resolve column for index on property {(propertyDetails?.Name ?? "'class'")} in type {clrType.FullName}");
+
+                        var columnName = ResolveColumnName(columnPropertyDetails, columnDetails!, nameMap)
+                            ?? throw new InvalidOperationException($"Unable to resolve column name for {columnPropertyDetails.Name}");
+
+                        columnNames.Add((columnName, indexDetails));
+                    }
+
+                    var indexName = indexDetails.IndexName ?? $"IX_{tableName}_{string.Join("_", columnNames.Select(x => x.ColumnName))}";
+                    if (!indexGroups.ContainsKey(indexName))
+                        indexGroups.Add(indexName, []);
+                    
+                    indexGroups[indexName] = columnNames;
+                }
+
 
                 // Ordinal position: base columns first in your template order, then remaining sorted
                 // We’ll compute later after collecting all columns.
-                foreach (var (prop, colAttr) in columnProps)
+                foreach (var (columnProperty, columnAttribute) in columnProperties)
                 {
-                    var colName = ResolveColumnName(prop, colAttr!, nameMap);
+                    var columnName = ResolveColumnName(columnProperty, columnAttribute!, nameMap)
+                        ?? throw new InvalidOperationException($"Unable to resolve column name for {columnProperty.Name}");
 
                     // Map CLR type to MySQL type
-                    var mysqlType = MySqlTypeMapper.ToMySqlType(prop.PropertyType, colAttr!);
+                    var mysqlType = MySqlTypeMapper.ToMySqlType(columnProperty.PropertyType, columnAttribute!);
 
-                    var isNullable = colAttr!.IsNullable;
-                    var isPk = colAttr.PrimaryKey;
-                    var isAuto = colAttr.Autonumber;
-                    var isUnique = colAttr.Unique;
+                    var isNullable = columnAttribute!.IsNullable;
+                    var isPrimaryKey = columnAttribute.PrimaryKey;
+                    var isAutonumber = columnAttribute.Autonumber;
+                    var isUnique = columnAttribute.Unique;
 
                     // default value SQL
-                    var defaultSql = colAttr.DefaultValue;
-
-                    // Enforce your last_updated rule (no triggers; column semantics)
-                    if (string.Equals(colName, "last_updated", StringComparison.OrdinalIgnoreCase))
-                    {
-                        // If DefaultValue is empty, we still want the ON UPDATE semantics.
-                        // We store exactly what the renderer expects after "DEFAULT".
-                        defaultSql = "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP";
-                        isNullable = false;
-                    }
-
-                    if (string.Equals(colName, "create_date", StringComparison.OrdinalIgnoreCase))
-                    {
-                        if (string.IsNullOrWhiteSpace(defaultSql))
-                            defaultSql = "CURRENT_TIMESTAMP";
-                        isNullable = false;
-                    }
+                    var defaultSql = columnAttribute.DefaultValue;
 
                     // internal ordering computed later
-                    desiredColumns[colName] = new ColumnSchema
+                    desiredColumns[columnName] = new ColumnSchema
                     {
-                        ColumnName = colName,
+                        ColumnName = columnName,
                         ColumnType = mysqlType,
-                        IsNullable = isNullable,
-                        IsPrimaryKey = isPk,
+                        IsNullable = isNullable ? "YES" : "NO",
+                        IsPrimaryKey = isPrimaryKey,
                         IsForeignKey = false,
                         IsReadOnly = false,
                         IsUnique = isUnique,
-                        IsAutoIncrement = isAuto,
+                        IsAutoIncrement = isAutonumber,
                         DefaultValue = string.IsNullOrWhiteSpace(defaultSql) ? null : defaultSql,
-                        //DefaultValueSql = string.IsNullOrWhiteSpace(defaultSql) ? null : defaultSql,
                         Extra = null,
                         OrdinalPosition = 0
                     };
 
-                    // Index grouping
-                    //if (!string.IsNullOrWhiteSpace(colAttr.Index))
-                    if (colAttr.Index)
+                    // single column indexes
+                    if (columnAttribute.Index)
                     {
-                        if (!indexGroups.TryGetValue(colAttr.ColumnName, out var list))
+                        var indexName = $"IX_{tableName}_{columnAttribute.ColumnName ?? columnName}";
+                        if (!indexGroups.TryGetValue(indexName, out var list))
                         {
                             list = [];
-                            indexGroups[colAttr.ColumnName] = list;
+                            indexGroups[indexName] = list;
                         }
 
-                        list.Add((colName, colAttr.IndexDescending));
+                        list.Add((columnName, new() { IndexedProperties = [columnProperty.Name] }));
                     }
                 }
 
@@ -132,61 +164,71 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
 
                 // Indexes from groups (non-unique by default; uniqueness comes from column Unique or PK)
                 var desiredIndexes = new Dictionary<string, IndexSchema>(StringComparer.Ordinal);
-                foreach (var (indexName, cols) in indexGroups.OrderBy(k => k.Key, StringComparer.Ordinal))
+                foreach (var (indexName, indexColumns) in indexGroups.OrderBy(k => k.Key, StringComparer.Ordinal))
                 {
-                    var ordered = cols
+                    var orderedIndexColumns = indexColumns
                         .Distinct()
                         .OrderBy(c => c.ColumnName, StringComparer.Ordinal)
                         .ToList();
 
-                    var idxCols = new List<IndexColumnSchema>();
-                    var seq = 1;
-                    foreach (var c in ordered)
+                    var indexSchemas = new List<IndexColumnSchema>();
+                    var sequenceInIndex = 1;
+                    foreach (var (ColumnName, IndexDescriptor) in orderedIndexColumns)
                     {
-                        idxCols.Add(new IndexColumnSchema(
-                            ColumnName: c.ColumnName,
-                            SeqInIndex: seq++,
-                            Collation: c.Desc ? "D" : "A"
+                        indexSchemas.Add(new IndexColumnSchema(
+                            ColumnName: ColumnName,
+                            SeqInIndex: sequenceInIndex++,
+                            Collation: IndexDescriptor.Descending ? "DESC" : "ASC"
                         ));
                     }
 
+                    var isUnique = indexColumns.Any(c => c.IndexDefinition.Unique);
                     desiredIndexes[indexName] = new IndexSchema
                     {
                         IndexName = indexName,
-                        IsUnique = false,
-                        Columns = idxCols
+                        IsUnique = isUnique,
+                        Columns = indexSchemas
                     };
                 }
 
                 // Foreign keys: navigation properties with [RelmForeignKey]
-                var desiredFks = new Dictionary<string, ForeignKeySchema>(StringComparer.Ordinal);
-
+                var desiredForeignKeys = new Dictionary<string, ForeignKeySchema>(StringComparer.Ordinal);
                 foreach (var navProp in GetAllInstanceProperties(clrType))
                 {
-                    var fkAttr = navProp.GetCustomAttributes(true).OfType<RelmForeignKey>().FirstOrDefault();
-                    if (fkAttr is null) continue;
+                    var foreignKeyAttr = navProp.GetCustomAttributes(true).OfType<RelmForeignKey>().FirstOrDefault();
+                    if (foreignKeyAttr is null) 
+                        continue;
 
                     // Navigation property type must be a model type
                     var principalType = navProp.PropertyType;
+                    // get either navProp.PropertyType, or if it's a collection, the generic argument type
+                    if (principalType.IsGenericType && typeof(System.Collections.IEnumerable).IsAssignableFrom(principalType))
+                    {
+                        var genericArgs = principalType.GetGenericArguments();
+                        if (genericArgs.Length == 1)
+                        {
+                            principalType = genericArgs[0];
+                        }
+                    }
 
                     var principalDbAttr = principalType.GetCustomAttributes(true).OfType<RelmDatabase>().FirstOrDefault()
-                                          ?? throw new InvalidOperationException($"Missing [RelmDatabase] on principal type {principalType.FullName} referenced by {clrType.FullName}.{navProp.Name}");
+                        ?? throw new InvalidOperationException($"Missing [RelmDatabase] on principal type {principalType.FullName} referenced by {clrType.FullName}.{navProp.Name}");
 
                     var principalTblAttr = principalType.GetCustomAttributes(true).OfType<RelmTable>().FirstOrDefault()
-                                           ?? throw new InvalidOperationException($"Missing [RelmTable] on principal type {principalType.FullName} referenced by {clrType.FullName}.{navProp.Name}");
+                        ?? throw new InvalidOperationException($"Missing [RelmTable] on principal type {principalType.FullName} referenced by {clrType.FullName}.{navProp.Name}");
 
                     if (!string.Equals(principalDbAttr.DatabaseName, databaseName, StringComparison.Ordinal))
                         throw new InvalidOperationException($"Cross-database FK not supported: {databaseName}.{tableName} -> {principalDbAttr.DatabaseName}.{principalTblAttr.TableName}");
 
-                    if (fkAttr.LocalKeys is null || fkAttr.ForeignKeys is null)
+                    if (foreignKeyAttr.LocalKeys is null || foreignKeyAttr.ForeignKeys is null)
                         throw new InvalidOperationException($"[RelmForeignKey] on {clrType.FullName}.{navProp.Name} must specify LocalKeys and ForeignKeys.");
 
-                    if (fkAttr.LocalKeys.Length != fkAttr.ForeignKeys.Length)
+                    if (foreignKeyAttr.LocalKeys.Length != foreignKeyAttr.ForeignKeys.Length)
                         throw new InvalidOperationException($"[RelmForeignKey] on {clrType.FullName}.{navProp.Name} has mismatched key counts.");
 
                     // Resolve local columns from CLR property names
-                    var localCols = new List<string>();
-                    foreach (var localClrName in fkAttr.LocalKeys)
+                    var localCols = new List<string?>();
+                    foreach (var localClrName in foreignKeyAttr.LocalKeys)
                     {
                         var localProp = FindProperty(clrType, localClrName);
                         var localColAttr = localProp.GetCustomAttributes(true).OfType<RelmColumn>().FirstOrDefault()
@@ -197,8 +239,8 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
 
                     // Resolve referenced columns from principal CLR property names
                     var principalNameMap = BuildColumnNameMap(principalType);
-                    var refCols = new List<string>();
-                    foreach (var refClrName in fkAttr.ForeignKeys)
+                    var refCols = new List<string?>();
+                    foreach (var refClrName in foreignKeyAttr.ForeignKeys)
                     {
                         var refProp = FindProperty(principalType, refClrName);
                         var refColAttr = refProp.GetCustomAttributes(true).OfType<RelmColumn>().FirstOrDefault()
@@ -207,9 +249,9 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                         refCols.Add(ResolveColumnName(refProp, refColAttr, principalNameMap));
                     }
 
-                    var fkName = $"fk_{tableName}_{ToSnake(navProp.Name)}";
+                    var fkName = $"FK_{tableName}_{UnderscoreNamesHelper.ConvertPropertyToUnderscoreName(navProp, forceLowerCase: true)}";
 
-                    desiredFks[fkName] = new ForeignKeySchema
+                    desiredForeignKeys[fkName] = new ForeignKeySchema
                     {
                         ConstraintName = fkName,
                         TableName = tableName,
@@ -228,7 +270,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                     TableName: tableName,
                     Columns: desiredColumns,
                     Indexes: desiredIndexes,
-                    ForeignKeys: desiredFks,
+                    ForeignKeys: desiredForeignKeys,
                     Triggers: desiredTriggers
                 );
             }
@@ -262,123 +304,43 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
             return [.. props.Values];
         }
 
-        private static Dictionary<string, string> BuildColumnNameMap(Type t)
+        private static Dictionary<string, string?> BuildColumnNameMap(Type t)
         {
             // Map CLR property name -> DB column name using your CoreRelm naming rule.
-            var map = new Dictionary<string, string>(StringComparer.Ordinal);
+            var map = new Dictionary<string, string?>(StringComparer.Ordinal);
 
             foreach (var p in GetAllInstanceProperties(t))
             {
-                map[p.Name] = ConvertPropertyNameToDbColumn(p.Name);
+                map[p.Name] = UnderscoreNamesHelper.ConvertPropertyToUnderscoreName(p, forceLowerCase: true);
             }
 
             return map;
         }
 
-        private static string ResolveColumnName(PropertyInfo prop, RelmColumn attr, Dictionary<string, string> nameMap)
+        private static string? ResolveColumnName(PropertyInfo prop, RelmColumn attr, Dictionary<string, string?> nameMap)
         {
             if (!string.IsNullOrWhiteSpace(attr.ColumnName))
                 return attr.ColumnName;
 
-            return nameMap.TryGetValue(prop.Name, out var v) ? v : ConvertPropertyNameToDbColumn(prop.Name);
+            return nameMap.TryGetValue(prop.Name, out var v) ? v : UnderscoreNamesHelper.ConvertPropertyToUnderscoreName(prop, forceLowerCase: true);
         }
 
         private static List<ColumnSchema> OrderColumns(List<ColumnSchema> cols)
         {
             // Base template order then by name
-            int Rank(string name) => name switch
+            int Rank(string? name) => name switch
             {
                 "id" => 0,
-                "active" => 1,
-                "InternalId" => 2,
-                "create_date" => 3,
-                "last_updated" => 4,
-                _ => 100
+                "active" => 100,
+                "InternalId" => 120,
+                "create_date" => 130,
+                "last_updated" => 140,
+                _ => 10
             };
 
             return [.. cols
-                .OrderBy(c => Rank(c.ColumnName))
-                .ThenBy(c => c.ColumnName, StringComparer.OrdinalIgnoreCase)];
-        }
-
-        private static string ConvertPropertyNameToDbColumn(string clrName)
-        {
-            // Special case
-            if (clrName == "InternalId")
-                return "InternalId";
-
-            // If it ends with InternalId, keep suffix as "InternalId" and underscore-prefix part
-            const string suffix = "InternalId";
-            if (clrName.EndsWith(suffix, StringComparison.Ordinal) && clrName.Length > suffix.Length)
-            {
-                var prefix = clrName[..^suffix.Length];
-                var snakePrefix = ToSnake(prefix);
-                return $"{snakePrefix}_InternalId";
-            }
-
-            return ToSnake(clrName);
-        }
-
-        private static string ToSnake(string name)
-        {
-            if (string.IsNullOrEmpty(name)) return name;
-
-            var sb = new System.Text.StringBuilder();
-            for (int i = 0; i < name.Length; i++)
-            {
-                var ch = name[i];
-                if (char.IsUpper(ch))
-                {
-                    if (i > 0) sb.Append('_');
-                    sb.Append(char.ToLowerInvariant(ch));
-                }
-                else
-                {
-                    sb.Append(ch);
-                }
-            }
-            return sb.ToString();
-        }
-
-        private static class MySqlTypeMapper
-        {
-            public static string ToMySqlType(Type clrType, RelmColumn col)
-            {
-                // unwrap Nullable<T>
-                var t = Nullable.GetUnderlyingType(clrType) ?? clrType;
-
-                if (t == typeof(string))
-                {
-                    var size = col.ColumnSize > 0 ? col.ColumnSize : 255;
-                    return $"varchar({size})";
-                }
-
-                if (t == typeof(int)) return "int";
-                if (t == typeof(long)) return "bigint";
-                if (t == typeof(short)) return "smallint";
-                if (t == typeof(byte)) return "tinyint unsigned";
-                if (t == typeof(bool)) return "tinyint(1)";
-                if (t == typeof(DateTime)) return "datetime";
-                if (t == typeof(DateTimeOffset)) return "datetime";
-                if (t == typeof(decimal))
-                {
-                    var p = 18;
-                    var s = 2;
-                    if (col.CompoundColumnSize is { Length: >= 2 })
-                    {
-                        p = col.CompoundColumnSize[0];
-                        s = col.CompoundColumnSize[1];
-                    }
-                    return $"decimal({p},{s})";
-                }
-                if (t == typeof(double)) return "double";
-                if (t == typeof(float)) return "float";
-                if (t == typeof(Guid)) return "varchar(45)";
-                if (t == typeof(byte[])) return "blob";
-
-                // If you hit this, add a mapping or provide a custom mapper hook.
-                throw new NotSupportedException($"No MySQL type mapping for CLR type {t.FullName} (property uses [RelmColumn]).");
-            }
+                .OrderBy(c => Rank(c.ColumnName))];
+                //.ThenBy(c => c.ColumnName, StringComparer.OrdinalIgnoreCase)];
         }
     }
 }

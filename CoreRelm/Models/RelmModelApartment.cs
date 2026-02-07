@@ -29,7 +29,7 @@ namespace CoreRelm.Models
         /// </summary>
         /// <param name="ModelData">The DataRow containing the data to initialize the apartment model. Cannot be null.</param>
         /// <param name="AlternateTableName">An optional table name to use instead of the default. If null, the class name is used.</param>
-        public RelmModelApartment(DataRow ModelData, string AlternateTableName = null) : base(ModelData, AlternateTableName ?? nameof(RelmModelApartment)) { }
+        public RelmModelApartment(DataRow ModelData, string? AlternateTableName = null) : base(ModelData, AlternateTableName ?? nameof(RelmModelApartment)) { }
 
         /// <summary>
         /// Initializes a new instance of the RelmModelApartment class by copying data from the specified model.
@@ -41,7 +41,7 @@ namespace CoreRelm.Models
         /// Gets or sets the unique identifier for the apartment.
         /// </summary>
         [RelmColumn]
-        public string ApartmentId { get; set; }
+        public string? ApartmentId { get; set; }
 
         /// <summary>
         /// Gets or sets the unique identifier for the user.
@@ -53,19 +53,19 @@ namespace CoreRelm.Models
         /// Gets or sets the email address associated with the user.
         /// </summary>
         [RelmColumn]
-        public string UserEmail { get; set; }
+        public string? UserEmail { get; set; }
 
         /// <summary>
         /// Gets or sets the user name associated with the entity.
         /// </summary>
         [RelmColumn]
-        public string UserName { get; set; }
+        public string? UserName { get; set; }
 
         /// <summary>
         /// Gets or sets the associated Relm member for this entity.
         /// </summary>
         [RelmColumn]
-        public IRelmMember Member { get; set; }
+        public IRelmMember? Member { get; set; }
 
         /*
         private long _createUserId;

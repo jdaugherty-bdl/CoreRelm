@@ -11,13 +11,13 @@ namespace CoreRelm.Models.Migrations.Execution
     [RelmTable("schema_migrations")]
     public class AppliedMigration : RelmModel
     {
-        [RelmColumn]
+        [RelmColumn(columnSize: 255, isNullable: false, unique: true)]
         public string FileName { get; init; }
 
-        [RelmColumn]
+        [RelmColumn(columnType: "char", columnSize: 64, isNullable: false)]
         public string ChecksumSha256 { get; init; }
 
-        [RelmColumn]
+        [RelmColumn(isNullable: false)]
         public DateTime AppliedUtc { get; init; }
 
         public AppliedMigration() 

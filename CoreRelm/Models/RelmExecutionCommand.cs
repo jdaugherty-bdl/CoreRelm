@@ -30,34 +30,16 @@ namespace CoreRelm.Models
         public Command ExecutionCommand { get; private set; }
 
         /// <summary>
-        /// Gets the command that is executed when the associated component is initialized.
-        /// </summary>
-        [Obsolete("InitialCommand is deprecated, please use ExecutionCommand instead.")]
-        public Command InitialCommand => ExecutionCommand;
-
-        /// <summary>
         /// Gets the expression that represents the execution logic for this instance.
         /// </summary>
-        public Expression ExecutionExpression { get; private set; }
-
-        /// <summary>
-        /// Gets the initial expression used to define the starting state or value for this instance.
-        /// </summary>
-        [Obsolete("InitialExpression is deprecated, please use ExecutionExpression instead.")]
-        public Expression InitialExpression => ExecutionExpression;
+        public Expression? ExecutionExpression { get; private set; }
 
         /// <summary>
         /// Gets the number of child commands associated with this instance.
         /// </summary>
         public int ChildCommandCount => _childCommands?.Count ?? 0;
 
-        /// <summary>
-        /// Gets the number of additional commands associated with this instance.
-        /// </summary>
-        [Obsolete("AdditionalCommandCount is deprecated, please use ChildCommandCount instead.")]
-        public int AdditionalCommandCount => ChildCommandCount;
-
-        private readonly List<RelmExecutionCommand> _childCommands = new List<RelmExecutionCommand>();
+        private readonly List<RelmExecutionCommand> _childCommands = [];
 
         /// <summary>
         /// Initializes a new instance of the RelmExecutionCommand class.
@@ -85,7 +67,7 @@ namespace CoreRelm.Models
         /// <param name="command">The command to add to the execution sequence. Cannot be null.</param>
         /// <param name="expression">The expression associated with the command. Cannot be null.</param>
         /// <returns>The current <see cref="RelmExecutionCommand"/> instance with the additional command included.</returns>
-        public RelmExecutionCommand AddAdditionalCommand(Command command, Expression expression)
+        public RelmExecutionCommand AddAdditionalCommand(Command command, Expression? expression)
         {
             _childCommands.Add(new RelmExecutionCommand(command, expression));
 
@@ -136,7 +118,7 @@ namespace CoreRelm.Models
         {
             var navigationOptions = new ForeignKeyNavigationOptions
             {
-                ReferenceProperty = this.InitialExpression as MemberExpression
+                ReferenceProperty = this.ExecutionExpression as MemberExpression
                     ?? throw new InvalidOperationException("Collection must be represented by a lambda expression in the form of 'x => x.PropertyName'.")
             };
 
@@ -147,20 +129,22 @@ namespace CoreRelm.Models
             navigationOptions.ReferenceKeys = GetReferenceKeys<T>(principalReslolutionForeignKey?.LocalKeys);
 
             // go through all items in the current data set and collect all relmkey values
-            navigationOptions.ItemPrimaryKeys = _items
+            navigationOptions.ItemPrimaryKeys = [.. _items
                 .Select(x => x
-                    .GetType()
+                    ?.GetType()
                     .GetProperties()
                     .Intersect(navigationOptions.ReferenceKeys)
-                    .Select(y => new Tuple<PropertyInfo, object>(y, y.GetValue(x)))
-                    .ToList())
-                .ToList();
+                    .Select(y => new Tuple<PropertyInfo, object?>(y, y.GetValue(x)))
+                    .Where(y => y.Item2 != null)
+                    .Cast<Tuple<PropertyInfo, object>>()
+                    .ToList()
+                    ?? [])];
 
             //if ((itemPrimaryKeys?.Count ?? 0) <= 0)
             if (navigationOptions.ItemPrimaryKeys == null)
                 throw new Exception("No primary keys found.");
 
-            var targetProperties = navigationOptions.ReferenceType.GetProperties();
+            var targetProperties = navigationOptions.ReferenceType?.GetProperties() ?? [];
 
             // make a list of all targetProperties that are of type T
             var targetPropertiesOfTypeT = targetProperties
@@ -179,8 +163,8 @@ namespace CoreRelm.Models
                 var targetForeignKeyDecorators = targetProperties
                     .Where(x => x.GetCustomAttribute<RelmForeignKey>() != null)
                     .ToDictionary(x => x, x => x.GetCustomAttribute<RelmForeignKey>())
-                    .Segment((prev, next, i) => !(prev.Value.LocalKeys ?? defaultLocalKeys).All(x => (next.Value.LocalKeys ?? defaultLocalKeys).Contains(x)))
-                    .ToDictionary(x => x.FirstOrDefault().Value.LocalKeys ?? defaultLocalKeys, x => x.ToDictionary(y => y.Key, y => y.Value.ForeignKeys));
+                    .Segment((prev, next, i) => !(prev.Value?.LocalKeys ?? defaultLocalKeys).All(x => (next.Value?.LocalKeys ?? defaultLocalKeys).Contains(x)))
+                    .ToDictionary(x => x.FirstOrDefault().Value?.LocalKeys ?? defaultLocalKeys, x => x.ToDictionary(y => y.Key, y => y.Value?.ForeignKeys));
 
                 // find any navigation properties that are the same type as this data set
                 var navigationProps = targetPropertiesOfTypeT
@@ -207,14 +191,16 @@ namespace CoreRelm.Models
                         .SelectMany(x => x.Value.Select(y => y.Value).ToArray())
                         .FirstOrDefault());
 
-                    navigationOptions.ItemPrimaryKeys = _items
+                    navigationOptions.ItemPrimaryKeys = [.. _items
                         .Select(x => x
-                            .GetType()
+                            ?.GetType()
                             .GetProperties()
                             .Intersect(navigationOptions.ReferenceKeys)
-                            .Select(y => new Tuple<PropertyInfo, object>(y, y.GetValue(x)))
-                            .ToList())
-                        .ToList();
+                            .Select(y => new Tuple<PropertyInfo, object?>(y, y.GetValue(x)))
+                            .Where(y => y.Item2 != null)
+                            .Cast<Tuple<PropertyInfo, object>>()
+                            .ToList()
+                            ?? [])];
                 }
                 else
                 {
@@ -223,18 +209,18 @@ namespace CoreRelm.Models
                         .Select(x => x.Value.Keys.ToArray())
                         .FirstOrDefault();
 
-                    navigationOptions.ReferenceKeys = GetReferenceKeys<T>(targetForeignKeyDecorators
-                        .SelectMany(x => x.Value.SelectMany(y => y.Value ?? new string[] { }).ToArray())
-                        .ToArray());
+                    navigationOptions.ReferenceKeys = GetReferenceKeys<T>([.. targetForeignKeyDecorators.SelectMany(x => x.Value.SelectMany(y => y.Value ?? []).ToArray())]);
 
-                    navigationOptions.ItemPrimaryKeys = _items
+                    navigationOptions.ItemPrimaryKeys = [.. _items
                         .Select(x => x
-                            .GetType()
+                            ?.GetType()
                             .GetProperties()
                             .Intersect(navigationOptions.ReferenceKeys)
-                            .Select(y => new Tuple<PropertyInfo, object>(y, y.GetValue(x)))
-                            .ToList())
-                        .ToList();
+                            .Select(y => new Tuple<PropertyInfo, object?>(y, y.GetValue(x)))
+                            .Where(y => y.Item2 != null)
+                            .Cast<Tuple<PropertyInfo, object>>()
+                            .ToList()
+                            ?? [])];
                 }
 
                 //navigationOptions.NavigationProperty = navigationProps.FirstOrDefault();
@@ -242,7 +228,7 @@ namespace CoreRelm.Models
             else
             {
                 // get the principal entity's foreign key property
-                navigationOptions.ForeignKeyProperties = targetProperties.Where(x => principalReslolutionForeignKey.ForeignKeys.Contains(x.Name)).ToArray();
+                navigationOptions.ForeignKeyProperties = [.. targetProperties.Where(x => principalReslolutionForeignKey.ForeignKeys?.Contains(x.Name) ?? false)];
                 //navigationOptions.NavigationProperty = targetPropertiesOfTypeT.FirstOrDefault(); //.Values.FirstOrDefault();
             }
 
@@ -268,19 +254,19 @@ namespace CoreRelm.Models
         /// </summary>
         /// <param name="localKeyName"></param>
         /// <returns></returns>
-        internal PropertyInfo GetReferenceKeys<T>(string localKeyName)
+        internal PropertyInfo? GetReferenceKeys<T>(string localKeyName)
         {
-            return GetReferenceKeys<T>(new string[] { localKeyName })?.FirstOrDefault();
+            return GetReferenceKeys<T>([localKeyName])?.FirstOrDefault();
         }
 
-        internal PropertyInfo[] GetReferenceKeys<T>(string[] localKeyNames)
+        internal PropertyInfo[] GetReferenceKeys<T>(string[]? localKeyNames)
         {
             var referenceKeys = typeof(T).GetProperties();
 
             if ((localKeyNames?.Length ?? 0) > 0)
-                referenceKeys = referenceKeys.Where(x => localKeyNames.Contains(x.Name)).ToArray();
+                referenceKeys = [.. referenceKeys.Where(x => localKeyNames?.Contains(x.Name) ?? false)];
             else
-                referenceKeys = referenceKeys.Where(x => x.GetCustomAttribute<RelmKey>() != null).ToArray();
+                referenceKeys = [.. referenceKeys.Where(x => x.GetCustomAttribute<RelmKey>() != null)];
 
             return referenceKeys;
         }

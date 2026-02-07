@@ -33,19 +33,19 @@ namespace CoreRelm.Models
         /// execution details.  The dictionary keys represent the commands, and the associated lists contain the
         /// execution information  for each command. The property can be used to inspect or analyze the history of
         /// command executions.</remarks>
-        public Dictionary<Command, List<IRelmExecutionCommand>> LastCommandsExecuted { get; set; }
+        public Dictionary<Command, List<IRelmExecutionCommand?>>? LastCommandsExecuted { get; set; }
 
         // this is marked as internal to facilitate unit testing only
         // get the table name from the DALTable attribute of T
-        internal virtual string TableName => typeof(T).GetCustomAttribute<RelmTable>(false)?.TableName;
+        internal virtual string? TableName => typeof(T).GetCustomAttribute<RelmTable>(false)?.TableName;
 
-        private readonly RelmContextOptionsBuilder _contextOptionsBuilder;
+        private readonly RelmContextOptionsBuilder? _contextOptionsBuilder;
 
-        private string _fullPropertySelectList;
-        private DatabaseColumnRegistry<T> _columnRegistry;
+        private string? _fullPropertySelectList;
+        private DatabaseColumnRegistry<T>? _columnRegistry;
 
         //private Dictionary<Command, List<Expression>> _commands;
-        private Dictionary<Command, List<IRelmExecutionCommand>> _commands;
+        private Dictionary<Command, List<IRelmExecutionCommand?>>? _commands;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RelmDefaultDataLoader()"/> class.
@@ -95,10 +95,11 @@ namespace CoreRelm.Models
                 _columnRegistry.ReadDatabaseDescriptions(TableName);
 
             // get a list of all class property names surrounded by ` quotes separated by commas
-            _fullPropertySelectList = string.Join(", ", (_columnRegistry.HasDatabaseColumns
-                ? _columnRegistry.DatabaseColumns
-                : _columnRegistry.PropertyColumns)
-                    .Select(p => $"a.`{p.Value.Item1}`"));
+            _fullPropertySelectList = string.Join(", ", ((_columnRegistry.HasDatabaseColumns
+                    ? _columnRegistry.DatabaseColumns
+                    : _columnRegistry.PropertyColumns)
+                ?? [])
+                .Select(p => $"a.`{p.Value.Item1}`"));
         }
 
         /// <summary>
@@ -109,7 +110,7 @@ namespace CoreRelm.Models
         /// <param name="PropertyKey">The key of the property to check for existence.</param>
         /// <returns><see langword="true"/> if the column registry contains the specified property key;  otherwise, <see
         /// langword="false"/>.</returns>
-        public bool HasUnderscoreProperty(string PropertyKey) => _columnRegistry.PropertyColumns?.ContainsKey(PropertyKey) ?? false;
+        public bool HasUnderscoreProperty(string PropertyKey) => _columnRegistry?.PropertyColumns?.ContainsKey(PropertyKey) ?? false;
 
         /// <summary>
         /// Adds an expression to the specified command and returns a new execution command.
@@ -138,7 +139,7 @@ namespace CoreRelm.Models
         /// <param name="expression">The expression to associate with the command.</param>
         /// <returns>An <see cref="IRelmExecutionCommand"/> representing the updated execution command with the specified
         /// expression.</returns>
-        public IRelmExecutionCommand AddSingleExpression(Command command, Expression expression)
+        public IRelmExecutionCommand? AddSingleExpression(Command command, Expression? expression)
         {
             var expressions = PrewarmQuery(command);
 
@@ -159,13 +160,12 @@ namespace CoreRelm.Models
         /// <param name="PredicateCommand">The predicate command used as the key to retrieve or initialize the associated execution commands.</param>
         /// <returns>A list of execution commands associated with the specified predicate command. If no commands are associated,
         /// an empty list is initialized and returned.</returns>
-        private List<IRelmExecutionCommand> PrewarmQuery(Command PredicateCommand)
+        private List<IRelmExecutionCommand?> PrewarmQuery(Command PredicateCommand)
         {
-            if (_commands == null)
-                _commands = new Dictionary<Command, List<IRelmExecutionCommand>>();
+            _commands ??= [];
 
             if (!_commands.ContainsKey(PredicateCommand))
-                _commands.Add(PredicateCommand, new List<IRelmExecutionCommand>());
+                _commands.Add(PredicateCommand, []);
 
             return _commands[PredicateCommand];
         }
@@ -177,12 +177,26 @@ namespace CoreRelm.Models
         /// corresponding data entities. The returned collection may be empty if no matching data is found.</remarks>
         /// <returns>A collection of data entities of type <typeparamref name="T"/>. The collection will be empty if no data
         /// matches the query.</returns>
-        public virtual ICollection<T> GetLoadData()
+        public virtual ICollection<T?>? GetLoadData()
+        {
+            return GetLoadDataAsync()
+                .GetAwaiter()
+                .GetResult();
+        }
+
+        /// <summary>
+        /// Retrieves a collection of data entities based on the current query configuration.
+        /// </summary>
+        /// <remarks>This method constructs a query using the current configuration and retrieves the
+        /// corresponding data entities. The returned collection may be empty if no matching data is found.</remarks>
+        /// <returns>A collection of data entities of type <typeparamref name="T"/>. The collection will be empty if no data
+        /// matches the query.</returns>
+        public virtual async Task<ICollection<T?>?> GetLoadDataAsync(CancellationToken cancellationToken = default)
         {
             var findOptions = new Dictionary<string, object>();
             var selectQuery = GetSelectQuery(findOptions);
 
-            return PullData(selectQuery, findOptions);
+            return await PullDataAsync(selectQuery, findOptions, cancellationToken: cancellationToken);
         }
 
         /// <summary>
@@ -198,12 +212,32 @@ namespace CoreRelm.Models
         /// represent their corresponding values.</param>
         /// <returns>A collection of data objects of type <typeparamref name="T"/> that match the results of the query.  Returns
         /// an empty collection if no data is found.</returns>
-        public virtual ICollection<T?> PullData(string selectQuery, Dictionary<string, object> findOptions)
+        public virtual ICollection<T?>? PullData(string selectQuery, Dictionary<string, object> findOptions)
         {
-            if (_contextOptionsBuilder.OptionsBuilderType == RelmContextOptionsBuilder.OptionsBuilderTypes.OpenConnection)
-                return [.. RelmHelper.GetDataObjects<T>(_contextOptionsBuilder.DatabaseConnection!, selectQuery, findOptions)];
+            return PullDataAsync(selectQuery, findOptions)
+                .GetAwaiter()
+                .GetResult();
+        }
+
+        /// <summary>
+        /// Executes the specified SQL query and retrieves a collection of data objects of type <typeparamref
+        /// name="T"/>.
+        /// </summary>
+        /// <remarks>This method supports two modes of database connection: - If the context is configured
+        /// with an open database connection, the query is executed using the provided connection and transaction. -
+        /// Otherwise, the query is executed using the configured connection string type.</remarks>
+        /// <param name="selectQuery">The SQL query to execute. This query should be a valid SELECT statement that matches the structure of the
+        /// data objects being retrieved.</param>
+        /// <param name="findOptions">A dictionary of parameters to be used in the query. The keys represent parameter names, and the values
+        /// represent their corresponding values.</param>
+        /// <returns>A collection of data objects of type <typeparamref name="T"/> that match the results of the query.  Returns
+        /// an empty collection if no data is found.</returns>
+        public virtual async Task<ICollection<T?>?> PullDataAsync(string selectQuery, Dictionary<string, object> findOptions, CancellationToken cancellationToken = default)
+        {
+            if ((_contextOptionsBuilder?.OptionsBuilderType ?? RelmContextOptionsBuilder.OptionsBuilderTypes.ConnectionString) == RelmContextOptionsBuilder.OptionsBuilderTypes.OpenConnection)
+                return (await RelmHelper.GetDataObjectsAsync<T>(_contextOptionsBuilder.DatabaseConnection, selectQuery, findOptions, cancellationToken: cancellationToken))?.ToList();
             else
-                return [.. RelmHelper.GetDataObjects<T>(_contextOptionsBuilder.ConnectionStringType!, selectQuery, findOptions)];
+                return (await RelmHelper.GetDataObjectsAsync<T>(_contextOptionsBuilder.ConnectionStringType, selectQuery, findOptions, cancellationToken: cancellationToken))?.ToList();
         }
 
         /// <summary>
@@ -216,14 +250,29 @@ namespace CoreRelm.Models
         /// affected by the operation.</returns>
         public int WriteData()
         {
+            return WriteDataAsync()
+                .GetAwaiter()
+                .GetResult();
+        }
+
+        /// <summary>
+        /// Executes a database operation to write data and returns the result of the operation.
+        /// </summary>
+        /// <remarks>This method constructs an update query and performs the database operation based on
+        /// the  configuration of the context options. It supports both open database connections and  connection
+        /// strings, depending on the specified options.</remarks>
+        /// <returns>The result of the database operation as an integer. The value typically represents the number of rows
+        /// affected by the operation.</returns>
+        public async Task<int> WriteDataAsync(CancellationToken cancellationToken = default)
+        {
             var findOptions = new Dictionary<string, object>();
 
             var selectQuery = GetUpdateQuery(findOptions);
 
-            if (_contextOptionsBuilder.OptionsBuilderType == RelmContextOptionsBuilder.OptionsBuilderTypes.OpenConnection)
-                return RelmHelper.DoDatabaseWork<int>(_contextOptionsBuilder.DatabaseConnection!, selectQuery, findOptions);
+            if ((_contextOptionsBuilder?.OptionsBuilderType ?? RelmContextOptionsBuilder.OptionsBuilderTypes.ConnectionString) == RelmContextOptionsBuilder.OptionsBuilderTypes.OpenConnection)
+                return await RelmHelper.DoDatabaseWorkAsync<int>(_contextOptionsBuilder.DatabaseConnection, selectQuery, findOptions, cancellationToken: cancellationToken);
             else
-                return RelmHelper.DoDatabaseWork<int>(_contextOptionsBuilder.ConnectionStringType!, selectQuery, findOptions);
+                return await RelmHelper.DoDatabaseWorkAsync<int>(_contextOptionsBuilder.ConnectionStringType, selectQuery, findOptions, cancellationToken: cancellationToken);
         }
 
         /// <summary>
@@ -235,7 +284,7 @@ namespace CoreRelm.Models
         /// <param name="FindOptions">A dictionary containing key-value pairs that represent the search criteria.  Keys are column names, and
         /// values are the corresponding filter values.</param>
         /// <returns>A string representing the constructed SQL SELECT query.</returns>
-        internal string GetSelectQuery(Dictionary<string, object> FindOptions)
+        internal string GetSelectQuery(Dictionary<string, object?> FindOptions)
         {
             return BuildQuery($"SELECT {_fullPropertySelectList} ", FindOptions, true);
         }
@@ -249,7 +298,7 @@ namespace CoreRelm.Models
         /// <param name="FindOptions">A dictionary containing column-value pairs that define the criteria for the update operation. The keys
         /// represent column names, and the values represent the corresponding values to match.</param>
         /// <returns>A string representing the constructed SQL UPDATE query.</returns>
-        internal string GetUpdateQuery(Dictionary<string, object> FindOptions)
+        internal string GetUpdateQuery(Dictionary<string, object?> FindOptions)
         {
             return BuildQuery($"UPDATE ", FindOptions, false);
         }
@@ -269,13 +318,13 @@ namespace CoreRelm.Models
         /// <returns>A string representing the fully constructed SQL query, including clauses such as WHERE, ORDER BY, GROUP BY,
         /// and others,  based on the provided predicate and options.</returns>
         /// <exception cref="Exception">Thrown if the table name is not specified or the required table metadata is missing.</exception>
-        private string BuildQuery(string QueryPredicate, Dictionary<string, object> FindOptions, bool isSelect)
+        private string BuildQuery(string QueryPredicate, Dictionary<string, object?> FindOptions, bool isSelect)
         {
             if (string.IsNullOrWhiteSpace(TableName))
                 throw new Exception($"RelmTable attribute not found on type {typeof(T).Name}");
 
             // hardcode first table alias to 'a', and inject that into the expression evaluator
-            var expressionEvaluator = new ExpressionEvaluator<T>(TableName, _columnRegistry.PropertyColumns.ToDictionary(x => x.Key, x => x.Value.Item1), UsedTableAliases: new Dictionary<string, string> { [TableName] = "a" });
+            var expressionEvaluator = new ExpressionEvaluator<T>(TableName: TableName, UnderscoreProperties: _columnRegistry?.PropertyColumns?.ToDictionary(x => x.Key, x => x.Value.Item1), UsedTableAliases: new Dictionary<string, string> { [TableName] = "a" });
 
             // evaluate all the pieces of the query
             var queryPieces = new Dictionary<Command, List<string>>();
@@ -284,7 +333,7 @@ namespace CoreRelm.Models
                 foreach (var command in _commands)
                 {
                     if (!queryPieces.ContainsKey(command.Key))
-                        queryPieces.Add(command.Key, new List<string>());
+                        queryPieces.Add(command.Key, []);
 
                     // evaluate all expressions, except references and collections as those are evaluated after selection
                     switch (command.Key)
@@ -324,9 +373,9 @@ namespace CoreRelm.Models
 
             findQuery += " ";
 
-            if (queryPieces.ContainsKey(Command.Count))
+            if (queryPieces.TryGetValue(Command.Count, out List<string>? value))
             {
-                findQuery += queryPieces[Command.Count];
+                findQuery += value;
             }
             else
             {
@@ -344,27 +393,27 @@ namespace CoreRelm.Models
                 findQuery += " FROM ";
             findQuery += $" `{TableName}` a "; // hardcode first table alias to 'a'
 
-            if (queryPieces.ContainsKey(Command.Reference))
-                findQuery += string.Join("\n", queryPieces[Command.Reference]);
+            if (queryPieces.TryGetValue(Command.Reference, out List<string>? reference))
+                findQuery += string.Join("\n", reference);
 
-            if (queryPieces.ContainsKey(Command.Set))
-                findQuery += string.Join("\n", queryPieces[Command.Set]);
+            if (queryPieces.TryGetValue(Command.Set, out List<string>? set))
+                findQuery += string.Join("\n", set);
 
-            if (queryPieces.ContainsKey(Command.Where))
-                findQuery += string.Join("\n", queryPieces[Command.Where]);
+            if (queryPieces.TryGetValue(Command.Where, out List<string>? where))
+                findQuery += string.Join("\n", where);
 
-            if (queryPieces.ContainsKey(Command.OrderBy))
-                findQuery += string.Join("\n", queryPieces[Command.OrderBy]);
-            if (queryPieces.ContainsKey(Command.OrderByDescending))
-                findQuery += string.Join("\n", queryPieces[Command.OrderByDescending]);
-            if (queryPieces.ContainsKey(Command.GroupBy))
-                findQuery += string.Join("\n", queryPieces[Command.GroupBy]);
+            if (queryPieces.TryGetValue(Command.OrderBy, out List<string>? orderBy))
+                findQuery += string.Join("\n", orderBy);
+            if (queryPieces.TryGetValue(Command.OrderByDescending, out List<string>? orderByDescending))
+                findQuery += string.Join("\n", orderByDescending);
+            if (queryPieces.TryGetValue(Command.GroupBy, out List<string>? groupBy))
+                findQuery += string.Join("\n", groupBy);
 
-            if (queryPieces.ContainsKey(Command.Limit))
-                findQuery += string.Join("\n", queryPieces[Command.Limit]);
+            if (queryPieces.TryGetValue(Command.Limit, out List<string>? limit))
+                findQuery += string.Join("\n", limit);
 
-            if (queryPieces.ContainsKey(Command.Offset))
-                findQuery += string.Join("\n", queryPieces[Command.Offset]);
+            if (queryPieces.TryGetValue(Command.Offset, out List<string>? offset))
+                findQuery += string.Join("\n", offset);
 
             LastCommandsExecuted = _commands;
             _commands = null;

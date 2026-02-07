@@ -12,7 +12,8 @@ namespace CoreRelm.Models.Migrations.MigrationPlans
         string DatabaseName,
         IReadOnlyList<IMigrationOperation> Operations,
         IReadOnlyList<string> Warnings,
-        IReadOnlyList<string> Blockers
+        IReadOnlyList<string> Blockers,
+        DateTime StampUtc
     )
     {
         public bool HasChanges => Operations.Count > 0 || Blockers.Count > 0;

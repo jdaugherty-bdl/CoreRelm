@@ -232,6 +232,17 @@ namespace CoreRelm.Persistence
         }
 
         /// <summary>
+        /// Writes data to the underlying output stream.
+        /// </summary>
+        /// <remarks>This overload calls the <see cref="Write(Func{string, T, object})"/> method with a <see
+        /// langword="null"/> argument.</remarks>
+        /// <returns>The result of the write operation, as returned by the <see cref="Write(Func{string, T, object})"/> method.</returns>
+        public async Task<int> WriteAsync(CancellationToken cancellationToken = default)
+        {
+            return await WriteAsync(null, cancellationToken: cancellationToken);
+        }
+
+        /// <summary>
         /// Executes a batch operation to process and insert data into a database using the specified function to
         /// populate a data table.
         /// </summary>
@@ -244,15 +255,33 @@ namespace CoreRelm.Persistence
         /// process.</returns>
         public int Write(Func<string, T, object>? DataTableFunction)
         {
+            return WriteAsync(DataTableFunction)
+                .GetAwaiter()
+                .GetResult();
+        }
+
+        /// <summary>
+        /// Executes a batch operation to process and insert data into a database using the specified function to
+        /// populate a data table.
+        /// </summary>
+        /// <remarks>This method processes the source data in batches, determined by the configured batch
+        /// size, and inserts the data into the database. The method supports multiple database contexts and
+        /// connections, and it uses the appropriate one based on the current configuration.</remarks>
+        /// <param name="DataTableFunction">A function that takes a column name and a data item of type <typeparamref name="T"/> and returns the value
+        /// to be inserted into the data table.</param>
+        /// <returns>The total number of records successfully inserted into the database. Returns 0 if there is no source data to
+        /// process.</returns>
+        public async Task<int> WriteAsync(Func<string, T, object>? DataTableFunction, CancellationToken cancellationToken = default)
+        {
             var sourceDataCount = _sourceData?.Count() ?? 0;
 
             if (sourceDataCount == 0)
                 return 0;
 
-            PopulateColumnDetails();
+            await PopulateColumnDetails(cancellationToken);
 
             if (string.IsNullOrWhiteSpace(_insertQuery))
-                throw new ArgumentNullException("Error executing Bulk Table Writer: insert query not defined");
+                throw new ArgumentNullException(nameof(_insertQuery), "Error executing Bulk Table Writer: insert query not defined");
 
             var outputIterations = sourceDataCount <= _batchSize
                 ? 1
@@ -267,16 +296,16 @@ namespace CoreRelm.Persistence
                 CreateOutputDataTable(DataTableFunction, i);
 
                 if (_existingContext != null)
-                    recordsInserted += DatabaseWorkHelper.DoDatabaseWork<int>(_existingContext, _insertQuery, CommonDatabaseWork, throwException: _throwException);
+                    recordsInserted += await DatabaseWorkHelper.DoDatabaseWorkAsync<int>(_existingContext, _insertQuery, CommonDatabaseWorkAsync, throwException: _throwException, cancellationToken: cancellationToken);
                 else if (_existingConnection != null)
                 {
                     if (_sqlTransaction == null)
-                        recordsInserted += DatabaseWorkHelper.DoDatabaseWork<int>(_existingConnection, _insertQuery, CommonDatabaseWork, throwException: _throwException);
+                        recordsInserted += await DatabaseWorkHelper.DoDatabaseWorkAsync<int>(_existingConnection, _insertQuery, CommonDatabaseWorkAsync, throwException: _throwException, cancellationToken: cancellationToken);
                     else
-                        recordsInserted += DatabaseWorkHelper.DoDatabaseWork<int>(_existingConnection, _sqlTransaction, _insertQuery, CommonDatabaseWork, throwException: _throwException);
+                        recordsInserted += await DatabaseWorkHelper.DoDatabaseWorkAsync<int>(_existingConnection, _sqlTransaction, _insertQuery, CommonDatabaseWorkAsync, throwException: _throwException, cancellationToken: cancellationToken);
                 }
                 else
-                    recordsInserted += DatabaseWorkHelper.DoDatabaseWork<int>(_connectionName!, _insertQuery, CommonDatabaseWork, throwException: _throwException, allowUserVariables: _allowUserVariables);
+                    recordsInserted += await DatabaseWorkHelper.DoDatabaseWorkAsync<int>(_connectionName!, _insertQuery, CommonDatabaseWorkAsync, throwException: _throwException, allowUserVariables: _allowUserVariables, cancellationToken: cancellationToken);
             }
 
             return recordsInserted;
@@ -291,7 +320,7 @@ namespace CoreRelm.Persistence
         /// <param name="CommandObject">The <see cref="MySqlCommand"/> object that defines the database operation, including the command text and
         /// parameters.</param>
         /// <returns>The number of rows affected by the batch operation.</returns>
-        private object CommonDatabaseWork(MySqlCommand CommandObject)
+        private async Task<int> CommonDatabaseWorkAsync(MySqlCommand CommandObject, CancellationToken cancellationToken)
         {
             CommandObject.UpdatedRowSource = UpdateRowSource.None;
 
@@ -299,7 +328,7 @@ namespace CoreRelm.Persistence
             CommandObject
                 .Parameters
                 .AddRange(TableColumns
-                    ?.Select(x => new MySqlParameter($"@{x.Key}", x.Value.Item1, x.Value.Item2, x.Key))
+                    ?.Select(x => new MySqlParameter($"@{x.Key}", x.Value?.Item1 ?? throw new ArgumentNullException($"Error auto-populating Bulk Table Writer call: unable to retrieve value for column [{x.Key}]"), x.Value.Item2, x.Key))
                     .ToArray());
 
             // Specify the number of records to be Inserted/Updated in one go. Default is 1.
@@ -310,7 +339,7 @@ namespace CoreRelm.Persistence
             };
 
             // output the data using batch output
-            return adpt.Update(_outputTable!);
+            return await adpt.UpdateAsync(_outputTable!, cancellationToken: cancellationToken);
         }
 
         /// <summary>
@@ -323,31 +352,34 @@ namespace CoreRelm.Persistence
         /// table name is not specified, an <see cref="ArgumentNullException"/> is thrown.</remarks>
         /// <exception cref="ArgumentNullException">Thrown if the table name is not defined.</exception>
         /// <exception cref="KeyNotFoundException">Thrown if an invalid field type is encountered while converting column definitions.</exception>
-        private void PopulateColumnDetails()
+        private async Task PopulateColumnDetails(CancellationToken cancellationToken = default)
         {
             // if we have no table columns or insert query, build them automatically
             if ((TableColumns?.Count ?? 0) == 0 || string.IsNullOrWhiteSpace(_insertQuery))
             {
                 // we need a table name at minimum to autobuild the rest
                 if (string.IsNullOrWhiteSpace(_tableName))
-                    throw new ArgumentNullException("Error auto-populating Bulk Table Writer call: table name not defined");
+                    throw new ArgumentNullException(nameof(_tableName), "Error auto-populating Bulk Table Writer call: table name not defined");
 
                 // pull the table details from the database
                 List<DALTableRowDescriptor?>? currentTableDetails = null;
                 if (_existingContext != null)
-                    currentTableDetails = [.. RelmHelper.GetDataObjects<DALTableRowDescriptor>(_existingContext, $"DESCRIBE {(string.IsNullOrWhiteSpace(_databaseName) ? string.Empty : $"{_databaseName}.")}{_tableName}")];
+                    currentTableDetails = (await RelmHelper.GetDataObjectsAsync<DALTableRowDescriptor>(_existingContext, $"DESCRIBE {(string.IsNullOrWhiteSpace(_databaseName) ? string.Empty : $"{_databaseName}.")}{_tableName}", cancellationToken: cancellationToken))?.ToList();
                 else if (_existingConnection != null)
                 {
                     if (_sqlTransaction == null)
-                        currentTableDetails = [.. RelmHelper.GetDataObjects<DALTableRowDescriptor>(_existingConnection, $"DESCRIBE {(string.IsNullOrWhiteSpace(_databaseName) ? string.Empty : $"{_databaseName}.")}{_tableName}")];
+                        currentTableDetails = (await RelmHelper.GetDataObjectsAsync<DALTableRowDescriptor>(_existingConnection, $"DESCRIBE {(string.IsNullOrWhiteSpace(_databaseName) ? string.Empty : $"{_databaseName}.")}{_tableName}", cancellationToken: cancellationToken))?.ToList();
                     else
-                        currentTableDetails = [.. RelmHelper.GetDataObjects<DALTableRowDescriptor>(_existingConnection, _sqlTransaction, $"DESCRIBE {(string.IsNullOrWhiteSpace(_databaseName) ? string.Empty : $"{_databaseName}.")}{_tableName}")];
+                        currentTableDetails = (await RelmHelper.GetDataObjectsAsync<DALTableRowDescriptor>(_existingConnection, _sqlTransaction, $"DESCRIBE {(string.IsNullOrWhiteSpace(_databaseName) ? string.Empty : $"{_databaseName}.")}{_tableName}", cancellationToken: cancellationToken))?.ToList();
                 }
                 else
-                    currentTableDetails = [.. RelmHelper.GetDataObjects<DALTableRowDescriptor>(_connectionName!, $"DESCRIBE {(string.IsNullOrWhiteSpace(_databaseName) ? string.Empty : $"{_databaseName}.")}{_tableName}")];
+                    currentTableDetails = (await RelmHelper.GetDataObjectsAsync<DALTableRowDescriptor>(_connectionName!, $"DESCRIBE {(string.IsNullOrWhiteSpace(_databaseName) ? string.Empty : $"{_databaseName}.")}{_tableName}", cancellationToken: cancellationToken))?.ToList();
+
+                if ((currentTableDetails?.Count ?? 0) == 0)
+                    throw new ArgumentNullException($"Error auto-populating Bulk Table Writer call: unable to retrieve details for table [`{_databaseName}`.{_tableName}]");
 
                 // use all column for insert EXCEPT autonumber fields and the boilerplate create_date and last_updated columns
-                var insertColumns = currentTableDetails
+                var insertColumns = currentTableDetails!
                     .Where(x => (_allowAutoIncrementColumns || (!_allowAutoIncrementColumns && !(x?.Extra.Contains("auto_increment") ?? false))) && (_allowAutoDateColumns || (!_allowAutoDateColumns && !_autoDateColumnNames.Contains(x?.Field))));
 
                 // don't update primary key or unique columns on duplicate key as it's unnecessary
@@ -780,6 +812,9 @@ namespace CoreRelm.Persistence
         /// <returns>The current <see cref="BulkTableWriter{T}"/> instance, allowing for method chaining.</returns>
         public BulkTableWriter<T> SetTableName(string tableName)
         {
+            if (string.IsNullOrWhiteSpace(tableName))
+                throw new ArgumentException("Table name cannot be null or empty.", nameof(tableName));
+
             this._tableName = tableName;
 
             return this;
@@ -792,6 +827,9 @@ namespace CoreRelm.Persistence
         /// <returns>The current instance of <see cref="BulkTableWriter{T}"/> to allow method chaining.</returns>
         public BulkTableWriter<T> SetDatabaseName(string databaseName)
         {
+            if (string.IsNullOrWhiteSpace(databaseName))
+                throw new ArgumentException("Database name cannot be null or empty.", nameof(databaseName));
+
             this._databaseName = databaseName;
 
             return this;

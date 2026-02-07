@@ -82,9 +82,21 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
         /// constructor.</typeparam>
         /// <param name="predicate">An expression that specifies the relationship between the current entity and the foreign key entity.</param>
         /// <returns>A collection of foreign key entities that match the specified predicate.</returns>
-        internal ICollection<T> LoadForeignKey<R>(Expression<Func<T, R>> predicate) where R : IRelmModel, new()
+        internal ICollection<T>? LoadForeignKey<R>(Expression<Func<T, R>> predicate) where R : IRelmModel, new()
         {
             return LoadForeignKey(predicate, default(IRelmDataLoader<RelmModel>), null);
+        }
+
+        /// <summary>
+        /// Loads the collection of foreign key entities associated with the specified predicate.
+        /// </summary>
+        /// <typeparam name="R">The type of the foreign key entity, which must implement <see cref="IRelmModel"/> and have a parameterless
+        /// constructor.</typeparam>
+        /// <param name="predicate">An expression that specifies the relationship between the current entity and the foreign key entity.</param>
+        /// <returns>A collection of foreign key entities that match the specified predicate.</returns>
+        internal async Task<ICollection<T>?> LoadForeignKeyAsync<R>(Expression<Func<T, R>> predicate, CancellationToken cancellationToken = default) where R : IRelmModel, new()
+        {
+            return await LoadForeignKeyAsync(predicate, default(IRelmDataLoader<RelmModel>), null, cancellationToken: cancellationToken);
         }
 
         /// <summary>
@@ -97,9 +109,24 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
         /// <param name="additionalConstraints">An expression that defines additional constraints to apply when loading the related entities.</param>
         /// <returns>A collection of related entities of type <typeparamref name="R"/> that satisfy the specified relationship
         /// and constraints.</returns>
-        internal ICollection<T> LoadForeignKey<R>(Expression<Func<T, R>> predicate, Expression<Func<R, object>> additionalConstraints) where R : IRelmModel, new()
+        internal ICollection<T>? LoadForeignKey<R>(Expression<Func<T, R>> predicate, Expression<Func<R, object>> additionalConstraints) where R : IRelmModel, new()
         {
             return LoadForeignKey(predicate, default(IRelmDataLoader<RelmModel>), additionalConstraints);
+        }
+
+        /// <summary>
+        /// Loads a collection of related entities based on the specified foreign key relationship and additional
+        /// constraints.
+        /// </summary>
+        /// <typeparam name="R">The type of the related entity, which must implement <see cref="IRelmModel"/> and have a parameterless
+        /// constructor.</typeparam>
+        /// <param name="predicate">An expression that specifies the foreign key relationship between the current entity and the related entity.</param>
+        /// <param name="additionalConstraints">An expression that defines additional constraints to apply when loading the related entities.</param>
+        /// <returns>A collection of related entities of type <typeparamref name="R"/> that satisfy the specified relationship
+        /// and constraints.</returns>
+        internal async Task<ICollection<T>?> LoadForeignKeyAsync<R>(Expression<Func<T, R>> predicate, Expression<Func<R, object>> additionalConstraints, CancellationToken cancellationToken = default) where R : IRelmModel, new()
+        {
+            return await LoadForeignKeyAsync(predicate, default(IRelmDataLoader<RelmModel>), additionalConstraints, cancellationToken: cancellationToken);
         }
 
         /// <summary>
@@ -112,7 +139,37 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
         /// <param name="predicate">An expression that specifies the foreign key relationship to load.</param>
         /// <param name="customDataLoader">An instance of a custom data loader used to retrieve the related entities.</param>
         /// <returns>A collection of related entities of type <typeparamref name="R"/>.</returns>
-        internal ICollection<T> LoadForeignKey<R, S>(Expression<Func<T, R>> predicate, IRelmDataLoader<S> customDataLoader) where R : IRelmModel, new() where S : IRelmModel, new()
+        internal ICollection<T>? LoadForeignKey<R, S>(Expression<Func<T, R>> predicate, IRelmDataLoader<S> customDataLoader) where R : IRelmModel, new() where S : IRelmModel, new()
+        {
+            return LoadForeignKey(predicate, customDataLoader, null);
+        }
+
+        /// <summary>
+        /// Loads a collection of related entities based on the specified foreign key relationship.
+        /// </summary>
+        /// <typeparam name="R">The type of the related entity, which must implement <see cref="IRelmModel"/> and have a parameterless
+        /// constructor.</typeparam>
+        /// <typeparam name="S">The type of the data loader used to load the related entities, which must implement <see cref="IRelmModel"/>
+        /// and have a parameterless constructor.</typeparam>
+        /// <param name="predicate">An expression that specifies the foreign key relationship to load.</param>
+        /// <param name="customDataLoader">An instance of a custom data loader used to retrieve the related entities.</param>
+        /// <returns>A collection of related entities of type <typeparamref name="R"/>.</returns>
+        internal async Task<ICollection<T>?> LoadForeignKeyAsync<R, S>(Expression<Func<T, R>> predicate, IRelmDataLoader<S> customDataLoader, CancellationToken cancellationToken = default) where R : IRelmModel, new() where S : IRelmModel, new()
+        {
+            return await LoadForeignKeyAsync(predicate, customDataLoader, null, cancellationToken: cancellationToken);
+        }
+
+        /// <summary>
+        /// Loads a collection of related entities based on the specified foreign key relationship.
+        /// </summary>
+        /// <typeparam name="R">The type of the related entities to load. Must implement <see cref="IRelmModel"/> and have a parameterless
+        /// constructor.</typeparam>
+        /// <typeparam name="S">The type of the model used by the custom data loader. Must implement <see cref="IRelmModel"/> and have a
+        /// parameterless constructor.</typeparam>
+        /// <param name="predicate">An expression that specifies the foreign key relationship to load.</param>
+        /// <param name="customDataLoader">An instance of a custom data loader used to retrieve the related entities.</param>
+        /// <returns>A collection of related entities of type <typeparamref name="R"/>.</returns>
+        internal ICollection<T>? LoadForeignKey<R, S>(Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S> customDataLoader) where R : IRelmModel, new() where S : IRelmModel, new()
         {
             return LoadForeignKey(predicate, customDataLoader, null);
         }
@@ -127,9 +184,9 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
         /// <param name="predicate">An expression that specifies the foreign key relationship to load.</param>
         /// <param name="customDataLoader">An instance of a custom data loader used to retrieve the related entities.</param>
         /// <returns>A collection of related entities of type <typeparamref name="R"/>.</returns>
-        internal ICollection<T> LoadForeignKey<R, S>(Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S> customDataLoader) where R : IRelmModel, new() where S : IRelmModel, new()
+        internal async Task<ICollection<T>?> LoadForeignKeyAsync<R, S>(Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S> customDataLoader, CancellationToken cancellationToken = default) where R : IRelmModel, new() where S : IRelmModel, new()
         {
-            return LoadForeignKey(predicate, customDataLoader, null);
+            return await LoadForeignKeyAsync(predicate, customDataLoader, null, cancellationToken: cancellationToken);
         }
 
         /// <summary>
@@ -142,9 +199,24 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
         /// <param name="predicate">An expression specifying the foreign key relationship to load.</param>
         /// <returns>A collection of related entities of type <typeparamref name="R"/>. The collection may be empty if no related
         /// entities are found.</returns>
-        internal ICollection<T> LoadForeignKey<R>(Expression<Func<T, ICollection<R>>> predicate) where R : IRelmModel, new()
+        internal ICollection<T>? LoadForeignKey<R>(Expression<Func<T, ICollection<R>>> predicate) where R : IRelmModel, new()
         {
             return LoadForeignKey(predicate, default(IRelmDataLoader<RelmModel>), null);
+        }
+
+        /// <summary>
+        /// Loads the collection of related entities for the specified foreign key relationship.
+        /// </summary>
+        /// <remarks>This method resolves the foreign key relationship defined by the provided expression
+        /// and returns the associated entities.</remarks>
+        /// <typeparam name="R">The type of the related entity, which must implement <see cref="IRelmModel"/> and have a parameterless
+        /// constructor.</typeparam>
+        /// <param name="predicate">An expression specifying the foreign key relationship to load.</param>
+        /// <returns>A collection of related entities of type <typeparamref name="R"/>. The collection may be empty if no related
+        /// entities are found.</returns>
+        internal async Task<ICollection<T>?> LoadForeignKeyAsync<R>(Expression<Func<T, ICollection<R>>> predicate, CancellationToken cancellationToken = default) where R : IRelmModel, new()
+        {
+            return await LoadForeignKeyAsync(predicate, default(IRelmDataLoader<RelmModel>), null, cancellationToken: cancellationToken);
         }
 
         /// <summary>
@@ -156,9 +228,23 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
         /// <param name="additionalConstraints">An expression defining additional constraints to apply when loading the related entities.</param>
         /// <returns>A collection of related entities of type <typeparamref name="R"/> that satisfy the specified relationship
         /// and constraints.</returns>
-        internal ICollection<T> LoadForeignKey<R>(Expression<Func<T, ICollection<R>>> predicate, Expression<Func<R, object>> additionalConstraints) where R : IRelmModel, new()
+        internal ICollection<T>? LoadForeignKey<R>(Expression<Func<T, ICollection<R>>> predicate, Expression<Func<R, object>> additionalConstraints) where R : IRelmModel, new()
         {
             return LoadForeignKey(predicate, default(IRelmDataLoader<RelmModel>), additionalConstraints);
+        }
+
+        /// <summary>
+        /// Loads a collection of related entities based on the specified foreign key relationship.
+        /// </summary>
+        /// <typeparam name="R">The type of the related entity, which must implement <see cref="IRelmModel"/> and have a parameterless
+        /// constructor.</typeparam>
+        /// <param name="predicate">An expression specifying the foreign key relationship to load.</param>
+        /// <param name="additionalConstraints">An expression defining additional constraints to apply when loading the related entities.</param>
+        /// <returns>A collection of related entities of type <typeparamref name="R"/> that satisfy the specified relationship
+        /// and constraints.</returns>
+        internal async Task<ICollection<T>?> LoadForeignKeyAsync<R>(Expression<Func<T, ICollection<R>>> predicate, Expression<Func<R, object>> additionalConstraints, CancellationToken cancellationToken = default) where R : IRelmModel, new()
+        {
+            return await LoadForeignKeyAsync(predicate, default(IRelmDataLoader<RelmModel>), additionalConstraints, cancellationToken: cancellationToken);
         }
 
         /// <summary>
@@ -173,7 +259,40 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
         /// <param name="additionalConstraints">An expression that defines additional constraints to apply when loading the related entities.</param>
         /// <returns>A collection of related entities of type <typeparamref name="T"/> that satisfy the specified foreign key
         /// relationship and constraints.</returns>
-        internal ICollection<T> LoadForeignKey<R, S>(Expression<Func<T, R>> predicate, IRelmDataLoader<S>? customDataLoader, Expression<Func<R, object>>? additionalConstraints) where R : IRelmModel, new() where S : IRelmModel, new()
+        internal ICollection<T>? LoadForeignKey<R, S>(Expression<Func<T, R>> predicate, IRelmDataLoader<S>? customDataLoader, Expression<Func<R, object>>? additionalConstraints) where R : IRelmModel, new() where S : IRelmModel, new()
+        {
+            return LoadForeignKeyInternal(predicate, customDataLoader, additionalConstraints);
+        }
+
+        /// <summary>
+        /// Loads a collection of related entities based on the specified foreign key relationship.
+        /// </summary>
+        /// <typeparam name="R">The type of the related entity, which must implement <see cref="IRelmModel"/> and have a parameterless
+        /// constructor.</typeparam>
+        /// <typeparam name="S">The type of the data loader entity, which must implement <see cref="IRelmModel"/> and have a parameterless
+        /// constructor.</typeparam>
+        /// <param name="predicate">An expression that specifies the foreign key relationship between the current entity and the related entity.</param>
+        /// <param name="customDataLoader">An instance of a custom data loader used to retrieve the related entities.</param>
+        /// <param name="additionalConstraints">An expression that defines additional constraints to apply when loading the related entities.</param>
+        /// <returns>A collection of related entities of type <typeparamref name="T"/> that satisfy the specified foreign key
+        /// relationship and constraints.</returns>
+        internal async Task<ICollection<T>?> LoadForeignKeyAsync<R, S>(Expression<Func<T, R>> predicate, IRelmDataLoader<S>? customDataLoader, Expression<Func<R, object>>? additionalConstraints, CancellationToken cancellationToken = default) where R : IRelmModel, new() where S : IRelmModel, new()
+        {
+            return await LoadForeignKeyAsyncInternal(predicate, customDataLoader, additionalConstraints, cancellationToken);
+        }
+
+        /// <summary>
+        /// Loads a collection of related entities based on the specified foreign key relationship.
+        /// </summary>
+        /// <typeparam name="R">The type of the related entities to load. Must implement <see cref="IRelmModel"/> and have a parameterless
+        /// constructor.</typeparam>
+        /// <typeparam name="S">The type of the model used by the custom data loader. Must implement <see cref="IRelmModel"/> and have a
+        /// parameterless constructor.</typeparam>
+        /// <param name="predicate">An expression specifying the foreign key relationship to load.</param>
+        /// <param name="customDataLoader">An optional custom data loader to use for retrieving the related entities.</param>
+        /// <param name="additionalConstraints">An expression specifying additional constraints to apply when loading the related entities.</param>
+        /// <returns>A collection of related entities that match the specified foreign key relationship and constraints.</returns>
+        internal ICollection<T>? LoadForeignKey<R, S>(Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S>? customDataLoader, Expression<Func<R, object>>? additionalConstraints) where R : IRelmModel, new() where S : IRelmModel, new()
         {
             return LoadForeignKeyInternal(predicate, customDataLoader, additionalConstraints);
         }
@@ -189,9 +308,9 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
         /// <param name="customDataLoader">An optional custom data loader to use for retrieving the related entities.</param>
         /// <param name="additionalConstraints">An expression specifying additional constraints to apply when loading the related entities.</param>
         /// <returns>A collection of related entities that match the specified foreign key relationship and constraints.</returns>
-        internal ICollection<T> LoadForeignKey<R, S>(Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S>? customDataLoader, Expression<Func<R, object>>? additionalConstraints) where R : IRelmModel, new() where S : IRelmModel, new()
+        internal async Task<ICollection<T>?> LoadForeignKeyAsync<R, S>(Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S>? customDataLoader, Expression<Func<R, object>>? additionalConstraints, CancellationToken cancellationToken = default) where R : IRelmModel, new() where S : IRelmModel, new()
         {
-            return LoadForeignKeyInternal(predicate, customDataLoader, additionalConstraints);
+            return await LoadForeignKeyAsyncInternal(predicate, customDataLoader, additionalConstraints, cancellationToken);
         }
 
         /// <summary>
@@ -222,6 +341,39 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
         /// cref="RelmDataLoader"/> attribute.</exception>
         private ICollection<T>? LoadForeignKeyInternal<R, S>(Expression predicate, IRelmDataLoader<S>? customDataLoader, Expression<Func<R, object>>? additionalConstraints) where R : IRelmModel, new() where S : IRelmModel, new()
         {
+            return LoadForeignKeyAsyncInternal(predicate, customDataLoader, additionalConstraints)
+                .GetAwaiter()
+                .GetResult();
+        }
+
+        /// <summary>
+        /// Loads and resolves foreign key relationships for the specified target objects based on the provided
+        /// predicate.
+        /// </summary>
+        /// <remarks>This method resolves foreign key relationships for the specified target objects by
+        /// identifying the relevant context and dataset. If a custom data loader is provided, it is applied to the
+        /// dataset before loading the foreign key relationships.  The <paramref name="predicate"/> parameter must
+        /// represent a property or collection in the form of a lambda expression.  If the expression is invalid, an
+        /// <see cref="InvalidOperationException"/> is thrown.  If the foreign key property is marked with the <see
+        /// cref="RelmDataLoader"/> attribute, a <see cref="CustomAttributeFormatException"/> is thrown.</remarks>
+        /// <typeparam name="R">The type of the related model that the foreign key points to. Must implement <see cref="IRelmModel"/> and
+        /// have a parameterless constructor.</typeparam>
+        /// <typeparam name="S">The type of the model used by the custom data loader, if provided. Must implement <see cref="IRelmModel"/>
+        /// and have a parameterless constructor.</typeparam>
+        /// <param name="predicate">An expression that specifies the foreign key property or collection to load.  Must be in the form of a
+        /// lambda expression, such as <c>x => x.PropertyName</c>.</param>
+        /// <param name="customDataLoader">An optional custom data loader to use for resolving the foreign key relationships.  If provided, it will be
+        /// applied to the relevant dataset.</param>
+        /// <param name="additionalConstraints">An optional expression specifying additional constraints to apply when resolving the foreign key
+        /// relationships.</param>
+        /// <returns>A collection of the target objects with their foreign key relationships resolved, or <see langword="null"/>
+        /// if the target objects collection is empty.</returns>
+        /// <exception cref="InvalidOperationException">Thrown if the <paramref name="predicate"/> does not represent a valid property or collection in the form of
+        /// a lambda expression.</exception>
+        /// <exception cref="CustomAttributeFormatException">Thrown if the foreign key property specified by <paramref name="predicate"/> is marked with the <see
+        /// cref="RelmDataLoader"/> attribute.</exception>
+        private async Task<ICollection<T>?> LoadForeignKeyAsyncInternal<R, S>(Expression predicate, IRelmDataLoader<S>? customDataLoader, Expression<Func<R, object>>? additionalConstraints, CancellationToken cancellationToken = default) where R : IRelmModel, new() where S : IRelmModel, new()
+        {
             if ((targetObjects?.Count ?? 0) == 0)
                 return null;
 
@@ -248,10 +400,10 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
 
             var relevantDataSet = relevantContext.GetProperties().FirstOrDefault(x => x.PropertyType == typeof(IRelmDataSet<T>));
 
-            var relevantProperty = relevantDataSet.PropertyType.GetGenericArguments().FirstOrDefault().GetProperties().FirstOrDefault(x => x.PropertyType == typeof(T))
-                ?? relevantDataSet.PropertyType.GetGenericArguments().FirstOrDefault().GetProperties().FirstOrDefault(x => x.PropertyType.GenericTypeArguments.Any(y => y == typeof(T)));
+            var relevantProperty = relevantDataSet?.PropertyType.GetGenericArguments().FirstOrDefault()?.GetProperties().FirstOrDefault(x => x.PropertyType == typeof(T))
+                ?? relevantDataSet?.PropertyType.GetGenericArguments().FirstOrDefault()?.GetProperties().FirstOrDefault(x => x.PropertyType.GenericTypeArguments.Any(y => y == typeof(T)));
 
-            var contextArgs = new List<object> { contextOptions };
+            var contextArgs = new List<object?> { contextOptions };
 
             // if we can't find a constructor with the builder by itself, look for one that has it plus other parameters
             var contextConstructor = relevantContext.GetConstructor([typeof(RelmContextOptionsBuilder)]);
@@ -275,7 +427,7 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
             }
 
             var contextActivator = FastActivatorHelper.GetActivator<IRelmContext>(contextConstructor);
-            var currentContext = contextActivator(contextArgs.ToArray());
+            var currentContext = contextActivator([.. contextArgs]);
 
             if (customDataLoader != null)
             {
@@ -288,7 +440,7 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
                 foreignDataSet
                     ?.PropertyType
                     .GetMethod(nameof(IRelmDataSet<T>.SetDataLoader))
-                    ?.Invoke(foreignDataSet.GetValue(currentContext), new object[] { customDataLoader });
+                    ?.Invoke(foreignDataSet.GetValue(currentContext), [customDataLoader]);
             }
 
             var executionCommand = new RelmExecutionCommand(Command.Reference, member);
@@ -297,7 +449,7 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
                 executionCommand.AddAdditionalCommand(Command.Reference, additionalConstraints.Body);
             
             var objectsLoader = new ForeignObjectsLoader<T>(targetObjects!, currentContext);
-            objectsLoader.LoadForeignObjects(executionCommand);
+            await objectsLoader.LoadForeignObjectsAsync(executionCommand, cancellationToken: cancellationToken);
 
             return targetObjects;
         }

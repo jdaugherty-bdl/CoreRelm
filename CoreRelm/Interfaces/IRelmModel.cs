@@ -172,5 +172,83 @@ namespace CoreRelm.Interfaces
         /// <returns>A dynamic object representing the generated DTO, including the specified properties and any additional
         /// properties provided.</returns>
         dynamic GenerateDTO(IEnumerable<string>? includeProperties = null, IEnumerable<string>? excludeProperties = null, string? sourceObjectName = null, Func<IRelmModel, Dictionary<string, object>>? getAdditionalObjectProperties = null, int iteration = 0);
+
+        /*************************************************************************************************
+         *                                         ASYNC METHODS                                         *
+         *************************************************************************************************/
+
+        /// <summary>
+        /// Writes data to the specified database connection in batches.
+        /// </summary>
+        /// <remarks>This method writes data to the database in batches to optimize performance.  Ensure
+        /// that the specified connection is valid and that the data conforms to the constraints  specified by the
+        /// parameter flags. If any of the flags are set to <see langword="true"/>,  the corresponding column types will
+        /// be allowed in the data being written.</remarks>
+        /// <param name="connectionName">The name of the database connection to use. Must be a valid connection identifier.</param>
+        /// <param name="batchSize">The number of records to write in each batch. Defaults to 10. Must be greater than 0.</param>
+        /// <param name="allowAutoIncrementColumns">Indicates whether auto-increment columns are allowed in the data being written. Defaults to <see
+        /// langword="false"/>.</param>
+        /// <param name="allowPrimaryKeyColumns">Indicates whether primary key columns are allowed in the data being written. Defaults to <see
+        /// langword="false"/>.</param>
+        /// <param name="allowUniqueColumns">Indicates whether unique columns are allowed in the data being written. Defaults to <see langword="false"/>.</param>
+        /// <param name="allowAutoDateColumns">Indicates whether auto-generated date columns are allowed in the data being written. Defaults to <see
+        /// langword="false"/>.</param>
+        /// <returns>The number of records successfully written to the database.</returns>
+        Task<int> WriteToDatabaseAsync(Enum connectionName, int batchSize = 10, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Writes data to the database using the specified connection and optional transaction.
+        /// </summary>
+        /// <param name="existingConnection">An open <see cref="MySqlConnection"/> to the database where the data will be written. The connection must
+        /// remain open for the duration of the operation.</param>
+        /// <param name="BatchSize">The number of rows to write in each batch. Must be greater than zero. Defaults to 10.</param>
+        /// <param name="allowAutoIncrementColumns">A value indicating whether columns with auto-increment constraints are allowed to be written. If <see
+        /// langword="true"/>, auto-increment columns will be included; otherwise, they will be excluded.</param>
+        /// <param name="allowPrimaryKeyColumns">A value indicating whether primary key columns are allowed to be written. If <see langword="true"/>, primary
+        /// key columns will be included; otherwise, they will be excluded.</param>
+        /// <param name="allowUniqueColumns">A value indicating whether unique columns are allowed to be written. If <see langword="true"/>, unique
+        /// columns will be included; otherwise, they will be excluded.</param>
+        /// <param name="allowAutoDateColumns">A value indicating whether columns with automatic date generation constraints are allowed to be written. If
+        /// <see langword="true"/>, such columns will be included; otherwise, they will be excluded.</param>
+        /// <returns>The number of rows successfully written to the database.</returns>
+        Task<int> WriteToDatabaseAsync(MySqlConnection existingConnection, int BatchSize = 10, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Writes data to the database using the specified connection and optional transaction.
+        /// </summary>
+        /// <param name="existingConnection">An open <see cref="MySqlConnection"/> to the database where the data will be written. The connection must
+        /// remain open for the duration of the operation.</param>
+        /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to use for the operation. If null, the operation will not be part
+        /// of a transaction.</param>
+        /// <param name="BatchSize">The number of rows to write in each batch. Must be greater than zero. Defaults to 10.</param>
+        /// <param name="allowAutoIncrementColumns">A value indicating whether columns with auto-increment constraints are allowed to be written. If <see
+        /// langword="true"/>, auto-increment columns will be included; otherwise, they will be excluded.</param>
+        /// <param name="allowPrimaryKeyColumns">A value indicating whether primary key columns are allowed to be written. If <see langword="true"/>, primary
+        /// key columns will be included; otherwise, they will be excluded.</param>
+        /// <param name="allowUniqueColumns">A value indicating whether unique columns are allowed to be written. If <see langword="true"/>, unique
+        /// columns will be included; otherwise, they will be excluded.</param>
+        /// <param name="allowAutoDateColumns">A value indicating whether columns with automatic date generation constraints are allowed to be written. If
+        /// <see langword="true"/>, such columns will be included; otherwise, they will be excluded.</param>
+        /// <returns>The number of rows successfully written to the database.</returns>
+        Task<int> WriteToDatabaseAsync(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, int BatchSize = 10, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Writes data to the database using the specified context and batch size, with options to control column
+        /// behavior.
+        /// </summary>
+        /// <remarks>This method provides fine-grained control over how data is written to the database by
+        /// allowing or disallowing writes to specific types of columns. Use the optional parameters to customize the
+        /// behavior based on the constraints of your database schema.</remarks>
+        /// <param name="relmContext">The database context used to perform the write operation. This cannot be <see langword="null"/>.</param>
+        /// <param name="batchSize">The number of records to write in each batch. Must be greater than 0. The default value is 10.</param>
+        /// <param name="allowAutoIncrementColumns">If <see langword="true"/>, allows writing to columns with auto-increment constraints; otherwise, these
+        /// columns are ignored.</param>
+        /// <param name="allowPrimaryKeyColumns">If <see langword="true"/>, allows writing to primary key columns; otherwise, these columns are ignored.</param>
+        /// <param name="allowUniqueColumns">If <see langword="true"/>, allows writing to columns with unique constraints; otherwise, these columns are
+        /// ignored.</param>
+        /// <param name="allowAutoDateColumns">If <see langword="true"/>, allows writing to columns with automatic date generation constraints; otherwise,
+        /// these columns are ignored.</param>
+        /// <returns>The number of records successfully written to the database.</returns>
+        Task<int> WriteToDatabaseAsync(IRelmContext relmContext, int batchSize = 10, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false, CancellationToken cancellationToken = default);
     }
 }

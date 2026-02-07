@@ -20,6 +20,6 @@ namespace CoreRelm.Models.EventArguments
         /// <remarks>This dictionary allows for the storage of custom key-value pairs that are not
         /// explicitly defined by other properties. It can be used to extend the object with extra data as
         /// needed.</remarks>
-        public Dictionary<string, object> AdditionalObjectProperties { get; set; }
+        public Dictionary<string, object>? AdditionalObjectProperties { get; set; }
     }
 }

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static CoreRelm.Enums.SecurityEnums;
 
 namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
 {
@@ -21,7 +22,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
             var warnings = new List<string>();
             var blockers = new List<string>();
 
-            EnsureUuidV4Function(desired.DatabaseName, actual, migrationOperations);
+            EnsureUuidV4Function(actual, migrationOperations);
 
             // Only operate on scope tables (selected model set tables) for this DB
             var scope = new HashSet<string>(options.ScopeTables, StringComparer.Ordinal);
@@ -73,7 +74,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
             // Sort ops in execution order:
             migrationOperations = OrderOperations(migrationOperations);
 
-            return new MigrationPlan(desired.DatabaseName, migrationOperations, warnings, blockers);
+            return new MigrationPlan(desired.DatabaseName, migrationOperations, warnings, blockers, options.StampUtc);
         }
 
         private static void PlanColumns(
@@ -145,42 +146,49 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
             // - enabling ON UPDATE semantics for last_updated (safe)
             // Anything else -> destructive required
             var typeSafe = IsSafeTypeChange(actual.ColumnType, desired.ColumnType);
-            var nullSafe = actual.IsNullable == false && desired.IsNullable == true || actual.IsNullable == desired.IsNullable;
+            var nullSafe = actual.IsNullableBool == false && desired.IsNullableBool == true || actual.IsNullable == desired.IsNullable;
             var autoSafe = actual.IsAutoIncrement == desired.IsAutoIncrement; // changing auto_increment is not safe
             return typeSafe && nullSafe && autoSafe;
         }
 
-        private static bool IsSafeTypeChange(string actualType, string desiredType)
+        private static bool IsSafeTypeChange(string? actualType, string? desiredType)
         {
-            var a = NormalizeType(actualType);
-            var d = NormalizeType(desiredType);
+            var trimmedActual = NormalizeType(actualType);
+            var trimmedDesired = NormalizeType(desiredType);
 
-            if (string.Equals(a, d, StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(trimmedActual, trimmedDesired, StringComparison.OrdinalIgnoreCase))
                 return true;
 
             // varchar(N) widening only
-            if (TryParseVarchar(a, out var aLen) && TryParseVarchar(d, out var dLen))
+            if (TryParseVarchar(trimmedActual, out var aLen) && TryParseVarchar(trimmedDesired, out var dLen))
                 return dLen >= aLen;
 
             // allow integer widening (int -> bigint)
-            if (string.Equals(a, "int", StringComparison.OrdinalIgnoreCase) && string.Equals(d, "bigint", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(trimmedActual, "int", StringComparison.OrdinalIgnoreCase) && string.Equals(trimmedDesired, "bigint", StringComparison.OrdinalIgnoreCase))
                 return true;
 
             return false;
         }
 
-        private static string NormalizeType(string t)
+        private static string? NormalizeType(string? t)
         {
-            return t.Trim();
+            return t?.Trim();
         }
 
-        private static bool TryParseVarchar(string t, out int len)
+        private static bool TryParseVarchar(string? columnType, out int columnLength)
         {
-            len = 0;
-            t = t.Trim().ToLowerInvariant();
-            if (!t.StartsWith("varchar(") || !t.EndsWith(")")) return false;
-            var inner = t.Substring("varchar(".Length, t.Length - "varchar(".Length - 1);
-            return int.TryParse(inner, out len);
+            columnLength = 0;
+
+            if (string.IsNullOrWhiteSpace(columnType))
+                return false;
+
+            columnType = columnType.Trim().ToLowerInvariant();
+
+            if (!columnType.StartsWith("varchar(") || !columnType.EndsWith(')')) 
+                return false;
+
+            var inner = columnType.Substring("varchar(".Length, columnType.Length - "varchar(".Length - 1);
+            return int.TryParse(inner, out columnLength);
         }
 
         private static void PlanIndexes(
@@ -267,10 +275,15 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
             if (!string.Equals(desired.ReferencedTableName, actual.ReferencedTableName, StringComparison.Ordinal))
                 return true;
 
-            if (desired.ColumnNames.Count != actual.ColumnNames.Count || desired.ReferencedColumnNames.Count != actual.ReferencedColumnNames.Count)
+            if (desired.ColumnNames == null
+                || actual.ColumnNames == null
+                || desired.ReferencedColumnNames == null
+                || actual.ReferencedColumnNames == null
+                || desired.ColumnNames.Count != actual.ColumnNames.Count 
+                || desired.ReferencedColumnNames.Count != actual.ReferencedColumnNames.Count)
                 return true;
 
-            for (int i = 0; i < desired.ColumnNames.Count; i++)
+            for (int i = 0; i < desired.ColumnNames?.Count; i++)
             {
                 if (!string.Equals(desired.ColumnNames[i], actual.ColumnNames[i], StringComparison.Ordinal))
                     return true;
@@ -329,10 +342,10 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
             return !string.Equals(dStmt, aStmt, StringComparison.OrdinalIgnoreCase);
         }
 
-        private static string NormalizeSql(string s)
+        private static string NormalizeSql(string? s)
         {
-            if (string.IsNullOrWhiteSpace(s)) return "";
-            return string.Join(" ", s.Split(new[] { ' ', '\r', '\n', '\t' }, StringSplitOptions.RemoveEmptyEntries));
+            if (string.IsNullOrWhiteSpace(s)) return string.Empty;
+            return string.Join(" ", s.Split([' ', '\r', '\n', '\t'], StringSplitOptions.RemoveEmptyEntries));
         }
 
         private static void PlanDestructiveDrops(
@@ -390,44 +403,37 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
             // 3. DropIndex then CreateIndex
             // 4. DropFK then AddFK
             // 5. DropTrigger then CreateTrigger
-            return ops
+            return [.. ops
                 .OrderBy(RankOperations)
-                .ThenBy(o => o.Description, StringComparer.Ordinal)
-                .ToList();
+                .ThenBy(o => o.Description, StringComparer.Ordinal)];
         }
 
-        private static void EnsureUuidV4Function(string dbName, SchemaSnapshot actual, List<IMigrationOperation> migrationOperations)
+        private static void EnsureUuidV4Function(SchemaSnapshot actual, List<IMigrationOperation> migrationOperations)
         {
             // If function already exists, do nothing.
             if (actual.Functions.ContainsKey("uuid_v4"))
                 return;
 
             // Create function SQL (UUIDv4 using RANDOM_BYTES)
-            var createSql = MySqlUuidV4FunctionSql();
-
-            migrationOperations.Add(new CreateFunctionOperation("uuid_v4", createSql));
-        }
-
-        private static string MySqlUuidV4FunctionSql()
-        {
             // Uses RANDOM_BYTES for v4 randomness; returns CHAR(36) lower-case.
             // MySQL requires delimiters when creating routines.
-            return @"DELIMITER $$
-                CREATE FUNCTION uuid_v4()
-                RETURNS CHAR(36)
-                NOT DETERMINISTIC
-                NO SQL
-                SQL SECURITY INVOKER
-                RETURN LOWER(CONCAT(
-                  HEX(RANDOM_BYTES(4)), '-',
-                  HEX(RANDOM_BYTES(2)), '-',
-                  '4', SUBSTR(HEX(RANDOM_BYTES(2)), 2, 3), '-',
-                  CONCAT(HEX(FLOOR(ASCII(RANDOM_BYTES(1)) / 64) + 8), SUBSTR(HEX(RANDOM_BYTES(2)), 2, 3)), '-',
-                  HEX(RANDOM_BYTES(6))
-                ));
-                $$
-                DELIMITER ;
-                ".Trim();
+            var newFunction = new FunctionSchema
+            {
+                RoutineName = "uuid_v4",
+                DtdIdentifier = "CHAR(45)",
+                IsDeterministic = "NO",
+                SqlDataAccess = "NO SQL",
+                SecurityType = SqlSecurityLevel.INVOKER,
+                RoutineDefinition = @"RETURN LOWER(CONCAT(
+                    HEX(RANDOM_BYTES(4)), '-',
+                    HEX(RANDOM_BYTES(2)), '-',
+                    '4', SUBSTR(HEX(RANDOM_BYTES(2)), 2, 3), '-',
+                    CONCAT(HEX(FLOOR(ASCII(RANDOM_BYTES(1)) / 64) + 8), SUBSTR(HEX(RANDOM_BYTES(2)), 2, 3)), '-',
+                    HEX(RANDOM_BYTES(6))
+                ));",
+            };
+
+            migrationOperations.Add(new CreateFunctionOperation("uuid_v4", newFunction));
         }
 
         private static TableSchema EnsureInternalIdTriggerDesired(TableSchema table)

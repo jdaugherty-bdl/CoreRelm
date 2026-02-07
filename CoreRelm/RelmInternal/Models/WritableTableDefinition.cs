@@ -220,7 +220,7 @@ namespace CoreRelm.RelmInternal.Models
                     .Append(string
                         .Join(",", indexKeys
                             //.Select(x => new Tuple<string, bool, string>(x.ResolvableSettings?.Index?.MySqlObjectQuote(), x.ResolvableSettings?.IndexDescending ?? false, x.ColumnName))
-                            .Select(x => new Tuple<string, bool, string>($"ix_{DatabaseName}_{x.ColumnName}", x.ResolvableSettings?.IndexDescending ?? false, x.ColumnName))
+                            .Select(x => new Tuple<string, bool, string>($"IX_{DatabaseName}_{x.ColumnName}", x.ResolvableSettings?.IndexDescending ?? false, x.ColumnName))
                             .Segment((previous, next, index) =>
                             {
                                 return previous.Item1 != next.Item1;

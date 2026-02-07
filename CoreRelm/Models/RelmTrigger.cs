@@ -36,7 +36,7 @@ namespace CoreRelm.Models
         /// <summary>
         /// Gets or sets the body of the trigger event.
         /// </summary>
-        public string TriggerBody { get; set; }
+        public string? TriggerBody { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the user who defined the current entity or operation.
@@ -51,15 +51,15 @@ namespace CoreRelm.Models
         /// of the target system.</remarks>
         public string StatementDelimiter { get; set; }
 
-        private string _databaseName;
+        private string? _databaseName;
 
         /// <summary>
         /// Gets or sets the name of the database.
         /// </summary>
-        public string DatabaseName
+        public string? DatabaseName
         {
             get { return _databaseName; }
-            set { _databaseName = value.MySqlObjectQuote(); }
+            set { _databaseName = value?.MySqlObjectQuote(); }
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace CoreRelm.Models
         /// parameter is optional and can be <see langword="null"/>.</param>
         /// <exception cref="CustomAttributeFormatException">Thrown if the type <typeparamref name="T"/> does not have a <see cref="RelmTable"/> attribute or if the
         /// attribute is improperly formatted.</exception>
-        internal RelmTrigger(TriggerTypes triggerType, string triggerBody = null)
+        internal RelmTrigger(TriggerTypes triggerType, string? triggerBody = null)
         {
             TableName = typeof(T)
                 .GetCustomAttribute<RelmTable>()?.TableName?.MySqlObjectQuote()
@@ -87,18 +87,18 @@ namespace CoreRelm.Models
             this.StatementDelimiter = "$$";
         }
 
-        private string TriggerTypeToIdentifier(bool isCommand)
+        private string? TriggerTypeToIdentifier(bool isCommand)
         {
-            switch (TriggerType)
+            return TriggerType switch
             {
-                case TriggerTypes.BeforeInsert: return "BEFORE_INSERT".Replace("_", isCommand ? " " : "_");
-                case TriggerTypes.AfterInsert: return "AFTER_INSERT".Replace("_", isCommand ? " " : "_");
-                case TriggerTypes.BeforeUpdate: return "BEFORE_UPDATE".Replace("_", isCommand ? " " : "_");
-                case TriggerTypes.AfterUpdate: return "AFTER_UPDATE".Replace("_", isCommand ? " " : "_");
-                case TriggerTypes.BeforeDelete: return "BEFORE_DELETE".Replace("_", isCommand ? " " : "_");
-                case TriggerTypes.AfterDelete: return "AFTER_DELETE".Replace("_", isCommand ? " " : "_");
-                default: return null;
-            }
+                TriggerTypes.BeforeInsert => "BEFORE_INSERT".Replace("_", isCommand ? " " : "_"),
+                TriggerTypes.AfterInsert => "AFTER_INSERT".Replace("_", isCommand ? " " : "_"),
+                TriggerTypes.BeforeUpdate => "BEFORE_UPDATE".Replace("_", isCommand ? " " : "_"),
+                TriggerTypes.AfterUpdate => "AFTER_UPDATE".Replace("_", isCommand ? " " : "_"),
+                TriggerTypes.BeforeDelete => "BEFORE_DELETE".Replace("_", isCommand ? " " : "_"),
+                TriggerTypes.AfterDelete => "AFTER_DELETE".Replace("_", isCommand ? " " : "_"),
+                _ => null,
+            };
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace CoreRelm.Models
         /// <returns>A string containing the complete SQL script to create the database trigger.</returns>
         public override string ToString()
         {
-            var triggerName = $"{TableName.Substring(0, TableName.Length - 1)}_{TriggerTypeToIdentifier(false)}`";
+            var triggerName = $"{TableName[..^1]}_{TriggerTypeToIdentifier(false)}`";
 
             var createTriggerStatement = new StringBuilder();
 
@@ -143,7 +143,7 @@ namespace CoreRelm.Models
                 createTriggerStatement.Append($"{DatabaseName}.");
 
             createTriggerStatement.Append(triggerName);
-            createTriggerStatement.Append(" ");
+            createTriggerStatement.Append(' ');
             createTriggerStatement.Append(TriggerTypeToIdentifier(true));
             createTriggerStatement.Append(" ON ");
             createTriggerStatement.Append(TableName);

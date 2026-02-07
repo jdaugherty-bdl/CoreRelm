@@ -22,7 +22,9 @@ namespace CoreRelm.Models.Migrations.Introspection
         public string? ColumnKey { get; set; }
 
         [RelmColumn]
-        public bool IsNullable { get; set; }
+        public string? IsNullable { get; set; }
+
+        public bool IsNullableBool => IsNullable == "YES";
 
         [RelmColumn]
         public bool IsPrimaryKey { get; set; }
@@ -38,8 +40,6 @@ namespace CoreRelm.Models.Migrations.Introspection
 
         [RelmColumn(columnName: "COLUMN_DEFAULT")]
         public string? DefaultValue { get; set; }  // raw from INFORMATION_SCHEMA (may be null)
-
-        //public string? DefaultValueSql { get; set; }
 
         [RelmColumn]
         public bool IsAutoIncrement { get; set; }

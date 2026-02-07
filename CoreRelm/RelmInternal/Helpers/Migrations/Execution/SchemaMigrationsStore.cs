@@ -1,19 +1,36 @@
 ﻿using CoreRelm.Interfaces;
 using CoreRelm.Interfaces.Migrations;
+using CoreRelm.Models.Migrations;
 using CoreRelm.Models.Migrations.Execution;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
 {
-    public sealed class SchemaMigrationsStore : IRelmSchemaMigrationsStore
+    public sealed class SchemaMigrationsStore(IRelmMigrationSqlProviderFactory providerFactory) : IRelmSchemaMigrationsStore
     {
-        public async Task<int> EnsureTableAsync(IRelmContext context, CancellationToken ct = default)
+        private readonly IRelmMigrationSqlProviderFactory _providerFactory = providerFactory;
+        private const string migrationName = "[Relm] Ensure Schema Migrations Table";
+
+        public async Task<int> EnsureTableAsync(IRelmContext context, MigrationOptions migrationOptions)
         {
+            var databaseName = context.ContextOptions.DatabaseConnection!.Database;
+            var provider = _providerFactory.CreateProvider(migrationOptions);
+            var models = new List<ValidatedModelType>
+            {
+                new(typeof(AppliedMigration), databaseName, RelmHelper.GetDalTable<AppliedMigration>() ?? "schema_migrations")
+            };
+
+            var result = await provider.GenerateAsync(migrationOptions, migrationName, DateTime.UtcNow, databaseName, models);
+
+
+
             const string sql = @"CREATE TABLE IF NOT EXISTS `schema_migrations` (
               `id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 
@@ -43,7 +60,8 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
                 ORDER BY applied_utc;";
 
             var migrations = context.GetDataObjects<AppliedMigration>(query)
-                .ToDictionary(x => x.FileName, x => x);
+                ?.Where(x => x != null)
+                .ToDictionary(x => x!.FileName, x => x);
 
             return result;
         }

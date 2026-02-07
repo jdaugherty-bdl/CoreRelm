@@ -25,7 +25,7 @@ namespace CoreRelm.Models.Migrations.Introspection
         public string? Collation { get; set; }
 
         [RelmColumn]
-        public bool IsUnique { get; set; }
+        public bool IsUnique { get; set; } = false;
 
         [RelmColumn]
         public bool NonUnique { get; set; }

@@ -53,7 +53,12 @@ namespace CoreRelm.Models.Migrations.Rendering
         public string Description => $"Create trigger `{Trigger.TriggerName}` on `{TableName}`";
     }
 
-    public sealed record CreateFunctionOperation(string FunctionName, string CreateSql) : IMigrationOperation
+    public sealed record DropFunctionOperation(string FunctionName) : IMigrationOperation
+    {
+        public string Description => $"Drop function `{FunctionName}`";
+    }
+
+    public sealed record CreateFunctionOperation(string FunctionName, FunctionSchema Function) : IMigrationOperation
     {
         public string Description => $"Create function `{FunctionName}`";
     }

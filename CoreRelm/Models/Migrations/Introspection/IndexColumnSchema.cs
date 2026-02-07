@@ -9,6 +9,6 @@ namespace CoreRelm.Models.Migrations.Introspection
     public sealed record IndexColumnSchema(
         string ColumnName,
         int SeqInIndex,
-        string? Collation // "A" or "D" or null
+        string? Collation
     );
 }

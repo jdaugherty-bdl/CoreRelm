@@ -45,7 +45,7 @@ namespace CoreRelm.RelmInternal.Helpers.Metadata
             // NOTE: We don’t assume your RelmColumn property names here beyond common ones.
             // If you want, we can tighten this once you confirm the RelmColumn attribute API.
             var columns = new List<RelmColumnDescriptor>(capacity: columnMembers.Count);
-            var fks = new List<RelmForeignKeyDescriptor>();
+            var foreignKeyDescriptorList = new List<RelmForeignKeyDescriptor>();
 
             int ordinal = 0;
 
@@ -107,9 +107,9 @@ namespace CoreRelm.RelmInternal.Helpers.Metadata
                                    ?? "CASCADE"; // default; adjust if your attribute provides it
 
                     var fkName = GetStringProperty(fkAttr, "Name")
-                                 ?? $"fk_{tableName}_{columnName}";
+                                 ?? $"FK_{tableName}_{columnName}";
 
-                    fks.Add(new RelmForeignKeyDescriptor(
+                    foreignKeyDescriptorList.Add(new RelmForeignKeyDescriptor(
                         Name: fkName,
                         LocalColumns: [columnName],
                         PrincipalTable: principalTable,
@@ -121,24 +121,24 @@ namespace CoreRelm.RelmInternal.Helpers.Metadata
 
             // Deterministic ordering
             columns = OrderColumnsDeterministically(columns);
-            fks = [.. fks.OrderBy(x => x.Name, StringComparer.Ordinal)];
+            foreignKeyDescriptorList = [.. foreignKeyDescriptorList.OrderBy(x => x.Name, StringComparer.Ordinal)];
 
             var navPropsWithFk = members
-                .Select(p => (Prop: p, Fk: p.GetCustomAttributes(true).OfType<RelmForeignKey>().FirstOrDefault()))
-                .Where(x => x.Fk != null)
+                .Select(p => (NavigationProperty: p, ForeignKey: p.GetCustomAttributes(true).OfType<RelmForeignKey>().FirstOrDefault()))
+                .Where(x => x.ForeignKey != null)
                 .ToList();
 
-            foreach (var (navProp, fkAttr) in navPropsWithFk)
+            foreach (var (navigationProperty, foreignKeyAttribute) in navPropsWithFk)
             {
                 // principal type is the navigation property's type
-                var principalType = navProp.PropertyType;
+                var principalType = navigationProperty.PropertyType;
 
                 // require principalType is RelmModel (or at least has RelmTable/RelmDatabase)
                 // (you can decide whether to allow collections later; likely skip for now)
 
                 // validate arrays exist
-                var localKeys = fkAttr.LocalKeys;
-                var foreignKeys = fkAttr.ForeignKeys;
+                var localKeys = foreignKeyAttribute?.LocalKeys;
+                var foreignKeys = foreignKeyAttribute?.ForeignKeys;
 
                 /*
                 if (localKeys == null || foreignKeys == null)
@@ -193,7 +193,7 @@ namespace CoreRelm.RelmInternal.Helpers.Metadata
                 TableName: tableName,
                 Columns: columns,
                 Indexes: indexes,
-                ForeignKeys: fks,
+                ForeignKeys: foreignKeyDescriptorList,
                 ClrType: relmModelType,
                 DatabaseName: databaseName,
                 Notes: null,

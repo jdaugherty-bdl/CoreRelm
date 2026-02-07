@@ -16,13 +16,13 @@ namespace CoreRelm.RelmInternal.Models
     /// </summary>
     public class ForeignKeyNavigationOptions
     {
-        internal PropertyInfo[] ForeignKeyProperties { get; set; } = default;
+        internal PropertyInfo[]? ForeignKeyProperties { get; set; } = default;
         //public PropertyInfo NavigationProperty { get; set; } = default;
-        internal List<List<Tuple<PropertyInfo, object>>> ItemPrimaryKeys { get; set; } = default;
-        internal PropertyInfo[] ReferenceKeys { get; set; } = default;
+        internal List<List<Tuple<PropertyInfo, object>>>? ItemPrimaryKeys { get; set; } = default;
+        internal PropertyInfo[]? ReferenceKeys { get; set; } = default;
 
-        private MemberExpression _referenceProperty = default;
-        internal MemberExpression ReferenceProperty
+        private MemberExpression? _referenceProperty = default;
+        internal MemberExpression? ReferenceProperty
         {
             get
             {
@@ -35,25 +35,33 @@ namespace CoreRelm.RelmInternal.Models
         }
 
         internal bool IsCollection { get; private set; }
-        internal Type ReferenceType { get; private set; }
+        internal Type? ReferenceType { get; private set; }
 
-        private void SetReferenceProperty(MemberExpression referenceProperty)
+        private void SetReferenceProperty(MemberExpression? referenceProperty)
         {
+            if (referenceProperty == null)
+            {
+                _referenceProperty = null;
+                ReferenceType = null;
+                IsCollection = false;
+                return;
+            }
+
             _referenceProperty = referenceProperty;
 
-            ReferenceType = ReferenceProperty.Type;
-            IsCollection = ReferenceType.IsGenericType && ReferenceType.GetGenericTypeDefinition() == typeof(ICollection<>);
+            ReferenceType = _referenceProperty.Type;
+            IsCollection = ReferenceType?.IsGenericType == true && ReferenceType.GetGenericTypeDefinition() == typeof(ICollection<>);
 
             // The type of class being referenced by the collection command
             if (IsCollection)
             {
-                ReferenceType = ReferenceProperty.Type.GetGenericArguments()[0];
+                ReferenceType = _referenceProperty.Type.GetGenericArguments()[0];
 
                 // Check if the referenceType is compatible with ICollection<>
-                if (!typeof(ICollection<>).MakeGenericType(ReferenceType).IsAssignableFrom(ReferenceProperty.Type))
+                if (!typeof(ICollection<>).MakeGenericType(ReferenceType).IsAssignableFrom(_referenceProperty.Type))
                     throw new InvalidOperationException($"Reference property type must be compatible with ICollection<{ReferenceType}>.");
             }
-            else if (ReferenceType.IsGenericType)
+            else if (ReferenceType!.IsGenericType)
                 ReferenceType = ReferenceType.GetGenericArguments().FirstOrDefault();
         }
     }

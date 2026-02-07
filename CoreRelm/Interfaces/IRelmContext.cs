@@ -34,6 +34,15 @@ namespace CoreRelm.Interfaces
         RelmContextOptionsBuilder ContextOptions { get; }
 
         /// <summary>
+        /// Begins a new database transaction on the current connection.
+        /// </summary>
+        /// <remarks>Use the returned <see cref="MySqlTransaction"/> object to commit or roll back the
+        /// transaction. Only one transaction can be active at a time on a connection.</remarks>
+        /// <returns>A <see cref="MySqlTransaction"/> object representing the started transaction, or <see langword="null"/> if
+        /// the connection is not open.</returns>
+        MySqlTransaction? BeginTransaction();
+
+        /// <summary>
         /// Commits the current transaction, making all changes permanent in the database.
         /// </summary>
         void CommitTransaction();
@@ -45,14 +54,6 @@ namespace CoreRelm.Interfaces
         /// transaction cannot be completed successfully.  Ensure that a transaction is active before calling this
         /// method; otherwise, an exception may be thrown.</remarks>
         void RollbackTransaction();
-
-        /// <summary>
-        /// Rolls back the current transaction, undoing any changes made since the transaction began.
-        /// </summary>
-        /// <remarks>This method should be called to revert changes if an error occurs or if the
-        /// transaction cannot be completed successfully.  Ensure that a transaction is active before calling this
-        /// method; otherwise, an exception may be thrown.</remarks>
-        void RollbackTransactions();
 
         /// <summary>
         /// Configures the data loader for the specified model type.
@@ -201,7 +202,7 @@ namespace CoreRelm.Interfaces
         /// will be initialized; otherwise, they will not.</param>
         /// <returns>A collection of objects of type <typeparamref name="T"/>. The collection may be empty if no objects are
         /// found.</returns>
-        ICollection<T>? Get<T>(bool loadDataLoaders = false) where T : IRelmModel, new();
+        ICollection<T?>? Get<T>(bool loadDataLoaders = false) where T : IRelmModel, new();
 
         /// <summary>
         /// Retrieves a collection of entities of type <typeparamref name="T"/> from the data source that satisfy the specified predicate.
@@ -213,7 +214,7 @@ namespace CoreRelm.Interfaces
         /// langword="true"/> to load data loaders; otherwise, <see langword="false"/>.</param>
         /// <returns>A collection of entities of type <typeparamref name="T"/> that match the specified predicate.  Returns an
         /// empty collection if no entities match.</returns>
-        ICollection<T>? Get<T>(Expression<Func<T, bool>> predicate, bool loadDataLoaders = false) where T : IRelmModel, new();
+        ICollection<T?>? Get<T>(Expression<Func<T, bool>> predicate, bool loadDataLoaders = false) where T : IRelmModel, new();
 
         /// <summary>
         /// Retrieves the first element of a sequence from the data source that satisfies the specified condition, or a default value if no
@@ -249,7 +250,7 @@ namespace CoreRelm.Interfaces
         /// applied.</param>
         /// <returns>A collection of objects of type <typeparamref name="T"/> representing the query results. The collection will
         /// be empty if no results are found.</returns>
-        ICollection<T?> Run<T>(string query, Dictionary<string, object>? parameters = null) where T : IRelmModel, new();
+        ICollection<T?>? Run<T>(string query, Dictionary<string, object>? parameters = null) where T : IRelmModel, new();
 
         /// <summary>
         /// Retrieves the row identifier of the most recently inserted record in the database.
@@ -259,7 +260,7 @@ namespace CoreRelm.Interfaces
         /// configured before calling this method.</remarks>
         /// <returns>The identifier of the last inserted record as a string. The format and value depend on the database
         /// implementation.</returns>
-        string GetLastInsertId();
+        string? GetLastInsertId();
 
         /// <summary>
         /// Converts an internal identifier to its corresponding row identifier for a specified table.
@@ -267,7 +268,7 @@ namespace CoreRelm.Interfaces
         /// <param name="table">The name of the table containing the internal identifier. Cannot be null or empty.</param>
         /// <param name="InternalId">The internal identifier to be converted. Cannot be null or empty.</param>
         /// <returns>The row identifier corresponding to the specified internal identifier and table.</returns>
-        string GetIdFromInternalId(string table, string InternalId);
+        string? GetIdFromInternalId(string table, string InternalId);
 
         /// <summary>
         /// Executes the specified query and retrieves the first row of the result set as a <see cref="DataRow"/>.
@@ -340,23 +341,7 @@ namespace CoreRelm.Interfaces
         /// <returns>An <see cref="IEnumerable{T}"/> containing the results of the query mapped to the specified type.  Returns
         /// an empty collection if no results are found or if <paramref name="throwException"/> is <see
         /// langword="false"/> and the query fails.</returns>
-        IEnumerable<T>? GetDataList<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true);
-
-        /// <summary>
-        /// Executes the specified query asynchronously and returns a collection of results mapped to the specified type.
-        /// </summary>
-        /// <remarks>The method maps each row in the result set to an instance of type T. If
-        /// throwException is false and an error occurs during query execution, the method returns an empty collection
-        /// instead of throwing an exception.</remarks>
-        /// <typeparam name="T">The type to which each result row will be mapped.</typeparam>
-        /// <param name="query">The SQL query to execute against the data source.</param>
-        /// <param name="parameters">An optional dictionary of parameter names and values to be applied to the query. If null, the query is
-        /// executed without parameters.</param>
-        /// <param name="throwException">true to throw an exception if the query fails; otherwise, false to suppress exceptions and return an empty
-        /// collection.</param>
-        /// <returns>An enumerable collection of objects of type T representing the query results. Returns an empty collection if
-        /// no results are found or if an error occurs and throwException is false.</returns>
-        Task<IEnumerable<T>?> GetDataListAsync<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default);
+        IEnumerable<T?>? GetDataList<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true);
 
         /// <summary>
         /// Executes the specified SQL query and retrieves a single scalar value of the specified type.
@@ -375,25 +360,6 @@ namespace CoreRelm.Interfaces
         /// result and <paramref name="throwException"/> is <see langword="false"/>, the default value of <typeparamref
         /// name="T"/> is returned.</returns>
         T? GetScalar<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true);
-
-        /// <summary>
-        /// Asynchronously executes a SQL query and returns the first column of the first row in the result set as a
-        /// scalar value of the specified type.
-        /// </summary>
-        /// <remarks>Use this method to efficiently retrieve a single value from the database, such as a
-        /// count or aggregate. If throwException is set to false and the query yields no result, the method returns
-        /// default(T) instead of throwing an exception.</remarks>
-        /// <typeparam name="T">The type to which the scalar result is cast. Must be compatible with the value returned by the query.</typeparam>
-        /// <param name="query">The SQL query to execute. The query should return a single value.</param>
-        /// <param name="parameters">An optional dictionary of parameter names and values to be applied to the query. Can be null if the query
-        /// does not require parameters.</param>
-        /// <param name="throwException">true to throw an exception if the query returns no result or if an error occurs; otherwise, false to return
-        /// the default value of type T.</param>
-        /// <param name="cancellationToken">A cancellation token that can be used to cancel the asynchronous operation.</param>
-        /// <returns>A task that represents the asynchronous operation. The task result contains the scalar value of type T if
-        /// the query succeeds; otherwise, the default value of type T if throwException is false and no result is
-        /// found.</returns>
-        Task<T?> GetScalarAsync<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Creates and returns a <see cref="BulkTableWriter{T}"/> instance for performing bulk insert operations on a
@@ -498,7 +464,7 @@ namespace CoreRelm.Interfaces
         /// <param name="throwException">A value indicating whether an exception should be thrown if an error occurs during the operation. The
         /// default value is <see langword="true"/>.</param>
         /// <returns>The result of the operation, as returned by the <paramref name="actionCallback"/> function.</returns>
-        T? DoDatabaseWork<T>(string query, Func<MySqlCommand, object> actionCallback, bool throwException = true);
+        T? DoDatabaseWork<T>(string query, Func<MySqlCommand, T> actionCallback, bool throwException = true);
 
         /// <summary>
         /// Writes the specified <see cref="IRelmModel"/> to the database in batches.
@@ -544,5 +510,346 @@ namespace CoreRelm.Interfaces
         /// value is <see langword="false"/>.</param>
         /// <returns>The total number of models successfully written to the database.</returns>
         int WriteToDatabase(IEnumerable<IRelmModel> relmModels, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false);
+
+        /*************************************************************************************************
+         *                                         ASYNC METHODS                                         *
+         *************************************************************************************************/
+
+        /// <summary>
+        /// Begins a new database transaction asynchronously on the current connection.
+        /// </summary>
+        /// <remarks>The transaction must be committed or rolled back to complete the operation. Only one
+        /// transaction can be active at a time on a connection.</remarks>
+        /// <param name="cancellationToken">A cancellation token that can be used to cancel the asynchronous operation.</param>
+        /// <returns>A task representing the asynchronous operation. The task result contains a <see cref="MySqlTransaction"/>
+        /// object if the transaction is successfully started; otherwise, <see langword="null"/> if the connection is
+        /// not open or a transaction cannot be started.</returns>
+        Task<MySqlTransaction?> BeginTransactionAsync(CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Commits the current transaction, making all changes permanent in the database.
+        /// </summary>
+        Task CommitTransactionAsync(CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Rolls back the current transaction, undoing any changes made since the transaction began.
+        /// </summary>
+        /// <remarks>This method should be called to revert changes if an error occurs or if the
+        /// transaction cannot be completed successfully.  Ensure that a transaction is active before calling this
+        /// method; otherwise, an exception may be thrown.</remarks>
+        Task RollbackTransactionAsync(CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Ends the current connection and optionally commits any active transaction.
+        /// </summary>
+        /// <remarks>Use this method to cleanly terminate a connection. If a transaction is active, you
+        /// can  specify whether to commit or roll it back before the connection is closed. Ensure that  any necessary
+        /// operations are completed before calling this method, as the connection  will no longer be available
+        /// afterward.</remarks>
+        /// <param name="commitTransaction">A value indicating whether to commit the active transaction before ending the connection.  <see
+        /// langword="true"/> to commit the transaction; <see langword="false"/> to roll it back.  The default is <see
+        /// langword="true"/>.</param>
+        Task EndConnectionAsync(bool commitTransaction = true, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Starts a connection to the database.
+        /// </summary>
+        /// <remarks>If <paramref name="autoOpenTransaction"/> is set to <see langword="true"/>, ensure
+        /// that the transaction  is committed or rolled back to avoid leaving it open. This method must be called
+        /// before performing any  database operations.</remarks>
+        /// <param name="autoOpenTransaction">Specifies whether a transaction should be automatically opened after the connection is established.  Pass
+        /// <see langword="true"/> to open a transaction automatically; otherwise, <see langword="false"/>.</param>
+        /// <param name="lockWaitTimeoutSeconds">The lock wait timeout in seconds. A value of 0 indicates the default timeout for the database.  Specify a positive integer to set a
+        /// custom timeout duration.</param>
+        Task StartConnectionAsync(bool autoOpenTransaction = false, int lockWaitTimeoutSeconds = 0, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Retrieves a collection of entities of type <typeparamref name="T"/> from the data source.
+        /// </summary>
+        /// <typeparam name="T">The type of objects to retrieve. Must implement <see cref="IRelmModel"/> and have a parameterless
+        /// constructor.</typeparam>
+        /// <param name="loadDataLoaders">A boolean value indicating whether to load associated data loaders. If <see langword="true"/>, data loaders
+        /// will be initialized; otherwise, they will not.</param>
+        /// <returns>A collection of objects of type <typeparamref name="T"/>. The collection may be empty if no objects are
+        /// found.</returns>
+        Task<ICollection<T?>?> GetAsync<T>(bool loadDataLoaders = false, CancellationToken cancellationToken = default) where T : IRelmModel, new();
+
+        /// <summary>
+        /// Retrieves a collection of entities of type <typeparamref name="T"/> from the data source that satisfy the specified predicate.
+        /// </summary>
+        /// <typeparam name="T">The type of the entities to retrieve. Must implement <see cref="IRelmModel"/> and have a parameterless
+        /// constructor.</typeparam>
+        /// <param name="predicate">An expression that defines the conditions the entities must satisfy.</param>
+        /// <param name="loadDataLoaders">A boolean value indicating whether to load associated data loaders for the retrieved entities. <see
+        /// langword="true"/> to load data loaders; otherwise, <see langword="false"/>.</param>
+        /// <returns>A collection of entities of type <typeparamref name="T"/> that match the specified predicate.  Returns an
+        /// empty collection if no entities match.</returns>
+        Task<ICollection<T?>?> GetAsync<T>(Expression<Func<T, bool>> predicate, bool loadDataLoaders = false, CancellationToken cancellationToken = default) where T : IRelmModel, new();
+
+        /// <summary>
+        /// Retrieves the first element of a sequence from the data source that satisfies the specified condition, or a default value if no
+        /// such element is found.
+        /// </summary>
+        /// <typeparam name="T">The type of the elements in the sequence. Must implement <see cref="IRelmModel"/> and have a parameterless
+        /// constructor.</typeparam>
+        /// <param name="predicate">An expression that defines the condition to test each element for.</param>
+        /// <param name="loadDataLoaders">A boolean value indicating whether to load associated data loaders for the retrieved element.  If <see
+        /// langword="true"/>, data loaders will be initialized; otherwise, they will not be loaded.</param>
+        /// <returns>The first element of type <typeparamref name="T"/> that satisfies the specified condition,  or the default
+        /// value of <typeparamref name="T"/> if no such element is found.</returns>
+        Task<T?> FirstOrDefaultAsync<T>(Expression<Func<T, bool>> predicate, bool loadDataLoaders = false, CancellationToken cancellationToken = default) where T : IRelmModel, new();
+
+        /// <summary>
+        /// Executes the specified query and returns a collection of results mapped to the specified type.
+        /// </summary>
+        /// <typeparam name="T">The type of the objects in the result collection. Must implement <see cref="IRelmModel"/> and have a
+        /// parameterless constructor.</typeparam>
+        /// <param name="query">The query string to execute. This string must be a valid query in the context of the underlying data source.</param>
+        /// <param name="parameters">An optional dictionary of parameter names and values to be used in the query. If null, no parameters are
+        /// applied.</param>
+        /// <returns>A collection of objects of type <typeparamref name="T"/> representing the query results. The collection will
+        /// be empty if no results are found.</returns>
+        Task<ICollection<T?>?> RunAsync<T>(string query, Dictionary<string, object>? parameters = null, CancellationToken cancellationToken = default) where T : IRelmModel, new();
+
+        /// <summary>
+        /// Retrieves the row identifier of the most recently inserted record in the database.
+        /// </summary>
+        /// <remarks>This method is typically used after an insert operation to obtain the unique
+        /// identifier generated for the new record. Ensure that the database connection and context are properly
+        /// configured before calling this method.</remarks>
+        /// <returns>The identifier of the last inserted record as a string. The format and value depend on the database
+        /// implementation.</returns>
+        Task<string?> GetLastInsertIdAsync(CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Converts an internal identifier to its corresponding row identifier for a specified table.
+        /// </summary>
+        /// <param name="table">The name of the table containing the internal identifier. Cannot be null or empty.</param>
+        /// <param name="InternalId">The internal identifier to be converted. Cannot be null or empty.</param>
+        /// <returns>The row identifier corresponding to the specified internal identifier and table.</returns>
+        Task<string?> GetIdFromInternalIdAsync(string table, string InternalId, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Executes the specified query and retrieves the first row of the result set as a <see cref="DataRow"/>.
+        /// </summary>
+        /// <param name="query">The SQL query to execute. Must be a valid SQL statement.</param>
+        /// <param name="parameters">An optional dictionary of parameter names and values to be used in the query.  If null, no parameters are
+        /// applied.</param>
+        /// <param name="throwException">A boolean value indicating whether an exception should be thrown if the query does not return any rows.  If
+        /// <see langword="true"/>, an exception is thrown when no rows are found; otherwise, <see langword="null"/> is
+        /// returned.</param>
+        /// <returns>A <see cref="DataRow"/> representing the first row of the result set, or <see langword="null"/> if no rows
+        /// are found  and <paramref name="throwException"/> is set to <see langword="false"/>.</returns>
+        Task<DataRow?> GetDataRowAsync(string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Executes the specified SQL query and returns the results as a <see cref="DataTable"/>.
+        /// </summary>
+        /// <remarks>This method is designed to execute read-only queries, such as SELECT statements. It
+        /// is not intended for executing queries that modify data (e.g., INSERT, UPDATE, DELETE).</remarks>
+        /// <param name="query">The SQL query to execute. This must be a valid SQL statement.</param>
+        /// <param name="parameters">An optional dictionary of parameter names and values to be used in the query. If provided, the parameters
+        /// will be added to the query to prevent SQL injection. Defaults to <see langword="null"/>.</param>
+        /// <param name="throwException">A value indicating whether an exception should be thrown if an error occurs during query execution. If <see
+        /// langword="true"/>, exceptions will be propagated to the caller. If <see langword="false"/>, the method will
+        /// suppress exceptions and return <see langword="null"/> in case of an error. Defaults to <see
+        /// langword="true"/>.</param>
+        /// <returns>A <see cref="DataTable"/> containing the results of the query. Returns <see langword="null"/> if <paramref
+        /// name="throwException"/> is <see langword="false"/> and an error occurs during execution.</returns>
+        Task<DataTable?> GetDataTableAsync(string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Executes the specified query and retrieves a data object of the specified type.
+        /// </summary>
+        /// <typeparam name="T">The type of the data object to retrieve. Must implement <see cref="IRelmModel"/> and have a parameterless
+        /// constructor.</typeparam>
+        /// <param name="query">The query string used to retrieve the data object. Cannot be <see langword="null"/> or empty.</param>
+        /// <param name="parameters">An optional dictionary of parameters to be used in the query. Keys represent parameter names, and values
+        /// represent their corresponding values.</param>
+        /// <param name="throwException">A value indicating whether an exception should be thrown if the query fails or no data is found.  If <see
+        /// langword="true"/>, an exception is thrown; otherwise, <see langword="default"/> is returned.</param>
+        /// <returns>An instance of the specified type <typeparamref name="T"/> populated with the data retrieved by the query. 
+        /// Returns <see langword="default"/> if no data is found and <paramref name="throwException"/> is <see
+        /// langword="false"/>.</returns>
+        Task<T?> GetDataObjectAsync<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel, new();
+
+        /// <summary>
+        /// Executes an asynchronous query and retrieves a collection of data objects of the specified type.
+        /// </summary>
+        /// <typeparam name="T">The type of data objects to retrieve. Must implement <see cref="IRelmModel"/> and have a parameterless
+        /// constructor.</typeparam>
+        /// <param name="query">The query string used to retrieve the data objects. Cannot be null or empty.</param>
+        /// <param name="parameters">An optional dictionary of parameter names and values to be used in the query. If null, no parameters are
+        /// applied.</param>
+        /// <param name="throwException">A boolean value indicating whether an exception should be thrown if the query fails. If <see
+        /// langword="true"/>, an exception is thrown on failure; otherwise, the method returns an empty collection.</param>
+        /// <returns>An <see cref="IEnumerable{T}"/> containing the data objects retrieved by the query. Returns an empty
+        /// collection if no data is found or if <paramref name="throwException"/> is <see langword="false"/> and the
+        /// query fails.</returns>
+        Task<IEnumerable<T?>?> GetDataObjectsAsync<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel, new();
+
+        /// <summary>
+        /// Executes the specified query asynchronously and returns a collection of results mapped to the specified type.
+        /// </summary>
+        /// <remarks>The method maps each row in the result set to an instance of type T. If
+        /// throwException is false and an error occurs during query execution, the method returns an empty collection
+        /// instead of throwing an exception.</remarks>
+        /// <typeparam name="T">The type to which each result row will be mapped.</typeparam>
+        /// <param name="query">The SQL query to execute against the data source.</param>
+        /// <param name="parameters">An optional dictionary of parameter names and values to be applied to the query. If null, the query is
+        /// executed without parameters.</param>
+        /// <param name="throwException">true to throw an exception if the query fails; otherwise, false to suppress exceptions and return an empty
+        /// collection.</param>
+        /// <returns>An enumerable collection of objects of type T representing the query results. Returns an empty collection if
+        /// no results are found or if an error occurs and throwException is false.</returns>
+        Task<IEnumerable<T?>?> GetDataListAsync<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Asynchronously executes a SQL query and returns the first column of the first row in the result set as a
+        /// scalar value of the specified type.
+        /// </summary>
+        /// <remarks>Use this method to efficiently retrieve a single value from the database, such as a
+        /// count or aggregate. If throwException is set to false and the query yields no result, the method returns
+        /// default(T) instead of throwing an exception.</remarks>
+        /// <typeparam name="T">The type to which the scalar result is cast. Must be compatible with the value returned by the query.</typeparam>
+        /// <param name="query">The SQL query to execute. The query should return a single value.</param>
+        /// <param name="parameters">An optional dictionary of parameter names and values to be applied to the query. Can be null if the query
+        /// does not require parameters.</param>
+        /// <param name="throwException">true to throw an exception if the query returns no result or if an error occurs; otherwise, false to return
+        /// the default value of type T.</param>
+        /// <param name="cancellationToken">A cancellation token that can be used to cancel the asynchronous operation.</param>
+        /// <returns>A task that represents the asynchronous operation. The task result contains the scalar value of type T if
+        /// the query succeeds; otherwise, the default value of type T if throwException is false and no result is
+        /// found.</returns>
+        Task<T?> GetScalarAsync<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Performs a bulk write operation to insert or update data in the specified database table.
+        /// </summary>
+        /// <remarks>This method is optimized for high-performance bulk operations and supports optional
+        /// batching to handle large datasets efficiently.  Ensure that the source data aligns with the schema of the
+        /// target table to avoid runtime errors.</remarks>
+        /// <typeparam name="T">The type of the source data. This can be a collection or a single object representing the data to be
+        /// written.</typeparam>
+        /// <param name="sourceData">The data to be written to the table. Must not be null. If a collection is provided, each item will be
+        /// processed in the bulk operation.</param>
+        /// <param name="tableName">The name of the target database table. If null, the table name will be inferred from the type <typeparamref
+        /// name="T"/>.</param>
+        /// <param name="forceType">An optional <see cref="Type"/> to explicitly specify the type of the data being written. If null, the type
+        /// will be inferred from <typeparamref name="T"/>.</param>
+        /// <param name="batchSize">The maximum number of rows to include in each batch during the bulk write operation. Must be greater than
+        /// zero. Defaults to 100.</param>
+        /// <param name="allowAutoIncrementColumns">Indicates whether auto-increment columns in the target table are allowed to be explicitly written. Defaults
+        /// to <see langword="false"/>.</param>
+        /// <param name="allowPrimaryKeyColumns">Indicates whether primary key columns in the target table are allowed to be explicitly written. Defaults to
+        /// <see langword="false"/>.</param>
+        /// <param name="allowUniqueColumns">Indicates whether unique columns in the target table are allowed to be explicitly written. Defaults to <see
+        /// langword="false"/>.</param>
+        /// <returns>The number of rows successfully written to the database table.</returns>
+        Task<int> BulkTableWriteAsync<T>(T sourceData, string? tableName = null, Type? forceType = null, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Executes a database operation using the specified query and parameters.
+        /// </summary>
+        /// <remarks>This method allows for executing parameterized SQL queries with optional transaction
+        /// support.  Use the <paramref name="throwException"/> parameter to control error handling behavior.</remarks>
+        /// <param name="query">The SQL query to execute. Cannot be null or empty.</param>
+        /// <param name="parameters">An optional dictionary of parameter names and values to be used in the query.  If null, no parameters are
+        /// applied.</param>
+        /// <param name="throwException">A value indicating whether an exception should be thrown if the operation fails.  If <see langword="true"/>,
+        /// an exception is thrown on failure; otherwise, the failure is silently handled.</param>
+        Task DoDatabaseWorkAsync(string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Executes a database query and returns the result as the specified type.
+        /// </summary>
+        /// <remarks>Use this method to execute queries that return a single result, such as scalar values
+        /// or objects.  Ensure that the type <typeparamref name="T"/> matches the expected result of the query to avoid
+        /// runtime errors.</remarks>
+        /// <typeparam name="T">The type of the result expected from the query.</typeparam>
+        /// <param name="query">The SQL query to execute. Cannot be null or empty.</param>
+        /// <param name="parameters">An optional dictionary of parameter names and values to include in the query. Can be null if no parameters
+        /// are required.</param>
+        /// <param name="throwException">Specifies whether an exception should be thrown if the query fails. If <see langword="true"/>, an exception
+        /// is thrown on failure; otherwise, the method returns the default value of <typeparamref name="T"/>.</param>
+        /// <returns>The result of the query as an instance of type <typeparamref name="T"/>. Returns the default value of
+        /// <typeparamref name="T"/> if <paramref name="throwException"/> is <see langword="false"/> and the query
+        /// fails.</returns>
+        Task<T?> DoDatabaseWorkAsync<T>(string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Executes a database operation using the specified query and callback function.
+        /// </summary>
+        /// <remarks>This method provides a flexible way to execute database operations by allowing the
+        /// caller to  define custom logic through the <paramref name="actionCallback"/> parameter. Ensure that the 
+        /// <paramref name="query"/> is properly sanitized to prevent SQL injection attacks.</remarks>
+        /// <param name="query">The SQL query to execute. Must not be null or empty.</param>
+        /// <param name="actionCallback">A callback function that processes the <see cref="MySqlCommand"/> object and returns a result.  The callback
+        /// must not be null.</param>
+        /// <param name="throwException">A value indicating whether to throw an exception if an error occurs during the operation.  If <see
+        /// langword="true"/>, exceptions will be thrown; otherwise, errors will be suppressed.</param>
+        Task DoDatabaseWorkAsync(string query, Func<MySqlCommand, CancellationToken, Task<object?>> actionCallback, bool throwException = true, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Executes a database operation using the specified query and callback function.
+        /// </summary>
+        /// <remarks>This method provides a flexible way to execute database operations by allowing the
+        /// caller to define the specific action to perform using the provided <see cref="MySqlCommand"/> object. If
+        /// <paramref name="useTransaction"/> is <see langword="true"/>, the operation will be executed within a
+        /// transaction, which will be committed or rolled back based on the success or failure of the
+        /// operation.</remarks>
+        /// <typeparam name="T">The type of the result returned by the callback function.</typeparam>
+        /// <param name="query">The SQL query to be executed. Cannot be null or empty.</param>
+        /// <param name="actionCallback">A callback function that defines the operation to perform with the <see cref="MySqlCommand"/> object. The
+        /// function should return an object of type <typeparamref name="T"/>.</param>
+        /// <param name="throwException">A value indicating whether an exception should be thrown if an error occurs during the operation. The
+        /// default value is <see langword="true"/>.</param>
+        /// <returns>The result of the operation, as returned by the <paramref name="actionCallback"/> function.</returns>
+        Task<T?> DoDatabaseWorkAsync<T>(string query, Func<MySqlCommand, CancellationToken, Task<T?>> actionCallback, bool throwException = true, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Writes the specified <see cref="IRelmModel"/> to the database in batches.
+        /// </summary>
+        /// <remarks>This method writes data to the database in batches to optimize performance. The
+        /// behavior of the write operation can be customized using the boolean parameters to control the inclusion of
+        /// specific column types.</remarks>
+        /// <param name="relmModel">The model containing the data to be written to the database. Cannot be <see langword="null"/>.</param>
+        /// <param name="batchSize">The number of records to write in each batch. Must be greater than 0. The default value is 100.</param>
+        /// <param name="allowAutoIncrementColumns">A value indicating whether columns with auto-increment constraints are allowed to be written. If <see
+        /// langword="true"/>, auto-increment columns will be included in the write operation; otherwise, they will be
+        /// excluded.</param>
+        /// <param name="allowPrimaryKeyColumns">A value indicating whether primary key columns are allowed to be written. If <see langword="true"/>, primary
+        /// key columns will be included in the write operation; otherwise, they will be excluded.</param>
+        /// <param name="allowUniqueColumns">A value indicating whether columns with unique constraints are allowed to be written. If <see
+        /// langword="true"/>, unique columns will be included in the write operation; otherwise, they will be excluded.</param>
+        /// <param name="allowAutoDateColumns">A value indicating whether columns with automatic date generation constraints are allowed to be written. If
+        /// <see langword="true"/>, auto-date columns will be included in the write operation; otherwise, they will be
+        /// excluded.</param>
+        /// <returns>The total number of records successfully written to the database.</returns>
+        Task<int> WriteToDatabaseAsync(IRelmModel relmModel, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Writes a collection of Relm models to the database in batches.
+        /// </summary>
+        /// <remarks>This method processes the provided models in batches to optimize database writes. The
+        /// behavior of the write operation can be customized using the optional parameters to control which types of
+        /// columns are included.</remarks>
+        /// <param name="relmModels">The collection of models to be written to the database. Each model must implement the <see
+        /// cref="IRelmModel"/> interface.</param>
+        /// <param name="batchSize">The number of models to include in each batch. Must be a positive integer. The default value is 100.</param>
+        /// <param name="allowAutoIncrementColumns">A value indicating whether columns with auto-increment constraints are allowed to be written. If <see
+        /// langword="true"/>, auto-increment columns will be included; otherwise, they will be excluded. The default
+        /// value is <see langword="false"/>.</param>
+        /// <param name="allowPrimaryKeyColumns">A value indicating whether primary key columns are allowed to be written. If <see langword="true"/>, primary
+        /// key columns will be included; otherwise, they will be excluded. The default value is <see
+        /// langword="false"/>.</param>
+        /// <param name="allowUniqueColumns">A value indicating whether columns with unique constraints are allowed to be written. If <see
+        /// langword="true"/>, unique columns will be included; otherwise, they will be excluded. The default value is
+        /// <see langword="false"/>.</param>
+        /// <param name="allowAutoDateColumns">A value indicating whether columns with automatic date generation constraints are allowed to be written. If
+        /// <see langword="true"/>, auto-date columns will be included; otherwise, they will be excluded. The default
+        /// value is <see langword="false"/>.</param>
+        /// <returns>The total number of models successfully written to the database.</returns>
+        Task<int> WriteToDatabaseAsync(IEnumerable<IRelmModel> relmModels, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false, CancellationToken cancellationToken = default);
     }
 }

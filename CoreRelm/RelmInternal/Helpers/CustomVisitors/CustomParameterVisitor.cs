@@ -9,10 +9,10 @@ namespace CoreRelm.RelmInternal.Helpers.CustomVisitors
 {
     internal class CustomParameterVisitor : ExpressionVisitor
     {
-        private readonly List<object> evaluatedArgs;
+        private readonly List<object?> evaluatedArgs;
         private readonly List<ParameterExpression> newParameters;
 
-        public CustomParameterVisitor(List<object> evaluatedArgs, List<ParameterExpression> newParameters)
+        public CustomParameterVisitor(List<object?> evaluatedArgs, List<ParameterExpression> newParameters)
         {
             this.evaluatedArgs = evaluatedArgs;
             this.newParameters = newParameters;

@@ -9,6 +9,8 @@ namespace CoreRelm.Models.Migrations.Rendering
     public sealed record MySqlRenderOptions(
         bool IncludeUseDatabase = true,
         bool WrapTriggersWithDelimiter = true,
-        string TriggerDelimiter = "$$"
+        string TriggerDelimiter = "$$",
+        bool WrapFunctionsWithDelimiter = true,
+        string FunctionDelimiter = "$$"
     );
 }

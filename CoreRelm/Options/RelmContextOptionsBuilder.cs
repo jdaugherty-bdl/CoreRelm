@@ -49,6 +49,13 @@ namespace CoreRelm.Options
         /// Gets the name or network address of the database server to which the application is connected.
         /// </summary>
         public string? DatabaseServer { get; private set; }
+        
+        /// <summary>
+        /// Gets the port number used to connect to the database as a string value.
+        /// </summary>
+        /// <remarks>The port value may be null if not specified. The format should be a valid port number
+        /// as a string, such as "5432" for PostgreSQL or "1433" for SQL Server.</remarks>
+        public string? DatabasePort { get; private set; }
 
         /// <summary>
         /// Gets the name of the database associated with this instance.
@@ -167,9 +174,10 @@ namespace CoreRelm.Options
         /// <param name="databaseName">The name of the database to use. Cannot be null or empty.</param>
         /// <param name="databaseUser">The username to use when connecting to the database. Cannot be null or empty.</param>
         /// <param name="databasePassword">The password associated with the specified database user. Cannot be null or empty.</param>
-        public RelmContextOptionsBuilder(string databaseServer, string databaseName, string databaseUser, string databasePassword)
+        public RelmContextOptionsBuilder(string databaseServer, string databasePort, string databaseName, string databaseUser, string databasePassword)
         {
             SetDatabaseServer(databaseServer);
+            SetDatabasePort(databasePort);
             SetDatabaseName(databaseName);
             SetDatabaseUser(databaseUser);
             SetDatabasePassword(databasePassword);
@@ -259,6 +267,15 @@ namespace CoreRelm.Options
                 throw new ArgumentNullException(nameof(databaseServer), "Database server cannot be null or empty.");
 
             this.DatabaseServer = databaseServer;
+
+            _optionsBuilderType = OptionsBuilderTypes.ConnectionString;
+
+            return this;
+        }
+
+        public RelmContextOptionsBuilder SetDatabasePort(string databasePort)
+        {
+            this.DatabasePort = databasePort;
 
             _optionsBuilderType = OptionsBuilderTypes.ConnectionString;
 
@@ -517,13 +534,15 @@ namespace CoreRelm.Options
                 throw new ArgumentException("Incomplete connection details. Must be in the format of 'name=connectionString' or 'server=serverName;database=databaseName;user=userName;password=password'.");
             }
 
-            if ((connectionOptions.ContainsKey("name") &&
-                    connectionOptions.Keys.Count > 1) ||
-                (connectionOptions.ContainsKey("server") &&
-                    connectionOptions.ContainsKey("database") &&
-                   (connectionOptions.ContainsKey("uid") || connectionOptions.ContainsKey("user") || connectionOptions.ContainsKey("user id")) &&
-                   (connectionOptions.ContainsKey("pwd") || connectionOptions.ContainsKey("password")) &&
-                    connectionOptions.Keys.Count > 4))
+            if ((connectionOptions.ContainsKey("name") 
+                    && connectionOptions.Keys.Count > 1) 
+                ||
+                !(connectionOptions.ContainsKey("server") 
+                    && connectionOptions.ContainsKey("database") 
+                    && (connectionOptions.ContainsKey("uid") || connectionOptions.ContainsKey("user") || connectionOptions.ContainsKey("user id")) 
+                    && (connectionOptions.ContainsKey("pwd") || connectionOptions.ContainsKey("password"))
+                   //&& connectionOptions.Keys.Count > 4
+                ))
             {
                 throw new ArgumentException("Invalid connection details. Must be in the format of 'name=connectionString' or 'server=serverName;database=databaseName;user=userName;password=password'.");
             }
@@ -543,6 +562,9 @@ namespace CoreRelm.Options
                 if (connectionOptions.TryGetValue("server", out string? serverValue))
                     SetDatabaseServer(serverValue);
 
+                if (connectionOptions.TryGetValue("port", out string? portValue))
+                    SetDatabasePort(portValue);
+
                 if (connectionOptions.TryGetValue("database", out string? databaseValue))
                     SetDatabaseName(databaseValue);
 
@@ -558,7 +580,7 @@ namespace CoreRelm.Options
                 else if (connectionOptions.TryGetValue("password", out string? passwordValue))
                     SetDatabasePassword(passwordValue);
 
-                DatabaseConnectionString = $"server={DatabaseServer};database={DatabaseName};user id={DatabaseUser};password={DatabasePassword}";
+                DatabaseConnectionString = $"server={DatabaseServer};port={DatabasePort};database={DatabaseName};user id={DatabaseUser};password={DatabasePassword}";
             }
         }
 

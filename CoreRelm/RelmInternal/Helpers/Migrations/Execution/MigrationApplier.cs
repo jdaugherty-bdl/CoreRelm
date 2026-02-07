@@ -1,4 +1,5 @@
 ﻿using CoreRelm.Extensions;
+using CoreRelm.Interfaces.Migrations;
 using CoreRelm.Models;
 using CoreRelm.Models.Migrations;
 using CoreRelm.RelmInternal.Helpers.Migrations.Introspection;
@@ -13,11 +14,10 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
 {
-
-    public sealed class MigrationApplier
+    public sealed class MigrationApplier(IRelmMigrationSqlProviderFactory providerFactory)
     {
         private readonly MySqlDatabaseProvisioner _provisioner = new();
-        private readonly SchemaMigrationsStore _store = new();
+        private readonly SchemaMigrationsStore _store = new(providerFactory);
         private readonly MySqlScriptRunner _runner = new();
 
         public async Task<bool> ApplyAsync(
@@ -35,15 +35,12 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
 
             if (!ok) return false;
 
-            var dbConn = migrationOptions.ConnectionStringTemplate.Replace("{db}", dbName, StringComparison.Ordinal);
+            var dbConn = migrationOptions.ConnectionStringTemplate?.Replace("{db}", dbName, StringComparison.Ordinal)
+                ?? throw new InvalidOperationException("Database connection string template is not set.");
 
-            /*
-            await using var conn = new MySqlConnection(dbConn);
-            await conn.OpenAsync(ct);
-            */
             var context = new RelmContext(dbConn);
 
-            await _store.EnsureTableAsync(context, migrationOptions.CancelToken);
+            await _store.EnsureTableAsync(context, migrationOptions);
 
             // Drift safety: if a migration file name was already applied, do not reapply
             var applied = await _store.GetAppliedAsync(context, migrationOptions.CancelToken);

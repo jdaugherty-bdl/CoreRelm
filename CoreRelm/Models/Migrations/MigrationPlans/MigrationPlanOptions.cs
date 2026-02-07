@@ -8,6 +8,7 @@ namespace CoreRelm.Models.Migrations.MigrationPlans
 {
     public sealed record MigrationPlanOptions(
         bool Destructive,
-        ISet<string> ScopeTables
+        ISet<string> ScopeTables,
+        DateTime StampUtc
     );
 }

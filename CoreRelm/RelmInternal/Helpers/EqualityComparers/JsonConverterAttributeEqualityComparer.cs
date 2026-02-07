@@ -9,7 +9,7 @@ namespace CoreRelm.RelmInternal.Helpers.EqualityComparers
 {
     internal class JsonConverterAttributeEqualityComparer : IEqualityComparer<JsonConverterAttribute>
     {
-        public bool Equals(JsonConverterAttribute x, JsonConverterAttribute y)
+        public bool Equals(JsonConverterAttribute? x, JsonConverterAttribute? y)
         {
             if (x == null && y == null)
                 return true;

@@ -26,6 +26,22 @@ namespace CoreRelm.RelmInternal.Extensions
         /// underscore to the first captured group.</remarks>
         public static string ReplacePattern => @"_$1";
 
+        public static string? ConvertPropertyToUnderscoreName(PropertyInfo? propertyInfo, bool forceLowerCase = false)
+        {
+            if (propertyInfo == null)
+                return null;
+
+            var underscoreName = propertyInfo.Name;
+            if (!propertyInfo.Name.StartsWith("InternalId"))
+                underscoreName = propertyInfo.GetCustomAttribute<RelmColumn>()?.ColumnName
+                    ?? Regex.Replace(propertyInfo.Name, UppercaseSearchPattern, ReplacePattern);
+
+            if (forceLowerCase)
+                underscoreName = underscoreName.ToLower().Replace("internalid", "InternalId");
+
+            return underscoreName;
+        }
+
         /// <summary>
         /// Converts the properties of the specified type to a list of key-value pairs, where the keys are  property
         /// names formatted as underscore-separated strings, and the values contain the original  property name and its
@@ -44,8 +60,11 @@ namespace CoreRelm.RelmInternal.Extensions
         /// If <see langword="true"/>, only such properties are included; otherwise, all properties are considered.</param>
         /// <returns>A list of key-value pairs, where each key is the underscore-separated name of a property, and each value  is
         /// a tuple containing the original property name and its <see cref="PropertyInfo"/> metadata.</returns>
-        public static List<KeyValuePair<string, Tuple<string, PropertyInfo>>> ConvertPropertiesToUnderscoreNames(Type dataType, bool forceLowerCase = false, bool getOnlyRelmColumns = true)
+        public static List<KeyValuePair<string, Tuple<string, PropertyInfo>>> ConvertPropertiesToUnderscoreNames(Type? dataType, bool forceLowerCase = false, bool getOnlyRelmColumns = true)
         {
+            if (dataType == null)
+                return [];
+
             // get all potential properties that can be converted to data
             var convertableProperties = dataType
                 .GetProperties()
@@ -54,15 +73,8 @@ namespace CoreRelm.RelmInternal.Extensions
 
             // get the underscore names and type info of the properties
             var convertableList = convertableProperties
-                .ToDictionary(x => x.Name.StartsWith("InternalId")
-                        ? x.Name
-                        : (x.GetCustomAttribute<RelmColumn>().ColumnName
-                            ?? Regex.Replace(x.Name, UppercaseSearchPattern, ReplacePattern)),
-                    x => new Tuple<string, PropertyInfo>(x.Name, x))
-                .Select(x => new KeyValuePair<string, Tuple<string, PropertyInfo>>(forceLowerCase
-                        ? x.Key.ToLower().Replace("internalid", "InternalId")
-                        : x.Key,
-                    x.Value))
+                .Where(x => x != null)
+                .ToDictionary(x => ConvertPropertyToUnderscoreName(x, forceLowerCase)!, x => new Tuple<string, PropertyInfo>(x.Name, x))
                 .ToList();
 
             return convertableList;
@@ -80,7 +92,7 @@ namespace CoreRelm.RelmInternal.Extensions
         /// a tuple containing additional metadata about the property.</returns>
         public static List<KeyValuePair<string, Tuple<string, PropertyInfo>>> ConvertPropertiesToUnderscoreNames<T>(this T rowData, bool forceLowerCase = false)
         {
-            return ConvertPropertiesToUnderscoreNames(rowData.GetType(), forceLowerCase: forceLowerCase, getOnlyRelmColumns: true);
+            return ConvertPropertiesToUnderscoreNames(rowData?.GetType(), forceLowerCase: forceLowerCase, getOnlyRelmColumns: true);
         }
     }
 }

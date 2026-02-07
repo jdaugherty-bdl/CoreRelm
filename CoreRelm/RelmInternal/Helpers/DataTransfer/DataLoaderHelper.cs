@@ -88,6 +88,26 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// not configured correctly.</exception>
         internal ICollection<T> LoadField<R>(Expression<Func<T, R>> predicate)
         {
+            return LoadFieldAsync(predicate)
+                .GetAwaiter()
+                .GetResult();
+        }
+
+        /// <summary>
+        /// Loads and populates a collection or property for the specified field based on the provided lambda
+        /// expression.
+        /// </summary>
+        /// <remarks>This method uses the <see cref="RelmDataLoader"/> attribute on the specified field to
+        /// determine the appropriate loader type. The loader type must implement <see cref="IRelmFieldLoader"/>, depending on the context.</remarks>
+        /// <typeparam name="R">The type of the field being loaded.</typeparam>
+        /// <param name="predicate">A lambda expression representing the field to load, in the form of <c>x => x.PropertyName</c>. The field
+        /// must be decorated with a <see cref="RelmDataLoader"/> attribute.</param>
+        /// <returns>A collection of objects of type <typeparamref name="T"/> with the specified field populated.</returns>
+        /// <exception cref="InvalidOperationException">Thrown if the provided lambda expression does not represent a valid member expression.</exception>
+        /// <exception cref="MemberAccessException">Thrown if the specified field does not have a <see cref="RelmDataLoader"/> attribute or if the attribute is
+        /// not configured correctly.</exception>
+        internal async Task<ICollection<T>> LoadFieldAsync<R>(Expression<Func<T, R>> predicate, CancellationToken cancellationToken = default)
+        {
             var referenceProperty = predicate.Body as MemberExpression
                 ?? throw new InvalidOperationException("Collection or property must be represented by a lambda expression in the form of 'x => x.PropertyName'.");
 
@@ -95,10 +115,13 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
                 ?.FirstOrDefault(y => y.LoaderType?.GetInterface(nameof(IRelmFieldLoader)) != null)
                 ?? throw new MemberAccessException($"The property or collection [{referenceProperty.Member.Name}] on type [{referenceProperty.Expression?.Type.Name}] does not have a RelmDataLoader attribute.");
 
+            if (dataLoaderAttribute.LoaderType == null || !typeof(IRelmFieldLoader).IsAssignableFrom(dataLoaderAttribute.LoaderType))
+                throw new MemberAccessException($"The property or collection [{referenceProperty.Member.Name}] on type [{referenceProperty.Expression?.Type.Name}] has a RelmDataLoader attribute, but the specified loader type [{dataLoaderAttribute.LoaderType?.FullName}] does not implement IRelmFieldLoader.");
+
             var fieldLoader = Activator.CreateInstance(dataLoaderAttribute.LoaderType, [relmContext, referenceProperty.Member.Name, dataLoaderAttribute.KeyFields]) 
                 ?? throw new MemberAccessException($"The field loader type [{dataLoaderAttribute.LoaderType.FullName}] could not be instantiated for property or collection [{referenceProperty.Member.Name}] on type [{referenceProperty.Expression?.Type.Name}].");
 
-            new FieldLoaderHelper<T>(targetObjects).LoadData((IRelmFieldLoaderBase)fieldLoader);
+            await new FieldLoaderHelper<T>(targetObjects).LoadDataAsync((IRelmFieldLoaderBase)fieldLoader, cancellationToken);
 
             return targetObjects;
         }

@@ -9,11 +9,16 @@ namespace CoreRelm.RelmInternal.Models
 {
     internal class ExpressionResolution
     {
-        public string Query { get; set; }
-        public string TableAlias { get; set; }
-        public string FieldName { get; set; }
-        public string ParameterName { get; set; }
-        public object ParameterValue { get; set; }
+        public string? Query { get; set; }
+
+        public string? TableAlias { get; set; }
+
+        public string? FieldName { get; set; }
+
+        public string? ParameterName { get; set; }
+
+        public object? ParameterValue { get; set; }
+
         public ExpressionType NodeType { get; set; }
 
         public ExpressionResolution Clone()

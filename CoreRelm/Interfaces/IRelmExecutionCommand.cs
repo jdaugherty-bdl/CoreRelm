@@ -28,22 +28,12 @@ namespace CoreRelm.Interfaces
         /// <summary>
         /// Gets the initial expression associated with this execution command.
         /// </summary>
-        Expression ExecutionExpression { get; }
+        Expression? ExecutionExpression { get; }
 
         /// <summary>
-        /// Gets the initial command that was associated with this execution command.
+        /// Gets the number of child commands associated with the current context.
         /// </summary>
-        Command InitialCommand { get; }
-
-        /// <summary>
-        /// Gets the initial expression associated with this execution command.
-        /// </summary>
-        Expression InitialExpression { get; }
-
-        /// <summary>
-        /// Gets the number of additional commands associated with the current context.
-        /// </summary>
-        int AdditionalCommandCount { get; }
+        int ChildCommandCount { get; }
 
         /// <summary>
         /// Adds an additional execution command to the current context using the specified command and associated
