@@ -10,10 +10,11 @@ namespace CoreRelm.Models.Migrations
     {
         public string? ConnectionStringTemplate { get; set; }
         public string? SetName { get; set; }
-        public string? OutputPath { get; set; } = "./migrations";
+        public string? MigrationsPath { get; set; } = "./migrations";
         public string? ModelSetsPath { get; set; } = "./migrations/modelsets.json";
         public bool Quiet { get; set; } = false;
         public bool JsonFlag { get; set; } = false;
+        public string? JsonPath { get; set; } = null;
         public bool Destructive { get; set; } = false;
         public bool Apply { get; set; } = false;
         public bool SaveSystemMigrations { get; set; } = false;

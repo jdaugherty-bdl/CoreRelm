@@ -42,12 +42,12 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
             var safeName = UrlStringHelper.Slugify(migrationName);
             var migrationFileName = $"SYSTEM_MIGRATION_{DateTime.UtcNow:yyyyMMdd_HHmmss}_{safeName}__db-{databaseName}.sql";
 
-            if (migrationOptions.SaveSystemMigrations && !string.IsNullOrWhiteSpace(migrationOptions.OutputPath))
+            if (migrationOptions.SaveSystemMigrations && !string.IsNullOrWhiteSpace(migrationOptions.MigrationsPath))
             {
-                if (!Directory.Exists(migrationOptions.OutputPath))
-                    Directory.CreateDirectory(migrationOptions.OutputPath);
+                if (!Directory.Exists(migrationOptions.MigrationsPath))
+                    Directory.CreateDirectory(migrationOptions.MigrationsPath);
 
-                await File.WriteAllTextAsync(Path.Combine(migrationOptions.OutputPath, migrationFileName), result.Sql, migrationOptions.CancelToken);
+                await File.WriteAllTextAsync(Path.Combine(migrationOptions.MigrationsPath, migrationFileName), result.Sql, migrationOptions.CancelToken);
             }
 
             await _runner.ExecuteScriptAsync(context, result.Sql, migrationOptions.CancelToken);
