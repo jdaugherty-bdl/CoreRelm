@@ -1,7 +1,4 @@
 ﻿
-using MySql.Data.MySqlClient;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using CoreRelm.Attributes;
 using CoreRelm.Extensions;
 using CoreRelm.Interfaces;
@@ -12,6 +9,9 @@ using CoreRelm.RelmInternal.Helpers.DataTransfer;
 using CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence;
 using CoreRelm.RelmInternal.Helpers.EqualityComparers;
 using CoreRelm.RelmInternal.Helpers.Utilities;
+using MySql.Data.MySqlClient;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -20,6 +20,7 @@ using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using static CoreRelm.Enums.Triggers;
 
 namespace CoreRelm.Models
 {
@@ -35,6 +36,13 @@ namespace CoreRelm.Models
     /// <c>WriteToDatabase</c> overloads.</item> <item>Dynamic Data Transfer Object (DTO) generation with <see
     /// cref="GenerateDTO"/>.</item> </list> This class is designed to be extended by specific entity types and provides
     /// a flexible foundation for working with relational data in the Relm framework.</remarks>
+
+    [RelmTrigger(TriggerTime.BEFORE, TriggerEvent.INSERT, @"
+    BEGIN
+        IF NEW.InternalId IS NULL OR NEW.InternalId = '' THEN
+            SET NEW.InternalId = uuid_v4();
+        END IF;
+    END")]
     public class RelmModel : IRelmModel
     {
         /// <summary>
@@ -54,7 +62,7 @@ namespace CoreRelm.Models
         /// <summary>
         /// Gets or sets a value indicating whether the entity is active.
         /// </summary>
-        [RelmColumn(columnSize: 1, isNullable: false, defaultValue: "'1'")]
+        [RelmColumn(columnSize: 1, isNullable: false, defaultValue: "1")]
         public bool Active { get; set; }
 
         /// <summary>
@@ -62,7 +70,7 @@ namespace CoreRelm.Models
         /// </summary>
         [RelmKey]
         [RelmDto]
-        [RelmColumn(columnSize: 45, isNullable: false, unique: true, defaultValue: "'uuid_v4()'")]
+        [RelmColumn(columnSize: 45, isNullable: false, unique: true)]
         public string? InternalId { get; set; }
 
         /// <summary>

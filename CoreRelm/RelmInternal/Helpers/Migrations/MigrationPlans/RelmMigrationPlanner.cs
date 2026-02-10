@@ -53,9 +53,11 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                 PlanForeignKeys(tableName, desiredTable, actualTable, options, migrationOperations, warnings);
 
                 // Triggers: compare by name + statement; if missing => create; if differs => drop+create
-                //PlanTriggers(tableName, desiredTable, actualTable, options, migrationOperations, warnings);
+                PlanTriggers(tableName, desiredTable, actualTable, options, migrationOperations, warnings);
+                /*
                 var desiredTableWithInternalIdTrigger = EnsureInternalIdTriggerDesired(desiredTable); 
                 PlanTriggers(tableName, desiredTableWithInternalIdTrigger, actualTable, options, migrationOperations, warnings);
+                */
             }
 
             // Destructive cleanup scoped to desired tables only:
@@ -71,10 +73,64 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                 }
             }
 
+            // pull foreign keys that reference newly created tables out from create table definition and moves them to create foreign key operations
+            migrationOperations = ReorderForeignKeys(migrationOperations, warnings, blockers);
+
             // Sort ops in execution order:
             migrationOperations = OrderOperations(migrationOperations);
 
             return new MigrationPlan(desired.DatabaseName, migrationOperations, warnings, blockers, options.StampUtc);
+        }
+
+        private static List<IMigrationOperation> ReorderForeignKeys(
+            List<IMigrationOperation> migrationOperations,
+            List<string> warnings,
+            List<string> blockers)
+        {
+            var createTableOperations = migrationOperations
+                .Where(x => x is CreateTableOperation createTableOperation)
+                .Cast<CreateTableOperation>()
+                .ToList();
+
+            var createTableNames = createTableOperations.Select(x => x.Table.TableName).ToArray();
+
+            var tableForeignKeys = createTableOperations
+                .Where(x => (x.Table?.ForeignKeys?.Count ?? 0) > 0)
+                .ToList();
+
+            foreach (var migrationOperation in tableForeignKeys)
+            {
+                var conflictingForeignKeys = migrationOperation
+                    .Table
+                    .ForeignKeys
+                    .Where(x => createTableNames.Contains(x.Value.ReferencedTableName))
+                    .ToList();
+
+                if (conflictingForeignKeys.Count == 0)
+                    continue;
+
+                foreach (var conflictingForeignKey in conflictingForeignKeys)
+                {
+                    if (string.IsNullOrWhiteSpace(conflictingForeignKey.Value.ConstraintName))
+                    {
+                        warnings.Add($"Table `{migrationOperation.Table.TableName}` has an unnamed foreign key referencing a newly created table `{conflictingForeignKey.Value.ReferencedTableName}`; it will be created in the original position, which may cause issues if the referenced table doesn't exist yet. Consider adding a name to this foreign key for better migration ordering.");
+                        continue;
+                    }
+
+                    if (string.IsNullOrWhiteSpace(migrationOperation.Table.TableName))
+                    {
+                        blockers.Add($"Foreign key referencing `{conflictingForeignKey.Value.ReferencedTableName}` cannot be reordered because its table name is missing. Please ensure the table has a valid name.");
+                        continue;
+                    }
+
+                    var newFk = new AddForeignKeyOperation(migrationOperation.Table.TableName, conflictingForeignKey.Value);
+                    
+                    migrationOperations.Add(newFk);
+                    migrationOperation.Table.ForeignKeys.Remove(conflictingForeignKey.Key);
+                }
+            }
+
+            return migrationOperations;
         }
 
         private static void PlanColumns(
@@ -232,28 +288,28 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
 
         private static bool IndexDiffers(IndexSchema? desired, IndexSchema? actual)
         {
-            if (desired?.IsUnique != actual?.IsUnique)
+            if (desired?.IndexTypeValue != actual?.IndexTypeValue)
                 return true;
 
             // Compare columns in order, including collation/direction
-            if (desired?.Columns.Count != actual?.Columns.Count)
+            if (desired?.Columns?.Count != actual?.Columns?.Count)
                 return true;
 
             if (desired == null || actual == null)
                 return desired != actual; // one is null and the other isn't
 
-            for (int i = 0; i < desired.Columns.Count; i++)
+            for (int i = 0; i < (desired.Columns?.Count ?? 0); i++)
             {
-                var d = desired.Columns[i];
-                var a = actual.Columns.OrderBy(c => c.SeqInIndex).ElementAt(i);
+                var desiredColumn = desired.Columns![i];
+                var actualColumn = actual.Columns!.OrderBy(c => c.SeqInIndex).ElementAt(i);
 
-                if (!string.Equals(d.ColumnName, a.ColumnName, StringComparison.Ordinal))
+                if (!string.Equals(desiredColumn.ColumnName, actualColumn.ColumnName, StringComparison.Ordinal))
                     return true;
 
                 // Treat collation (A/D/null) differences as meaningful
-                var dCol = d.Collation ?? "";
-                var aCol = a.Collation ?? "";
-                if (!string.Equals(dCol, aCol, StringComparison.OrdinalIgnoreCase))
+                var desiredCollation = desiredColumn.Collation ?? string.Empty;
+                var actualCollation = actualColumn.Collation ?? string.Empty;
+                if (!string.Equals(desiredCollation, actualCollation, StringComparison.OrdinalIgnoreCase))
                     return true;
             }
 
@@ -362,10 +418,12 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
 
         private static bool TriggerDiffers(TriggerSchema? desired, TriggerSchema? actual)
         {
-            if (!string.Equals(desired?.EventManipulation, actual?.EventManipulation, StringComparison.OrdinalIgnoreCase))
+            if (desired?.EventManipulation != actual?.EventManipulation)
                 return true;
-            if (!string.Equals(desired?.ActionTiming, actual?.ActionTiming, StringComparison.OrdinalIgnoreCase))
+
+            if (desired?.ActionTiming != actual?.ActionTiming)
                 return true;
+
             if (desired == null || actual == null)
                 return desired != actual; // one is null and the other isn't
 
@@ -467,35 +525,6 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
             };
 
             migrationOperations.Add(new CreateFunctionOperation("uuid_v4", newFunction));
-        }
-
-        private static TableSchema EnsureInternalIdTriggerDesired(TableSchema table)
-        {
-            // Deterministic trigger name convention
-            var triggerName = $"trg_{table.TableName}_InternalId_bi";
-
-            // If caller already declared it explicitly, keep it as-is
-            if (table.Triggers.ContainsKey(triggerName))
-                return table;
-
-            // Ensure the table has InternalId column (your base schema invariant)
-            if (!table.Columns.ContainsKey("InternalId"))
-                return table; // or throw; but returning is safer if you later support non-RelmModel tables
-
-            var trigger = new TriggerSchema
-            {
-                TriggerName = triggerName,
-                EventManipulation = "INSERT",
-                ActionTiming = "BEFORE",
-                ActionStatement = "SET NEW.InternalId = IFNULL(NEW.InternalId, uuid_v4())"
-            };
-
-            var newTriggers = table.Triggers
-                .ToDictionary(k => k.Key, v => v.Value, StringComparer.Ordinal);
-
-            newTriggers[triggerName] = trigger;
-
-            return table with { Triggers = newTriggers };
         }
     }
 }

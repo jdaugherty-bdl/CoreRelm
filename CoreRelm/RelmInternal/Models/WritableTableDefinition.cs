@@ -212,6 +212,7 @@ namespace CoreRelm.RelmInternal.Models
             }
 
             // do indexes
+            /*
             //var indexKeys = TableProperties.Where(x => !string.IsNullOrWhiteSpace(x.ResolvableSettings?.Index));
             var indexKeys = TableProperties.Where(x => x.ResolvableSettings?.Index ?? false);
             if (indexKeys.Count() > 0)
@@ -238,6 +239,7 @@ namespace CoreRelm.RelmInternal.Models
                                 .Append(")")
                                 .ToString())));
             }
+            */
 
             createTableStatement.AppendLine(");");
             createTableStatement.AppendLine();

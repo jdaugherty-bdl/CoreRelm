@@ -8,7 +8,9 @@ namespace CoreRelm.Models.Migrations.Introspection
 {
     public sealed record IndexColumnSchema(
         string ColumnName,
-        int SeqInIndex,
-        string? Collation
+        string? SubPart,
+        string? Collation,
+        string? Expression,
+        int SeqInIndex
     );
 }

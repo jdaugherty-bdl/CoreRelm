@@ -8,6 +8,6 @@ namespace CoreRelm.Interfaces.Migrations
 {
     public interface IRelmSqlScriptRunner
     {
-        Task ExecuteScriptAsync(IRelmContext context, string sql, CancellationToken ct = default);
+        Task ExecuteScriptAsync(IRelmContext context, string sql, CancellationToken cancellationToken = default);
     }
 }

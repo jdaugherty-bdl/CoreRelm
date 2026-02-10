@@ -17,13 +17,17 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
 
         public async Task<bool> DatabaseExistsAsync(MigrationOptions migrationOptions, string databaseName)
         {
-            if (string.IsNullOrWhiteSpace(migrationOptions.ConnectionString))
-                throw new ArgumentException("Server connection string is required.", nameof(migrationOptions.ConnectionString));
+            if (string.IsNullOrWhiteSpace(migrationOptions.ConnectionStringTemplate))
+                throw new ArgumentException("Server connection string template is required.", nameof(migrationOptions.ConnectionStringTemplate));
             if (string.IsNullOrWhiteSpace(databaseName))
                 throw new ArgumentException("Database name is required.", nameof(databaseName));
 
             // use straight MySqlConnection instead of a RelmContext because we may be creating the database itself
-            await using var conn = new MySqlConnection(migrationOptions.ConnectionString);
+            var dbConnectionString = new MySqlConnectionStringBuilder(migrationOptions.ConnectionStringTemplate)
+            {
+                Database = null // ensure we're connecting to the server, not a specific database
+            }.ToString();
+            await using var conn = new MySqlConnection(dbConnectionString);
             await conn.OpenAsync(migrationOptions.CancelToken);
 
             await using var cmd = conn.CreateCommand();
@@ -43,13 +47,17 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
             string? charset = null,
             string? collation = null)
         {
-            if (string.IsNullOrWhiteSpace(migrationOptions.ConnectionString))
-                throw new ArgumentException("Server connection string is required.", nameof(migrationOptions.ConnectionString));
+            if (string.IsNullOrWhiteSpace(migrationOptions.ConnectionStringTemplate))
+                throw new ArgumentException("Server connection string template is required.", nameof(migrationOptions.ConnectionStringTemplate));
             if (string.IsNullOrWhiteSpace(databaseName))
                 throw new ArgumentException("Database name is required.", nameof(databaseName));
 
             // use straight MySqlConnection instead of a RelmContext because we may be creating the database itself
-            await using var conn = new MySqlConnection(migrationOptions.ConnectionString);
+            var dbConnectionString = new MySqlConnectionStringBuilder(migrationOptions.ConnectionStringTemplate)
+            {
+                Database = null // ensure we're connecting to the server, not a specific database
+            }.ToString();
+            await using var conn = new MySqlConnection(dbConnectionString);
             await conn.OpenAsync(migrationOptions.CancelToken);
 
             var sql = $"CREATE DATABASE IF NOT EXISTS `{EscapeIdentifier(databaseName)}`";

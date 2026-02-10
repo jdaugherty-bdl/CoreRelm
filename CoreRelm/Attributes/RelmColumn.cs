@@ -33,15 +33,12 @@ namespace CoreRelm.Attributes
     /// <param name="unique">A value indicating whether the column enforces uniqueness. The default is <see langword="false"/>.</param>
     /// <param name="defaultValue">The default value for the column, represented as a string. Can be <see langword="null"/> if no default value
     /// is specified.</param>
-    /// <param name="index">A value indicating whether the column is indexed. The default is <see langword="false"/>.</param>
-    /// <param name="indexDescending">A value indicating whether the index on the column is sorted in descending order. The default is <see
-    /// langword="false"/>.</param>
     /// <param name="allowDataTruncation">A value indicating whether data truncation is allowed for this column. The default is <see
     /// langword="false"/>.</param>
     /// <param name="isVirtual">A value indicating whether the column is a virtual column (i.e., its value is computed rather than stored).
     /// The default is <see langword="false"/>.</param>
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Struct)]
-    public sealed class RelmColumn(string? columnType = null, string? columnName = null, int columnSize = -1, int[]? compoundColumnSize = null, bool isNullable = true, bool primaryKey = false, bool autonumber = false, bool unique = false, string? defaultValue = null, bool index = false, bool indexDescending = false, bool allowDataTruncation = false, bool isVirtual = false) : Attribute
+    public sealed class RelmColumn(string? columnType = null, string? columnName = null, int columnSize = -1, int[]? compoundColumnSize = null, bool isNullable = true, bool primaryKey = false, bool autonumber = false, bool unique = false, string? defaultValue = null, bool allowDataTruncation = false, bool isVirtual = false) : Attribute
     {
         /// <summary>
         /// Gets or sets the database column type to use for this property. Will override default type mapping.
@@ -94,16 +91,6 @@ namespace CoreRelm.Attributes
         /// Gets the default value associated with this column.
         /// </summary>
         public string? DefaultValue { get; private set; } = defaultValue;
-
-        /// <summary>
-        /// Gets a value indicating whether indexing is enabled for this column.
-        /// </summary>
-        public bool Index { get; private set; } = index;
-
-        /// <summary>
-        /// Gets a value indicating whether the index is sorted in descending order.
-        /// </summary>
-        public bool IndexDescending { get; private set; } = indexDescending;
 
         /// <summary>
         /// Gets a value indicating whether the object is virtual.

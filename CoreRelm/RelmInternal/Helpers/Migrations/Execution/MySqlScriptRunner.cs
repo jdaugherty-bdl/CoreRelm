@@ -11,10 +11,10 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
 {
     public sealed class MySqlScriptRunner : IRelmSqlScriptRunner
     {
-        public async Task ExecuteScriptAsync(IRelmContext context, string sql, CancellationToken ct = default)
+        public async Task ExecuteScriptAsync(IRelmContext context, string sql, CancellationToken cancellationToken = default)
         {
-            if (context is null) throw new ArgumentNullException(nameof(context));
-            if (sql is null) throw new ArgumentNullException(nameof(sql));
+            ArgumentNullException.ThrowIfNull(context);
+            ArgumentNullException.ThrowIfNull(sql);
 
             // MySQL DDL causes implicit commits; do not wrap in a transaction.
             foreach (var stmt in SplitByDelimiter(sql))
@@ -22,12 +22,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
                 var trimmed = stmt.Trim();
                 if (string.IsNullOrWhiteSpace(trimmed)) continue;
 
-                /*
-                await using var cmd = conn.CreateCommand();
-                cmd.CommandText = trimmed;
-                await cmd.ExecuteNonQueryAsync(ct);
-                */
-                context.DoDatabaseWork(trimmed);
+                await context.DoDatabaseWorkAsync(trimmed, cancellationToken: cancellationToken);
             }
         }
 
@@ -38,9 +33,9 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
             //   ... statements ending with $$ ...
             //   DELIMITER ;
             var delimiter = ";";
-            var sb = new System.Text.StringBuilder();
+            var sb = new StringBuilder();
 
-            using var reader = new System.IO.StringReader(script);
+            using var reader = new StringReader(script);
             string? line;
             while ((line = reader.ReadLine()) != null)
             {

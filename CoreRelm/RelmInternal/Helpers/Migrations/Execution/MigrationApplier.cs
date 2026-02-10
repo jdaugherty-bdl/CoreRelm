@@ -38,25 +38,25 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
             var dbConn = migrationOptions.ConnectionStringTemplate?.Replace("{db}", dbName, StringComparison.Ordinal)
                 ?? throw new InvalidOperationException("Database connection string template is not set.");
 
-            var context = new RelmContext(dbConn);
+            var context = new RelmContext(dbConn, autoInitializeDataSets: false, autoVerifyTables: false); // turn off auto-verify because we may be creating tables here
 
-            await _store.EnsureTableAsync(context, migrationOptions);
+            var checksum = sql.Sha256Hex();
+
+            await _store.EnsureSchemaMigrationTableAsync(context, migrationOptions);
 
             // Drift safety: if a migration file name was already applied, do not reapply
-            var applied = await _store.GetAppliedAsync(context, migrationOptions.CancelToken);
-            if (applied.ContainsKey(migrationFileName))
+            var applied = await _store.GetAppliedMigrationsAsync(context, migrationOptions.CancelToken);
+            if (applied?.ContainsKey(migrationFileName) ?? false)
             {
                 if (!migrationOptions.Quiet)
                     Console.WriteLine($"Already applied on `{dbName}`: {migrationFileName}");
                 return true;
             }
 
-            var checksum = sql.Sha256Hex();
-
             try
             {
                 await _runner.ExecuteScriptAsync(context, sql, migrationOptions.CancelToken);
-                await _store.RecordAppliedAsync(context, migrationFileName, checksum, migrationOptions.CancelToken);
+                await _store.RecordAppliedMigrationAsync(context, migrationFileName, checksum, migrationOptions.CancelToken);
 
                 if (!migrationOptions.Quiet)
                     Console.WriteLine($"Applied and recorded on `{dbName}`: {migrationFileName}");

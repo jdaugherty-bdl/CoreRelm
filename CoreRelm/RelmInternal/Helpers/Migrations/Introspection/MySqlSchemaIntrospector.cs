@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using static CoreRelm.Enums.Indexes;
 
 namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
 {
@@ -118,58 +119,6 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
             var columnSchemas = new Dictionary<string, Dictionary<string, ColumnSchema>>(StringComparer.Ordinal);
 
             /*
-            await using var cmd = conn.CreateCommand();
-            cmd.CommandText = @"SELECT TABLE_NAME, COLUMN_NAME, COLUMN_TYPE, IS_NULLABLE, COLUMN_DEFAULT, EXTRA, ORDINAL_POSITION
-                FROM INFORMATION_SCHEMA.COLUMNS
-                WHERE TABLE_SCHEMA = @database_name
-                ORDER BY TABLE_NAME, ORDINAL_POSITION;";
-            cmd.Parameters.AddWithValue("@database_name", databaseName);
-
-            await using var reader = await cmd.ExecuteReaderAsync(cancellationToken);
-            while (await reader.ReadAsync(cancellationToken))
-            {
-                var tableName = reader.GetString(0);
-                var columnName = reader.GetString(1);
-                var columnType = reader.GetString(2);
-                var isNullable = string.Equals(reader.GetString(3), "YES", StringComparison.OrdinalIgnoreCase);
-                var defaultValue = reader.IsDBNull(4) ? null : reader.GetString(4);
-                var extra = reader.IsDBNull(5) ? null : reader.GetString(5);
-                var ordinal = reader.GetInt32(6);
-
-                var isAuto = extra != null && extra.Contains("auto_increment", StringComparison.OrdinalIgnoreCase);
-
-                var schema = new ColumnSchema(
-                    ColumnName: columnName,
-                    ColumnType: columnType,
-                    IsNullable: isNullable,
-                    IsPrimaryKey: false,  // to be filled in later
-                    IsForeignKey: false,  // to be filled in later
-                    IsReadOnly: false,    // to be filled in later
-                    IsUnique: false,      // to be filled in later
-                    DefaultValue: defaultValue,
-                    DefaultValueSql: defaultValue,
-                    IsAutoIncrement: isAuto,
-                    Extra: extra,
-                    OrdinalPosition: ordinal
-                );
-
-                if (!columnSchemas.TryGetValue(tableName, out var columns))
-                {
-                    columns = new Dictionary<string, ColumnSchema>(StringComparer.Ordinal);
-                    columnSchemas[tableName] = columns;
-                }
-
-                columns[columnName] = schema;
-            }
-            */
-            /*
-            var columnQuery = @"SELECT TABLE_NAME AS table_name, COLUMN_NAME AS column_name, COLUMN_TYPE AS column_type, 
-                    IS_NULLABLE AS is_nullable, COLUMN_DEFAULT AS default_value, EXTRA AS extra, ORDINAL_POSITION AS ordinal_position
-                FROM INFORMATION_SCHEMA.COLUMNS
-                WHERE TABLE_SCHEMA = @database_name
-                ORDER BY TABLE_NAME, ORDINAL_POSITION;";
-            */
-            /*
             TABLE_NAME, COLUMN_NAME, COLUMN_TYPE, COLUMN_KEY, IS_NULLABLE, COLUMN_DEFAULT AS default_value, EXTRA, ORDINAL_POSITION
             */
             var columnQuery = @"SELECT * FROM INFORMATION_SCHEMA.COLUMNS
@@ -189,21 +138,20 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
                     if (column == null)
                         continue;
 
+                    if (string.IsNullOrWhiteSpace(column.TableName))
+                        throw new InvalidOperationException($"Column schema {column.ColumnName} missing TableName.");
+
                     if (column.ColumnKey?.Contains("PRI", StringComparison.OrdinalIgnoreCase) ?? false)
                         column.IsPrimaryKey = true;
 
                     if (column.ColumnKey?.Contains("UNI", StringComparison.OrdinalIgnoreCase) ?? false)
                         column.IsUnique = true;
 
-                    if (column.Extra != null && column.Extra.Contains("auto_increment", StringComparison.OrdinalIgnoreCase))
-                    {
+                    if (column.Extra?.Contains("auto_increment", StringComparison.OrdinalIgnoreCase) ?? false)
                         column.IsAutoIncrement = true;
-                    }
 
-                    if (string.IsNullOrWhiteSpace(column.TableName))
-                    {
-                        throw new InvalidOperationException($"Column schema {column.ColumnName} missing TableName.");
-                    }
+                    if (!string.IsNullOrWhiteSpace(column.DefaultValue))
+                        column.DefaultValue = GetDefaultClause(column.DefaultValue, column.Extra);
 
                     if (!columnSchemas.TryGetValue(column.TableName, out var columns))
                     {
@@ -218,6 +166,48 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
             return columnSchemas;
         }
 
+        private static string? GetDefaultClause(string? defaultValue, string? extra)
+        {
+            // If there's no default and no special behavior, return empty
+            if (string.IsNullOrEmpty(defaultValue) && string.IsNullOrEmpty(extra))
+                return null;
+
+            var defaultClause = string.Empty;
+            var defaultExtra = extra?.ToUpper() ?? string.Empty;
+
+            // 1. Handle the DEFAULT part
+            if (defaultValue != null)
+            {
+                // MySQL 8 returns 'NULL' as a string for actual NULL defaults sometimes
+                if (defaultValue.Equals("NULL", StringComparison.OrdinalIgnoreCase))
+                {
+                    defaultClause = "NULL";
+                }
+                else if (defaultExtra.Contains("DEFAULT_GENERATED"))
+                {
+                    // Functional defaults (like (curdate())) already come with parentheses
+                    // from INFORMATION_SCHEMA, so we don't need to add them.
+                    defaultClause = defaultValue;
+                }
+                else
+                {
+                    // It's a static literal. We need to check if it's numeric or needs quotes.
+                    // A simple way is to check if it's already quoted or is a number.
+                    bool isNumeric = double.TryParse(defaultValue, out _);
+                    defaultClause = isNumeric ? defaultValue : $"'{defaultValue}'";
+                }
+            }
+
+            // 2. Handle the "ON UPDATE" part (specific to Timestamps/Datetimes)
+            if (defaultExtra?.Contains("ON UPDATE CURRENT_TIMESTAMP") ?? false)
+            {
+                // Ensure we don't double up if the default was already the timestamp
+                defaultClause = $"{defaultClause} ON UPDATE CURRENT_TIMESTAMP";
+            }
+
+            return defaultClause.Trim();
+        }
+
         private static async Task<Dictionary<string, Dictionary<string, IndexSchema>>> LoadIndexesAsync(
             IRelmContext relmContext,
             string databaseName,
@@ -225,37 +215,8 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
         {
             // We read INFORMATION_SCHEMA.STATISTICS and group by table+index name.
             // MySQL reports one row per index column.
-            /*
-            var indexListing = new Dictionary<(string? Table, string? Index), List<IndexSchema>>();
-
-            await using var cmd = conn.CreateCommand();
-            cmd.CommandText = @"SELECT TABLE_NAME, INDEX_NAME, NON_UNIQUE, COLUMN_NAME, SEQ_IN_INDEX, COLLATION
-                FROM INFORMATION_SCHEMA.STATISTICS
-                WHERE TABLE_SCHEMA = @database_name
-                ORDER BY TABLE_NAME, INDEX_NAME, SEQ_IN_INDEX;";
-            cmd.Parameters.AddWithValue("@database_name", databaseName);
-
-            await using var reader = await cmd.ExecuteReaderAsync(cancellationToken);
-            while (await reader.ReadAsync(cancellationToken))
-            {
-                var table = reader.GetString(0);
-                var index = reader.GetString(1);
-                var nonUnique = reader.GetInt32(2) == 1;
-                var columnName = reader.GetString(3);
-                var sequenceInIndex = reader.GetInt32(4);
-                var collation = reader.IsDBNull(5) ? null : reader.GetString(5);
-
-                var tableKey = (table, index);
-                if (!indexListing.TryGetValue(tableKey, out var indexList))
-                {
-                    indexList = [];
-                    indexListing[tableKey] = indexList;
-                }
-
-                indexList.Add((columnName, sequenceInIndex, collation, nonUnique));
-            }
-            */
-            var indexQuery = @"SELECT TABLE_NAME, INDEX_NAME, NON_UNIQUE, COLUMN_NAME, SEQ_IN_INDEX, COLLATION
+            var indexQuery = @"SELECT TABLE_NAME, INDEX_NAME, SUB_PART, NON_UNIQUE, COLUMN_NAME, SEQ_IN_INDEX, COLLATION, 
+                    EXPRESSION, INDEX_TYPE, INDEX_COMMENT, COMMENT, IS_VISIBLE
                 FROM INFORMATION_SCHEMA.STATISTICS
                 WHERE TABLE_SCHEMA = @database_name
                 ORDER BY TABLE_NAME, INDEX_NAME, SEQ_IN_INDEX;";
@@ -281,14 +242,15 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
                 var indexName = group.Key.IndexName!;
                 var indexColumns = group.Value
                     .Where(r => r != null)
+                    .Select(x => x!)
                     .ToList();
 
-                var isUnique = !indexColumns
-                    .Any(r => r!.NonUnique);
+                var isUnique = indexColumns
+                    .Any(r => !r.NonUnique);
 
                 var columns = indexColumns
-                    .OrderBy(r => r!.SeqInIndex)
-                    .Select(r => new IndexColumnSchema(r!.ColumnName!, r.SeqInIndex, r.Collation))
+                    .OrderBy(r => r.SeqInIndex)
+                    .Select(r => new IndexColumnSchema(r!.ColumnName!, r.SubPart, r.Collation == "A" ? "ASC" : "DESC", r.Expression, r.SeqInIndex))
                     .ToList();
 
                 if (!indexSchemas.TryGetValue(tableName, out var indexes))
@@ -301,7 +263,8 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
                 {
                     TableName = tableName,
                     IndexName = indexName,
-                    IsUnique = isUnique,
+                    IndexTypeValue = isUnique ? IndexType.UNIQUE : (indexColumns.FirstOrDefault(r => r != null)?.IndexTypeValue ?? IndexType.None),
+                    NonUnique = !isUnique,
                     Columns = columns
                 };
             }
@@ -316,42 +279,6 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
         {
             // Join KEY_COLUMN_USAGE with REFERENTIAL_CONSTRAINTS to get update/delete rules.
             // One row per constrained column.
-            /*
-            var foreignKeySchemas = new Dictionary<string, List<FkRow>>(StringComparer.Ordinal);
-
-            await using var cmd = conn.CreateCommand();
-            cmd.CommandText = @"SELECT kcu.CONSTRAINT_NAME, kcu.TABLE_NAME, kcu.COLUMN_NAME, kcu.REFERENCED_TABLE_NAME, kcu.REFERENCED_COLUMN_NAME, 
-                    rc.UPDATE_RULE, rc.DELETE_RULE, kcu.ORDINAL_POSITION
-                FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE kcu
-                JOIN INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS rc
-                  ON rc.CONSTRAINT_SCHEMA = kcu.CONSTRAINT_SCHEMA
-                 AND rc.CONSTRAINT_NAME = kcu.CONSTRAINT_NAME
-                WHERE kcu.CONSTRAINT_SCHEMA = @database_name
-                  AND kcu.REFERENCED_TABLE_NAME IS NOT NULL
-                ORDER BY kcu.TABLE_NAME, kcu.CONSTRAINT_NAME, kcu.ORDINAL_POSITION;";
-            cmd.Parameters.AddWithValue("@database_name", databaseName);
-
-            await using var reader = await cmd.ExecuteReaderAsync(cancellationToken);
-            while (await reader.ReadAsync(cancellationToken))
-            {
-                var constraint = reader.GetString(0);
-                var table = reader.GetString(1);
-                var columnName = reader.GetString(2);
-                var referencedTable = reader.GetString(3);
-                var referencedColumn = reader.GetString(4);
-                var updateRule = reader.GetString(5);
-                var deleteRule = reader.GetString(6);
-                var ordinal = reader.GetInt32(7);
-
-                if (!foreignKeySchemas.TryGetValue(constraint, out var list))
-                {
-                    list = [];
-                    foreignKeySchemas[constraint] = list;
-                }
-
-                list.Add(new FkRow(constraint, table, columnName, referencedTable, referencedColumn, updateRule, deleteRule, ordinal));
-            }
-            */
             var foreignKeyQuery = @"SELECT kcu.CONSTRAINT_NAME, kcu.TABLE_NAME, kcu.COLUMN_NAME, kcu.REFERENCED_TABLE_NAME, kcu.REFERENCED_COLUMN_NAME, 
                     rc.UPDATE_RULE, rc.DELETE_RULE, kcu.ORDINAL_POSITION
                 FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE kcu
@@ -362,7 +289,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
                   AND kcu.REFERENCED_TABLE_NAME IS NOT NULL
                 ORDER BY kcu.TABLE_NAME, kcu.CONSTRAINT_NAME, kcu.ORDINAL_POSITION;";
 
-            var foreignKeyResults = (await relmContext.GetDataListAsync<ForeignKeySchema>(foreignKeyQuery, new Dictionary<string, object>
+            var foreignKeyResults = (await relmContext.GetDataObjectsAsync<ForeignKeySchema>(foreignKeyQuery, new Dictionary<string, object>
             {
                 ["@database_name"] = databaseName
             }, cancellationToken: cancellationToken))
@@ -420,41 +347,6 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
             string databaseName,
             CancellationToken cancellationToken)
         {
-            /*
-            var triggerSchemas = new Dictionary<string, Dictionary<string, TriggerSchema>>(StringComparer.Ordinal);
-
-            await using var cmd = conn.CreateCommand();
-            cmd.CommandText = @"SELECT TRIGGER_NAME, EVENT_MANIPULATION, ACTION_TIMING, EVENT_OBJECT_TABLE, ACTION_STATEMENT
-                FROM INFORMATION_SCHEMA.TRIGGERS
-                WHERE TRIGGER_SCHEMA = @database_name
-                ORDER BY EVENT_OBJECT_TABLE, TRIGGER_NAME;";
-            cmd.Parameters.AddWithValue("@database_name", databaseName);
-
-            await using var reader = await cmd.ExecuteReaderAsync(cancellationToken);
-            while (await reader.ReadAsync(cancellationToken))
-            {
-                var triggerName = reader.GetString(0);
-                var eventManipulation = reader.GetString(1);
-                var timing = reader.GetString(2);
-                var table = reader.GetString(3);
-                var stmt = reader.GetString(4);
-
-                var schema = new TriggerSchema(
-                    TriggerName: triggerName,
-                    EventManipulation: eventManipulation,
-                    ActionTiming: timing,
-                    ActionStatement: stmt
-                );
-
-                if (!triggerSchemas.TryGetValue(table, out var trigger))
-                {
-                    trigger = new Dictionary<string, TriggerSchema>(StringComparer.Ordinal);
-                    triggerSchemas[table] = trigger;
-                }
-
-                trigger[triggerName] = schema;
-            }
-            */
             var triggerQuery = @"SELECT TRIGGER_NAME, EVENT_MANIPULATION, ACTION_TIMING, EVENT_OBJECT_TABLE, ACTION_STATEMENT
                 FROM INFORMATION_SCHEMA.TRIGGERS
                 WHERE TRIGGER_SCHEMA = @database_name
@@ -488,34 +380,6 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
             string dbName,
             CancellationToken ct)
         {
-            /*
-            var functions = new Dictionary<string, FunctionSchema>(StringComparer.OrdinalIgnoreCase);
-
-            await using var cmd = conn.CreateCommand();
-            cmd.CommandText = @"SELECT
-                  ROUTINE_NAME,
-                  DTD_IDENTIFIER,
-                  ROUTINE_DEFINITION
-                FROM INFORMATION_SCHEMA.ROUTINES
-                WHERE ROUTINE_SCHEMA = @database_name
-                  AND ROUTINE_TYPE = 'FUNCTION'
-                ORDER BY ROUTINE_NAME;";
-            cmd.Parameters.AddWithValue("@database_name", dbName);
-
-            await using var reader = await cmd.ExecuteReaderAsync(ct);
-            while (await reader.ReadAsync(ct))
-            {
-                var name = reader.GetString(0);
-                var returnType = reader.IsDBNull(1) ? "" : reader.GetString(1);
-                var def = reader.IsDBNull(2) ? "" : reader.GetString(2);
-
-                functions[name] = new FunctionSchema(
-                    FunctionName: name,
-                    ReturnType: returnType,
-                    RoutineDefinition: def
-                );
-            }
-            */
             var functionQuery = @"SELECT ROUTINE_NAME, ROUTINE_COMMENT, DTD_IDENTIFIER, ROUTINE_DEFINITION, 
                     SQL_DATA_ACCESS, SECURITY_TYPE, IS_DETERMINISTIC
                 FROM INFORMATION_SCHEMA.ROUTINES

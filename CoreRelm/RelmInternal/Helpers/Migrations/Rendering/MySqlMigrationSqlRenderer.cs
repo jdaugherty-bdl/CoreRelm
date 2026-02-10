@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static CoreRelm.Enums.Indexes;
 using static CoreRelm.Enums.SecurityEnums;
 
 namespace CoreRelm.RelmInternal.Helpers.Migrations.Rendering
@@ -186,26 +187,26 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Rendering
 
         private static void RenderCreateIndex(StringBuilder query, string tableName, IndexSchema indexSchema)
         {
-            var unique = indexSchema.IsUnique ? "UNIQUE" : "";
-            query.Append($"CREATE {unique} INDEX `{EscapeIdentifier(indexSchema.IndexName)}` ON `{EscapeIdentifier(tableName)}` (");
+            //var unique = indexSchema.IsUnique ? "UNIQUE" : "";
+            query.Append($"CREATE {(indexSchema.IndexTypeValue == IndexType.None ? null : indexSchema.IndexTypeValue.ToString())} INDEX `{EscapeIdentifier(indexSchema.IndexName)}` ON `{EscapeIdentifier(tableName)}` (");
 
             var cols = indexSchema.Columns
-                .OrderBy(c => c.SeqInIndex)
+                ?.OrderBy(c => c.SeqInIndex)
                 .Select(c => $"`{EscapeIdentifier(c.ColumnName)}` {c.Collation}");
 
-            query.Append(string.Join(", ", cols));
+            query.Append(string.Join(", ", cols ?? []));
             query.AppendLine(");");
         }
 
         private static string RenderInlineIndex(IndexSchema indexSchema)
         {
-            var keyword = indexSchema.IsUnique ? "UNIQUE KEY" : "KEY";
+            var keyword = $"{(indexSchema.IndexTypeValue == IndexType.UNIQUE ? IndexType.UNIQUE.ToString() : null)} KEY";
 
             var indexColumns = indexSchema.Columns
-                .OrderBy(c => c.SeqInIndex)
+                ?.OrderBy(c => c.SeqInIndex)
                 .Select(c => $"`{EscapeIdentifier(c.ColumnName)}` {c.Collation}");
 
-            return $"{keyword} `{EscapeIdentifier(indexSchema.IndexName)}` ({string.Join(", ", indexColumns)})";
+            return $"{keyword} `{EscapeIdentifier(indexSchema.IndexName)}` ({string.Join(", ", indexColumns ?? [])})";
         }
 
         private static void RenderAddForeignKey(StringBuilder query, string tableName, ForeignKeySchema foreignKeySchema)

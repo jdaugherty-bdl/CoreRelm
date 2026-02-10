@@ -23,7 +23,7 @@ namespace CoreRelm.RelmInternal.Models
         public RelmColumn? ResolvableSettings { get; set; }
 
         // items first in list take precedence when converting from one tuple item to another - this list may look like it has duplicates, but it doesn't
-        private static readonly IEnumerable<Tuple<string, MySqlDbType, Type, int>> MySqlTypeConverter =
+        private static readonly IReadOnlyCollection<Tuple<string, MySqlDbType, Type, int>> MySqlTypeConverter =
         [
             new("bigint", MySqlDbType.Int64, typeof(long), 20),
             new("varchar", MySqlDbType.VarChar, typeof(string), 45),
@@ -55,12 +55,13 @@ namespace CoreRelm.RelmInternal.Models
             new("date", MySqlDbType.Date, typeof(DateTime), -1),
             new("varchar", MySqlDbType.VarChar, typeof(object), 45),
             new("json", MySqlDbType.JSON, typeof(object), -1),
-            new("varchar", MySqlDbType.VarChar, typeof(TimeSpan), 45)
+            new("varchar", MySqlDbType.VarChar, typeof(TimeSpan), 45),
+            new("varchar", MySqlDbType.VarChar, typeof(Enum), 512)
         ];
 
-        public static implicit operator string?(DALPropertyType_MySQL Source) => MySqlTypeConverter.Where(x => x.Item1 == Source.PropertyColumnType).FirstOrDefault()?.Item1;
-        public static implicit operator MySqlDbType?(DALPropertyType_MySQL Source) => MySqlTypeConverter.Where(x => x.Item2 == Source.PropertyMySqlDbType).FirstOrDefault()?.Item2;
-        public static implicit operator Type?(DALPropertyType_MySQL Source) => MySqlTypeConverter.Where(x => x.Item3 == UnboxNullableType(Source.PropertyType)).FirstOrDefault()?.Item3;
+        public static implicit operator string?(DALPropertyType_MySQL Source) => MySqlTypeConverter.FirstOrDefault(x => x.Item1 == Source.PropertyColumnType)?.Item1;
+        public static implicit operator MySqlDbType?(DALPropertyType_MySQL Source) => MySqlTypeConverter.FirstOrDefault(x => x.Item2 == Source.PropertyMySqlDbType)?.Item2;
+        public static implicit operator Type?(DALPropertyType_MySQL Source) => MySqlTypeConverter.FirstOrDefault(x => x.Item3 == UnboxNullableType(Source.PropertyType))?.Item3;
 
         public static explicit operator DALPropertyType_MySQL(string Source) => new(Source);
         public static explicit operator DALPropertyType_MySQL(MySqlDbType Source) => new(Source);
@@ -120,15 +121,15 @@ namespace CoreRelm.RelmInternal.Models
 
         private static Type UnboxNullableType(Type SourceType) => Nullable.GetUnderlyingType(SourceType) ?? SourceType;
 
-        public static MySqlDbType ColumnNameToColumnType(string PropertyColumnName) => MySqlTypeConverter.Where(x => x.Item1 == PropertyColumnName).FirstOrDefault()?.Item2 ?? default;
-        public static MySqlDbType PropertyTypeToColumnType(Type PropertyType) => MySqlTypeConverter.Where(x => x.Item3 == UnboxNullableType(PropertyType)).FirstOrDefault()?.Item2 ?? default;
-        public static string? ColumnTypeToColumnName(MySqlDbType PropertyColumnType) => MySqlTypeConverter.Where(x => x.Item2 == PropertyColumnType).FirstOrDefault()?.Item1;
-        public static string? PropertyTypeToColumnName(Type PropertyType) => MySqlTypeConverter.Where(x => x.Item3 == UnboxNullableType(PropertyType)).FirstOrDefault()?.Item1;
-        public static Type? ColumnNameToPropertyType(string PropertyColumnName) => MySqlTypeConverter.Where(x => x.Item1 == PropertyColumnName).FirstOrDefault()?.Item3;
-        public static Type? ColumnTypeToPropertyType(MySqlDbType PropertyColumnType) => MySqlTypeConverter.Where(x => x.Item2 == PropertyColumnType).FirstOrDefault()?.Item3;
+        public static MySqlDbType ColumnNameToColumnType(string PropertyColumnName) => MySqlTypeConverter.FirstOrDefault(x => x.Item1 == PropertyColumnName)?.Item2 ?? default;
+        public static MySqlDbType PropertyTypeToColumnType(Type PropertyType) => MySqlTypeConverter.FirstOrDefault(x => x.Item3 == UnboxNullableType(PropertyType))?.Item2 ?? default;
+        public static string? ColumnTypeToColumnName(MySqlDbType PropertyColumnType) => MySqlTypeConverter.FirstOrDefault(x => x.Item2 == PropertyColumnType)?.Item1;
+        public static string? PropertyTypeToColumnName(Type PropertyType) => MySqlTypeConverter.FirstOrDefault(x => x.Item3 == UnboxNullableType(PropertyType))?.Item1;
+        public static Type? ColumnNameToPropertyType(string PropertyColumnName) => MySqlTypeConverter.FirstOrDefault(x => x.Item1 == PropertyColumnName)?.Item3;
+        public static Type? ColumnTypeToPropertyType(MySqlDbType PropertyColumnType) => MySqlTypeConverter.FirstOrDefault(x => x.Item2 == PropertyColumnType)?.Item3;
 
-        public static int GetDefaultColumnSize(string PropertyColumnName) => MySqlTypeConverter.Where(x => x.Item1 == PropertyColumnName).FirstOrDefault()?.Item4 ?? default;
-        public static int GetDefaultColumnSize(MySqlDbType PropertyColumnType) => MySqlTypeConverter.Where(x => x.Item2 == PropertyColumnType).FirstOrDefault()?.Item4 ?? default;
-        public static int GetDefaultColumnSize(Type PropertyType) => MySqlTypeConverter.Where(x => x.Item3 == UnboxNullableType(PropertyType)).FirstOrDefault()?.Item4 ?? default;
+        public static int GetDefaultColumnSize(string PropertyColumnName) => MySqlTypeConverter.FirstOrDefault(x => x.Item1 == PropertyColumnName)?.Item4 ?? default;
+        public static int GetDefaultColumnSize(MySqlDbType PropertyColumnType) => MySqlTypeConverter.FirstOrDefault(x => x.Item2 == PropertyColumnType)?.Item4 ?? default;
+        public static int GetDefaultColumnSize(Type PropertyType) => MySqlTypeConverter.FirstOrDefault(x => x.Item3 == UnboxNullableType(PropertyType))?.Item4 ?? default;
     }
 }

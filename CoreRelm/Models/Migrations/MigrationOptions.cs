@@ -8,14 +8,15 @@ namespace CoreRelm.Models.Migrations
 {
     public class MigrationOptions
     {
-        public string? ConnectionString { get; set; }
         public string? ConnectionStringTemplate { get; set; }
         public string? SetName { get; set; }
-        public string? ModelSetsPath { get; set; }
-        public bool Quiet { get; set; }
-        public bool JsonFlag { get; set; }
-        public bool Destructive { get; set; }
-        public bool Apply { get; set; }
+        public string? OutputPath { get; set; } = "./migrations";
+        public string? ModelSetsPath { get; set; } = "./migrations/modelsets.json";
+        public bool Quiet { get; set; } = false;
+        public bool JsonFlag { get; set; } = false;
+        public bool Destructive { get; set; } = false;
+        public bool Apply { get; set; } = false;
+        public bool SaveSystemMigrations { get; set; } = false;
         public CancellationToken CancelToken { get; set; }
     }
 }

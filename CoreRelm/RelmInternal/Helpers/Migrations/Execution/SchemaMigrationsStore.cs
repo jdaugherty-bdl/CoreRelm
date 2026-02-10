@@ -1,8 +1,11 @@
-﻿using CoreRelm.Interfaces;
+﻿using CoreRelm.Extensions;
+using CoreRelm.Interfaces;
 using CoreRelm.Interfaces.Migrations;
+using CoreRelm.Models;
 using CoreRelm.Models.Migrations;
 using CoreRelm.Models.Migrations.Execution;
 using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Utilities.Collections;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -16,9 +19,10 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
     public sealed class SchemaMigrationsStore(IRelmMigrationSqlProviderFactory providerFactory) : IRelmSchemaMigrationsStore
     {
         private readonly IRelmMigrationSqlProviderFactory _providerFactory = providerFactory;
+        private readonly MySqlScriptRunner _runner = new();
         private const string migrationName = "[Relm] Ensure Schema Migrations Table";
 
-        public async Task<int> EnsureTableAsync(IRelmContext context, MigrationOptions migrationOptions)
+        public async Task<int> EnsureSchemaMigrationTableAsync(IRelmContext context, MigrationOptions migrationOptions)
         {
             var databaseName = context.ContextOptions.DatabaseConnection!.Database;
             var provider = _providerFactory.CreateProvider(migrationOptions);
@@ -28,45 +32,48 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
             };
 
             var result = await provider.GenerateAsync(migrationOptions, migrationName, DateTime.UtcNow, databaseName, models);
+            if (!result.HasChanges)
+                return 0;
 
+            if (string.IsNullOrWhiteSpace(result.Sql))
+                throw new InvalidOperationException("Migration SQL generation failed: no SQL returned.");
 
+            var checksum = result.Sql.Sha256Hex();
+            var safeName = UrlStringHelper.Slugify(migrationName);
+            var migrationFileName = $"SYSTEM_MIGRATION_{DateTime.UtcNow:yyyyMMdd_HHmmss}_{safeName}__db-{databaseName}.sql";
 
-            const string sql = @"CREATE TABLE IF NOT EXISTS `schema_migrations` (
-              `id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            if (migrationOptions.SaveSystemMigrations && !string.IsNullOrWhiteSpace(migrationOptions.OutputPath))
+            {
+                if (!Directory.Exists(migrationOptions.OutputPath))
+                    Directory.CreateDirectory(migrationOptions.OutputPath);
 
-              `file_name` VARCHAR(255) NOT NULL,
-              `checksum_sha256` CHAR(64) NOT NULL,
-              `applied_utc` DATETIME NOT NULL,
+                await File.WriteAllTextAsync(Path.Combine(migrationOptions.OutputPath, migrationFileName), result.Sql, migrationOptions.CancelToken);
+            }
 
-              `active` TINYINT(1) NOT NULL DEFAULT 1,
-              `InternalId` VARCHAR(45) NOT NULL,
-              `create_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-              `last_updated` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-
-              UNIQUE KEY `uq_schema_migrations_InternalId` (`InternalId`),
-              UNIQUE KEY `uq_schema_migrations_file_name` (`file_name`)
-            ) ENGINE=InnoDB;";
-
-            var rowsUpdated = context.DoDatabaseWork<int>(sql);
+            await _runner.ExecuteScriptAsync(context, result.Sql, migrationOptions.CancelToken);
+            var rowsUpdated = await RecordAppliedMigrationAsync(context, migrationFileName, checksum, migrationOptions.CancelToken);
 
             return rowsUpdated;
         }
 
-        public async Task<Dictionary<string, AppliedMigration>> GetAppliedAsync(IRelmContext context, CancellationToken ct = default)
+        public async Task<Dictionary<string, AppliedMigration>?> GetAppliedMigrationsAsync(RelmContext context, CancellationToken cancellationToken = default)
         {
-            var result = new Dictionary<string, AppliedMigration>(StringComparer.Ordinal);
+            var migrationDataset = context.GetDataSet<AppliedMigration>();
+            if (migrationDataset == null)
+                return null;
 
-            var query = @"SELECT * FROM schema_migrations
-                ORDER BY applied_utc;";
-
-            var migrations = context.GetDataObjects<AppliedMigration>(query)
+            var orderedMigrations = (await migrationDataset
+                .Where(x => x.Active == true)
+                .OrderBy(x => x.AppliedUtc)
+                .LoadAsync(cancellationToken))
                 ?.Where(x => x != null)
-                .ToDictionary(x => x!.FileName, x => x);
+                .Select(x => x!)
+                .ToDictionary(x => x.FileName, x => x);
 
-            return result;
+            return orderedMigrations;
         }
 
-        public async Task<int> RecordAppliedAsync(IRelmContext context, string migrationFile, string checksumSha256, CancellationToken ct = default)
+        public async Task<int> RecordAppliedMigrationAsync(IRelmContext context, string migrationFile, string checksumSha256, CancellationToken ct = default)
         {
             var appliedMigration = new AppliedMigration(
                 fileName: migrationFile,

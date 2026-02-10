@@ -17,6 +17,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 using CoreRelm.RelmInternal.Helpers.DataTransfer.Async;
+using CoreRelm.Models.Migrations.Execution;
 
 namespace CoreRelm.Models
 {
@@ -54,11 +55,13 @@ namespace CoreRelm.Models
         /// configuration.</remarks>
         public RelmContextOptionsBuilder ContextOptions { get; private set; }
 
-        private IEnumerable<PropertyInfo>? _enumeratedDataSets;
+        private List<PropertyInfo>? _enumeratedDataSets;
         private List<object>? _attachedDataSets;
 
         private bool _localOpenConnection = false;
         private bool _localOpenTransaction = false;
+
+        public IRelmDataSet<AppliedMigration> AppliedMigrations { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the RelmContext class using the specified context options and configuration
@@ -218,10 +221,10 @@ namespace CoreRelm.Models
         private void InitializeDataSets()
         {
             // find any properties that are DALDataSet<T>
-            _enumeratedDataSets = this.GetType()
+            _enumeratedDataSets = [.. this.GetType()
                 .GetProperties()
                 .Where(x => x.PropertyType.IsGenericType 
-                    && x.PropertyType.GetGenericTypeDefinition() == typeof(IRelmDataSet<>));
+                    && x.PropertyType.GetGenericTypeDefinition() == typeof(IRelmDataSet<>))];
 
             if (ContextOptions.AutoVerifyTables)
             {
@@ -240,15 +243,17 @@ namespace CoreRelm.Models
                     .ToList();
             }
 
-            if (ContextOptions.AutoInitializeDataSets && (_enumeratedDataSets?.Any() ?? false) && (_attachedDataSets?.Any() ?? false))
+            if (!ContextOptions.AutoInitializeDataSets || (_enumeratedDataSets?.Count ?? 0) == 0 || _enumeratedDataSets!.Count == (_attachedDataSets?.Count ?? 0))
+                return;
+
+            _attachedDataSets ??= [];
+
+            // instantiate each item in the DALDataSet<T> properties
+            foreach (var attachedProperty in _enumeratedDataSets!)
             {
-                // instantiate each item in the DALDataSet<T> properties
-                foreach (var attachedProperty in _enumeratedDataSets)
-                {
-                    var dalDataSet = CreateDataSetType(attachedProperty);
-                    if (dalDataSet != null)
-                        _attachedDataSets.Add(dalDataSet);
-                }
+                var dalDataSet = CreateDataSetType(attachedProperty);
+                if (dalDataSet != null)
+                    _attachedDataSets.Add(dalDataSet);
             }
         }
 

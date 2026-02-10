@@ -10,7 +10,7 @@ namespace CoreRelm.Models.Migrations.Introspection
         string TableName,
         IReadOnlyDictionary<string, ColumnSchema> Columns,
         IReadOnlyDictionary<string, IndexSchema> Indexes,
-        IReadOnlyDictionary<string, ForeignKeySchema> ForeignKeys,
+        IDictionary<string, ForeignKeySchema> ForeignKeys,
         IReadOnlyDictionary<string, TriggerSchema> Triggers
     );
 }

@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 namespace CoreRelm.Attributes
 {
     /// <summary>
-    /// Specifies that the decorated class or struct must have compound unique values for the specified properties.
+    /// Specifies that the decorated class or struct must have a compound unique index for the named properties. Useful 
+    /// when making a unique index and only want to specify the properties that are part of the unique index without needing 
+    /// to specify all the other parameters of the RelmIndex attribute. This is intended for use with the Relm object database.
     /// </summary>
     /// <remarks>Apply this attribute to a class or struct to indicate that a combination of the specified
     /// properties should be unique across all instances. This is typically used to enforce uniqueness constraints in

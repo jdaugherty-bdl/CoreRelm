@@ -813,7 +813,11 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
 
                     // if we opened the transaction here, just commit it because we're going to be closing it right away
                     if (openedNewTransaction)
+                    {
                         contextOptions.DatabaseTransaction?.Commit();
+                        contextOptions.DatabaseTransaction?.Dispose();
+                        contextOptions.SetDatabaseTransaction(null);
+                    }
 
                     return (T?)result;
                 }
@@ -822,7 +826,11 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
             {
                 // there was an error, roll back the transaction
                 if (useTransaction)
+                {
                     contextOptions.DatabaseTransaction?.Rollback();
+                    contextOptions.DatabaseTransaction?.Dispose();
+                    contextOptions.SetDatabaseTransaction(null);
+                }
 
                 // if we want exceptions to be thrown, rethrow the current one, otherwise just record the error
                 if (throwException)
@@ -838,7 +846,11 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
             {
                 // there was an error, roll back the transaction
                 if (useTransaction)
+                {
                     contextOptions.DatabaseTransaction?.Rollback();
+                    contextOptions.DatabaseTransaction?.Dispose();
+                    contextOptions.SetDatabaseTransaction(null);
+                }
 
                 // if we want exceptions to be thrown, rethrow the current one, otherwise just record the error
                 if (throwException)
@@ -858,6 +870,8 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
                     && contextOptions.DatabaseConnection != null)
                 {
                     await contextOptions.DatabaseConnection.CloseAsync();
+                    contextOptions.DatabaseConnection.Dispose();
+                    contextOptions.SetDatabaseConnection(null);
                 }
             }
         }
