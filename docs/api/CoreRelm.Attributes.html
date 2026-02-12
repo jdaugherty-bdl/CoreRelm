@@ -122,6 +122,23 @@ between application layers or services.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="CoreRelm.Attributes.RelmIndex.html">RelmIndex</a></dt>
+      <dd><p>Non-keyed Relm index attribute for indexes that do not need to be paired with others.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="CoreRelm.Attributes.RelmIndexColumn-1.html">RelmIndexColumn&lt;T&gt;</a></dt>
+      <dd><p>Represents a key definition for an index column, including optional length, expression, and sort direction
+settings.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="CoreRelm.Attributes.RelmIndexNamed.html">RelmIndexNamed</a></dt>
+      <dd><p>Non-keyed simple Relm index attribute for indexes only name columns and index properties, but
+don't need any per-column settings.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="CoreRelm.Attributes.RelmIndex-1.html">RelmIndex&lt;T&gt;</a></dt>
       <dd><p>Specifies that the decorated class or struct should have an index created on the specified properties when used
 with a Relm database.</p>
 </dd>
@@ -137,8 +154,16 @@ with a Relm database.</p>
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="CoreRelm.Attributes.RelmTrigger.html">RelmTrigger</a></dt>
+      <dd><p>Specifies a trigger configuration for a property or struct, defining when and how a trigger should be executed
+within the Relm framework.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="CoreRelm.Attributes.RelmUnique.html">RelmUnique</a></dt>
-      <dd><p>Specifies that the decorated class or struct must have compound unique values for the specified properties.</p>
+      <dd><p>Specifies that the decorated class or struct must have a compound unique index for the named properties. Useful
+when making a unique index and only want to specify the properties that are part of the unique index without needing
+to specify all the other parameters of the RelmIndex attribute. This is intended for use with the Relm object database.</p>
 </dd>
     </dl>
 

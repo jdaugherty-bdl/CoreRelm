@@ -157,8 +157,8 @@ Class IndexColumnSchema  <a class="header-action link-secondary" title="View sou
 
   <a id="CoreRelm_Models_Migrations_Introspection_IndexColumnSchema__ctor_" data-uid="CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.#ctor*"></a>
 
-  <h3 id="CoreRelm_Models_Migrations_Introspection_IndexColumnSchema__ctor_System_String_System_Int32_System_String_" data-uid="CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.#ctor(System.String,System.Int32,System.String)">
-  IndexColumnSchema(string, int, string?)
+  <h3 id="CoreRelm_Models_Migrations_Introspection_IndexColumnSchema__ctor_System_String_System_String_System_String_System_String_System_Int32_" data-uid="CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.#ctor(System.String,System.String,System.String,System.String,System.Int32)">
+  IndexColumnSchema(string, string?, string?, string?, int)
   <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexColumnSchema.cs/#L9"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -166,16 +166,20 @@ Class IndexColumnSchema  <a class="header-action link-secondary" title="View sou
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IndexColumnSchema(string ColumnName, int SeqInIndex, string? Collation)</code></pre>
+    <pre><code class="lang-csharp hljs">public IndexColumnSchema(string ColumnName, string? SubPart, string? Collation, string? Expression, int SeqInIndex)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>ColumnName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
-    <dt><code>SeqInIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dt><code>SubPart</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
     <dt><code>Collation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>Expression</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>SeqInIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd></dd>
   </dl>
 
@@ -256,11 +260,42 @@ Class IndexColumnSchema  <a class="header-action link-secondary" title="View sou
 
 
 
+  <a id="CoreRelm_Models_Migrations_Introspection_IndexColumnSchema_Expression_" data-uid="CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.Expression*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Introspection_IndexColumnSchema_Expression" data-uid="CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.Expression">
+  Expression
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexColumnSchema.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? Expression { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="CoreRelm_Models_Migrations_Introspection_IndexColumnSchema_SeqInIndex_" data-uid="CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.SeqInIndex*"></a>
 
   <h3 id="CoreRelm_Models_Migrations_Introspection_IndexColumnSchema_SeqInIndex" data-uid="CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.SeqInIndex">
   SeqInIndex
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexColumnSchema.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexColumnSchema.cs/#L14"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -277,6 +312,37 @@ Class IndexColumnSchema  <a class="header-action link-secondary" title="View sou
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_Migrations_Introspection_IndexColumnSchema_SubPart_" data-uid="CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.SubPart*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Introspection_IndexColumnSchema_SubPart" data-uid="CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.SubPart">
+  SubPart
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexColumnSchema.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? SubPart { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
   </dl>
 

@@ -202,8 +202,8 @@ Class DefaultRelmMigrationSqlProvider  <a class="header-action link-secondary" t
 
   <a id="CoreRelm_Migrations_DefaultRelmMigrationSqlProvider_Generate_" data-uid="CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate*"></a>
 
-  <h3 id="CoreRelm_Migrations_DefaultRelmMigrationSqlProvider_Generate_CoreRelm_Models_Migrations_MigrationOptions_System_String_System_DateTime_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__" data-uid="CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.DateTime,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})">
-  Generate(MigrationOptions, string, DateTime, string, List&lt;ValidatedModelType&gt;)
+  <h3 id="CoreRelm_Migrations_DefaultRelmMigrationSqlProvider_Generate_System_DateTime_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__" data-uid="CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.Generate(System.DateTime,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})">
+  Generate(DateTime, string, List&lt;ValidatedModelType&gt;)
   <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Migrations/DefaultRelmMigrationSqlProvider.cs/#L74"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -211,15 +211,11 @@ Class DefaultRelmMigrationSqlProvider  <a class="header-action link-secondary" t
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MigrationGenerateResult Generate(MigrationOptions migrationOptions, string migrationName, DateTime stampUtc, string dbName, List&lt;ValidatedModelType&gt; modelsForDb)</code></pre>
+    <pre><code class="lang-csharp hljs">public MigrationGenerateResult Generate(DateTime stampUtc, string dbName, List&lt;ValidatedModelType&gt; modelsForDb)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>migrationOptions</code> <a class="xref" href="CoreRelm.Models.Migrations.MigrationOptions.html">MigrationOptions</a></dt>
-    <dd></dd>
-    <dt><code>migrationName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
     <dt><code>stampUtc</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
     <dd></dd>
     <dt><code>dbName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
@@ -246,24 +242,20 @@ Class DefaultRelmMigrationSqlProvider  <a class="header-action link-secondary" t
 
   <a id="CoreRelm_Migrations_DefaultRelmMigrationSqlProvider_GenerateAsync_" data-uid="CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.GenerateAsync*"></a>
 
-  <h3 id="CoreRelm_Migrations_DefaultRelmMigrationSqlProvider_GenerateAsync_CoreRelm_Models_Migrations_MigrationOptions_System_String_System_DateTime_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__" data-uid="CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.GenerateAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.DateTime,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})">
-  GenerateAsync(MigrationOptions, string, DateTime, string, List&lt;ValidatedModelType&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Migrations/DefaultRelmMigrationSqlProvider.cs/#L90"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Migrations_DefaultRelmMigrationSqlProvider_GenerateAsync_System_DateTime_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__" data-uid="CoreRelm.Migrations.DefaultRelmMigrationSqlProvider.GenerateAsync(System.DateTime,System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})">
+  GenerateAsync(DateTime, string, List&lt;ValidatedModelType&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Migrations/DefaultRelmMigrationSqlProvider.cs/#L88"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;MigrationGenerateResult&gt; GenerateAsync(MigrationOptions migrationOptions, string migrationName, DateTime stampUtc, string dbName, List&lt;ValidatedModelType&gt; modelsForDb)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;MigrationGenerateResult&gt; GenerateAsync(DateTime stampUtc, string dbName, List&lt;ValidatedModelType&gt; modelsForDb)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>migrationOptions</code> <a class="xref" href="CoreRelm.Models.Migrations.MigrationOptions.html">MigrationOptions</a></dt>
-    <dd></dd>
-    <dt><code>migrationName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
     <dt><code>stampUtc</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
     <dd></dd>
     <dt><code>dbName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>

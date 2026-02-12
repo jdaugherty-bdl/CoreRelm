@@ -62,17 +62,17 @@ items:
   namespace: CoreRelm.RelmInternal.Helpers.Migrations.Execution
   example: []
   syntax:
-    content: public Task ExecuteScriptAsync(IRelmContext context, string sql, CancellationToken ct = default)
+    content: public Task ExecuteScriptAsync(IRelmContext context, string sql, CancellationToken cancellationToken = default)
     parameters:
     - id: context
       type: CoreRelm.Interfaces.IRelmContext
     - id: sql
       type: System.String
-    - id: ct
+    - id: cancellationToken
       type: System.Threading.CancellationToken
     return:
       type: System.Threading.Tasks.Task
-    content.vb: Public Function ExecuteScriptAsync(context As IRelmContext, sql As String, ct As CancellationToken = Nothing) As Task
+    content.vb: Public Function ExecuteScriptAsync(context As IRelmContext, sql As String, cancellationToken As CancellationToken = Nothing) As Task
   overload: CoreRelm.RelmInternal.Helpers.Migrations.Execution.MySqlScriptRunner.ExecuteScriptAsync*
   implements:
   - CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync(CoreRelm.Interfaces.IRelmContext,System.String,System.Threading.CancellationToken)

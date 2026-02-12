@@ -129,14 +129,14 @@ items:
   namespace: CoreRelm.Models.Migrations.Execution
   syntax:
     content: >-
-      [RelmColumn(null, null, 255, null, false, false, false, true, null, false, false, false, false)]
+      [RelmColumn(null, MySqlDbType.VarChar, null, 255, null, false, false, false, true, null, false, false)]
 
       public string FileName { get; init; }
     parameters: []
     return:
       type: System.String
     content.vb: >-
-      <RelmColumn(Nothing, Nothing, 255, Nothing, False, False, False, True, Nothing, False, False, False, False)>
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, 255, Nothing, False, False, False, True, Nothing, False, False)>
 
       Public Property FileName As String
   overload: CoreRelm.Models.Migrations.Execution.AppliedMigration.FileName*
@@ -164,14 +164,14 @@ items:
   namespace: CoreRelm.Models.Migrations.Execution
   syntax:
     content: >-
-      [RelmColumn("char", null, 64, null, false, false, false, false, null, false, false, false, false)]
+      [RelmColumn("char", MySqlDbType.VarChar, null, 64, null, false, false, false, false, null, false, false)]
 
       public string ChecksumSha256 { get; init; }
     parameters: []
     return:
       type: System.String
     content.vb: >-
-      <RelmColumn("char", Nothing, 64, Nothing, False, False, False, False, Nothing, False, False, False, False)>
+      <RelmColumn("char", MySqlDbType.VarChar, Nothing, 64, Nothing, False, False, False, False, Nothing, False, False)>
 
       Public Property ChecksumSha256 As String
   overload: CoreRelm.Models.Migrations.Execution.AppliedMigration.ChecksumSha256*
@@ -199,14 +199,14 @@ items:
   namespace: CoreRelm.Models.Migrations.Execution
   syntax:
     content: >-
-      [RelmColumn(null, null, -1, null, false, false, false, false, null, false, false, false, false)]
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, false, false, false, false, null, false, false)]
 
       public DateTime AppliedUtc { get; init; }
     parameters: []
     return:
       type: System.DateTime
     content.vb: >-
-      <RelmColumn(Nothing, Nothing, -1, Nothing, False, False, False, False, Nothing, False, False, False, False)>
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, False, False, False, False, Nothing, False, False)>
 
       Public Property AppliedUtc As Date
   overload: CoreRelm.Models.Migrations.Execution.AppliedMigration.AppliedUtc*

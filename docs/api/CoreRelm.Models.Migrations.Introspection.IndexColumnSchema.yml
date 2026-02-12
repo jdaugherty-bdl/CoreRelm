@@ -5,10 +5,12 @@ items:
   id: IndexColumnSchema
   parent: CoreRelm.Models.Migrations.Introspection
   children:
-  - CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.#ctor(System.String,System.Int32,System.String)
+  - CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.#ctor(System.String,System.String,System.String,System.String,System.Int32)
   - CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.Collation
   - CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.ColumnName
+  - CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.Expression
   - CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.SeqInIndex
+  - CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.SubPart
   langs:
   - csharp
   - vb
@@ -41,16 +43,16 @@ items:
   - System.Object.GetType
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.#ctor(System.String,System.Int32,System.String)
-  commentId: M:CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.#ctor(System.String,System.Int32,System.String)
-  id: '#ctor(System.String,System.Int32,System.String)'
+- uid: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.#ctor(System.String,System.String,System.String,System.String,System.Int32)
+  commentId: M:CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.#ctor(System.String,System.String,System.String,System.String,System.Int32)
+  id: '#ctor(System.String,System.String,System.String,System.String,System.Int32)'
   parent: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema
   langs:
   - csharp
   - vb
-  name: IndexColumnSchema(string, int, string?)
-  nameWithType: IndexColumnSchema.IndexColumnSchema(string, int, string?)
-  fullName: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.IndexColumnSchema(string, int, string?)
+  name: IndexColumnSchema(string, string?, string?, string?, int)
+  nameWithType: IndexColumnSchema.IndexColumnSchema(string, string?, string?, string?, int)
+  fullName: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.IndexColumnSchema(string, string?, string?, string?, int)
   type: Constructor
   source:
     remote:
@@ -64,19 +66,23 @@ items:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
   syntax:
-    content: public IndexColumnSchema(string ColumnName, int SeqInIndex, string? Collation)
+    content: public IndexColumnSchema(string ColumnName, string? SubPart, string? Collation, string? Expression, int SeqInIndex)
     parameters:
     - id: ColumnName
       type: System.String
-    - id: SeqInIndex
-      type: System.Int32
+    - id: SubPart
+      type: System.String
     - id: Collation
       type: System.String
-    content.vb: Public Sub New(ColumnName As String, SeqInIndex As Integer, Collation As String)
+    - id: Expression
+      type: System.String
+    - id: SeqInIndex
+      type: System.Int32
+    content.vb: Public Sub New(ColumnName As String, SubPart As String, Collation As String, Expression As String, SeqInIndex As Integer)
   overload: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.#ctor*
-  nameWithType.vb: IndexColumnSchema.New(String, Integer, String)
-  fullName.vb: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.New(String, Integer, String)
-  name.vb: New(String, Integer, String)
+  nameWithType.vb: IndexColumnSchema.New(String, String, String, String, Integer)
+  fullName.vb: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.New(String, String, String, String, Integer)
+  name.vb: New(String, String, String, String, Integer)
 - uid: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.ColumnName
   commentId: P:CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.ColumnName
   id: ColumnName
@@ -106,35 +112,35 @@ items:
       type: System.String
     content.vb: Public Property ColumnName As String
   overload: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.ColumnName*
-- uid: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.SeqInIndex
-  commentId: P:CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.SeqInIndex
-  id: SeqInIndex
+- uid: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.SubPart
+  commentId: P:CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.SubPart
+  id: SubPart
   parent: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema
   langs:
   - csharp
   - vb
-  name: SeqInIndex
-  nameWithType: IndexColumnSchema.SeqInIndex
-  fullName: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.SeqInIndex
+  name: SubPart
+  nameWithType: IndexColumnSchema.SubPart
+  fullName: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.SubPart
   type: Property
   source:
     remote:
       path: CoreRelm/Models/Migrations/Introspection/IndexColumnSchema.cs
       branch: master
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: SeqInIndex
+    id: SubPart
     path: ../CoreRelm/Models/Migrations/Introspection/IndexColumnSchema.cs
     startLine: 10
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
   syntax:
-    content: public int SeqInIndex { get; init; }
+    content: public string? SubPart { get; init; }
     parameters: []
     return:
-      type: System.Int32
-    content.vb: Public Property SeqInIndex As Integer
-  overload: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.SeqInIndex*
+      type: System.String
+    content.vb: Public Property SubPart As String
+  overload: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.SubPart*
 - uid: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.Collation
   commentId: P:CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.Collation
   id: Collation
@@ -164,6 +170,64 @@ items:
       type: System.String
     content.vb: Public Property Collation As String
   overload: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.Collation*
+- uid: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.Expression
+  commentId: P:CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.Expression
+  id: Expression
+  parent: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema
+  langs:
+  - csharp
+  - vb
+  name: Expression
+  nameWithType: IndexColumnSchema.Expression
+  fullName: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.Expression
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Introspection/IndexColumnSchema.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: Expression
+    path: ../CoreRelm/Models/Migrations/Introspection/IndexColumnSchema.cs
+    startLine: 12
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Introspection
+  syntax:
+    content: public string? Expression { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Expression As String
+  overload: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.Expression*
+- uid: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.SeqInIndex
+  commentId: P:CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.SeqInIndex
+  id: SeqInIndex
+  parent: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema
+  langs:
+  - csharp
+  - vb
+  name: SeqInIndex
+  nameWithType: IndexColumnSchema.SeqInIndex
+  fullName: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.SeqInIndex
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Introspection/IndexColumnSchema.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: SeqInIndex
+    path: ../CoreRelm/Models/Migrations/Introspection/IndexColumnSchema.cs
+    startLine: 13
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Introspection
+  syntax:
+    content: public int SeqInIndex { get; init; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property SeqInIndex As Integer
+  overload: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.SeqInIndex*
 references:
 - uid: CoreRelm.Models.Migrations.Introspection
   commentId: N:CoreRelm.Models.Migrations.Introspection
@@ -479,7 +543,7 @@ references:
   - name: )
 - uid: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.#ctor*
   commentId: Overload:CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.#ctor
-  href: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.html#CoreRelm_Models_Migrations_Introspection_IndexColumnSchema__ctor_System_String_System_Int32_System_String_
+  href: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.html#CoreRelm_Models_Migrations_Introspection_IndexColumnSchema__ctor_System_String_System_String_System_String_System_String_System_Int32_
   name: IndexColumnSchema
   nameWithType: IndexColumnSchema.IndexColumnSchema
   fullName: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.IndexColumnSchema
@@ -514,15 +578,27 @@ references:
   name: ColumnName
   nameWithType: IndexColumnSchema.ColumnName
   fullName: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.ColumnName
-- uid: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.SeqInIndex*
-  commentId: Overload:CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.SeqInIndex
-  href: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.html#CoreRelm_Models_Migrations_Introspection_IndexColumnSchema_SeqInIndex
-  name: SeqInIndex
-  nameWithType: IndexColumnSchema.SeqInIndex
-  fullName: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.SeqInIndex
+- uid: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.SubPart*
+  commentId: Overload:CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.SubPart
+  href: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.html#CoreRelm_Models_Migrations_Introspection_IndexColumnSchema_SubPart
+  name: SubPart
+  nameWithType: IndexColumnSchema.SubPart
+  fullName: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.SubPart
 - uid: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.Collation*
   commentId: Overload:CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.Collation
   href: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.html#CoreRelm_Models_Migrations_Introspection_IndexColumnSchema_Collation
   name: Collation
   nameWithType: IndexColumnSchema.Collation
   fullName: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.Collation
+- uid: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.Expression*
+  commentId: Overload:CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.Expression
+  href: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.html#CoreRelm_Models_Migrations_Introspection_IndexColumnSchema_Expression
+  name: Expression
+  nameWithType: IndexColumnSchema.Expression
+  fullName: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.Expression
+- uid: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.SeqInIndex*
+  commentId: Overload:CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.SeqInIndex
+  href: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.html#CoreRelm_Models_Migrations_Introspection_IndexColumnSchema_SeqInIndex
+  name: SeqInIndex
+  nameWithType: IndexColumnSchema.SeqInIndex
+  fullName: CoreRelm.Models.Migrations.Introspection.IndexColumnSchema.SeqInIndex

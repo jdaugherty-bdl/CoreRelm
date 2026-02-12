@@ -89,7 +89,7 @@
 
 
   <h1 id="CoreRelm_RelmInternal_Helpers_Migrations_MigrationPlans_DesiredSchemaBuilder" data-uid="CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder" class="text-break">
-Class DesiredSchemaBuilder  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Helpers/Migrations/MigrationPlans/DesiredSchemaBuilder.cs/#L17"><i class="bi bi-code-slash"></i></a>
+Class DesiredSchemaBuilder  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Helpers/Migrations/MigrationPlans/DesiredSchemaBuilder.cs/#L22"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -159,19 +159,19 @@ Class DesiredSchemaBuilder  <a class="header-action link-secondary" title="View 
 
   <h3 id="CoreRelm_RelmInternal_Helpers_Migrations_MigrationPlans_DesiredSchemaBuilder_Build_System_String_System_Collections_Generic_IReadOnlyList_CoreRelm_Models_Migrations_ValidatedModelType__" data-uid="CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder.Build(System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType})">
   Build(string, IReadOnlyList&lt;ValidatedModelType&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Helpers/Migrations/MigrationPlans/DesiredSchemaBuilder.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Helpers/Migrations/MigrationPlans/DesiredSchemaBuilder.cs/#L31"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SchemaSnapshot Build(string databaseName, IReadOnlyList&lt;ValidatedModelType&gt; modelsForDb)</code></pre>
+    <pre><code class="lang-csharp hljs">public SchemaSnapshot Build(string databaseFilter, IReadOnlyList&lt;ValidatedModelType&gt; modelsForDb)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>databaseName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dt><code>databaseFilter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
     <dt><code>modelsForDb</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="CoreRelm.Models.Migrations.ValidatedModelType.html">ValidatedModelType</a>&gt;</dt>
     <dd></dd>
@@ -197,19 +197,19 @@ Class DesiredSchemaBuilder  <a class="header-action link-secondary" title="View 
 
   <h3 id="CoreRelm_RelmInternal_Helpers_Migrations_MigrationPlans_DesiredSchemaBuilder_BuildAsync_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__" data-uid="CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder.BuildAsync(System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})">
   BuildAsync(string, List&lt;ValidatedModelType&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Helpers/Migrations/MigrationPlans/DesiredSchemaBuilder.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Helpers/Migrations/MigrationPlans/DesiredSchemaBuilder.cs/#L24"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;SchemaSnapshot&gt; BuildAsync(string dbName, List&lt;ValidatedModelType&gt; modelsForDb)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;SchemaSnapshot&gt; BuildAsync(string databaseFilter, List&lt;ValidatedModelType&gt; modelsForDb)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>dbName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dt><code>databaseFilter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
     <dt><code>modelsForDb</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="CoreRelm.Models.Migrations.ValidatedModelType.html">ValidatedModelType</a>&gt;</dt>
     <dd></dd>
@@ -235,7 +235,7 @@ Class DesiredSchemaBuilder  <a class="header-action link-secondary" title="View 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Helpers/Migrations/MigrationPlans/DesiredSchemaBuilder.cs/#L17" class="edit-link">Edit this page</a>
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Helpers/Migrations/MigrationPlans/DesiredSchemaBuilder.cs/#L22" class="edit-link">Edit this page</a>
         </div>
 
 

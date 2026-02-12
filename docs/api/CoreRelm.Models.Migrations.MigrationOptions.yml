@@ -7,12 +7,14 @@ items:
   children:
   - CoreRelm.Models.Migrations.MigrationOptions.Apply
   - CoreRelm.Models.Migrations.MigrationOptions.CancelToken
-  - CoreRelm.Models.Migrations.MigrationOptions.ConnectionString
   - CoreRelm.Models.Migrations.MigrationOptions.ConnectionStringTemplate
   - CoreRelm.Models.Migrations.MigrationOptions.Destructive
   - CoreRelm.Models.Migrations.MigrationOptions.JsonFlag
+  - CoreRelm.Models.Migrations.MigrationOptions.JsonPath
+  - CoreRelm.Models.Migrations.MigrationOptions.MigrationsPath
   - CoreRelm.Models.Migrations.MigrationOptions.ModelSetsPath
   - CoreRelm.Models.Migrations.MigrationOptions.Quiet
+  - CoreRelm.Models.Migrations.MigrationOptions.SaveSystemMigrations
   - CoreRelm.Models.Migrations.MigrationOptions.SetName
   langs:
   - csharp
@@ -45,35 +47,6 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: CoreRelm.Models.Migrations.MigrationOptions.ConnectionString
-  commentId: P:CoreRelm.Models.Migrations.MigrationOptions.ConnectionString
-  id: ConnectionString
-  parent: CoreRelm.Models.Migrations.MigrationOptions
-  langs:
-  - csharp
-  - vb
-  name: ConnectionString
-  nameWithType: MigrationOptions.ConnectionString
-  fullName: CoreRelm.Models.Migrations.MigrationOptions.ConnectionString
-  type: Property
-  source:
-    remote:
-      path: CoreRelm/Models/Migrations/MigrationOptions.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: ConnectionString
-    path: ../CoreRelm/Models/Migrations/MigrationOptions.cs
-    startLine: 10
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Models.Migrations
-  syntax:
-    content: public string? ConnectionString { get; set; }
-    parameters: []
-    return:
-      type: System.String
-    content.vb: Public Property ConnectionString As String
-  overload: CoreRelm.Models.Migrations.MigrationOptions.ConnectionString*
 - uid: CoreRelm.Models.Migrations.MigrationOptions.ConnectionStringTemplate
   commentId: P:CoreRelm.Models.Migrations.MigrationOptions.ConnectionStringTemplate
   id: ConnectionStringTemplate
@@ -92,7 +65,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ConnectionStringTemplate
     path: ../CoreRelm/Models/Migrations/MigrationOptions.cs
-    startLine: 11
+    startLine: 10
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations
@@ -121,7 +94,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetName
     path: ../CoreRelm/Models/Migrations/MigrationOptions.cs
-    startLine: 12
+    startLine: 11
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations
@@ -132,6 +105,35 @@ items:
       type: System.String
     content.vb: Public Property SetName As String
   overload: CoreRelm.Models.Migrations.MigrationOptions.SetName*
+- uid: CoreRelm.Models.Migrations.MigrationOptions.MigrationsPath
+  commentId: P:CoreRelm.Models.Migrations.MigrationOptions.MigrationsPath
+  id: MigrationsPath
+  parent: CoreRelm.Models.Migrations.MigrationOptions
+  langs:
+  - csharp
+  - vb
+  name: MigrationsPath
+  nameWithType: MigrationOptions.MigrationsPath
+  fullName: CoreRelm.Models.Migrations.MigrationOptions.MigrationsPath
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/MigrationOptions.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: MigrationsPath
+    path: ../CoreRelm/Models/Migrations/MigrationOptions.cs
+    startLine: 12
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations
+  syntax:
+    content: public string? MigrationsPath { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property MigrationsPath As String
+  overload: CoreRelm.Models.Migrations.MigrationOptions.MigrationsPath*
 - uid: CoreRelm.Models.Migrations.MigrationOptions.ModelSetsPath
   commentId: P:CoreRelm.Models.Migrations.MigrationOptions.ModelSetsPath
   id: ModelSetsPath
@@ -219,6 +221,35 @@ items:
       type: System.Boolean
     content.vb: Public Property JsonFlag As Boolean
   overload: CoreRelm.Models.Migrations.MigrationOptions.JsonFlag*
+- uid: CoreRelm.Models.Migrations.MigrationOptions.JsonPath
+  commentId: P:CoreRelm.Models.Migrations.MigrationOptions.JsonPath
+  id: JsonPath
+  parent: CoreRelm.Models.Migrations.MigrationOptions
+  langs:
+  - csharp
+  - vb
+  name: JsonPath
+  nameWithType: MigrationOptions.JsonPath
+  fullName: CoreRelm.Models.Migrations.MigrationOptions.JsonPath
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/MigrationOptions.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: JsonPath
+    path: ../CoreRelm/Models/Migrations/MigrationOptions.cs
+    startLine: 16
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations
+  syntax:
+    content: public string? JsonPath { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property JsonPath As String
+  overload: CoreRelm.Models.Migrations.MigrationOptions.JsonPath*
 - uid: CoreRelm.Models.Migrations.MigrationOptions.Destructive
   commentId: P:CoreRelm.Models.Migrations.MigrationOptions.Destructive
   id: Destructive
@@ -237,7 +268,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Destructive
     path: ../CoreRelm/Models/Migrations/MigrationOptions.cs
-    startLine: 16
+    startLine: 17
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations
@@ -266,7 +297,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Apply
     path: ../CoreRelm/Models/Migrations/MigrationOptions.cs
-    startLine: 17
+    startLine: 18
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations
@@ -277,6 +308,35 @@ items:
       type: System.Boolean
     content.vb: Public Property Apply As Boolean
   overload: CoreRelm.Models.Migrations.MigrationOptions.Apply*
+- uid: CoreRelm.Models.Migrations.MigrationOptions.SaveSystemMigrations
+  commentId: P:CoreRelm.Models.Migrations.MigrationOptions.SaveSystemMigrations
+  id: SaveSystemMigrations
+  parent: CoreRelm.Models.Migrations.MigrationOptions
+  langs:
+  - csharp
+  - vb
+  name: SaveSystemMigrations
+  nameWithType: MigrationOptions.SaveSystemMigrations
+  fullName: CoreRelm.Models.Migrations.MigrationOptions.SaveSystemMigrations
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/MigrationOptions.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: SaveSystemMigrations
+    path: ../CoreRelm/Models/Migrations/MigrationOptions.cs
+    startLine: 19
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations
+  syntax:
+    content: public bool SaveSystemMigrations { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property SaveSystemMigrations As Boolean
+  overload: CoreRelm.Models.Migrations.MigrationOptions.SaveSystemMigrations*
 - uid: CoreRelm.Models.Migrations.MigrationOptions.CancelToken
   commentId: P:CoreRelm.Models.Migrations.MigrationOptions.CancelToken
   id: CancelToken
@@ -295,7 +355,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: CancelToken
     path: ../CoreRelm/Models/Migrations/MigrationOptions.cs
-    startLine: 18
+    startLine: 20
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations
@@ -574,12 +634,12 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: CoreRelm.Models.Migrations.MigrationOptions.ConnectionString*
-  commentId: Overload:CoreRelm.Models.Migrations.MigrationOptions.ConnectionString
-  href: CoreRelm.Models.Migrations.MigrationOptions.html#CoreRelm_Models_Migrations_MigrationOptions_ConnectionString
-  name: ConnectionString
-  nameWithType: MigrationOptions.ConnectionString
-  fullName: CoreRelm.Models.Migrations.MigrationOptions.ConnectionString
+- uid: CoreRelm.Models.Migrations.MigrationOptions.ConnectionStringTemplate*
+  commentId: Overload:CoreRelm.Models.Migrations.MigrationOptions.ConnectionStringTemplate
+  href: CoreRelm.Models.Migrations.MigrationOptions.html#CoreRelm_Models_Migrations_MigrationOptions_ConnectionStringTemplate
+  name: ConnectionStringTemplate
+  nameWithType: MigrationOptions.ConnectionStringTemplate
+  fullName: CoreRelm.Models.Migrations.MigrationOptions.ConnectionStringTemplate
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -591,18 +651,18 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
-- uid: CoreRelm.Models.Migrations.MigrationOptions.ConnectionStringTemplate*
-  commentId: Overload:CoreRelm.Models.Migrations.MigrationOptions.ConnectionStringTemplate
-  href: CoreRelm.Models.Migrations.MigrationOptions.html#CoreRelm_Models_Migrations_MigrationOptions_ConnectionStringTemplate
-  name: ConnectionStringTemplate
-  nameWithType: MigrationOptions.ConnectionStringTemplate
-  fullName: CoreRelm.Models.Migrations.MigrationOptions.ConnectionStringTemplate
 - uid: CoreRelm.Models.Migrations.MigrationOptions.SetName*
   commentId: Overload:CoreRelm.Models.Migrations.MigrationOptions.SetName
   href: CoreRelm.Models.Migrations.MigrationOptions.html#CoreRelm_Models_Migrations_MigrationOptions_SetName
   name: SetName
   nameWithType: MigrationOptions.SetName
   fullName: CoreRelm.Models.Migrations.MigrationOptions.SetName
+- uid: CoreRelm.Models.Migrations.MigrationOptions.MigrationsPath*
+  commentId: Overload:CoreRelm.Models.Migrations.MigrationOptions.MigrationsPath
+  href: CoreRelm.Models.Migrations.MigrationOptions.html#CoreRelm_Models_Migrations_MigrationOptions_MigrationsPath
+  name: MigrationsPath
+  nameWithType: MigrationOptions.MigrationsPath
+  fullName: CoreRelm.Models.Migrations.MigrationOptions.MigrationsPath
 - uid: CoreRelm.Models.Migrations.MigrationOptions.ModelSetsPath*
   commentId: Overload:CoreRelm.Models.Migrations.MigrationOptions.ModelSetsPath
   href: CoreRelm.Models.Migrations.MigrationOptions.html#CoreRelm_Models_Migrations_MigrationOptions_ModelSetsPath
@@ -632,6 +692,12 @@ references:
   name: JsonFlag
   nameWithType: MigrationOptions.JsonFlag
   fullName: CoreRelm.Models.Migrations.MigrationOptions.JsonFlag
+- uid: CoreRelm.Models.Migrations.MigrationOptions.JsonPath*
+  commentId: Overload:CoreRelm.Models.Migrations.MigrationOptions.JsonPath
+  href: CoreRelm.Models.Migrations.MigrationOptions.html#CoreRelm_Models_Migrations_MigrationOptions_JsonPath
+  name: JsonPath
+  nameWithType: MigrationOptions.JsonPath
+  fullName: CoreRelm.Models.Migrations.MigrationOptions.JsonPath
 - uid: CoreRelm.Models.Migrations.MigrationOptions.Destructive*
   commentId: Overload:CoreRelm.Models.Migrations.MigrationOptions.Destructive
   href: CoreRelm.Models.Migrations.MigrationOptions.html#CoreRelm_Models_Migrations_MigrationOptions_Destructive
@@ -644,6 +710,12 @@ references:
   name: Apply
   nameWithType: MigrationOptions.Apply
   fullName: CoreRelm.Models.Migrations.MigrationOptions.Apply
+- uid: CoreRelm.Models.Migrations.MigrationOptions.SaveSystemMigrations*
+  commentId: Overload:CoreRelm.Models.Migrations.MigrationOptions.SaveSystemMigrations
+  href: CoreRelm.Models.Migrations.MigrationOptions.html#CoreRelm_Models_Migrations_MigrationOptions_SaveSystemMigrations
+  name: SaveSystemMigrations
+  nameWithType: MigrationOptions.SaveSystemMigrations
+  fullName: CoreRelm.Models.Migrations.MigrationOptions.SaveSystemMigrations
 - uid: CoreRelm.Models.Migrations.MigrationOptions.CancelToken*
   commentId: Overload:CoreRelm.Models.Migrations.MigrationOptions.CancelToken
   href: CoreRelm.Models.Migrations.MigrationOptions.html#CoreRelm_Models_Migrations_MigrationOptions_CancelToken

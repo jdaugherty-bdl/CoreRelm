@@ -21,11 +21,16 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: RelmUnique
     path: ../CoreRelm/Attributes/RelmUnique.cs
-    startLine: 14
+    startLine: 16
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
-  summary: Specifies that the decorated class or struct must have compound unique values for the specified properties.
+  summary: >-
+    Specifies that the decorated class or struct must have a compound unique index for the named properties. Useful 
+
+    when making a unique index and only want to specify the properties that are part of the unique index without needing 
+
+    to specify all the other parameters of the RelmIndex attribute. This is intended for use with the Relm object database.
   remarks: >-
     Apply this attribute to a class or struct to indicate that a combination of the specified
         properties should be unique across all instances. This is typically used to enforce uniqueness constraints in
@@ -113,7 +118,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ConstraintProperties
     path: ../CoreRelm/Attributes/RelmUnique.cs
-    startLine: 20
+    startLine: 22
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
@@ -144,7 +149,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Attributes/RelmUnique.cs
-    startLine: 27
+    startLine: 29
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes

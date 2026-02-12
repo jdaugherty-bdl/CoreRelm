@@ -113,14 +113,14 @@ items:
   namespace: CoreRelm.Models.Migrations.Introspection
   syntax:
     content: >-
-      [RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
 
       public string? ConstraintName { get; set; }
     parameters: []
     return:
       type: System.String
     content.vb: >-
-      <RelmColumn(Nothing, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False, False, False)>
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False)>
 
       Public Property ConstraintName As String
   overload: CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.ConstraintName*
@@ -148,14 +148,14 @@ items:
   namespace: CoreRelm.Models.Migrations.Introspection
   syntax:
     content: >-
-      [RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
 
       public string? TableName { get; set; }
     parameters: []
     return:
       type: System.String
     content.vb: >-
-      <RelmColumn(Nothing, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False, False, False)>
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False)>
 
       Public Property TableName As String
   overload: CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.TableName*
@@ -183,14 +183,14 @@ items:
   namespace: CoreRelm.Models.Migrations.Introspection
   syntax:
     content: >-
-      [RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
 
       public string? ColumnName { get; set; }
     parameters: []
     return:
       type: System.String
     content.vb: >-
-      <RelmColumn(Nothing, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False, False, False)>
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False)>
 
       Public Property ColumnName As String
   overload: CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.ColumnName*
@@ -218,14 +218,14 @@ items:
   namespace: CoreRelm.Models.Migrations.Introspection
   syntax:
     content: >-
-      [RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
 
       public IReadOnlyList<string?>? ColumnNames { get; set; }
     parameters: []
     return:
       type: System.Collections.Generic.IReadOnlyList{System.String}
     content.vb: >-
-      <RelmColumn(Nothing, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False, False, False)>
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False)>
 
       Public Property ColumnNames As IReadOnlyList(Of String)
   overload: CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.ColumnNames*
@@ -253,14 +253,14 @@ items:
   namespace: CoreRelm.Models.Migrations.Introspection
   syntax:
     content: >-
-      [RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
 
       public string? ReferencedTableName { get; set; }
     parameters: []
     return:
       type: System.String
     content.vb: >-
-      <RelmColumn(Nothing, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False, False, False)>
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False)>
 
       Public Property ReferencedTableName As String
   overload: CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.ReferencedTableName*
@@ -288,14 +288,14 @@ items:
   namespace: CoreRelm.Models.Migrations.Introspection
   syntax:
     content: >-
-      [RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
 
       public string? ReferencedColumnName { get; set; }
     parameters: []
     return:
       type: System.String
     content.vb: >-
-      <RelmColumn(Nothing, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False, False, False)>
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False)>
 
       Public Property ReferencedColumnName As String
   overload: CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.ReferencedColumnName*
@@ -323,14 +323,14 @@ items:
   namespace: CoreRelm.Models.Migrations.Introspection
   syntax:
     content: >-
-      [RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
 
       public IReadOnlyList<string?>? ReferencedColumnNames { get; set; }
     parameters: []
     return:
       type: System.Collections.Generic.IReadOnlyList{System.String}
     content.vb: >-
-      <RelmColumn(Nothing, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False, False, False)>
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False)>
 
       Public Property ReferencedColumnNames As IReadOnlyList(Of String)
   overload: CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.ReferencedColumnNames*
@@ -358,14 +358,14 @@ items:
   namespace: CoreRelm.Models.Migrations.Introspection
   syntax:
     content: >-
-      [RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
 
       public string? UpdateRule { get; set; }
     parameters: []
     return:
       type: System.String
     content.vb: >-
-      <RelmColumn(Nothing, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False, False, False)>
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False)>
 
       Public Property UpdateRule As String
   overload: CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.UpdateRule*
@@ -393,14 +393,14 @@ items:
   namespace: CoreRelm.Models.Migrations.Introspection
   syntax:
     content: >-
-      [RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
 
       public string? DeleteRule { get; set; }
     parameters: []
     return:
       type: System.String
     content.vb: >-
-      <RelmColumn(Nothing, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False, False, False)>
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False)>
 
       Public Property DeleteRule As String
   overload: CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.DeleteRule*
@@ -428,14 +428,14 @@ items:
   namespace: CoreRelm.Models.Migrations.Introspection
   syntax:
     content: >-
-      [RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
 
       public int OrdinalPosition { get; set; }
     parameters: []
     return:
       type: System.Int32
     content.vb: >-
-      <RelmColumn(Nothing, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False, False, False)>
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False)>
 
       Public Property OrdinalPosition As Integer
   overload: CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.OrdinalPosition*

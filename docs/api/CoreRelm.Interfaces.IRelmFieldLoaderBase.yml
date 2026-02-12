@@ -123,7 +123,7 @@ items:
   summary: Retrieves field data for the specified collection of key arrays.
   example: []
   syntax:
-    content: Dictionary<S[], object> GetFieldData<S>(ICollection<S[]>? keyData)
+    content: 'Dictionary<S[], object>? GetFieldData<S>(ICollection<S[]>? keyData) where S : notnull'
     parameters:
     - id: keyData
       type: System.Collections.Generic.ICollection{{S}[]}
@@ -166,7 +166,7 @@ items:
   summary: Retrieves field data for the specified collection of key arrays.
   example: []
   syntax:
-    content: Task<Dictionary<S[], object>> GetFieldDataAsync<S>(ICollection<S[]>? keyData, CancellationToken cancellationToken = default)
+    content: 'Task<Dictionary<S[], object>?> GetFieldDataAsync<S>(ICollection<S[]>? keyData, CancellationToken cancellationToken = default) where S : notnull'
     parameters:
     - id: keyData
       type: System.Collections.Generic.ICollection{{S}[]}

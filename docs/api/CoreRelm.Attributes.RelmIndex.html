@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class RelmIndex | CoreRelm ">
       
-      <meta name="description" content="Specifies that the decorated class or struct should have an index created on the specified properties when used with a Relm database.">
+      <meta name="description" content="Non-keyed Relm index attribute for indexes that do not need to be paired with others.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="CoreRelm_Attributes_RelmIndex" data-uid="CoreRelm.Attributes.RelmIndex" class="text-break">
-Class RelmIndex  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Attributes/RelmIndex.cs/#L17"><i class="bi bi-code-slash"></i></a>
+Class RelmIndex  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Attributes/RelmIndex.cs/#L81"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,14 +97,13 @@ Class RelmIndex  <a class="header-action link-secondary" title="View source" hre
   <dl><dt>Assembly</dt><dd>CoreRelm.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>Specifies that the decorated class or struct should have an index created on the specified properties when used
-with a Relm database.</p>
+  <div class="markdown summary"><p>Non-keyed Relm index attribute for indexes that do not need to be paired with others.</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[AttributeUsage(AttributeTargets.Class|AttributeTargets.Struct|AttributeTargets.Property, AllowMultiple = true)]
-public sealed class RelmIndex : Attribute</code></pre>
+    <pre><code class="lang-csharp hljs">[AttributeUsage(AttributeTargets.Struct|AttributeTargets.Property)]
+public sealed class RelmIndex : RelmIndexBase</code></pre>
   </div>
 
 
@@ -115,6 +114,7 @@ public sealed class RelmIndex : Attribute</code></pre>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.attribute">Attribute</a></div>
+      <div><a class="xref" href="CoreRelm.Attributes.BaseClasses.RelmIndexBase.html">RelmIndexBase</a></div>
       <div><span class="xref">RelmIndex</span></div>
     </dd>
   </dl>
@@ -124,6 +124,39 @@ public sealed class RelmIndex : Attribute</code></pre>
   <dl class="typelist inheritedMembers">
     <dt>Inherited Members</dt>
     <dd>
+    <div>
+      <a class="xref" href="CoreRelm.Attributes.BaseClasses.RelmIndexBase.html#CoreRelm_Attributes_BaseClasses_RelmIndexBase_IndexKeyHolder">RelmIndexBase.IndexKeyHolder</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Attributes.BaseClasses.RelmIndexBase.html#CoreRelm_Attributes_BaseClasses_RelmIndexBase_Descending">RelmIndexBase.Descending</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Attributes.BaseClasses.RelmIndexBase.html#CoreRelm_Attributes_BaseClasses_RelmIndexBase_IndexedProperties">RelmIndexBase.IndexedProperties</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Attributes.BaseClasses.RelmIndexBase.html#CoreRelm_Attributes_BaseClasses_RelmIndexBase_IndexedPropertyNames">RelmIndexBase.IndexedPropertyNames</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Attributes.BaseClasses.RelmIndexBase.html#CoreRelm_Attributes_BaseClasses_RelmIndexBase_IndexName">RelmIndexBase.IndexName</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Attributes.BaseClasses.RelmIndexBase.html#CoreRelm_Attributes_BaseClasses_RelmIndexBase_IndexTypeValue">RelmIndexBase.IndexTypeValue</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Attributes.BaseClasses.RelmIndexBase.html#CoreRelm_Attributes_BaseClasses_RelmIndexBase_ParserName">RelmIndexBase.ParserName</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Attributes.BaseClasses.RelmIndexBase.html#CoreRelm_Attributes_BaseClasses_RelmIndexBase_Comment">RelmIndexBase.Comment</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Attributes.BaseClasses.RelmIndexBase.html#CoreRelm_Attributes_BaseClasses_RelmIndexBase_IndexVisibility">RelmIndexBase.IndexVisibility</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Attributes.BaseClasses.RelmIndexBase.html#CoreRelm_Attributes_BaseClasses_RelmIndexBase_AlgorithmType">RelmIndexBase.AlgorithmType</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Attributes.BaseClasses.RelmIndexBase.html#CoreRelm_Attributes_BaseClasses_RelmIndexBase_IndexLockOption">RelmIndexBase.IndexLockOption</a>
+    </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.attribute.equals">Attribute.Equals(object)</a>
     </div>
@@ -253,10 +286,8 @@ public sealed class RelmIndex : Attribute</code></pre>
 
 
   <h2 id="CoreRelm_Attributes_RelmIndex_remarks">Remarks</h2>
-  <div class="markdown level0 remarks"><p>Apply this attribute to a class or struct to indicate which properties should be indexed for
-improved query performance. Indexing can speed up lookups on the specified properties but may increase storage
-requirements and affect write performance. This attribute is intended for use with the Relm object
-database.</p>
+  <div class="markdown level0 remarks"><p>Use this when no correlation key is required. All configuration options are identical
+to the generic version, except no index key is supplied.</p>
 </div>
 
 
@@ -266,175 +297,56 @@ database.</p>
 
   <a id="CoreRelm_Attributes_RelmIndex__ctor_" data-uid="CoreRelm.Attributes.RelmIndex.#ctor*"></a>
 
-  <h3 id="CoreRelm_Attributes_RelmIndex__ctor_System_String___System_String_System_Boolean_System_Boolean_" data-uid="CoreRelm.Attributes.RelmIndex.#ctor(System.String[],System.String,System.Boolean,System.Boolean)">
-  RelmIndex(string[]?, string?, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Attributes/RelmIndex.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Attributes_RelmIndex__ctor_System_String_CoreRelm_Enums_Indexes_IndexType_System_Int32_System_String_System_String_CoreRelm_Enums_Indexes_Visibility_System_String_System_String_CoreRelm_Enums_Indexes_Algorithm_CoreRelm_Enums_Indexes_LockOption_" data-uid="CoreRelm.Attributes.RelmIndex.#ctor(System.String,CoreRelm.Enums.Indexes.IndexType,System.Int32,System.String,System.String,CoreRelm.Enums.Indexes.Visibility,System.String,System.String,CoreRelm.Enums.Indexes.Algorithm,CoreRelm.Enums.Indexes.LockOption)">
+  RelmIndex(string, IndexType, int, string, string, Visibility, string, string, Algorithm, LockOption)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Attributes/RelmIndex.cs/#L98"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Initializes a new instance of the RelmIndex class with the specified properties to be indexed.</p>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the non-keyed RelmIndex with optional index configuration settings.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RelmIndex(string[]? indexedProperties = null, string? indexName = null, bool descending = false, bool unique = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public RelmIndex(string indexName = null, Indexes.IndexType indexType = IndexType.None, int keyBlockSize = -1, string parserName = null, string comment = null, Indexes.Visibility visibility = Visibility.None, string engineAttribute = null, string secondaryEngineAttribute = null, Indexes.Algorithm algorithmType = Algorithm.None, Indexes.LockOption lockOption = LockOption.None)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>indexedProperties</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</dt>
-    <dd><p>An array of property names to be indexed. Must contain at least one element.</p>
-</dd>
     <dt><code>indexName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>The name of the index. If null, a default name will be generated based on the indexed properties.</p>
+    <dd><p>The name of the index. If null, a default name may be used.</p>
 </dd>
-    <dt><code>descending</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>A value indicating whether the index should be created in descending order. Default is false (ascending order).</p>
+    <dt><code>indexType</code> <a class="xref" href="CoreRelm.Enums.Indexes.html">Indexes</a>.<a class="xref" href="CoreRelm.Enums.Indexes.IndexType.html">IndexType</a></dt>
+    <dd><p>The type of index to create, such as primary or secondary.</p>
 </dd>
-    <dt><code>unique</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-  <h4 class="section">Exceptions</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
-    <dd><p>Thrown if indexedProperties is null or empty.</p>
+    <dt><code>keyBlockSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The size, in bytes, of the key block for the index. Specify -1 to use the default size.</p>
+</dd>
+    <dt><code>parserName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the parser to use for the index, or null to use the default parser.</p>
+</dd>
+    <dt><code>comment</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>An optional comment describing the index.</p>
+</dd>
+    <dt><code>visibility</code> <a class="xref" href="CoreRelm.Enums.Indexes.html">Indexes</a>.<a class="xref" href="CoreRelm.Enums.Indexes.Visibility.html">Visibility</a></dt>
+    <dd><p>Specifies the visibility of the index, such as public or private.</p>
+</dd>
+    <dt><code>engineAttribute</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>An optional engine-specific attribute for the index.</p>
+</dd>
+    <dt><code>secondaryEngineAttribute</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>An optional secondary engine-specific attribute for the index.</p>
+</dd>
+    <dt><code>algorithmType</code> <a class="xref" href="CoreRelm.Enums.Indexes.html">Indexes</a>.<a class="xref" href="CoreRelm.Enums.Indexes.Algorithm.html">Algorithm</a></dt>
+    <dd><p>The algorithm to use for the index, or Algorithm.None to use the default.</p>
+</dd>
+    <dt><code>lockOption</code> <a class="xref" href="CoreRelm.Enums.Indexes.html">Indexes</a>.<a class="xref" href="CoreRelm.Enums.Indexes.LockOption.html">LockOption</a></dt>
+    <dd><p>The locking option to use for the index, or LockOption.None for the default behavior.</p>
 </dd>
   </dl>
 
 
 
-  <h2 class="section" id="properties">Properties
-</h2>
 
-
-  <a id="CoreRelm_Attributes_RelmIndex_Descending_" data-uid="CoreRelm.Attributes.RelmIndex.Descending*"></a>
-
-  <h3 id="CoreRelm_Attributes_RelmIndex_Descending" data-uid="CoreRelm.Attributes.RelmIndex.Descending">
-  Descending
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Attributes/RelmIndex.cs/#L33"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Gets or sets a value indicating whether the sort order is descending.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Descending { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="CoreRelm_Attributes_RelmIndex_IndexName_" data-uid="CoreRelm.Attributes.RelmIndex.IndexName*"></a>
-
-  <h3 id="CoreRelm_Attributes_RelmIndex_IndexName" data-uid="CoreRelm.Attributes.RelmIndex.IndexName">
-  IndexName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Attributes/RelmIndex.cs/#L28"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Gets or sets the name of the index to be used for operations.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string? IndexName { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="CoreRelm_Attributes_RelmIndex_IndexedProperties_" data-uid="CoreRelm.Attributes.RelmIndex.IndexedProperties*"></a>
-
-  <h3 id="CoreRelm_Attributes_RelmIndex_IndexedProperties" data-uid="CoreRelm.Attributes.RelmIndex.IndexedProperties">
-  IndexedProperties
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Attributes/RelmIndex.cs/#L23"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Gets or sets the names of the properties that are indexed for search or filtering operations.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string[]? IndexedProperties { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="CoreRelm_Attributes_RelmIndex_Unique_" data-uid="CoreRelm.Attributes.RelmIndex.Unique*"></a>
-
-  <h3 id="CoreRelm_Attributes_RelmIndex_Unique" data-uid="CoreRelm.Attributes.RelmIndex.Unique">
-  Unique
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Attributes/RelmIndex.cs/#L38"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Gets or sets a value indicating whether this is a unique index.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Unique { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
 
 
 
@@ -447,7 +359,7 @@ database.</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Attributes/RelmIndex.cs/#L17" class="edit-link">Edit this page</a>
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Attributes/RelmIndex.cs/#L81" class="edit-link">Edit this page</a>
         </div>
 
 

@@ -5,10 +5,11 @@ items:
   id: ResolvedModelSet
   parent: CoreRelm.Models.Migrations
   children:
-  - CoreRelm.Models.Migrations.ResolvedModelSet.#ctor(System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType},System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType}})
+  - CoreRelm.Models.Migrations.ResolvedModelSet.#ctor(System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType},System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType}},System.Collections.Generic.IReadOnlyList{System.String})
   - CoreRelm.Models.Migrations.ResolvedModelSet.AllModels
   - CoreRelm.Models.Migrations.ResolvedModelSet.ModelsByDatabase
   - CoreRelm.Models.Migrations.ResolvedModelSet.SetName
+  - CoreRelm.Models.Migrations.ResolvedModelSet.Warnings
   langs:
   - csharp
   - vb
@@ -23,7 +24,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ResolvedModelSet
     path: ../CoreRelm/Models/Migrations/ResolvedModelSet.cs
-    startLine: 9
+    startLine: 8
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations
@@ -41,16 +42,16 @@ items:
   - System.Object.GetType
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: CoreRelm.Models.Migrations.ResolvedModelSet.#ctor(System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType},System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType}})
-  commentId: M:CoreRelm.Models.Migrations.ResolvedModelSet.#ctor(System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType},System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType}})
-  id: '#ctor(System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType},System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType}})'
+- uid: CoreRelm.Models.Migrations.ResolvedModelSet.#ctor(System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType},System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType}},System.Collections.Generic.IReadOnlyList{System.String})
+  commentId: M:CoreRelm.Models.Migrations.ResolvedModelSet.#ctor(System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType},System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType}},System.Collections.Generic.IReadOnlyList{System.String})
+  id: '#ctor(System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType},System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType}},System.Collections.Generic.IReadOnlyList{System.String})'
   parent: CoreRelm.Models.Migrations.ResolvedModelSet
   langs:
   - csharp
   - vb
-  name: ResolvedModelSet(string, IReadOnlyList<ValidatedModelType>, IReadOnlyDictionary<string, List<ValidatedModelType>>)
-  nameWithType: ResolvedModelSet.ResolvedModelSet(string, IReadOnlyList<ValidatedModelType>, IReadOnlyDictionary<string, List<ValidatedModelType>>)
-  fullName: CoreRelm.Models.Migrations.ResolvedModelSet.ResolvedModelSet(string, System.Collections.Generic.IReadOnlyList<CoreRelm.Models.Migrations.ValidatedModelType>, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.List<CoreRelm.Models.Migrations.ValidatedModelType>>)
+  name: ResolvedModelSet(string, IReadOnlyList<ValidatedModelType>, IReadOnlyDictionary<string, List<ValidatedModelType>>, IReadOnlyList<string>)
+  nameWithType: ResolvedModelSet.ResolvedModelSet(string, IReadOnlyList<ValidatedModelType>, IReadOnlyDictionary<string, List<ValidatedModelType>>, IReadOnlyList<string>)
+  fullName: CoreRelm.Models.Migrations.ResolvedModelSet.ResolvedModelSet(string, System.Collections.Generic.IReadOnlyList<CoreRelm.Models.Migrations.ValidatedModelType>, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.List<CoreRelm.Models.Migrations.ValidatedModelType>>, System.Collections.Generic.IReadOnlyList<string>)
   type: Constructor
   source:
     remote:
@@ -59,12 +60,12 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Models/Migrations/ResolvedModelSet.cs
-    startLine: 9
+    startLine: 8
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations
   syntax:
-    content: public ResolvedModelSet(string SetName, IReadOnlyList<ValidatedModelType> AllModels, IReadOnlyDictionary<string, List<ValidatedModelType>> ModelsByDatabase)
+    content: public ResolvedModelSet(string SetName, IReadOnlyList<ValidatedModelType> AllModels, IReadOnlyDictionary<string, List<ValidatedModelType>> ModelsByDatabase, IReadOnlyList<string> Warnings)
     parameters:
     - id: SetName
       type: System.String
@@ -72,11 +73,13 @@ items:
       type: System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType}
     - id: ModelsByDatabase
       type: System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType}}
-    content.vb: Public Sub New(SetName As String, AllModels As IReadOnlyList(Of ValidatedModelType), ModelsByDatabase As IReadOnlyDictionary(Of String, List(Of ValidatedModelType)))
+    - id: Warnings
+      type: System.Collections.Generic.IReadOnlyList{System.String}
+    content.vb: Public Sub New(SetName As String, AllModels As IReadOnlyList(Of ValidatedModelType), ModelsByDatabase As IReadOnlyDictionary(Of String, List(Of ValidatedModelType)), Warnings As IReadOnlyList(Of String))
   overload: CoreRelm.Models.Migrations.ResolvedModelSet.#ctor*
-  nameWithType.vb: ResolvedModelSet.New(String, IReadOnlyList(Of ValidatedModelType), IReadOnlyDictionary(Of String, List(Of ValidatedModelType)))
-  fullName.vb: CoreRelm.Models.Migrations.ResolvedModelSet.New(String, System.Collections.Generic.IReadOnlyList(Of CoreRelm.Models.Migrations.ValidatedModelType), System.Collections.Generic.IReadOnlyDictionary(Of String, System.Collections.Generic.List(Of CoreRelm.Models.Migrations.ValidatedModelType)))
-  name.vb: New(String, IReadOnlyList(Of ValidatedModelType), IReadOnlyDictionary(Of String, List(Of ValidatedModelType)))
+  nameWithType.vb: ResolvedModelSet.New(String, IReadOnlyList(Of ValidatedModelType), IReadOnlyDictionary(Of String, List(Of ValidatedModelType)), IReadOnlyList(Of String))
+  fullName.vb: CoreRelm.Models.Migrations.ResolvedModelSet.New(String, System.Collections.Generic.IReadOnlyList(Of CoreRelm.Models.Migrations.ValidatedModelType), System.Collections.Generic.IReadOnlyDictionary(Of String, System.Collections.Generic.List(Of CoreRelm.Models.Migrations.ValidatedModelType)), System.Collections.Generic.IReadOnlyList(Of String))
+  name.vb: New(String, IReadOnlyList(Of ValidatedModelType), IReadOnlyDictionary(Of String, List(Of ValidatedModelType)), IReadOnlyList(Of String))
 - uid: CoreRelm.Models.Migrations.ResolvedModelSet.SetName
   commentId: P:CoreRelm.Models.Migrations.ResolvedModelSet.SetName
   id: SetName
@@ -95,7 +98,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetName
     path: ../CoreRelm/Models/Migrations/ResolvedModelSet.cs
-    startLine: 10
+    startLine: 9
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations
@@ -124,7 +127,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AllModels
     path: ../CoreRelm/Models/Migrations/ResolvedModelSet.cs
-    startLine: 11
+    startLine: 10
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations
@@ -153,7 +156,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ModelsByDatabase
     path: ../CoreRelm/Models/Migrations/ResolvedModelSet.cs
-    startLine: 12
+    startLine: 11
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations
@@ -164,6 +167,35 @@ items:
       type: System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType}}
     content.vb: Public Property ModelsByDatabase As IReadOnlyDictionary(Of String, List(Of ValidatedModelType))
   overload: CoreRelm.Models.Migrations.ResolvedModelSet.ModelsByDatabase*
+- uid: CoreRelm.Models.Migrations.ResolvedModelSet.Warnings
+  commentId: P:CoreRelm.Models.Migrations.ResolvedModelSet.Warnings
+  id: Warnings
+  parent: CoreRelm.Models.Migrations.ResolvedModelSet
+  langs:
+  - csharp
+  - vb
+  name: Warnings
+  nameWithType: ResolvedModelSet.Warnings
+  fullName: CoreRelm.Models.Migrations.ResolvedModelSet.Warnings
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/ResolvedModelSet.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: Warnings
+    path: ../CoreRelm/Models/Migrations/ResolvedModelSet.cs
+    startLine: 12
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations
+  syntax:
+    content: public IReadOnlyList<string> Warnings { get; init; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{System.String}
+    content.vb: Public Property Warnings As IReadOnlyList(Of String)
+  overload: CoreRelm.Models.Migrations.ResolvedModelSet.Warnings*
 references:
 - uid: CoreRelm.Models.Migrations
   commentId: N:CoreRelm.Models.Migrations
@@ -471,7 +503,7 @@ references:
   - name: )
 - uid: CoreRelm.Models.Migrations.ResolvedModelSet.#ctor*
   commentId: Overload:CoreRelm.Models.Migrations.ResolvedModelSet.#ctor
-  href: CoreRelm.Models.Migrations.ResolvedModelSet.html#CoreRelm_Models_Migrations_ResolvedModelSet__ctor_System_String_System_Collections_Generic_IReadOnlyList_CoreRelm_Models_Migrations_ValidatedModelType__System_Collections_Generic_IReadOnlyDictionary_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType___
+  href: CoreRelm.Models.Migrations.ResolvedModelSet.html#CoreRelm_Models_Migrations_ResolvedModelSet__ctor_System_String_System_Collections_Generic_IReadOnlyList_CoreRelm_Models_Migrations_ValidatedModelType__System_Collections_Generic_IReadOnlyDictionary_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType___System_Collections_Generic_IReadOnlyList_System_String__
   name: ResolvedModelSet
   nameWithType: ResolvedModelSet.ResolvedModelSet
   fullName: CoreRelm.Models.Migrations.ResolvedModelSet.ResolvedModelSet
@@ -580,6 +612,41 @@ references:
     name: ValidatedModelType
     href: CoreRelm.Models.Migrations.ValidatedModelType.html
   - name: )
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList{System.String}
+  commentId: T:System.Collections.Generic.IReadOnlyList{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<string>
+  nameWithType: IReadOnlyList<string>
+  fullName: System.Collections.Generic.IReadOnlyList<string>
+  nameWithType.vb: IReadOnlyList(Of String)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of String)
+  name.vb: IReadOnlyList(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
 - uid: System.Collections.Generic.IReadOnlyList`1
   commentId: T:System.Collections.Generic.IReadOnlyList`1
@@ -698,3 +765,9 @@ references:
   name: ModelsByDatabase
   nameWithType: ResolvedModelSet.ModelsByDatabase
   fullName: CoreRelm.Models.Migrations.ResolvedModelSet.ModelsByDatabase
+- uid: CoreRelm.Models.Migrations.ResolvedModelSet.Warnings*
+  commentId: Overload:CoreRelm.Models.Migrations.ResolvedModelSet.Warnings
+  href: CoreRelm.Models.Migrations.ResolvedModelSet.html#CoreRelm_Models_Migrations_ResolvedModelSet_Warnings
+  name: Warnings
+  nameWithType: ResolvedModelSet.Warnings
+  fullName: CoreRelm.Models.Migrations.ResolvedModelSet.Warnings

@@ -5,16 +5,15 @@ items:
   id: RelmColumn
   parent: CoreRelm.Attributes
   children:
-  - CoreRelm.Attributes.RelmColumn.#ctor(System.String,System.String,System.Int32,System.Int32[],System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  - CoreRelm.Attributes.RelmColumn.#ctor(System.String,MySql.Data.MySqlClient.MySqlDbType,System.String,System.Int32,System.Int32[],System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.Boolean,System.Boolean)
   - CoreRelm.Attributes.RelmColumn.AllowDataTruncation
   - CoreRelm.Attributes.RelmColumn.Autonumber
+  - CoreRelm.Attributes.RelmColumn.ColumnDbType
   - CoreRelm.Attributes.RelmColumn.ColumnName
   - CoreRelm.Attributes.RelmColumn.ColumnSize
   - CoreRelm.Attributes.RelmColumn.ColumnType
   - CoreRelm.Attributes.RelmColumn.CompoundColumnSize
   - CoreRelm.Attributes.RelmColumn.DefaultValue
-  - CoreRelm.Attributes.RelmColumn.Index
-  - CoreRelm.Attributes.RelmColumn.IndexDescending
   - CoreRelm.Attributes.RelmColumn.IsNullable
   - CoreRelm.Attributes.RelmColumn.PrimaryKey
   - CoreRelm.Attributes.RelmColumn.Unique
@@ -33,7 +32,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: RelmColumn
     path: ../CoreRelm/Attributes/RelmColumn.cs
-    startLine: 42
+    startLine: 41
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
@@ -106,16 +105,16 @@ items:
     arguments:
     - type: System.AttributeTargets
       value: 136
-- uid: CoreRelm.Attributes.RelmColumn.#ctor(System.String,System.String,System.Int32,System.Int32[],System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  commentId: M:CoreRelm.Attributes.RelmColumn.#ctor(System.String,System.String,System.Int32,System.Int32[],System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  id: '#ctor(System.String,System.String,System.Int32,System.Int32[],System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)'
+- uid: CoreRelm.Attributes.RelmColumn.#ctor(System.String,MySql.Data.MySqlClient.MySqlDbType,System.String,System.Int32,System.Int32[],System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.Boolean,System.Boolean)
+  commentId: M:CoreRelm.Attributes.RelmColumn.#ctor(System.String,MySql.Data.MySqlClient.MySqlDbType,System.String,System.Int32,System.Int32[],System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.Boolean,System.Boolean)
+  id: '#ctor(System.String,MySql.Data.MySqlClient.MySqlDbType,System.String,System.Int32,System.Int32[],System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.Boolean,System.Boolean)'
   parent: CoreRelm.Attributes.RelmColumn
   langs:
   - csharp
   - vb
-  name: RelmColumn(string?, string?, int, int[]?, bool, bool, bool, bool, string?, bool, bool, bool, bool)
-  nameWithType: RelmColumn.RelmColumn(string?, string?, int, int[]?, bool, bool, bool, bool, string?, bool, bool, bool, bool)
-  fullName: CoreRelm.Attributes.RelmColumn.RelmColumn(string?, string?, int, int[]?, bool, bool, bool, bool, string?, bool, bool, bool, bool)
+  name: RelmColumn(string, MySqlDbType, string, int, int[], bool, bool, bool, bool, string?, bool, bool)
+  nameWithType: RelmColumn.RelmColumn(string, MySqlDbType, string, int, int[], bool, bool, bool, bool, string?, bool, bool)
+  fullName: CoreRelm.Attributes.RelmColumn.RelmColumn(string, MySql.Data.MySqlClient.MySqlDbType, string, int, int[], bool, bool, bool, bool, string?, bool, bool)
   type: Constructor
   source:
     remote:
@@ -124,7 +123,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Attributes/RelmColumn.cs
-    startLine: 42
+    startLine: 41
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
@@ -138,11 +137,14 @@ items:
         define the schema of a database table.
   example: []
   syntax:
-    content: public RelmColumn(string? columnType = null, string? columnName = null, int columnSize = -1, int[]? compoundColumnSize = null, bool isNullable = true, bool primaryKey = false, bool autonumber = false, bool unique = false, string? defaultValue = null, bool index = false, bool indexDescending = false, bool allowDataTruncation = false, bool isVirtual = false)
+    content: public RelmColumn(string columnType = null, MySqlDbType columnDbType = MySqlDbType.VarChar, string columnName = null, int columnSize = -1, int[] compoundColumnSize = null, bool isNullable = true, bool primaryKey = false, bool autonumber = false, bool unique = false, string? defaultValue = null, bool allowDataTruncation = false, bool isVirtual = false)
     parameters:
     - id: columnType
       type: System.String
       description: The type of the column. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> or empty, the column will use the property's type.
+    - id: columnDbType
+      type: MySql.Data.MySqlClient.MySqlDbType
+      description: The database type of the column as a MySQL-specific value. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, the column will use the default mapping.
     - id: columnName
       type: System.String
       description: The name of the column. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> or empty, the column will use the property's underscore name.
@@ -173,12 +175,6 @@ items:
       description: >-
         The default value for the column, represented as a string. Can be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if no default value
             is specified.
-    - id: index
-      type: System.Boolean
-      description: A value indicating whether the column is indexed. The default is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
-    - id: indexDescending
-      type: System.Boolean
-      description: A value indicating whether the index on the column is sorted in descending order. The default is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
     - id: allowDataTruncation
       type: System.Boolean
       description: A value indicating whether data truncation is allowed for this column. The default is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
@@ -187,11 +183,11 @@ items:
       description: >-
         A value indicating whether the column is a virtual column (i.e., its value is computed rather than stored).
             The default is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
-    content.vb: Public Sub New(columnType As String = Nothing, columnName As String = Nothing, columnSize As Integer = -1, compoundColumnSize As Integer() = Nothing, isNullable As Boolean = True, primaryKey As Boolean = False, autonumber As Boolean = False, unique As Boolean = False, defaultValue As String = Nothing, index As Boolean = False, indexDescending As Boolean = False, allowDataTruncation As Boolean = False, isVirtual As Boolean = False)
+    content.vb: Public Sub New(columnType As String = Nothing, columnDbType As MySqlDbType = MySqlDbType.VarChar, columnName As String = Nothing, columnSize As Integer = -1, compoundColumnSize As Integer() = Nothing, isNullable As Boolean = True, primaryKey As Boolean = False, autonumber As Boolean = False, unique As Boolean = False, defaultValue As String = Nothing, allowDataTruncation As Boolean = False, isVirtual As Boolean = False)
   overload: CoreRelm.Attributes.RelmColumn.#ctor*
-  nameWithType.vb: RelmColumn.New(String, String, Integer, Integer(), Boolean, Boolean, Boolean, Boolean, String, Boolean, Boolean, Boolean, Boolean)
-  fullName.vb: CoreRelm.Attributes.RelmColumn.New(String, String, Integer, Integer(), Boolean, Boolean, Boolean, Boolean, String, Boolean, Boolean, Boolean, Boolean)
-  name.vb: New(String, String, Integer, Integer(), Boolean, Boolean, Boolean, Boolean, String, Boolean, Boolean, Boolean, Boolean)
+  nameWithType.vb: RelmColumn.New(String, MySqlDbType, String, Integer, Integer(), Boolean, Boolean, Boolean, Boolean, String, Boolean, Boolean)
+  fullName.vb: CoreRelm.Attributes.RelmColumn.New(String, MySql.Data.MySqlClient.MySqlDbType, String, Integer, Integer(), Boolean, Boolean, Boolean, Boolean, String, Boolean, Boolean)
+  name.vb: New(String, MySqlDbType, String, Integer, Integer(), Boolean, Boolean, Boolean, Boolean, String, Boolean, Boolean)
 - uid: CoreRelm.Attributes.RelmColumn.ColumnType
   commentId: P:CoreRelm.Attributes.RelmColumn.ColumnType
   id: ColumnType
@@ -210,7 +206,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ColumnType
     path: ../CoreRelm/Attributes/RelmColumn.cs
-    startLine: 48
+    startLine: 47
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
@@ -223,6 +219,37 @@ items:
       type: System.String
     content.vb: Public Property ColumnType As String
   overload: CoreRelm.Attributes.RelmColumn.ColumnType*
+- uid: CoreRelm.Attributes.RelmColumn.ColumnDbType
+  commentId: P:CoreRelm.Attributes.RelmColumn.ColumnDbType
+  id: ColumnDbType
+  parent: CoreRelm.Attributes.RelmColumn
+  langs:
+  - csharp
+  - vb
+  name: ColumnDbType
+  nameWithType: RelmColumn.ColumnDbType
+  fullName: CoreRelm.Attributes.RelmColumn.ColumnDbType
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Attributes/RelmColumn.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: ColumnDbType
+    path: ../CoreRelm/Attributes/RelmColumn.cs
+    startLine: 52
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Attributes
+  summary: Gets or sets the database type of the column as a MySQL-specific value.
+  example: []
+  syntax:
+    content: public MySqlDbType? ColumnDbType { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{MySql.Data.MySqlClient.MySqlDbType}
+    content.vb: Public Property ColumnDbType As MySqlDbType?
+  overload: CoreRelm.Attributes.RelmColumn.ColumnDbType*
 - uid: CoreRelm.Attributes.RelmColumn.ColumnName
   commentId: P:CoreRelm.Attributes.RelmColumn.ColumnName
   id: ColumnName
@@ -241,7 +268,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ColumnName
     path: ../CoreRelm/Attributes/RelmColumn.cs
-    startLine: 54
+    startLine: 58
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
@@ -275,7 +302,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ColumnSize
     path: ../CoreRelm/Attributes/RelmColumn.cs
-    startLine: 60
+    startLine: 64
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
@@ -309,7 +336,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: CompoundColumnSize
     path: ../CoreRelm/Attributes/RelmColumn.cs
-    startLine: 65
+    startLine: 69
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
@@ -340,7 +367,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AllowDataTruncation
     path: ../CoreRelm/Attributes/RelmColumn.cs
-    startLine: 70
+    startLine: 74
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
@@ -371,7 +398,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: IsNullable
     path: ../CoreRelm/Attributes/RelmColumn.cs
-    startLine: 75
+    startLine: 79
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
@@ -402,7 +429,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: PrimaryKey
     path: ../CoreRelm/Attributes/RelmColumn.cs
-    startLine: 80
+    startLine: 84
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
@@ -433,7 +460,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Autonumber
     path: ../CoreRelm/Attributes/RelmColumn.cs
-    startLine: 85
+    startLine: 89
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
@@ -464,7 +491,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Unique
     path: ../CoreRelm/Attributes/RelmColumn.cs
-    startLine: 90
+    startLine: 94
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
@@ -495,7 +522,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DefaultValue
     path: ../CoreRelm/Attributes/RelmColumn.cs
-    startLine: 95
+    startLine: 99
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
@@ -508,68 +535,6 @@ items:
       type: System.String
     content.vb: Public Property DefaultValue As String
   overload: CoreRelm.Attributes.RelmColumn.DefaultValue*
-- uid: CoreRelm.Attributes.RelmColumn.Index
-  commentId: P:CoreRelm.Attributes.RelmColumn.Index
-  id: Index
-  parent: CoreRelm.Attributes.RelmColumn
-  langs:
-  - csharp
-  - vb
-  name: Index
-  nameWithType: RelmColumn.Index
-  fullName: CoreRelm.Attributes.RelmColumn.Index
-  type: Property
-  source:
-    remote:
-      path: CoreRelm/Attributes/RelmColumn.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: Index
-    path: ../CoreRelm/Attributes/RelmColumn.cs
-    startLine: 100
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Attributes
-  summary: Gets a value indicating whether indexing is enabled for this column.
-  example: []
-  syntax:
-    content: public bool Index { get; }
-    parameters: []
-    return:
-      type: System.Boolean
-    content.vb: Public Property Index As Boolean
-  overload: CoreRelm.Attributes.RelmColumn.Index*
-- uid: CoreRelm.Attributes.RelmColumn.IndexDescending
-  commentId: P:CoreRelm.Attributes.RelmColumn.IndexDescending
-  id: IndexDescending
-  parent: CoreRelm.Attributes.RelmColumn
-  langs:
-  - csharp
-  - vb
-  name: IndexDescending
-  nameWithType: RelmColumn.IndexDescending
-  fullName: CoreRelm.Attributes.RelmColumn.IndexDescending
-  type: Property
-  source:
-    remote:
-      path: CoreRelm/Attributes/RelmColumn.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: IndexDescending
-    path: ../CoreRelm/Attributes/RelmColumn.cs
-    startLine: 105
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Attributes
-  summary: Gets a value indicating whether the index is sorted in descending order.
-  example: []
-  syntax:
-    content: public bool IndexDescending { get; }
-    parameters: []
-    return:
-      type: System.Boolean
-    content.vb: Public Property IndexDescending As Boolean
-  overload: CoreRelm.Attributes.RelmColumn.IndexDescending*
 - uid: CoreRelm.Attributes.RelmColumn.Virtual
   commentId: P:CoreRelm.Attributes.RelmColumn.Virtual
   id: Virtual
@@ -588,7 +553,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Virtual
     path: ../CoreRelm/Attributes/RelmColumn.cs
-    startLine: 110
+    startLine: 104
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
@@ -2403,7 +2368,7 @@ references:
   fullName: System
 - uid: CoreRelm.Attributes.RelmColumn.#ctor*
   commentId: Overload:CoreRelm.Attributes.RelmColumn.#ctor
-  href: CoreRelm.Attributes.RelmColumn.html#CoreRelm_Attributes_RelmColumn__ctor_System_String_System_String_System_Int32_System_Int32___System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  href: CoreRelm.Attributes.RelmColumn.html#CoreRelm_Attributes_RelmColumn__ctor_System_String_MySql_Data_MySqlClient_MySqlDbType_System_String_System_Int32_System_Int32___System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_String_System_Boolean_System_Boolean_
   name: RelmColumn
   nameWithType: RelmColumn.RelmColumn
   fullName: CoreRelm.Attributes.RelmColumn.RelmColumn
@@ -2421,6 +2386,13 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
+- uid: MySql.Data.MySqlClient.MySqlDbType
+  commentId: T:MySql.Data.MySqlClient.MySqlDbType
+  parent: MySql.Data.MySqlClient
+  isExternal: true
+  name: MySqlDbType
+  nameWithType: MySqlDbType
+  fullName: MySql.Data.MySqlClient.MySqlDbType
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -2466,12 +2438,93 @@ references:
   nameWithType.vb: Boolean
   fullName.vb: Boolean
   name.vb: Boolean
+- uid: MySql.Data.MySqlClient
+  commentId: N:MySql.Data.MySqlClient
+  isExternal: true
+  name: MySql.Data.MySqlClient
+  nameWithType: MySql.Data.MySqlClient
+  fullName: MySql.Data.MySqlClient
+  spec.csharp:
+  - uid: MySql
+    name: MySql
+    isExternal: true
+  - name: .
+  - uid: MySql.Data
+    name: Data
+    isExternal: true
+  - name: .
+  - uid: MySql.Data.MySqlClient
+    name: MySqlClient
+    isExternal: true
+  spec.vb:
+  - uid: MySql
+    name: MySql
+    isExternal: true
+  - name: .
+  - uid: MySql.Data
+    name: Data
+    isExternal: true
+  - name: .
+  - uid: MySql.Data.MySqlClient
+    name: MySqlClient
+    isExternal: true
 - uid: CoreRelm.Attributes.RelmColumn.ColumnType*
   commentId: Overload:CoreRelm.Attributes.RelmColumn.ColumnType
   href: CoreRelm.Attributes.RelmColumn.html#CoreRelm_Attributes_RelmColumn_ColumnType
   name: ColumnType
   nameWithType: RelmColumn.ColumnType
   fullName: CoreRelm.Attributes.RelmColumn.ColumnType
+- uid: CoreRelm.Attributes.RelmColumn.ColumnDbType*
+  commentId: Overload:CoreRelm.Attributes.RelmColumn.ColumnDbType
+  href: CoreRelm.Attributes.RelmColumn.html#CoreRelm_Attributes_RelmColumn_ColumnDbType
+  name: ColumnDbType
+  nameWithType: RelmColumn.ColumnDbType
+  fullName: CoreRelm.Attributes.RelmColumn.ColumnDbType
+- uid: System.Nullable{MySql.Data.MySqlClient.MySqlDbType}
+  commentId: T:System.Nullable{MySql.Data.MySqlClient.MySqlDbType}
+  parent: System
+  definition: System.Nullable`1
+  name: MySqlDbType?
+  nameWithType: MySqlDbType?
+  fullName: MySql.Data.MySqlClient.MySqlDbType?
+  spec.csharp:
+  - uid: MySql.Data.MySqlClient.MySqlDbType
+    name: MySqlDbType
+    isExternal: true
+  - name: '?'
+  spec.vb:
+  - uid: MySql.Data.MySqlClient.MySqlDbType
+    name: MySqlDbType
+    isExternal: true
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: CoreRelm.Attributes.RelmColumn.ColumnName*
   commentId: Overload:CoreRelm.Attributes.RelmColumn.ColumnName
   href: CoreRelm.Attributes.RelmColumn.html#CoreRelm_Attributes_RelmColumn_ColumnName
@@ -2526,18 +2579,6 @@ references:
   name: DefaultValue
   nameWithType: RelmColumn.DefaultValue
   fullName: CoreRelm.Attributes.RelmColumn.DefaultValue
-- uid: CoreRelm.Attributes.RelmColumn.Index*
-  commentId: Overload:CoreRelm.Attributes.RelmColumn.Index
-  href: CoreRelm.Attributes.RelmColumn.html#CoreRelm_Attributes_RelmColumn_Index
-  name: Index
-  nameWithType: RelmColumn.Index
-  fullName: CoreRelm.Attributes.RelmColumn.Index
-- uid: CoreRelm.Attributes.RelmColumn.IndexDescending*
-  commentId: Overload:CoreRelm.Attributes.RelmColumn.IndexDescending
-  href: CoreRelm.Attributes.RelmColumn.html#CoreRelm_Attributes_RelmColumn_IndexDescending
-  name: IndexDescending
-  nameWithType: RelmColumn.IndexDescending
-  fullName: CoreRelm.Attributes.RelmColumn.IndexDescending
 - uid: CoreRelm.Attributes.RelmColumn.Virtual*
   commentId: Overload:CoreRelm.Attributes.RelmColumn.Virtual
   href: CoreRelm.Attributes.RelmColumn.html#CoreRelm_Attributes_RelmColumn_Virtual

@@ -504,7 +504,7 @@ If the column registry is null, the method returns <a href="https://learn.micros
   <a id="CoreRelm_Models_RelmDefaultDataLoader_1_PullData_" data-uid="CoreRelm.Models.RelmDefaultDataLoader`1.PullData*"></a>
 
   <h3 id="CoreRelm_Models_RelmDefaultDataLoader_1_PullData_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="CoreRelm.Models.RelmDefaultDataLoader`1.PullData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
-  PullData(string, Dictionary&lt;string, object&gt;)
+  PullData(string, Dictionary&lt;string, object?&gt;)
   <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmDefaultDataLoader.cs/#L215"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -513,7 +513,7 @@ If the column registry is null, the method returns <a href="https://learn.micros
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual ICollection&lt;T?&gt;? PullData(string selectQuery, Dictionary&lt;string, object&gt; findOptions)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual ICollection&lt;T?&gt;? PullData(string selectQuery, Dictionary&lt;string, object?&gt; findOptions)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -554,7 +554,7 @@ Otherwise, the query is executed using the configured connection string type.</p
   <a id="CoreRelm_Models_RelmDefaultDataLoader_1_PullDataAsync_" data-uid="CoreRelm.Models.RelmDefaultDataLoader`1.PullDataAsync*"></a>
 
   <h3 id="CoreRelm_Models_RelmDefaultDataLoader_1_PullDataAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmDefaultDataLoader`1.PullDataAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
-  PullDataAsync(string, Dictionary&lt;string, object&gt;, CancellationToken)
+  PullDataAsync(string, Dictionary&lt;string, object?&gt;, CancellationToken)
   <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmDefaultDataLoader.cs/#L235"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -563,7 +563,7 @@ Otherwise, the query is executed using the configured connection string type.</p
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual Task&lt;ICollection&lt;T?&gt;?&gt; PullDataAsync(string selectQuery, Dictionary&lt;string, object&gt; findOptions, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;ICollection&lt;T?&gt;?&gt; PullDataAsync(string selectQuery, Dictionary&lt;string, object?&gt; findOptions, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>

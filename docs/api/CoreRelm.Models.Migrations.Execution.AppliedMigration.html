@@ -358,7 +358,7 @@ public class AppliedMigration : RelmModel, IRelmModel</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, false, false, false, false, null, false, false, false, false)]
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, MySqlDbType.VarChar, null, -1, null, false, false, false, false, null, false, false)]
 public DateTime AppliedUtc { get; init; }</code></pre>
   </div>
 
@@ -390,7 +390,7 @@ public DateTime AppliedUtc { get; init; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[RelmColumn(&quot;char&quot;, null, 64, null, false, false, false, false, null, false, false, false, false)]
+    <pre><code class="lang-csharp hljs">[RelmColumn(&quot;char&quot;, MySqlDbType.VarChar, null, 64, null, false, false, false, false, null, false, false)]
 public string ChecksumSha256 { get; init; }</code></pre>
   </div>
 
@@ -422,7 +422,7 @@ public string ChecksumSha256 { get; init; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, 255, null, false, false, false, true, null, false, false, false, false)]
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, MySqlDbType.VarChar, null, 255, null, false, false, false, true, null, false, false)]
 public string FileName { get; init; }</code></pre>
   </div>
 

@@ -10,6 +10,7 @@ items:
   - CoreRelm.Options.RelmContextOptionsBuilder.#ctor(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction)
   - CoreRelm.Options.RelmContextOptionsBuilder.#ctor(System.Enum)
   - CoreRelm.Options.RelmContextOptionsBuilder.#ctor(System.String)
+  - CoreRelm.Options.RelmContextOptionsBuilder.#ctor(System.String,System.String,System.String,System.String)
   - CoreRelm.Options.RelmContextOptionsBuilder.#ctor(System.String,System.String,System.String,System.String,System.String)
   - CoreRelm.Options.RelmContextOptionsBuilder.AllowUserVariables
   - CoreRelm.Options.RelmContextOptionsBuilder.AutoInitializeDataSets
@@ -736,16 +737,16 @@ items:
   nameWithType.vb: RelmContextOptionsBuilder.New(String)
   fullName.vb: CoreRelm.Options.RelmContextOptionsBuilder.New(String)
   name.vb: New(String)
-- uid: CoreRelm.Options.RelmContextOptionsBuilder.#ctor(System.String,System.String,System.String,System.String,System.String)
-  commentId: M:CoreRelm.Options.RelmContextOptionsBuilder.#ctor(System.String,System.String,System.String,System.String,System.String)
-  id: '#ctor(System.String,System.String,System.String,System.String,System.String)'
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.#ctor(System.String,System.String,System.String,System.String)
+  commentId: M:CoreRelm.Options.RelmContextOptionsBuilder.#ctor(System.String,System.String,System.String,System.String)
+  id: '#ctor(System.String,System.String,System.String,System.String)'
   parent: CoreRelm.Options.RelmContextOptionsBuilder
   langs:
   - csharp
   - vb
-  name: RelmContextOptionsBuilder(string, string, string, string, string)
-  nameWithType: RelmContextOptionsBuilder.RelmContextOptionsBuilder(string, string, string, string, string)
-  fullName: CoreRelm.Options.RelmContextOptionsBuilder.RelmContextOptionsBuilder(string, string, string, string, string)
+  name: RelmContextOptionsBuilder(string, string, string, string)
+  nameWithType: RelmContextOptionsBuilder.RelmContextOptionsBuilder(string, string, string, string)
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.RelmContextOptionsBuilder(string, string, string, string)
   type: Constructor
   source:
     remote:
@@ -764,6 +765,53 @@ items:
     settings.
   example: []
   syntax:
+    content: public RelmContextOptionsBuilder(string databaseServer, string databaseName, string databaseUser, string databasePassword)
+    parameters:
+    - id: databaseServer
+      type: System.String
+      description: The name or network address of the database server to connect to. Cannot be null or empty.
+    - id: databaseName
+      type: System.String
+      description: The name of the database to use. Cannot be null or empty.
+    - id: databaseUser
+      type: System.String
+      description: The username to use when connecting to the database. Cannot be null or empty.
+    - id: databasePassword
+      type: System.String
+      description: The password associated with the specified database user. Cannot be null or empty.
+    content.vb: Public Sub New(databaseServer As String, databaseName As String, databaseUser As String, databasePassword As String)
+  overload: CoreRelm.Options.RelmContextOptionsBuilder.#ctor*
+  nameWithType.vb: RelmContextOptionsBuilder.New(String, String, String, String)
+  fullName.vb: CoreRelm.Options.RelmContextOptionsBuilder.New(String, String, String, String)
+  name.vb: New(String, String, String, String)
+- uid: CoreRelm.Options.RelmContextOptionsBuilder.#ctor(System.String,System.String,System.String,System.String,System.String)
+  commentId: M:CoreRelm.Options.RelmContextOptionsBuilder.#ctor(System.String,System.String,System.String,System.String,System.String)
+  id: '#ctor(System.String,System.String,System.String,System.String,System.String)'
+  parent: CoreRelm.Options.RelmContextOptionsBuilder
+  langs:
+  - csharp
+  - vb
+  name: RelmContextOptionsBuilder(string, string, string, string, string)
+  nameWithType: RelmContextOptionsBuilder.RelmContextOptionsBuilder(string, string, string, string, string)
+  fullName: CoreRelm.Options.RelmContextOptionsBuilder.RelmContextOptionsBuilder(string, string, string, string, string)
+  type: Constructor
+  source:
+    remote:
+      path: CoreRelm/Options/RelmContextOptionsBuilder.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: .ctor
+    path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
+    startLine: 193
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Options
+  summary: >-
+    Initializes a new instance of the RelmContextOptionsBuilder class with the specified database connection
+
+    settings.
+  example: []
+  syntax:
     content: public RelmContextOptionsBuilder(string databaseServer, string databasePort, string databaseName, string databaseUser, string databasePassword)
     parameters:
     - id: databaseServer
@@ -771,6 +819,7 @@ items:
       description: The name or network address of the database server to connect to. Cannot be null or empty.
     - id: databasePort
       type: System.String
+      description: The port number to use for the database connection. Cannot be null or empty.
     - id: databaseName
       type: System.String
       description: The name of the database to use. Cannot be null or empty.
@@ -803,7 +852,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
-    startLine: 191
+    startLine: 208
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Options
@@ -843,7 +892,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
-    startLine: 201
+    startLine: 218
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Options
@@ -881,7 +930,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
-    startLine: 215
+    startLine: 232
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Options
@@ -926,7 +975,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetDatabaseConnection
     path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
-    startLine: 230
+    startLine: 247
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Options
@@ -972,7 +1021,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetDatabaseTransaction
     path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
-    startLine: 248
+    startLine: 265
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Options
@@ -1016,7 +1065,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetDatabaseServer
     path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
-    startLine: 263
+    startLine: 280
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Options
@@ -1058,7 +1107,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetDatabasePort
     path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
-    startLine: 275
+    startLine: 292
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Options
@@ -1092,7 +1141,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetDatabaseName
     path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
-    startLine: 293
+    startLine: 310
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Options
@@ -1141,7 +1190,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetDatabaseUser
     path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
-    startLine: 316
+    startLine: 333
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Options
@@ -1183,7 +1232,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetDatabasePassword
     path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
-    startLine: 334
+    startLine: 351
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Options
@@ -1225,7 +1274,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetConnectionStringType
     path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
-    startLine: 351
+    startLine: 368
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Options
@@ -1260,7 +1309,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetConnectionStringType
     path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
-    startLine: 365
+    startLine: 382
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Options
@@ -1302,7 +1351,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetNamedConnection
     path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
-    startLine: 385
+    startLine: 402
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Options
@@ -1344,7 +1393,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetDatabaseConnectionString
     path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
-    startLine: 409
+    startLine: 426
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Options
@@ -1386,7 +1435,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ValidateAllSettings
     path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
-    startLine: 432
+    startLine: 449
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Options
@@ -1440,7 +1489,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ParseConnectionDetails
     path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
-    startLine: 513
+    startLine: 530
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Options
@@ -1492,7 +1541,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetAutoOpenConnection
     path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
-    startLine: 594
+    startLine: 611
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Options
@@ -1534,7 +1583,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetAutoOpenTransaction
     path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
-    startLine: 606
+    startLine: 623
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Options
@@ -1572,7 +1621,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetAllowUserVariables
     path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
-    startLine: 618
+    startLine: 635
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Options
@@ -1610,7 +1659,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetConvertZeroDateTime
     path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
-    startLine: 633
+    startLine: 650
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Options
@@ -1652,7 +1701,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetLockWaitTimeoutSeconds
     path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
-    startLine: 648
+    startLine: 665
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Options
@@ -1694,7 +1743,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetAutoInitializeDataSets
     path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
-    startLine: 660
+    startLine: 677
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Options
@@ -1732,7 +1781,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetAutoVerifyTables
     path: ../CoreRelm/Options/RelmContextOptionsBuilder.cs
-    startLine: 672
+    startLine: 689
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Options

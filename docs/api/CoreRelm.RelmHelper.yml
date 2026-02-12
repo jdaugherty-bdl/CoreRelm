@@ -3573,7 +3573,7 @@ items:
         results.
   example: []
   syntax:
-    content: public static IEnumerable<T>? GetDataList<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false)
+    content: public static IEnumerable<T?>? GetDataList<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false)
     parameters:
     - id: connectionName
       type: System.Enum
@@ -3636,7 +3636,7 @@ items:
         results.
   example: []
   syntax:
-    content: public static Task<IEnumerable<T>?> GetDataListAsync<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
+    content: public static Task<IEnumerable<T?>?> GetDataListAsync<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
     parameters:
     - id: connectionName
       type: System.Enum
@@ -3697,7 +3697,7 @@ items:
   summary: Executes the specified SQL query and retrieves a list of objects of type <code class="typeparamref">T</code>.
   example: []
   syntax:
-    content: public static IEnumerable<T>? GetDataList<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+    content: public static IEnumerable<T?>? GetDataList<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -3749,7 +3749,7 @@ items:
   summary: Executes the specified SQL query and retrieves a list of objects of type <code class="typeparamref">T</code>.
   example: []
   syntax:
-    content: public static IEnumerable<T>? GetDataList<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+    content: public static IEnumerable<T?>? GetDataList<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection

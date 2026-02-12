@@ -5,11 +5,7 @@ items:
   id: RelmIndex
   parent: CoreRelm.Attributes
   children:
-  - CoreRelm.Attributes.RelmIndex.#ctor(System.String[],System.String,System.Boolean,System.Boolean)
-  - CoreRelm.Attributes.RelmIndex.Descending
-  - CoreRelm.Attributes.RelmIndex.IndexName
-  - CoreRelm.Attributes.RelmIndex.IndexedProperties
-  - CoreRelm.Attributes.RelmIndex.Unique
+  - CoreRelm.Attributes.RelmIndex.#ctor(System.String,CoreRelm.Enums.Indexes.IndexType,System.Int32,System.String,System.String,CoreRelm.Enums.Indexes.Visibility,System.String,System.String,CoreRelm.Enums.Indexes.Algorithm,CoreRelm.Enums.Indexes.LockOption)
   langs:
   - csharp
   - vb
@@ -24,33 +20,40 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: RelmIndex
     path: ../CoreRelm/Attributes/RelmIndex.cs
-    startLine: 16
+    startLine: 80
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
-  summary: >-
-    Specifies that the decorated class or struct should have an index created on the specified properties when used
-
-    with a Relm database.
+  summary: Non-keyed Relm index attribute for indexes that do not need to be paired with others.
   remarks: >-
-    Apply this attribute to a class or struct to indicate which properties should be indexed for
-        improved query performance. Indexing can speed up lookups on the specified properties but may increase storage
-        requirements and affect write performance. This attribute is intended for use with the Relm object
-        database.
+    Use this when no correlation key is required. All configuration options are identical
+        to the generic version, except no index key is supplied.
   example: []
   syntax:
     content: >-
-      [AttributeUsage(AttributeTargets.Class|AttributeTargets.Struct|AttributeTargets.Property, AllowMultiple = true)]
+      [AttributeUsage(AttributeTargets.Struct|AttributeTargets.Property)]
 
-      public sealed class RelmIndex : Attribute
+      public sealed class RelmIndex : RelmIndexBase
     content.vb: >-
-      <AttributeUsage(AttributeTargets.ClassOrAttributeTargets.StructOrAttributeTargets.Property, AllowMultiple:=True)>
+      <AttributeUsage(AttributeTargets.StructOrAttributeTargets.Property)>
 
-      Public NotInheritable Class RelmIndex Inherits Attribute
+      Public NotInheritable Class RelmIndex Inherits RelmIndexBase
   inheritance:
   - System.Object
   - System.Attribute
+  - CoreRelm.Attributes.BaseClasses.RelmIndexBase
   inheritedMembers:
+  - CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexKeyHolder
+  - CoreRelm.Attributes.BaseClasses.RelmIndexBase.Descending
+  - CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexedProperties
+  - CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexedPropertyNames
+  - CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexName
+  - CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexTypeValue
+  - CoreRelm.Attributes.BaseClasses.RelmIndexBase.ParserName
+  - CoreRelm.Attributes.BaseClasses.RelmIndexBase.Comment
+  - CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexVisibility
+  - CoreRelm.Attributes.BaseClasses.RelmIndexBase.AlgorithmType
+  - CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexLockOption
   - System.Attribute.Equals(System.Object)
   - System.Attribute.GetCustomAttribute(System.Reflection.Assembly,System.Type)
   - System.Attribute.GetCustomAttribute(System.Reflection.Assembly,System.Type,System.Boolean)
@@ -97,145 +100,17 @@ items:
     ctor: System.AttributeUsageAttribute.#ctor(System.AttributeTargets)
     arguments:
     - type: System.AttributeTargets
-      value: 140
-    namedArguments:
-    - name: AllowMultiple
-      type: System.Boolean
-      value: true
-- uid: CoreRelm.Attributes.RelmIndex.IndexedProperties
-  commentId: P:CoreRelm.Attributes.RelmIndex.IndexedProperties
-  id: IndexedProperties
+      value: 136
+- uid: CoreRelm.Attributes.RelmIndex.#ctor(System.String,CoreRelm.Enums.Indexes.IndexType,System.Int32,System.String,System.String,CoreRelm.Enums.Indexes.Visibility,System.String,System.String,CoreRelm.Enums.Indexes.Algorithm,CoreRelm.Enums.Indexes.LockOption)
+  commentId: M:CoreRelm.Attributes.RelmIndex.#ctor(System.String,CoreRelm.Enums.Indexes.IndexType,System.Int32,System.String,System.String,CoreRelm.Enums.Indexes.Visibility,System.String,System.String,CoreRelm.Enums.Indexes.Algorithm,CoreRelm.Enums.Indexes.LockOption)
+  id: '#ctor(System.String,CoreRelm.Enums.Indexes.IndexType,System.Int32,System.String,System.String,CoreRelm.Enums.Indexes.Visibility,System.String,System.String,CoreRelm.Enums.Indexes.Algorithm,CoreRelm.Enums.Indexes.LockOption)'
   parent: CoreRelm.Attributes.RelmIndex
   langs:
   - csharp
   - vb
-  name: IndexedProperties
-  nameWithType: RelmIndex.IndexedProperties
-  fullName: CoreRelm.Attributes.RelmIndex.IndexedProperties
-  type: Property
-  source:
-    remote:
-      path: CoreRelm/Attributes/RelmIndex.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: IndexedProperties
-    path: ../CoreRelm/Attributes/RelmIndex.cs
-    startLine: 22
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Attributes
-  summary: Gets or sets the names of the properties that are indexed for search or filtering operations.
-  example: []
-  syntax:
-    content: public string[]? IndexedProperties { get; set; }
-    parameters: []
-    return:
-      type: System.String[]
-    content.vb: Public Property IndexedProperties As String()
-  overload: CoreRelm.Attributes.RelmIndex.IndexedProperties*
-- uid: CoreRelm.Attributes.RelmIndex.IndexName
-  commentId: P:CoreRelm.Attributes.RelmIndex.IndexName
-  id: IndexName
-  parent: CoreRelm.Attributes.RelmIndex
-  langs:
-  - csharp
-  - vb
-  name: IndexName
-  nameWithType: RelmIndex.IndexName
-  fullName: CoreRelm.Attributes.RelmIndex.IndexName
-  type: Property
-  source:
-    remote:
-      path: CoreRelm/Attributes/RelmIndex.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: IndexName
-    path: ../CoreRelm/Attributes/RelmIndex.cs
-    startLine: 27
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Attributes
-  summary: Gets or sets the name of the index to be used for operations.
-  example: []
-  syntax:
-    content: public string? IndexName { get; set; }
-    parameters: []
-    return:
-      type: System.String
-    content.vb: Public Property IndexName As String
-  overload: CoreRelm.Attributes.RelmIndex.IndexName*
-- uid: CoreRelm.Attributes.RelmIndex.Descending
-  commentId: P:CoreRelm.Attributes.RelmIndex.Descending
-  id: Descending
-  parent: CoreRelm.Attributes.RelmIndex
-  langs:
-  - csharp
-  - vb
-  name: Descending
-  nameWithType: RelmIndex.Descending
-  fullName: CoreRelm.Attributes.RelmIndex.Descending
-  type: Property
-  source:
-    remote:
-      path: CoreRelm/Attributes/RelmIndex.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: Descending
-    path: ../CoreRelm/Attributes/RelmIndex.cs
-    startLine: 32
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Attributes
-  summary: Gets or sets a value indicating whether the sort order is descending.
-  example: []
-  syntax:
-    content: public bool Descending { get; set; }
-    parameters: []
-    return:
-      type: System.Boolean
-    content.vb: Public Property Descending As Boolean
-  overload: CoreRelm.Attributes.RelmIndex.Descending*
-- uid: CoreRelm.Attributes.RelmIndex.Unique
-  commentId: P:CoreRelm.Attributes.RelmIndex.Unique
-  id: Unique
-  parent: CoreRelm.Attributes.RelmIndex
-  langs:
-  - csharp
-  - vb
-  name: Unique
-  nameWithType: RelmIndex.Unique
-  fullName: CoreRelm.Attributes.RelmIndex.Unique
-  type: Property
-  source:
-    remote:
-      path: CoreRelm/Attributes/RelmIndex.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: Unique
-    path: ../CoreRelm/Attributes/RelmIndex.cs
-    startLine: 37
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Attributes
-  summary: Gets or sets a value indicating whether this is a unique index.
-  example: []
-  syntax:
-    content: public bool Unique { get; set; }
-    parameters: []
-    return:
-      type: System.Boolean
-    content.vb: Public Property Unique As Boolean
-  overload: CoreRelm.Attributes.RelmIndex.Unique*
-- uid: CoreRelm.Attributes.RelmIndex.#ctor(System.String[],System.String,System.Boolean,System.Boolean)
-  commentId: M:CoreRelm.Attributes.RelmIndex.#ctor(System.String[],System.String,System.Boolean,System.Boolean)
-  id: '#ctor(System.String[],System.String,System.Boolean,System.Boolean)'
-  parent: CoreRelm.Attributes.RelmIndex
-  langs:
-  - csharp
-  - vb
-  name: RelmIndex(string[]?, string?, bool, bool)
-  nameWithType: RelmIndex.RelmIndex(string[]?, string?, bool, bool)
-  fullName: CoreRelm.Attributes.RelmIndex.RelmIndex(string[]?, string?, bool, bool)
+  name: RelmIndex(string, IndexType, int, string, string, Visibility, string, string, Algorithm, LockOption)
+  nameWithType: RelmIndex.RelmIndex(string, Indexes.IndexType, int, string, string, Indexes.Visibility, string, string, Indexes.Algorithm, Indexes.LockOption)
+  fullName: CoreRelm.Attributes.RelmIndex.RelmIndex(string, CoreRelm.Enums.Indexes.IndexType, int, string, string, CoreRelm.Enums.Indexes.Visibility, string, string, CoreRelm.Enums.Indexes.Algorithm, CoreRelm.Enums.Indexes.LockOption)
   type: Constructor
   source:
     remote:
@@ -244,35 +119,50 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Attributes/RelmIndex.cs
-    startLine: 46
+    startLine: 97
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
-  summary: Initializes a new instance of the RelmIndex class with the specified properties to be indexed.
+  summary: Initializes a new instance of the non-keyed RelmIndex with optional index configuration settings.
   example: []
   syntax:
-    content: public RelmIndex(string[]? indexedProperties = null, string? indexName = null, bool descending = false, bool unique = false)
+    content: public RelmIndex(string indexName = null, Indexes.IndexType indexType = IndexType.None, int keyBlockSize = -1, string parserName = null, string comment = null, Indexes.Visibility visibility = Visibility.None, string engineAttribute = null, string secondaryEngineAttribute = null, Indexes.Algorithm algorithmType = Algorithm.None, Indexes.LockOption lockOption = LockOption.None)
     parameters:
-    - id: indexedProperties
-      type: System.String[]
-      description: An array of property names to be indexed. Must contain at least one element.
     - id: indexName
       type: System.String
-      description: The name of the index. If null, a default name will be generated based on the indexed properties.
-    - id: descending
-      type: System.Boolean
-      description: A value indicating whether the index should be created in descending order. Default is false (ascending order).
-    - id: unique
-      type: System.Boolean
-    content.vb: Public Sub New(indexedProperties As String() = Nothing, indexName As String = Nothing, descending As Boolean = False, unique As Boolean = False)
+      description: The name of the index. If null, a default name may be used.
+    - id: indexType
+      type: CoreRelm.Enums.Indexes.IndexType
+      description: The type of index to create, such as primary or secondary.
+    - id: keyBlockSize
+      type: System.Int32
+      description: The size, in bytes, of the key block for the index. Specify -1 to use the default size.
+    - id: parserName
+      type: System.String
+      description: The name of the parser to use for the index, or null to use the default parser.
+    - id: comment
+      type: System.String
+      description: An optional comment describing the index.
+    - id: visibility
+      type: CoreRelm.Enums.Indexes.Visibility
+      description: Specifies the visibility of the index, such as public or private.
+    - id: engineAttribute
+      type: System.String
+      description: An optional engine-specific attribute for the index.
+    - id: secondaryEngineAttribute
+      type: System.String
+      description: An optional secondary engine-specific attribute for the index.
+    - id: algorithmType
+      type: CoreRelm.Enums.Indexes.Algorithm
+      description: The algorithm to use for the index, or Algorithm.None to use the default.
+    - id: lockOption
+      type: CoreRelm.Enums.Indexes.LockOption
+      description: The locking option to use for the index, or LockOption.None for the default behavior.
+    content.vb: Public Sub New(indexName As String = Nothing, indexType As Indexes.IndexType = IndexType.None, keyBlockSize As Integer = -1, parserName As String = Nothing, comment As String = Nothing, visibility As Indexes.Visibility = Visibility.None, engineAttribute As String = Nothing, secondaryEngineAttribute As String = Nothing, algorithmType As Indexes.Algorithm = Algorithm.None, lockOption As Indexes.LockOption = LockOption.None)
   overload: CoreRelm.Attributes.RelmIndex.#ctor*
-  exceptions:
-  - type: System.ArgumentException
-    commentId: T:System.ArgumentException
-    description: Thrown if indexedProperties is null or empty.
-  nameWithType.vb: RelmIndex.New(String(), String, Boolean, Boolean)
-  fullName.vb: CoreRelm.Attributes.RelmIndex.New(String(), String, Boolean, Boolean)
-  name.vb: New(String(), String, Boolean, Boolean)
+  nameWithType.vb: RelmIndex.New(String, Indexes.IndexType, Integer, String, String, Indexes.Visibility, String, String, Indexes.Algorithm, Indexes.LockOption)
+  fullName.vb: CoreRelm.Attributes.RelmIndex.New(String, CoreRelm.Enums.Indexes.IndexType, Integer, String, String, CoreRelm.Enums.Indexes.Visibility, String, String, CoreRelm.Enums.Indexes.Algorithm, CoreRelm.Enums.Indexes.LockOption)
+  name.vb: New(String, IndexType, Integer, String, String, Visibility, String, String, Algorithm, LockOption)
 references:
 - uid: CoreRelm.Attributes
   commentId: N:CoreRelm.Attributes
@@ -315,6 +205,90 @@ references:
   name: Attribute
   nameWithType: Attribute
   fullName: System.Attribute
+- uid: CoreRelm.Attributes.BaseClasses.RelmIndexBase
+  commentId: T:CoreRelm.Attributes.BaseClasses.RelmIndexBase
+  parent: CoreRelm.Attributes.BaseClasses
+  href: CoreRelm.Attributes.BaseClasses.RelmIndexBase.html
+  name: RelmIndexBase
+  nameWithType: RelmIndexBase
+  fullName: CoreRelm.Attributes.BaseClasses.RelmIndexBase
+- uid: CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexKeyHolder
+  commentId: P:CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexKeyHolder
+  parent: CoreRelm.Attributes.BaseClasses.RelmIndexBase
+  href: CoreRelm.Attributes.BaseClasses.RelmIndexBase.html#CoreRelm_Attributes_BaseClasses_RelmIndexBase_IndexKeyHolder
+  name: IndexKeyHolder
+  nameWithType: RelmIndexBase.IndexKeyHolder
+  fullName: CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexKeyHolder
+- uid: CoreRelm.Attributes.BaseClasses.RelmIndexBase.Descending
+  commentId: P:CoreRelm.Attributes.BaseClasses.RelmIndexBase.Descending
+  parent: CoreRelm.Attributes.BaseClasses.RelmIndexBase
+  href: CoreRelm.Attributes.BaseClasses.RelmIndexBase.html#CoreRelm_Attributes_BaseClasses_RelmIndexBase_Descending
+  name: Descending
+  nameWithType: RelmIndexBase.Descending
+  fullName: CoreRelm.Attributes.BaseClasses.RelmIndexBase.Descending
+- uid: CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexedProperties
+  commentId: P:CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexedProperties
+  parent: CoreRelm.Attributes.BaseClasses.RelmIndexBase
+  href: CoreRelm.Attributes.BaseClasses.RelmIndexBase.html#CoreRelm_Attributes_BaseClasses_RelmIndexBase_IndexedProperties
+  name: IndexedProperties
+  nameWithType: RelmIndexBase.IndexedProperties
+  fullName: CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexedProperties
+- uid: CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexedPropertyNames
+  commentId: P:CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexedPropertyNames
+  parent: CoreRelm.Attributes.BaseClasses.RelmIndexBase
+  href: CoreRelm.Attributes.BaseClasses.RelmIndexBase.html#CoreRelm_Attributes_BaseClasses_RelmIndexBase_IndexedPropertyNames
+  name: IndexedPropertyNames
+  nameWithType: RelmIndexBase.IndexedPropertyNames
+  fullName: CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexedPropertyNames
+- uid: CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexName
+  commentId: P:CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexName
+  parent: CoreRelm.Attributes.BaseClasses.RelmIndexBase
+  href: CoreRelm.Attributes.BaseClasses.RelmIndexBase.html#CoreRelm_Attributes_BaseClasses_RelmIndexBase_IndexName
+  name: IndexName
+  nameWithType: RelmIndexBase.IndexName
+  fullName: CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexName
+- uid: CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexTypeValue
+  commentId: P:CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexTypeValue
+  parent: CoreRelm.Attributes.BaseClasses.RelmIndexBase
+  href: CoreRelm.Attributes.BaseClasses.RelmIndexBase.html#CoreRelm_Attributes_BaseClasses_RelmIndexBase_IndexTypeValue
+  name: IndexTypeValue
+  nameWithType: RelmIndexBase.IndexTypeValue
+  fullName: CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexTypeValue
+- uid: CoreRelm.Attributes.BaseClasses.RelmIndexBase.ParserName
+  commentId: P:CoreRelm.Attributes.BaseClasses.RelmIndexBase.ParserName
+  parent: CoreRelm.Attributes.BaseClasses.RelmIndexBase
+  href: CoreRelm.Attributes.BaseClasses.RelmIndexBase.html#CoreRelm_Attributes_BaseClasses_RelmIndexBase_ParserName
+  name: ParserName
+  nameWithType: RelmIndexBase.ParserName
+  fullName: CoreRelm.Attributes.BaseClasses.RelmIndexBase.ParserName
+- uid: CoreRelm.Attributes.BaseClasses.RelmIndexBase.Comment
+  commentId: P:CoreRelm.Attributes.BaseClasses.RelmIndexBase.Comment
+  parent: CoreRelm.Attributes.BaseClasses.RelmIndexBase
+  href: CoreRelm.Attributes.BaseClasses.RelmIndexBase.html#CoreRelm_Attributes_BaseClasses_RelmIndexBase_Comment
+  name: Comment
+  nameWithType: RelmIndexBase.Comment
+  fullName: CoreRelm.Attributes.BaseClasses.RelmIndexBase.Comment
+- uid: CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexVisibility
+  commentId: P:CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexVisibility
+  parent: CoreRelm.Attributes.BaseClasses.RelmIndexBase
+  href: CoreRelm.Attributes.BaseClasses.RelmIndexBase.html#CoreRelm_Attributes_BaseClasses_RelmIndexBase_IndexVisibility
+  name: IndexVisibility
+  nameWithType: RelmIndexBase.IndexVisibility
+  fullName: CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexVisibility
+- uid: CoreRelm.Attributes.BaseClasses.RelmIndexBase.AlgorithmType
+  commentId: P:CoreRelm.Attributes.BaseClasses.RelmIndexBase.AlgorithmType
+  parent: CoreRelm.Attributes.BaseClasses.RelmIndexBase
+  href: CoreRelm.Attributes.BaseClasses.RelmIndexBase.html#CoreRelm_Attributes_BaseClasses_RelmIndexBase_AlgorithmType
+  name: AlgorithmType
+  nameWithType: RelmIndexBase.AlgorithmType
+  fullName: CoreRelm.Attributes.BaseClasses.RelmIndexBase.AlgorithmType
+- uid: CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexLockOption
+  commentId: P:CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexLockOption
+  parent: CoreRelm.Attributes.BaseClasses.RelmIndexBase
+  href: CoreRelm.Attributes.BaseClasses.RelmIndexBase.html#CoreRelm_Attributes_BaseClasses_RelmIndexBase_IndexLockOption
+  name: IndexLockOption
+  nameWithType: RelmIndexBase.IndexLockOption
+  fullName: CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexLockOption
 - uid: System.Attribute.Equals(System.Object)
   commentId: M:System.Attribute.Equals(System.Object)
   parent: System.Attribute
@@ -2066,41 +2040,45 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: CoreRelm.Attributes.RelmIndex.IndexedProperties*
-  commentId: Overload:CoreRelm.Attributes.RelmIndex.IndexedProperties
-  href: CoreRelm.Attributes.RelmIndex.html#CoreRelm_Attributes_RelmIndex_IndexedProperties
-  name: IndexedProperties
-  nameWithType: RelmIndex.IndexedProperties
-  fullName: CoreRelm.Attributes.RelmIndex.IndexedProperties
-- uid: System.String[]
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: string[]
-  nameWithType: string[]
-  fullName: string[]
-  nameWithType.vb: String()
-  fullName.vb: String()
-  name.vb: String()
+- uid: CoreRelm.Attributes.BaseClasses
+  commentId: N:CoreRelm.Attributes.BaseClasses
+  href: CoreRelm.html
+  name: CoreRelm.Attributes.BaseClasses
+  nameWithType: CoreRelm.Attributes.BaseClasses
+  fullName: CoreRelm.Attributes.BaseClasses
   spec.csharp:
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: '['
-  - name: ']'
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Attributes
+    name: Attributes
+    href: CoreRelm.Attributes.html
+  - name: .
+  - uid: CoreRelm.Attributes.BaseClasses
+    name: BaseClasses
+    href: CoreRelm.Attributes.BaseClasses.html
   spec.vb:
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: (
-  - name: )
-- uid: CoreRelm.Attributes.RelmIndex.IndexName*
-  commentId: Overload:CoreRelm.Attributes.RelmIndex.IndexName
-  href: CoreRelm.Attributes.RelmIndex.html#CoreRelm_Attributes_RelmIndex_IndexName
-  name: IndexName
-  nameWithType: RelmIndex.IndexName
-  fullName: CoreRelm.Attributes.RelmIndex.IndexName
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Attributes
+    name: Attributes
+    href: CoreRelm.Attributes.html
+  - name: .
+  - uid: CoreRelm.Attributes.BaseClasses
+    name: BaseClasses
+    href: CoreRelm.Attributes.BaseClasses.html
+- uid: CoreRelm.Attributes.RelmIndex.#ctor*
+  commentId: Overload:CoreRelm.Attributes.RelmIndex.#ctor
+  href: CoreRelm.Attributes.RelmIndex.html#CoreRelm_Attributes_RelmIndex__ctor_System_String_CoreRelm_Enums_Indexes_IndexType_System_Int32_System_String_System_String_CoreRelm_Enums_Indexes_Visibility_System_String_System_String_CoreRelm_Enums_Indexes_Algorithm_CoreRelm_Enums_Indexes_LockOption_
+  name: RelmIndex
+  nameWithType: RelmIndex.RelmIndex
+  fullName: CoreRelm.Attributes.RelmIndex.RelmIndex
+  nameWithType.vb: RelmIndex.New
+  fullName.vb: CoreRelm.Attributes.RelmIndex.New
+  name.vb: New
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -2112,42 +2090,128 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
-- uid: CoreRelm.Attributes.RelmIndex.Descending*
-  commentId: Overload:CoreRelm.Attributes.RelmIndex.Descending
-  href: CoreRelm.Attributes.RelmIndex.html#CoreRelm_Attributes_RelmIndex_Descending
-  name: Descending
-  nameWithType: RelmIndex.Descending
-  fullName: CoreRelm.Attributes.RelmIndex.Descending
-- uid: System.Boolean
-  commentId: T:System.Boolean
+- uid: CoreRelm.Enums.Indexes.IndexType
+  commentId: T:CoreRelm.Enums.Indexes.IndexType
+  parent: CoreRelm.Enums
+  href: CoreRelm.Enums.Indexes.html
+  name: Indexes.IndexType
+  nameWithType: Indexes.IndexType
+  fullName: CoreRelm.Enums.Indexes.IndexType
+  spec.csharp:
+  - uid: CoreRelm.Enums.Indexes
+    name: Indexes
+    href: CoreRelm.Enums.Indexes.html
+  - name: .
+  - uid: CoreRelm.Enums.Indexes.IndexType
+    name: IndexType
+    href: CoreRelm.Enums.Indexes.IndexType.html
+  spec.vb:
+  - uid: CoreRelm.Enums.Indexes
+    name: Indexes
+    href: CoreRelm.Enums.Indexes.html
+  - name: .
+  - uid: CoreRelm.Enums.Indexes.IndexType
+    name: IndexType
+    href: CoreRelm.Enums.Indexes.IndexType.html
+- uid: System.Int32
+  commentId: T:System.Int32
   parent: System
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.boolean
-  name: bool
-  nameWithType: bool
-  fullName: bool
-  nameWithType.vb: Boolean
-  fullName.vb: Boolean
-  name.vb: Boolean
-- uid: CoreRelm.Attributes.RelmIndex.Unique*
-  commentId: Overload:CoreRelm.Attributes.RelmIndex.Unique
-  href: CoreRelm.Attributes.RelmIndex.html#CoreRelm_Attributes_RelmIndex_Unique
-  name: Unique
-  nameWithType: RelmIndex.Unique
-  fullName: CoreRelm.Attributes.RelmIndex.Unique
-- uid: System.ArgumentException
-  commentId: T:System.ArgumentException
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
-  name: ArgumentException
-  nameWithType: ArgumentException
-  fullName: System.ArgumentException
-- uid: CoreRelm.Attributes.RelmIndex.#ctor*
-  commentId: Overload:CoreRelm.Attributes.RelmIndex.#ctor
-  href: CoreRelm.Attributes.RelmIndex.html#CoreRelm_Attributes_RelmIndex__ctor_System_String___System_String_System_Boolean_System_Boolean_
-  name: RelmIndex
-  nameWithType: RelmIndex.RelmIndex
-  fullName: CoreRelm.Attributes.RelmIndex.RelmIndex
-  nameWithType.vb: RelmIndex.New
-  fullName.vb: CoreRelm.Attributes.RelmIndex.New
-  name.vb: New
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: CoreRelm.Enums.Indexes.Visibility
+  commentId: T:CoreRelm.Enums.Indexes.Visibility
+  parent: CoreRelm.Enums
+  href: CoreRelm.Enums.Indexes.html
+  name: Indexes.Visibility
+  nameWithType: Indexes.Visibility
+  fullName: CoreRelm.Enums.Indexes.Visibility
+  spec.csharp:
+  - uid: CoreRelm.Enums.Indexes
+    name: Indexes
+    href: CoreRelm.Enums.Indexes.html
+  - name: .
+  - uid: CoreRelm.Enums.Indexes.Visibility
+    name: Visibility
+    href: CoreRelm.Enums.Indexes.Visibility.html
+  spec.vb:
+  - uid: CoreRelm.Enums.Indexes
+    name: Indexes
+    href: CoreRelm.Enums.Indexes.html
+  - name: .
+  - uid: CoreRelm.Enums.Indexes.Visibility
+    name: Visibility
+    href: CoreRelm.Enums.Indexes.Visibility.html
+- uid: CoreRelm.Enums.Indexes.Algorithm
+  commentId: T:CoreRelm.Enums.Indexes.Algorithm
+  parent: CoreRelm.Enums
+  href: CoreRelm.Enums.Indexes.html
+  name: Indexes.Algorithm
+  nameWithType: Indexes.Algorithm
+  fullName: CoreRelm.Enums.Indexes.Algorithm
+  spec.csharp:
+  - uid: CoreRelm.Enums.Indexes
+    name: Indexes
+    href: CoreRelm.Enums.Indexes.html
+  - name: .
+  - uid: CoreRelm.Enums.Indexes.Algorithm
+    name: Algorithm
+    href: CoreRelm.Enums.Indexes.Algorithm.html
+  spec.vb:
+  - uid: CoreRelm.Enums.Indexes
+    name: Indexes
+    href: CoreRelm.Enums.Indexes.html
+  - name: .
+  - uid: CoreRelm.Enums.Indexes.Algorithm
+    name: Algorithm
+    href: CoreRelm.Enums.Indexes.Algorithm.html
+- uid: CoreRelm.Enums.Indexes.LockOption
+  commentId: T:CoreRelm.Enums.Indexes.LockOption
+  parent: CoreRelm.Enums
+  href: CoreRelm.Enums.Indexes.html
+  name: Indexes.LockOption
+  nameWithType: Indexes.LockOption
+  fullName: CoreRelm.Enums.Indexes.LockOption
+  spec.csharp:
+  - uid: CoreRelm.Enums.Indexes
+    name: Indexes
+    href: CoreRelm.Enums.Indexes.html
+  - name: .
+  - uid: CoreRelm.Enums.Indexes.LockOption
+    name: LockOption
+    href: CoreRelm.Enums.Indexes.LockOption.html
+  spec.vb:
+  - uid: CoreRelm.Enums.Indexes
+    name: Indexes
+    href: CoreRelm.Enums.Indexes.html
+  - name: .
+  - uid: CoreRelm.Enums.Indexes.LockOption
+    name: LockOption
+    href: CoreRelm.Enums.Indexes.LockOption.html
+- uid: CoreRelm.Enums
+  commentId: N:CoreRelm.Enums
+  href: CoreRelm.html
+  name: CoreRelm.Enums
+  nameWithType: CoreRelm.Enums
+  fullName: CoreRelm.Enums
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Enums
+    name: Enums
+    href: CoreRelm.Enums.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Enums
+    name: Enums
+    href: CoreRelm.Enums.html

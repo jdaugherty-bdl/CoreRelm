@@ -89,7 +89,7 @@
 
 
   <h1 id="CoreRelm_Models_Migrations_Introspection_IndexSchema" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema" class="text-break">
-Class IndexSchema  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexSchema.cs/#L10"><i class="bi bi-code-slash"></i></a>
+Class IndexSchema  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexSchema.cs/#L11"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -284,14 +284,14 @@ Class IndexSchema  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="CoreRelm_Models_Migrations_Introspection_IndexSchema_Collation" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema.Collation">
   Collation
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexSchema.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexSchema.cs/#L32"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
 public string? Collation { get; set; }</code></pre>
   </div>
 
@@ -316,14 +316,14 @@ public string? Collation { get; set; }</code></pre>
 
   <h3 id="CoreRelm_Models_Migrations_Introspection_IndexSchema_ColumnName" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema.ColumnName">
   ColumnName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexSchema.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexSchema.cs/#L23"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
 public string? ColumnName { get; set; }</code></pre>
   </div>
 
@@ -348,14 +348,14 @@ public string? ColumnName { get; set; }</code></pre>
 
   <h3 id="CoreRelm_Models_Migrations_Introspection_IndexSchema_Columns" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema.Columns">
   Columns
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexSchema.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexSchema.cs/#L13"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;IndexColumnSchema&gt; Columns { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;IndexColumnSchema&gt;? Columns { get; set; }</code></pre>
   </div>
 
 
@@ -375,18 +375,114 @@ public string? ColumnName { get; set; }</code></pre>
 
 
 
-  <a id="CoreRelm_Models_Migrations_Introspection_IndexSchema_IndexName_" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexName*"></a>
+  <a id="CoreRelm_Models_Migrations_Introspection_IndexSchema_Comment_" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema.Comment*"></a>
 
-  <h3 id="CoreRelm_Models_Migrations_Introspection_IndexSchema_IndexName" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexName">
-  IndexName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexSchema.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Models_Migrations_Introspection_IndexSchema_Comment" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema.Comment">
+  Comment
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexSchema.cs/#L41"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
+public string? Comment { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_Migrations_Introspection_IndexSchema_Expression_" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema.Expression*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Introspection_IndexSchema_Expression" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema.Expression">
+  Expression
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexSchema.cs/#L38"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
+public string? Expression { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_Migrations_Introspection_IndexSchema_IndexComment_" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexComment*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Introspection_IndexSchema_IndexComment" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexComment">
+  IndexComment
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexSchema.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
+public string? IndexComment { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_Migrations_Introspection_IndexSchema_IndexName_" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexName*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Introspection_IndexSchema_IndexName" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexName">
+  IndexName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexSchema.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
 public string? IndexName { get; set; }</code></pre>
   </div>
 
@@ -407,19 +503,114 @@ public string? IndexName { get; set; }</code></pre>
 
 
 
-  <a id="CoreRelm_Models_Migrations_Introspection_IndexSchema_IsUnique_" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema.IsUnique*"></a>
+  <a id="CoreRelm_Models_Migrations_Introspection_IndexSchema_IndexType_" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexType*"></a>
 
-  <h3 id="CoreRelm_Models_Migrations_Introspection_IndexSchema_IsUnique" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema.IsUnique">
-  IsUnique
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexSchema.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Models_Migrations_Introspection_IndexSchema_IndexType" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexType">
+  IndexType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexSchema.cs/#L47"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
-public bool IsUnique { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
+public string? IndexType { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_Migrations_Introspection_IndexSchema_IndexTypeValue_" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexTypeValue*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Introspection_IndexSchema_IndexTypeValue" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexTypeValue">
+  IndexTypeValue
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexSchema.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
+public Indexes.IndexType IndexTypeValue { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Enums.Indexes.html">Indexes</a>.<a class="xref" href="CoreRelm.Enums.Indexes.IndexType.html">IndexType</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_Migrations_Introspection_IndexSchema_IsVisible_" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema.IsVisible*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Introspection_IndexSchema_IsVisible" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema.IsVisible">
+  IsVisible
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexSchema.cs/#L53"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
+public string? IsVisible { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_Migrations_Introspection_IndexSchema_IsVisibleBool_" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema.IsVisibleBool*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Introspection_IndexSchema_IsVisibleBool" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema.IsVisibleBool">
+  IsVisibleBool
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexSchema.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsVisibleBool { get; }</code></pre>
   </div>
 
 
@@ -443,14 +634,14 @@ public bool IsUnique { get; set; }</code></pre>
 
   <h3 id="CoreRelm_Models_Migrations_Introspection_IndexSchema_NonUnique" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema.NonUnique">
   NonUnique
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexSchema.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexSchema.cs/#L35"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
 public bool NonUnique { get; set; }</code></pre>
   </div>
 
@@ -475,14 +666,14 @@ public bool NonUnique { get; set; }</code></pre>
 
   <h3 id="CoreRelm_Models_Migrations_Introspection_IndexSchema_SeqInIndex" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema.SeqInIndex">
   SeqInIndex
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexSchema.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexSchema.cs/#L29"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
 public int SeqInIndex { get; set; }</code></pre>
   </div>
 
@@ -503,18 +694,50 @@ public int SeqInIndex { get; set; }</code></pre>
 
 
 
-  <a id="CoreRelm_Models_Migrations_Introspection_IndexSchema_TableName_" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema.TableName*"></a>
+  <a id="CoreRelm_Models_Migrations_Introspection_IndexSchema_SubPart_" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema.SubPart*"></a>
 
-  <h3 id="CoreRelm_Models_Migrations_Introspection_IndexSchema_TableName" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema.TableName">
-  TableName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexSchema.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Models_Migrations_Introspection_IndexSchema_SubPart" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema.SubPart">
+  SubPart
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexSchema.cs/#L26"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
+public string? SubPart { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_Migrations_Introspection_IndexSchema_TableName_" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema.TableName*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Introspection_IndexSchema_TableName" data-uid="CoreRelm.Models.Migrations.Introspection.IndexSchema.TableName">
+  TableName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexSchema.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
 public string? TableName { get; set; }</code></pre>
   </div>
 
@@ -539,7 +762,7 @@ public string? TableName { get; set; }</code></pre>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexSchema.cs/#L10" class="edit-link">Edit this page</a>
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/IndexSchema.cs/#L11" class="edit-link">Edit this page</a>
         </div>
 
 

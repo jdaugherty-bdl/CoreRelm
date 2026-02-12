@@ -24,7 +24,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: TriggerSchema
     path: ../CoreRelm/Models/Migrations/Introspection/TriggerSchema.cs
-    startLine: 9
+    startLine: 10
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -102,20 +102,20 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: TriggerName
     path: ../CoreRelm/Models/Migrations/Introspection/TriggerSchema.cs
-    startLine: 11
+    startLine: 12
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
   syntax:
     content: >-
-      [RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
 
       public string? TriggerName { get; set; }
     parameters: []
     return:
       type: System.String
     content.vb: >-
-      <RelmColumn(Nothing, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False, False, False)>
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False)>
 
       Public Property TriggerName As String
   overload: CoreRelm.Models.Migrations.Introspection.TriggerSchema.TriggerName*
@@ -137,22 +137,22 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: EventManipulation
     path: ../CoreRelm/Models/Migrations/Introspection/TriggerSchema.cs
-    startLine: 14
+    startLine: 15
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
   syntax:
     content: >-
-      [RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
 
-      public string? EventManipulation { get; set; }
+      public Triggers.TriggerEvent EventManipulation { get; set; }
     parameters: []
     return:
-      type: System.String
+      type: CoreRelm.Enums.Triggers.TriggerEvent
     content.vb: >-
-      <RelmColumn(Nothing, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False, False, False)>
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False)>
 
-      Public Property EventManipulation As String
+      Public Property EventManipulation As Triggers.TriggerEvent
   overload: CoreRelm.Models.Migrations.Introspection.TriggerSchema.EventManipulation*
 - uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema.ActionTiming
   commentId: P:CoreRelm.Models.Migrations.Introspection.TriggerSchema.ActionTiming
@@ -172,22 +172,22 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ActionTiming
     path: ../CoreRelm/Models/Migrations/Introspection/TriggerSchema.cs
-    startLine: 17
+    startLine: 18
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
   syntax:
     content: >-
-      [RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
 
-      public string? ActionTiming { get; set; }
+      public Triggers.TriggerTime ActionTiming { get; set; }
     parameters: []
     return:
-      type: System.String
+      type: CoreRelm.Enums.Triggers.TriggerTime
     content.vb: >-
-      <RelmColumn(Nothing, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False, False, False)>
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False)>
 
-      Public Property ActionTiming As String
+      Public Property ActionTiming As Triggers.TriggerTime
   overload: CoreRelm.Models.Migrations.Introspection.TriggerSchema.ActionTiming*
 - uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema.EventObjectTable
   commentId: P:CoreRelm.Models.Migrations.Introspection.TriggerSchema.EventObjectTable
@@ -207,20 +207,20 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: EventObjectTable
     path: ../CoreRelm/Models/Migrations/Introspection/TriggerSchema.cs
-    startLine: 20
+    startLine: 21
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
   syntax:
     content: >-
-      [RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
 
       public string? EventObjectTable { get; set; }
     parameters: []
     return:
       type: System.String
     content.vb: >-
-      <RelmColumn(Nothing, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False, False, False)>
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False)>
 
       Public Property EventObjectTable As String
   overload: CoreRelm.Models.Migrations.Introspection.TriggerSchema.EventObjectTable*
@@ -242,20 +242,20 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ActionStatement
     path: ../CoreRelm/Models/Migrations/Introspection/TriggerSchema.cs
-    startLine: 23
+    startLine: 24
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
   syntax:
     content: >-
-      [RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
 
       public string? ActionStatement { get; set; }
     parameters: []
     return:
       type: System.String
     content.vb: >-
-      <RelmColumn(Nothing, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False, False, False)>
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False)>
 
       Public Property ActionStatement As String
   overload: CoreRelm.Models.Migrations.Introspection.TriggerSchema.ActionStatement*
@@ -6663,12 +6663,80 @@ references:
   name: EventManipulation
   nameWithType: TriggerSchema.EventManipulation
   fullName: CoreRelm.Models.Migrations.Introspection.TriggerSchema.EventManipulation
+- uid: CoreRelm.Enums.Triggers.TriggerEvent
+  commentId: T:CoreRelm.Enums.Triggers.TriggerEvent
+  parent: CoreRelm.Enums
+  href: CoreRelm.Enums.Triggers.html
+  name: Triggers.TriggerEvent
+  nameWithType: Triggers.TriggerEvent
+  fullName: CoreRelm.Enums.Triggers.TriggerEvent
+  spec.csharp:
+  - uid: CoreRelm.Enums.Triggers
+    name: Triggers
+    href: CoreRelm.Enums.Triggers.html
+  - name: .
+  - uid: CoreRelm.Enums.Triggers.TriggerEvent
+    name: TriggerEvent
+    href: CoreRelm.Enums.Triggers.TriggerEvent.html
+  spec.vb:
+  - uid: CoreRelm.Enums.Triggers
+    name: Triggers
+    href: CoreRelm.Enums.Triggers.html
+  - name: .
+  - uid: CoreRelm.Enums.Triggers.TriggerEvent
+    name: TriggerEvent
+    href: CoreRelm.Enums.Triggers.TriggerEvent.html
+- uid: CoreRelm.Enums
+  commentId: N:CoreRelm.Enums
+  href: CoreRelm.html
+  name: CoreRelm.Enums
+  nameWithType: CoreRelm.Enums
+  fullName: CoreRelm.Enums
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Enums
+    name: Enums
+    href: CoreRelm.Enums.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Enums
+    name: Enums
+    href: CoreRelm.Enums.html
 - uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema.ActionTiming*
   commentId: Overload:CoreRelm.Models.Migrations.Introspection.TriggerSchema.ActionTiming
   href: CoreRelm.Models.Migrations.Introspection.TriggerSchema.html#CoreRelm_Models_Migrations_Introspection_TriggerSchema_ActionTiming
   name: ActionTiming
   nameWithType: TriggerSchema.ActionTiming
   fullName: CoreRelm.Models.Migrations.Introspection.TriggerSchema.ActionTiming
+- uid: CoreRelm.Enums.Triggers.TriggerTime
+  commentId: T:CoreRelm.Enums.Triggers.TriggerTime
+  parent: CoreRelm.Enums
+  href: CoreRelm.Enums.Triggers.html
+  name: Triggers.TriggerTime
+  nameWithType: Triggers.TriggerTime
+  fullName: CoreRelm.Enums.Triggers.TriggerTime
+  spec.csharp:
+  - uid: CoreRelm.Enums.Triggers
+    name: Triggers
+    href: CoreRelm.Enums.Triggers.html
+  - name: .
+  - uid: CoreRelm.Enums.Triggers.TriggerTime
+    name: TriggerTime
+    href: CoreRelm.Enums.Triggers.TriggerTime.html
+  spec.vb:
+  - uid: CoreRelm.Enums.Triggers
+    name: Triggers
+    href: CoreRelm.Enums.Triggers.html
+  - name: .
+  - uid: CoreRelm.Enums.Triggers.TriggerTime
+    name: TriggerTime
+    href: CoreRelm.Enums.Triggers.TriggerTime.html
 - uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema.EventObjectTable*
   commentId: Overload:CoreRelm.Models.Migrations.Introspection.TriggerSchema.EventObjectTable
   href: CoreRelm.Models.Migrations.Introspection.TriggerSchema.html#CoreRelm_Models_Migrations_Introspection_TriggerSchema_EventObjectTable

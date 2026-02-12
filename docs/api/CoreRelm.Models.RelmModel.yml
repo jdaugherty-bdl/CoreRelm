@@ -43,7 +43,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: RelmModel
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 37
+    startLine: 39
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -60,8 +60,14 @@ items:
         a flexible foundation for working with relational data in the Relm framework.
   example: []
   syntax:
-    content: 'public class RelmModel : IRelmModel'
-    content.vb: Public Class RelmModel Implements IRelmModel
+    content: >-
+      [RelmTrigger(Triggers.TriggerTime.BEFORE, Triggers.TriggerEvent.INSERT, "\r\n    BEGIN\r\n        IF NEW.InternalId IS NULL OR NEW.InternalId = '' THEN\r\n            SET NEW.InternalId = uuid_v4();\r\n        END IF;\r\n    END", null, Triggers.TriggerOrdering.FOLLOWS, null)]
+
+      public class RelmModel : IRelmModel
+    content.vb: >-
+      <RelmTrigger(Triggers.TriggerTime.BEFORE, Triggers.TriggerEvent.INSERT, vbCrLf & "    BEGIN" & vbCrLf & "        IF NEW.InternalId IS NULL OR NEW.InternalId = '' THEN" & vbCrLf & "            SET NEW.InternalId = uuid_v4();" & vbCrLf & "        END IF;" & vbCrLf & "    END", Nothing, Triggers.TriggerOrdering.FOLLOWS, Nothing)>
+
+      Public Class RelmModel Implements IRelmModel
   inheritance:
   - System.Object
   derivedClasses:
@@ -101,6 +107,20 @@ items:
   - CoreRelm.Models.RelmModel.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.RelmModel,System.Collections.Generic.ICollection{{R}}}},CoreRelm.Interfaces.IRelmDataLoader{{S}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
   - CoreRelm.Models.RelmModel.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.RelmModel,{R}}},CoreRelm.Interfaces.IRelmDataLoader{{S}})
   - CoreRelm.Models.RelmModel.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.RelmModel,{R}}},CoreRelm.Interfaces.IRelmDataLoader{{S}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
+  attributes:
+  - type: CoreRelm.Attributes.RelmTrigger
+    ctor: CoreRelm.Attributes.RelmTrigger.#ctor(CoreRelm.Enums.Triggers.TriggerTime,CoreRelm.Enums.Triggers.TriggerEvent,System.String,System.String,CoreRelm.Enums.Triggers.TriggerOrdering,System.String)
+    arguments:
+    - type: CoreRelm.Enums.Triggers.TriggerTime
+      value: 0
+    - type: CoreRelm.Enums.Triggers.TriggerEvent
+      value: 0
+    - type: System.String
+      value: "\r\n    BEGIN\r\n        IF NEW.InternalId IS NULL OR NEW.InternalId = '' THEN\r\n            SET NEW.InternalId = uuid_v4();\r\n        END IF;\r\n    END"
+    - type: System.String
+    - type: CoreRelm.Enums.Triggers.TriggerOrdering
+      value: 0
+    - type: System.String
 - uid: CoreRelm.Models.RelmModel.DtoTypeProcessor
   commentId: E:CoreRelm.Models.RelmModel.DtoTypeProcessor
   id: DtoTypeProcessor
@@ -119,7 +139,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DtoTypeProcessor
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 45
+    startLine: 53
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -152,7 +172,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Id
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 50
+    startLine: 58
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -160,14 +180,14 @@ items:
   example: []
   syntax:
     content: >-
-      [RelmColumn(null, null, -1, null, false, true, true, false, null, false, false, false, false)]
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, false, true, true, false, null, false, false)]
 
       public long? Id { get; set; }
     parameters: []
     return:
       type: System.Nullable{System.Int64}
     content.vb: >-
-      <RelmColumn(Nothing, Nothing, -1, Nothing, False, True, True, False, Nothing, False, False, False, False)>
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, False, True, True, False, Nothing, False, False)>
 
       Public Property Id As Long?
   overload: CoreRelm.Models.RelmModel.Id*
@@ -191,7 +211,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Active
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 56
+    startLine: 64
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -199,14 +219,14 @@ items:
   example: []
   syntax:
     content: >-
-      [RelmColumn(null, null, 1, null, false, false, false, false, "'1'", false, false, false, false)]
+      [RelmColumn(null, MySqlDbType.VarChar, null, 1, null, false, false, false, false, "1", false, false)]
 
       public bool Active { get; set; }
     parameters: []
     return:
       type: System.Boolean
     content.vb: >-
-      <RelmColumn(Nothing, Nothing, 1, Nothing, False, False, False, False, "'1'", False, False, False, False)>
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, 1, Nothing, False, False, False, False, "1", False, False)>
 
       Public Property Active As Boolean
   overload: CoreRelm.Models.RelmModel.Active*
@@ -230,7 +250,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: InternalId
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 62
+    startLine: 70
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -238,14 +258,14 @@ items:
   example: []
   syntax:
     content: >-
-      [RelmColumn(null, null, 45, null, false, false, false, true, "'uuid_v4()'", false, false, false, false)]
+      [RelmColumn(null, MySqlDbType.VarChar, null, 45, null, false, false, false, true, null, false, false)]
 
       public string? InternalId { get; set; }
     parameters: []
     return:
       type: System.String
     content.vb: >-
-      <RelmColumn(Nothing, Nothing, 45, Nothing, False, False, False, True, "'uuid_v4()'", False, False, False, False)>
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, 45, Nothing, False, False, False, True, Nothing, False, False)>
 
       Public Property InternalId As String
   overload: CoreRelm.Models.RelmModel.InternalId*
@@ -269,7 +289,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: CreateDate
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 70
+    startLine: 78
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -277,14 +297,14 @@ items:
   example: []
   syntax:
     content: >-
-      [RelmColumn(null, null, -1, null, false, false, false, false, "CURRENT_TIMESTAMP", false, false, false, false)]
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, false, false, false, false, "CURRENT_TIMESTAMP", false, false)]
 
       public DateTime CreateDate { get; set; }
     parameters: []
     return:
       type: System.DateTime
     content.vb: >-
-      <RelmColumn(Nothing, Nothing, -1, Nothing, False, False, False, False, "CURRENT_TIMESTAMP", False, False, False, False)>
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, False, False, False, False, "CURRENT_TIMESTAMP", False, False)>
 
       Public Property CreateDate As Date
   overload: CoreRelm.Models.RelmModel.CreateDate*
@@ -308,7 +328,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: LastUpdated
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 76
+    startLine: 84
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -316,14 +336,14 @@ items:
   example: []
   syntax:
     content: >-
-      [RelmColumn(null, null, -1, null, false, false, false, false, "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP", false, false, false, false)]
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, false, false, false, false, "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP", false, false)]
 
       public DateTime LastUpdated { get; set; }
     parameters: []
     return:
       type: System.DateTime
     content.vb: >-
-      <RelmColumn(Nothing, Nothing, -1, Nothing, False, False, False, False, "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP", False, False, False, False)>
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, False, False, False, False, "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP", False, False)>
 
       Public Property LastUpdated As Date
   overload: CoreRelm.Models.RelmModel.LastUpdated*
@@ -347,7 +367,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ResetCoreAttributes
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 86
+    startLine: 94
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -392,7 +412,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 107
+    startLine: 115
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -424,7 +444,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 122
+    startLine: 130
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -471,7 +491,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 155
+    startLine: 163
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -517,7 +537,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ResetWithData
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 172
+    startLine: 180
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -567,7 +587,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetUnderscoreProperties
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 294
+    startLine: 302
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -614,7 +634,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WriteToDatabase
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 317
+    startLine: 325
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -676,7 +696,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WriteToDatabaseAsync
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 339
+    startLine: 347
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -738,7 +758,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WriteToDatabase
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 362
+    startLine: 370
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -801,7 +821,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WriteToDatabase
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 387
+    startLine: 395
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -869,7 +889,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WriteToDatabaseAsync
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 407
+    startLine: 415
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -934,7 +954,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WriteToDatabaseAsync
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 429
+    startLine: 437
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1004,7 +1024,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WriteToDatabase
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 457
+    startLine: 465
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1076,7 +1096,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WriteToDatabaseAsync
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 479
+    startLine: 487
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1146,7 +1166,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WriteToDatabase
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 501
+    startLine: 509
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1207,7 +1227,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: CopyFromSource
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 519
+    startLine: 527
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1261,7 +1281,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GenerateDTO
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 561
+    startLine: 569
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1326,7 +1346,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Duplicate
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 892
+    startLine: 900
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models

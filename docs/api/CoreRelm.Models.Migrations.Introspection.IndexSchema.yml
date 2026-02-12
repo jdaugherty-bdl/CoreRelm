@@ -8,10 +8,17 @@ items:
   - CoreRelm.Models.Migrations.Introspection.IndexSchema.Collation
   - CoreRelm.Models.Migrations.Introspection.IndexSchema.ColumnName
   - CoreRelm.Models.Migrations.Introspection.IndexSchema.Columns
+  - CoreRelm.Models.Migrations.Introspection.IndexSchema.Comment
+  - CoreRelm.Models.Migrations.Introspection.IndexSchema.Expression
+  - CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexComment
   - CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexName
-  - CoreRelm.Models.Migrations.Introspection.IndexSchema.IsUnique
+  - CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexType
+  - CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexTypeValue
+  - CoreRelm.Models.Migrations.Introspection.IndexSchema.IsVisible
+  - CoreRelm.Models.Migrations.Introspection.IndexSchema.IsVisibleBool
   - CoreRelm.Models.Migrations.Introspection.IndexSchema.NonUnique
   - CoreRelm.Models.Migrations.Introspection.IndexSchema.SeqInIndex
+  - CoreRelm.Models.Migrations.Introspection.IndexSchema.SubPart
   - CoreRelm.Models.Migrations.Introspection.IndexSchema.TableName
   langs:
   - csharp
@@ -27,7 +34,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: IndexSchema
     path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
-    startLine: 9
+    startLine: 10
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -87,6 +94,64 @@ items:
   - CoreRelm.Models.Migrations.Introspection.IndexSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.IndexSchema,System.Collections.Generic.ICollection{{R}}}},CoreRelm.Interfaces.IRelmDataLoader{{S}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
   - CoreRelm.Models.Migrations.Introspection.IndexSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.IndexSchema,{R}}},CoreRelm.Interfaces.IRelmDataLoader{{S}})
   - CoreRelm.Models.Migrations.Introspection.IndexSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.IndexSchema,{R}}},CoreRelm.Interfaces.IRelmDataLoader{{S}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
+- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.Columns
+  commentId: P:CoreRelm.Models.Migrations.Introspection.IndexSchema.Columns
+  id: Columns
+  parent: CoreRelm.Models.Migrations.Introspection.IndexSchema
+  langs:
+  - csharp
+  - vb
+  name: Columns
+  nameWithType: IndexSchema.Columns
+  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.Columns
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: Columns
+    path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
+    startLine: 12
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Introspection
+  syntax:
+    content: public IReadOnlyList<IndexColumnSchema>? Columns { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.Introspection.IndexColumnSchema}
+    content.vb: Public Property Columns As IReadOnlyList(Of IndexColumnSchema)
+  overload: CoreRelm.Models.Migrations.Introspection.IndexSchema.Columns*
+- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.IsVisibleBool
+  commentId: P:CoreRelm.Models.Migrations.Introspection.IndexSchema.IsVisibleBool
+  id: IsVisibleBool
+  parent: CoreRelm.Models.Migrations.Introspection.IndexSchema
+  langs:
+  - csharp
+  - vb
+  name: IsVisibleBool
+  nameWithType: IndexSchema.IsVisibleBool
+  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.IsVisibleBool
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: IsVisibleBool
+    path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
+    startLine: 14
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Introspection
+  syntax:
+    content: public bool IsVisibleBool { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsVisibleBool As Boolean
+  overload: CoreRelm.Models.Migrations.Introspection.IndexSchema.IsVisibleBool*
 - uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.TableName
   commentId: P:CoreRelm.Models.Migrations.Introspection.IndexSchema.TableName
   id: TableName
@@ -105,20 +170,20 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: TableName
     path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
-    startLine: 11
+    startLine: 16
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
   syntax:
     content: >-
-      [RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
 
       public string? TableName { get; set; }
     parameters: []
     return:
       type: System.String
     content.vb: >-
-      <RelmColumn(Nothing, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False, False, False)>
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False)>
 
       Public Property TableName As String
   overload: CoreRelm.Models.Migrations.Introspection.IndexSchema.TableName*
@@ -140,20 +205,20 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: IndexName
     path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
-    startLine: 14
+    startLine: 19
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
   syntax:
     content: >-
-      [RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
 
       public string? IndexName { get; set; }
     parameters: []
     return:
       type: System.String
     content.vb: >-
-      <RelmColumn(Nothing, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False, False, False)>
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False)>
 
       Public Property IndexName As String
   overload: CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexName*
@@ -175,23 +240,58 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ColumnName
     path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
-    startLine: 17
+    startLine: 22
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
   syntax:
     content: >-
-      [RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
 
       public string? ColumnName { get; set; }
     parameters: []
     return:
       type: System.String
     content.vb: >-
-      <RelmColumn(Nothing, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False, False, False)>
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False)>
 
       Public Property ColumnName As String
   overload: CoreRelm.Models.Migrations.Introspection.IndexSchema.ColumnName*
+- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.SubPart
+  commentId: P:CoreRelm.Models.Migrations.Introspection.IndexSchema.SubPart
+  id: SubPart
+  parent: CoreRelm.Models.Migrations.Introspection.IndexSchema
+  langs:
+  - csharp
+  - vb
+  name: SubPart
+  nameWithType: IndexSchema.SubPart
+  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.SubPart
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: SubPart
+    path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
+    startLine: 25
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Introspection
+  syntax:
+    content: >-
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
+
+      public string? SubPart { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False)>
+
+      Public Property SubPart As String
+  overload: CoreRelm.Models.Migrations.Introspection.IndexSchema.SubPart*
 - uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.SeqInIndex
   commentId: P:CoreRelm.Models.Migrations.Introspection.IndexSchema.SeqInIndex
   id: SeqInIndex
@@ -210,20 +310,20 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SeqInIndex
     path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
-    startLine: 20
+    startLine: 28
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
   syntax:
     content: >-
-      [RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
 
       public int SeqInIndex { get; set; }
     parameters: []
     return:
       type: System.Int32
     content.vb: >-
-      <RelmColumn(Nothing, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False, False, False)>
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False)>
 
       Public Property SeqInIndex As Integer
   overload: CoreRelm.Models.Migrations.Introspection.IndexSchema.SeqInIndex*
@@ -245,58 +345,23 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Collation
     path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
-    startLine: 23
+    startLine: 31
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
   syntax:
     content: >-
-      [RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
 
       public string? Collation { get; set; }
     parameters: []
     return:
       type: System.String
     content.vb: >-
-      <RelmColumn(Nothing, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False, False, False)>
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False)>
 
       Public Property Collation As String
   overload: CoreRelm.Models.Migrations.Introspection.IndexSchema.Collation*
-- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.IsUnique
-  commentId: P:CoreRelm.Models.Migrations.Introspection.IndexSchema.IsUnique
-  id: IsUnique
-  parent: CoreRelm.Models.Migrations.Introspection.IndexSchema
-  langs:
-  - csharp
-  - vb
-  name: IsUnique
-  nameWithType: IndexSchema.IsUnique
-  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.IsUnique
-  type: Property
-  source:
-    remote:
-      path: CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: IsUnique
-    path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
-    startLine: 26
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Models.Migrations.Introspection
-  syntax:
-    content: >-
-      [RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
-
-      public bool IsUnique { get; set; }
-    parameters: []
-    return:
-      type: System.Boolean
-    content.vb: >-
-      <RelmColumn(Nothing, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False, False, False)>
-
-      Public Property IsUnique As Boolean
-  overload: CoreRelm.Models.Migrations.Introspection.IndexSchema.IsUnique*
 - uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.NonUnique
   commentId: P:CoreRelm.Models.Migrations.Introspection.IndexSchema.NonUnique
   id: NonUnique
@@ -315,52 +380,233 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: NonUnique
     path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
-    startLine: 29
+    startLine: 34
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
   syntax:
     content: >-
-      [RelmColumn(null, null, -1, null, true, false, false, false, null, false, false, false, false)]
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
 
       public bool NonUnique { get; set; }
     parameters: []
     return:
       type: System.Boolean
     content.vb: >-
-      <RelmColumn(Nothing, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False, False, False)>
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False)>
 
       Public Property NonUnique As Boolean
   overload: CoreRelm.Models.Migrations.Introspection.IndexSchema.NonUnique*
-- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.Columns
-  commentId: P:CoreRelm.Models.Migrations.Introspection.IndexSchema.Columns
-  id: Columns
+- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.Expression
+  commentId: P:CoreRelm.Models.Migrations.Introspection.IndexSchema.Expression
+  id: Expression
   parent: CoreRelm.Models.Migrations.Introspection.IndexSchema
   langs:
   - csharp
   - vb
-  name: Columns
-  nameWithType: IndexSchema.Columns
-  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.Columns
+  name: Expression
+  nameWithType: IndexSchema.Expression
+  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.Expression
   type: Property
   source:
     remote:
       path: CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
       branch: master
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: Columns
+    id: Expression
     path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
-    startLine: 32
+    startLine: 37
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
   syntax:
-    content: public IReadOnlyList<IndexColumnSchema> Columns { get; set; }
+    content: >-
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
+
+      public string? Expression { get; set; }
     parameters: []
     return:
-      type: System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.Introspection.IndexColumnSchema}
-    content.vb: Public Property Columns As IReadOnlyList(Of IndexColumnSchema)
-  overload: CoreRelm.Models.Migrations.Introspection.IndexSchema.Columns*
+      type: System.String
+    content.vb: >-
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False)>
+
+      Public Property Expression As String
+  overload: CoreRelm.Models.Migrations.Introspection.IndexSchema.Expression*
+- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.Comment
+  commentId: P:CoreRelm.Models.Migrations.Introspection.IndexSchema.Comment
+  id: Comment
+  parent: CoreRelm.Models.Migrations.Introspection.IndexSchema
+  langs:
+  - csharp
+  - vb
+  name: Comment
+  nameWithType: IndexSchema.Comment
+  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.Comment
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: Comment
+    path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
+    startLine: 40
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Introspection
+  syntax:
+    content: >-
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
+
+      public string? Comment { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False)>
+
+      Public Property Comment As String
+  overload: CoreRelm.Models.Migrations.Introspection.IndexSchema.Comment*
+- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexComment
+  commentId: P:CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexComment
+  id: IndexComment
+  parent: CoreRelm.Models.Migrations.Introspection.IndexSchema
+  langs:
+  - csharp
+  - vb
+  name: IndexComment
+  nameWithType: IndexSchema.IndexComment
+  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexComment
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: IndexComment
+    path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
+    startLine: 43
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Introspection
+  syntax:
+    content: >-
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
+
+      public string? IndexComment { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False)>
+
+      Public Property IndexComment As String
+  overload: CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexComment*
+- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexType
+  commentId: P:CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexType
+  id: IndexType
+  parent: CoreRelm.Models.Migrations.Introspection.IndexSchema
+  langs:
+  - csharp
+  - vb
+  name: IndexType
+  nameWithType: IndexSchema.IndexType
+  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexType
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: IndexType
+    path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
+    startLine: 46
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Introspection
+  syntax:
+    content: >-
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
+
+      public string? IndexType { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False)>
+
+      Public Property IndexType As String
+  overload: CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexType*
+- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexTypeValue
+  commentId: P:CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexTypeValue
+  id: IndexTypeValue
+  parent: CoreRelm.Models.Migrations.Introspection.IndexSchema
+  langs:
+  - csharp
+  - vb
+  name: IndexTypeValue
+  nameWithType: IndexSchema.IndexTypeValue
+  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexTypeValue
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: IndexTypeValue
+    path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
+    startLine: 49
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Introspection
+  syntax:
+    content: >-
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
+
+      public Indexes.IndexType IndexTypeValue { get; set; }
+    parameters: []
+    return:
+      type: CoreRelm.Enums.Indexes.IndexType
+    content.vb: >-
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False)>
+
+      Public Property IndexTypeValue As Indexes.IndexType
+  overload: CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexTypeValue*
+- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.IsVisible
+  commentId: P:CoreRelm.Models.Migrations.Introspection.IndexSchema.IsVisible
+  id: IsVisible
+  parent: CoreRelm.Models.Migrations.Introspection.IndexSchema
+  langs:
+  - csharp
+  - vb
+  name: IsVisible
+  nameWithType: IndexSchema.IsVisible
+  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.IsVisible
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: IsVisible
+    path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
+    startLine: 52
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Introspection
+  syntax:
+    content: >-
+      [RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
+
+      public string? IsVisible { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, -1, Nothing, True, False, False, False, Nothing, False, False)>
+
+      Public Property IsVisible As String
+  overload: CoreRelm.Models.Migrations.Introspection.IndexSchema.IsVisible*
 references:
 - uid: CoreRelm.Models.Migrations.Introspection
   commentId: N:CoreRelm.Models.Migrations.Introspection
@@ -6742,81 +6988,6 @@ references:
   - uid: CoreRelm.Extensions
     name: Extensions
     href: CoreRelm.Extensions.html
-- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.TableName*
-  commentId: Overload:CoreRelm.Models.Migrations.Introspection.IndexSchema.TableName
-  href: CoreRelm.Models.Migrations.Introspection.IndexSchema.html#CoreRelm_Models_Migrations_Introspection_IndexSchema_TableName
-  name: TableName
-  nameWithType: IndexSchema.TableName
-  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.TableName
-- uid: System.String
-  commentId: T:System.String
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: string
-  nameWithType: string
-  fullName: string
-  nameWithType.vb: String
-  fullName.vb: String
-  name.vb: String
-- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexName*
-  commentId: Overload:CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexName
-  href: CoreRelm.Models.Migrations.Introspection.IndexSchema.html#CoreRelm_Models_Migrations_Introspection_IndexSchema_IndexName
-  name: IndexName
-  nameWithType: IndexSchema.IndexName
-  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexName
-- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.ColumnName*
-  commentId: Overload:CoreRelm.Models.Migrations.Introspection.IndexSchema.ColumnName
-  href: CoreRelm.Models.Migrations.Introspection.IndexSchema.html#CoreRelm_Models_Migrations_Introspection_IndexSchema_ColumnName
-  name: ColumnName
-  nameWithType: IndexSchema.ColumnName
-  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.ColumnName
-- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.SeqInIndex*
-  commentId: Overload:CoreRelm.Models.Migrations.Introspection.IndexSchema.SeqInIndex
-  href: CoreRelm.Models.Migrations.Introspection.IndexSchema.html#CoreRelm_Models_Migrations_Introspection_IndexSchema_SeqInIndex
-  name: SeqInIndex
-  nameWithType: IndexSchema.SeqInIndex
-  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.SeqInIndex
-- uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.int32
-  name: int
-  nameWithType: int
-  fullName: int
-  nameWithType.vb: Integer
-  fullName.vb: Integer
-  name.vb: Integer
-- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.Collation*
-  commentId: Overload:CoreRelm.Models.Migrations.Introspection.IndexSchema.Collation
-  href: CoreRelm.Models.Migrations.Introspection.IndexSchema.html#CoreRelm_Models_Migrations_Introspection_IndexSchema_Collation
-  name: Collation
-  nameWithType: IndexSchema.Collation
-  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.Collation
-- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.IsUnique*
-  commentId: Overload:CoreRelm.Models.Migrations.Introspection.IndexSchema.IsUnique
-  href: CoreRelm.Models.Migrations.Introspection.IndexSchema.html#CoreRelm_Models_Migrations_Introspection_IndexSchema_IsUnique
-  name: IsUnique
-  nameWithType: IndexSchema.IsUnique
-  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.IsUnique
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.boolean
-  name: bool
-  nameWithType: bool
-  fullName: bool
-  nameWithType.vb: Boolean
-  fullName.vb: Boolean
-  name.vb: Boolean
-- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.NonUnique*
-  commentId: Overload:CoreRelm.Models.Migrations.Introspection.IndexSchema.NonUnique
-  href: CoreRelm.Models.Migrations.Introspection.IndexSchema.html#CoreRelm_Models_Migrations_Introspection_IndexSchema_NonUnique
-  name: NonUnique
-  nameWithType: IndexSchema.NonUnique
-  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.NonUnique
 - uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.Columns*
   commentId: Overload:CoreRelm.Models.Migrations.Introspection.IndexSchema.Columns
   href: CoreRelm.Models.Migrations.Introspection.IndexSchema.html#CoreRelm_Models_Migrations_Introspection_IndexSchema_Columns
@@ -6921,3 +7092,165 @@ references:
     name: Generic
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.IsVisibleBool*
+  commentId: Overload:CoreRelm.Models.Migrations.Introspection.IndexSchema.IsVisibleBool
+  href: CoreRelm.Models.Migrations.Introspection.IndexSchema.html#CoreRelm_Models_Migrations_Introspection_IndexSchema_IsVisibleBool
+  name: IsVisibleBool
+  nameWithType: IndexSchema.IsVisibleBool
+  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.IsVisibleBool
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.TableName*
+  commentId: Overload:CoreRelm.Models.Migrations.Introspection.IndexSchema.TableName
+  href: CoreRelm.Models.Migrations.Introspection.IndexSchema.html#CoreRelm_Models_Migrations_Introspection_IndexSchema_TableName
+  name: TableName
+  nameWithType: IndexSchema.TableName
+  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.TableName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexName*
+  commentId: Overload:CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexName
+  href: CoreRelm.Models.Migrations.Introspection.IndexSchema.html#CoreRelm_Models_Migrations_Introspection_IndexSchema_IndexName
+  name: IndexName
+  nameWithType: IndexSchema.IndexName
+  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexName
+- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.ColumnName*
+  commentId: Overload:CoreRelm.Models.Migrations.Introspection.IndexSchema.ColumnName
+  href: CoreRelm.Models.Migrations.Introspection.IndexSchema.html#CoreRelm_Models_Migrations_Introspection_IndexSchema_ColumnName
+  name: ColumnName
+  nameWithType: IndexSchema.ColumnName
+  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.ColumnName
+- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.SubPart*
+  commentId: Overload:CoreRelm.Models.Migrations.Introspection.IndexSchema.SubPart
+  href: CoreRelm.Models.Migrations.Introspection.IndexSchema.html#CoreRelm_Models_Migrations_Introspection_IndexSchema_SubPart
+  name: SubPart
+  nameWithType: IndexSchema.SubPart
+  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.SubPart
+- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.SeqInIndex*
+  commentId: Overload:CoreRelm.Models.Migrations.Introspection.IndexSchema.SeqInIndex
+  href: CoreRelm.Models.Migrations.Introspection.IndexSchema.html#CoreRelm_Models_Migrations_Introspection_IndexSchema_SeqInIndex
+  name: SeqInIndex
+  nameWithType: IndexSchema.SeqInIndex
+  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.SeqInIndex
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.Collation*
+  commentId: Overload:CoreRelm.Models.Migrations.Introspection.IndexSchema.Collation
+  href: CoreRelm.Models.Migrations.Introspection.IndexSchema.html#CoreRelm_Models_Migrations_Introspection_IndexSchema_Collation
+  name: Collation
+  nameWithType: IndexSchema.Collation
+  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.Collation
+- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.NonUnique*
+  commentId: Overload:CoreRelm.Models.Migrations.Introspection.IndexSchema.NonUnique
+  href: CoreRelm.Models.Migrations.Introspection.IndexSchema.html#CoreRelm_Models_Migrations_Introspection_IndexSchema_NonUnique
+  name: NonUnique
+  nameWithType: IndexSchema.NonUnique
+  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.NonUnique
+- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.Expression*
+  commentId: Overload:CoreRelm.Models.Migrations.Introspection.IndexSchema.Expression
+  href: CoreRelm.Models.Migrations.Introspection.IndexSchema.html#CoreRelm_Models_Migrations_Introspection_IndexSchema_Expression
+  name: Expression
+  nameWithType: IndexSchema.Expression
+  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.Expression
+- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.Comment*
+  commentId: Overload:CoreRelm.Models.Migrations.Introspection.IndexSchema.Comment
+  href: CoreRelm.Models.Migrations.Introspection.IndexSchema.html#CoreRelm_Models_Migrations_Introspection_IndexSchema_Comment
+  name: Comment
+  nameWithType: IndexSchema.Comment
+  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.Comment
+- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexComment*
+  commentId: Overload:CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexComment
+  href: CoreRelm.Models.Migrations.Introspection.IndexSchema.html#CoreRelm_Models_Migrations_Introspection_IndexSchema_IndexComment
+  name: IndexComment
+  nameWithType: IndexSchema.IndexComment
+  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexComment
+- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexType*
+  commentId: Overload:CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexType
+  href: CoreRelm.Models.Migrations.Introspection.IndexSchema.html#CoreRelm_Models_Migrations_Introspection_IndexSchema_IndexType
+  name: IndexType
+  nameWithType: IndexSchema.IndexType
+  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexType
+- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexTypeValue*
+  commentId: Overload:CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexTypeValue
+  href: CoreRelm.Models.Migrations.Introspection.IndexSchema.html#CoreRelm_Models_Migrations_Introspection_IndexSchema_IndexTypeValue
+  name: IndexTypeValue
+  nameWithType: IndexSchema.IndexTypeValue
+  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.IndexTypeValue
+- uid: CoreRelm.Enums.Indexes.IndexType
+  commentId: T:CoreRelm.Enums.Indexes.IndexType
+  parent: CoreRelm.Enums
+  href: CoreRelm.Enums.Indexes.html
+  name: Indexes.IndexType
+  nameWithType: Indexes.IndexType
+  fullName: CoreRelm.Enums.Indexes.IndexType
+  spec.csharp:
+  - uid: CoreRelm.Enums.Indexes
+    name: Indexes
+    href: CoreRelm.Enums.Indexes.html
+  - name: .
+  - uid: CoreRelm.Enums.Indexes.IndexType
+    name: IndexType
+    href: CoreRelm.Enums.Indexes.IndexType.html
+  spec.vb:
+  - uid: CoreRelm.Enums.Indexes
+    name: Indexes
+    href: CoreRelm.Enums.Indexes.html
+  - name: .
+  - uid: CoreRelm.Enums.Indexes.IndexType
+    name: IndexType
+    href: CoreRelm.Enums.Indexes.IndexType.html
+- uid: CoreRelm.Enums
+  commentId: N:CoreRelm.Enums
+  href: CoreRelm.html
+  name: CoreRelm.Enums
+  nameWithType: CoreRelm.Enums
+  fullName: CoreRelm.Enums
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Enums
+    name: Enums
+    href: CoreRelm.Enums.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Enums
+    name: Enums
+    href: CoreRelm.Enums.html
+- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.IsVisible*
+  commentId: Overload:CoreRelm.Models.Migrations.Introspection.IndexSchema.IsVisible
+  href: CoreRelm.Models.Migrations.Introspection.IndexSchema.html#CoreRelm_Models_Migrations_Introspection_IndexSchema_IsVisible
+  name: IsVisible
+  nameWithType: IndexSchema.IsVisible
+  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema.IsVisible

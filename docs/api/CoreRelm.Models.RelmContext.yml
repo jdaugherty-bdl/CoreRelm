@@ -11,6 +11,7 @@ items:
   - CoreRelm.Models.RelmContext.#ctor(MySql.Data.MySqlClient.MySqlConnection,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
   - CoreRelm.Models.RelmContext.#ctor(System.Enum,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
   - CoreRelm.Models.RelmContext.#ctor(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
+  - CoreRelm.Models.RelmContext.AppliedMigrations
   - CoreRelm.Models.RelmContext.BeginTransaction
   - CoreRelm.Models.RelmContext.BeginTransactionAsync(System.Threading.CancellationToken)
   - CoreRelm.Models.RelmContext.BulkTableWriteAsync``1(``0,System.String,System.Type,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
@@ -94,7 +95,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: RelmContext
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -149,7 +150,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: OnConfigure
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 46
+    startLine: 47
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -188,7 +189,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ContextOptions
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 54
+    startLine: 55
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -207,6 +208,35 @@ items:
   overload: CoreRelm.Models.RelmContext.ContextOptions*
   implements:
   - CoreRelm.Interfaces.IRelmContext.ContextOptions
+- uid: CoreRelm.Models.RelmContext.AppliedMigrations
+  commentId: P:CoreRelm.Models.RelmContext.AppliedMigrations
+  id: AppliedMigrations
+  parent: CoreRelm.Models.RelmContext
+  langs:
+  - csharp
+  - vb
+  name: AppliedMigrations
+  nameWithType: RelmContext.AppliedMigrations
+  fullName: CoreRelm.Models.RelmContext.AppliedMigrations
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/RelmContext.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: AppliedMigrations
+    path: ../CoreRelm/Models/RelmContext.cs
+    startLine: 63
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models
+  syntax:
+    content: public IRelmDataSet<AppliedMigration> AppliedMigrations { get; set; }
+    parameters: []
+    return:
+      type: CoreRelm.Interfaces.IRelmDataSet{CoreRelm.Models.Migrations.Execution.AppliedMigration}
+    content.vb: Public Property AppliedMigrations As IRelmDataSet(Of AppliedMigration)
+  overload: CoreRelm.Models.RelmContext.AppliedMigrations*
 - uid: CoreRelm.Models.RelmContext.#ctor(CoreRelm.Interfaces.IRelmContext,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
   commentId: M:CoreRelm.Models.RelmContext.#ctor(CoreRelm.Interfaces.IRelmContext,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
   id: '#ctor(CoreRelm.Interfaces.IRelmContext,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)'
@@ -225,7 +255,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 76
+    startLine: 79
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -290,7 +320,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 94
+    startLine: 97
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -336,7 +366,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 121
+    startLine: 124
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -409,7 +439,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 140
+    startLine: 143
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -468,7 +498,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 164
+    startLine: 167
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -533,7 +563,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 187
+    startLine: 190
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -598,7 +628,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetDataLoader
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 290
+    startLine: 295
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -644,7 +674,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: StartConnection
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 343
+    startLine: 348
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -694,7 +724,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: StartConnectionAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 360
+    startLine: 365
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -748,7 +778,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: EndConnection
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 402
+    startLine: 407
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -788,7 +818,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: EndConnectionAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 417
+    startLine: 422
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -832,7 +862,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: HasTransaction
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 441
+    startLine: 446
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -863,7 +893,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: BeginTransaction
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 455
+    startLine: 460
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -905,7 +935,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: BeginTransactionAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 471
+    startLine: 476
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -950,7 +980,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: CommitTransaction
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 485
+    startLine: 490
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -984,7 +1014,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: CommitTransactionAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 498
+    startLine: 503
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1023,7 +1053,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: RollbackTransaction
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 514
+    startLine: 519
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1056,7 +1086,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: RollbackTransactionAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 526
+    startLine: 531
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1094,7 +1124,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Dispose
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 543
+    startLine: 548
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1128,7 +1158,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Dispose
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 557
+    startLine: 562
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1167,7 +1197,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Finalize
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 582
+    startLine: 587
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1205,7 +1235,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataSet
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 592
+    startLine: 597
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1244,7 +1274,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataSet
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 607
+    startLine: 612
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1291,7 +1321,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataSet
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 617
+    startLine: 622
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1328,7 +1358,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataSet
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 640
+    startLine: 645
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1389,7 +1419,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: HasDataSet
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 664
+    startLine: 669
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1431,7 +1461,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: HasDataSet
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 675
+    startLine: 680
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1474,7 +1504,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataSetType
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 686
+    startLine: 691
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1515,7 +1545,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataSetType
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 698
+    startLine: 703
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1562,7 +1592,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataSetType
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 708
+    startLine: 713
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1599,7 +1629,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataSetType
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 720
+    startLine: 725
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1646,7 +1676,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Get
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 752
+    startLine: 757
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1697,7 +1727,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 769
+    startLine: 774
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1750,7 +1780,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Get
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 785
+    startLine: 790
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1798,7 +1828,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 798
+    startLine: 803
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1848,7 +1878,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: FirstOrDefault
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 811
+    startLine: 816
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1897,7 +1927,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: FirstOrDefaultAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 824
+    startLine: 829
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1948,7 +1978,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Where
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 841
+    startLine: 846
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2005,7 +2035,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Run
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 863
+    startLine: 868
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2062,7 +2092,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: RunAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 881
+    startLine: 886
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2121,7 +2151,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SaveAll
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 899
+    startLine: 904
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2154,7 +2184,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SaveAllAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 913
+    startLine: 918
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2192,7 +2222,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetLastInsertId
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 931
+    startLine: 936
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2225,7 +2255,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetLastInsertIdAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 938
+    startLine: 943
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2261,7 +2291,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetIdFromInternalId
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 948
+    startLine: 953
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2306,7 +2336,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetIdFromInternalIdAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 958
+    startLine: 963
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2353,7 +2383,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataRow
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 970
+    startLine: 975
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2403,7 +2433,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataRowAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 982
+    startLine: 987
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2455,7 +2485,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataTable
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 998
+    startLine: 1003
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2509,7 +2539,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataTableAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1014
+    startLine: 1019
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2565,7 +2595,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataObject
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1031
+    startLine: 1036
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2625,7 +2655,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataObjectAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1048
+    startLine: 1053
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2687,7 +2717,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataObjects
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1065
+    startLine: 1070
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2747,7 +2777,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataObjectsAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1082
+    startLine: 1087
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2809,7 +2839,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataList
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1099
+    startLine: 1104
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2868,7 +2898,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataListAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1116
+    startLine: 1121
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2929,7 +2959,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetScalar
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1134
+    startLine: 1139
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2991,7 +3021,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetScalarAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1154
+    startLine: 1159
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -3057,7 +3087,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetBulkTableWriter
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1176
+    startLine: 1181
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -3127,7 +3157,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: BulkTableWrite
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1203
+    startLine: 1208
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -3201,7 +3231,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: BulkTableWriteAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1230
+    startLine: 1235
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -3277,7 +3307,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DoDatabaseWork
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1246
+    startLine: 1251
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -3331,7 +3361,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DoDatabaseWorkAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1261
+    startLine: 1266
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -3385,7 +3415,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DoDatabaseWork
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1279
+    startLine: 1284
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -3443,7 +3473,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DoDatabaseWorkAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1297
+    startLine: 1302
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -3506,7 +3536,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DoDatabaseWork
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1313
+    startLine: 1318
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -3561,7 +3591,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DoDatabaseWorkAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1329
+    startLine: 1334
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -3620,7 +3650,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DoDatabaseWork
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1346
+    startLine: 1351
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -3680,7 +3710,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DoDatabaseWorkAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1363
+    startLine: 1368
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -3742,7 +3772,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WriteToDatabase
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1385
+    startLine: 1390
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -3810,7 +3840,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WriteToDatabaseAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1407
+    startLine: 1412
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -3880,7 +3910,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WriteToDatabase
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1429
+    startLine: 1434
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -3947,7 +3977,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WriteToDatabaseAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1451
+    startLine: 1456
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -4453,6 +4483,69 @@ references:
   name: ContextOptions
   nameWithType: IRelmContext.ContextOptions
   fullName: CoreRelm.Interfaces.IRelmContext.ContextOptions
+- uid: CoreRelm.Models.RelmContext.AppliedMigrations*
+  commentId: Overload:CoreRelm.Models.RelmContext.AppliedMigrations
+  href: CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_AppliedMigrations
+  name: AppliedMigrations
+  nameWithType: RelmContext.AppliedMigrations
+  fullName: CoreRelm.Models.RelmContext.AppliedMigrations
+- uid: CoreRelm.Interfaces.IRelmDataSet{CoreRelm.Models.Migrations.Execution.AppliedMigration}
+  commentId: T:CoreRelm.Interfaces.IRelmDataSet{CoreRelm.Models.Migrations.Execution.AppliedMigration}
+  parent: CoreRelm.Interfaces
+  definition: CoreRelm.Interfaces.IRelmDataSet`1
+  href: CoreRelm.Interfaces.IRelmDataSet-1.html
+  name: IRelmDataSet<AppliedMigration>
+  nameWithType: IRelmDataSet<AppliedMigration>
+  fullName: CoreRelm.Interfaces.IRelmDataSet<CoreRelm.Models.Migrations.Execution.AppliedMigration>
+  nameWithType.vb: IRelmDataSet(Of AppliedMigration)
+  fullName.vb: CoreRelm.Interfaces.IRelmDataSet(Of CoreRelm.Models.Migrations.Execution.AppliedMigration)
+  name.vb: IRelmDataSet(Of AppliedMigration)
+  spec.csharp:
+  - uid: CoreRelm.Interfaces.IRelmDataSet`1
+    name: IRelmDataSet
+    href: CoreRelm.Interfaces.IRelmDataSet-1.html
+  - name: <
+  - uid: CoreRelm.Models.Migrations.Execution.AppliedMigration
+    name: AppliedMigration
+    href: CoreRelm.Models.Migrations.Execution.AppliedMigration.html
+  - name: '>'
+  spec.vb:
+  - uid: CoreRelm.Interfaces.IRelmDataSet`1
+    name: IRelmDataSet
+    href: CoreRelm.Interfaces.IRelmDataSet-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.Execution.AppliedMigration
+    name: AppliedMigration
+    href: CoreRelm.Models.Migrations.Execution.AppliedMigration.html
+  - name: )
+- uid: CoreRelm.Interfaces.IRelmDataSet`1
+  commentId: T:CoreRelm.Interfaces.IRelmDataSet`1
+  parent: CoreRelm.Interfaces
+  href: CoreRelm.Interfaces.IRelmDataSet-1.html
+  name: IRelmDataSet<T>
+  nameWithType: IRelmDataSet<T>
+  fullName: CoreRelm.Interfaces.IRelmDataSet<T>
+  nameWithType.vb: IRelmDataSet(Of T)
+  fullName.vb: CoreRelm.Interfaces.IRelmDataSet(Of T)
+  name.vb: IRelmDataSet(Of T)
+  spec.csharp:
+  - uid: CoreRelm.Interfaces.IRelmDataSet`1
+    name: IRelmDataSet
+    href: CoreRelm.Interfaces.IRelmDataSet-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: CoreRelm.Interfaces.IRelmDataSet`1
+    name: IRelmDataSet
+    href: CoreRelm.Interfaces.IRelmDataSet-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: System.ArgumentNullException
   commentId: T:System.ArgumentNullException
   isExternal: true
@@ -5273,32 +5366,6 @@ references:
   name: IRelmModel
   nameWithType: IRelmModel
   fullName: CoreRelm.Interfaces.IRelmModel
-- uid: CoreRelm.Interfaces.IRelmDataSet`1
-  commentId: T:CoreRelm.Interfaces.IRelmDataSet`1
-  parent: CoreRelm.Interfaces
-  href: CoreRelm.Interfaces.IRelmDataSet-1.html
-  name: IRelmDataSet<T>
-  nameWithType: IRelmDataSet<T>
-  fullName: CoreRelm.Interfaces.IRelmDataSet<T>
-  nameWithType.vb: IRelmDataSet(Of T)
-  fullName.vb: CoreRelm.Interfaces.IRelmDataSet(Of T)
-  name.vb: IRelmDataSet(Of T)
-  spec.csharp:
-  - uid: CoreRelm.Interfaces.IRelmDataSet`1
-    name: IRelmDataSet
-    href: CoreRelm.Interfaces.IRelmDataSet-1.html
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: CoreRelm.Interfaces.IRelmDataSet`1
-    name: IRelmDataSet
-    href: CoreRelm.Interfaces.IRelmDataSet-1.html
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
 - uid: CoreRelm.Models.RelmContext.GetDataSet*
   commentId: Overload:CoreRelm.Models.RelmContext.GetDataSet
   href: CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_GetDataSet__1

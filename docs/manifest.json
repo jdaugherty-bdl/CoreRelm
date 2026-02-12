@@ -12,6 +12,48 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/CoreRelm.Attributes.BaseClasses.RelmIndexBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CoreRelm.Attributes.BaseClasses.RelmIndexBase.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "CoreRelm.Attributes.BaseClasses.RelmIndexBase",
+      "Summary": "<p sourcefile=\"api/CoreRelm.Attributes.BaseClasses.RelmIndexBase.yml\" sourcestartlinenumber=\"1\">Specifies index configuration metadata for a class, struct, or property to control how an index is created and\nmanaged in the underlying data store.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/CoreRelm.Attributes.BaseClasses.RelmIndexColumnBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CoreRelm.Attributes.BaseClasses.RelmIndexColumnBase.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "CoreRelm.Attributes.BaseClasses.RelmIndexColumnBase",
+      "Summary": "<p sourcefile=\"api/CoreRelm.Attributes.BaseClasses.RelmIndexColumnBase.yml\" sourcestartlinenumber=\"1\">Represents a key definition for an index column, including optional length, expression, and sort direction\nsettings.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/CoreRelm.Attributes.BaseClasses.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CoreRelm.Attributes.BaseClasses.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "CoreRelm.Attributes.BaseClasses",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/CoreRelm.Attributes.RelmColumn.yml",
       "output": {
         ".html": {
@@ -82,6 +124,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/CoreRelm.Attributes.RelmIndex-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CoreRelm.Attributes.RelmIndex-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "CoreRelm.Attributes.RelmIndex<T>",
+      "Summary": "<p sourcefile=\"api/CoreRelm.Attributes.RelmIndex-1.yml\" sourcestartlinenumber=\"1\">Specifies that the decorated class or struct should have an index created on the specified properties when used\nwith a Relm database.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/CoreRelm.Attributes.RelmIndex.yml",
       "output": {
         ".html": {
@@ -92,7 +148,35 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "CoreRelm.Attributes.RelmIndex",
-      "Summary": "<p sourcefile=\"api/CoreRelm.Attributes.RelmIndex.yml\" sourcestartlinenumber=\"1\">Specifies that the decorated class or struct should have an index created on the specified properties when used\nwith a Relm database.</p>\n"
+      "Summary": "<p sourcefile=\"api/CoreRelm.Attributes.RelmIndex.yml\" sourcestartlinenumber=\"1\">Non-keyed Relm index attribute for indexes that do not need to be paired with others.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/CoreRelm.Attributes.RelmIndexColumn-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CoreRelm.Attributes.RelmIndexColumn-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "CoreRelm.Attributes.RelmIndexColumn<T>",
+      "Summary": "<p sourcefile=\"api/CoreRelm.Attributes.RelmIndexColumn-1.yml\" sourcestartlinenumber=\"1\">Represents a key definition for an index column, including optional length, expression, and sort direction\nsettings.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/CoreRelm.Attributes.RelmIndexNamed.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CoreRelm.Attributes.RelmIndexNamed.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "CoreRelm.Attributes.RelmIndexNamed",
+      "Summary": "<p sourcefile=\"api/CoreRelm.Attributes.RelmIndexNamed.yml\" sourcestartlinenumber=\"1\">Non-keyed simple Relm index attribute for indexes only name columns and index properties, but\ndon't need any per-column settings.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -124,6 +208,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/CoreRelm.Attributes.RelmTrigger.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CoreRelm.Attributes.RelmTrigger.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "CoreRelm.Attributes.RelmTrigger",
+      "Summary": "<p sourcefile=\"api/CoreRelm.Attributes.RelmTrigger.yml\" sourcestartlinenumber=\"1\">Specifies a trigger configuration for a property or struct, defining when and how a trigger should be executed\nwithin the Relm framework.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/CoreRelm.Attributes.RelmUnique.yml",
       "output": {
         ".html": {
@@ -134,7 +232,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "CoreRelm.Attributes.RelmUnique",
-      "Summary": "<p sourcefile=\"api/CoreRelm.Attributes.RelmUnique.yml\" sourcestartlinenumber=\"1\">Specifies that the decorated class or struct must have compound unique values for the specified properties.</p>\n"
+      "Summary": "<p sourcefile=\"api/CoreRelm.Attributes.RelmUnique.yml\" sourcestartlinenumber=\"1\">Specifies that the decorated class or struct must have a compound unique index for the named properties. Useful\nwhen making a unique index and only want to specify the properties that are part of the unique index without needing\nto specify all the other parameters of the RelmIndex attribute. This is intended for use with the Relm object database.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -204,6 +302,76 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "CoreRelm.Enums.ForeignKeys",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/CoreRelm.Enums.Indexes.Algorithm.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CoreRelm.Enums.Indexes.Algorithm.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "CoreRelm.Enums.Indexes.Algorithm",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/CoreRelm.Enums.Indexes.IndexType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CoreRelm.Enums.Indexes.IndexType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "CoreRelm.Enums.Indexes.IndexType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/CoreRelm.Enums.Indexes.LockOption.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CoreRelm.Enums.Indexes.LockOption.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "CoreRelm.Enums.Indexes.LockOption",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/CoreRelm.Enums.Indexes.Visibility.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CoreRelm.Enums.Indexes.Visibility.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "CoreRelm.Enums.Indexes.Visibility",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/CoreRelm.Enums.Indexes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CoreRelm.Enums.Indexes.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "CoreRelm.Enums.Indexes",
       "Summary": null
     },
     {
@@ -334,6 +502,48 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/CoreRelm.Enums.Triggers.TriggerEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CoreRelm.Enums.Triggers.TriggerEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "CoreRelm.Enums.Triggers.TriggerEvent",
+      "Summary": "<p sourcefile=\"api/CoreRelm.Enums.Triggers.TriggerEvent.yml\" sourcestartlinenumber=\"1\">Specifies the type of database operation that can trigger an event.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/CoreRelm.Enums.Triggers.TriggerOrdering.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CoreRelm.Enums.Triggers.TriggerOrdering.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "CoreRelm.Enums.Triggers.TriggerOrdering",
+      "Summary": "<p sourcefile=\"api/CoreRelm.Enums.Triggers.TriggerOrdering.yml\" sourcestartlinenumber=\"1\">Specifies the relative ordering of triggers in a sequence.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/CoreRelm.Enums.Triggers.TriggerTime.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CoreRelm.Enums.Triggers.TriggerTime.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "CoreRelm.Enums.Triggers.TriggerTime",
+      "Summary": "<p sourcefile=\"api/CoreRelm.Enums.Triggers.TriggerTime.yml\" sourcestartlinenumber=\"1\">Specifies when an action or event is triggered relative to a particular operation.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/CoreRelm.Enums.Triggers.TriggerTypes.yml",
       "output": {
         ".html": {
@@ -400,6 +610,62 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "CoreRelm.Exceptions.MissingRelmTableAttributeException",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/CoreRelm.Exceptions.ModelSetNotFoundException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CoreRelm.Exceptions.ModelSetNotFoundException.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "CoreRelm.Exceptions.ModelSetNotFoundException",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/CoreRelm.Exceptions.ModelSetParseException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CoreRelm.Exceptions.ModelSetParseException.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "CoreRelm.Exceptions.ModelSetParseException",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/CoreRelm.Exceptions.ModelSetResolutionException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CoreRelm.Exceptions.ModelSetResolutionException.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "CoreRelm.Exceptions.ModelSetResolutionException",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/CoreRelm.Exceptions.UnsupportedModelSetsVersionException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CoreRelm.Exceptions.UnsupportedModelSetsVersionException.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "CoreRelm.Exceptions.UnsupportedModelSetsVersionException",
       "Summary": null
     },
     {
@@ -484,6 +750,20 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "CoreRelm.Extensions.ModelExtensions",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/CoreRelm.Extensions.UrlStringHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CoreRelm.Extensions.UrlStringHelper.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "CoreRelm.Extensions.UrlStringHelper",
       "Summary": null
     },
     {
@@ -824,6 +1104,48 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/CoreRelm.Interfaces.ModelSets.IModelSetParser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CoreRelm.Interfaces.ModelSets.IModelSetParser.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "CoreRelm.Interfaces.ModelSets.IModelSetParser",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/CoreRelm.Interfaces.ModelSets.IModelSetResolver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CoreRelm.Interfaces.ModelSets.IModelSetResolver.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "CoreRelm.Interfaces.ModelSets.IModelSetResolver",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/CoreRelm.Interfaces.ModelSets.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CoreRelm.Interfaces.ModelSets.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "CoreRelm.Interfaces.ModelSets",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/CoreRelm.Interfaces.RelmQuick.IRelmQuickContext.yml",
       "output": {
         ".html": {
@@ -946,6 +1268,34 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "CoreRelm.Migrations.MigrationSqlProviderFactory",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/CoreRelm.Migrations.ModelSetParser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CoreRelm.Migrations.ModelSetParser.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "CoreRelm.Migrations.ModelSetParser",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/CoreRelm.Migrations.ModelSetResolver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CoreRelm.Migrations.ModelSetResolver.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "CoreRelm.Migrations.ModelSetResolver",
       "Summary": null
     },
     {

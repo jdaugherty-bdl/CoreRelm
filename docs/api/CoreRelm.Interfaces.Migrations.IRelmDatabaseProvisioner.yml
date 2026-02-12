@@ -6,7 +6,7 @@ items:
   parent: CoreRelm.Interfaces.Migrations
   children:
   - CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String)
-  - CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.EnsureDatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String)
+  - CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String)
   langs:
   - csharp
   - vb
@@ -64,30 +64,30 @@ items:
   nameWithType.vb: IRelmDatabaseProvisioner.DatabaseExistsAsync(MigrationOptions, String)
   fullName.vb: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions, String)
   name.vb: DatabaseExistsAsync(MigrationOptions, String)
-- uid: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.EnsureDatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String)
-  commentId: M:CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.EnsureDatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String)
-  id: EnsureDatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String)
+- uid: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String)
+  commentId: M:CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String)
+  id: InitializeEmptyDatabaseAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String)
   parent: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner
   langs:
   - csharp
   - vb
-  name: EnsureDatabaseExistsAsync(MigrationOptions, string, string?, string?)
-  nameWithType: IRelmDatabaseProvisioner.EnsureDatabaseExistsAsync(MigrationOptions, string, string?, string?)
-  fullName: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.EnsureDatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions, string, string?, string?)
+  name: InitializeEmptyDatabaseAsync(MigrationOptions, string, string?, string?)
+  nameWithType: IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync(MigrationOptions, string, string?, string?)
+  fullName: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync(CoreRelm.Models.Migrations.MigrationOptions, string, string?, string?)
   type: Method
   source:
     remote:
       path: CoreRelm/Interfaces/Migrations/IRelmDatabaseProvisioner.cs
       branch: master
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: EnsureDatabaseExistsAsync
+    id: InitializeEmptyDatabaseAsync
     path: ../CoreRelm/Interfaces/Migrations/IRelmDatabaseProvisioner.cs
     startLine: 13
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Interfaces.Migrations
   syntax:
-    content: Task EnsureDatabaseExistsAsync(MigrationOptions migrationOptions, string databaseName, string? charset = null, string? collation = null)
+    content: Task InitializeEmptyDatabaseAsync(MigrationOptions migrationOptions, string databaseName, string? charset = null, string? collation = null)
     parameters:
     - id: migrationOptions
       type: CoreRelm.Models.Migrations.MigrationOptions
@@ -99,11 +99,11 @@ items:
       type: System.String
     return:
       type: System.Threading.Tasks.Task
-    content.vb: Function EnsureDatabaseExistsAsync(migrationOptions As MigrationOptions, databaseName As String, charset As String = Nothing, collation As String = Nothing) As Task
-  overload: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.EnsureDatabaseExistsAsync*
-  nameWithType.vb: IRelmDatabaseProvisioner.EnsureDatabaseExistsAsync(MigrationOptions, String, String, String)
-  fullName.vb: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.EnsureDatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions, String, String, String)
-  name.vb: EnsureDatabaseExistsAsync(MigrationOptions, String, String, String)
+    content.vb: Function InitializeEmptyDatabaseAsync(migrationOptions As MigrationOptions, databaseName As String, charset As String = Nothing, collation As String = Nothing) As Task
+  overload: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync*
+  nameWithType.vb: IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync(MigrationOptions, String, String, String)
+  fullName.vb: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync(CoreRelm.Models.Migrations.MigrationOptions, String, String, String)
+  name.vb: InitializeEmptyDatabaseAsync(MigrationOptions, String, String, String)
 references:
 - uid: CoreRelm.Interfaces.Migrations
   commentId: N:CoreRelm.Interfaces.Migrations
@@ -296,12 +296,12 @@ references:
     name: Tasks
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
-- uid: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.EnsureDatabaseExistsAsync*
-  commentId: Overload:CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.EnsureDatabaseExistsAsync
-  href: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.html#CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_EnsureDatabaseExistsAsync_CoreRelm_Models_Migrations_MigrationOptions_System_String_System_String_System_String_
-  name: EnsureDatabaseExistsAsync
-  nameWithType: IRelmDatabaseProvisioner.EnsureDatabaseExistsAsync
-  fullName: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.EnsureDatabaseExistsAsync
+- uid: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync*
+  commentId: Overload:CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync
+  href: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.html#CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_InitializeEmptyDatabaseAsync_CoreRelm_Models_Migrations_MigrationOptions_System_String_System_String_System_String_
+  name: InitializeEmptyDatabaseAsync
+  nameWithType: IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync
+  fullName: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync
 - uid: System.Threading.Tasks.Task
   commentId: T:System.Threading.Tasks.Task
   parent: System.Threading.Tasks

@@ -157,8 +157,8 @@ Class TableSchema  <a class="header-action link-secondary" title="View source" h
 
   <a id="CoreRelm_Models_Migrations_Introspection_TableSchema__ctor_" data-uid="CoreRelm.Models.Migrations.Introspection.TableSchema.#ctor*"></a>
 
-  <h3 id="CoreRelm_Models_Migrations_Introspection_TableSchema__ctor_System_String_System_Collections_Generic_IReadOnlyDictionary_System_String_CoreRelm_Models_Migrations_Introspection_ColumnSchema__System_Collections_Generic_IReadOnlyDictionary_System_String_CoreRelm_Models_Migrations_Introspection_IndexSchema__System_Collections_Generic_IReadOnlyDictionary_System_String_CoreRelm_Models_Migrations_Introspection_ForeignKeySchema__System_Collections_Generic_IReadOnlyDictionary_System_String_CoreRelm_Models_Migrations_Introspection_TriggerSchema__" data-uid="CoreRelm.Models.Migrations.Introspection.TableSchema.#ctor(System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,CoreRelm.Models.Migrations.Introspection.ColumnSchema},System.Collections.Generic.IReadOnlyDictionary{System.String,CoreRelm.Models.Migrations.Introspection.IndexSchema},System.Collections.Generic.IReadOnlyDictionary{System.String,CoreRelm.Models.Migrations.Introspection.ForeignKeySchema},System.Collections.Generic.IReadOnlyDictionary{System.String,CoreRelm.Models.Migrations.Introspection.TriggerSchema})">
-  TableSchema(string, IReadOnlyDictionary&lt;string, ColumnSchema&gt;, IReadOnlyDictionary&lt;string, IndexSchema&gt;, IReadOnlyDictionary&lt;string, ForeignKeySchema&gt;, IReadOnlyDictionary&lt;string, TriggerSchema&gt;)
+  <h3 id="CoreRelm_Models_Migrations_Introspection_TableSchema__ctor_System_String_System_Collections_Generic_IReadOnlyDictionary_System_String_CoreRelm_Models_Migrations_Introspection_ColumnSchema__System_Collections_Generic_IReadOnlyDictionary_System_String_CoreRelm_Models_Migrations_Introspection_IndexSchema__System_Collections_Generic_IDictionary_System_String_CoreRelm_Models_Migrations_Introspection_ForeignKeySchema__System_Collections_Generic_IReadOnlyDictionary_System_String_CoreRelm_Models_Migrations_Introspection_TriggerSchema__" data-uid="CoreRelm.Models.Migrations.Introspection.TableSchema.#ctor(System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,CoreRelm.Models.Migrations.Introspection.ColumnSchema},System.Collections.Generic.IReadOnlyDictionary{System.String,CoreRelm.Models.Migrations.Introspection.IndexSchema},System.Collections.Generic.IDictionary{System.String,CoreRelm.Models.Migrations.Introspection.ForeignKeySchema},System.Collections.Generic.IReadOnlyDictionary{System.String,CoreRelm.Models.Migrations.Introspection.TriggerSchema})">
+  TableSchema(string, IReadOnlyDictionary&lt;string, ColumnSchema&gt;, IReadOnlyDictionary&lt;string, IndexSchema&gt;, IDictionary&lt;string, ForeignKeySchema&gt;, IReadOnlyDictionary&lt;string, TriggerSchema&gt;)
   <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/TableSchema.cs/#L9"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -166,7 +166,7 @@ Class TableSchema  <a class="header-action link-secondary" title="View source" h
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TableSchema(string TableName, IReadOnlyDictionary&lt;string, ColumnSchema&gt; Columns, IReadOnlyDictionary&lt;string, IndexSchema&gt; Indexes, IReadOnlyDictionary&lt;string, ForeignKeySchema&gt; ForeignKeys, IReadOnlyDictionary&lt;string, TriggerSchema&gt; Triggers)</code></pre>
+    <pre><code class="lang-csharp hljs">public TableSchema(string TableName, IReadOnlyDictionary&lt;string, ColumnSchema&gt; Columns, IReadOnlyDictionary&lt;string, IndexSchema&gt; Indexes, IDictionary&lt;string, ForeignKeySchema&gt; ForeignKeys, IReadOnlyDictionary&lt;string, TriggerSchema&gt; Triggers)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -177,7 +177,7 @@ Class TableSchema  <a class="header-action link-secondary" title="View source" h
     <dd></dd>
     <dt><code>Indexes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="CoreRelm.Models.Migrations.Introspection.IndexSchema.html">IndexSchema</a>&gt;</dt>
     <dd></dd>
-    <dt><code>ForeignKeys</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.html">ForeignKeySchema</a>&gt;</dt>
+    <dt><code>ForeignKeys</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.html">ForeignKeySchema</a>&gt;</dt>
     <dd></dd>
     <dt><code>Triggers</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="CoreRelm.Models.Migrations.Introspection.TriggerSchema.html">TriggerSchema</a>&gt;</dt>
     <dd></dd>
@@ -240,7 +240,7 @@ Class TableSchema  <a class="header-action link-secondary" title="View source" h
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IReadOnlyDictionary&lt;string, ForeignKeySchema&gt; ForeignKeys { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">public IDictionary&lt;string, ForeignKeySchema&gt; ForeignKeys { get; init; }</code></pre>
   </div>
 
 
@@ -249,7 +249,7 @@ Class TableSchema  <a class="header-action link-secondary" title="View source" h
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.html">ForeignKeySchema</a>&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.html">ForeignKeySchema</a>&gt;</dt>
     <dd></dd>
   </dl>
 

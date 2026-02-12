@@ -73,7 +73,7 @@ items:
         execution details.  It can be used to analyze or inspect the history of command executions.
   example: []
   syntax:
-    content: Dictionary<Commands.Command, List<IRelmExecutionCommand>> LastCommandsExecuted { get; set; }
+    content: Dictionary<Commands.Command, List<IRelmExecutionCommand?>>? LastCommandsExecuted { get; set; }
     parameters: []
     return:
       type: System.Collections.Generic.Dictionary{CoreRelm.Enums.Commands.Command,System.Collections.Generic.List{CoreRelm.Interfaces.IRelmExecutionCommand}}

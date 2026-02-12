@@ -29,14 +29,36 @@ items:
   - uid: CoreRelm.Attributes.RelmIndex
     name: RelmIndex
     type: Class
+  - uid: CoreRelm.Attributes.RelmIndexColumn`1
+    name: RelmIndexColumn<T>
+    type: Class
+  - uid: CoreRelm.Attributes.RelmIndexNamed
+    name: RelmIndexNamed
+    type: Class
+  - uid: CoreRelm.Attributes.RelmIndex`1
+    name: RelmIndex<T>
+    type: Class
   - uid: CoreRelm.Attributes.RelmKey
     name: RelmKey
     type: Class
   - uid: CoreRelm.Attributes.RelmTable
     name: RelmTable
     type: Class
+  - uid: CoreRelm.Attributes.RelmTrigger
+    name: RelmTrigger
+    type: Class
   - uid: CoreRelm.Attributes.RelmUnique
     name: RelmUnique
+    type: Class
+- uid: CoreRelm.Attributes.BaseClasses
+  name: CoreRelm.Attributes.BaseClasses
+  type: Namespace
+  items:
+  - uid: CoreRelm.Attributes.BaseClasses.RelmIndexBase
+    name: RelmIndexBase
+    type: Class
+  - uid: CoreRelm.Attributes.BaseClasses.RelmIndexColumnBase
+    name: RelmIndexColumnBase
     type: Class
 - uid: CoreRelm.Enums
   name: CoreRelm.Enums
@@ -53,6 +75,21 @@ items:
     type: Class
   - uid: CoreRelm.Enums.ForeignKeys.ReferentialAction
     name: ForeignKeys.ReferentialAction
+    type: Enum
+  - uid: CoreRelm.Enums.Indexes
+    name: Indexes
+    type: Class
+  - uid: CoreRelm.Enums.Indexes.Algorithm
+    name: Indexes.Algorithm
+    type: Enum
+  - uid: CoreRelm.Enums.Indexes.IndexType
+    name: Indexes.IndexType
+    type: Enum
+  - uid: CoreRelm.Enums.Indexes.LockOption
+    name: Indexes.LockOption
+    type: Enum
+  - uid: CoreRelm.Enums.Indexes.Visibility
+    name: Indexes.Visibility
     type: Enum
   - uid: CoreRelm.Enums.SecurityEnums
     name: SecurityEnums
@@ -84,6 +121,15 @@ items:
   - uid: CoreRelm.Enums.Triggers
     name: Triggers
     type: Class
+  - uid: CoreRelm.Enums.Triggers.TriggerEvent
+    name: Triggers.TriggerEvent
+    type: Enum
+  - uid: CoreRelm.Enums.Triggers.TriggerOrdering
+    name: Triggers.TriggerOrdering
+    type: Enum
+  - uid: CoreRelm.Enums.Triggers.TriggerTime
+    name: Triggers.TriggerTime
+    type: Enum
   - uid: CoreRelm.Enums.Triggers.TriggerTypes
     name: Triggers.TriggerTypes
     type: Enum
@@ -96,6 +142,18 @@ items:
     type: Class
   - uid: CoreRelm.Exceptions.MissingRelmTableAttributeException
     name: MissingRelmTableAttributeException
+    type: Class
+  - uid: CoreRelm.Exceptions.ModelSetNotFoundException
+    name: ModelSetNotFoundException
+    type: Class
+  - uid: CoreRelm.Exceptions.ModelSetParseException
+    name: ModelSetParseException
+    type: Class
+  - uid: CoreRelm.Exceptions.ModelSetResolutionException
+    name: ModelSetResolutionException
+    type: Class
+  - uid: CoreRelm.Exceptions.UnsupportedModelSetsVersionException
+    name: UnsupportedModelSetsVersionException
     type: Class
 - uid: CoreRelm.Extensions
   name: CoreRelm.Extensions
@@ -115,6 +173,9 @@ items:
     type: Class
   - uid: CoreRelm.Extensions.ModelExtensions
     name: ModelExtensions
+    type: Class
+  - uid: CoreRelm.Extensions.UrlStringHelper
+    name: UrlStringHelper
     type: Class
 - uid: CoreRelm.Interfaces
   name: CoreRelm.Interfaces
@@ -191,6 +252,16 @@ items:
   - uid: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner
     name: IRelmSqlScriptRunner
     type: Interface
+- uid: CoreRelm.Interfaces.ModelSets
+  name: CoreRelm.Interfaces.ModelSets
+  type: Namespace
+  items:
+  - uid: CoreRelm.Interfaces.ModelSets.IModelSetParser
+    name: IModelSetParser
+    type: Interface
+  - uid: CoreRelm.Interfaces.ModelSets.IModelSetResolver
+    name: IModelSetResolver
+    type: Interface
 - uid: CoreRelm.Interfaces.Resolvers
   name: CoreRelm.Interfaces.Resolvers
   type: Namespace
@@ -210,6 +281,12 @@ items:
     type: Class
   - uid: CoreRelm.Migrations.MigrationSqlProviderFactory
     name: MigrationSqlProviderFactory
+    type: Class
+  - uid: CoreRelm.Migrations.ModelSetParser
+    name: ModelSetParser
+    type: Class
+  - uid: CoreRelm.Migrations.ModelSetResolver
+    name: ModelSetResolver
     type: Class
 - uid: CoreRelm.Models
   name: CoreRelm.Models

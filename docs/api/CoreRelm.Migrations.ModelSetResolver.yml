@@ -1,0 +1,756 @@
+### YamlMime:ManagedReference
+items:
+- uid: CoreRelm.Migrations.ModelSetResolver
+  commentId: T:CoreRelm.Migrations.ModelSetResolver
+  id: ModelSetResolver
+  parent: CoreRelm.Migrations
+  children:
+  - CoreRelm.Migrations.ModelSetResolver.#ctor(System.Reflection.Assembly)
+  - CoreRelm.Migrations.ModelSetResolver.LoadModelSets(System.String)
+  - CoreRelm.Migrations.ModelSetResolver.ResolveSet(CoreRelm.Models.Migrations.ModelSetsFile,System.String)
+  - CoreRelm.Migrations.ModelSetResolver.ResolveSetWithDiagnostics(CoreRelm.Models.Migrations.ModelSetsFile,System.String)
+  langs:
+  - csharp
+  - vb
+  name: ModelSetResolver
+  nameWithType: ModelSetResolver
+  fullName: CoreRelm.Migrations.ModelSetResolver
+  type: Class
+  source:
+    remote:
+      path: CoreRelm/Migrations/ModelSetResolver.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: ModelSetResolver
+    path: ../CoreRelm/Migrations/ModelSetResolver.cs
+    startLine: 16
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Migrations
+  syntax:
+    content: 'public sealed class ModelSetResolver : IModelSetResolver'
+    content.vb: Public NotInheritable Class ModelSetResolver Implements IModelSetResolver
+  inheritance:
+  - System.Object
+  implements:
+  - CoreRelm.Interfaces.ModelSets.IModelSetResolver
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: CoreRelm.Migrations.ModelSetResolver.#ctor(System.Reflection.Assembly)
+  commentId: M:CoreRelm.Migrations.ModelSetResolver.#ctor(System.Reflection.Assembly)
+  id: '#ctor(System.Reflection.Assembly)'
+  parent: CoreRelm.Migrations.ModelSetResolver
+  langs:
+  - csharp
+  - vb
+  name: ModelSetResolver(Assembly)
+  nameWithType: ModelSetResolver.ModelSetResolver(Assembly)
+  fullName: CoreRelm.Migrations.ModelSetResolver.ModelSetResolver(System.Reflection.Assembly)
+  type: Constructor
+  source:
+    remote:
+      path: CoreRelm/Migrations/ModelSetResolver.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: .ctor
+    path: ../CoreRelm/Migrations/ModelSetResolver.cs
+    startLine: 20
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Migrations
+  syntax:
+    content: public ModelSetResolver(Assembly modelsAssembly)
+    parameters:
+    - id: modelsAssembly
+      type: System.Reflection.Assembly
+    content.vb: Public Sub New(modelsAssembly As Assembly)
+  overload: CoreRelm.Migrations.ModelSetResolver.#ctor*
+  nameWithType.vb: ModelSetResolver.New(Assembly)
+  fullName.vb: CoreRelm.Migrations.ModelSetResolver.New(System.Reflection.Assembly)
+  name.vb: New(Assembly)
+- uid: CoreRelm.Migrations.ModelSetResolver.LoadModelSets(System.String)
+  commentId: M:CoreRelm.Migrations.ModelSetResolver.LoadModelSets(System.String)
+  id: LoadModelSets(System.String)
+  parent: CoreRelm.Migrations.ModelSetResolver
+  langs:
+  - csharp
+  - vb
+  name: LoadModelSets(string?)
+  nameWithType: ModelSetResolver.LoadModelSets(string?)
+  fullName: CoreRelm.Migrations.ModelSetResolver.LoadModelSets(string?)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Migrations/ModelSetResolver.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: LoadModelSets
+    path: ../CoreRelm/Migrations/ModelSetResolver.cs
+    startLine: 27
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Migrations
+  syntax:
+    content: public ModelSetsFile LoadModelSets(string? modelSetsPath)
+    parameters:
+    - id: modelSetsPath
+      type: System.String
+    return:
+      type: CoreRelm.Models.Migrations.ModelSetsFile
+    content.vb: Public Function LoadModelSets(modelSetsPath As String) As ModelSetsFile
+  overload: CoreRelm.Migrations.ModelSetResolver.LoadModelSets*
+  nameWithType.vb: ModelSetResolver.LoadModelSets(String)
+  fullName.vb: CoreRelm.Migrations.ModelSetResolver.LoadModelSets(String)
+  name.vb: LoadModelSets(String)
+- uid: CoreRelm.Migrations.ModelSetResolver.ResolveSet(CoreRelm.Models.Migrations.ModelSetsFile,System.String)
+  commentId: M:CoreRelm.Migrations.ModelSetResolver.ResolveSet(CoreRelm.Models.Migrations.ModelSetsFile,System.String)
+  id: ResolveSet(CoreRelm.Models.Migrations.ModelSetsFile,System.String)
+  parent: CoreRelm.Migrations.ModelSetResolver
+  langs:
+  - csharp
+  - vb
+  name: ResolveSet(ModelSetsFile, string)
+  nameWithType: ModelSetResolver.ResolveSet(ModelSetsFile, string)
+  fullName: CoreRelm.Migrations.ModelSetResolver.ResolveSet(CoreRelm.Models.Migrations.ModelSetsFile, string)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Migrations/ModelSetResolver.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: ResolveSet
+    path: ../CoreRelm/Migrations/ModelSetResolver.cs
+    startLine: 50
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Migrations
+  example: []
+  syntax:
+    content: public ResolvedModelSet ResolveSet(ModelSetsFile file, string setName)
+    parameters:
+    - id: file
+      type: CoreRelm.Models.Migrations.ModelSetsFile
+    - id: setName
+      type: System.String
+    return:
+      type: CoreRelm.Models.Migrations.ResolvedModelSet
+    content.vb: Public Function ResolveSet(file As ModelSetsFile, setName As String) As ResolvedModelSet
+  overload: CoreRelm.Migrations.ModelSetResolver.ResolveSet*
+  implements:
+  - CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSet(CoreRelm.Models.Migrations.ModelSetsFile,System.String)
+  nameWithType.vb: ModelSetResolver.ResolveSet(ModelSetsFile, String)
+  fullName.vb: CoreRelm.Migrations.ModelSetResolver.ResolveSet(CoreRelm.Models.Migrations.ModelSetsFile, String)
+  name.vb: ResolveSet(ModelSetsFile, String)
+- uid: CoreRelm.Migrations.ModelSetResolver.ResolveSetWithDiagnostics(CoreRelm.Models.Migrations.ModelSetsFile,System.String)
+  commentId: M:CoreRelm.Migrations.ModelSetResolver.ResolveSetWithDiagnostics(CoreRelm.Models.Migrations.ModelSetsFile,System.String)
+  id: ResolveSetWithDiagnostics(CoreRelm.Models.Migrations.ModelSetsFile,System.String)
+  parent: CoreRelm.Migrations.ModelSetResolver
+  langs:
+  - csharp
+  - vb
+  name: ResolveSetWithDiagnostics(ModelSetsFile, string)
+  nameWithType: ModelSetResolver.ResolveSetWithDiagnostics(ModelSetsFile, string)
+  fullName: CoreRelm.Migrations.ModelSetResolver.ResolveSetWithDiagnostics(CoreRelm.Models.Migrations.ModelSetsFile, string)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Migrations/ModelSetResolver.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: ResolveSetWithDiagnostics
+    path: ../CoreRelm/Migrations/ModelSetResolver.cs
+    startLine: 258
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Migrations
+  summary: >-
+    Resolves a model set definition by name from the specified model sets file and returns the resolved set
+
+    along with detailed diagnostics.
+  remarks: >-
+    The diagnostics object provides detailed information about the resolution process,
+        such as missing types, attribute validation errors, and counts of included or excluded types. This method
+        does not throw for missing or invalid attributes; instead, such issues are reported in the
+        diagnostics.
+  example: []
+  syntax:
+    content: public (ResolvedModelSet Resolved, ResolvedModelSetDiagnostics Diagnostics) ResolveSetWithDiagnostics(ModelSetsFile file, string setName)
+    parameters:
+    - id: file
+      type: CoreRelm.Models.Migrations.ModelSetsFile
+      description: The model sets file containing the definitions to resolve.
+    - id: setName
+      type: System.String
+      description: The name of the model set to resolve. Must match a set defined in the provided file.
+    return:
+      type: System.ValueTuple{CoreRelm.Models.Migrations.ResolvedModelSet,CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics}
+      description: >-
+        A tuple containing the resolved model set and a diagnostics object with information about the resolution
+            process, including any errors or warnings encountered.
+    content.vb: Public Function ResolveSetWithDiagnostics(file As ModelSetsFile, setName As String) As (Resolved As ResolvedModelSet, Diagnostics As ResolvedModelSetDiagnostics)
+  overload: CoreRelm.Migrations.ModelSetResolver.ResolveSetWithDiagnostics*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Thrown if a model set with the specified name does not exist in the provided file.
+  implements:
+  - CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSetWithDiagnostics(CoreRelm.Models.Migrations.ModelSetsFile,System.String)
+  nameWithType.vb: ModelSetResolver.ResolveSetWithDiagnostics(ModelSetsFile, String)
+  fullName.vb: CoreRelm.Migrations.ModelSetResolver.ResolveSetWithDiagnostics(CoreRelm.Models.Migrations.ModelSetsFile, String)
+  name.vb: ResolveSetWithDiagnostics(ModelSetsFile, String)
+references:
+- uid: CoreRelm.Migrations
+  commentId: N:CoreRelm.Migrations
+  href: CoreRelm.html
+  name: CoreRelm.Migrations
+  nameWithType: CoreRelm.Migrations
+  fullName: CoreRelm.Migrations
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Migrations
+    name: Migrations
+    href: CoreRelm.Migrations.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Migrations
+    name: Migrations
+    href: CoreRelm.Migrations.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: CoreRelm.Interfaces.ModelSets.IModelSetResolver
+  commentId: T:CoreRelm.Interfaces.ModelSets.IModelSetResolver
+  parent: CoreRelm.Interfaces.ModelSets
+  href: CoreRelm.Interfaces.ModelSets.IModelSetResolver.html
+  name: IModelSetResolver
+  nameWithType: IModelSetResolver
+  fullName: CoreRelm.Interfaces.ModelSets.IModelSetResolver
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CoreRelm.Interfaces.ModelSets
+  commentId: N:CoreRelm.Interfaces.ModelSets
+  href: CoreRelm.html
+  name: CoreRelm.Interfaces.ModelSets
+  nameWithType: CoreRelm.Interfaces.ModelSets
+  fullName: CoreRelm.Interfaces.ModelSets
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.ModelSets
+    name: ModelSets
+    href: CoreRelm.Interfaces.ModelSets.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.ModelSets
+    name: ModelSets
+    href: CoreRelm.Interfaces.ModelSets.html
+- uid: CoreRelm.Migrations.ModelSetResolver.#ctor*
+  commentId: Overload:CoreRelm.Migrations.ModelSetResolver.#ctor
+  href: CoreRelm.Migrations.ModelSetResolver.html#CoreRelm_Migrations_ModelSetResolver__ctor_System_Reflection_Assembly_
+  name: ModelSetResolver
+  nameWithType: ModelSetResolver.ModelSetResolver
+  fullName: CoreRelm.Migrations.ModelSetResolver.ModelSetResolver
+  nameWithType.vb: ModelSetResolver.New
+  fullName.vb: CoreRelm.Migrations.ModelSetResolver.New
+  name.vb: New
+- uid: System.Reflection.Assembly
+  commentId: T:System.Reflection.Assembly
+  parent: System.Reflection
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.reflection.assembly
+  name: Assembly
+  nameWithType: Assembly
+  fullName: System.Reflection.Assembly
+- uid: System.Reflection
+  commentId: N:System.Reflection
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Reflection
+  nameWithType: System.Reflection
+  fullName: System.Reflection
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Reflection
+    name: Reflection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Reflection
+    name: Reflection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection
+- uid: CoreRelm.Migrations.ModelSetResolver.LoadModelSets*
+  commentId: Overload:CoreRelm.Migrations.ModelSetResolver.LoadModelSets
+  href: CoreRelm.Migrations.ModelSetResolver.html#CoreRelm_Migrations_ModelSetResolver_LoadModelSets_System_String_
+  name: LoadModelSets
+  nameWithType: ModelSetResolver.LoadModelSets
+  fullName: CoreRelm.Migrations.ModelSetResolver.LoadModelSets
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: CoreRelm.Models.Migrations.ModelSetsFile
+  commentId: T:CoreRelm.Models.Migrations.ModelSetsFile
+  parent: CoreRelm.Models.Migrations
+  href: CoreRelm.Models.Migrations.ModelSetsFile.html
+  name: ModelSetsFile
+  nameWithType: ModelSetsFile
+  fullName: CoreRelm.Models.Migrations.ModelSetsFile
+- uid: CoreRelm.Models.Migrations
+  commentId: N:CoreRelm.Models.Migrations
+  href: CoreRelm.html
+  name: CoreRelm.Models.Migrations
+  nameWithType: CoreRelm.Models.Migrations
+  fullName: CoreRelm.Models.Migrations
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+- uid: CoreRelm.Migrations.ModelSetResolver.ResolveSet*
+  commentId: Overload:CoreRelm.Migrations.ModelSetResolver.ResolveSet
+  href: CoreRelm.Migrations.ModelSetResolver.html#CoreRelm_Migrations_ModelSetResolver_ResolveSet_CoreRelm_Models_Migrations_ModelSetsFile_System_String_
+  name: ResolveSet
+  nameWithType: ModelSetResolver.ResolveSet
+  fullName: CoreRelm.Migrations.ModelSetResolver.ResolveSet
+- uid: CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSet(CoreRelm.Models.Migrations.ModelSetsFile,System.String)
+  commentId: M:CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSet(CoreRelm.Models.Migrations.ModelSetsFile,System.String)
+  parent: CoreRelm.Interfaces.ModelSets.IModelSetResolver
+  isExternal: true
+  href: CoreRelm.Interfaces.ModelSets.IModelSetResolver.html#CoreRelm_Interfaces_ModelSets_IModelSetResolver_ResolveSet_CoreRelm_Models_Migrations_ModelSetsFile_System_String_
+  name: ResolveSet(ModelSetsFile, string)
+  nameWithType: IModelSetResolver.ResolveSet(ModelSetsFile, string)
+  fullName: CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSet(CoreRelm.Models.Migrations.ModelSetsFile, string)
+  nameWithType.vb: IModelSetResolver.ResolveSet(ModelSetsFile, String)
+  fullName.vb: CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSet(CoreRelm.Models.Migrations.ModelSetsFile, String)
+  name.vb: ResolveSet(ModelSetsFile, String)
+  spec.csharp:
+  - uid: CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSet(CoreRelm.Models.Migrations.ModelSetsFile,System.String)
+    name: ResolveSet
+    href: CoreRelm.Interfaces.ModelSets.IModelSetResolver.html#CoreRelm_Interfaces_ModelSets_IModelSetResolver_ResolveSet_CoreRelm_Models_Migrations_ModelSetsFile_System_String_
+  - name: (
+  - uid: CoreRelm.Models.Migrations.ModelSetsFile
+    name: ModelSetsFile
+    href: CoreRelm.Models.Migrations.ModelSetsFile.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSet(CoreRelm.Models.Migrations.ModelSetsFile,System.String)
+    name: ResolveSet
+    href: CoreRelm.Interfaces.ModelSets.IModelSetResolver.html#CoreRelm_Interfaces_ModelSets_IModelSetResolver_ResolveSet_CoreRelm_Models_Migrations_ModelSetsFile_System_String_
+  - name: (
+  - uid: CoreRelm.Models.Migrations.ModelSetsFile
+    name: ModelSetsFile
+    href: CoreRelm.Models.Migrations.ModelSetsFile.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: CoreRelm.Models.Migrations.ResolvedModelSet
+  commentId: T:CoreRelm.Models.Migrations.ResolvedModelSet
+  parent: CoreRelm.Models.Migrations
+  href: CoreRelm.Models.Migrations.ResolvedModelSet.html
+  name: ResolvedModelSet
+  nameWithType: ResolvedModelSet
+  fullName: CoreRelm.Models.Migrations.ResolvedModelSet
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: CoreRelm.Migrations.ModelSetResolver.ResolveSetWithDiagnostics*
+  commentId: Overload:CoreRelm.Migrations.ModelSetResolver.ResolveSetWithDiagnostics
+  href: CoreRelm.Migrations.ModelSetResolver.html#CoreRelm_Migrations_ModelSetResolver_ResolveSetWithDiagnostics_CoreRelm_Models_Migrations_ModelSetsFile_System_String_
+  name: ResolveSetWithDiagnostics
+  nameWithType: ModelSetResolver.ResolveSetWithDiagnostics
+  fullName: CoreRelm.Migrations.ModelSetResolver.ResolveSetWithDiagnostics
+- uid: CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSetWithDiagnostics(CoreRelm.Models.Migrations.ModelSetsFile,System.String)
+  commentId: M:CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSetWithDiagnostics(CoreRelm.Models.Migrations.ModelSetsFile,System.String)
+  parent: CoreRelm.Interfaces.ModelSets.IModelSetResolver
+  isExternal: true
+  href: CoreRelm.Interfaces.ModelSets.IModelSetResolver.html#CoreRelm_Interfaces_ModelSets_IModelSetResolver_ResolveSetWithDiagnostics_CoreRelm_Models_Migrations_ModelSetsFile_System_String_
+  name: ResolveSetWithDiagnostics(ModelSetsFile, string)
+  nameWithType: IModelSetResolver.ResolveSetWithDiagnostics(ModelSetsFile, string)
+  fullName: CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSetWithDiagnostics(CoreRelm.Models.Migrations.ModelSetsFile, string)
+  nameWithType.vb: IModelSetResolver.ResolveSetWithDiagnostics(ModelSetsFile, String)
+  fullName.vb: CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSetWithDiagnostics(CoreRelm.Models.Migrations.ModelSetsFile, String)
+  name.vb: ResolveSetWithDiagnostics(ModelSetsFile, String)
+  spec.csharp:
+  - uid: CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSetWithDiagnostics(CoreRelm.Models.Migrations.ModelSetsFile,System.String)
+    name: ResolveSetWithDiagnostics
+    href: CoreRelm.Interfaces.ModelSets.IModelSetResolver.html#CoreRelm_Interfaces_ModelSets_IModelSetResolver_ResolveSetWithDiagnostics_CoreRelm_Models_Migrations_ModelSetsFile_System_String_
+  - name: (
+  - uid: CoreRelm.Models.Migrations.ModelSetsFile
+    name: ModelSetsFile
+    href: CoreRelm.Models.Migrations.ModelSetsFile.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSetWithDiagnostics(CoreRelm.Models.Migrations.ModelSetsFile,System.String)
+    name: ResolveSetWithDiagnostics
+    href: CoreRelm.Interfaces.ModelSets.IModelSetResolver.html#CoreRelm_Interfaces_ModelSets_IModelSetResolver_ResolveSetWithDiagnostics_CoreRelm_Models_Migrations_ModelSetsFile_System_String_
+  - name: (
+  - uid: CoreRelm.Models.Migrations.ModelSetsFile
+    name: ModelSetsFile
+    href: CoreRelm.Models.Migrations.ModelSetsFile.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.ValueTuple{CoreRelm.Models.Migrations.ResolvedModelSet,CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics}
+  commentId: T:System.ValueTuple{CoreRelm.Models.Migrations.ResolvedModelSet,CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics}
+  parent: System
+  definition: System.ValueTuple`2
+  href: CoreRelm.Models.Migrations.ResolvedModelSet.html
+  name: (ResolvedModelSet Resolved, ResolvedModelSetDiagnostics Diagnostics)
+  nameWithType: (ResolvedModelSet Resolved, ResolvedModelSetDiagnostics Diagnostics)
+  fullName: (CoreRelm.Models.Migrations.ResolvedModelSet Resolved, CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics Diagnostics)
+  nameWithType.vb: (Resolved As ResolvedModelSet, Diagnostics As ResolvedModelSetDiagnostics)
+  fullName.vb: (Resolved As CoreRelm.Models.Migrations.ResolvedModelSet, Diagnostics As CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics)
+  name.vb: (Resolved As ResolvedModelSet, Diagnostics As ResolvedModelSetDiagnostics)
+  spec.csharp:
+  - name: (
+  - uid: CoreRelm.Models.Migrations.ResolvedModelSet
+    name: ResolvedModelSet
+    href: CoreRelm.Models.Migrations.ResolvedModelSet.html
+  - name: " "
+  - uid: System.ValueTuple{CoreRelm.Models.Migrations.ResolvedModelSet,CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics}.Resolved
+    name: Resolved
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-corerelm.models.migrations.resolvedmodelset,corerelm.models.migrations.resolvedmodelsetdiagnostics-.resolved
+  - name: ','
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics
+    name: ResolvedModelSetDiagnostics
+    href: CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics.html
+  - name: " "
+  - uid: System.ValueTuple{CoreRelm.Models.Migrations.ResolvedModelSet,CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics}.Diagnostics
+    name: Diagnostics
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-corerelm.models.migrations.resolvedmodelset,corerelm.models.migrations.resolvedmodelsetdiagnostics-.diagnostics
+  - name: )
+  spec.vb:
+  - name: (
+  - uid: System.ValueTuple{CoreRelm.Models.Migrations.ResolvedModelSet,CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics}.Resolved
+    name: Resolved
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-corerelm.models.migrations.resolvedmodelset,corerelm.models.migrations.resolvedmodelsetdiagnostics-.resolved
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.ResolvedModelSet
+    name: ResolvedModelSet
+    href: CoreRelm.Models.Migrations.ResolvedModelSet.html
+  - name: ','
+  - name: " "
+  - uid: System.ValueTuple{CoreRelm.Models.Migrations.ResolvedModelSet,CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics}.Diagnostics
+    name: Diagnostics
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-corerelm.models.migrations.resolvedmodelset,corerelm.models.migrations.resolvedmodelsetdiagnostics-.diagnostics
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics
+    name: ResolvedModelSetDiagnostics
+    href: CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics.html
+  - name: )
+- uid: System.ValueTuple`2
+  commentId: T:System.ValueTuple`2
+  name: (T1, T2)
+  nameWithType: (T1, T2)
+  fullName: (T1, T2)
+  spec.csharp:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )
+  spec.vb:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )

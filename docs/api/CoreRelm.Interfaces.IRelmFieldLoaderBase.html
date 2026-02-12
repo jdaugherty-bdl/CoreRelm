@@ -206,7 +206,7 @@ from external data sources based on composite keys.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;Dictionary&lt;S[], object&gt;&gt; GetFieldDataAsync&lt;S&gt;(ICollection&lt;S[]&gt;? keyData, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;Dictionary&lt;S[], object&gt;?&gt; GetFieldDataAsync&lt;S&gt;(ICollection&lt;S[]&gt;? keyData, CancellationToken cancellationToken = default) where S : notnull</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -254,7 +254,7 @@ data, it may be omitted from the dictionary.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Dictionary&lt;S[], object&gt; GetFieldData&lt;S&gt;(ICollection&lt;S[]&gt;? keyData)</code></pre>
+    <pre><code class="lang-csharp hljs">Dictionary&lt;S[], object&gt;? GetFieldData&lt;S&gt;(ICollection&lt;S[]&gt;? keyData) where S : notnull</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>

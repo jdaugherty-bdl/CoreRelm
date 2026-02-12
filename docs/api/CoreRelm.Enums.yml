@@ -8,6 +8,11 @@ items:
   - CoreRelm.Enums.Commands.Command
   - CoreRelm.Enums.ForeignKeys
   - CoreRelm.Enums.ForeignKeys.ReferentialAction
+  - CoreRelm.Enums.Indexes
+  - CoreRelm.Enums.Indexes.Algorithm
+  - CoreRelm.Enums.Indexes.IndexType
+  - CoreRelm.Enums.Indexes.LockOption
+  - CoreRelm.Enums.Indexes.Visibility
   - CoreRelm.Enums.SecurityEnums
   - CoreRelm.Enums.SecurityEnums.AccessLevel
   - CoreRelm.Enums.SecurityEnums.AccountStatus
@@ -18,6 +23,9 @@ items:
   - CoreRelm.Enums.SecurityEnums.SqlSecurityLevel
   - CoreRelm.Enums.SecurityEnums.UserRole
   - CoreRelm.Enums.Triggers
+  - CoreRelm.Enums.Triggers.TriggerEvent
+  - CoreRelm.Enums.Triggers.TriggerOrdering
+  - CoreRelm.Enums.Triggers.TriggerTime
   - CoreRelm.Enums.Triggers.TriggerTypes
   langs:
   - csharp
@@ -87,6 +95,104 @@ references:
   - uid: CoreRelm.Enums.ForeignKeys.ReferentialAction
     name: ReferentialAction
     href: CoreRelm.Enums.ForeignKeys.ReferentialAction.html
+- uid: CoreRelm.Enums.Indexes
+  commentId: T:CoreRelm.Enums.Indexes
+  href: CoreRelm.Enums.Indexes.html
+  name: Indexes
+  nameWithType: Indexes
+  fullName: CoreRelm.Enums.Indexes
+- uid: CoreRelm.Enums.Indexes.IndexType
+  commentId: T:CoreRelm.Enums.Indexes.IndexType
+  parent: CoreRelm.Enums
+  href: CoreRelm.Enums.Indexes.html
+  name: Indexes.IndexType
+  nameWithType: Indexes.IndexType
+  fullName: CoreRelm.Enums.Indexes.IndexType
+  spec.csharp:
+  - uid: CoreRelm.Enums.Indexes
+    name: Indexes
+    href: CoreRelm.Enums.Indexes.html
+  - name: .
+  - uid: CoreRelm.Enums.Indexes.IndexType
+    name: IndexType
+    href: CoreRelm.Enums.Indexes.IndexType.html
+  spec.vb:
+  - uid: CoreRelm.Enums.Indexes
+    name: Indexes
+    href: CoreRelm.Enums.Indexes.html
+  - name: .
+  - uid: CoreRelm.Enums.Indexes.IndexType
+    name: IndexType
+    href: CoreRelm.Enums.Indexes.IndexType.html
+- uid: CoreRelm.Enums.Indexes.Visibility
+  commentId: T:CoreRelm.Enums.Indexes.Visibility
+  parent: CoreRelm.Enums
+  href: CoreRelm.Enums.Indexes.html
+  name: Indexes.Visibility
+  nameWithType: Indexes.Visibility
+  fullName: CoreRelm.Enums.Indexes.Visibility
+  spec.csharp:
+  - uid: CoreRelm.Enums.Indexes
+    name: Indexes
+    href: CoreRelm.Enums.Indexes.html
+  - name: .
+  - uid: CoreRelm.Enums.Indexes.Visibility
+    name: Visibility
+    href: CoreRelm.Enums.Indexes.Visibility.html
+  spec.vb:
+  - uid: CoreRelm.Enums.Indexes
+    name: Indexes
+    href: CoreRelm.Enums.Indexes.html
+  - name: .
+  - uid: CoreRelm.Enums.Indexes.Visibility
+    name: Visibility
+    href: CoreRelm.Enums.Indexes.Visibility.html
+- uid: CoreRelm.Enums.Indexes.Algorithm
+  commentId: T:CoreRelm.Enums.Indexes.Algorithm
+  parent: CoreRelm.Enums
+  href: CoreRelm.Enums.Indexes.html
+  name: Indexes.Algorithm
+  nameWithType: Indexes.Algorithm
+  fullName: CoreRelm.Enums.Indexes.Algorithm
+  spec.csharp:
+  - uid: CoreRelm.Enums.Indexes
+    name: Indexes
+    href: CoreRelm.Enums.Indexes.html
+  - name: .
+  - uid: CoreRelm.Enums.Indexes.Algorithm
+    name: Algorithm
+    href: CoreRelm.Enums.Indexes.Algorithm.html
+  spec.vb:
+  - uid: CoreRelm.Enums.Indexes
+    name: Indexes
+    href: CoreRelm.Enums.Indexes.html
+  - name: .
+  - uid: CoreRelm.Enums.Indexes.Algorithm
+    name: Algorithm
+    href: CoreRelm.Enums.Indexes.Algorithm.html
+- uid: CoreRelm.Enums.Indexes.LockOption
+  commentId: T:CoreRelm.Enums.Indexes.LockOption
+  parent: CoreRelm.Enums
+  href: CoreRelm.Enums.Indexes.html
+  name: Indexes.LockOption
+  nameWithType: Indexes.LockOption
+  fullName: CoreRelm.Enums.Indexes.LockOption
+  spec.csharp:
+  - uid: CoreRelm.Enums.Indexes
+    name: Indexes
+    href: CoreRelm.Enums.Indexes.html
+  - name: .
+  - uid: CoreRelm.Enums.Indexes.LockOption
+    name: LockOption
+    href: CoreRelm.Enums.Indexes.LockOption.html
+  spec.vb:
+  - uid: CoreRelm.Enums.Indexes
+    name: Indexes
+    href: CoreRelm.Enums.Indexes.html
+  - name: .
+  - uid: CoreRelm.Enums.Indexes.LockOption
+    name: LockOption
+    href: CoreRelm.Enums.Indexes.LockOption.html
 - uid: CoreRelm.Enums.SecurityEnums
   commentId: T:CoreRelm.Enums.SecurityEnums
   href: CoreRelm.Enums.SecurityEnums.html
@@ -306,6 +412,75 @@ references:
   - uid: CoreRelm.Enums.Triggers.TriggerTypes
     name: TriggerTypes
     href: CoreRelm.Enums.Triggers.TriggerTypes.html
+- uid: CoreRelm.Enums.Triggers.TriggerTime
+  commentId: T:CoreRelm.Enums.Triggers.TriggerTime
+  parent: CoreRelm.Enums
+  href: CoreRelm.Enums.Triggers.html
+  name: Triggers.TriggerTime
+  nameWithType: Triggers.TriggerTime
+  fullName: CoreRelm.Enums.Triggers.TriggerTime
+  spec.csharp:
+  - uid: CoreRelm.Enums.Triggers
+    name: Triggers
+    href: CoreRelm.Enums.Triggers.html
+  - name: .
+  - uid: CoreRelm.Enums.Triggers.TriggerTime
+    name: TriggerTime
+    href: CoreRelm.Enums.Triggers.TriggerTime.html
+  spec.vb:
+  - uid: CoreRelm.Enums.Triggers
+    name: Triggers
+    href: CoreRelm.Enums.Triggers.html
+  - name: .
+  - uid: CoreRelm.Enums.Triggers.TriggerTime
+    name: TriggerTime
+    href: CoreRelm.Enums.Triggers.TriggerTime.html
+- uid: CoreRelm.Enums.Triggers.TriggerEvent
+  commentId: T:CoreRelm.Enums.Triggers.TriggerEvent
+  parent: CoreRelm.Enums
+  href: CoreRelm.Enums.Triggers.html
+  name: Triggers.TriggerEvent
+  nameWithType: Triggers.TriggerEvent
+  fullName: CoreRelm.Enums.Triggers.TriggerEvent
+  spec.csharp:
+  - uid: CoreRelm.Enums.Triggers
+    name: Triggers
+    href: CoreRelm.Enums.Triggers.html
+  - name: .
+  - uid: CoreRelm.Enums.Triggers.TriggerEvent
+    name: TriggerEvent
+    href: CoreRelm.Enums.Triggers.TriggerEvent.html
+  spec.vb:
+  - uid: CoreRelm.Enums.Triggers
+    name: Triggers
+    href: CoreRelm.Enums.Triggers.html
+  - name: .
+  - uid: CoreRelm.Enums.Triggers.TriggerEvent
+    name: TriggerEvent
+    href: CoreRelm.Enums.Triggers.TriggerEvent.html
+- uid: CoreRelm.Enums.Triggers.TriggerOrdering
+  commentId: T:CoreRelm.Enums.Triggers.TriggerOrdering
+  parent: CoreRelm.Enums
+  href: CoreRelm.Enums.Triggers.html
+  name: Triggers.TriggerOrdering
+  nameWithType: Triggers.TriggerOrdering
+  fullName: CoreRelm.Enums.Triggers.TriggerOrdering
+  spec.csharp:
+  - uid: CoreRelm.Enums.Triggers
+    name: Triggers
+    href: CoreRelm.Enums.Triggers.html
+  - name: .
+  - uid: CoreRelm.Enums.Triggers.TriggerOrdering
+    name: TriggerOrdering
+    href: CoreRelm.Enums.Triggers.TriggerOrdering.html
+  spec.vb:
+  - uid: CoreRelm.Enums.Triggers
+    name: Triggers
+    href: CoreRelm.Enums.Triggers.html
+  - name: .
+  - uid: CoreRelm.Enums.Triggers.TriggerOrdering
+    name: TriggerOrdering
+    href: CoreRelm.Enums.Triggers.TriggerOrdering.html
 - uid: CoreRelm.Enums
   commentId: N:CoreRelm.Enums
   href: CoreRelm.html

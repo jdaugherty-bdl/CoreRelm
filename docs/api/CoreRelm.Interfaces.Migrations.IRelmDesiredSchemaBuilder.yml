@@ -51,15 +51,15 @@ items:
   - CoreRelm
   namespace: CoreRelm.Interfaces.Migrations
   syntax:
-    content: Task<SchemaSnapshot> BuildAsync(string dbName, List<ValidatedModelType> modelsForDb)
+    content: Task<SchemaSnapshot> BuildAsync(string databaseFilter, List<ValidatedModelType> modelsForDb)
     parameters:
-    - id: dbName
+    - id: databaseFilter
       type: System.String
     - id: modelsForDb
       type: System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType}
     return:
       type: System.Threading.Tasks.Task{CoreRelm.Models.Migrations.Introspection.SchemaSnapshot}
-    content.vb: Function BuildAsync(dbName As String, modelsForDb As List(Of ValidatedModelType)) As Task(Of SchemaSnapshot)
+    content.vb: Function BuildAsync(databaseFilter As String, modelsForDb As List(Of ValidatedModelType)) As Task(Of SchemaSnapshot)
   overload: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder.BuildAsync*
   nameWithType.vb: IRelmDesiredSchemaBuilder.BuildAsync(String, List(Of ValidatedModelType))
   fullName.vb: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder.BuildAsync(String, System.Collections.Generic.List(Of CoreRelm.Models.Migrations.ValidatedModelType))
@@ -87,15 +87,15 @@ items:
   - CoreRelm
   namespace: CoreRelm.Interfaces.Migrations
   syntax:
-    content: SchemaSnapshot Build(string databaseName, IReadOnlyList<ValidatedModelType> modelsForDb)
+    content: SchemaSnapshot Build(string databaseFilter, IReadOnlyList<ValidatedModelType> modelsForDb)
     parameters:
-    - id: databaseName
+    - id: databaseFilter
       type: System.String
     - id: modelsForDb
       type: System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType}
     return:
       type: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot
-    content.vb: Function Build(databaseName As String, modelsForDb As IReadOnlyList(Of ValidatedModelType)) As SchemaSnapshot
+    content.vb: Function Build(databaseFilter As String, modelsForDb As IReadOnlyList(Of ValidatedModelType)) As SchemaSnapshot
   overload: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder.Build*
   nameWithType.vb: IRelmDesiredSchemaBuilder.Build(String, IReadOnlyList(Of ValidatedModelType))
   fullName.vb: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder.Build(String, System.Collections.Generic.IReadOnlyList(Of CoreRelm.Models.Migrations.ValidatedModelType))

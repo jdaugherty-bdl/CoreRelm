@@ -21,7 +21,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DesiredSchemaBuilder
     path: ../CoreRelm/RelmInternal/Helpers/Migrations/MigrationPlans/DesiredSchemaBuilder.cs
-    startLine: 16
+    startLine: 21
   assemblies:
   - CoreRelm
   namespace: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
@@ -57,21 +57,21 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: BuildAsync
     path: ../CoreRelm/RelmInternal/Helpers/Migrations/MigrationPlans/DesiredSchemaBuilder.cs
-    startLine: 18
+    startLine: 23
   assemblies:
   - CoreRelm
   namespace: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
   example: []
   syntax:
-    content: public Task<SchemaSnapshot> BuildAsync(string dbName, List<ValidatedModelType> modelsForDb)
+    content: public Task<SchemaSnapshot> BuildAsync(string databaseFilter, List<ValidatedModelType> modelsForDb)
     parameters:
-    - id: dbName
+    - id: databaseFilter
       type: System.String
     - id: modelsForDb
       type: System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType}
     return:
       type: System.Threading.Tasks.Task{CoreRelm.Models.Migrations.Introspection.SchemaSnapshot}
-    content.vb: Public Function BuildAsync(dbName As String, modelsForDb As List(Of ValidatedModelType)) As Task(Of SchemaSnapshot)
+    content.vb: Public Function BuildAsync(databaseFilter As String, modelsForDb As List(Of ValidatedModelType)) As Task(Of SchemaSnapshot)
   overload: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder.BuildAsync*
   implements:
   - CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder.BuildAsync(System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
@@ -96,21 +96,21 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Build
     path: ../CoreRelm/RelmInternal/Helpers/Migrations/MigrationPlans/DesiredSchemaBuilder.cs
-    startLine: 25
+    startLine: 30
   assemblies:
   - CoreRelm
   namespace: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
   example: []
   syntax:
-    content: public SchemaSnapshot Build(string databaseName, IReadOnlyList<ValidatedModelType> modelsForDb)
+    content: public SchemaSnapshot Build(string databaseFilter, IReadOnlyList<ValidatedModelType> modelsForDb)
     parameters:
-    - id: databaseName
+    - id: databaseFilter
       type: System.String
     - id: modelsForDb
       type: System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType}
     return:
       type: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot
-    content.vb: Public Function Build(databaseName As String, modelsForDb As IReadOnlyList(Of ValidatedModelType)) As SchemaSnapshot
+    content.vb: Public Function Build(databaseFilter As String, modelsForDb As IReadOnlyList(Of ValidatedModelType)) As SchemaSnapshot
   overload: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder.Build*
   implements:
   - CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder.Build(System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType})

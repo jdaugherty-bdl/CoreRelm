@@ -89,7 +89,7 @@
 
 
   <h1 id="CoreRelm_Models_Migrations_ResolvedModelSet" data-uid="CoreRelm.Models.Migrations.ResolvedModelSet" class="text-break">
-Class ResolvedModelSet  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/ResolvedModelSet.cs/#L10"><i class="bi bi-code-slash"></i></a>
+Class ResolvedModelSet  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/ResolvedModelSet.cs/#L9"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -157,16 +157,16 @@ Class ResolvedModelSet  <a class="header-action link-secondary" title="View sour
 
   <a id="CoreRelm_Models_Migrations_ResolvedModelSet__ctor_" data-uid="CoreRelm.Models.Migrations.ResolvedModelSet.#ctor*"></a>
 
-  <h3 id="CoreRelm_Models_Migrations_ResolvedModelSet__ctor_System_String_System_Collections_Generic_IReadOnlyList_CoreRelm_Models_Migrations_ValidatedModelType__System_Collections_Generic_IReadOnlyDictionary_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType___" data-uid="CoreRelm.Models.Migrations.ResolvedModelSet.#ctor(System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType},System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType}})">
-  ResolvedModelSet(string, IReadOnlyList&lt;ValidatedModelType&gt;, IReadOnlyDictionary&lt;string, List&lt;ValidatedModelType&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/ResolvedModelSet.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Models_Migrations_ResolvedModelSet__ctor_System_String_System_Collections_Generic_IReadOnlyList_CoreRelm_Models_Migrations_ValidatedModelType__System_Collections_Generic_IReadOnlyDictionary_System_String_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType___System_Collections_Generic_IReadOnlyList_System_String__" data-uid="CoreRelm.Models.Migrations.ResolvedModelSet.#ctor(System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType},System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType}},System.Collections.Generic.IReadOnlyList{System.String})">
+  ResolvedModelSet(string, IReadOnlyList&lt;ValidatedModelType&gt;, IReadOnlyDictionary&lt;string, List&lt;ValidatedModelType&gt;&gt;, IReadOnlyList&lt;string&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/ResolvedModelSet.cs/#L9"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ResolvedModelSet(string SetName, IReadOnlyList&lt;ValidatedModelType&gt; AllModels, IReadOnlyDictionary&lt;string, List&lt;ValidatedModelType&gt;&gt; ModelsByDatabase)</code></pre>
+    <pre><code class="lang-csharp hljs">public ResolvedModelSet(string SetName, IReadOnlyList&lt;ValidatedModelType&gt; AllModels, IReadOnlyDictionary&lt;string, List&lt;ValidatedModelType&gt;&gt; ModelsByDatabase, IReadOnlyList&lt;string&gt; Warnings)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -176,6 +176,8 @@ Class ResolvedModelSet  <a class="header-action link-secondary" title="View sour
     <dt><code>AllModels</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="CoreRelm.Models.Migrations.ValidatedModelType.html">ValidatedModelType</a>&gt;</dt>
     <dd></dd>
     <dt><code>ModelsByDatabase</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="CoreRelm.Models.Migrations.ValidatedModelType.html">ValidatedModelType</a>&gt;&gt;</dt>
+    <dd></dd>
+    <dt><code>Warnings</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -198,7 +200,7 @@ Class ResolvedModelSet  <a class="header-action link-secondary" title="View sour
 
   <h3 id="CoreRelm_Models_Migrations_ResolvedModelSet_AllModels" data-uid="CoreRelm.Models.Migrations.ResolvedModelSet.AllModels">
   AllModels
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/ResolvedModelSet.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/ResolvedModelSet.cs/#L11"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -229,7 +231,7 @@ Class ResolvedModelSet  <a class="header-action link-secondary" title="View sour
 
   <h3 id="CoreRelm_Models_Migrations_ResolvedModelSet_ModelsByDatabase" data-uid="CoreRelm.Models.Migrations.ResolvedModelSet.ModelsByDatabase">
   ModelsByDatabase
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/ResolvedModelSet.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/ResolvedModelSet.cs/#L12"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -260,7 +262,7 @@ Class ResolvedModelSet  <a class="header-action link-secondary" title="View sour
 
   <h3 id="CoreRelm_Models_Migrations_ResolvedModelSet_SetName" data-uid="CoreRelm.Models.Migrations.ResolvedModelSet.SetName">
   SetName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/ResolvedModelSet.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/ResolvedModelSet.cs/#L10"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -287,11 +289,42 @@ Class ResolvedModelSet  <a class="header-action link-secondary" title="View sour
 
 
 
+  <a id="CoreRelm_Models_Migrations_ResolvedModelSet_Warnings_" data-uid="CoreRelm.Models.Migrations.ResolvedModelSet.Warnings*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_ResolvedModelSet_Warnings" data-uid="CoreRelm.Models.Migrations.ResolvedModelSet.Warnings">
+  Warnings
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/ResolvedModelSet.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;string&gt; Warnings { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/ResolvedModelSet.cs/#L10" class="edit-link">Edit this page</a>
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/ResolvedModelSet.cs/#L9" class="edit-link">Edit this page</a>
         </div>
 
 

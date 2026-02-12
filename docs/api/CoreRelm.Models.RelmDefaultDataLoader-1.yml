@@ -406,9 +406,9 @@ items:
   langs:
   - csharp
   - vb
-  name: PullData(string, Dictionary<string, object>)
-  nameWithType: RelmDefaultDataLoader<T>.PullData(string, Dictionary<string, object>)
-  fullName: CoreRelm.Models.RelmDefaultDataLoader<T>.PullData(string, System.Collections.Generic.Dictionary<string, object>)
+  name: PullData(string, Dictionary<string, object?>)
+  nameWithType: RelmDefaultDataLoader<T>.PullData(string, Dictionary<string, object?>)
+  fullName: CoreRelm.Models.RelmDefaultDataLoader<T>.PullData(string, System.Collections.Generic.Dictionary<string, object?>)
   type: Method
   source:
     remote:
@@ -428,7 +428,7 @@ items:
         Otherwise, the query is executed using the configured connection string type.
   example: []
   syntax:
-    content: public virtual ICollection<T?>? PullData(string selectQuery, Dictionary<string, object> findOptions)
+    content: public virtual ICollection<T?>? PullData(string selectQuery, Dictionary<string, object?> findOptions)
     parameters:
     - id: selectQuery
       type: System.String
@@ -457,9 +457,9 @@ items:
   langs:
   - csharp
   - vb
-  name: PullDataAsync(string, Dictionary<string, object>, CancellationToken)
-  nameWithType: RelmDefaultDataLoader<T>.PullDataAsync(string, Dictionary<string, object>, CancellationToken)
-  fullName: CoreRelm.Models.RelmDefaultDataLoader<T>.PullDataAsync(string, System.Collections.Generic.Dictionary<string, object>, System.Threading.CancellationToken)
+  name: PullDataAsync(string, Dictionary<string, object?>, CancellationToken)
+  nameWithType: RelmDefaultDataLoader<T>.PullDataAsync(string, Dictionary<string, object?>, CancellationToken)
+  fullName: CoreRelm.Models.RelmDefaultDataLoader<T>.PullDataAsync(string, System.Collections.Generic.Dictionary<string, object?>, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -479,7 +479,7 @@ items:
         Otherwise, the query is executed using the configured connection string type.
   example: []
   syntax:
-    content: public virtual Task<ICollection<T?>?> PullDataAsync(string selectQuery, Dictionary<string, object> findOptions, CancellationToken cancellationToken = default)
+    content: public virtual Task<ICollection<T?>?> PullDataAsync(string selectQuery, Dictionary<string, object?> findOptions, CancellationToken cancellationToken = default)
     parameters:
     - id: selectQuery
       type: System.String
@@ -1138,6 +1138,7 @@ references:
   name.vb: New
 - uid: CoreRelm.Models.RelmContext
   commentId: T:CoreRelm.Models.RelmContext
+  parent: CoreRelm.Models
   href: CoreRelm.Models.RelmContext.html
   name: RelmContext
   nameWithType: RelmContext

@@ -2880,9 +2880,9 @@ items:
   langs:
   - csharp
   - vb
-  name: FlattenTreeObject<T>(IEnumerable<T>, Func<T, ICollection<T?>>)
-  nameWithType: ListExtensions.FlattenTreeObject<T>(IEnumerable<T>, Func<T, ICollection<T?>>)
-  fullName: CoreRelm.Extensions.ListExtensions.FlattenTreeObject<T>(System.Collections.Generic.IEnumerable<T>, System.Func<T, System.Collections.Generic.ICollection<T?>>)
+  name: FlattenTreeObject<T>(IEnumerable<T?>, Func<T?, ICollection<T?>>)
+  nameWithType: ListExtensions.FlattenTreeObject<T>(IEnumerable<T?>, Func<T?, ICollection<T?>>)
+  fullName: CoreRelm.Extensions.ListExtensions.FlattenTreeObject<T>(System.Collections.Generic.IEnumerable<T?>, System.Func<T?, System.Collections.Generic.ICollection<T?>>)
   type: Method
   source:
     remote:
@@ -2901,7 +2901,7 @@ items:
         children, it is included as-is.
   example: []
   syntax:
-    content: public static ICollection<T> FlattenTreeObject<T>(this IEnumerable<T> enumerableList, Func<T, ICollection<T?>> getChildrenFunction)
+    content: public static ICollection<T?> FlattenTreeObject<T>(this IEnumerable<T?> enumerableList, Func<T?, ICollection<T?>> getChildrenFunction)
     parameters:
     - id: enumerableList
       type: System.Collections.Generic.IEnumerable{{T}}
