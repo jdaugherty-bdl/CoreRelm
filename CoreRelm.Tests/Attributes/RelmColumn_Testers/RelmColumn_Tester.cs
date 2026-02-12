@@ -77,8 +77,6 @@ namespace CoreRelm.Tests.Attributes.RelmColumn_Testers
             Assert.True(relmColumnAttribute?.Autonumber);
             Assert.True(relmColumnAttribute?.Unique);
             Assert.Equal("DEFAULTVALUE", relmColumnAttribute?.DefaultValue);
-            Assert.Equal("INDEX", relmColumnAttribute?.Index);
-            Assert.True(relmColumnAttribute?.IndexDescending);
             Assert.True(relmColumnAttribute?.AllowDataTruncation);
             Assert.True(relmColumnAttribute?.Virtual);
         }

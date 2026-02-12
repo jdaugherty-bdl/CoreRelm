@@ -24,12 +24,26 @@ namespace CoreRelm.Quickstart
             var optionsBuilderInitializedContext = new ExampleContext(new RelmContextOptionsBuilder("name=ExampleContextDatabase"));
             var connectionStringInitializedContext = new ExampleContext(new RelmContextOptionsBuilder("example_server", "example_database", "example_user", "example_password"));
 
-            var autoSelectInitializedQuickContext = new ExampleQuickContext(autoOpenConnection: true, autoOpenTransaction: false, allowUserVariables: false, convertZeroDateTime: false, lockWaitTimeoutSeconds: 0);
-            var enumInitializedQuickContext = new ExampleQuickContext(ConnectionStringTypes.ExampleContextDatabase, autoOpenConnection: true, autoOpenTransaction: false, allowUserVariables: false, convertZeroDateTime: false, lockWaitTimeoutSeconds: 0);
-            var connectionInitializedQuickContext = new ExampleQuickContext(exampleConnection, autoOpenConnection: true, autoOpenTransaction: false, allowUserVariables: false, convertZeroDateTime: false, lockWaitTimeoutSeconds: 0);
-            var connectionTransactionInitializedQuickContext = new ExampleContext(exampleConnection, exampleConnection.BeginTransaction(), autoOpenConnection: true, allowUserVariables: false, convertZeroDateTime: false, lockWaitTimeoutSeconds: 0);
-            var optionsBuilderInitializedQuickContext = new ExampleQuickContext(new RelmContextOptionsBuilder("name=PortalCertDatabase"), autoOpenConnection: true, autoOpenTransaction: false, allowUserVariables: false, convertZeroDateTime: false, lockWaitTimeoutSeconds: 0);
-            var connectionStringInitializedQuickContext = new ExampleQuickContext(new RelmContextOptionsBuilder("example_server", "example_database", "example_user", "example_password"), autoOpenConnection: true, autoOpenTransaction: false, allowUserVariables: false, convertZeroDateTime: false, lockWaitTimeoutSeconds: 0);
+            var autoSelectInitializedQuickContext = new ExampleContext(autoOpenConnection: true, autoOpenTransaction: false, allowUserVariables: false, convertZeroDateTime: false, lockWaitTimeoutSeconds: 0, autoInitializeDataSets: false, autoVerifyTables: false);
+            var enumInitializedQuickContext = new ExampleContext(ConnectionStringTypes.ExampleContextDatabase, autoOpenConnection: true, autoOpenTransaction: false, allowUserVariables: false, convertZeroDateTime: false, lockWaitTimeoutSeconds: 0, autoInitializeDataSets: false, autoVerifyTables: false);
+            var connectionInitializedQuickContext = new ExampleContext(exampleConnection, autoOpenConnection: true, autoOpenTransaction: false, allowUserVariables: false, convertZeroDateTime: false, lockWaitTimeoutSeconds: 0, autoInitializeDataSets: false, autoVerifyTables: false);
+            var connectionTransactionInitializedQuickContext = new ExampleContext(exampleConnection, exampleConnection.BeginTransaction(), autoOpenConnection: true, allowUserVariables: false, convertZeroDateTime: false, lockWaitTimeoutSeconds: 0, autoInitializeDataSets: false, autoVerifyTables: false);
+            var optionsBuilderInitializedQuickContext = new ExampleContext(new RelmContextOptionsBuilder("name=PortalCertDatabase")
+                .SetAutoOpenConnection(true)
+                .SetAutoOpenTransaction(false)
+                .SetAllowUserVariables(false)
+                .SetConvertZeroDateTime(false)
+                .SetLockWaitTimeoutSeconds(0)
+                .SetAutoInitializeDataSets(false)
+                .SetAutoVerifyTables(false));
+            var connectionStringInitializedQuickContext = new ExampleContext(new RelmContextOptionsBuilder("example_server", "example_database", "example_user", "example_password")
+                .SetAutoOpenConnection(true)
+                .SetAutoOpenTransaction(false)
+                .SetAllowUserVariables(false)
+                .SetConvertZeroDateTime(false)
+                .SetLockWaitTimeoutSeconds(0)
+                .SetAutoInitializeDataSets(false)
+                .SetAutoVerifyTables(false));
 
             var scopedContextExamples = new Examples.Context.ScopedContextExamples();
             scopedContextExamples.RunExamples();
@@ -74,7 +88,7 @@ namespace CoreRelm.Quickstart
             // Relm Quick Context lazy loads metadata as needed with the first operation, so some operations may be slower the first time they are run
 
             // Initialize a scoped Relm Quick context
-            using (var relmQuickContext = new ExampleQuickContext())
+            using (var relmQuickContext = new ExampleContext(autoInitializeDataSets: false, autoVerifyTables: false))
             {
                 // Run identity examples
                 var identityExamples = new Examples.Identity.IdentityExamples();
@@ -112,14 +126,14 @@ namespace CoreRelm.Quickstart
                 }
                 catch (Exception ex)
                 {
-                    relmContext.RollbackTransactions();
+                    relmContext.RollbackTransaction();
 
                     Console.WriteLine($"An error occurred: {ex.Message}");
                 }
             }
 
             // Initialize the Relm Quick context
-            using (var relmQuickContext = new ExampleQuickContext(autoOpenTransaction: true))
+            using (var relmQuickContext = new ExampleContext(autoOpenTransaction: true, autoInitializeDataSets: false, autoVerifyTables: false))
             {
                 try
                 {
@@ -133,7 +147,7 @@ namespace CoreRelm.Quickstart
                 }
                 catch (Exception ex)
                 {
-                    relmQuickContext.RollbackTransactions();
+                    relmQuickContext.RollbackTransaction();
 
                     Console.WriteLine($"An error occurred: {ex.Message}");
                 }

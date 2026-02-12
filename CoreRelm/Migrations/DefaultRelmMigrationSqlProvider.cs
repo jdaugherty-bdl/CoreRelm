@@ -72,8 +72,6 @@ namespace CoreRelm.Migrations
         */
 
         public MigrationGenerateResult Generate(
-            MigrationOptions migrationOptions,
-            string migrationName,
             DateTime stampUtc,
             string dbName,
             List<ValidatedModelType> modelsForDb)
@@ -82,14 +80,12 @@ namespace CoreRelm.Migrations
             // but IMigrationSqlProvider is sync. We keep it sync by calling .GetAwaiter().GetResult().
             // If you prefer, change the provider interface to async later.
 
-            return GenerateAsync(migrationOptions, migrationName, stampUtc, dbName, modelsForDb)
+            return GenerateAsync(stampUtc, dbName, modelsForDb)
                 .GetAwaiter()
                 .GetResult();
         }
 
         public async Task<MigrationGenerateResult> GenerateAsync(
-            MigrationOptions migrationOptions,
-            string migrationName,
             DateTime stampUtc,
             string dbName,
             List<ValidatedModelType> modelsForDb)
@@ -109,17 +105,17 @@ namespace CoreRelm.Migrations
             // - if DB exists, introspect it
             // - otherwise warn and treat as empty (per your policy for non-apply paths)
             SchemaSnapshot actual;
-            var dbExists = await _provisioner.DatabaseExistsAsync(migrationOptions, dbName);
+            var dbExists = await _provisioner.DatabaseExistsAsync(_migrationOptions, dbName);
             if (!dbExists)
             {
-                if (!migrationOptions.Quiet)
+                if (!_migrationOptions.Quiet)
                     Console.WriteLine($"WARNING: Database `{dbName}` does not exist. It will be created during apply/db migrate.");
 
                 actual = SchemaSnapshotFactory.Empty(dbName);
             }
             else
             {
-                var dbConn = migrationOptions.ConnectionStringTemplate?.Replace("{db}", dbName, StringComparison.Ordinal);
+                var dbConn = _migrationOptions.ConnectionStringTemplate?.Replace("{db}", dbName, StringComparison.Ordinal);
                 if (string.IsNullOrWhiteSpace(dbConn))
                     throw new ArgumentException("Connection string is required.", nameof(dbConn));
 
@@ -128,7 +124,7 @@ namespace CoreRelm.Migrations
             }
 
             var planOptions = new MigrationPlanOptions(
-                Destructive: migrationOptions.Destructive,
+                Destructive: _migrationOptions.Destructive,
                 ScopeTables: scopeTables,
                 StampUtc: stampUtc
             );

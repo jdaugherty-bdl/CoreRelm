@@ -31,7 +31,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
                 new(typeof(AppliedMigration), databaseName, RelmHelper.GetDalTable<AppliedMigration>() ?? "schema_migrations")
             };
 
-            var result = await provider.GenerateAsync(migrationOptions, migrationName, DateTime.UtcNow, databaseName, models);
+            var result = await provider.GenerateAsync(DateTime.UtcNow, databaseName, models);
             if (!result.HasChanges)
                 return 0;
 

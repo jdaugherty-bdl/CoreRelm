@@ -174,6 +174,23 @@ namespace CoreRelm.Options
         /// <param name="databaseName">The name of the database to use. Cannot be null or empty.</param>
         /// <param name="databaseUser">The username to use when connecting to the database. Cannot be null or empty.</param>
         /// <param name="databasePassword">The password associated with the specified database user. Cannot be null or empty.</param>
+        public RelmContextOptionsBuilder(string databaseServer, string databaseName, string databaseUser, string databasePassword)
+        {
+            SetDatabaseServer(databaseServer);
+            SetDatabaseName(databaseName);
+            SetDatabaseUser(databaseUser);
+            SetDatabasePassword(databasePassword);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the RelmContextOptionsBuilder class with the specified database connection
+        /// settings.
+        /// </summary>
+        /// <param name="databaseServer">The name or network address of the database server to connect to. Cannot be null or empty.</param>
+        /// <param name="databasePort">The port number to use for the database connection. Cannot be null or empty.</param>
+        /// <param name="databaseName">The name of the database to use. Cannot be null or empty.</param>
+        /// <param name="databaseUser">The username to use when connecting to the database. Cannot be null or empty.</param>
+        /// <param name="databasePassword">The password associated with the specified database user. Cannot be null or empty.</param>
         public RelmContextOptionsBuilder(string databaseServer, string databasePort, string databaseName, string databaseUser, string databasePassword)
         {
             SetDatabaseServer(databaseServer);

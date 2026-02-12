@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,7 @@ namespace CoreRelm.Attributes
     /// various configuration options for database schema design.
     /// </remarks>
     /// <param name="columnType">The type of the column. If <see langword="null"/> or empty, the column will use the property's type.</param>
+    /// <param name="columnDbType">The database type of the column as a MySQL-specific value. If <see langword="null"/>, the column will use the default mapping.</param>
     /// <param name="columnName">The name of the column. If <see langword="null"/> or empty, the column will use the property's underscore name.</param>
     /// <param name="columnSize">The size of the column, typically used for fixed-length data types (e.g., strings). A value of -1 indicates
     /// that the size is unspecified.</param>
@@ -38,12 +40,17 @@ namespace CoreRelm.Attributes
     /// <param name="isVirtual">A value indicating whether the column is a virtual column (i.e., its value is computed rather than stored).
     /// The default is <see langword="false"/>.</param>
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Struct)]
-    public sealed class RelmColumn(string? columnType = null, string? columnName = null, int columnSize = -1, int[]? compoundColumnSize = null, bool isNullable = true, bool primaryKey = false, bool autonumber = false, bool unique = false, string? defaultValue = null, bool allowDataTruncation = false, bool isVirtual = false) : Attribute
+    public sealed class RelmColumn(string columnType = null, MySqlDbType columnDbType = MySqlDbType.VarChar, string columnName = null, int columnSize = -1, int[] compoundColumnSize = null, bool isNullable = true, bool primaryKey = false, bool autonumber = false, bool unique = false, string? defaultValue = null, bool allowDataTruncation = false, bool isVirtual = false) : Attribute
     {
         /// <summary>
         /// Gets or sets the database column type to use for this property. Will override default type mapping.
         /// </summary>
         public string? ColumnType { get; set; } = columnType;
+
+        /// <summary>
+        /// Gets or sets the database type of the column as a MySQL-specific value.
+        /// </summary>
+        public MySqlDbType? ColumnDbType { get; set; } = columnDbType;
 
         /// <summary>
         /// Gets the name of the database column associated with this instance. If not specified, the underscore version 

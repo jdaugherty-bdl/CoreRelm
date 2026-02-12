@@ -42,7 +42,7 @@ namespace CoreRelm.Quickstart.Examples.Context
             }
 
             // Example usage to create an unscoped quick context
-            var unscopedQuickContext = new ExampleQuickContext();
+            var unscopedQuickContext = new ExampleContext(autoInitializeDataSets: false, autoVerifyTables: false);
             unscopedQuickContext.BeginTransaction();
             
             try
@@ -58,7 +58,7 @@ namespace CoreRelm.Quickstart.Examples.Context
             }
 
             // Example usage to create an unscoped quick context with auto-open transaction
-            var unscopedQuickContextAutoTransaction = new ExampleQuickContext(autoOpenTransaction: true);
+            var unscopedQuickContextAutoTransaction = new ExampleContext(autoOpenTransaction: true, autoInitializeDataSets: false, autoVerifyTables: false);
             try
             {
                 // Perform database operations here using unscopedQuickContextAutoTransaction

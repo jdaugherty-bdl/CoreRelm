@@ -19,7 +19,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
         {
             try
             {
-                await provisioner.EnsureDatabaseExistsAsync(
+                await provisioner.InitializeEmptyDatabaseAsync(
                     migrationOptions: migrationOptions,
                     databaseName: databaseName,
                     charset: "utf8mb4",

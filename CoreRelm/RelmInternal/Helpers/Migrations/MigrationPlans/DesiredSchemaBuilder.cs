@@ -1,5 +1,6 @@
 ﻿using CoreRelm.Attributes;
 using CoreRelm.Attributes.BaseClasses;
+using CoreRelm.Exceptions;
 using CoreRelm.Extensions;
 using CoreRelm.Interfaces.Migrations;
 using CoreRelm.Models.Migrations;
@@ -20,14 +21,14 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
 {
     public sealed class DesiredSchemaBuilder : IRelmDesiredSchemaBuilder
     {
-        public async Task<SchemaSnapshot> BuildAsync(string dbName, List<ValidatedModelType> modelsForDb)
+        public async Task<SchemaSnapshot> BuildAsync(string databaseFilter, List < ValidatedModelType> modelsForDb)
         {
-            var desired = Build(dbName, modelsForDb);
+            var desired = Build(databaseFilter, modelsForDb);
 
             return await Task.FromResult(desired);
         }
 
-        public SchemaSnapshot Build(string databaseName, IReadOnlyList<ValidatedModelType> modelsForDb)
+        public SchemaSnapshot Build(string databaseFilter, IReadOnlyList<ValidatedModelType> modelsForDb)
         {
             // modelsForDb already contains only models for this database
             var tables = new Dictionary<string, TableSchema>(StringComparer.Ordinal);
@@ -43,6 +44,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                 var modelClrType = model.ClrType;
 
                 // sanity: enforce attributes exist (your resolver already does this, but keep it safe)
+                /*
                 var dbAttr = modelClrType.GetCustomAttributes(true).OfType<RelmDatabase>().FirstOrDefault()
                              ?? throw new InvalidOperationException($"Missing [RelmDatabase] on {modelClrType.FullName}");
                 var tblAttr = modelClrType.GetCustomAttributes(true).OfType<RelmTable>().FirstOrDefault()
@@ -52,6 +54,19 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                     continue; // caller should have pre-grouped; skip just in case
 
                 var tableName = tblAttr.TableName;
+                */
+                var dbAttr = GetTypeAttribute(modelClrType, nameof(RelmDatabase))
+                    ?? throw new MissingRelmDatabaseAttributeException(modelClrType);
+                var tableAttr = GetTypeAttribute(modelClrType, nameof(RelmTable))
+                    ?? throw new MissingRelmTableAttributeException(modelClrType);
+
+                var databaseName = GetStringProperty(dbAttr, nameof(RelmDatabase.DatabaseName))
+                    ?? throw new InvalidOperationException($"[{dbAttr?.GetType().Name}] on {modelClrType.FullName} must expose DatabaseName.");
+                var tableName = GetStringProperty(tableAttr, nameof(RelmTable.TableName))
+                    ?? throw new InvalidOperationException($"[{tableAttr.GetType().Name}] on {modelClrType.FullName} must expose TableName.");
+
+                if (!string.Equals(databaseName, databaseFilter, StringComparison.Ordinal))
+                    continue;
 
                 // Precompute CLR property name -> DB column name map for this type
                 var nameMap = BuildColumnNameMap(modelClrType);
@@ -249,7 +264,44 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                 );
             }
 
-            return new SchemaSnapshot(databaseName, tables, null);
+            return new SchemaSnapshot(databaseFilter, tables, null);
+        }
+
+        private static Attribute? GetTypeAttribute(Type t, string shortName)
+            => t.GetCustomAttributes(inherit: true).OfType<Attribute>()
+                .FirstOrDefault(a => a.GetType().Name is var n &&
+                                     (n.Equals(shortName, StringComparison.Ordinal) || n.Equals(shortName + "Attribute", StringComparison.Ordinal)));
+
+        private static Attribute? GetMemberAttribute(MemberInfo member, string shortName)
+            => member.GetCustomAttributes(inherit: true).OfType<Attribute>()
+                .FirstOrDefault(a => a.GetType().Name is var n &&
+                                     (n.Equals(shortName, StringComparison.Ordinal) || n.Equals(shortName + "Attribute", StringComparison.Ordinal)));
+
+        private static string? GetStringProperty(Attribute? attribute, string propName)
+        {
+            if (attribute == null)
+                return null;
+
+            var attributeProperty = attribute
+                .GetType()
+                .GetProperty(propName, BindingFlags.Public | BindingFlags.Instance);
+
+            if (attributeProperty == null)
+                return null;
+
+            return attributeProperty.PropertyType == typeof(string)
+                ? (string?)attributeProperty.GetValue(attribute)
+                : (typeof(Enum).IsAssignableFrom(Nullable.GetUnderlyingType(attributeProperty.PropertyType) ?? attributeProperty.PropertyType)
+                    ? ((Enum?)attributeProperty.GetValue(attribute))?.ToString()
+                    : null);
+        }
+
+        private static bool? GetBoolProperty(Attribute? attr, string propName)
+        {
+            var p = attr.GetType().GetProperty(propName, BindingFlags.Public | BindingFlags.Instance);
+            if (p?.PropertyType == typeof(bool)) return (bool?)p.GetValue(attr);
+            if (p?.PropertyType == typeof(bool?)) return (bool?)p.GetValue(attr);
+            return null;
         }
 
         private static PropertyInfo FindProperty(Type t, string name)

@@ -42,7 +42,7 @@ namespace CoreRelm.Quickstart.Examples.Context
             }
 
             // Example usage to create a scoped quick context
-            using (var scopedQuickContext = new ExampleQuickContext())
+            using (var scopedQuickContext = new ExampleContext(autoInitializeDataSets: false, autoVerifyTables: false))
             {
                 scopedQuickContext.BeginTransaction();
 
@@ -58,7 +58,7 @@ namespace CoreRelm.Quickstart.Examples.Context
             }
 
             // Example usage to create a scoped quick context with auto-open transaction
-            using (var scopedAutoOpenQuickContext = new ExampleQuickContext(autoOpenTransaction: true))
+            using (var scopedAutoOpenQuickContext = new ExampleContext(autoOpenTransaction: true, autoInitializeDataSets: false, autoVerifyTables: false))
             {
                 try
                 {

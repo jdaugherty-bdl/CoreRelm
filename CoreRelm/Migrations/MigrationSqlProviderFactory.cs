@@ -18,20 +18,17 @@ namespace CoreRelm.Migrations
         private readonly IRelmMigrationPlanner _planner;
         private readonly IRelmMigrationSqlRenderer _renderer;
         private readonly IRelmDesiredSchemaBuilder _desiredBuilder;
-        private readonly IConfiguration _cfg;
 
         public MigrationSqlProviderFactory(
             IRelmSchemaIntrospector introspector,
             IRelmMigrationPlanner planner,
             IRelmMigrationSqlRenderer renderer,
-            IRelmDesiredSchemaBuilder desiredBuilder,
-            IConfiguration cfg)
+            IRelmDesiredSchemaBuilder desiredBuilder)
         {
             _introspector = introspector;
             _planner = planner;
             _renderer = renderer;
             _desiredBuilder = desiredBuilder;
-            _cfg = cfg;
         }
 
         public IMigrationSqlProvider CreateProvider(MigrationOptions migrationOptions)

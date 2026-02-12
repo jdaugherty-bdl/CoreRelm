@@ -112,7 +112,7 @@ namespace CoreRelm.Enums
         /// <remarks>Use this enumeration to indicate whether a trigger follows or precedes another
         /// trigger in an ordered collection. This is commonly used in scenarios where the execution or evaluation order
         /// of triggers affects application behavior.</remarks>
-        public enum TriggerOrder
+        public enum TriggerOrdering
         {
             /// <summary>
             /// Represents the order following the specified trigger or event.

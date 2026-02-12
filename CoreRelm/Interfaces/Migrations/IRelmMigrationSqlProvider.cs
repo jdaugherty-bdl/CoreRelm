@@ -19,15 +19,11 @@ namespace CoreRelm.Interfaces.Migrations
             MySqlDatabaseProvisioner provisioner);
         */
         MigrationGenerateResult Generate(
-            MigrationOptions migrationOptions,
-            string migrationName,
             DateTime stampUtc,
             string dbName,
             List<ValidatedModelType> modelsForDb);
 
         Task<MigrationGenerateResult> GenerateAsync(
-            MigrationOptions migrationOptions,
-            string migrationName,
             DateTime stampUtc,
             string dbName,
             List<ValidatedModelType> modelsForDb);

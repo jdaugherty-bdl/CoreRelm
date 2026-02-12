@@ -14,7 +14,7 @@ namespace CoreRelm.Quickstart.FieldLoaders
         public string[] KeyFields { get; private set; }
         public IRelmContext RelmContext { get; private set; }
 
-        private ExampleContext _exampleContext => RelmContext as ExampleContext;
+        private ExampleContext? _exampleContext => RelmContext as ExampleContext;
 
         public IsModificationFieldLoader(IRelmContext relmContext, string fieldName, string[] keyFields)
         {
@@ -26,18 +26,28 @@ namespace CoreRelm.Quickstart.FieldLoaders
                 RelmContext = new ExampleContext(relmContext.ContextOptions);
         }
 
-        public Dictionary<S[], object> GetFieldData<S>(ICollection<S[]> keyData)
+        public Dictionary<S[], object>? GetFieldData<S>(ICollection<S[]>? keyData) where S : notnull
         {
+            return GetFieldDataAsync(keyData)
+                .GetAwaiter()
+                .GetResult();
+        }
+
+        public async Task<Dictionary<S[], object>?> GetFieldDataAsync<S>(ICollection<S[]>? keyData, CancellationToken cancellationToken = default) where S : notnull
+        {
+            if (keyData == null || keyData.Count == 0)
+                return null;
+
             var sourceInternalIds = keyData.Select(x => x.Select(y => y.ToString()).ToArray()).ToList();
             if ((sourceInternalIds?.Count ?? 0) <= 0)
                 return null;
 
             var data = keyData
                 .ToDictionary(x => x, x => (object)(_exampleContext
-                    .ExampleModels
-                    .Where(y => sourceInternalIds.Any(z => z.Contains(y.SuperceededByInternalId)) && y.Active == true)
+                    ?.ExampleModels
+                    .Where(y => sourceInternalIds!.Any(z => z.Contains(y.SuperceededByInternalId)) && y.Active == true)
                     .Load()
-                    .Count > 0));
+                    ?.Count > 0));
 
             return data;
         }

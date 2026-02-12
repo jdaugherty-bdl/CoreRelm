@@ -1,6 +1,7 @@
 ﻿using CoreRelm.Attributes;
 using CoreRelm.Exceptions;
 using CoreRelm.Interfaces.Metadata;
+using CoreRelm.Interfaces.Migrations;
 using CoreRelm.Models;
 using CoreRelm.Models.Migrations;
 using System;
@@ -12,72 +13,81 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.RelmInternal.Helpers.Metadata
 {
-
-    internal sealed class RelmMetadataReader : IRelmMetadataReader
+    internal sealed class RelmMetadataReader(IRelmDesiredSchemaBuilder desiredSchemaBuilder) : IRelmMetadataReader
     {
+        private readonly IRelmDesiredSchemaBuilder _desiredSchemaBuilder = desiredSchemaBuilder;
+
         public RelmEntityDescriptor Describe(Type relmModelType)
         {
-            if (relmModelType is null) throw new ArgumentNullException(nameof(relmModelType));
-            if (relmModelType.IsAbstract) throw new ArgumentException("Type must be non-abstract.", nameof(relmModelType));
+            if (relmModelType is null) 
+                throw new ArgumentNullException(nameof(relmModelType));
+            
+            if (relmModelType.IsAbstract) 
+                throw new ArgumentException("Type must be non-abstract.", nameof(relmModelType));
+
             if (!typeof(RelmModel).IsAssignableFrom(relmModelType))
                 throw new ArgumentException($"Type '{relmModelType.FullName}' does not inherit CoreRelm.Models.RelmModel.");
 
+            /* 
+             * The implementation of this method is critical for your metadata pipeline. It must be robust and handle all the ways users might apply attributes to their model classes and properties.
+             * The general approach is:
+             * 1. Validate required class-level attributes (RelmDatabase, RelmTable) and extract database/table names.
+             * 2. Collect all instance properties (including inherited) and identify those with [RelmColumn] to build column descriptors.
+             * 3. For each column, check for related attributes like [RelmForeignKey] and [RelmIndex] to build FK and index descriptors.
+             * 4. Handle navigation properties with [RelmForeignKey] that point to other entities, resolving their principal tables and columns.
+             * 5. Ensure deterministic ordering of columns and other collections for consistent behavior.
+             * 6. Return a fully populated RelmEntityDescriptor with all the metadata needed for schema generation and migrations.
+             * 
+             * As you implement, consider edge cases such as:
+             * - Missing required attributes or properties
+             * - Conflicting attribute configurations
+             * - Inherited properties with attributes
+             * - Navigation properties referencing other entities
+             * - Composite keys (if supported)
+             * /
             // Required class attributes
-            var dbAttr = GetRequiredAttribute(relmModelType, "RelmDatabase")
-                         ?? throw new MissingRelmDatabaseAttributeException(relmModelType);
-            var tableAttr = GetRequiredAttribute(relmModelType, "RelmTable")
-                            ?? throw new MissingRelmTableAttributeException(relmModelType);
+            var dbAttr = GetRequiredAttribute(relmModelType, nameof(RelmDatabase))
+                ?? throw new MissingRelmDatabaseAttributeException(relmModelType);
+            var tableAttr = GetRequiredAttribute(relmModelType, nameof(RelmTable))
+                ?? throw new MissingRelmTableAttributeException(relmModelType);
 
-            var databaseName = GetStringProperty(dbAttr, "DatabaseName")
-                ?? throw new InvalidOperationException($"[{dbAttr.GetType().Name}] on {relmModelType.FullName} must expose DatabaseName.");
-            var tableName = GetStringProperty(tableAttr, "TableName")
+            var databaseName = GetStringProperty(dbAttr, nameof(RelmDatabase.DatabaseName))
+                ?? throw new InvalidOperationException($"[{dbAttr?.GetType().Name}] on {relmModelType.FullName} must expose DatabaseName.");
+            var tableName = GetStringProperty(tableAttr, nameof(RelmTable.TableName))
                 ?? throw new InvalidOperationException($"[{tableAttr.GetType().Name}] on {relmModelType.FullName} must expose TableName.");
+
+            // Project to column descriptors
+            var columns = new List<RelmColumnDescriptor>();
+            var foreignKeyDescriptorList = new List<RelmForeignKeyDescriptor>();
+            var indexDescriptorList = new List<RelmIndexDescriptor>();
 
             // Columns (including inherited)
             var members = GetAllInstanceProperties(relmModelType);
 
             var columnMembers = members
-                .Select(p => (Prop: p, ColAttr: GetOptionalAttribute(p, "RelmColumn")))
+                .Select(p => (Prop: p, ColAttr: GetOptionalAttribute(p, nameof(RelmColumn))))
                 .Where(x => x.ColAttr is not null)
                 .ToList();
 
-            // Project to column descriptors
-            // NOTE: We don’t assume your RelmColumn property names here beyond common ones.
-            // If you want, we can tighten this once you confirm the RelmColumn attribute API.
-            var columns = new List<RelmColumnDescriptor>(capacity: columnMembers.Count);
-            var foreignKeyDescriptorList = new List<RelmForeignKeyDescriptor>();
-
             int ordinal = 0;
-
             foreach (var (prop, colAttr) in columnMembers)
             {
                 var col = colAttr!;
-                var columnName = GetStringProperty(col, "ColumnName")
-                                 ?? GetStringProperty(col, "Name")
+                var columnName = GetStringProperty(col, nameof(RelmColumn.ColumnName))
                                  ?? prop.Name;
 
-                var storeType = GetStringProperty(col, "StoreType")
-                                ?? GetStringProperty(col, "SqlType")
-                                ?? throw new InvalidOperationException($"[RelmColumn] on {relmModelType.FullName}.{prop.Name} must define StoreType/SqlType.");
+                var storeType = GetStringProperty(col, nameof(RelmColumn.ColumnType))
+                    ?? GetStringProperty(col, nameof(RelmColumn.ColumnDbType))
+                    ?? throw new InvalidOperationException($"[RelmColumn] on {relmModelType.FullName}.{prop.Name} must define ColumnType.");
 
-                var isNullable = GetBoolProperty(col, "IsNullable") ?? true;
+                var isNullable = GetBoolProperty(col, nameof(RelmColumn.IsNullable)) ?? true;
 
                 // default SQL: may be null
-                var defaultSql = GetStringProperty(col, "DefaultSql")
-                                 ?? GetStringProperty(col, "Default");
+                var defaultSql = GetStringProperty(col, nameof(RelmColumn.DefaultValue));
 
-                var isPk = GetBoolProperty(col, "IsPrimaryKey") ?? false;
-                var isAuto = GetBoolProperty(col, "IsAutoIncrement") ?? false;
-                var isUnique = GetBoolProperty(col, "IsUnique") ?? false;
-
-                // Enforce invariant: last_updated uses ON UPDATE semantics (no triggers)
-                if (string.Equals(columnName, "last_updated", StringComparison.OrdinalIgnoreCase))
-                {
-                    // If your attribute already provides this, great; otherwise, enforce.
-                    // MySQL uses: DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-                    defaultSql = "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP";
-                    isNullable = false;
-                }
+                var isPk = GetBoolProperty(col, nameof(RelmColumn.PrimaryKey)) ?? false;
+                var isAuto = GetBoolProperty(col, nameof(RelmColumn.Autonumber)) ?? false;
+                var isUnique = GetBoolProperty(col, nameof(RelmColumn.Unique)) ?? false;
 
                 columns.Add(new RelmColumnDescriptor(
                     ColumnName: columnName,
@@ -91,7 +101,7 @@ namespace CoreRelm.RelmInternal.Helpers.Metadata
                 ));
 
                 // Foreign key attribute on the SAME property (common pattern)
-                var fkAttr = GetOptionalAttribute(prop, "RelmForeignKey");
+                var fkAttr = GetOptionalAttribute(prop, nameof(RelmForeignKey));
                 if (fkAttr is not null)
                 {
                     // These property names are guesses; tighten once you confirm RelmForeignKey attribute API.
@@ -101,7 +111,7 @@ namespace CoreRelm.RelmInternal.Helpers.Metadata
 
                     var principalColumn = GetStringProperty(fkAttr, "PrincipalColumn")
                                           ?? GetStringProperty(fkAttr, "ReferencedColumn")
-                                          ?? "InternalId"; // your convention
+                                          ?? "InternalId";
 
                     var onDelete = GetStringProperty(fkAttr, "OnDelete")
                                    ?? "CASCADE"; // default; adjust if your attribute provides it
@@ -117,11 +127,25 @@ namespace CoreRelm.RelmInternal.Helpers.Metadata
                         OnDelete: onDelete
                     ));
                 }
+
+                var indexAttr = GetOptionalAttribute(prop, nameof(RelmIndex));
+                if (indexAttr is not null)
+                {
+                    var indexName = GetStringProperty(indexAttr, "Name")
+                                    ?? $"IX_{tableName}_{columnName}";
+                    var isUniqueIndex = GetBoolProperty(indexAttr, "IsUnique") ?? false;
+                    indexDescriptorList.Add(new RelmIndexDescriptor(
+                        Name: indexName,
+                        Columns: [columnName],
+                        IsUnique: isUniqueIndex
+                    ));
+                }
             }
 
             // Deterministic ordering
             columns = OrderColumnsDeterministically(columns);
             foreignKeyDescriptorList = [.. foreignKeyDescriptorList.OrderBy(x => x.Name, StringComparer.Ordinal)];
+            indexDescriptorList = [.. indexDescriptorList.OrderBy(x => x.Name, StringComparer.Ordinal)];
 
             var navPropsWithFk = members
                 .Select(p => (NavigationProperty: p, ForeignKey: p.GetCustomAttributes(true).OfType<RelmForeignKey>().FirstOrDefault()))
@@ -178,22 +202,62 @@ namespace CoreRelm.RelmInternal.Helpers.Metadata
 
                     foreignColumnNames.Add(ResolveColumnName(foreignScalarProp, foreignColAttr));
                 }
-                */
+                * /
 
                 // Build FK descriptor(s)
                 // For composite keys: store all columns in one FK descriptor model (recommended)
                 // If your descriptor currently supports only a single column, upgrade it to support IReadOnlyList<string>.
             }
 
-
-            // Indexes: empty for now until you confirm the index attribute name(s)
-            var indexes = Array.Empty<RelmIndexDescriptor>();
-
             return new RelmEntityDescriptor(
                 TableName: tableName,
                 Columns: columns,
-                Indexes: indexes,
+                Indexes: indexDescriptorList,
                 ForeignKeys: foreignKeyDescriptorList,
+                ClrType: relmModelType,
+                DatabaseName: databaseName,
+                Notes: null,
+                Hints: new Dictionary<string, string>(StringComparer.Ordinal)
+            );
+            */
+            var dbAttr = GetTypeAttribute(relmModelType, nameof(RelmDatabase))
+                ?? throw new MissingRelmDatabaseAttributeException(relmModelType);
+            var tableAttr = GetTypeAttribute(relmModelType, nameof(RelmTable))
+                ?? throw new MissingRelmTableAttributeException(relmModelType);
+
+            var databaseName = GetStringProperty(dbAttr, nameof(RelmDatabase.DatabaseName))
+                ?? throw new InvalidOperationException($"[{dbAttr?.GetType().Name}] on {relmModelType.FullName} must expose DatabaseName.");
+            var tableName = GetStringProperty(tableAttr, nameof(RelmTable.TableName))
+                ?? throw new InvalidOperationException($"[{tableAttr.GetType().Name}] on {relmModelType.FullName} must expose TableName.");
+
+            var schemaSnapshot = _desiredSchemaBuilder.BuildAsync(databaseName, [new ValidatedModelType(relmModelType, databaseName, tableName)])
+                .GetAwaiter()
+                .GetResult();
+
+            return new RelmEntityDescriptor(
+                TableName: tableName,
+                Columns: schemaSnapshot.Tables[tableName].Columns.Values.Select(x => new RelmColumnDescriptor(
+                    ColumnName: x.ColumnName,
+                    StoreType: x.ColumnType,
+                    IsNullable: x.IsNullable == "YES",
+                    DefaultSql: x.DefaultValue,
+                    IsPrimaryKey: x.IsPrimaryKey,
+                    IsAutoIncrement: x.IsAutoIncrement,
+                    IsUnique: x.IsUnique,
+                    Ordinal: x.OrdinalPosition
+                )).ToList(),
+                Indexes: schemaSnapshot.Tables[tableName].Indexes.Values.Select(x => new RelmIndexDescriptor(
+                    Name: x.IndexName,
+                    IsUnique: !x.NonUnique,
+                    Columns: x.Columns?.Select(c => c.ColumnName).ToList() ?? []
+                )).ToList(),
+                ForeignKeys: schemaSnapshot.Tables[tableName].ForeignKeys.Values.Select(x => new RelmForeignKeyDescriptor(
+                    Name: x.ConstraintName,
+                    LocalColumns: x.ColumnNames?.Where(y => y != null).Select(y => y!).ToList() ?? [],
+                    PrincipalTable: x.TableName,
+                    PrincipalColumns: x.ReferencedColumnNames?.Where(y => y != null).Select(y => y!).ToList() ?? [],
+                    OnDelete: x.DeleteRule
+                )).ToList(),
                 ClrType: relmModelType,
                 DatabaseName: databaseName,
                 Notes: null,
@@ -221,23 +285,36 @@ namespace CoreRelm.RelmInternal.Helpers.Metadata
             return props.Values.ToList();
         }
 
-        private static Attribute? GetRequiredAttribute(Type t, string shortName)
+        private static Attribute? GetTypeAttribute(Type t, string shortName)
             => t.GetCustomAttributes(inherit: true).OfType<Attribute>()
                 .FirstOrDefault(a => a.GetType().Name is var n &&
                                      (n.Equals(shortName, StringComparison.Ordinal) || n.Equals(shortName + "Attribute", StringComparison.Ordinal)));
 
-        private static Attribute? GetOptionalAttribute(MemberInfo member, string shortName)
+        private static Attribute? GetMemberAttribute(MemberInfo member, string shortName)
             => member.GetCustomAttributes(inherit: true).OfType<Attribute>()
                 .FirstOrDefault(a => a.GetType().Name is var n &&
                                      (n.Equals(shortName, StringComparison.Ordinal) || n.Equals(shortName + "Attribute", StringComparison.Ordinal)));
 
-        private static string? GetStringProperty(Attribute attr, string propName)
+        private static string? GetStringProperty(Attribute? attribute, string propName)
         {
-            var p = attr.GetType().GetProperty(propName, BindingFlags.Public | BindingFlags.Instance);
-            return p?.PropertyType == typeof(string) ? (string?)p.GetValue(attr) : null;
+            if (attribute == null) 
+                return null;
+            
+            var attributeProperty = attribute
+                .GetType()
+                .GetProperty(propName, BindingFlags.Public | BindingFlags.Instance);
+
+            if (attributeProperty == null)
+                return null;
+
+            return attributeProperty.PropertyType == typeof(string) 
+                ? (string?)attributeProperty.GetValue(attribute) 
+                : (typeof(Enum).IsAssignableFrom(Nullable.GetUnderlyingType(attributeProperty.PropertyType) ?? attributeProperty.PropertyType)
+                    ? ((Enum?)attributeProperty.GetValue(attribute))?.ToString() 
+                    : null);
         }
 
-        private static bool? GetBoolProperty(Attribute attr, string propName)
+        private static bool? GetBoolProperty(Attribute? attr, string propName)
         {
             var p = attr.GetType().GetProperty(propName, BindingFlags.Public | BindingFlags.Instance);
             if (p?.PropertyType == typeof(bool)) return (bool?)p.GetValue(attr);
@@ -252,10 +329,10 @@ namespace CoreRelm.RelmInternal.Helpers.Metadata
             var baseOrder = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
             {
                 ["id"] = 0,
-                ["active"] = 1,
-                ["InternalId"] = 2,
-                ["create_date"] = 3,
-                ["last_updated"] = 4
+                ["active"] = 101,
+                ["InternalId"] = 102,
+                ["create_date"] = 103,
+                ["last_updated"] = 104
             };
 
             return cols

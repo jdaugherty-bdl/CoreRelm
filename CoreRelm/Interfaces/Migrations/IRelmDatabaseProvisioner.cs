@@ -11,7 +11,7 @@ namespace CoreRelm.Interfaces.Migrations
     public interface IRelmDatabaseProvisioner
     {
         Task<bool> DatabaseExistsAsync(MigrationOptions migrationOptions, string databaseName);
-        Task EnsureDatabaseExistsAsync(
+        Task InitializeEmptyDatabaseAsync(
             MigrationOptions migrationOptions,
             string databaseName,
             string? charset = null,

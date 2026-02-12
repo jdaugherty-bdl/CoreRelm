@@ -68,18 +68,6 @@ namespace CoreRelm.Tests.Attributes.RelmColumn_Testers
         }
 
         [Fact]
-        public void RelmColumn_ComplexTestModel_Has_Attribute_Index_INDEX()
-        {
-            Assert.Equal("INDEX", relmColumnAttribute?.Index);
-        }
-
-        [Fact]
-        public void RelmColumn_ComplexTestModel_Has_Attribute_IndexDescending_True()
-        {
-            Assert.True(relmColumnAttribute?.IndexDescending);
-        }
-
-        [Fact]
         public void RelmColumn_ComplexTestModel_Has_Attribute_AllowDataTruncation_True()
         {
             Assert.True(relmColumnAttribute?.AllowDataTruncation);

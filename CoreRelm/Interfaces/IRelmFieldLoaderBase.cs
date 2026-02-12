@@ -31,7 +31,7 @@ namespace CoreRelm.Interfaces
         /// <param name="keyData">A collection of key arrays for which to retrieve associated field data. Cannot be null.</param>
         /// <returns>A dictionary mapping each input key array to its corresponding field data. If a key array has no associated
         /// data, it may be omitted from the dictionary.</returns>
-        Dictionary<S[], object> GetFieldData<S>(ICollection<S[]>? keyData);
+        Dictionary<S[], object>? GetFieldData<S>(ICollection<S[]>? keyData) where S : notnull;
 
         /*************************************************************************************************
          *                                         ASYNC METHODS                                         *
@@ -44,6 +44,6 @@ namespace CoreRelm.Interfaces
         /// <param name="keyData">A collection of key arrays for which to retrieve associated field data. Cannot be null.</param>
         /// <returns>A dictionary mapping each input key array to its corresponding field data. If a key array has no associated
         /// data, it may be omitted from the dictionary.</returns>
-        Task<Dictionary<S[], object>> GetFieldDataAsync<S>(ICollection<S[]>? keyData, CancellationToken cancellationToken = default);
+        Task<Dictionary<S[], object>?> GetFieldDataAsync<S>(ICollection<S[]>? keyData, CancellationToken cancellationToken = default) where S : notnull;
     }
 }

@@ -10,7 +10,7 @@ namespace CoreRelm.Interfaces.Migrations
 {
     public interface IRelmDesiredSchemaBuilder
     {
-        Task<SchemaSnapshot> BuildAsync(string dbName, List<ValidatedModelType> modelsForDb);
-        SchemaSnapshot Build(string databaseName, IReadOnlyList<ValidatedModelType> modelsForDb);
+        Task<SchemaSnapshot> BuildAsync(string databaseFilter, List < ValidatedModelType> modelsForDb);
+        SchemaSnapshot Build(string databaseFilter, IReadOnlyList < ValidatedModelType> modelsForDb);
     }
 }

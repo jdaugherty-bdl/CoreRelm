@@ -33,7 +33,6 @@ namespace CoreRelm.Quickstart.Models
         public string SuperceededByInternalId { get; set; }
 
         [RelmDto]
-        [RelmDataLoader(typeof(IsModificationFieldLoaderQuick), keyField: nameof(InternalId))]
         [RelmDataLoader(typeof(IsModificationFieldLoader), keyField: nameof(InternalId))]
         public virtual ExampleModel ModificationWithModification { get; set; }
 

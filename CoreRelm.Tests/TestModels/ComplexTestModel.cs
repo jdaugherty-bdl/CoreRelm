@@ -20,9 +20,11 @@ namespace CoreRelm.Tests.TestModels
             WhereType3
         }
 
-        [RelmColumn(columnName: "test_column_InternalId", compoundColumnSize: [100, 200], columnSize: 255, isNullable: false, primaryKey: false, autonumber: true, unique: true, defaultValue: "DEFAULTVALUE", index: "INDEX", indexDescending: true, allowDataTruncation: true, isVirtual: true)]
+        [RelmIndex]
+        [RelmColumn(columnName: "test_column_InternalId", compoundColumnSize: [100, 200], columnSize: 255, isNullable: false, primaryKey: false, autonumber: true, unique: true, defaultValue: "DEFAULTVALUE", allowDataTruncation: true, isVirtual: true)]
         public string? TestColumnInternalId { get; set; }
-        [RelmColumn(columnName: "test_column_id", columnSize: 255, isNullable: false, primaryKey: false, autonumber: true, unique: true, defaultValue: "DEFAULTVALUE", index: "INDEX", indexDescending: true, allowDataTruncation: true, isVirtual: true)]
+        [RelmIndex]
+        [RelmColumn(columnName: "test_column_id", columnSize: 255, isNullable: false, primaryKey: false, autonumber: true, unique: true, defaultValue: "DEFAULTVALUE", allowDataTruncation: true, isVirtual: true)]
         public int TestColumnId { get; set; }
         [RelmColumn]
         public string? TestColumnNoAttributeArguments { get; set; }

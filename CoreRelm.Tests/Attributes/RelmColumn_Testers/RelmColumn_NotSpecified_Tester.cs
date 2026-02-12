@@ -50,18 +50,6 @@ namespace CoreRelm.Tests.Attributes.RelmColumn_Testers
         }
 
         [Fact]
-        public void RelmColumn_ComplexTestModel_Has_Attribute_Index_Null_When_Not_Specified()
-        {
-            Assert.Null(relmColumnAttribute?.Index);
-        }
-
-        [Fact]
-        public void RelmColumn_ComplexTestModel_Has_Attribute_IndexDescending_False_When_Not_Specified()
-        {
-            Assert.False(relmColumnAttribute?.IndexDescending);
-        }
-
-        [Fact]
         public void RelmColumn_ComplexTestModel_Has_Attribute_IsNullable_True_When_Not_Specified()
         {
             Assert.True(relmColumnAttribute?.IsNullable);

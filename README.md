@@ -5,7 +5,7 @@
 It sits close to ADO.NET, but gives you:
 
 - Strongly-typed table/column access via attributes and expressions
-- A simple context model (`RelmContext` / `RelmQuickContext`)
+- A simple context model (`RelmContext`)
 - Helper methods for the common database shapes you actually use
 - A clean, explicit pattern for transactions and error handling
 
@@ -80,8 +80,8 @@ CoreRelm revolves around a few core pieces:
 - **Contexts**  
   You create your own context classes that inherit from:
 
-  - `RelmContext` – **eager**: preloads table metadata up-front  
-  - `RelmQuickContext` – **lazy**: loads metadata on first use
+  - `RelmContext` – **eager**: preloads table metadata up-front by turning on auto-initialize data sets and auto-verify tables
+  - `RelmContext` – **lazy**: loads metadata on first use by turning off auto-initialize data sets and auto-verify tables
 
   and expose your datasets as `IRelmDataSet` properties:
 
@@ -120,8 +120,7 @@ CoreRelm revolves around a few core pieces:
   - `RelmHelper.GetLastInsertId(...)`
   - `RelmHelper.GetIdFromInternalId(...)`
 
-  Most of these also exist as instance methods on `IRelmContext`
-  and `IRelmQuickContext` (`relmContext.DoDatabaseWork(...)`, etc.).
+  Most of these also exist as instance methods on `IRelmContext` (`relmContext.DoDatabaseWork(...)`, etc.).
 
 ---
 
@@ -134,8 +133,8 @@ From the Quickstart examples, CoreRelm currently provides:
   - `RelmHelper.GetDalTable()` and `RelmHelper.GetColumnName(...)` use those attributes.
 
 - **Two context modes**
-  - `RelmContext` – reads the database and preloads datasets/metadata when created (slightly heavier startup, faster subsequent operations).
-  - `RelmQuickContext` – lazy-loads metadata as needed (faster startup, first operations may be slower).
+  - `RelmContext` – **eager** reads the database and preloads datasets/metadata when created (slightly heavier startup, faster subsequent operations).
+  - `RelmContext` – **lazy** lazy-loads metadata as needed (faster startup, first operations may be slower).
 
 - **Standard connection wrapper**
   - `RelmHelper.StandardConnectionWrapper(...)` lets you run a lambda with a raw `connection` and `transaction` without manually wiring up boilerplate.
@@ -177,14 +176,13 @@ Right now the library is consumed as a project reference:
 
 ### 2. Define a model and context
 
-Use attributes on your models and expose `IRelmDataSet` properties on a context that inherits from `RelmContext` or `RelmQuickContext`.
+Use attributes on your models and expose `IRelmDataSet` properties on a context that inherits from `RelmContext`.
 
 The Quickstart project includes:
 
 - `Models/ExampleModel.cs`
 - `Models/ExampleGroup.cs`
 - `Contexts/ExampleContext.cs`
-- `Contexts/ExampleQuickContext.cs`
 
 These show the expected pattern end-to-end.
 
@@ -214,7 +212,7 @@ using (var relmContext = new ExampleContext())
 }
 
 // Relm Quick Context: lazy-loads metadata on first use
-using (var relmQuickContext = new ExampleQuickContext())
+using (var relmQuickContext = new ExampleContext(autoInitializeDataSets: false, autoVerifyTables: false))
 {
     var identityExamples   = new Examples.Identity.IdentityExamples();
     var dataRowExamples    = new Examples.Data.DataRowExamples();
@@ -255,8 +253,6 @@ using (var relmContext = new ExampleContext(autoOpenTransaction: true))
     }
 }
 ```
-
-The same pattern is also shown with `ExampleQuickContext` in the Quickstart.
 
 If you just need quick, one-off access to a connection/transaction without a full context, you can use:
 

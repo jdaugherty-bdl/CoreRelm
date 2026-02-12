@@ -25,10 +25,17 @@ namespace CoreRelm.Tests.TestModels.DataLoaderModels
             _keyFields = keyFields;
         }
 
-        public virtual Dictionary<S[], object> GetFieldData<S>(ICollection<S[]> keyData) where S : notnull
+        public Dictionary<S[], object>? GetFieldData<S>(ICollection<S[]>? keyData) where S : notnull
+        {
+            return GetFieldDataAsync(keyData)
+                .GetAwaiter()
+                .GetResult();
+        }
+
+        public async Task<Dictionary<S[], object>?> GetFieldDataAsync<S>(ICollection<S[]>? keyData, CancellationToken cancellationToken = default) where S : notnull
         {
             return keyData
-                .Select((x, i) => new { Key = x, Value = i })
+                ?.Select((x, i) => new { Key = x, Value = i })
                 .ToDictionary(x => x.Key, x => (object)(x.Value % 2 == 0));
         }
     }
