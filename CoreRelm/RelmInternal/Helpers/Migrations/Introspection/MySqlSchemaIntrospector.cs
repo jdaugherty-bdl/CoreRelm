@@ -2,6 +2,7 @@
 using CoreRelm.Interfaces.Metadata;
 using CoreRelm.Models;
 using CoreRelm.Models.Migrations.Introspection;
+using CoreRelm.RelmInternal.Contexts;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
         );
 
         public async Task<SchemaSnapshot> LoadSchemaAsync(
-            IRelmContext relmContext,
+            InformationSchemaContext relmContext,
             SchemaIntrospectionOptions? options = null,
             CancellationToken cancellationToken = default)
         {
@@ -376,10 +377,20 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
         }
 
         private static async Task<Dictionary<string, FunctionSchema>> LoadFunctionsAsync(
-            IRelmContext relmContext,
+            InformationSchemaContext relmContext,
             string dbName,
             CancellationToken ct)
         {
+            var functionSchema = relmContext.GetDataSet<FunctionSchema>();
+            if (functionSchema == null)
+                return [];
+
+            var fun = await functionSchema
+                .Reference(x => x.FunctionParameters)
+                .Where(x => x.RoutineSchema == dbName && x.RoutineType == "FUNCTION")
+                .OrderBy(x => x.RoutineName!)
+                .LoadAsync(ct);
+
             var functionQuery = @"SELECT ROUTINE_NAME, ROUTINE_COMMENT, DTD_IDENTIFIER, ROUTINE_DEFINITION, 
                     SQL_DATA_ACCESS, SECURITY_TYPE, IS_DETERMINISTIC
                 FROM INFORMATION_SCHEMA.ROUTINES

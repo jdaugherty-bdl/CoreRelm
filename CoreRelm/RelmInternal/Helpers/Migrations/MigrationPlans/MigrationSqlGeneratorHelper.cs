@@ -1,6 +1,7 @@
 ﻿using CoreRelm.Models;
 using CoreRelm.Models.Migrations;
 using CoreRelm.Models.Migrations.Introspection;
+using CoreRelm.RelmInternal.Contexts;
 using CoreRelm.RelmInternal.Helpers.Migrations.Introspection;
 using CoreRelm.RelmInternal.Helpers.Migrations.Provisioning;
 using System;
@@ -82,7 +83,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
             if (exists)
             {
                 var introspector = new MySqlSchemaIntrospector();
-                var context = new RelmContext(dbConn);
+                var context = new InformationSchemaContext(dbConn, autoInitializeDataSets: false, autoVerifyTables: false);
                 snapshot = await introspector.LoadSchemaAsync(context, cancellationToken: migrationOptions.CancelToken);
             }
             else

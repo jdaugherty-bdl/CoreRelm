@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.Exceptions
 {
-    public sealed class MissingRelmDatabaseAttributeException : Exception
+    public sealed class MissingRelmDatabaseAttributeException(Type t, Type? referencedType = null) : Exception($"Missing required [RelmDatabase] attribute on principal type {t.FullName}{(referencedType == null ? null : $" referenced by {referencedType!.DeclaringType?.FullName}.{referencedType.Name}")}")
     {
-        public MissingRelmDatabaseAttributeException(Type t)
-            : base($"Type '{t.FullName}' is missing required [RelmDatabase] attribute.")
-        {
-        }
     }
 }

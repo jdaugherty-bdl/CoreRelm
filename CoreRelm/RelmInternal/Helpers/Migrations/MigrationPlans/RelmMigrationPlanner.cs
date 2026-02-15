@@ -1,20 +1,27 @@
-﻿using CoreRelm.Interfaces.Migrations;
+﻿using BDL.Common.Logging.Extensions;
+using CoreRelm.Interfaces.Migrations;
 using CoreRelm.Models.Migrations.Introspection;
 using CoreRelm.Models.Migrations.MigrationPlans;
 using CoreRelm.Models.Migrations.Rendering;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static CoreRelm.Enums.SecurityEnums;
+using static CoreRelm.Enums.StoredProcedures;
 
 namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
 {
-    public sealed class RelmMigrationPlanner : IRelmMigrationPlanner
+    public sealed class RelmMigrationPlanner(ILogger<RelmMigrationPlanner>? log = null) : IRelmMigrationPlanner
     {
+        private ILogger<RelmMigrationPlanner>? _log = log;
+        
         public MigrationPlan Plan(SchemaSnapshot desired, SchemaSnapshot actual, MigrationPlanOptions options)
         {
+            _log?.LogFormatted(LogLevel.Information, "Creating migration plan", args: [], preIncreaseLevel: true);
+
             if (!string.Equals(desired.DatabaseName, actual.DatabaseName, StringComparison.Ordinal))
                 throw new InvalidOperationException($"Desired database '{desired.DatabaseName}' does not match actual database '{actual.DatabaseName}'.");
 
@@ -54,10 +61,6 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
 
                 // Triggers: compare by name + statement; if missing => create; if differs => drop+create
                 PlanTriggers(tableName, desiredTable, actualTable, options, migrationOperations, warnings);
-                /*
-                var desiredTableWithInternalIdTrigger = EnsureInternalIdTriggerDesired(desiredTable); 
-                PlanTriggers(tableName, desiredTableWithInternalIdTrigger, actualTable, options, migrationOperations, warnings);
-                */
             }
 
             // Destructive cleanup scoped to desired tables only:
@@ -513,7 +516,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                 RoutineName = "uuid_v4",
                 DtdIdentifier = "CHAR(45)",
                 IsDeterministic = "NO",
-                SqlDataAccess = "NO SQL",
+                SqlDataAccessValue = ProcedureDataAccess.NoSql,
                 SecurityType = SqlSecurityLevel.INVOKER,
                 RoutineDefinition = @"RETURN LOWER(CONCAT(
                     HEX(RANDOM_BYTES(4)), '-',

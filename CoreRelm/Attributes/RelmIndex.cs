@@ -64,13 +64,8 @@ namespace CoreRelm.Attributes
             if (indexKey == null)
                 throw new ArgumentException("Index key cannot be null.", nameof(indexKey));
 
-            IndexKey = indexKey;
+            IndexKeyHolder = indexKey;
         }
-
-        /// <summary>
-        /// Gets or sets the key used to identify the index entry.
-        /// </summary>
-        public T IndexKey { get; set; }
     }
 
     /// <summary>
@@ -78,7 +73,7 @@ namespace CoreRelm.Attributes
     /// </summary>
     /// <remarks>Use this when no correlation key is required. All configuration options are identical
     /// to the generic version, except no index key is supplied.</remarks>
-    [AttributeUsage(AttributeTargets.Struct | AttributeTargets.Property)]
+    [AttributeUsage(AttributeTargets.Property)]
     public sealed class RelmIndex : RelmIndexBase
     {
         /// <summary>

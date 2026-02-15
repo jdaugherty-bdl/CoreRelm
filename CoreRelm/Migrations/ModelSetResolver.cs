@@ -316,7 +316,6 @@ namespace CoreRelm.Migrations
             var assemblyTypeCount = allTypes.Count;
 
             var typesByPrefix = new Dictionary<string, IReadOnlyList<Type>>(StringComparer.Ordinal);
-            var prefixExpanded = new List<Type>();
             var namespaceMatches = new List<Type>();
             if (prefixes.Length > 0)
             {
@@ -330,8 +329,8 @@ namespace CoreRelm.Migrations
 
                     if (matches.Count == 0)
                         errors.Add($"WARNING: Namespace prefix '{prefix}' did not match any types in assembly '{_modelsAssembly.FullName}' (set '{setName}').");
-                        
-                    prefixExpanded.AddRange(matches);
+
+                    namespaceMatches.AddRange(matches);
                 }
             }
 
@@ -352,11 +351,11 @@ namespace CoreRelm.Migrations
             // filter counts
             var abstractExcludedCount = candidates.Count(t => t.IsAbstract);
             if (abstractExcludedCount > 0)
-                errors.Add($"Excluded {abstractExcludedCount} abstract type(s).");
+                errors.Add($"Excluded {abstractExcludedCount} abstract type(s): {string.Join(", ", candidates.Where(t => t.IsAbstract).Select(t => t.FullName))}");
 
             var notRelmModelExcludedCount = candidates.Count(t => !typeof(RelmModel).IsAssignableFrom(t));
             if (notRelmModelExcludedCount > 0)
-                errors.Add($"Excluded {notRelmModelExcludedCount} non-RelmModel type(s).");
+                errors.Add($"Excluded {notRelmModelExcludedCount} non-RelmModel type(s): {string.Join(", ", candidates.Where(t => !typeof(RelmModel).IsAssignableFrom(t)).Select(t => t.FullName))}");
 
             var filtered = candidates
                 .Where(t => !t.IsAbstract && typeof(RelmModel).IsAssignableFrom(t))

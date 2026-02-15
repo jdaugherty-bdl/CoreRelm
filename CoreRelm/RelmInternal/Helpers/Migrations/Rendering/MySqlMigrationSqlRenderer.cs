@@ -1,4 +1,5 @@
-﻿using CoreRelm.Interfaces.Migrations;
+﻿using CoreRelm.Extensions;
+using CoreRelm.Interfaces.Migrations;
 using CoreRelm.Models.Migrations.Introspection;
 using CoreRelm.Models.Migrations.MigrationPlans;
 using CoreRelm.Models.Migrations.Rendering;
@@ -259,7 +260,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Rendering
 
             query.AppendLine($"CREATE FUNCTION `{EscapeIdentifier(functionSchema.RoutineName)}` () RETURNS {functionSchema.DtdIdentifier}");
 
-            if (functionSchema.IsDeterministicBool)
+            if (functionSchema.IsDeterministicValue)
                 query.AppendLine(" DETERMINISTIC");
             else
                 query.AppendLine(" NOT DETERMINISTIC"); 
@@ -267,8 +268,8 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Rendering
             if (functionSchema.SecurityType != SqlSecurityLevel.None) // None is default, so only specify if different
                 query.AppendLine($" SQL SECURITY {functionSchema.SecurityType}");
 
-            if (!string.IsNullOrWhiteSpace(functionSchema.SqlDataAccess))
-                query.AppendLine($" {functionSchema.SqlDataAccess}");
+            if (functionSchema.SqlDataAccessValue == default)
+                query.AppendLine($" {functionSchema.SqlDataAccessValue?.ToDescriptionString()}");
 
             if (!string.IsNullOrWhiteSpace(functionSchema.RoutineComment))
                 query.AppendLine($" COMMENT '{functionSchema.RoutineComment.Replace("'", "''")}'");

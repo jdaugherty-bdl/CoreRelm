@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
 {
-
     public sealed class MySqlDatabaseProvisioner(ILogger<MySqlDatabaseProvisioner>? log = null) : IRelmDatabaseProvisioner
     {
         private ILogger<MySqlDatabaseProvisioner>? _log = log;

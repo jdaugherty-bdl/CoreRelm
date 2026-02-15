@@ -1,5 +1,6 @@
 ﻿using CoreRelm.Models.Migrations;
 using CoreRelm.Models.Migrations.Introspection;
+using CoreRelm.RelmInternal.Contexts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace CoreRelm.Interfaces.Metadata
     public interface IRelmSchemaIntrospector
     {
         Task<SchemaSnapshot> LoadSchemaAsync(
-            IRelmContext relmContext,
+            InformationSchemaContext relmContext,
             SchemaIntrospectionOptions? options = null,
             CancellationToken ct = default);
     }

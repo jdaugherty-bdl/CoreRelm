@@ -1,13 +1,18 @@
-﻿using CoreRelm.Interfaces.Metadata;
+﻿using BDL.Common.Logging.Extensions;
+using CoreRelm.Interfaces.Metadata;
 using CoreRelm.Interfaces.Migrations;
 using CoreRelm.Models;
 using CoreRelm.Models.Migrations;
 using CoreRelm.Models.Migrations.Introspection;
 using CoreRelm.Models.Migrations.MigrationPlans;
 using CoreRelm.Models.Migrations.Rendering;
+using CoreRelm.RelmInternal.Contexts;
 using CoreRelm.RelmInternal.Helpers.Migrations.Introspection;
 using CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans;
 using CoreRelm.RelmInternal.Helpers.Migrations.Provisioning;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,59 +22,36 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.Migrations
 {
-    public sealed class DefaultRelmMigrationSqlProvider : IMigrationSqlProvider
+    internal sealed class DefaultRelmMigrationSqlProvider : IMigrationSqlProvider
     {
+        private readonly IServiceProvider _serviceProvider;
         private readonly IRelmSchemaIntrospector _introspector;
         private readonly IRelmMigrationPlanner _planner;
         private readonly IRelmMigrationSqlRenderer _renderer;
         private readonly MySqlDatabaseProvisioner _provisioner;
         private readonly IRelmDesiredSchemaBuilder _desiredBuilder;
         private readonly MigrationOptions _migrationOptions;
+        private ILogger<MySqlDatabaseProvisioner>? _log;
 
-        public DefaultRelmMigrationSqlProvider(
+        internal DefaultRelmMigrationSqlProvider(
+            IServiceProvider serviceProvider,
             IRelmSchemaIntrospector introspector,
             IRelmMigrationPlanner planner,
             IRelmMigrationSqlRenderer renderer,
             MySqlDatabaseProvisioner provisioner,
             IRelmDesiredSchemaBuilder desiredBuilder,
-            MigrationOptions migrationOptions)
+            MigrationOptions migrationOptions,
+            ILogger<MySqlDatabaseProvisioner>? log)
         {
+            _serviceProvider = serviceProvider;
             _introspector = introspector;
             _planner = planner;
             _renderer = renderer;
             _provisioner = provisioner;
             _desiredBuilder = desiredBuilder;
             _migrationOptions = migrationOptions;
+            _log = log;
         }
-
-        /*
-         * This is a placeholder implementation that generates SQL without computing a diff.
-         * It demonstrates the inputs and outputs, but does not perform real diffing or SQL generation.
-         * You can replace it with a real implementation that computes the diff and generates SQL based on the plan.
-         *
-         * For example, you might call into your existing migration SQL generator here, passing in the desired and actual schemas,
-         * and any relevant options. The generator would compute the diff, create a migration plan, and render it to SQL.
-         *
-        public async Task<MigrationGenerateResult> Generate(string migrationName, string stampUtc, string dbName, List<ValidatedModelType> modelsForDb, MySqlDatabaseProvisioner provisioner)
-        {
-            var tables = modelsForDb
-                .OrderBy(m => m.TableName, StringComparer.Ordinal)
-                .ThenBy(m => m.ClrType.FullName, StringComparer.Ordinal)
-                .ToList();
-
-            var sql = await MigrationSqlGeneratorHelper.BuildPlaceholderMigrationSql(_migrationOptions, migrationName, stampUtc, dbName, tables, provisioner);
-
-            // In the real version, if plan has no operations, return NoChanges and sql would be null.
-            // For placeholder, treat as changes.
-            if (string.IsNullOrWhiteSpace(sql))
-                return MigrationGenerateResult.NoChanges(dbName, $"[Relm] No changes detected for database '{dbName}'. No migration file written.");
-
-            return MigrationGenerateResult.Changes(
-                dbName,
-                sql,
-                $"[Relm] Migration SQL generated for database '{dbName}' (diff not computed yet).");
-        }
-        */
 
         public MigrationGenerateResult Generate(
             DateTime stampUtc,
@@ -90,11 +72,14 @@ namespace CoreRelm.Migrations
             string dbName,
             List<ValidatedModelType> modelsForDb)
         {
+            _log?.LogFormatted(LogLevel.Information, "Generating migration SQL", args: [], preIncreaseLevel: true);
+
             // Determine scope tables (table names derived from model metadata already resolved by your resolver)
             var scopeTables = modelsForDb
                 .Select(m => m.TableName)
                 .Distinct(StringComparer.Ordinal)
                 .ToHashSet(StringComparer.Ordinal);
+            _log?.LogFormatted(LogLevel.Information, "Scope tables for migration: {Count}", args: [scopeTables.Count], singleIndentLine: true);
 
             // Desired schema is built from your CoreRelm metadata pipeline.
             // For now, we build it from the resolved model list (table names + columns etc. must come from CoreRelm metadata reader).
@@ -105,24 +90,25 @@ namespace CoreRelm.Migrations
             // - if DB exists, introspect it
             // - otherwise warn and treat as empty (per your policy for non-apply paths)
             SchemaSnapshot actual;
-            var dbExists = await _provisioner.DatabaseExistsAsync(_migrationOptions, dbName);
-            if (!dbExists)
-            {
-                if (!_migrationOptions.Quiet)
-                    Console.WriteLine($"WARNING: Database `{dbName}` does not exist. It will be created during apply/db migrate.");
+            _log?.LogFormatted(LogLevel.Information, "Checking database availability...", args: []);
+            //var dbExists = await _provisioner.DatabaseExistsAsync(_migrationOptions, dbName);
+            _log?.IncreaseIndent();
+            var dbExists = await DbAvailabilityHelper.WarnIfMissingAsync(_migrationOptions, _provisioner, dbName, message => _log?.LogWarning(message));
+            _log?.DecreaseIndent();
 
+            if (!dbExists)
                 actual = SchemaSnapshotFactory.Empty(dbName);
-            }
             else
             {
                 var dbConn = _migrationOptions.ConnectionStringTemplate?.Replace("{db}", dbName, StringComparison.Ordinal);
                 if (string.IsNullOrWhiteSpace(dbConn))
                     throw new ArgumentException("Connection string is required.", nameof(dbConn));
 
-                var context = new RelmContext(dbConn);
+                var context = new InformationSchemaContext(dbConn);
                 actual = await _introspector.LoadSchemaAsync(context);
             }
 
+            _log?.LogFormatted(LogLevel.Information, "Planning migration...", args: []);
             var planOptions = new MigrationPlanOptions(
                 Destructive: _migrationOptions.Destructive,
                 ScopeTables: scopeTables,

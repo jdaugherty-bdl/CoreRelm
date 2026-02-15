@@ -37,6 +37,20 @@ namespace CoreRelm.Models
     /// cref="GenerateDTO"/>.</item> </list> This class is designed to be extended by specific entity types and provides
     /// a flexible foundation for working with relational data in the Relm framework.</remarks>
 
+    [RelmFunction("uuid_v4",
+        @"RETURN LOWER(CONCAT(
+                SUBSTR(HEX(RANDOM_BYTES(4)), 1, 8), '-',
+                SUBSTR(HEX(RANDOM_BYTES(2)), 1, 4), '-4',
+                SUBSTR(HEX(RANDOM_BYTES(2)), 1, 3), '-',
+                SUBSTR('89AB', FLOOR(1 + RAND() * 4), 1),
+                SUBSTR(HEX(RANDOM_BYTES(2)), 1, 3), '-',
+                SUBSTR(HEX(RANDOM_BYTES(6)), 1, 12)
+            ));",
+        returnType: "CHAR",
+        returnSize: 36,
+        comment: "Generates a version 4 UUID as a string in the format 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx', where 'x' is any hexadecimal digit and 'y' is one of 8, 9, A, or B.",
+        isDeterministic: true)]
+
     [RelmTrigger(TriggerTime.BEFORE, TriggerEvent.INSERT, @"
     BEGIN
         IF NEW.InternalId IS NULL OR NEW.InternalId = '' THEN
