@@ -14,28 +14,29 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
 {
-    public sealed class MigrationApplier(IRelmMigrationSqlProviderFactory providerFactory)
+    public sealed class MigrationApplier(
+        IRelmSchemaMigrationsStore store,
+        IRelmSqlScriptRunner runner,
+        IRelmDatabaseProvisioner provisioner)
     {
-        private readonly MySqlDatabaseProvisioner _provisioner = new();
-        private readonly SchemaMigrationsStore _store = new(providerFactory);
-        private readonly MySqlScriptRunner _runner = new();
+        private readonly IRelmDatabaseProvisioner _provisioner = provisioner;
+        private readonly IRelmSchemaMigrationsStore _store = store;
+        private readonly IRelmSqlScriptRunner _runner = runner;
 
         public async Task<bool> ApplyAsync(
             MigrationOptions migrationOptions,
-            string dbName,
             string migrationFileName,
             string sql)
         {
             var ok = await DbAvailabilityHelper.EnsureForApplyOrMigrateAsync(
                 migrationOptions,
                 _provisioner,
-                dbName,
-                logInfo: msg => { if (!migrationOptions.Quiet) Console.WriteLine(msg); },
-                logWarn: msg => Console.WriteLine("ERROR: " + msg));
+                logInfo: (msg, args) => { if (!migrationOptions.Quiet) Console.WriteLine(msg); },
+                logWarn: (msg, args) => Console.WriteLine("ERROR: " + msg));
 
             if (!ok) return false;
 
-            var dbConn = migrationOptions.ConnectionStringTemplate?.Replace("{db}", dbName, StringComparison.Ordinal)
+            var dbConn = migrationOptions.ConnectionStringTemplate?.Replace("{db}", migrationOptions.DatabaseName, StringComparison.Ordinal)
                 ?? throw new InvalidOperationException("Database connection string template is not set.");
 
             var context = new RelmContext(dbConn, autoInitializeDataSets: false, autoVerifyTables: false); // turn off auto-verify because we may be creating tables here
@@ -49,7 +50,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
             if (applied?.ContainsKey(migrationFileName) ?? false)
             {
                 if (!migrationOptions.Quiet)
-                    Console.WriteLine($"Already applied on `{dbName}`: {migrationFileName}");
+                    Console.WriteLine($"Already applied on `{migrationOptions.DatabaseName}`: {migrationFileName}");
                 return true;
             }
 
@@ -59,13 +60,13 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
                 await _store.RecordAppliedMigrationAsync(context, migrationFileName, checksum, migrationOptions.CancelToken);
 
                 if (!migrationOptions.Quiet)
-                    Console.WriteLine($"Applied and recorded on `{dbName}`: {migrationFileName}");
+                    Console.WriteLine($"Applied and recorded on `{migrationOptions.DatabaseName}`: {migrationFileName}");
 
                 return true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"ERROR applying {migrationFileName} on `{dbName}`: {ex.Message}");
+                Console.WriteLine($"ERROR applying {migrationFileName} on `{migrationOptions.DatabaseName}`: {ex.Message}");
                 return false;
             }
         }

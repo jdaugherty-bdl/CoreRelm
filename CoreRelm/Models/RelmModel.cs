@@ -20,6 +20,8 @@ using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using static CoreRelm.Enums.SecurityEnums;
+using static CoreRelm.Enums.StoredProcedures;
 using static CoreRelm.Enums.Triggers;
 
 namespace CoreRelm.Models
@@ -37,6 +39,10 @@ namespace CoreRelm.Models
     /// cref="GenerateDTO"/>.</item> </list> This class is designed to be extended by specific entity types and provides
     /// a flexible foundation for working with relational data in the Relm framework.</remarks>
 
+    // Create function SQL (UUIDv4 using RANDOM_BYTES)
+    // Uses RANDOM_BYTES for v4 randomness; returns CHAR(36) lower-case.
+    // MySQL requires delimiters when creating routines.
+    /*
     [RelmFunction("uuid_v4",
         @"RETURN LOWER(CONCAT(
                 SUBSTR(HEX(RANDOM_BYTES(4)), 1, 8), '-',
@@ -47,9 +53,63 @@ namespace CoreRelm.Models
                 SUBSTR(HEX(RANDOM_BYTES(6)), 1, 12)
             ));",
         returnType: "CHAR",
+        returnSize: 45,
+        dataAccess: ProcedureDataAccess.NoSql,
+        securityLevel: SqlSecurityLevel.Invoker,
+        comment: "Generates a version 4 UUID as a string in the format 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx', where 'x' is any hexadecimal digit and 'y' is one of 8, 9, A, or B.",
+        isDeterministic: false)]
+    [RelmFunction("uuid_v4",
+        @"
+            -- Generate 16 random bytes
+            SET @b = RANDOM_BYTES(16);
+
+            -- Set version to 4 (high nibble of 7th byte)
+            SET @b = INSERT(@b, 7, 1, UNHEX(CONCAT('4', HEX(SUBSTR(@b, 7, 1)) % 16)));
+
+            -- Set variant to 10xx (high nibble of 9th byte must be 8, 9, A, or B)
+            SET @b = INSERT(@b, 9, 1, UNHEX(CONCAT(HEX(FLOOR(ASCII(SUBSTR(@b, 9, 1)) / 64) + 8), HEX(SUBSTR(@b, 9, 1)) % 16)));
+
+            RETURN LOWER(CONCAT(
+                HEX(SUBSTR(@b, 1, 4)), '-',
+                HEX(SUBSTR(@b, 5, 2)), '-',
+                HEX(SUBSTR(@b, 7, 2)), '-',
+                HEX(SUBSTR(@b, 9, 2)), '-',
+                HEX(SUBSTR(@b, 11, 6))
+            ));",
+        returnType: "CHAR",
         returnSize: 36,
+        dataAccess: ProcedureDataAccess.NoSql,
+        securityLevel: SqlSecurityLevel.Invoker,
         comment: "Generates a version 4 UUID as a string in the format 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx', where 'x' is any hexadecimal digit and 'y' is one of 8, 9, A, or B.",
         isDeterministic: true)]
+    */
+    // new UUID function using MySQL 8's RANDOM_BYTES for better randomness and performance, with proper delimiters for routine creation
+    [RelmFunction("uuid_v4",
+        @"
+        -- 16 cryptographically strong random bytes
+        DECLARE b BINARY(16);
+        SET b = RANDOM_BYTES(16);
+
+        -- Set version to 4 (0100xxxx) in byte 7 (1-indexed)
+        SET b = INSERT(b, 7, 1, CHAR((ASCII(SUBSTR(b, 7, 1)) & 15) | 64 USING latin1));
+
+        -- Set variant to RFC 4122 (10xxxxxx) in byte 9
+        SET b = INSERT(b, 9, 1, CHAR((ASCII(SUBSTR(b, 9, 1)) & 63) | 128 USING latin1));
+
+        -- Format as 8-4-4-4-12
+        RETURN LOWER(CONCAT(
+            HEX(SUBSTR(b,  1, 4)), '-',
+            HEX(SUBSTR(b,  5, 2)), '-',
+            HEX(SUBSTR(b,  7, 2)), '-',
+            HEX(SUBSTR(b,  9, 2)), '-',
+            HEX(SUBSTR(b, 11, 6))
+        ));",
+        returnType: "CHAR",
+        returnSize: 36,
+        dataAccess: ProcedureDataAccess.NoSql,
+        securityLevel: SqlSecurityLevel.Invoker,
+        comment: "Generates a version 4 UUID as a string in the format 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx', where 'x' is any hexadecimal digit and 'y' is one of 8, 9, A, or B.",
+        isDeterministic: false)]
 
     [RelmTrigger(TriggerTime.BEFORE, TriggerEvent.INSERT, @"
     BEGIN
@@ -269,7 +329,7 @@ namespace CoreRelm.Models
 
             // if it's an Enum, do a parse
             else if (propertyValueType.BaseType == typeof(Enum))
-                valueData = Enum.Parse(propertyValueType, modelData[underscoreKey].ToString()!);
+                valueData = modelData[underscoreKey].ToString()!.ParseEnumerationDescription(propertyValueType) ?? Enum.Parse(propertyValueType, modelData[underscoreKey].ToString()!);
 
             // if we're putting it in a DateTime, but we have a string, parse it
             else if (propertyValueType == typeof(DateTime) && modelData[underscoreKey].GetType() == typeof(string))

@@ -37,7 +37,7 @@ namespace CoreRelm.Attributes.BaseClasses
         /// <summary>
         /// Gets the name of the column associated with this instance.
         /// </summary>
-        public string ColumnName { get; } = columnName;
+        public string ColumnName { get; } = columnName ?? throw new ArgumentNullException(nameof(columnName));
 
         /// <summary>
         /// Gets the length of the item, if specified.

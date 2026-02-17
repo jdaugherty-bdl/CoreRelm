@@ -8,10 +8,12 @@ namespace CoreRelm.Models.Migrations
 {
     public class MigrationOptions
     {
+        public string? DatabaseName { get; set; }
         public string? ConnectionStringTemplate { get; set; }
         public string? SetName { get; set; }
         public string? MigrationsPath { get; set; } = "./migrations";
         public string? ModelSetsPath { get; set; } = "./migrations/modelsets.json";
+        public string MigrationErrorPath { get; set; } = "./migrations/_errors";
         public bool Quiet { get; set; } = false;
         public bool JsonFlag { get; set; } = false;
         public string? JsonPath { get; set; } = null;

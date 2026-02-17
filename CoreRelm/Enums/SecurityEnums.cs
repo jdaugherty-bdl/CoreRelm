@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,8 +12,10 @@ namespace CoreRelm.Enums
         public enum SqlSecurityLevel
         {
             None,
-            INVOKER,
-            DEFINER
+            [Description("INVOKER")]
+            Invoker,
+            [Description("DEFINER")]
+            Definer
         }
 
         public enum AccountStatus

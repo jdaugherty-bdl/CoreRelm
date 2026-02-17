@@ -19,6 +19,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using static CoreRelm.Enums.Indexes;
+using static CoreRelm.Enums.SecurityEnums;
 using static CoreRelm.Enums.StoredProcedures;
 
 namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
@@ -909,7 +910,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                     DatetimePrecision = functionDetails.ReturnSize,
                     SqlDataAccessValue = functionDetails.DataAccess,
                     SecurityType = functionDetails.SecurityLevel,
-                    IsDeterministicValue = functionDetails.IsDeterministic,
+                    IsDeterministicValue = functionDetails.IsDeterministic
                 };
 
                 _log?.LogFormatted(LogLevel.Information, "FunctionSchema added", args: [], singleIndentLine: true);

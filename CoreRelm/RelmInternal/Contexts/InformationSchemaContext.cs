@@ -41,9 +41,7 @@ namespace CoreRelm.RelmInternal.Contexts
         public virtual IRelmDataSet<ForeignKeySchema>? ForeignKeys { get; protected set; }
         public virtual IRelmDataSet<FunctionParameterSchema>? FunctionParameters { get; protected set; }
         public virtual IRelmDataSet<FunctionSchema>? Functions { get; protected set; }
-        //public virtual IRelmDataSet<IndexColumnSchema>? IndexColumns { get; protected set; }
         public virtual IRelmDataSet<IndexSchema>? Indexes { get; protected set; }
-        //public virtual IRelmDataSet<TableSchema>? Tables { get; protected set; }
         public virtual IRelmDataSet<TriggerSchema>? Triggers { get; protected set; }
     }
 }

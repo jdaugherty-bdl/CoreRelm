@@ -11,9 +11,19 @@ namespace CoreRelm.Tests.Attributes.RelmForeignKey_Tests
     public class RelmForeignKeyAttribute_Tester
     {
         [Fact]
-        public void RelmForeignKeyAttribute_Can_Be_Instantiated()
+        public void RelmForeignKeyAttribute_Can_Be_Instantiated_SingleKey()
         {
-            var instance = Activator.CreateInstance(typeof(RelmForeignKey));
+
+            var instance = Activator.CreateInstance(typeof(RelmForeignKey), string.Empty, null, null, ReferentialAction.Cascade);
+            Assert.NotNull(instance);
+            Assert.IsType<RelmForeignKey>(instance);
+        }
+
+        [Fact]
+        public void RelmForeignKeyAttribute_Can_Be_Instantiated_MultipleKeys()
+        {
+
+            var instance = Activator.CreateInstance(typeof(RelmForeignKey), args: [new[] { string.Empty }, null, null, ReferentialAction.Cascade]);
             Assert.NotNull(instance);
             Assert.IsType<RelmForeignKey>(instance);
         }
@@ -35,28 +45,40 @@ namespace CoreRelm.Tests.Attributes.RelmForeignKey_Tests
         public void RelmForeignKeyAttribute_Has_No_Properties()
         {
             var properties = typeof(RelmForeignKey).GetProperties();
-            Assert.Empty(properties);
+
+            Assert.Contains(nameof(RelmForeignKey.ForeignKeys), properties.Select(p => p.Name));
+            Assert.Contains(nameof(RelmForeignKey.LocalKeys), properties.Select(p => p.Name));
+            Assert.Contains(nameof(RelmForeignKey.OrderBy), properties.Select(p => p.Name));
+            Assert.Contains(nameof(RelmForeignKey.OnDelete), properties.Select(p => p.Name));
         }
 
         [Fact]
         public void RelmForeignKeyAttribute_Has_No_Methods()
         {
             var methods = typeof(RelmForeignKey).GetMethods(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.DeclaredOnly);
-            Assert.Empty(methods);
+
+            Assert.Contains(methods, m => m.Name == "get_ForeignKeys");
+            Assert.Contains(methods, m => m.Name == "get_LocalKeys");
+            Assert.Contains(methods, m => m.Name == "get_OrderBy");
+            Assert.Contains(methods, m => m.Name == "get_OnDelete");
         }
 
         [Fact]
         public void RelmForeignKeyAttribute_Has_No_Fields()
         {
             var fields = typeof(RelmForeignKey).GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.DeclaredOnly);
-            Assert.Empty(fields);
+
+            Assert.Contains(fields, f => f.Name == "<ForeignKeys>k__BackingField");
+            Assert.Contains(fields, f => f.Name == "<LocalKeys>k__BackingField");
+            Assert.Contains(fields, f => f.Name == "<OrderBy>k__BackingField");
+            Assert.Contains(fields, f => f.Name == "<OnDelete>k__BackingField");
         }
 
         [Fact]
         public void RelmForeignKeyAttribute_Has_No_Additional_Attributes()
         {
             var attributes = typeof(RelmForeignKey).GetCustomAttributes(false);
-            Assert.Empty(attributes);
+            Assert.Contains(attributes, attr => attr.GetType() == typeof(AttributeUsageAttribute));
         }
 
         [Fact]
@@ -90,7 +112,7 @@ namespace CoreRelm.Tests.Attributes.RelmForeignKey_Tests
         [Fact]
         public void Default_Ctor_Sets_Nulls_And_NoAction()
         {
-            var attribute = new RelmForeignKey();
+            var attribute = new RelmForeignKey(string.Empty);
 
             Assert.Null(attribute.ForeignKeys);
             Assert.Null(attribute.LocalKeys);

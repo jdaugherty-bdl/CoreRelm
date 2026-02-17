@@ -37,7 +37,7 @@ namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
             var ex = Assert.Throws<ArgumentException>(() => new RelmContextOptionsBuilder("INVALID CONNECTION STRING"));
 
             // Assert
-            Assert.Equal("Invalid connection details. Must be in the format of 'name=connectionString' or 'server=serverName;database=databaseName;user=userName;password=password'.", ex.Message);
+            Assert.Equal("Invalid connection details. Must be in the format of 'name=connectionName' or 'server=serverName;database=databaseName;user=userName;password=password'.", ex.Message);
         }
 
         [Fact]
@@ -60,7 +60,7 @@ namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
             var ex = Assert.Throws<ArgumentException>(() => new RelmContextOptionsBuilder("name=MyConnection;server=localhost;database=simple_relm;user=simplerelmuser;password=simplerelmpassword"));
 
             // Assert
-            Assert.Equal("Invalid connection details. Must be in the format of 'name=connectionString' or 'server=serverName;database=databaseName;user=userName;password=password'.", ex.Message);
+            Assert.Equal("Invalid connection details. Must be in the format of 'name=connectionName' or 'server=serverName;database=databaseName;user=userName;password=password'.", ex.Message);
         }
 
         [Fact]
@@ -84,7 +84,7 @@ namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
             var ex = Assert.Throws<ArgumentException>(() => new RelmContextOptionsBuilder("server=localhost;database=simple_relm;user=simplerelmuser;password=simplerelmpassword;name=MyConnection"));
 
             // Assert
-            Assert.Equal("Invalid connection details. Must be in the format of 'name=connectionString' or 'server=serverName;database=databaseName;user=userName;password=password'.", ex.Message);
+            Assert.Equal("Invalid connection details. Must be in the format of 'name=connectionName' or 'server=serverName;database=databaseName;user=userName;password=password'.", ex.Message);
         }
 
 
@@ -98,7 +98,7 @@ namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
             var ex = Assert.Throws<ArgumentException>(() => builder.ParseConnectionDetails("name=MyConnection;server=localhost;database=simple_relm;user=simplerelmuser;password=simplerelmpassword"));
 
             // Assert
-            Assert.Equal("Invalid connection details. Must be in the format of 'name=connectionString' or 'server=serverName;database=databaseName;user=userName;password=password'.", ex.Message);
+            Assert.Equal("Invalid connection details. Must be in the format of 'name=connectionName' or 'server=serverName;database=databaseName;user=userName;password=password'.", ex.Message);
         }
 
         [Fact]
@@ -111,7 +111,7 @@ namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
             var ex = Assert.Throws<ArgumentException>(() => builder.ParseConnectionDetails("server=localhost;database=simple_relm;user=simplerelmuser;password=simplerelmpassword;name=MyConnection"));
 
             // Assert
-            Assert.Equal("Invalid connection details. Must be in the format of 'name=connectionString' or 'server=serverName;database=databaseName;user=userName;password=password'.", ex.Message);
+            Assert.Equal("Invalid connection details. Must be in the format of 'name=connectionName' or 'server=serverName;database=databaseName;user=userName;password=password'.", ex.Message);
         }
 
         [Fact]
@@ -150,7 +150,7 @@ namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
             // Act
             var ex = Assert.Throws<ArgumentException>(() => builder.SetDatabaseName("invalid<>_database[]_name()"));
             // Assert
-            Assert.Equal("DatabaseName (Parameter 'Invalid database name. Must be alphanumeric with underscores.')", ex.Message);
+            Assert.Equal("Invalid database name. Must be alphanumeric with underscores. (Parameter 'databaseName')", ex.Message);
         }
         [Fact]
         public void RelmContextOptionsBuilder_AddDatabasePassword()

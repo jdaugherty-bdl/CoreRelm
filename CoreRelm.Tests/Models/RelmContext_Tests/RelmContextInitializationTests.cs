@@ -1,5 +1,9 @@
-﻿using CoreRelm.Models;
+﻿using CoreRelm.Extensions;
+using CoreRelm.Interfaces.Metadata;
+using CoreRelm.Models;
 using CoreRelm.Options;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +14,30 @@ namespace CoreRelm.Tests.Models.RelmContext_Tests
 {
     public class RelmContextInitializationTests
     {
+        private static void CreateReader()
+        {
+            var services = new ServiceCollection();
+
+            // minimal configuration for RelmHelper, adapt if your tests need specific values
+            var config = new ConfigurationBuilder()
+                .AddInMemoryCollection(new Dictionary<string, string?>
+                { 
+                    ["ConnectionStrings:SimpleRelmMySql"] = "server=localhost;database=simple_relm;user=simplerelmuser;password=simplerelmpassword"
+                })
+                .Build();
+
+            services.AddCoreRelm(config);
+        }
+
         [Fact]
         public void Should_Initialize_With_Valid_Named_Connection_String()
         {
             // Arrange
+            CreateReader();
             string validConnectionString = "name=SimpleRelmMySql";
 
             // Act
-            var dataSet = new RelmContext(validConnectionString, autoOpenConnection: false, autoVerifyTables: false);
+            var dataSet = new RelmContext(validConnectionString, autoOpenConnection: false, autoInitializeDataSets: false, autoVerifyTables: false);
 
             // Assert
             Assert.NotNull(dataSet);
@@ -49,10 +69,12 @@ namespace CoreRelm.Tests.Models.RelmContext_Tests
         public void Should_Initialize_With_Valid_OptionsBuilder_ConnectionString()
         {
             // Arrange
+            CreateReader();
             var validOptions = new RelmContextOptionsBuilder()
                 .SetNamedConnection("SimpleRelmMySql")
-                .SetDatabaseConnectionString(RelmHelper.GetConnectionBuilderFromName("SimpleRelmMySql").ConnectionString)
+                .SetDatabaseConnectionString(RelmHelper.GetConnectionBuilderFromName("SimpleRelmMySql")?.ConnectionString)
                 .SetAutoOpenConnection(false)
+                .SetAutoInitializeDataSets(false)
                 .SetAutoVerifyTables(false);
 
             // Act

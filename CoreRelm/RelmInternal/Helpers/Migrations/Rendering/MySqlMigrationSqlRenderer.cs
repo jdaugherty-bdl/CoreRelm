@@ -1,8 +1,11 @@
-﻿using CoreRelm.Extensions;
+﻿using BDL.Common.Logging.Extensions;
+using CoreRelm.Extensions;
 using CoreRelm.Interfaces.Migrations;
 using CoreRelm.Models.Migrations.Introspection;
 using CoreRelm.Models.Migrations.MigrationPlans;
 using CoreRelm.Models.Migrations.Rendering;
+using CoreRelm.RelmInternal.Helpers.Migrations.Provisioning;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,15 +13,29 @@ using System.Text;
 using System.Threading.Tasks;
 using static CoreRelm.Enums.Indexes;
 using static CoreRelm.Enums.SecurityEnums;
+using static CoreRelm.Enums.StoredProcedures;
 
 namespace CoreRelm.RelmInternal.Helpers.Migrations.Rendering
 {
-    public sealed class MySqlMigrationSqlRenderer : IRelmMigrationSqlRenderer
+    public sealed class MySqlMigrationSqlRenderer(ILogger<MySqlMigrationSqlRenderer>? log = null) : IRelmMigrationSqlRenderer
     {
+        private readonly ILogger<MySqlMigrationSqlRenderer>? _log = log;
+
         public string Render(MigrationPlan plan, MySqlRenderOptions? options = null)
         {
-            options ??= new MySqlRenderOptions();
+            _log?.SaveIndentLevel("MySqlMigrationSqlRenderer.Render");
 
+            _log?.LogFormatted(LogLevel.Information, "Starting SQL rendering for migration plan with {OperationCount} operations, {WarningCount} warnings, and {BlockerCount} blockers.",
+                args: [plan.Operations.Count, plan.Warnings.Count, plan.Blockers.Count]);
+
+            _log?.LogFormatted(LogLevel.Information, "Rendering migration SQL", args: [], preIncreaseLevel: true);
+
+            options ??= new MySqlRenderOptions();
+            _log?.LogFormatted(LogLevel.Information, "Render options: {Options}", args: [options], preIncreaseLevel: true);
+
+            _log?.LogFormatted(LogLevel.Information, "Migration plan details: Database Name: {DatabaseName}, Plan UTC: {StampUtc}, Has Changes? {HasChanges}", args: [plan.DatabaseName, plan.StampUtc, plan.HasChanges]);
+
+            _log?.LogFormatted(LogLevel.Information, "Generating SQL for operations", args: []);
             var query = new StringBuilder();
 
             query.AppendLine("-- =============================================");
@@ -30,6 +47,8 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Rendering
 
             if (options.IncludeUseDatabase)
             {
+                _log?.LogFormatted(LogLevel.Information, "Including CREATE DATABASE and USE statements", args: [], singleIndentLine: true);
+
                 query.AppendLine($"CREATE DATABASE IF NOT EXISTS `{EscapeIdentifier(plan.DatabaseName)}`;");
                 query.AppendLine($"USE `{EscapeIdentifier(plan.DatabaseName)}`;");
                 query.AppendLine();
@@ -37,6 +56,8 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Rendering
 
             if (plan.Blockers.Count > 0)
             {
+                _log?.LogFormatted(LogLevel.Warning, "Migration plan has {BlockerCount} blockers. These should be resolved before applying the migration.", args: [plan.Blockers.Count], singleIndentLine: true);
+
                 query.AppendLine("-- BLOCKERS (migration cannot be applied safely):");
                 foreach (var blocker in plan.Blockers)
                     query.AppendLine($"--   - {blocker}");
@@ -46,18 +67,30 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Rendering
 
             if (plan.Warnings.Count > 0)
             {
+                _log?.LogFormatted(LogLevel.Warning, "Migration plan has {WarningCount} warnings. These should be reviewed before applying the migration.", args: [plan.Warnings.Count], singleIndentLine: true);
+
                 query.AppendLine("-- WARNINGS:");
                 foreach (var warning in plan.Warnings)
                     query.AppendLine($"--   - {warning}");
                 query.AppendLine();
             }
 
+            _log?.LogFormatted(LogLevel.Information, "Rendering {OperationCount} operations", args: [plan.Operations.Count]);
+            _log?.SaveIndentLevel("operations");
             foreach (var operation in plan.Operations)
             {
+                _log?.RestoreIndentLevel("operations");
+
+                _log?.LogFormatted(LogLevel.Information, "Rendering operation: {OperationDescription}", args: [operation.Description], singleIndentLine: true);
                 query.AppendLine($"-- {operation.Description}");
                 RenderOperation(query, operation, options);
                 query.AppendLine();
             }
+            _log?.RestoreIndentLevel("operations");
+
+            _log?.LogFormatted(LogLevel.Information, "Finished rendering operations", args: [], preDecreaseLevel: true);
+
+            _log?.RestoreIndentLevel("MySqlMigrationSqlRenderer.Render");
 
             return query.ToString();
         }
@@ -265,8 +298,11 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Rendering
             else
                 query.AppendLine(" NOT DETERMINISTIC"); 
 
+            if (functionSchema.SqlDataAccessValue != null && functionSchema.SqlDataAccessValue != ProcedureDataAccess.None)
+                query.AppendLine($" {functionSchema.SqlDataAccessValue.ToDescriptionString()}");
+
             if (functionSchema.SecurityType != SqlSecurityLevel.None) // None is default, so only specify if different
-                query.AppendLine($" SQL SECURITY {functionSchema.SecurityType}");
+                query.AppendLine($" SQL SECURITY {functionSchema.SecurityType.ToDescriptionString()}");
 
             if (functionSchema.SqlDataAccessValue == default)
                 query.AppendLine($" {functionSchema.SqlDataAccessValue?.ToDescriptionString()}");

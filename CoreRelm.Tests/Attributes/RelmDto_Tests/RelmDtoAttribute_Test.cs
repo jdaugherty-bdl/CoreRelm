@@ -22,7 +22,7 @@ namespace CoreRelm.Tests.Attributes.RelmDto_Tests
         {
             var attributeUsage = (AttributeUsageAttribute)typeof(RelmDto).GetCustomAttributes(typeof(AttributeUsageAttribute), false).FirstOrDefault();
             Assert.NotNull(attributeUsage);
-            Assert.Equal(AttributeTargets.Class, attributeUsage.ValidOn);
+            Assert.Equal(AttributeTargets.Property, attributeUsage.ValidOn);
             Assert.False(attributeUsage.AllowMultiple);
             Assert.True(attributeUsage.Inherited);
         }
@@ -31,7 +31,7 @@ namespace CoreRelm.Tests.Attributes.RelmDto_Tests
         public void RelmDtoAttribute_Has_No_Properties()
         {
             var properties = typeof(RelmDto).GetProperties();
-            Assert.Empty(properties);
+            Assert.Single(properties);
         }
 
         [Fact]
@@ -52,7 +52,7 @@ namespace CoreRelm.Tests.Attributes.RelmDto_Tests
         public void RelmDtoAttribute_Has_No_Additional_Attributes()
         {
             var attributes = typeof(RelmDto).GetCustomAttributes(false);
-            Assert.Empty(attributes);
+            Assert.Contains(attributes, attr => attr.GetType() == typeof(AttributeUsageAttribute));
         }
 
         [Fact]

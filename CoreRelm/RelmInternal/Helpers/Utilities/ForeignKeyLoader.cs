@@ -435,12 +435,24 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
                 if ((returnType?.IsGenericType ?? false) && returnType.GetGenericTypeDefinition() == typeof(ICollection<>))
                     returnType = returnType.GetGenericArguments()[0];
 
-                var foreignDataSet = relevantContext.GetProperties().FirstOrDefault(x => x.PropertyType == typeof(IRelmDataSet<>).MakeGenericType(returnType));
+                var foreignDataSetProperty = relevantContext.GetProperties().FirstOrDefault(x => x.PropertyType == typeof(IRelmDataSet<>).MakeGenericType(returnType))
+                    ?? throw new InvalidOperationException($"No valid dataset found for type [{returnType?.Name}] in context [{relevantContext.Name}].");
 
-                foreignDataSet
+                var foreignDataSet = foreignDataSetProperty.GetValue(currentContext);
+
+                if (foreignDataSet == null)
+                {
+                    // if the dataset is null, we need to instantiate it and set it on the context before we can set the data loader
+                    var dataSetType = foreignDataSetProperty.PropertyType.GenericTypeArguments.FirstOrDefault();
+                    currentContext.GetDataSet(dataSetType);
+                    foreignDataSet = foreignDataSetProperty.GetValue(currentContext)
+                        ?? throw new InvalidOperationException($"Failed to instantiate dataset for type [{returnType?.Name}] in context [{relevantContext.Name}].");
+                }
+
+                foreignDataSetProperty
                     ?.PropertyType
                     .GetMethod(nameof(IRelmDataSet<T>.SetDataLoader))
-                    ?.Invoke(foreignDataSet.GetValue(currentContext), [customDataLoader]);
+                    ?.Invoke(foreignDataSet, [customDataLoader]);
             }
 
             var executionCommand = new RelmExecutionCommand(Command.Reference, member);

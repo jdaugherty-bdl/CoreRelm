@@ -10,10 +10,9 @@ namespace CoreRelm.Interfaces.Migrations
 
     public interface IRelmDatabaseProvisioner
     {
-        Task<bool> DatabaseExistsAsync(MigrationOptions migrationOptions, string databaseName);
+        Task<bool> DatabaseExistsAsync(MigrationOptions migrationOptions);
         Task InitializeEmptyDatabaseAsync(
             MigrationOptions migrationOptions,
-            string databaseName,
             string? charset = null,
             string? collation = null);
     }

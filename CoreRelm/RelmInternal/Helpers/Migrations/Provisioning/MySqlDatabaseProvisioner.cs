@@ -17,10 +17,12 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
         private ILogger<MySqlDatabaseProvisioner>? _log = log;
         private static string EscapeIdentifier(string s) => s.Replace("`", "``", StringComparison.Ordinal);
 
-        public async Task<bool> DatabaseExistsAsync(MigrationOptions migrationOptions, string databaseName)
+        public async Task<bool> DatabaseExistsAsync(MigrationOptions migrationOptions)
         {
-            _log?.LogFormatted(LogLevel.Information, "Checking if database '{DatabaseName}' exists.", args: [databaseName], preIncreaseLevel: true);
-            _log?.LogFormatted(LogLevel.Debug, "MySqlDatabaseProvisioner.DatabaseExistsAsync: Checking existence of database '{DatabaseName}' using connection string template '{ConnectionStringTemplate}'.", args: [databaseName, migrationOptions.ConnectionStringTemplate]);
+            _log?.SaveIndentLevel("MySqlDatabaseProvisioner.DatabaseExistsAsync");
+
+            _log?.LogFormatted(LogLevel.Information, "Checking if database '{DatabaseName}' exists.", args: [migrationOptions.DatabaseName], preIncreaseLevel: true);
+            _log?.LogFormatted(LogLevel.Debug, "MySqlDatabaseProvisioner.DatabaseExistsAsync: Checking existence of database '{DatabaseName}' using connection string template '{ConnectionStringTemplate}'.", args: [migrationOptions.DatabaseName, migrationOptions.ConnectionStringTemplate]);
 
             if (string.IsNullOrWhiteSpace(migrationOptions.ConnectionStringTemplate))
             {
@@ -29,9 +31,9 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
                 throw templateError;
             }
 
-            if (string.IsNullOrWhiteSpace(databaseName))
+            if (string.IsNullOrWhiteSpace(migrationOptions.DatabaseName))
             {
-                var databaseNameError = new ArgumentException("Database name is required.", nameof(databaseName));
+                var databaseNameError = new ArgumentException("Database name is required.", nameof(migrationOptions.DatabaseName));
                 _log?.LogFormatted(LogLevel.Error, "MySqlDatabaseProvisioner.DatabaseExistsAsync: {Message}", args: [databaseNameError.Message], exception: databaseNameError);
                 throw databaseNameError;
             }
@@ -48,28 +50,28 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
             await conn.OpenAsync(migrationOptions.CancelToken);
             _log?.LogFormatted(LogLevel.Information, "Connected to MySQL server.", postDecreaseLevel: true);
 
-            _log?.LogFormatted(LogLevel.Information, "Querying INFORMATION_SCHEMA.SCHEMATA for database '{DatabaseName}' existence.", args: [databaseName]);
+            _log?.LogFormatted(LogLevel.Information, "Querying INFORMATION_SCHEMA.SCHEMATA for database '{DatabaseName}' existence.", args: [migrationOptions.DatabaseName]);
             await using var cmd = conn.CreateCommand();
             cmd.CommandText = @"SELECT 1
                 FROM INFORMATION_SCHEMA.SCHEMATA
                 WHERE SCHEMA_NAME = @database_name
                 LIMIT 1;";
-            cmd.Parameters.AddWithValue("@database_name", databaseName);
+            cmd.Parameters.AddWithValue("@database_name", migrationOptions.DatabaseName);
 
             var result = await cmd.ExecuteScalarAsync(migrationOptions.CancelToken);
-            _log?.LogFormatted(LogLevel.Information, "Query executed. Database '{DatabaseName}' existence: {Exists}.", args: [databaseName, result is not null], singleIndentLine: true, postDecreaseLevel: true);
+            _log?.LogFormatted(LogLevel.Information, "Query executed. Database '{DatabaseName}' existence: {Exists}.", args: [migrationOptions.DatabaseName, result is not null], singleIndentLine: true);
 
+            _log?.RestoreIndentLevel("MySqlDatabaseProvisioner.DatabaseExistsAsync");
             return result is not null;
         }
 
         public async Task InitializeEmptyDatabaseAsync(
             MigrationOptions migrationOptions,
-            string databaseName,
             string? charset = null,
             string? collation = null)
         {
-            _log?.LogFormatted(LogLevel.Information, "Initializing empty database '{DatabaseName}' with charset '{Charset}' and collation '{Collation}'.", args: [databaseName, charset ?? "default", collation ?? "default"], preIncreaseLevel: true);
-            _log?.LogFormatted(LogLevel.Debug, "MySqlDatabaseProvisioner.InitializeEmptyDatabaseAsync: Initializing database '{DatabaseName}' using connection string template '{ConnectionStringTemplate}'.", args: [databaseName, migrationOptions.ConnectionStringTemplate]);
+            _log?.LogFormatted(LogLevel.Information, "Initializing empty database '{DatabaseName}' with charset '{Charset}' and collation '{Collation}'.", args: [migrationOptions.DatabaseName, charset ?? "default", collation ?? "default"], preIncreaseLevel: true);
+            _log?.LogFormatted(LogLevel.Debug, "MySqlDatabaseProvisioner.InitializeEmptyDatabaseAsync: Initializing database '{DatabaseName}' using connection string template '{ConnectionStringTemplate}'.", args: [migrationOptions.DatabaseName, migrationOptions.ConnectionStringTemplate]);
 
             if (string.IsNullOrWhiteSpace(migrationOptions.ConnectionStringTemplate))
             {
@@ -78,9 +80,9 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
                 throw templateError;
             }
 
-            if (string.IsNullOrWhiteSpace(databaseName))
+            if (string.IsNullOrWhiteSpace(migrationOptions.DatabaseName))
             {
-                var databaseNameError = new ArgumentException("Database name is required.", nameof(databaseName));
+                var databaseNameError = new ArgumentException("Database name is required.", nameof(migrationOptions.DatabaseName));
                 _log?.LogFormatted(LogLevel.Error, "MySqlDatabaseProvisioner.InitializeEmptyDatabaseAsync: {Message}", args: [databaseNameError.Message], exception: databaseNameError);
                 throw databaseNameError;
             }
@@ -97,8 +99,8 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
             await conn.OpenAsync(migrationOptions.CancelToken);
             _log?.LogFormatted(LogLevel.Information, "Connected to MySQL server.", postDecreaseLevel: true);
 
-            _log?.LogFormatted(LogLevel.Information, "Creating database '{DatabaseName}' if it does not exist.", args: [databaseName]);
-            var sql = $"CREATE DATABASE IF NOT EXISTS `{EscapeIdentifier(databaseName)}`";
+            _log?.LogFormatted(LogLevel.Information, "Creating database '{DatabaseName}' if it does not exist.", args: [migrationOptions.DatabaseName]);
+            var sql = $"CREATE DATABASE IF NOT EXISTS `{EscapeIdentifier(migrationOptions.DatabaseName)}`";
             if (!string.IsNullOrWhiteSpace(charset))
                 sql += $" CHARACTER SET {charset}";
             if (!string.IsNullOrWhiteSpace(collation))
@@ -108,7 +110,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
             await using var cmd = conn.CreateCommand();
             cmd.CommandText = sql;
             await cmd.ExecuteNonQueryAsync(migrationOptions.CancelToken);
-            _log?.LogFormatted(LogLevel.Information, "Database '{DatabaseName}' initialized (created if it did not exist).", args: [databaseName], singleIndentLine: true, postDecreaseLevel: true);
+            _log?.LogFormatted(LogLevel.Information, "Database '{DatabaseName}' initialized (created if it did not exist).", args: [migrationOptions.DatabaseName], singleIndentLine: true, postDecreaseLevel: true);
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace CoreRelm.Models.Migrations.Introspection
 {
     public sealed record SchemaIntrospectionOptions(
+        string? DatabaseName = null,
         bool IncludeViews = false
     );
 }

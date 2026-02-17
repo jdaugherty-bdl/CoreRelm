@@ -424,7 +424,7 @@ namespace CoreRelm.Options
         /// <param name="DatabaseConnectionString">The connection string to use for database connections. Cannot be null or empty.</param>
         /// <returns>The current instance of the <see cref="RelmContextOptionsBuilder"/> class.</returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="DatabaseConnectionString"/> is null or empty.</exception>
-        public RelmContextOptionsBuilder SetDatabaseConnectionString(string DatabaseConnectionString)
+        public RelmContextOptionsBuilder SetDatabaseConnectionString(string? DatabaseConnectionString)
         {
             if (string.IsNullOrEmpty(DatabaseConnectionString))
                 throw new ArgumentNullException(nameof(DatabaseConnectionString));
@@ -522,7 +522,7 @@ namespace CoreRelm.Options
         /// (e.g., 'name=MyConnection') or explicit connection parameters (e.g.,
         /// 'server=localhost;database=MyDb;user=admin;password=secret'). Only one format may be used at a time.
         /// Additional or missing parameters will result in an exception.</remarks>
-        /// <param name="connectionDetails">A string containing the connection details. Must be in the format 'name=connectionString' to use a named
+        /// <param name="connectionDetails">A string containing the connection details. Must be in the format 'name=connectionName' to use a named
         /// connection, or 'server=serverName;database=databaseName;user=userName;password=password' to specify
         /// individual connection parameters.</param>
         /// <exception cref="ArgumentNullException">Thrown if the connectionDetails parameter is null, empty, or consists only of white-space characters.</exception>
@@ -534,7 +534,7 @@ namespace CoreRelm.Options
                 throw new ArgumentNullException(nameof(connectionDetails));
 
             if (!connectionDetails.Contains('='))
-                throw new ArgumentException("Invalid connection details. Must be in the format of 'name=connectionString' or 'server=serverName;database=databaseName;user=userName;password=password'.");
+                throw new ArgumentException("Invalid connection details. Must be in the format of 'name=connectionName' or 'server=serverName;database=databaseName;user=userName;password=password'.");
 
             var connectionOptions = connectionDetails
                 .Split([';'], StringSplitOptions.RemoveEmptyEntries)
@@ -548,20 +548,24 @@ namespace CoreRelm.Options
                    (connectionOptions.ContainsKey("uid") || connectionOptions.ContainsKey("user") || connectionOptions.ContainsKey("user id")) &&
                    (connectionOptions.ContainsKey("pwd") || connectionOptions.ContainsKey("password")))))
             {
-                throw new ArgumentException("Incomplete connection details. Must be in the format of 'name=connectionString' or 'server=serverName;database=databaseName;user=userName;password=password'.");
+                throw new ArgumentException("Incomplete connection details. Must be in the format of 'name=connectionName' or 'server=serverName;database=databaseName;user=userName;password=password'.");
             }
 
-            if ((connectionOptions.ContainsKey("name") 
+            if (connectionOptions.ContainsKey("name") 
                     && connectionOptions.Keys.Count > 1) 
-                ||
-                !(connectionOptions.ContainsKey("server") 
+            {
+                throw new ArgumentException("Invalid connection details. Must be in the format of 'name=connectionName' or 'server=serverName;database=databaseName;user=userName;password=password'.");
+            }
+               
+            if(!connectionOptions.ContainsKey("name")
+                && !(connectionOptions.ContainsKey("server") 
                     && connectionOptions.ContainsKey("database") 
                     && (connectionOptions.ContainsKey("uid") || connectionOptions.ContainsKey("user") || connectionOptions.ContainsKey("user id")) 
                     && (connectionOptions.ContainsKey("pwd") || connectionOptions.ContainsKey("password"))
-                   //&& connectionOptions.Keys.Count > 4
-                ))
+                    //&& connectionOptions.Keys.Count > 4
+            ))
             {
-                throw new ArgumentException("Invalid connection details. Must be in the format of 'name=connectionString' or 'server=serverName;database=databaseName;user=userName;password=password'.");
+                throw new ArgumentException("Invalid connection details. Must be in the format of 'name=connectionName' or 'server=serverName;database=databaseName;user=userName;password=password'.");
             }
 
             if (connectionOptions.TryGetValue("name", out string? nameValue))
@@ -597,7 +601,7 @@ namespace CoreRelm.Options
                 else if (connectionOptions.TryGetValue("password", out string? passwordValue))
                     SetDatabasePassword(passwordValue);
 
-                DatabaseConnectionString = $"server={DatabaseServer};port={DatabasePort};database={DatabaseName};user id={DatabaseUser};password={DatabasePassword}";
+                DatabaseConnectionString = $"server={DatabaseServer}{(string.IsNullOrWhiteSpace(DatabasePort) ? null : $";port={DatabasePort}")};database={DatabaseName};user id={DatabaseUser};password={DatabasePassword}";
             }
         }
 

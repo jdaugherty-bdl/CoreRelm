@@ -35,18 +35,18 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
         {
             options ??= new SchemaIntrospectionOptions();
 
-            var databaseName = await GetCurrentDatabaseAsync(relmContext, cancellationToken);
+            var databaseName = options?.DatabaseName ?? await GetCurrentDatabaseAsync(relmContext, cancellationToken);
             if (string.IsNullOrWhiteSpace(databaseName))
                 throw new InvalidOperationException("No active database selected. Ensure the connection string specifies Database=<name>.");
 
-            var tableNames = await LoadTableNamesAsync(relmContext, databaseName, options.IncludeViews, cancellationToken);
+            var tableNames = await LoadTableNamesAsync(relmContext, databaseName, options?.IncludeViews ?? false, cancellationToken);
 
             // Load all schema components
             var columns = await LoadColumnsAsync(relmContext, databaseName, cancellationToken);
             var indexes = await LoadIndexesAsync(relmContext, databaseName, cancellationToken);
             var foreignKeys = await LoadForeignKeysAsync(relmContext, databaseName, cancellationToken);
             var triggers = await LoadTriggersAsync(relmContext, databaseName, cancellationToken);
-            var functions = await LoadFunctionsAsync(relmContext, databaseName, cancellationToken);
+            var functions = await LoadFunctionsAsync(relmContext, options.DatabaseName ?? databaseName, cancellationToken);
 
             // Assemble per-table structures
             var tables = new Dictionary<string, TableSchema>(StringComparer.Ordinal);

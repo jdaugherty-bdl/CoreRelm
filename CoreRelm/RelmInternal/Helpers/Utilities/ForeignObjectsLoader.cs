@@ -120,7 +120,32 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
                 .First();
 
             var filteredDataSetContains = whereMethod.Invoke(dataSet, [containsLambda]);
+
+            /*
+
+
+            var ttt = dataSet.GetType();
+            var mmm = ttt.GetMethods();
+            var lll = mmm.Where(x => x.Name == nameof(RelmDataSet<T>.LoadAsync)).ToList();
+            var ppp = lll.Where(x => x.GetParameters().Length == 2).ToList();
+            var ooo = ppp.FirstOrDefault();
+            if (ooo != null)
+            {
+                //var iii = (Task<ICollection<T>>)ooo.Invoke(filteredDataSetContains, [true, cancellationToken]);
+                var iii = (Task?)ooo.Invoke(filteredDataSetContains, [true, cancellationToken]);
+                if (iii != null)
+                {
+                    await iii;
+                    //var ddd = iii.GetAwaiter().GetResult();
+                }
+            }
+
             var collectionItemsContainsTask = (Task<ICollection<T>?>?)dataSet.GetType()
+                .GetMethods()
+                .FirstOrDefault(x => x.Name == nameof(RelmDataSet<T>.LoadAsync) && x.GetParameters().Length == 2)
+                ?.Invoke(filteredDataSetContains, [true, cancellationToken]);
+            */
+            var collectionItemsContainsTask = (Task?)dataSet.GetType()
                 .GetMethods()
                 .FirstOrDefault(x => x.Name == nameof(RelmDataSet<T>.LoadAsync) && x.GetParameters().Length == 2)
                 ?.Invoke(filteredDataSetContains, [true, cancellationToken]);
@@ -131,6 +156,7 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
             // use a foreach loop to convert collectionItemsContains to a dictionary where the key is the foreign key and the object is the item
             var collectionItems = (IDictionary?)Activator.CreateInstance(typeof(Dictionary<,>).MakeGenericType(typeof(object).MakeArrayType(), navigationOptions.ReferenceProperty.Type));
 
+            /*
             var concreteCollectionItems = (Dictionary<object[], object>?)collectionItems ?? [];
             foreach (var item in (IEnumerable)dataSet)
             {
@@ -156,6 +182,31 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
             }
 
             return concreteCollectionItems;
+            */
+            foreach (var item in (IEnumerable)dataSet)
+            {
+                var targetObjectForeignKeyValues = navigationOptions.ForeignKeyProperties?.Select(x => x.GetValue(item)).ToArray() ?? [];
+
+                if (collectionItems?.Keys.Cast<object[]>().FirstOrDefault(x => x.Select((y, i) => ForeignKeyComparer.Compare(targetObjectForeignKeyValues[i], y)).All(y => y)) == null)
+                {
+                    collectionItems!.Add(targetObjectForeignKeyValues, default);
+
+                    if (navigationOptions.IsCollection)
+                        collectionItems[targetObjectForeignKeyValues] = Activator.CreateInstance(typeof(List<>).MakeGenericType(navigationOptions.ReferenceType)); //.ReferenceProperty.Type));
+                }
+                else if (!navigationOptions.IsCollection)
+                {
+                    // if the collectionItems already contains the key and it's not a collection, throw an exception
+                    throw new Exception($"Collection already contains an item with the same foreign key: collectionItems [{JsonConvert.SerializeObject(collectionItems)}], targetObjectForeignKeyValues: [{JsonConvert.SerializeObject(targetObjectForeignKeyValues)}]: nav options: [{JsonConvert.SerializeObject(navigationOptions)}].");
+                }
+
+                if (navigationOptions.IsCollection)
+                    ((IList?)collectionItems[collectionItems.Keys.Cast<object[]>().FirstOrDefault(x => x.Select((y, i) => ForeignKeyComparer.Compare(targetObjectForeignKeyValues[i], y)).All(y => y))]).Add(item);
+                else
+                    collectionItems[targetObjectForeignKeyValues] = item;
+            }
+
+            return collectionItems;
         }
 
         /// <summary>

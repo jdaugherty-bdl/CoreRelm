@@ -28,26 +28,31 @@ namespace CoreRelm.Extensions
 
         public static T? ParseEnumerationDescription<T>(this string description, bool ignoreCase = false) where T : Enum
         {
+            return (T?)ParseEnumerationDescription(description, typeof(T), ignoreCase: ignoreCase);
+        }
+
+        public static Enum? ParseEnumerationDescription(this string description, Type enumType, bool ignoreCase = false)
+        {
             if (string.IsNullOrWhiteSpace(description))
                 return default;
 
-            foreach (var field in typeof(T).GetFields())
+            foreach (var field in enumType.GetFields())
             {
                 if (Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute)) is DescriptionAttribute attribute)
                 {
                     if (string.Equals(attribute.Description, description, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal))
                     {
-                        return (T)field.GetValue(null)!;
+                        return (Enum?)field.GetValue(null)!;
                     }
                 }
                 else if (string.Equals(field.Name, description, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal))
                 {
                     // Fallback: Check the actual member name if no attribute exists
-                    return (T)field.GetValue(null)!;
+                    return (Enum?)field.GetValue(null)!;
                 }
             }
 
-            throw new ArgumentException($"No enum member with description '{description}' found in {typeof(T).Name}.");
+            throw new ArgumentException($"No enum member with description '{description}' found in {enumType.Name}.");
         }
     }
 }

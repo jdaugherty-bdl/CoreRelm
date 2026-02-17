@@ -15,9 +15,41 @@ namespace CoreRelm.Tests.Migrations
         [Fact]
         public void Resolve_MissingSet_Throws()
         {
-            var file = new ModelSetsFile { Version = 1 };
+            // Arrange
+            var file = new ModelSetsFile 
+            { 
+                Version = 1,
+                Sets = new Dictionary<string, ModelSetDefinition>
+                {
+                    ["validSet"] = new ModelSetDefinition 
+                    { 
+                        Types = new List<string> { "CoreRelm.Tests.Migrations.ModelSetResolverTests" },
+                        NamespacePrefixes = new List<string> { "CoreRelm.Tests.Migrations" }
+                    } 
+                }
+            };
+
+            // Act
             var resolver = new ModelSetResolver(Assembly.GetExecutingAssembly());
+
+            // Assert
             Assert.Throws<ModelSetNotFoundException>(() => resolver.ResolveSet(file, "nope"));
+        }
+
+        [Fact]
+        public void Resolve_SetResolution_Throws()
+        {
+            // Arrange
+            var file = new ModelSetsFile 
+            { 
+                Version = 1 
+            };
+
+            // Act
+            var resolver = new ModelSetResolver(Assembly.GetExecutingAssembly());
+            
+            // Assert
+            Assert.Throws<ModelSetResolutionException>(() => resolver.ResolveSet(file, "nope"));
         }
     }
 }

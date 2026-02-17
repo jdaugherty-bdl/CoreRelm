@@ -52,13 +52,13 @@ namespace CoreRelm.Attributes
         /// <param name="onDelete">An optional referential action to specify the behavior when the related entity is deleted.</param>
         public RelmForeignKey(string? foreignKey = null, string? localKey = null, string? orderBy = null, ReferentialAction onDelete = ReferentialAction.NoAction)
         {
-            if (foreignKey != null)
+            if (!string.IsNullOrWhiteSpace(foreignKey))
                 this.ForeignKeys = [foreignKey];
 
-            if (localKey != null)
+            if (!string.IsNullOrWhiteSpace(localKey))
                 this.LocalKeys = [localKey];
 
-            if (orderBy != null) 
+            if (!string.IsNullOrWhiteSpace(orderBy)) 
                 this.OrderBy = [orderBy];
 
             this.OnDelete = onDelete;

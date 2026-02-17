@@ -11,7 +11,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
 {
     public sealed class MySqlScriptRunner : IRelmSqlScriptRunner
     {
-        public async Task ExecuteScriptAsync(IRelmContext context, string sql, CancellationToken cancellationToken = default)
+        public async Task ExecuteScriptAsync(IRelmContext context, string sql, CancellationToken cancellationToken = default, Action<Exception>? exceptionHandler = null)
         {
             ArgumentNullException.ThrowIfNull(context);
             ArgumentNullException.ThrowIfNull(sql);
@@ -22,7 +22,17 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
                 var trimmed = stmt.Trim();
                 if (string.IsNullOrWhiteSpace(trimmed)) continue;
 
-                await context.DoDatabaseWorkAsync(trimmed, cancellationToken: cancellationToken);
+                try
+                {
+                    await context.DoDatabaseWorkAsync(trimmed, cancellationToken: cancellationToken);
+                }
+                catch (Exception ex)
+                {
+                    if (exceptionHandler != null) 
+                        exceptionHandler(ex);
+                    else
+                        throw;
+                }
             }
         }
 

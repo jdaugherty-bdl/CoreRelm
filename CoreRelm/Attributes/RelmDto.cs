@@ -13,7 +13,7 @@ namespace CoreRelm.Attributes
     /// <remarks>This attribute is intended to annotate properties or structs that are part of a DTO, 
     /// providing metadata for tools or frameworks that process or validate DTOs. It can be  applied to properties or
     /// structs to indicate their role in data transfer scenarios.</remarks>
-    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Struct)]
+    [AttributeUsage(AttributeTargets.Property)]
     public sealed class RelmDto : Attribute
     {
     }
