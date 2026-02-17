@@ -11,17 +11,23 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using static CoreRelm.Enums.Commands;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using CoreRelm.Extensions;
 
 namespace CoreRelm.Tests.RelmInternal.Helpers.Utilities
 {
-    public class ForeignObjectsLoader_Tester
+    [Collection("JsonConfiguration")]
+    public class ForeignObjectsLoader_Tester : IClassFixture<JsonConfigurationFixture>
     {
+        private readonly IConfiguration _configuration;
         private ComplexTestContext context;
         private List<ComplexTestModel> mockComplexTestModels;
         private LambdaExpression containsLambda;
 
-        public ForeignObjectsLoader_Tester()
+        public ForeignObjectsLoader_Tester(JsonConfigurationFixture fixture)
         {
+            _configuration = fixture.Configuration;
             context = SetupContext(true);
         }
 
@@ -72,6 +78,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Utilities
                     TestFieldBoolean = null,
                 });
 
+            new ServiceCollection().AddCoreRelm(_configuration);
             context = new ComplexTestContext("name=SimpleRelmMySql", autoVerifyTables: false);
 
             // create dummy data loaders for dummy data to be placed in both relevant data sets
@@ -79,8 +86,8 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Utilities
 
             // make sure GetLoadData() calls base so LastExecutedCommands (required for references) gets populated
             modelDataLoader.Setup(x => x.TableName).Returns("nothing_table");
-            modelDataLoader.Setup(x => x.GetLoadData()).CallBase();
-            modelDataLoader.Setup(x => x.PullData(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>())).Returns(mockComplexTestModels);
+            modelDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
+            modelDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexTestModels);
 
             context.ComplexTestModels!.SetDataLoader(modelDataLoader.Object);
 

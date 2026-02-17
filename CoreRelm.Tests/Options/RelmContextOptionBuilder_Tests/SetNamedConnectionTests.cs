@@ -1,4 +1,7 @@
-﻿using CoreRelm.Options;
+﻿using CoreRelm.Extensions;
+using CoreRelm.Options;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +10,16 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
 {
-    public class SetNamedConnectionTests
+    [Collection("JsonConfiguration")]
+    public class SetNamedConnectionTests : IClassFixture<JsonConfigurationFixture>
     {
+        private readonly IConfiguration _configuration;
+
+        public SetNamedConnectionTests(JsonConfigurationFixture fixture)
+        {
+            _configuration = fixture.Configuration;
+        }
+
         [Fact]
         public void SetNamedConnection_SetsNamedConnectionPropertyCorrectly()
         {
@@ -69,6 +80,7 @@ namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
         public void ValidateAllSettings_ReturnsTrue_ForValidNamedConnectionString()
         {
             // Arrange
+            new ServiceCollection().AddCoreRelm(_configuration);
             var builder = new RelmContextOptionsBuilder("name=SimpleRelmMySql");
 
             // Act
@@ -82,6 +94,7 @@ namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
         public void ValidateAllSettings_ReturnsTrue_ForValidNamedConnectionString_WithFalseParameter()
         {
             // Arrange
+            new ServiceCollection().AddCoreRelm(_configuration);
             var builder = new RelmContextOptionsBuilder("name=SimpleRelmMySql");
 
             // Act

@@ -13,16 +13,23 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using static CoreRelm.Enums.Commands;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using CoreRelm.Extensions;
 
 namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTests
 {
-    public class CountExpressionTests
+    [Collection("JsonConfiguration")]
+    public class CountExpressionTests : IClassFixture<JsonConfigurationFixture>
     {
+        private readonly IConfiguration _configuration;
         private ComplexTestContext context;
         private readonly ExpressionEvaluator<ComplexTestModel> evaluator;
 
-        public CountExpressionTests()
+        public CountExpressionTests(JsonConfigurationFixture fixture)
         {
+            _configuration = fixture.Configuration;
+
             // dummy data
             var mockComplexTestModels = new List<ComplexTestModel>
             {
@@ -30,6 +37,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
                 new ComplexTestModel { InternalId = "ID2" },
             };
 
+            new ServiceCollection().AddCoreRelm(_configuration);
             context = new ComplexTestContext("name=SimpleRelmMySql", autoVerifyTables: false);
 
             // create dummy data loaders for dummy data to be placed in both relevant data sets
@@ -37,8 +45,8 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
 
             // make sure GetLoadData() calls base so LastExecutedCommands (required for references) gets populated
             modelDataLoader.Setup(x => x.TableName).Returns("DUMMY NAME");
-            modelDataLoader.Setup(x => x.GetLoadData()).CallBase();
-            modelDataLoader.Setup(x => x.PullData(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>())).Returns(mockComplexTestModels);
+            modelDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
+            modelDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexTestModels);
 
             context.SetDataSet(new ComplexTestModel());
             context.ComplexTestModels!.SetDataLoader(modelDataLoader.Object);

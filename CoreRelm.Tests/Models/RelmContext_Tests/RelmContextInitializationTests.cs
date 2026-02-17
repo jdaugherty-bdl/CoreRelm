@@ -12,28 +12,21 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.Tests.Models.RelmContext_Tests
 {
-    public class RelmContextInitializationTests
+    [Collection("JsonConfiguration")]
+    public class RelmContextInitializationTests : IClassFixture<JsonConfigurationFixture>
     {
-        private static void CreateReader()
+        private readonly IConfiguration _configuration;
+
+        public RelmContextInitializationTests(JsonConfigurationFixture fixture)
         {
-            var services = new ServiceCollection();
-
-            // minimal configuration for RelmHelper, adapt if your tests need specific values
-            var config = new ConfigurationBuilder()
-                .AddInMemoryCollection(new Dictionary<string, string?>
-                { 
-                    ["ConnectionStrings:SimpleRelmMySql"] = "server=localhost;database=simple_relm;user=simplerelmuser;password=simplerelmpassword"
-                })
-                .Build();
-
-            services.AddCoreRelm(config);
+            _configuration = fixture.Configuration;
         }
 
         [Fact]
         public void Should_Initialize_With_Valid_Named_Connection_String()
         {
             // Arrange
-            CreateReader();
+            new ServiceCollection().AddCoreRelm(_configuration);
             string validConnectionString = "name=SimpleRelmMySql";
 
             // Act
@@ -69,7 +62,7 @@ namespace CoreRelm.Tests.Models.RelmContext_Tests
         public void Should_Initialize_With_Valid_OptionsBuilder_ConnectionString()
         {
             // Arrange
-            CreateReader();
+            new ServiceCollection().AddCoreRelm(_configuration);
             var validOptions = new RelmContextOptionsBuilder()
                 .SetNamedConnection("SimpleRelmMySql")
                 .SetDatabaseConnectionString(RelmHelper.GetConnectionBuilderFromName("SimpleRelmMySql")?.ConnectionString)

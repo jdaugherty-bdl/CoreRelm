@@ -7,15 +7,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using CoreRelm.Extensions;
 
 namespace CoreRelm.Tests.Models.RelmDataSet_Tests
 {
-    public class Reference_NonDefaultForeignKey_Tester
+    [Collection("JsonConfiguration")]
+    public class Reference_NonDefaultForeignKey_Tester : IClassFixture<JsonConfigurationFixture>
     {
+        private readonly IConfiguration _configuration;
         private NonDefaultForeignKeysTestContext context;
 
-        public Reference_NonDefaultForeignKey_Tester()
+        public Reference_NonDefaultForeignKey_Tester(JsonConfigurationFixture fixture)
         {
+            _configuration = fixture.Configuration;
+
             // dummy data
             var mockComplexTestModels = new List<NonDefaultForeignKeysTestObject>
             {
@@ -43,6 +50,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
                 },
             };
 
+            new ServiceCollection().AddCoreRelm(_configuration);
             context = new NonDefaultForeignKeysTestContext("name=SimpleRelmMySql", autoVerifyTables: false);
 
             // create dummy data loaders for dummy data to be placed in both relevant data sets
@@ -50,8 +58,8 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
 
             // make sure GetLoadData() calls base so LastExecutedCommands (required for references) gets populated
             modelDataLoader.Setup(x => x.TableName).Returns("nothing_table");
-            modelDataLoader.Setup(x => x.GetLoadData()).CallBase();
-            modelDataLoader.Setup(x => x.PullData(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>())).Returns(mockComplexTestModels);
+            modelDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
+            modelDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexTestModels);
 
             context.NonDefaultForeignKeysTestObjects!.SetDataLoader(modelDataLoader.Object);
         }
@@ -69,8 +77,8 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
 
             var referenceDataLoader = new Mock<RelmDefaultDataLoader<NonDefaultForeignKeysReferenceObject_ForeignKey>>();
             referenceDataLoader.Setup(x => x.TableName).Returns("nothing_table");
-            referenceDataLoader.Setup(x => x.GetLoadData()).CallBase();
-            referenceDataLoader.Setup(x => x.PullData(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>())).Returns(mockComplexReferenceObjects_ForeignKey);
+            referenceDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
+            referenceDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects_ForeignKey);
 
             context.NonDefaultForeignKeysReferenceObject_ForeignKeys!.SetDataLoader(referenceDataLoader.Object);
         }
@@ -88,8 +96,8 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
 
             var navigationDataLoader = new Mock<RelmDefaultDataLoader<NonDefaultForeignKeysReferenceObject_NavigationProperty>>();
             navigationDataLoader.Setup(x => x.TableName).Returns("nothing_table");
-            navigationDataLoader.Setup(x => x.GetLoadData()).CallBase();
-            navigationDataLoader.Setup(x => x.PullData(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>())).Returns(mockComplexReferenceObjects_Navigation);
+            navigationDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
+            navigationDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects_Navigation);
 
             context.NonDefaultForeignKeysReferenceObject_NavigationProperties!.SetDataLoader(navigationDataLoader.Object);
         }
@@ -107,8 +115,8 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
 
             var principalDataLoader = new Mock<RelmDefaultDataLoader<NonDefaultForeignKeysReferenceObject_PrincipalEntity>>();
             principalDataLoader.Setup(x => x.TableName).Returns("nothing_table");
-            principalDataLoader.Setup(x => x.GetLoadData()).CallBase();
-            principalDataLoader.Setup(x => x.PullData(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>())).Returns(mockComplexReferenceObjects_Principal);
+            principalDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
+            principalDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects_Principal);
 
             context.NonDefaultForeignKeysReferenceObject_PrincipalEntities!.SetDataLoader(principalDataLoader.Object);
         }

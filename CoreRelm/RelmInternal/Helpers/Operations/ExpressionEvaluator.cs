@@ -274,45 +274,46 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
             var countItems = new List<string>();
             foreach (var command in CommandExpression.Value)
             {
-                if (command == null || command.ExecutionExpression == null)
+                if (command == null)
                     continue;
 
                 if (command.ExecutionExpression == null)
-                    countItems.Add(" COUNT(*) AS `count_rows` ");
-                else
                 {
-                    var methodOperands = new List<MemberExpression?>();
+                    countItems.Add(" COUNT(*) AS `count_rows` ");
+                    continue;
+                }
 
-                    if (command.ExecutionExpression is MemberExpression methodCall)
-                        methodOperands.Add(methodCall);
-                    else if (command.ExecutionExpression is UnaryExpression unaryExpression)
-                        methodOperands.Add(unaryExpression.Operand as MemberExpression);
-                    else if (command.ExecutionExpression is NewExpression newExpression)
-                        methodOperands = [.. newExpression.Arguments.Select(x => x as MemberExpression)];
-                    else
-                        throw new InvalidCastException();
+                var methodOperands = new List<MemberExpression?>();
 
-                    foreach (var methodOperand in methodOperands)
-                    {
-                        if (methodOperand == null)
-                            throw new InvalidCastException("Unsupported expression type for COUNT command. Only member access expressions are supported.");
+                if (command.ExecutionExpression is MemberExpression methodCall)
+                    methodOperands.Add(methodCall);
+                else if (command.ExecutionExpression is UnaryExpression unaryExpression)
+                    methodOperands.Add(unaryExpression.Operand as MemberExpression);
+                else if (command.ExecutionExpression is NewExpression newExpression)
+                    methodOperands = [.. newExpression.Arguments.Select(x => x as MemberExpression)];
+                else
+                    throw new InvalidCastException();
 
-                        var currentAlias = GetTableAlias(((RelmTable?)methodOperand.Expression?.Type.GetCustomAttributes(typeof(RelmTable), true).FirstOrDefault())?.TableName);
+                foreach (var methodOperand in methodOperands)
+                {
+                    if (methodOperand == null)
+                        throw new InvalidCastException("Unsupported expression type for COUNT command. Only member access expressions are supported.");
 
-                        if (string.IsNullOrWhiteSpace(currentAlias))
-                            throw new TypeAccessException($"Could not find 'RelmTable' custom attribute on type: [{methodOperand.Expression?.Type.FullName}]");
+                    var currentAlias = GetTableAlias(((RelmTable?)methodOperand.Expression?.Type.GetCustomAttributes(typeof(RelmTable), true).FirstOrDefault())?.TableName);
 
-                        var countExpression = " COUNT(";
-                        countExpression += currentAlias;
-                        countExpression += ".`";
-                        countExpression += UnderscoreProperties?[methodOperand.Member.Name];
-                        countExpression += "`) ";
-                        countExpression += "AS `count_";
-                        countExpression += UnderscoreProperties?[methodOperand.Member.Name];
-                        countExpression += "` ";
+                    if (string.IsNullOrWhiteSpace(currentAlias))
+                        throw new TypeAccessException($"Could not find 'RelmTable' custom attribute on type: [{methodOperand.Expression?.Type.FullName}]");
 
-                        countItems.Add(countExpression);
-                    }
+                    var countExpression = " COUNT(";
+                    countExpression += currentAlias;
+                    countExpression += ".`";
+                    countExpression += UnderscoreProperties?[methodOperand.Member.Name];
+                    countExpression += "`) ";
+                    countExpression += "AS `count_";
+                    countExpression += UnderscoreProperties?[methodOperand.Member.Name];
+                    countExpression += "` ";
+
+                    countItems.Add(countExpression);
                 }
             }
 

@@ -8,15 +8,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using CoreRelm.Extensions;
 
 namespace CoreRelm.Tests.RelmInternal.Helpers.DataTransfer
 {
-    public class CustomDataLoader_Tester
+    [Collection("JsonConfiguration")]
+    public class CustomDataLoader_Tester : IClassFixture<JsonConfigurationFixture>
     {
+        private readonly IConfiguration _configuration;
         private readonly ComplexTestContext context;
 
-        public CustomDataLoader_Tester()
+        public CustomDataLoader_Tester(JsonConfigurationFixture fixture)
         {
+            _configuration = fixture.Configuration;
+
             // dummy data
             var mockComplexTestModels = new List<ComplexTestModel>
             {
@@ -34,6 +41,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.DataTransfer
                 },
             };
 
+            new ServiceCollection().AddCoreRelm(_configuration);
             context = new ComplexTestContext("name=SimpleRelmMySql", autoVerifyTables: false);
 
             // create dummy data loaders for dummy data to be placed in both relevant data sets
@@ -41,8 +49,8 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.DataTransfer
 
             // make sure GetLoadData() calls base so LastExecutedCommands (required for references) gets populated
             modelDataLoader.Setup(x => x.TableName).Returns("DUMMY NAME");
-            modelDataLoader.Setup(x => x.GetLoadData()).CallBase();
-            modelDataLoader.Setup(x => x.PullData(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>())).Returns(mockComplexTestModels);
+            modelDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
+            modelDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexTestModels);
 
             context.ComplexTestModels!.SetDataLoader(modelDataLoader.Object);
         }
@@ -90,14 +98,14 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.DataTransfer
         public void DataLoaderAttribute_IsSuccessful()
         {
             // Arrange
-            context.DataLoaderTestModels!.Load();
+            context.ComplexTestModels!.Load();
 
             // Assert
-            var firstModel = context.DataLoaderTestModels.First();
-            var secondModel = context.DataLoaderTestModels.Skip(1).First();
+            var firstModel = context.ComplexTestModels.First();
+            var secondModel = context.ComplexTestModels.Skip(1).First();
 
-            Assert.Equal("LOADER1", firstModel?.InternalId);
-            Assert.Equal("LOADER2", secondModel?.InternalId);
+            Assert.Equal("ID1", firstModel?.InternalId);
+            Assert.Equal("ID2", secondModel?.InternalId);
         }
     }
 }
