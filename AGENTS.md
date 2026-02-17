@@ -164,11 +164,59 @@ public int APIVersion { get; set; }
 ## Code Conventions
 
 C# style (align with existing code):
-- Naming: PascalCase for types/methods/properties; camelCase for locals/parameters, _underscoreCamelCase for private properties and members.
-- Use XML documentation comments for public classes, methods, and properties.
-- Keep methods cohesive; avoid unnecessary abstractions.
-- Avoid magic strings; prefer helpers (e.g., `RelmHelper.GetColumnName(x => x.SomeProperty)`) or configuration file setting
-- When adding new helpers or interfaces, keep them small, explicit, and discoverable.
+  - Types/Classes/Methods/Properties: PascalCase
+  - Locals/Parameters: camelCase
+  - Constants: PascalCase
+  - Private properties/members: _underscoreCamelCase
+  - Namespaces: block-scoped (brace style), not file-scoped
+  - Bracing: Allman style
+  - Use `var` for local type inference whenever possible
+  - Optional parameters should be named and have default values where it makes sense
+  - Use more descriptive variable names rather than terse ones, even for short-lived variables, except in extremely common patterns (e.g., `i` for loop index)
+  - Prefer expression-bodied members for one-liners judiciously
+  - Enable nullable reference types; avoid `!` unless proven safe
+  - It is okay to create new interfaces for testability/mocking and other best practices
+  - Related objects are allowed to inherit from common base classes if it improves code sharing
+  - When creating methods, ensure they are properly documented with XML comments to describe their behavior and any potential side effects.
+  - Use XML documentation comments for public classes, methods, and properties.
+  - Keep methods cohesive; avoid unnecessary abstractions.
+  - Avoid magic strings; prefer helpers (e.g., `RelmHelper.GetColumnName(x => x.SomeProperty)`) or configuration file setting
+  - When adding new helpers or interfaces, keep them small, explicit, and discoverable.
+  - When defining collections, prefer concrete types (e.g., `List<T>`, `Dictionary<K,V>`) over interfaces unless abstraction is needed
+  - When defining dictionaries using static data, use collection initializers for clarity
+  - When defining dictionaries using static data, use square brackets for keys
+	- Correct:
+	  var dict = new Dictionary<string, int>
+	  {
+		  ["one"] = 1,
+		  ["two"] = 2
+		  ["three"] = 3
+		  ["four"] = 4
+	  };
+	- Incorrect:
+	  var dict = new Dictionary<string, int>
+	  {
+		  { "one", 1 },
+		  { "two", 2 }
+	  };
+	  dict.Add("three", 3);
+	  dict.Add("four", 4);
+  - Use "using" declarations for disposable objects when possible
+  - Prefer `foreach` over `for` when iterating collections unless index is needed
+  - When declaring and empty string constant, prefer `string.Empty` over `""` for clarity
+  - Prefer `string.IsNullOrWhiteSpace`/`IsNullOrEmpty` over manual checks
+  - Prefer `Path.Combine` over manual path concatenation
+  - When working with file paths, consider using `Path.GetInvalidFileNameChars()` to sanitize inputs for filenames
+  - When formatting strings, prefer interpolated strings (`$"..."`) over `string.Format` for readability
+  - Add descriptive comments to complex logic blocks, especially around migration generation and application, to clarify intent and important safety considerations
+  - Prefer commenting above blocks of code rather than inline comments on every line for better readability
+  - When creating async methods, use the `Async` suffix and ensure they return `Task` or `Task<T>`.
+  - When creating async methods, avoid using `.Result` or `.Wait()` on tasks to prevent deadlocks; instead, use `await` and propagate async all the way up the call stack.
+  - When creating async methods, consider using `ConfigureAwait(false)` to avoid capturing the synchronization context.
+  - When creating async methods, always include a `CancellationToken` parameter and it should be the last parameter.
+  - Don't put if statements on a single line, even if they are short.
+  - Don't add curly braces for single line if statements
+  - Use full `for`/`foreach` loops instead of LINQ when the logic inside the loop is more than a simple projection or filtering, to improve readability and maintainability.
 
 Correct:
 ```csharp
