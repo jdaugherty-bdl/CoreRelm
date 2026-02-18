@@ -11,6 +11,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using static CoreRelm.Enums.MigrationEnums;
 
 namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
 {
@@ -57,7 +58,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
             try
             {
                 await _runner.ExecuteScriptAsync(context, sql, migrationOptions.CancelToken);
-                await _store.RecordAppliedMigrationAsync(context, migrationFileName, checksum, migrationOptions.CancelToken);
+                await _store.RecordAppliedMigrationAsync(context, migrationFileName, RelmMigrationType.Migration, checksum, migrationOptions.CancelToken);
 
                 if (!migrationOptions.Quiet)
                     Console.WriteLine($"Applied and recorded on `{migrationOptions.DatabaseName}`: {migrationFileName}");

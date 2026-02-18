@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using static CoreRelm.Enums.Indexes;
 using static CoreRelm.Enums.SecurityEnums;
@@ -132,6 +133,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                 var desiredColumns = new Dictionary<string, ColumnSchema>(StringComparer.Ordinal);
                 _log?.LogFormatted(LogLevel.Information, "Processing columns to build desired column schemas", args: []);
                 _log?.SaveIndentLevel("columns");
+
                 foreach (var (columnProperty, columnAttribute) in columnProperties)
                 {
                     _log?.RestoreIndentLevel("columns");
@@ -158,6 +160,29 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
 
                     // default value SQL
                     var defaultSql = columnAttribute.DefaultValue;
+                    if (defaultSql != null && mysqlType != null)
+                    {
+                        // If the default value is a string and the MySQL type is a string type, we should quote it in the default SQL. For other types, we can use the raw value. This is a simplification and may need to be expanded for more complex scenarios (e.g., functions, expressions).
+                        // Do not modify single-quoted strings except when the opening quote is immediately doubled or the closing quote is immediately doubled (only reject '' at start or end, not in middle).
+                        if ((mysqlType.StartsWith("varchar", StringComparison.OrdinalIgnoreCase) ||
+                            mysqlType.StartsWith("char", StringComparison.OrdinalIgnoreCase) ||
+                            mysqlType.StartsWith("text", StringComparison.OrdinalIgnoreCase) ||
+                            mysqlType.StartsWith("enum", StringComparison.OrdinalIgnoreCase) ||
+                            mysqlType.StartsWith("set", StringComparison.OrdinalIgnoreCase))
+                            && !Regex.IsMatch(defaultSql, @"^(?!'')(?!.*''$)'.*'$"))
+                        {
+                            // Quote string default values
+                            defaultSql = $"'{defaultSql.Replace("'", "''")}'";
+                        }
+                        else if (propertyType == typeof(bool))
+                        {
+                            // Convert boolean default values to 1/0
+                            if (bool.TryParse(columnAttribute.DefaultValue, out var boolVal))
+                            {
+                                defaultSql = boolVal ? "1" : "0";
+                            }
+                        }
+                    }
                     _log?.LogFormatted(LogLevel.Information, "Default value SQL for property {PropertyName}: {DefaultSql}", args: [columnProperty.Name, defaultSql], postDecreaseLevel: true);
 
                     // internal ordering computed later
@@ -187,8 +212,12 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                 _log?.LogFormatted(LogLevel.Information, "Ordering and assigning ordinal positions to columns", args: []);
                 var orderedCols = OrderColumns([.. desiredColumns.Values]);
                 var ordinal = 1;
+                string? previousColumnName = null;
                 foreach (var c in orderedCols)
                 {
+                    c.AfterColumnName = previousColumnName;
+                    previousColumnName = c.ColumnName;
+
                     desiredColumns[c.ColumnName!] = c.Clone();
                     desiredColumns[c.ColumnName!].OrdinalPosition = ordinal++;
                 }

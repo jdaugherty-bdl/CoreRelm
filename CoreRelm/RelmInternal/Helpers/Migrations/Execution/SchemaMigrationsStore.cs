@@ -17,6 +17,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using static CoreRelm.Enums.MigrationEnums;
 
 namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
 {
@@ -70,7 +71,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
             var migrationFileName = $"SYSTEM_MIGRATION_{DateTime.UtcNow:yyyyMMdd_HHmmss}_{safeName}__db-{databaseName}.sql";
             log?.LogFormatted(LogLevel.Information, "Constructed migration file name: {FileName}", args: [migrationFileName]);
 
-            var migrationFilePath = Path.Combine(migrationOptions.MigrationsPath, migrationFileName);
+            var migrationFilePath = Path.Combine(migrationOptions.MigrationsPath ?? ".", migrationFileName);
             if (migrationOptions.SaveSystemMigrations && !string.IsNullOrWhiteSpace(migrationOptions.MigrationsPath))
             {
                 log?.LogFormatted(LogLevel.Information, "Saving generated migration SQL to file as per configuration. Path: {MigrationsPath}", args: [migrationOptions.MigrationsPath], singleIndentLine: true);
@@ -111,7 +112,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
             });
 
             log?.LogFormatted(LogLevel.Information, "Recording applied migration - '{Recording}'", args: ["Ensuring schema migrations table exists"]);
-            var rowsUpdated = await RecordAppliedMigrationAsync(context, migrationFileName, checksum, migrationOptions.CancelToken);
+            var rowsUpdated = await RecordAppliedMigrationAsync(context, migrationFileName, RelmMigrationType.SystemMigration, checksum, migrationOptions.CancelToken);
 
             log?.LogFormatted(LogLevel.Information, "Recorded applied migration. Rows updated: {RowsUpdated}", args: [rowsUpdated]);
 
@@ -138,10 +139,11 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
             return orderedMigrations;
         }
 
-        public async Task<int> RecordAppliedMigrationAsync(IRelmContext context, string migrationFile, string checksumSha256, CancellationToken ct = default)
+        public async Task<int> RecordAppliedMigrationAsync(IRelmContext context, string migrationFile, RelmMigrationType migrationType, string checksumSha256, CancellationToken ct = default)
         {
             var appliedMigration = new AppliedMigration(
                 fileName: migrationFile,
+                migrationType: migrationType,
                 checksumSha256: checksumSha256,
                 appliedUtc: DateTime.UtcNow);
 

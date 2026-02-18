@@ -11,6 +11,8 @@ namespace CoreRelm.Models.Migrations.Introspection
     [RelmTable("COLUMNS")]
     public class ColumnSchema : RelmModel
     {
+        public string? AfterColumnName { get; set; }
+
         [RelmColumn]
         public string? TableName { get; set; }
 

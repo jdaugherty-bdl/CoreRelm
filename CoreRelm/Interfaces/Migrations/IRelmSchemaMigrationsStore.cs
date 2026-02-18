@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static CoreRelm.Enums.MigrationEnums;
 
 namespace CoreRelm.Interfaces.Migrations
 {
@@ -13,6 +14,6 @@ namespace CoreRelm.Interfaces.Migrations
     {
         Task<int> EnsureSchemaMigrationTableAsync(IRelmContext context, MigrationOptions migrationOptions);
         Task<Dictionary<string, AppliedMigration>?> GetAppliedMigrationsAsync(RelmContext context, CancellationToken ct = default);
-        Task<int> RecordAppliedMigrationAsync(IRelmContext context, string migrationFile, string checksumSha256, CancellationToken ct = default);
+        Task<int> RecordAppliedMigrationAsync(IRelmContext context, string migrationFile, RelmMigrationType migrationType, string checksumSha256, CancellationToken ct = default);
     }
 }

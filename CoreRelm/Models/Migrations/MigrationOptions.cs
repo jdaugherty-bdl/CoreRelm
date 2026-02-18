@@ -17,6 +17,7 @@ namespace CoreRelm.Models.Migrations
         public bool Quiet { get; set; } = false;
         public bool JsonFlag { get; set; } = false;
         public string? JsonPath { get; set; } = null;
+        public bool DropFunctionsOnCreate { get; set; } = false;
         public bool Destructive { get; set; } = false;
         public bool Apply { get; set; } = false;
         public bool SaveSystemMigrations { get; set; } = false;

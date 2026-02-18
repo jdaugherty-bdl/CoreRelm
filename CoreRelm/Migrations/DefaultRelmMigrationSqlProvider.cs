@@ -117,6 +117,7 @@ namespace CoreRelm.Migrations
 
             _log?.LogFormatted(LogLevel.Information, "Planning migration...", args: []);
             var planOptions = new MigrationPlanOptions(
+                DropFunctionsOnCreate: _migrationOptions.DropFunctionsOnCreate,
                 Destructive: _migrationOptions.Destructive,
                 ScopeTables: scopeTables,
                 StampUtc: stampUtc

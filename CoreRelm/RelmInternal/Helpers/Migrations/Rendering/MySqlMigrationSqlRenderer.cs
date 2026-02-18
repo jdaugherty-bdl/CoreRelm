@@ -6,10 +6,12 @@ using CoreRelm.Models.Migrations.MigrationPlans;
 using CoreRelm.Models.Migrations.Rendering;
 using CoreRelm.RelmInternal.Helpers.Migrations.Provisioning;
 using Microsoft.Extensions.Logging;
+using MoreLinq.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using static CoreRelm.Enums.Indexes;
 using static CoreRelm.Enums.SecurityEnums;
@@ -106,7 +108,22 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Rendering
                     query.AppendLine($"ALTER TABLE `{EscapeIdentifier(addColumnOperation.TableName)}` ADD COLUMN {RenderColumnDefinition(addColumnOperation.Column)};");
                     break;
                 case AlterColumnOperation alterColumnOperation:
-                    query.AppendLine($"ALTER TABLE `{EscapeIdentifier(alterColumnOperation.TableName)}` MODIFY COLUMN {RenderColumnDefinition(alterColumnOperation.Desired)};");
+                    var queryStatement = new StringBuilder();
+
+                    queryStatement.Append("ALTER TABLE `");
+                    queryStatement.Append(EscapeIdentifier(alterColumnOperation.TableName));
+                    queryStatement.Append("` MODIFY COLUMN ");
+                    queryStatement.Append(RenderColumnDefinition(alterColumnOperation.Desired));
+
+                    // get the column name of the column immediate prior to this one in the model definition, if any, and with that column's underscore name, if any, create an "AFTER" clause to preserve column order in the table. If there is no prior column, we can use "FIRST" to place it at the beginning.
+                    if (!string.IsNullOrWhiteSpace(alterColumnOperation.Desired.AfterColumnName))
+                        queryStatement.Append($" AFTER `{EscapeIdentifier(alterColumnOperation.Desired.AfterColumnName)}`");
+                    else
+                        queryStatement.Append(" FIRST");
+
+                    queryStatement.Append(';');
+
+                    query.AppendLine(queryStatement.ToString());
                     break;
                 case DropIndexOperation dropIndexOperation:
                     // MySQL requires DROP PRIMARY KEY for primary; we won't emit that here.
@@ -312,12 +329,19 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Rendering
 
             if (!string.IsNullOrWhiteSpace(functionSchema.RoutineComment))
                 query.AppendLine($" COMMENT '{functionSchema.RoutineComment.Replace("'", "''")}'");
+            
+            if (string.IsNullOrWhiteSpace(functionSchema.RoutineDefinition))
+                throw new InvalidOperationException($"RoutineDefinition is required for function '{functionSchema.RoutineName}'.");
 
-            query.AppendLine("BEGIN");
-            query.AppendLine(functionSchema.RoutineDefinition);
-            if (!(functionSchema.RoutineDefinition?.TrimEnd().EndsWith(";") ?? false))
-                query.AppendLine(";");
-            query.AppendLine("END");
+            if (!functionSchema.RoutineDefinition.TrimStart().StartsWith("BEGIN", StringComparison.OrdinalIgnoreCase))
+                query.AppendLine("BEGIN");
+
+            query.AppendLine(functionSchema.RoutineDefinition.Trim());
+            if (!functionSchema.RoutineDefinition.TrimEnd().EndsWith(";"))
+                query.Append(';');
+
+            if (!Regex.IsMatch(functionSchema.RoutineDefinition, @"\bEND(?:\s*;)?$"))
+                query.AppendLine("END");
 
             if (options.WrapFunctionsWithDelimiter)
             {

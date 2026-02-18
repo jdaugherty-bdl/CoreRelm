@@ -922,9 +922,14 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                 _log?.LogFormatted(LogLevel.Information, "Planning function '{FunctionName}'", args: [desiredFunction.RoutineName], preIncreaseLevel: true);
                 
                 FunctionSchema? actualFunction = null;
-                if (!string.IsNullOrWhiteSpace(desiredFunction.RoutineName) && !actualSchema.Functions.TryGetValue(desiredFunction.RoutineName, out actualFunction))
+                if (!string.IsNullOrWhiteSpace(desiredFunction.RoutineName) && !(actualSchema.Functions?.TryGetValue(desiredFunction.RoutineName, out actualFunction) ?? false))
                 {
                     _log?.LogFormatted(LogLevel.Information, "Function '{FunctionName}' does not exist in actual schema; planning CreateFunction", args: [desiredFunction.RoutineName], singleIndentLine: true);
+                    if (options.DropFunctionsOnCreate)
+                    {
+                        _log?.LogFormatted(LogLevel.Information, "Option 'DropFunctionsOnCreate' is enabled; planning DropFunction before CreateFunction for function '{FunctionName}'", args: [desiredFunction.RoutineName]);
+                        migrationOperations.Add(new DropFunctionOperation(desiredFunction.RoutineName, desiredFunction));
+                    }
                     migrationOperations.Add(new CreateFunctionOperation(desiredFunction.RoutineName, desiredFunction));
                     continue;
                 }
@@ -1183,16 +1188,17 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
 
         private static int RankOperations(IMigrationOperation op) => op switch
         {
-            CreateFunctionOperation => 5,
-            CreateTableOperation => 10,
-            AddColumnOperation => 20,
-            AlterColumnOperation => 30,
-            DropIndexOperation => 40,
-            CreateIndexOperation => 50,
-            DropForeignKeyOperation => 60,
-            AddForeignKeyOperation => 70,
-            DropTriggerOperation => 80,
-            CreateTriggerOperation => 90,
+            DropFunctionOperation => 10,
+            CreateFunctionOperation => 20,
+            CreateTableOperation => 30,
+            AddColumnOperation => 40,
+            AlterColumnOperation => 50,
+            DropIndexOperation => 60,
+            CreateIndexOperation => 70,
+            DropForeignKeyOperation => 80,
+            AddForeignKeyOperation => 90,
+            DropTriggerOperation => 100,
+            CreateTriggerOperation => 110,
             _ => 999
         };
 

@@ -134,6 +134,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
 
             if (columnResults != null)
             {
+                string? previousColumnName = null;
                 foreach (var column in columnResults)
                 {
                     if (column == null)
@@ -160,7 +161,10 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
                         columnSchemas[column.TableName] = columns;
                     }
 
+                    column.AfterColumnName = previousColumnName;
                     columns[column.ColumnName!] = column;
+
+                    previousColumnName = column.ColumnName;
                 }
             }
 
