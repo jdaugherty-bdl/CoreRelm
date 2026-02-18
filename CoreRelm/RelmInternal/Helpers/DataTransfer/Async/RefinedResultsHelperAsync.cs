@@ -29,7 +29,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Async
         /// <param name="allowUserVariables">A value indicating whether user-defined variables are allowed in the connection. Defaults to <see
         /// langword="false"/>.</param>
         /// <returns>The scalar value of type <typeparamref name="T"/> returned by the query.</returns>
-        internal static async Task<T?> GetScalarAsync<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
+        internal static async Task<T?> GetScalarAsync<T>(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
         {
             using var conn = (RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName, allowUserVariables))
                 ?? throw new InvalidOperationException($"Could not get a valid connection for connection type '{connectionName}'.");
@@ -56,7 +56,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Async
         /// <returns>The scalar result of the query, converted to the specified type <typeparamref name="T"/>. Returns the
         /// default value of <typeparamref name="T"/> if the query produces no result or if <paramref
         /// name="throwException"/> is <see langword="false"/> and an error occurs.</returns>
-        internal static async Task<T?> GetScalarAsync<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        internal static async Task<T?> GetScalarAsync<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
         {
             return await GetScalarAsync<T>(new RelmContext(establishedConnection), query, parameters, throwException: throwException, cancellationToken: cancellationToken);
         }
@@ -82,7 +82,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Async
         /// <returns>The scalar result of the query, converted to the specified type <typeparamref name="T"/>. Returns the
         /// default value of <typeparamref name="T"/> if the query produces no result or if <paramref
         /// name="throwException"/> is <see langword="false"/> and an error occurs.</returns>
-        internal static async Task<T?> GetScalarAsync<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        internal static async Task<T?> GetScalarAsync<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
         {
             return await GetScalarAsync<T>(new RelmContext(establishedConnection, sqlTransaction), query, parameters, throwException: throwException, cancellationToken: cancellationToken);
         }
@@ -102,7 +102,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Async
         /// <returns>A task representing the asynchronous operation. The task result contains the value of the first column of
         /// the first row in the result set, cast to type T. Returns the default value of T if no result is found or if
         /// throwException is false and an error occurs.</returns>
-        internal async static Task<T?> GetScalarAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        internal async static Task<T?> GetScalarAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
         {
             return await DatabaseWorkHelper.DoDatabaseWorkAsync(relmContext, query,
                 async (cmd, cancellationToken) =>
@@ -127,10 +127,10 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Async
         /// <returns>A task that represents the asynchronous operation. The task result contains the scalar value returned by the
         /// command, converted to type T. If the result is DBNull or cannot be converted, the default value for type T
         /// is returned.</returns>
-        private async static Task<T?> RunScalarCommandAsync<T>(MySqlCommand cmd, Dictionary<string, object>? parameters = null, CancellationToken cancellationToken = default)
+        private async static Task<T?> RunScalarCommandAsync<T>(MySqlCommand cmd, Dictionary<string, object?>? parameters = null, CancellationToken cancellationToken = default)
         {
             if (parameters != null)
-                cmd.Parameters.AddAllParameters(parameters);
+                cmd.Parameters.AddAllParameters(parameters!);
 
             var scalarResult = await cmd.ExecuteScalarAsync(cancellationToken);
 
@@ -154,7 +154,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Async
         /// to <see langword="false"/>.</param>
         /// <returns>A <see cref="DataRow"/> representing the first row of the result set, or <see langword="null"/> if no rows 
         /// are returned or if <paramref name="throwException"/> is <see langword="false"/> and an error occurs.</returns>
-        internal static async Task<DataRow?> GetDataRowAsync(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
+        internal static async Task<DataRow?> GetDataRowAsync(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
         {
             using var conn = (RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName, allowUserVariables))
                 ?? throw new InvalidOperationException($"Could not get a valid connection for connection type '{connectionName}'.");
@@ -177,7 +177,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Async
         /// error.</param>
         /// <returns>The first <see cref="DataRow"/> from the result set if the query returns any rows; otherwise, <see
         /// langword="null"/>.</returns>
-        internal static async Task<DataRow?> GetDataRowAsync(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        internal static async Task<DataRow?> GetDataRowAsync(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
         {
             var intermediate = await GetDataTableAsync(establishedConnection, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
 
@@ -201,7 +201,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Async
         /// error.</param>
         /// <returns>The first <see cref="DataRow"/> from the result set if the query returns any rows; otherwise, <see
         /// langword="null"/>.</returns>
-        internal static async Task<DataRow?> GetDataRowAsync(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        internal static async Task<DataRow?> GetDataRowAsync(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
         {
             var intermediate = await GetDataTableAsync(establishedConnection, sqlTransaction, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
 
@@ -221,7 +221,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Async
         /// langword="true"/> to throw an exception; otherwise, <see langword="false"/>.</param>
         /// <returns>The first <see cref="DataRow"/> from the result set if the query returns any rows; otherwise, <see
         /// langword="null"/>.</returns>
-        internal static async Task<DataRow?> GetDataRowAsync(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        internal static async Task<DataRow?> GetDataRowAsync(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
         {
             var intermediate = await GetDataTableAsync(relmContext, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
 
@@ -245,7 +245,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Async
         /// langword="false"/>.</param>
         /// <returns>A <see cref="DataTable"/> containing the results of the query. The table will be empty if the query  returns
         /// no rows.</returns>
-        internal static async Task<DataTable?> GetDataTableAsync(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
+        internal static async Task<DataTable?> GetDataTableAsync(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
         {
             using var conn = (RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName, allowUserVariables))
                 ?? throw new InvalidOperationException($"Could not get a valid connection for connection type '{connectionName}'.");
@@ -269,7 +269,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Async
         /// method suppresses exceptions and returns an empty <see cref="DataTable"/> on failure.</param>
         /// <returns>A <see cref="DataTable"/> containing the results of the query. If the query returns no rows, the <see
         /// cref="DataTable"/> will be empty.</returns>
-        internal static async Task<DataTable?> GetDataTableAsync(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        internal static async Task<DataTable?> GetDataTableAsync(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
         {
             return await GetDataTableAsync(new RelmContext(establishedConnection, autoInitializeDataSets: false, autoVerifyTables: false), query, parameters, throwException: throwException, cancellationToken: cancellationToken);
         }
@@ -292,7 +292,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Async
         /// method suppresses exceptions and returns an empty <see cref="DataTable"/> on failure.</param>
         /// <returns>A <see cref="DataTable"/> containing the results of the query. If the query returns no rows, the <see
         /// cref="DataTable"/> will be empty.</returns>
-        internal static async Task<DataTable?> GetDataTableAsync(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        internal static async Task<DataTable?> GetDataTableAsync(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
         {
             return await GetDataTableAsync(new RelmContext(establishedConnection, sqlTransaction, autoInitializeDataSets: false, autoVerifyTables: false), query, parameters, throwException: throwException, cancellationToken: cancellationToken);
         }
@@ -313,13 +313,13 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Async
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the asynchronous operation.</param>
         /// <returns>A task that represents the asynchronous operation. The task result contains a DataTable with the query
         /// results, or null if an error occurs and throwException is false.</returns>
-        internal async static Task<DataTable?> GetDataTableAsync(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        internal async static Task<DataTable?> GetDataTableAsync(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
         {
             return await DatabaseWorkHelper.DoDatabaseWorkAsync<DataTable>(relmContext, query,
                 async (cmd, cancellationToken) =>
                 {
                     if (parameters != null)
-                        cmd.Parameters.AddAllParameters(parameters);
+                        cmd.Parameters.AddAllParameters(parameters!);
 
                     using (var tableAdapter = new MySqlDataAdapter())
                     {

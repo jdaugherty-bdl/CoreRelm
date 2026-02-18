@@ -259,7 +259,8 @@ namespace CoreRelm.Models
 
         private object? CreateDataSetType(PropertyInfo attachedProperty)
         {
-            var dalDataSetType = attachedProperty.PropertyType.GetGenericArguments()[0];
+            var dalDataSetType = attachedProperty.PropertyType.GetGenericArguments().FirstOrDefault()
+                ?? attachedProperty.PropertyType;
 
             // create a default data loader for the generic type argument then create a dataset and pass the data loader
             // check if dalDataSetType has a RelmDataLoader attribute defined at the class level, and create a new instance of the type indicated and save to dalDataLoader
@@ -269,7 +270,7 @@ namespace CoreRelm.Models
             try
             {
                 if (classDataLoader?.LoaderType == null)
-                    dalDataLoader = Activator.CreateInstance(typeof(RelmDefaultDataLoader<>).MakeGenericType(dalDataSetType), [ContextOptions]);
+                    dalDataLoader = Activator.CreateInstance(typeof(RelmDefaultDataLoader<>).MakeGenericType(dalDataSetType), [this]);
                 else
                     dalDataLoader = Activator.CreateInstance(classDataLoader.LoaderType, [ContextOptions]);
             }

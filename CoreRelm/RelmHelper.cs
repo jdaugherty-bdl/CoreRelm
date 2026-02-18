@@ -304,7 +304,7 @@ namespace CoreRelm
         /// user variables; otherwise, <see langword="false"/>.</param>
         /// <returns>The scalar result of the query, cast to the specified type <typeparamref name="T"/>. Returns the default
         /// value of <typeparamref name="T"/> if the query returns no result.</returns>
-        public static T? GetScalar<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false)
+        public static T? GetScalar<T>(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false)
             => RefinedResultsHelper.GetScalar<T>(connectionName, query, parameters: parameters, throwException: throwException, allowUserVariables: allowUserVariables);
 
         /// <summary>
@@ -325,7 +325,7 @@ namespace CoreRelm
         /// user variables; otherwise, <see langword="false"/>.</param>
         /// <returns>The scalar result of the query, cast to the specified type <typeparamref name="T"/>. Returns the default
         /// value of <typeparamref name="T"/> if the query returns no result.</returns>
-        public static async Task<T?> GetScalarAsync<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
+        public static async Task<T?> GetScalarAsync<T>(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
             => await RefinedResultsHelperAsync.GetScalarAsync<T>(connectionName, query, parameters: parameters, throwException: throwException, allowUserVariables: allowUserVariables, cancellationToken: cancellationToken);
 
         /// <summary>
@@ -340,7 +340,7 @@ namespace CoreRelm
         /// exceptions will be thrown; otherwise, errors will be suppressed.</param>
         /// <returns>The scalar result of the query, converted to the specified type <typeparamref name="T"/>. Returns the
         /// default value of <typeparamref name="T"/> if the query result is null.</returns>
-        public static T? GetScalar<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        public static T? GetScalar<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
             => RefinedResultsHelper.GetScalar<T>(establishedConnection, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
@@ -357,7 +357,7 @@ namespace CoreRelm
         /// exceptions will be thrown; otherwise, errors will be suppressed.</param>
         /// <returns>The scalar result of the query, converted to the specified type <typeparamref name="T"/>. Returns the
         /// default value of <typeparamref name="T"/> if the query result is null.</returns>
-        public static T? GetScalar<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        public static T? GetScalar<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
             => RefinedResultsHelper.GetScalar<T>(establishedConnection, sqlTransaction, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
@@ -372,7 +372,7 @@ namespace CoreRelm
         /// exceptions will be thrown; otherwise, errors will be suppressed.</param>
         /// <returns>The scalar result of the query, converted to the specified type <typeparamref name="T"/>. Returns the
         /// default value of <typeparamref name="T"/> if the query result is null.</returns>
-        public static async Task<T?> GetScalarAsync<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        public static async Task<T?> GetScalarAsync<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
             => await RefinedResultsHelperAsync.GetScalarAsync<T>(establishedConnection, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
 
         /// <summary>
@@ -389,7 +389,7 @@ namespace CoreRelm
         /// exceptions will be thrown; otherwise, errors will be suppressed.</param>
         /// <returns>The scalar result of the query, converted to the specified type <typeparamref name="T"/>. Returns the
         /// default value of <typeparamref name="T"/> if the query result is null.</returns>
-        public static async Task<T?> GetScalarAsync<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        public static async Task<T?> GetScalarAsync<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
             => await RefinedResultsHelperAsync.GetScalarAsync<T>(establishedConnection, sqlTransaction, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
 
         /// <summary>
@@ -405,7 +405,7 @@ namespace CoreRelm
         /// <returns>The scalar result of the query converted to the specified type <typeparamref name="T"/>. Returns the default
         /// value of <typeparamref name="T"/> if the query produces no result or fails and <paramref
         /// name="throwException"/> is <see langword="false"/>.</returns>
-        public static T? GetScalar<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        public static T? GetScalar<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
             => RefinedResultsHelper.GetScalar<T>(relmContext, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
@@ -421,7 +421,7 @@ namespace CoreRelm
         /// <returns>The scalar result of the query converted to the specified type <typeparamref name="T"/>. Returns the default
         /// value of <typeparamref name="T"/> if the query produces no result or fails and <paramref
         /// name="throwException"/> is <see langword="false"/>.</returns>
-        public static async Task<T?> GetScalarAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        public static async Task<T?> GetScalarAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
             => await RefinedResultsHelperAsync.GetScalarAsync<T>(relmContext, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
 
         /// <summary>
@@ -440,7 +440,7 @@ namespace CoreRelm
         /// to allow user variables; otherwise, <see langword="false"/>.</param>
         /// <returns>A <see cref="DataRow"/> representing the first row of the result set.  Returns <see langword="null"/> if the
         /// query does not return any rows.</returns>
-        public static DataRow? GetDataRow(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false)
+        public static DataRow? GetDataRow(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false)
             => RefinedResultsHelper.GetDataRow(connectionName, query, parameters: parameters, throwException: throwException, allowUserVariables: allowUserVariables);
 
         /// <summary>
@@ -459,7 +459,7 @@ namespace CoreRelm
         /// to allow user variables; otherwise, <see langword="false"/>.</param>
         /// <returns>A <see cref="DataRow"/> representing the first row of the result set.  Returns <see langword="null"/> if the
         /// query does not return any rows.</returns>
-        public static async Task<DataRow?> GetDataRowAsync(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
+        public static async Task<DataRow?> GetDataRowAsync(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
             => await RefinedResultsHelperAsync.GetDataRowAsync(connectionName, query, parameters: parameters, throwException: throwException, allowUserVariables: allowUserVariables, cancellationToken: cancellationToken);
 
         /// <summary>
@@ -477,7 +477,7 @@ namespace CoreRelm
         /// throw an exception on failure; otherwise, <see langword="false"/>.</param>
         /// <returns>A <see cref="DataRow"/> representing the first row of the result set. Returns <see langword="null"/> if the
         /// query does not return any rows.</returns>
-        public static DataRow? GetDataRow(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        public static DataRow? GetDataRow(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
             => RefinedResultsHelper.GetDataRow(establishedConnection, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
@@ -497,7 +497,7 @@ namespace CoreRelm
         /// throw an exception on failure; otherwise, <see langword="false"/>.</param>
         /// <returns>A <see cref="DataRow"/> representing the first row of the result set. Returns <see langword="null"/> if the
         /// query does not return any rows.</returns>
-        public static DataRow? GetDataRow(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        public static DataRow? GetDataRow(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
             => RefinedResultsHelper.GetDataRow(establishedConnection, sqlTransaction, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
@@ -515,7 +515,7 @@ namespace CoreRelm
         /// throw an exception on failure; otherwise, <see langword="false"/>.</param>
         /// <returns>A <see cref="DataRow"/> representing the first row of the result set. Returns <see langword="null"/> if the
         /// query does not return any rows.</returns>
-        public static async Task<DataRow?> GetDataRowAsync(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        public static async Task<DataRow?> GetDataRowAsync(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
             => await RefinedResultsHelperAsync.GetDataRowAsync(establishedConnection, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
 
         /// <summary>
@@ -535,7 +535,7 @@ namespace CoreRelm
         /// throw an exception on failure; otherwise, <see langword="false"/>.</param>
         /// <returns>A <see cref="DataRow"/> representing the first row of the result set. Returns <see langword="null"/> if the
         /// query does not return any rows.</returns>
-        public static async Task<DataRow?> GetDataRowAsync(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        public static async Task<DataRow?> GetDataRowAsync(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
             => await RefinedResultsHelperAsync.GetDataRowAsync(establishedConnection, sqlTransaction, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
 
         /// <summary>
@@ -549,7 +549,7 @@ namespace CoreRelm
         /// langword="true"/> to throw an exception when no rows are returned; otherwise, <see langword="false"/>.</param>
         /// <returns>A <see cref="DataRow"/> representing the first row of the result set. Returns <see langword="null"/> if no
         /// rows are found and <paramref name="throwException"/> is <see langword="false"/>.</returns>
-        public static DataRow? GetDataRow(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        public static DataRow? GetDataRow(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
             => RefinedResultsHelper.GetDataRow(relmContext, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
@@ -563,7 +563,7 @@ namespace CoreRelm
         /// langword="true"/> to throw an exception when no rows are returned; otherwise, <see langword="false"/>.</param>
         /// <returns>A <see cref="DataRow"/> representing the first row of the result set. Returns <see langword="null"/> if no
         /// rows are found and <paramref name="throwException"/> is <see langword="false"/>.</returns>
-        public static async Task<DataRow?> GetDataRowAsync(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        public static async Task<DataRow?> GetDataRowAsync(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
             => await RefinedResultsHelperAsync.GetDataRowAsync(relmContext, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
 
         /// <summary>
@@ -582,7 +582,7 @@ namespace CoreRelm
         /// langword="true"/>, user-defined variables are permitted; otherwise, they are not.</param>
         /// <returns>A <see cref="DataTable"/> containing the results of the query. The <see cref="DataTable"/> will be empty if
         /// the query returns no rows.</returns>
-        public static DataTable? GetDataTable(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false)
+        public static DataTable? GetDataTable(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false)
             => RefinedResultsHelper.GetDataTable(connectionName, query, parameters: parameters, throwException: throwException, allowUserVariables: allowUserVariables);
 
         /// <summary>
@@ -601,7 +601,7 @@ namespace CoreRelm
         /// langword="true"/>, user-defined variables are permitted; otherwise, they are not.</param>
         /// <returns>A <see cref="DataTable"/> containing the results of the query. The <see cref="DataTable"/> will be empty if
         /// the query returns no rows.</returns>
-        public static async Task<DataTable?> GetDataTableAsync(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
+        public static async Task<DataTable?> GetDataTableAsync(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
             => await RefinedResultsHelperAsync.GetDataTableAsync(connectionName, query, parameters: parameters, throwException: throwException, allowUserVariables: allowUserVariables, cancellationToken: cancellationToken);
 
         /// <summary>
@@ -616,7 +616,7 @@ namespace CoreRelm
         /// exceptions are thrown; otherwise, errors are suppressed.</param>
         /// <returns>A <see cref="DataTable"/> containing the results of the query. If the query returns no rows, the <see
         /// cref="DataTable"/> will be empty.</returns>
-        public static DataTable? GetDataTable(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        public static DataTable? GetDataTable(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
             => RefinedResultsHelper.GetDataTable(establishedConnection, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
@@ -633,7 +633,7 @@ namespace CoreRelm
         /// exceptions are thrown; otherwise, errors are suppressed.</param>
         /// <returns>A <see cref="DataTable"/> containing the results of the query. If the query returns no rows, the <see
         /// cref="DataTable"/> will be empty.</returns>
-        public static DataTable? GetDataTable(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        public static DataTable? GetDataTable(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
             => RefinedResultsHelper.GetDataTable(establishedConnection, sqlTransaction, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
@@ -648,7 +648,7 @@ namespace CoreRelm
         /// exceptions are thrown; otherwise, errors are suppressed.</param>
         /// <returns>A <see cref="DataTable"/> containing the results of the query. If the query returns no rows, the <see
         /// cref="DataTable"/> will be empty.</returns>
-        public static async Task<DataTable?> GetDataTableAsync(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        public static async Task<DataTable?> GetDataTableAsync(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
             => await RefinedResultsHelperAsync.GetDataTableAsync(establishedConnection, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
 
         /// <summary>
@@ -665,7 +665,7 @@ namespace CoreRelm
         /// exceptions are thrown; otherwise, errors are suppressed.</param>
         /// <returns>A <see cref="DataTable"/> containing the results of the query. If the query returns no rows, the <see
         /// cref="DataTable"/> will be empty.</returns>
-        public static async Task<DataTable?> GetDataTableAsync(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        public static async Task<DataTable?> GetDataTableAsync(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
             => await RefinedResultsHelperAsync.GetDataTableAsync(establishedConnection, sqlTransaction, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
 
         /// <summary>
@@ -680,7 +680,7 @@ namespace CoreRelm
         /// langword="true"/>, exceptions will be thrown; otherwise, errors will be suppressed.</param>
         /// <returns>A <see cref="DataTable"/> containing the results of the query. If the query returns no results, the <see
         /// cref="DataTable"/> will be empty.</returns>
-        public static DataTable? GetDataTable(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        public static DataTable? GetDataTable(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
             => RefinedResultsHelper.GetDataTable(relmContext, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
@@ -695,7 +695,7 @@ namespace CoreRelm
         /// langword="true"/>, exceptions will be thrown; otherwise, errors will be suppressed.</param>
         /// <returns>A <see cref="DataTable"/> containing the results of the query. If the query returns no results, the <see
         /// cref="DataTable"/> will be empty.</returns>
-        public static async Task<DataTable?> GetDataTableAsync(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        public static async Task<DataTable?> GetDataTableAsync(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
             => await RefinedResultsHelperAsync.GetDataTableAsync(relmContext, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
 
         //***************** Object results *****************//
@@ -718,7 +718,7 @@ namespace CoreRelm
         /// <returns>An instance of the specified type <typeparamref name="T"/> populated with the data retrieved from the query,
         /// or <see langword="null"/> if no data is found and <paramref name="throwException"/> is <see
         /// langword="false"/>.</returns>
-        public static T? GetDataObject<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false) where T : IRelmModel, new()
+        public static T? GetDataObject<T>(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false) where T : IRelmModel, new()
             => ObjectResultsHelper.GetDataObject<T>(connectionName, query, parameters: parameters, throwException: throwException, allowUserVariables: allowUserVariables);
 
         /// <summary>
@@ -739,7 +739,7 @@ namespace CoreRelm
         /// <returns>An instance of the specified type <typeparamref name="T"/> populated with the data retrieved from the query,
         /// or <see langword="null"/> if no data is found and <paramref name="throwException"/> is <see
         /// langword="false"/>.</returns>
-        public static async Task<T?> GetDataObjectAsync<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default) where T : IRelmModel, new()
+        public static async Task<T?> GetDataObjectAsync<T>(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default) where T : IRelmModel, new()
             => await ObjectResultsHelper.GetDataObjectAsync<T>(connectionName, query, parameters: parameters, throwException: throwException, allowUserVariables: allowUserVariables, cancellationToken: cancellationToken);
 
         /// <summary>
@@ -758,7 +758,7 @@ namespace CoreRelm
         /// <returns>An instance of type <typeparamref name="T"/> populated with the data retrieved from the database. Returns
         /// <see langword="default"/> if no data is found and <paramref name="throwException"/> is <see
         /// langword="false"/>.</returns>
-        public static T? GetDataObject<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new()
+        public static T? GetDataObject<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true) where T : IRelmModel, new()
             => ObjectResultsHelper.GetDataObject<T>(establishedConnection, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
@@ -779,7 +779,7 @@ namespace CoreRelm
         /// <returns>An instance of type <typeparamref name="T"/> populated with the data retrieved from the database. Returns
         /// <see langword="default"/> if no data is found and <paramref name="throwException"/> is <see
         /// langword="false"/>.</returns>
-        public static T? GetDataObject<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new()
+        public static T? GetDataObject<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true) where T : IRelmModel, new()
             => ObjectResultsHelper.GetDataObject<T>(establishedConnection, sqlTransaction, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
@@ -798,7 +798,7 @@ namespace CoreRelm
         /// <returns>An instance of type <typeparamref name="T"/> populated with the data retrieved from the database. Returns
         /// <see langword="default"/> if no data is found and <paramref name="throwException"/> is <see
         /// langword="false"/>.</returns>
-        public static async Task<T?> GetDataObjectAsync<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel, new()
+        public static async Task<T?> GetDataObjectAsync<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel, new()
             => await ObjectResultsHelper.GetDataObjectAsync<T>(establishedConnection, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
 
         /// <summary>
@@ -819,7 +819,7 @@ namespace CoreRelm
         /// <returns>An instance of type <typeparamref name="T"/> populated with the data retrieved from the database. Returns
         /// <see langword="default"/> if no data is found and <paramref name="throwException"/> is <see
         /// langword="false"/>.</returns>
-        public static async Task<T?> GetDataObjectAsync<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel, new()
+        public static async Task<T?> GetDataObjectAsync<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel, new()
             => await ObjectResultsHelper.GetDataObjectAsync<T>(establishedConnection, sqlTransaction, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
 
         /// <summary>
@@ -839,7 +839,7 @@ namespace CoreRelm
         /// <returns>An instance of the specified type <typeparamref name="T"/> populated with the data retrieved by the query.
         /// Returns <see langword="null"/> if no data is found and <paramref name="throwException"/> is <see
         /// langword="false"/>.</returns>
-        public static T? GetDataObject<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new()
+        public static T? GetDataObject<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true) where T : IRelmModel, new()
             => ObjectResultsHelper.GetDataObject<T>(relmContext, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
@@ -859,7 +859,7 @@ namespace CoreRelm
         /// <returns>An instance of the specified type <typeparamref name="T"/> populated with the data retrieved by the query.
         /// Returns <see langword="null"/> if no data is found and <paramref name="throwException"/> is <see
         /// langword="false"/>.</returns>
-        public static async Task<T?> GetDataObjectAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel, new()
+        public static async Task<T?> GetDataObjectAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel, new()
             => await ObjectResultsHelper.GetDataObjectAsync<T>(relmContext, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
 
         /// <summary>
@@ -880,7 +880,7 @@ namespace CoreRelm
         /// enable user variables; otherwise, <see langword="false"/>.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the data objects retrieved by the query. If no data is found, an
         /// empty collection is returned.</returns>
-        public static IEnumerable<T?>? GetDataObjects<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false) where T : IRelmModel, new()
+        public static IEnumerable<T?>? GetDataObjects<T>(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false) where T : IRelmModel, new()
             => ObjectResultsHelper.GetDataObjects<T>(connectionName, query, parameters: parameters, throwException: throwException, allowUserVariables: allowUserVariables);
 
         /// <summary>
@@ -901,7 +901,7 @@ namespace CoreRelm
         /// enable user variables; otherwise, <see langword="false"/>.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the data objects retrieved by the query. If no data is found, an
         /// empty collection is returned.</returns>
-        public static async Task<IEnumerable<T?>?> GetDataObjectsAsync<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default) where T : IRelmModel, new()
+        public static async Task<IEnumerable<T?>?> GetDataObjectsAsync<T>(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default) where T : IRelmModel, new()
             => await ObjectResultsHelper.GetDataObjectsAsync<T>(connectionName, query, parameters: parameters, throwException: throwException, allowUserVariables: allowUserVariables, cancellationToken: cancellationToken);
 
         /// <summary>
@@ -920,7 +920,7 @@ namespace CoreRelm
         /// langword="true"/>, exceptions will be propagated; otherwise, errors will be suppressed.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the data objects retrieved from the database. The collection will
         /// be empty if no matching records are found.</returns>
-        public static IEnumerable<T?>? GetDataObjects<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new()
+        public static IEnumerable<T?>? GetDataObjects<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true) where T : IRelmModel, new()
             => ObjectResultsHelper.GetDataObjects<T>(establishedConnection, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
@@ -941,7 +941,7 @@ namespace CoreRelm
         /// langword="null"/> if no transaction is required.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the data objects retrieved from the database. The collection will
         /// be empty if no matching records are found.</returns>
-        public static IEnumerable<T?>? GetDataObjects<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new()
+        public static IEnumerable<T?>? GetDataObjects<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true) where T : IRelmModel, new()
             => ObjectResultsHelper.GetDataObjects<T>(establishedConnection, sqlTransaction, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
@@ -960,7 +960,7 @@ namespace CoreRelm
         /// langword="true"/>, exceptions will be propagated; otherwise, errors will be suppressed.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the data objects retrieved from the database. The collection will
         /// be empty if no matching records are found.</returns>
-        public static async Task<IEnumerable<T?>?> GetDataObjectsAsync<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel, new()
+        public static async Task<IEnumerable<T?>?> GetDataObjectsAsync<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel, new()
             => await ObjectResultsHelper.GetDataObjectsAsync<T>(establishedConnection, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
 
         /// <summary>
@@ -981,7 +981,7 @@ namespace CoreRelm
         /// langword="null"/> if no transaction is required.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the data objects retrieved from the database. The collection will
         /// be empty if no matching records are found.</returns>
-        public static async Task<IEnumerable<T?>?> GetDataObjectsAsync<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel, new()
+        public static async Task<IEnumerable<T?>?> GetDataObjectsAsync<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel, new()
             => await ObjectResultsHelper.GetDataObjectsAsync<T>(establishedConnection, sqlTransaction, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
 
         /// <summary>
@@ -1003,7 +1003,7 @@ namespace CoreRelm
         /// silently.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the data objects retrieved by the query.  If no data is found,
         /// the collection will be empty.</returns>
-        public static IEnumerable<T?>? GetDataObjects<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new()
+        public static IEnumerable<T?>? GetDataObjects<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true) where T : IRelmModel, new()
             => ObjectResultsHelper.GetDataObjects<T>(relmContext, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
@@ -1025,7 +1025,7 @@ namespace CoreRelm
         /// silently.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the data objects retrieved by the query.  If no data is found,
         /// the collection will be empty.</returns>
-        public static async Task<IEnumerable<T?>?> GetDataObjectsAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel, new()
+        public static async Task<IEnumerable<T?>?> GetDataObjectsAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel, new()
             => await ObjectResultsHelper.GetDataObjectsAsync<T>(relmContext, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
 
         /// <summary>
@@ -1060,7 +1060,7 @@ namespace CoreRelm
         /// <param name="allowUserVariables">A value indicating whether user-defined variables are allowed in the query.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the results of the query mapped to the specified type. Returns an
         /// empty collection if no results are found.</returns>
-        public static IEnumerable<T?>? GetDataList<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false)
+        public static IEnumerable<T?>? GetDataList<T>(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false)
             => ObjectResultsHelper.GetDataList<T>(connectionName, query, parameters: parameters, throwException: throwException, allowUserVariables: allowUserVariables);
 
         /// <summary>
@@ -1079,7 +1079,7 @@ namespace CoreRelm
         /// <param name="allowUserVariables">A value indicating whether user-defined variables are allowed in the query.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the results of the query mapped to the specified type. Returns an
         /// empty collection if no results are found.</returns>
-        public static async Task<IEnumerable<T?>?> GetDataListAsync<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
+        public static async Task<IEnumerable<T?>?> GetDataListAsync<T>(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
             => await ObjectResultsHelper.GetDataListAsync<T>(connectionName, query, parameters: parameters, throwException: throwException, allowUserVariables: allowUserVariables, cancellationToken: cancellationToken);
 
         /// <summary>
@@ -1094,7 +1094,7 @@ namespace CoreRelm
         /// langword="true"/>, exceptions will be thrown; otherwise, errors will be suppressed.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the results of the query mapped to objects of type <typeparamref
         /// name="T"/>. Returns an empty collection if no results are found.</returns>
-        public static IEnumerable<T?>? GetDataList<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        public static IEnumerable<T?>? GetDataList<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
             => ObjectResultsHelper.GetDataList<T>(establishedConnection, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
@@ -1111,7 +1111,7 @@ namespace CoreRelm
         /// transaction is required.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the results of the query mapped to objects of type <typeparamref
         /// name="T"/>. Returns an empty collection if no results are found.</returns>
-        public static IEnumerable<T?>? GetDataList<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        public static IEnumerable<T?>? GetDataList<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
             => ObjectResultsHelper.GetDataList<T>(establishedConnection, sqlTransaction, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
@@ -1126,7 +1126,7 @@ namespace CoreRelm
         /// langword="true"/>, exceptions will be thrown; otherwise, errors will be suppressed.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the results of the query mapped to objects of type <typeparamref
         /// name="T"/>. Returns an empty collection if no results are found.</returns>
-        public static async Task<IEnumerable<T?>?> GetDataListAsync<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        public static async Task<IEnumerable<T?>?> GetDataListAsync<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
             => await ObjectResultsHelper.GetDataListAsync<T>(establishedConnection, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
 
         /// <summary>
@@ -1143,7 +1143,7 @@ namespace CoreRelm
         /// transaction is required.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the results of the query mapped to objects of type <typeparamref
         /// name="T"/>. Returns an empty collection if no results are found.</returns>
-        public static async Task<IEnumerable<T?>?> GetDataListAsync<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        public static async Task<IEnumerable<T?>?> GetDataListAsync<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
             => await ObjectResultsHelper.GetDataListAsync<T>(establishedConnection, sqlTransaction, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
 
         /// <summary>
@@ -1159,7 +1159,7 @@ namespace CoreRelm
         /// <returns>An <see cref="IEnumerable{T}"/> containing the data items retrieved by the query.  Returns an empty
         /// collection if no items are found or if <paramref name="throwException"/> is <see langword="false"/> and the
         /// query fails.</returns>
-        public static IEnumerable<T?>? GetDataList<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        public static IEnumerable<T?>? GetDataList<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
             => ObjectResultsHelper.GetDataList<T>(relmContext, query, parameters: parameters, throwException: throwException);
 
         /// <summary>
@@ -1175,7 +1175,7 @@ namespace CoreRelm
         /// <returns>An <see cref="IEnumerable{T}"/> containing the data items retrieved by the query.  Returns an empty
         /// collection if no items are found or if <paramref name="throwException"/> is <see langword="false"/> and the
         /// query fails.</returns>
-        public static async Task<IEnumerable<T?>?> GetDataListAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        public static async Task<IEnumerable<T?>?> GetDataListAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
             => await ObjectResultsHelper.GetDataListAsync<T>(relmContext, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
 
         //***************** Table write functions *****************//
@@ -1743,7 +1743,7 @@ namespace CoreRelm
         /// exceptions will be thrown; otherwise, errors will be suppressed.</param>
         /// <param name="allowUserVariables">A boolean value indicating whether user-defined variables are allowed in the query.  If <see
         /// langword="true"/>, user variables are permitted; otherwise, they are not.</param>
-        public static void DoDatabaseWork(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false)
+        public static void DoDatabaseWork(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false)
             => DatabaseWorkHelper.DoDatabaseWork(connectionName, query, parameters, throwException, allowUserVariables);
 
         /// <summary>
@@ -1761,7 +1761,7 @@ namespace CoreRelm
         /// exceptions will be thrown; otherwise, errors will be suppressed.</param>
         /// <param name="allowUserVariables">A boolean value indicating whether user-defined variables are allowed in the query.  If <see
         /// langword="true"/>, user variables are permitted; otherwise, they are not.</param>
-        public static async Task DoDatabaseWorkAsync(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
+        public static async Task DoDatabaseWorkAsync(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
             => await DatabaseWorkHelper.DoDatabaseWorkAsync(connectionName, query, parameters, throwException, allowUserVariables, cancellationToken: cancellationToken);
 
         /// <summary>
@@ -1777,7 +1777,7 @@ namespace CoreRelm
         /// applied.</param>
         /// <param name="throwException">A boolean value indicating whether to throw an exception if an error occurs. If <see langword="true"/>,
         /// exceptions are thrown; otherwise, errors are suppressed.</param>
-        public static void DoDatabaseWork(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        public static void DoDatabaseWork(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
             => DatabaseWorkHelper.DoDatabaseWork(establishedConnection, query, parameters, throwException);
         
         /// <summary>
@@ -1795,7 +1795,7 @@ namespace CoreRelm
         /// applied.</param>
         /// <param name="throwException">A boolean value indicating whether to throw an exception if an error occurs. If <see langword="true"/>,
         /// exceptions are thrown; otherwise, errors are suppressed.</param>
-        public static void DoDatabaseWork(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        public static void DoDatabaseWork(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
             => DatabaseWorkHelper.DoDatabaseWork(establishedConnection, sqlTransaction, query, parameters, throwException);
 
         /// <summary>
@@ -1811,7 +1811,7 @@ namespace CoreRelm
         /// applied.</param>
         /// <param name="throwException">A boolean value indicating whether to throw an exception if an error occurs. If <see langword="true"/>,
         /// exceptions are thrown; otherwise, errors are suppressed.</param>
-        public static async Task DoDatabaseWorkAsync(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        public static async Task DoDatabaseWorkAsync(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
             => await DatabaseWorkHelper.DoDatabaseWorkAsync(establishedConnection, query, parameters, throwException, cancellationToken: cancellationToken);
 
         /// <summary>
@@ -1829,7 +1829,7 @@ namespace CoreRelm
         /// applied.</param>
         /// <param name="throwException">A boolean value indicating whether to throw an exception if an error occurs. If <see langword="true"/>,
         /// exceptions are thrown; otherwise, errors are suppressed.</param>
-        public static async Task DoDatabaseWorkAsync(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        public static async Task DoDatabaseWorkAsync(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
             => await DatabaseWorkHelper.DoDatabaseWorkAsync(establishedConnection, sqlTransaction, query, parameters, throwException, cancellationToken: cancellationToken);
 
         /// <summary>
@@ -1844,7 +1844,7 @@ namespace CoreRelm
         /// parameters will be passed.</param>
         /// <param name="throwException">A value indicating whether an exception should be thrown if the operation fails.  The default value is <see
         /// langword="true"/>.</param>
-        public static void DoDatabaseWork(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        public static void DoDatabaseWork(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
             => DatabaseWorkHelper.DoDatabaseWork(relmContext, query, parameters, throwException: throwException);
 
         /// <summary>
@@ -1859,7 +1859,7 @@ namespace CoreRelm
         /// parameters will be passed.</param>
         /// <param name="throwException">A value indicating whether an exception should be thrown if the operation fails.  The default value is <see
         /// langword="true"/>.</param>
-        public static async Task DoDatabaseWorkAsync(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        public static async Task DoDatabaseWorkAsync(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
             => await DatabaseWorkHelper.DoDatabaseWorkAsync(relmContext, query, parameters, throwException: throwException, cancellationToken: cancellationToken);
 
         /// <summary>
@@ -1879,7 +1879,7 @@ namespace CoreRelm
         /// <param name="allowUserVariables">Indicates whether user-defined variables are allowed in the query. If <see langword="true"/>, user variables
         /// are permitted; otherwise, they are disallowed.</param>
         /// <returns>The result of the database operation, cast to the specified type <typeparamref name="T"/>.</returns>
-        public static T? DoDatabaseWork<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false)
+        public static T? DoDatabaseWork<T>(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false)
             => DatabaseWorkHelper.DoDatabaseWork<T>(connectionName, query, parameters, throwException, allowUserVariables);
 
         /// <summary>
@@ -1899,7 +1899,7 @@ namespace CoreRelm
         /// <param name="allowUserVariables">Indicates whether user-defined variables are allowed in the query. If <see langword="true"/>, user variables
         /// are permitted; otherwise, they are disallowed.</param>
         /// <returns>The result of the database operation, cast to the specified type <typeparamref name="T"/>.</returns>
-        public static async Task<T?> DoDatabaseWorkAsync<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
+        public static async Task<T?> DoDatabaseWorkAsync<T>(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
             => await DatabaseWorkHelper.DoDatabaseWorkAsync<T>(connectionName, query, parameters, throwException, allowUserVariables, cancellationToken);
 
         /// <summary>
@@ -1916,7 +1916,7 @@ namespace CoreRelm
         /// <param name="throwException">A boolean value indicating whether to throw an exception if an error occurs.  If <see langword="true"/>,
         /// exceptions are thrown; otherwise, errors are suppressed.</param>
         /// <returns>The result of the query, cast to the specified type <typeparamref name="T"/>.</returns>
-        public static T? DoDatabaseWork<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        public static T? DoDatabaseWork<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
             => DatabaseWorkHelper.DoDatabaseWork<T>(establishedConnection, query, parameters, throwException);
         
         /// <summary>
@@ -1935,7 +1935,7 @@ namespace CoreRelm
         /// <param name="throwException">A boolean value indicating whether to throw an exception if an error occurs.  If <see langword="true"/>,
         /// exceptions are thrown; otherwise, errors are suppressed.</param>
         /// <returns>The result of the query, cast to the specified type <typeparamref name="T"/>.</returns>
-        public static T? DoDatabaseWork<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        public static T? DoDatabaseWork<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
             => DatabaseWorkHelper.DoDatabaseWork<T>(establishedConnection, sqlTransaction, query, parameters, throwException);
 
         /// <summary>
@@ -1952,7 +1952,7 @@ namespace CoreRelm
         /// <param name="throwException">A boolean value indicating whether to throw an exception if an error occurs.  If <see langword="true"/>,
         /// exceptions are thrown; otherwise, errors are suppressed.</param>
         /// <returns>The result of the query, cast to the specified type <typeparamref name="T"/>.</returns>
-        public static async Task<T?> DoDatabaseWorkAsync<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        public static async Task<T?> DoDatabaseWorkAsync<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
             => await DatabaseWorkHelper.DoDatabaseWorkAsync<T>(establishedConnection, query, parameters, throwException, cancellationToken: cancellationToken);
 
         /// <summary>
@@ -1971,7 +1971,7 @@ namespace CoreRelm
         /// <param name="throwException">A boolean value indicating whether to throw an exception if an error occurs.  If <see langword="true"/>,
         /// exceptions are thrown; otherwise, errors are suppressed.</param>
         /// <returns>The result of the query, cast to the specified type <typeparamref name="T"/>.</returns>
-        public static async Task<T?> DoDatabaseWorkAsync<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        public static async Task<T?> DoDatabaseWorkAsync<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
             => await DatabaseWorkHelper.DoDatabaseWorkAsync<T>(establishedConnection, sqlTransaction, query, parameters, throwException, cancellationToken: cancellationToken);
 
         /// <summary>
@@ -1988,7 +1988,7 @@ namespace CoreRelm
         /// <param name="throwException">A value indicating whether an exception should be thrown if the operation fails.  If <see langword="true"/>,
         /// exceptions will be propagated; otherwise, the method may handle errors internally.</param>
         /// <returns>The result of the database operation, of type <typeparamref name="T"/>.</returns>
-        public static T? DoDatabaseWork<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        public static T? DoDatabaseWork<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
             => DatabaseWorkHelper.DoDatabaseWork<T>(relmContext, query, parameters, throwException);
 
         /// <summary>
@@ -2005,7 +2005,7 @@ namespace CoreRelm
         /// <param name="throwException">A value indicating whether an exception should be thrown if the operation fails.  If <see langword="true"/>,
         /// exceptions will be propagated; otherwise, the method may handle errors internally.</param>
         /// <returns>The result of the database operation, of type <typeparamref name="T"/>.</returns>
-        public static async Task<T?> DoDatabaseWorkAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        public static async Task<T?> DoDatabaseWorkAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
             => await DatabaseWorkHelper.DoDatabaseWorkAsync<T>(relmContext, query, parameters, throwException, cancellationToken: cancellationToken);
 
         /// <summary>

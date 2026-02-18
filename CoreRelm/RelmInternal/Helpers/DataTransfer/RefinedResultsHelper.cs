@@ -31,7 +31,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <param name="allowUserVariables">A value indicating whether user-defined variables are allowed in the connection. Defaults to <see
         /// langword="false"/>.</param>
         /// <returns>The scalar value of type <typeparamref name="T"/> returned by the query.</returns>
-        internal static T? GetScalar<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false)
+        internal static T? GetScalar<T>(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false)
         {
             using var conn = (RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName, allowUserVariables))
                 ?? throw new InvalidOperationException($"Could not get a valid connection for connection type '{connectionName}'.");
@@ -58,7 +58,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <returns>The scalar result of the query, converted to the specified type <typeparamref name="T"/>. Returns the
         /// default value of <typeparamref name="T"/> if the query produces no result or if <paramref
         /// name="throwException"/> is <see langword="false"/> and an error occurs.</returns>
-        internal static T? GetScalar<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        internal static T? GetScalar<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
         {
             return GetScalar<T>(new RelmContext(establishedConnection), query, parameters, throwException: throwException);
         }
@@ -84,7 +84,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <returns>The scalar result of the query, converted to the specified type <typeparamref name="T"/>. Returns the
         /// default value of <typeparamref name="T"/> if the query produces no result or if <paramref
         /// name="throwException"/> is <see langword="false"/> and an error occurs.</returns>
-        internal static T? GetScalar<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        internal static T? GetScalar<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
         {
             return GetScalar<T>(new RelmContext(establishedConnection, sqlTransaction), query, parameters, throwException: throwException);
         }
@@ -102,7 +102,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <param name="sqlTransaction">An optional <see cref="MySqlTransaction"/> to use for the query. Can be <see langword="null"/> if no
         /// transaction is required.</param>
         /// <returns>The scalar result of the query, converted to the specified type <typeparamref name="T"/>.</returns>
-        internal static T? GetScalar<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        internal static T? GetScalar<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
         {
             return RefinedResultsHelperAsync.GetScalarAsync<T>(relmContext, query, parameters, throwException)
                 .GetAwaiter()
@@ -126,7 +126,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// to <see langword="false"/>.</param>
         /// <returns>A <see cref="DataRow"/> representing the first row of the result set, or <see langword="null"/> if no rows 
         /// are returned or if <paramref name="throwException"/> is <see langword="false"/> and an error occurs.</returns>
-        internal static DataRow? GetDataRow(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false)
+        internal static DataRow? GetDataRow(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false)
         {
             using var conn = (RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName, allowUserVariables))
                 ?? throw new InvalidOperationException($"Could not get a valid connection for connection type '{connectionName}'.");
@@ -149,7 +149,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// error.</param>
         /// <returns>The first <see cref="DataRow"/> from the result set if the query returns any rows; otherwise, <see
         /// langword="null"/>.</returns>
-        internal static DataRow? GetDataRow(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        internal static DataRow? GetDataRow(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
         {
             var intermediate = GetDataTable(establishedConnection, query, parameters: parameters, throwException: throwException);
 
@@ -173,7 +173,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// error.</param>
         /// <returns>The first <see cref="DataRow"/> from the result set if the query returns any rows; otherwise, <see
         /// langword="null"/>.</returns>
-        internal static DataRow? GetDataRow(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        internal static DataRow? GetDataRow(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
         {
             var intermediate = GetDataTable(establishedConnection, sqlTransaction, query, parameters: parameters, throwException: throwException);
 
@@ -193,7 +193,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// langword="true"/> to throw an exception; otherwise, <see langword="false"/>.</param>
         /// <returns>The first <see cref="DataRow"/> from the result set if the query returns any rows; otherwise, <see
         /// langword="null"/>.</returns>
-        internal static DataRow? GetDataRow(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        internal static DataRow? GetDataRow(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
         {
             return RefinedResultsHelperAsync.GetDataRowAsync(relmContext, query, parameters, throwException)
                 .GetAwaiter()
@@ -217,7 +217,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// langword="false"/>.</param>
         /// <returns>A <see cref="DataTable"/> containing the results of the query. The table will be empty if the query  returns
         /// no rows.</returns>
-        internal static DataTable? GetDataTable(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false)
+        internal static DataTable? GetDataTable(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false)
         {
             using var conn = (RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName, allowUserVariables))
                 ?? throw new InvalidOperationException($"Could not get a valid connection for connection type '{connectionName}'.");
@@ -241,7 +241,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// method suppresses exceptions and returns an empty <see cref="DataTable"/> on failure.</param>
         /// <returns>A <see cref="DataTable"/> containing the results of the query. If the query returns no rows, the <see
         /// cref="DataTable"/> will be empty.</returns>
-        internal static DataTable? GetDataTable(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        internal static DataTable? GetDataTable(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
         {
             return GetDataTable(new RelmContext(establishedConnection, autoInitializeDataSets: false, autoVerifyTables: false), query, parameters, throwException: throwException);
         }
@@ -264,7 +264,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// method suppresses exceptions and returns an empty <see cref="DataTable"/> on failure.</param>
         /// <returns>A <see cref="DataTable"/> containing the results of the query. If the query returns no rows, the <see
         /// cref="DataTable"/> will be empty.</returns>
-        internal static DataTable? GetDataTable(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        internal static DataTable? GetDataTable(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
         {
             return GetDataTable(new RelmContext(establishedConnection, sqlTransaction, autoInitializeDataSets: false, autoVerifyTables: false), query, parameters, throwException: throwException);
         }
@@ -283,7 +283,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// langword="true"/>, exceptions are propagated; otherwise, errors are suppressed.</param>
         /// <returns>A <see cref="DataTable"/> containing the results of the query. The table will be empty if the query returns
         /// no rows.</returns>
-        internal static DataTable? GetDataTable(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        internal static DataTable? GetDataTable(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
         {
             return RefinedResultsHelperAsync.GetDataTableAsync(relmContext, query, parameters, throwException, CancellationToken.None)
                 .GetAwaiter()

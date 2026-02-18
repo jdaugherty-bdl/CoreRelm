@@ -8,6 +8,8 @@ using static CoreRelm.Enums.Triggers;
 
 namespace CoreRelm.Models.Migrations.Introspection
 {
+    [RelmDatabase("INFORMATION_SCHEMA")]
+    [RelmTable("TRIGGERS")]
     public class TriggerSchema : RelmModel
     {
         [RelmColumn]

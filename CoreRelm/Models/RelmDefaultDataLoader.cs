@@ -39,7 +39,8 @@ namespace CoreRelm.Models
         // get the table name from the DALTable attribute of T
         internal virtual string? TableName => typeof(T).GetCustomAttribute<RelmTable>(false)?.TableName;
 
-        private readonly RelmContextOptionsBuilder? _contextOptionsBuilder;
+        //private readonly RelmContextOptionsBuilder? _contextOptionsBuilder;
+        private readonly IRelmContext? context;
 
         private string? _fullPropertySelectList;
         private DatabaseColumnRegistry<T>? _columnRegistry;
@@ -56,7 +57,7 @@ namespace CoreRelm.Models
         {
             InitialSetup();
         }
-
+        /*
         /// <summary>
         /// Initializes a new instance of the <see cref="RelmDefaultDataLoader()"/> class with the specified context
         /// options builder.
@@ -64,7 +65,21 @@ namespace CoreRelm.Models
         /// <param name="contextOptionsBuilder">The builder used to configure options for the <see cref="RelmContext"/>.</param>
         public RelmDefaultDataLoader(RelmContextOptionsBuilder contextOptionsBuilder)
         {
-            this._contextOptionsBuilder = contextOptionsBuilder;
+            //this._contextOptionsBuilder = contextOptionsBuilder;
+            this.context = new RelmContext(contextOptionsBuilder);
+
+            InitialSetup();
+        }
+        */
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RelmDefaultDataLoader()"/> class with the specified context
+        /// options builder.
+        /// </summary>
+        /// <param name="contextOptionsBuilder">The builder used to configure options for the <see cref="RelmContext"/>.</param>
+        public RelmDefaultDataLoader(IRelmContext? context)
+        {
+            this.context = context;
          
             InitialSetup();
         }
@@ -79,19 +94,16 @@ namespace CoreRelm.Models
         /// property names  for use in database queries.</remarks>
         private void InitialSetup()
         {
-            if (_contextOptionsBuilder == null)
+            if ((context?.ContextOptions?.DatabaseConnection?.State ?? System.Data.ConnectionState.Broken) != System.Data.ConnectionState.Open)
             {
                 _columnRegistry = new DatabaseColumnRegistry<T>();
             }
             else
             {
-                if (_contextOptionsBuilder.OptionsBuilderType == RelmContextOptionsBuilder.OptionsBuilderTypes.OpenConnection)
-                    _columnRegistry = new DatabaseColumnRegistry<T>(_contextOptionsBuilder.DatabaseConnection);
-                else
-                    _columnRegistry = new DatabaseColumnRegistry<T>(_contextOptionsBuilder.ConnectionStringType);
+                _columnRegistry = new DatabaseColumnRegistry<T>(context);
             }
 
-            if ((_contextOptionsBuilder?.CanOpenConnection ?? false) && !string.IsNullOrWhiteSpace(TableName))
+            if (context!.ContextOptions.CanOpenConnection && !string.IsNullOrWhiteSpace(TableName))
                 _columnRegistry.ReadDatabaseDescriptions(TableName);
 
             // get a list of all class property names surrounded by ` quotes separated by commas
@@ -232,12 +244,18 @@ namespace CoreRelm.Models
         /// represent their corresponding values.</param>
         /// <returns>A collection of data objects of type <typeparamref name="T"/> that match the results of the query.  Returns
         /// an empty collection if no data is found.</returns>
-        public virtual async Task<ICollection<T?>?> PullDataAsync(string selectQuery, Dictionary<string, object?> findOptions, CancellationToken cancellationToken = default)
+        public virtual async Task<ICollection<T?>?> PullDataAsync(string selectQuery, Dictionary<string, object?>? findOptions, CancellationToken cancellationToken = default)
         {
-            if ((_contextOptionsBuilder?.OptionsBuilderType ?? RelmContextOptionsBuilder.OptionsBuilderTypes.ConnectionString) == RelmContextOptionsBuilder.OptionsBuilderTypes.OpenConnection)
-                return (await RelmHelper.GetDataObjectsAsync<T>(_contextOptionsBuilder.DatabaseConnection, selectQuery, findOptions, cancellationToken: cancellationToken))?.ToList();
-            else
-                return (await RelmHelper.GetDataObjectsAsync<T>(_contextOptionsBuilder.ConnectionStringType, selectQuery, findOptions, cancellationToken: cancellationToken))?.ToList();
+            if (context == null)
+                throw new InvalidOperationException("Cannot read database descriptions without a valid IRelmContext.");
+
+            if (context.ContextOptions?.DatabaseConnection == null)
+                throw new InvalidOperationException("Cannot read database descriptions without valid database connection information in the IRelmContext.");
+
+            if (context.ContextOptions.DatabaseConnection.State != System.Data.ConnectionState.Open)
+                throw new InvalidOperationException("Cannot read database descriptions because the database connection in the IRelmContext is not open.");
+
+            return (await RelmHelper.GetDataObjectsAsync<T>(context, selectQuery, findOptions, cancellationToken: cancellationToken))?.ToList();
         }
 
         /// <summary>
@@ -265,14 +283,20 @@ namespace CoreRelm.Models
         /// affected by the operation.</returns>
         public async Task<int> WriteDataAsync(CancellationToken cancellationToken = default)
         {
-            var findOptions = new Dictionary<string, object?>();
+            if (context == null)
+                throw new InvalidOperationException("Cannot read database descriptions without a valid IRelmContext.");
+
+            if (context.ContextOptions?.DatabaseConnection == null)
+                throw new InvalidOperationException("Cannot read database descriptions without valid database connection information in the IRelmContext.");
+
+            if (context.ContextOptions.DatabaseConnection.State != System.Data.ConnectionState.Open)
+                throw new InvalidOperationException("Cannot read database descriptions because the database connection in the IRelmContext is not open.");
+
+            Dictionary<string, object?>? findOptions = [];
 
             var selectQuery = GetUpdateQuery(findOptions);
 
-            if ((_contextOptionsBuilder?.OptionsBuilderType ?? RelmContextOptionsBuilder.OptionsBuilderTypes.ConnectionString) == RelmContextOptionsBuilder.OptionsBuilderTypes.OpenConnection)
-                return await RelmHelper.DoDatabaseWorkAsync<int>(_contextOptionsBuilder.DatabaseConnection, selectQuery, findOptions, cancellationToken: cancellationToken);
-            else
-                return await RelmHelper.DoDatabaseWorkAsync<int>(_contextOptionsBuilder.ConnectionStringType, selectQuery, findOptions, cancellationToken: cancellationToken);
+            return await RelmHelper.DoDatabaseWorkAsync<int>(context, selectQuery, findOptions, cancellationToken: cancellationToken);
         }
 
         /// <summary>

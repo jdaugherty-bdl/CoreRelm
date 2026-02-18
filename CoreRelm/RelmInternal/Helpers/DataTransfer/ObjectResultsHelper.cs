@@ -32,7 +32,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// langword="false"/>.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the results of the query, mapped to the specified type
         /// <typeparamref name="T"/>.</returns>
-        internal static IEnumerable<T?>? GetDataList<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false)
+        internal static IEnumerable<T?>? GetDataList<T>(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false)
         {
             using var conn = (RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName, allowUserVariables))
                 ?? throw new InvalidOperationException($"Could not get a valid connection for connection type '{connectionName}'.");
@@ -55,7 +55,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// langword="false"/>.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the results of the query, mapped to the specified type
         /// <typeparamref name="T"/>.</returns>
-        internal static async Task<IEnumerable<T?>?> GetDataListAsync<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
+        internal static async Task<IEnumerable<T?>?> GetDataListAsync<T>(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
         {
             using var conn = (RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName, allowUserVariables))
                 ?? throw new InvalidOperationException($"Could not get a valid connection for connection type '{connectionName}'.");
@@ -75,7 +75,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// will be thrown; otherwise, errors will be suppressed.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the data mapped to the specified type <typeparamref name="T"/>.
         /// The collection will be empty if the query returns no results.</returns>
-        internal static IEnumerable<T?>? GetDataList<T>(MySqlConnection existingConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        internal static IEnumerable<T?>? GetDataList<T>(MySqlConnection existingConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
         {
             var relmContext = new RelmContext(existingConnection);
 
@@ -96,7 +96,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// will be thrown; otherwise, errors will be suppressed.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the data mapped to the specified type <typeparamref name="T"/>.
         /// The collection will be empty if the query returns no results.</returns>
-        internal static IEnumerable<T?>? GetDataList<T>(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        internal static IEnumerable<T?>? GetDataList<T>(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
         {
             var relmContext = new RelmContext(existingConnection, sqlTransaction);
 
@@ -115,7 +115,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// will be thrown; otherwise, errors will be suppressed.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the data mapped to the specified type <typeparamref name="T"/>.
         /// The collection will be empty if the query returns no results.</returns>
-        internal static async Task<IEnumerable<T?>?> GetDataListAsync<T>(MySqlConnection existingConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        internal static async Task<IEnumerable<T?>?> GetDataListAsync<T>(MySqlConnection existingConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
         {
             var relmContext = new RelmContext(existingConnection);
 
@@ -136,7 +136,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// will be thrown; otherwise, errors will be suppressed.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the data mapped to the specified type <typeparamref name="T"/>.
         /// The collection will be empty if the query returns no results.</returns>
-        internal static async Task<IEnumerable<T?>?> GetDataListAsync<T>(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        internal static async Task<IEnumerable<T?>?> GetDataListAsync<T>(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
         {
             var relmContext = new RelmContext(existingConnection, sqlTransaction);
 
@@ -157,7 +157,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <returns>An <see cref="IEnumerable{T}"/> containing the query results converted to the specified type.  Returns an
         /// empty sequence if the query produces no results or if <paramref name="throwException"/> is <see
         /// langword="false"/> and the query fails.</returns>
-        internal static IEnumerable<T?>? GetDataList<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+        internal static IEnumerable<T?>? GetDataList<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
         {
             return GetDataListAsync<T>(relmContext, query, parameters: parameters, throwException: throwException)
                 .GetAwaiter()
@@ -178,7 +178,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <returns>An <see cref="IEnumerable{T}"/> containing the query results converted to the specified type.  Returns an
         /// empty sequence if the query produces no results or if <paramref name="throwException"/> is <see
         /// langword="false"/> and the query fails.</returns>
-        internal static async Task<IEnumerable<T?>?> GetDataListAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        internal static async Task<IEnumerable<T?>?> GetDataListAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
         {
             var dataTable = await RefinedResultsHelperAsync.GetDataTableAsync(relmContext, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
 
@@ -203,7 +203,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// langword="false"/>.</param>
         /// <returns>The first data object of type <typeparamref name="T"/> that matches the query, or <see langword="null"/> if
         /// no matching object is found.</returns>
-        internal static T? GetDataObject<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false) where T : IRelmModel
+        internal static T? GetDataObject<T>(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false) where T : IRelmModel
         {
             return (GetDataObjects<T>(connectionName, query, parameters: parameters, throwException: throwException, allowUserVariables: allowUserVariables) ?? [])
                 .FirstOrDefault();
@@ -225,7 +225,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// langword="false"/>.</param>
         /// <returns>The first data object of type <typeparamref name="T"/> that matches the query, or <see langword="null"/> if
         /// no matching object is found.</returns>
-        internal static async Task<T?> GetDataObjectAsync<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default) where T : IRelmModel
+        internal static async Task<T?> GetDataObjectAsync<T>(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default) where T : IRelmModel
         {
             return ((await GetDataObjectsAsync<T>(connectionName, query, parameters: parameters, throwException: throwException, allowUserVariables: allowUserVariables, cancellationToken: cancellationToken)) ?? [])
                 .FirstOrDefault();
@@ -243,7 +243,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// langword="true"/> to throw exceptions; otherwise, <see langword="false"/>.</param>
         /// <returns>The first result of the query as an object of type <typeparamref name="T"/>, or <see langword="null"/> if no
         /// results are found.</returns>
-        internal static T? GetDataObject<T>(MySqlConnection existingConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel
+        internal static T? GetDataObject<T>(MySqlConnection existingConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true) where T : IRelmModel
         {
             return (GetDataObjects<T>(existingConnection, query, parameters: parameters, throwException: throwException) ?? [])
                 .FirstOrDefault();
@@ -263,7 +263,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// used.</param>
         /// <returns>The first result of the query as an object of type <typeparamref name="T"/>, or <see langword="null"/> if no
         /// results are found.</returns>
-        internal static T? GetDataObject<T>(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel
+        internal static T? GetDataObject<T>(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true) where T : IRelmModel
         {
             return (GetDataObjects<T>(existingConnection, sqlTransaction, query, parameters: parameters, throwException: throwException) ?? [])
                 .FirstOrDefault();
@@ -281,7 +281,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// langword="true"/> to throw exceptions; otherwise, <see langword="false"/>.</param>
         /// <returns>The first result of the query as an object of type <typeparamref name="T"/>, or <see langword="null"/> if no
         /// results are found.</returns>
-        internal static async Task<T?> GetDataObjectAsync<T>(MySqlConnection existingConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel
+        internal static async Task<T?> GetDataObjectAsync<T>(MySqlConnection existingConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel
         {
             return ((await GetDataObjectsAsync<T>(existingConnection, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken)) ?? [])
                 .FirstOrDefault();
@@ -301,7 +301,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// used.</param>
         /// <returns>The first result of the query as an object of type <typeparamref name="T"/>, or <see langword="null"/> if no
         /// results are found.</returns>
-        internal static async Task<T?> GetDataObjectAsync<T>(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel
+        internal static async Task<T?> GetDataObjectAsync<T>(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel
         {
             return ((await GetDataObjectsAsync<T>(existingConnection, sqlTransaction, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken)) ?? [])
                 .FirstOrDefault();
@@ -321,7 +321,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// langword="true"/>.</param>
         /// <returns>The first data object of type <typeparamref name="T"/> that matches the query, or <see langword="null"/> if
         /// no matching object is found.</returns>
-        internal static T? GetDataObject<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel
+        internal static T? GetDataObject<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true) where T : IRelmModel
         {
             return (GetDataObjects<T>(relmContext, query, parameters: parameters, throwException: throwException) ?? [])
                 .FirstOrDefault();
@@ -341,7 +341,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// langword="true"/>.</param>
         /// <returns>The first data object of type <typeparamref name="T"/> that matches the query, or <see langword="null"/> if
         /// no matching object is found.</returns>
-        internal static async Task<T?> GetDataObjectAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel
+        internal static async Task<T?> GetDataObjectAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel
         {
             return ((await GetDataObjectsAsync<T>(relmContext, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken)) ?? [])
                 .FirstOrDefault();
@@ -365,7 +365,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// langword="false"/>.</param>
         /// <returns>A collection of objects of type <typeparamref name="T"/> retrieved from the database. The collection will be
         /// empty if no matching data is found.</returns>
-        internal static IEnumerable<T?>? GetDataObjects<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false) where T : IRelmModel
+        internal static IEnumerable<T?>? GetDataObjects<T>(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false) where T : IRelmModel
         {
             using var conn = (RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName, allowUserVariables))
                 ?? throw new InvalidOperationException($"Could not get a valid connection for connection type '{connectionName}'.");
@@ -391,7 +391,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// langword="false"/>.</param>
         /// <returns>A collection of objects of type <typeparamref name="T"/> retrieved from the database. The collection will be
         /// empty if no matching data is found.</returns>
-        internal static async Task<IEnumerable<T?>?> GetDataObjectsAsync<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default) where T : IRelmModel
+        internal static async Task<IEnumerable<T?>?> GetDataObjectsAsync<T>(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default) where T : IRelmModel
         {
             using var conn = (RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName, allowUserVariables))
                 ?? throw new InvalidOperationException($"Could not get a valid connection for connection type '{connectionName}'.");
@@ -410,7 +410,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <param name="throwException">A value indicating whether to throw an exception if an error occurs during query execution. If <see
         /// langword="true"/>, exceptions will be thrown; otherwise, errors will be suppressed.</param>
         /// <returns>A collection of objects of type <typeparamref name="T"/> populated with the data returned by the query.</returns>
-        internal static IEnumerable<T?>? GetDataObjects<T>(MySqlConnection existingConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel
+        internal static IEnumerable<T?>? GetDataObjects<T>(MySqlConnection existingConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true) where T : IRelmModel
         {
             return GetDataObjects<T>(RefinedResultsHelper.GetDataTable(existingConnection, query, parameters: parameters, throwException: throwException));
         }
@@ -428,7 +428,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <param name="throwException">A value indicating whether to throw an exception if an error occurs during query execution. If <see
         /// langword="true"/>, exceptions will be thrown; otherwise, errors will be suppressed.</param>
         /// <returns>A collection of objects of type <typeparamref name="T"/> populated with the data returned by the query.</returns>
-        internal static IEnumerable<T?>? GetDataObjects<T>(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel
+        internal static IEnumerable<T?>? GetDataObjects<T>(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true) where T : IRelmModel
         {
             return GetDataObjects<T>(RefinedResultsHelper.GetDataTable(existingConnection, sqlTransaction, query, parameters: parameters, throwException: throwException));
         }
@@ -444,7 +444,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <param name="throwException">A value indicating whether to throw an exception if an error occurs during query execution. If <see
         /// langword="true"/>, exceptions will be thrown; otherwise, errors will be suppressed.</param>
         /// <returns>A collection of objects of type <typeparamref name="T"/> populated with the data returned by the query.</returns>
-        internal static async Task<IEnumerable<T?>?> GetDataObjectsAsync<T>(MySqlConnection existingConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel
+        internal static async Task<IEnumerable<T?>?> GetDataObjectsAsync<T>(MySqlConnection existingConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel
         {
             return GetDataObjects<T>(await RefinedResultsHelperAsync.GetDataTableAsync(existingConnection, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken));
         }
@@ -462,7 +462,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <param name="throwException">A value indicating whether to throw an exception if an error occurs during query execution. If <see
         /// langword="true"/>, exceptions will be thrown; otherwise, errors will be suppressed.</param>
         /// <returns>A collection of objects of type <typeparamref name="T"/> populated with the data returned by the query.</returns>
-        internal async static Task<IEnumerable<T?>?> GetDataObjectsAsync<T>(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel
+        internal async static Task<IEnumerable<T?>?> GetDataObjectsAsync<T>(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel
         {
             return GetDataObjects<T>(await RefinedResultsHelperAsync.GetDataTableAsync(existingConnection, sqlTransaction, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken));
         }
@@ -482,7 +482,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// langword="true"/> to throw an exception; otherwise, <see langword="false"/>.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the data objects of type <typeparamref name="T"/> retrieved by
         /// the query. If no data is found, an empty collection is returned.</returns>
-        internal static IEnumerable<T?>? GetDataObjects<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel
+        internal static IEnumerable<T?>? GetDataObjects<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true) where T : IRelmModel
         {
             return GetDataObjects<T>(RefinedResultsHelper.GetDataTable(relmContext, query, parameters: parameters, throwException: throwException));
         }
@@ -502,7 +502,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// langword="true"/> to throw an exception; otherwise, <see langword="false"/>.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> containing the data objects of type <typeparamref name="T"/> retrieved by
         /// the query. If no data is found, an empty collection is returned.</returns>
-        internal async static Task<IEnumerable<T?>?> GetDataObjectsAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel
+        internal async static Task<IEnumerable<T?>?> GetDataObjectsAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel
         {
             return GetDataObjects<T>(await RefinedResultsHelperAsync.GetDataTableAsync(relmContext, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken));
         }

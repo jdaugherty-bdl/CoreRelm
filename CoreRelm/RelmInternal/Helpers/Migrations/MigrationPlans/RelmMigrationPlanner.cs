@@ -124,7 +124,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
             _log?.LogFormatted(LogLevel.Information, "Sorting operations in execution order", args: []);
             migrationOperations = OrderOperations(migrationOperations);
 
-            _log?.LogFormatted(LogLevel.Information, "Finished creating migration plan with {OperationCount} operations, {WarningCount} warnings, and {BlockerCount} blockers", args: [migrationOperations.Count, warnings.Count, blockers.Count]);
+            _log?.LogFormatted(LogLevel.Information, "Finished creating migration plan with {OperationCount} operations, {WarningCount} warnings, and {BlockerCount} blockers", args: [migrationOperations.Count, warnings.Count, blockers.Count], preDecreaseLevel: true);
             return new MigrationPlan(desired.DatabaseName, migrationOperations, warnings, blockers, options.StampUtc);
         }
 
@@ -934,7 +934,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                 var diffs = FunctionDiffers(desiredFunction, actualFunction);
                 if (diffs.Count == 0)
                 {
-                    _log?.LogFormatted(LogLevel.Information, "Function '{FunctionName}' has no differences, continuing to next function", args: [desiredFunction.RoutineName]);
+                    _log?.LogFormatted(LogLevel.Information, "Function '{FunctionName}' has no differences, continuing to next function", args: [desiredFunction.RoutineName], preDecreaseLevel: true);
                     continue;
                 }
 
@@ -1056,8 +1056,8 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                 _log?.LogFormatted(LogLevel.Information, "Function deterministic values are the same. Is deterministic: {IsDeterministic}", args: [desired.IsDeterministicValue]);
 
             // Normalize whitespace for comparison
-            var dStmt = NormalizeSql(desired.RoutineDefinition);
-            var aStmt = NormalizeSql(actual.RoutineDefinition);
+            var dStmt = NormalizeSql(desired.RoutineDefinition).Trim();
+            var aStmt = NormalizeSql(actual.RoutineDefinition).Trim();
 
             if (!string.Equals(dStmt, aStmt, StringComparison.OrdinalIgnoreCase))
             {
@@ -1074,10 +1074,18 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
             return diffs;
         }
 
-        private static string NormalizeSql(string? s)
+        private static string NormalizeSql(string? originalSql)
         {
-            if (string.IsNullOrWhiteSpace(s)) return string.Empty;
-            return string.Join(" ", s.Split([' ', '\r', '\n', '\t'], StringSplitOptions.RemoveEmptyEntries));
+            if (string.IsNullOrWhiteSpace(originalSql)) 
+                return string.Empty;
+
+            // remove all comment lines
+            var lines = originalSql.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries);
+            var uncommentedLines = lines.Where(line => !line.TrimStart().StartsWith("--")).ToArray();
+            var uncommentedSql = string.Join(" ", uncommentedLines);
+
+
+            return string.Join(" ", uncommentedSql.Split([' ', '\r', '\n', '\t'], StringSplitOptions.RemoveEmptyEntries));
         }
 
         private void PlanDestructiveDrops(

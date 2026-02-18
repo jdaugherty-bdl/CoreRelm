@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.Models.Migrations.Introspection
 {
+    [RelmDatabase("INFORMATION_SCHEMA")]
+    [RelmTable("KEY_COLUMN_USAGE")]
     public class ForeignKeySchema : RelmModel
     {
         [RelmColumn]

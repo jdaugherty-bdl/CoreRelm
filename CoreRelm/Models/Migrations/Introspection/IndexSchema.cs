@@ -8,6 +8,8 @@ using static CoreRelm.Enums.Indexes;
 
 namespace CoreRelm.Models.Migrations.Introspection
 {
+    [RelmDatabase("INFORMATION_SCHEMA")]
+    [RelmTable("STATISTICS")]
     public class IndexSchema : RelmModel
     {
         public IReadOnlyList<IndexColumnSchema>? Columns { get; set; }

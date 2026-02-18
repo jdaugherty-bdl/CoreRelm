@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.Models.Migrations.Introspection
 {
+    [RelmDatabase("INFORMATION_SCHEMA")]
+    [RelmTable("COLUMNS")]
     public class ColumnSchema : RelmModel
     {
         [RelmColumn]

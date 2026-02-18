@@ -125,11 +125,11 @@ namespace CoreRelm.Models.Migrations.Introspection
 
                 if (value != null) 
                 {
-                    DataType = GetDataTypeFromDtdIdentifier(value);
-                    CharacterMaximumLength = GetCharacterMaximumLengthFromDtdIdentifier(value);
-                    NumericPrecision = GetNumericPrecisionFromDtdIdentifier(value);
-                    NumericScale = GetNumericScaleFromDtdIdentifier(value);
-                    DatetimePrecision = GetDatetimePrecisionFromDtdIdentifier(value);
+                    _dataType = GetDataTypeFromDtdIdentifier(value);
+                    _characterMaximumLength = GetCharacterMaximumLengthFromDtdIdentifier(value);
+                    _numericPrecision = GetNumericPrecisionFromDtdIdentifier(value);
+                    _numericScale = GetNumericScaleFromDtdIdentifier(value);
+                    _datetimePrecision = GetDatetimePrecisionFromDtdIdentifier(value);
                 }
             }
         }
@@ -142,6 +142,15 @@ namespace CoreRelm.Models.Migrations.Introspection
             {
                 _dtdIdentifierValue = value;
                 _dtdIdentifier = GetDtdIdentifier(DataType, CharacterMaximumLength, NumericPrecision, NumericScale, DatetimePrecision);
+
+                if (value != null)
+                {
+                    _dataType = GetDataTypeFromDtdIdentifier(value);
+                    _characterMaximumLength = GetCharacterMaximumLengthFromDtdIdentifier(value);
+                    _numericPrecision = GetNumericPrecisionFromDtdIdentifier(value);
+                    _numericScale = GetNumericScaleFromDtdIdentifier(value);
+                    _datetimePrecision = GetDatetimePrecisionFromDtdIdentifier(value);
+                }
             }
         }
 

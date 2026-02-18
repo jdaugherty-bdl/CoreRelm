@@ -10,6 +10,8 @@ using static CoreRelm.Enums.StoredProcedures;
 
 namespace CoreRelm.Models.Migrations.Introspection
 {
+    [RelmDatabase("INFORMATION_SCHEMA")]
+    [RelmTable("PARAMETERS")]
     public class FunctionParameterSchema : RelmModel
     {
         [RelmColumn]

@@ -132,6 +132,9 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Rendering
                 case CreateFunctionOperation createFunctionOperation:
                     RenderCreateFunction(query, createFunctionOperation.Function, options);
                     break;
+                case DropFunctionOperation dropFunctionOperation:
+                    query.AppendLine($"DROP FUNCTION IF EXISTS `{EscapeIdentifier(dropFunctionOperation.FunctionName)}`;");
+                    break;
                 default:
                     throw new NotSupportedException($"Unknown migration operation type: {operation.GetType().FullName}");
             }

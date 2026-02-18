@@ -86,7 +86,9 @@ namespace CoreRelm.Migrations
             // Desired schema is built from your CoreRelm metadata pipeline.
             // For now, we build it from the resolved model list (table names + columns etc. must come from CoreRelm metadata reader).
             // If you already have a DesiredSnapshot builder in CoreRelm, call that instead.
+            _log?.SaveIndentLevel("desired");
             var desired = await _desiredBuilder.BuildAsync(dbName, modelsForDb);
+            _log?.RestoreIndentLevel("desired");
 
             // Actual schema:
             // - if DB exists, introspect it
@@ -94,8 +96,9 @@ namespace CoreRelm.Migrations
             SchemaSnapshot actual;
             _log?.LogFormatted(LogLevel.Information, "Checking database availability...", args: [], postIncreaseLevel: true);
             _migrationOptions.DatabaseName = dbName;
+            _log?.SaveIndentLevel("availability");
             var dbExists = await DbAvailabilityHelper.WarnIfMissingAsync(_migrationOptions, _provisioner, message => _log?.LogWarning(message));
-            _log?.DecreaseIndent();
+            _log?.RestoreIndentLevel("availability");
 
             if (dbExists)
             {
@@ -104,7 +107,10 @@ namespace CoreRelm.Migrations
                     throw new ArgumentException("Connection string is required.", nameof(dbConn));
 
                 var context = new InformationSchemaContext(dbConn, autoInitializeDataSets: false, autoVerifyTables: false);
+
+                _log?.SaveIndentLevel("introspecting");
                 actual = await _introspector.LoadSchemaAsync(context, new SchemaIntrospectionOptions { DatabaseName = dbName });
+                _log?.RestoreIndentLevel("introspecting");
             }
             else
                 actual = SchemaSnapshotFactory.Empty(dbName);
@@ -116,7 +122,9 @@ namespace CoreRelm.Migrations
                 StampUtc: stampUtc
             );
 
+            _log?.SaveIndentLevel("planning");
             var plan = _planner.Plan(desired, actual, planOptions);
+            _log?.RestoreIndentLevel("planning");
 
             if (plan.Operations.Count == 0 && plan.Blockers.Count == 0)
             {
@@ -125,13 +133,14 @@ namespace CoreRelm.Migrations
                     $"No changes detected for database '{dbName}'. No migration file written.");
             }
 
+            _log?.SaveIndentLevel("rendering");
             var sql = _renderer.Render(plan, new MySqlRenderOptions(
                 IncludeUseDatabase: true,
                 WrapTriggersWithDelimiter: true,
                 TriggerDelimiter: "$$",
                 FunctionDelimiter: "$$"
             ));
-            _log?.DecreaseIndent();
+            _log?.RestoreIndentLevel("rendering");
 
             _log?.LogFormatted(LogLevel.Information, "Migration SQL generated with {OperationCount} operations and {BlockerCount} blockers.", args: [plan.Operations.Count, plan.Blockers.Count]);
 

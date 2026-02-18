@@ -6,14 +6,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CoreRelm.Interfaces;
+using CoreRelm.Models;
 
 namespace CoreRelm.RelmInternal.Helpers.Operations
 {
     internal class DatabaseColumnRegistry<T>
     {
         private readonly string? databaseName;
-        private readonly MySqlConnection? connection;
-        private readonly Enum? connectionStringType;
+        private readonly IRelmContext? context;
 
         private Dictionary<string, DALTableRowDescriptor>? tableRowDescriptors;
         private Dictionary<string, string>? underscoreProperties;
@@ -24,16 +25,21 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
 
         public DatabaseColumnRegistry()
         {
+            context = null;
+            databaseName = null;
+            tableRowDescriptors = null;
+            underscoreProperties = null;
+
             SetupPropertyLists();
         }
-
+        /*
         public DatabaseColumnRegistry(MySqlConnection? connection)
         {
             ArgumentNullException.ThrowIfNull(connection);
 
-            this.connection = connection;
+            context = new RelmContext(connection);
 
-            databaseName = this.connection.Database;
+            databaseName = context.ContextOptions?.DatabaseConnection?.Database;
 
             SetupPropertyLists();
         }
@@ -42,13 +48,25 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         {
             ArgumentNullException.ThrowIfNull(connectionStringType);
 
-            this.connectionStringType = connectionStringType;
+            context = new RelmContext(connectionStringType);
 
-            databaseName = RelmHelper.GetConnectionBuilderFromConnectionType(connectionStringType)?.Database;
+            databaseName = context.ContextOptions?.DatabaseConnection?.Database;
             if (string.IsNullOrWhiteSpace(databaseName))
             {
                 throw new ArgumentException("The provided connection string type does not have a valid database name.");
             }
+
+            SetupPropertyLists();
+        }
+        */
+
+        public DatabaseColumnRegistry(IRelmContext? context)
+        {
+            ArgumentNullException.ThrowIfNull(context);
+
+            this.context = context;
+
+            databaseName = this.context.ContextOptions?.DatabaseConnection?.Database;
 
             SetupPropertyLists();
         }
@@ -61,15 +79,25 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
             PropertyColumns = underscoreProperties.ToDictionary(x => x.Key, x => new Tuple<string, DALTableRowDescriptor?>(x.Value, null));
         }
 
-        public Dictionary<string, DALTableRowDescriptor> ReadDatabaseDescriptions(string tableName)
+        public Dictionary<string, DALTableRowDescriptor>? ReadDatabaseDescriptions(string tableName)
         {
-            // pull the table details from the database
-            var tableRowDescriptors1 = ((connection != null)
-                    ? RelmHelper.GetDataObjects<DALTableRowDescriptor>(connection, $"DESCRIBE {(string.IsNullOrWhiteSpace(databaseName) ? string.Empty : $"{databaseName}.")}{tableName}")
-                    : RelmHelper.GetDataObjects<DALTableRowDescriptor>(connectionStringType, $"DESCRIBE {(string.IsNullOrWhiteSpace(databaseName) ? string.Empty : $"{databaseName}.")}{tableName}"))
-                ?.ToDictionary(x => x.Field, x => x);
+            if (context == null)
+                throw new InvalidOperationException("Cannot read database descriptions without a valid IRelmContext.");
 
-            tableRowDescriptors = new Dictionary<string, DALTableRowDescriptor>(tableRowDescriptors1, StringComparer.OrdinalIgnoreCase);
+            if (context.ContextOptions?.DatabaseConnection == null)
+                throw new InvalidOperationException("Cannot read database descriptions without valid database connection information in the IRelmContext.");
+
+            if (context.ContextOptions.DatabaseConnection.State != System.Data.ConnectionState.Open)
+                throw new InvalidOperationException("Cannot read database descriptions because the database connection in the IRelmContext is not open.");
+
+            // pull the table details from the database
+            var descriptorRows = RelmHelper.GetDataObjects<DALTableRowDescriptor>(context, $"DESCRIBE {(string.IsNullOrWhiteSpace(databaseName) ? string.Empty : $"{databaseName}.")}{tableName}")
+                ?.ToDictionary(x => x!.Field, x => x);
+
+            if (descriptorRows == null)
+                return default;
+
+            tableRowDescriptors = new Dictionary<string, DALTableRowDescriptor>(descriptorRows!, StringComparer.OrdinalIgnoreCase);
 
             tableRowDescriptors
                 .ForEach(x =>
@@ -80,7 +108,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
                 });
 
             PropertyColumns = underscoreProperties
-                .ToDictionary(x => x.Key, x => new Tuple<string, DALTableRowDescriptor?>(x.Value, tableRowDescriptors.ContainsKey(x.Value) ? tableRowDescriptors[x.Value] : null));
+                ?.ToDictionary(x => x.Key, x => new Tuple<string, DALTableRowDescriptor?>(x.Value, tableRowDescriptors.ContainsKey(x.Value) ? tableRowDescriptors[x.Value] : null));
 
             return tableRowDescriptors;
         }

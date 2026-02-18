@@ -895,13 +895,22 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                 if (functionGroups.ContainsKey(functionDetails.Name))
                     throw new InvalidOperationException($"Duplicate function name '{functionDetails.Name}' on {model.ClrType.Name}. Function names must be unique.");
 
+                var routineDefinition = functionDetails.Body;
+                if (!routineDefinition.StartsWith("BEGIN", StringComparison.OrdinalIgnoreCase)
+                    && !routineDefinition.StartsWith("CREATE", StringComparison.OrdinalIgnoreCase)
+                    && !routineDefinition.StartsWith("ALTER", StringComparison.OrdinalIgnoreCase))
+                {
+                    routineDefinition = $"BEGIN\n{routineDefinition}\nEND";
+                    _log?.LogFormatted(LogLevel.Information, "Wrapped function body in BEGIN...END block for function {FunctionName} on {ModelName}", args: [functionDetails.Name, model.ClrType.Name]);
+                }
+
                 _log?.LogFormatted(LogLevel.Information, "Adding FunctionSchema for function with name {FunctionName} to function groups for {ModelName}", args: [functionDetails.Name, model.ClrType.Name]);
                 functionGroups[functionDetails.Name] = new FunctionSchema
                 {
                     RoutineName = functionDetails.Name,
                     SpecificName = functionDetails.Name,
                     RoutineTypeValue = string.IsNullOrWhiteSpace(functionDetails.ReturnType) ? ProcedureType.StoredProcedure : ProcedureType.Function,
-                    RoutineDefinition = functionDetails.Body,
+                    RoutineDefinition = routineDefinition,
                     RoutineComment = functionDetails.Comment,
                     DataType = functionDetails.ReturnType,
                     CharacterMaximumLength = functionDetails.ReturnSize,

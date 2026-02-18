@@ -47,14 +47,16 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
             };
 
             log?.LogFormatted(LogLevel.Information, "Invoking migration SQL provider to generate SQL for ensuring schema migrations table exists...");
+            log?.SaveIndentLevel("GenerateAsync");
             var result = await provider.GenerateAsync(DateTime.UtcNow, databaseName, models);
+            log?.RestoreIndentLevel("GenerateAsync");
             if (!result.HasChanges)
             {
-                log?.LogFormatted(LogLevel.Information, "No schema changes detected for migrations table. Message: {Message}", args: [result.Message]);
+                log?.LogFormatted(LogLevel.Information, "No schema changes detected for migrations table. Message: {Message}", args: [result.Message], singleIndentLine: true);
                 return 0;
             }
             else
-                log?.LogFormatted(LogLevel.Information, "Schema changes detected for migrations table. Message: {Message}", args: [result.Message]);
+                log?.LogFormatted(LogLevel.Information, "Schema changes detected for migrations table. Message: {Message}", args: [result.Message], singleIndentLine: true);
 
             if (string.IsNullOrWhiteSpace(result.Sql))
                 throw new InvalidOperationException("Migration SQL generation failed: no SQL returned.");

@@ -385,26 +385,13 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
             if (functionSchema == null)
                 return [];
 
-            var fun = await functionSchema
+            var rawFunctionList = await functionSchema
                 .Reference(x => x.FunctionParameters)
                 .Where(x => x.RoutineSchema == dbName && x.RoutineType == "FUNCTION")
                 .OrderBy(x => x.RoutineName!)
                 .LoadAsync(ct);
 
-            var functionQuery = @"SELECT ROUTINE_NAME, ROUTINE_COMMENT, DTD_IDENTIFIER, ROUTINE_DEFINITION, 
-                    SQL_DATA_ACCESS, SECURITY_TYPE, IS_DETERMINISTIC
-                FROM INFORMATION_SCHEMA.ROUTINES
-                WHERE ROUTINE_SCHEMA = @database_name
-                  AND ROUTINE_TYPE = 'FUNCTION'
-                ORDER BY ROUTINE_NAME;";
-
-            var functionResults = (await relmContext.GetDataObjectsAsync<FunctionSchema>(functionQuery, new Dictionary<string, object>
-            {
-                ["@database_name"] = dbName
-            }, cancellationToken: ct))
-                ?.ToList();
-
-            var functions = functionResults
+            var functions = rawFunctionList
                 ?.Where(f => f != null && !string.IsNullOrWhiteSpace(f.RoutineName))
                 .Cast<FunctionSchema>()
                 .ToDictionary(f => f!.RoutineName!, f => f, StringComparer.Ordinal)
