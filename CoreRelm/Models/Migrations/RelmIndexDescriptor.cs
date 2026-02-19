@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.Models.Migrations
 {
-    internal sealed record RelmIndexDescriptor(
+    public sealed record RelmIndexDescriptor(
         string Name,
         bool IsUnique,
         IReadOnlyList<string> Columns);

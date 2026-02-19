@@ -16,15 +16,6 @@ namespace CoreRelm.Migrations
 {
     public sealed class ModelSetResolver : IModelSetResolver
     {
-        private readonly Assembly _modelsAssembly;
-
-        public ModelSetResolver(Assembly modelsAssembly)
-        {
-            ArgumentNullException.ThrowIfNull(modelsAssembly);
-
-            _modelsAssembly = modelsAssembly;
-        }
-
         public ModelSetsFile LoadModelSets(string? modelSetsPath)
         {
             if (string.IsNullOrWhiteSpace(modelSetsPath))
@@ -48,200 +39,10 @@ namespace CoreRelm.Migrations
             return data;
         }
 
-        public ResolvedModelSet ResolveSet(ModelSetsFile file, string setName)
+        public ResolvedModelSet ResolveSet(ModelSetsFile file, string setName, Assembly modelsAssembly)
         {
-            /*
-            if (string.IsNullOrWhiteSpace(setName))
-                throw new ArgumentException("No model set name specified.");
-
-            if (!file.Sets.TryGetValue(setName, out var setDefinition))
-                throw new ArgumentException($"Model set '{setName}' not found in modelsets.json.");
-
-            // 1) Resolve explicit types
-            var explicitTypeNames = setDefinition.Types.Distinct(StringComparer.Ordinal).OrderBy(x => x).ToList();
-            var explicitTypeNameCount = explicitTypeNames.Count;
-
-            var explicitTypes = new List<Type>();
-            var errors = new List<string>();
-
-            foreach (var typeName in explicitTypeNames)
-            {
-                var t = _modelsAssembly.GetType(typeName, throwOnError: false, ignoreCase: false);
-                if (t is null)
-                {
-                    errors.Add($"ERROR: Explicit type '{typeName}' not found in assembly '{_modelsAssembly.FullName}'.");
-                    continue;
-                }
-                explicitTypes.Add(t);
-            }
-
-            // 2) Resolve namespace prefixes
-            var prefixes = setDefinition.NamespacePrefixes
-                .Where(p => !string.IsNullOrWhiteSpace(p))
-                .Distinct(StringComparer.Ordinal)
-                .OrderBy(p => p)
-                .ToArray();
-
-            var allAssemblyTypes = _modelsAssembly.GetTypes();
-
-            var namespaceMatches = new List<Type>();
-            if (prefixes.Length > 0)
-            {
-                foreach (var t in allAssemblyTypes)
-                {
-                    if (t.Namespace is null) continue;
-                    if (prefixes.Any(p => t.Namespace.StartsWith(p, StringComparison.Ordinal)))
-                        namespaceMatches.Add(t);
-                }
-            }
-
-            // 3) Union + filter to RelmModel subclasses
-            var candidates = explicitTypes
-                .Concat(namespaceMatches)
-                .Distinct()
-                .OrderBy(t => t.FullName, StringComparer.Ordinal)
-                .ToList();
-
-            if (candidates.Count == 0)
-                throw new InvalidOperationException($"Resolved model set '{setName}' contains no RelmModel types.");
-
-            var filtered = candidates
-                .Where(t => !t.IsAbstract && typeof(RelmModel).IsAssignableFrom(t))
-                .ToList();
-
-            // 4) Validate required attributes (RelmDatabase + RelmTable)
-            var validated = new List<ValidatedModelType>();
-            foreach (var t in filtered)
-            {
-                Attribute? dbAttr = null;
-                Attribute? tableAttr = null;
-                
-                try
-                {
-                    dbAttr = GetRequiredAttribute(t, "RelmDatabase");
-                    tableAttr = GetRequiredAttribute(t, "RelmTable");
-
-                    if (dbAttr is null)
-                    {
-                        errors.Add($"ERROR: {t.FullName} is missing required [RelmDatabase].");
-                        continue;
-                    }
-
-                    if (tableAttr is null)
-                    {
-                        errors.Add($"ERROR: {t.FullName} is missing required [RelmTable].");
-                        continue;
-                    }
-
-                    var dbName = GetSingleStringValue(dbAttr)
-                                 ?? throw new InvalidOperationException($"[{dbAttr.GetType().Name}] on {t.FullName} must have a string database name argument.");
-
-                    var tableName = GetSingleStringValue(tableAttr)
-                                    ?? throw new InvalidOperationException($"[{tableAttr.GetType().Name}] on {t.FullName} must have a string table name argument.");
-
-                    if (string.IsNullOrWhiteSpace(dbName))
-                    {
-                        errors.Add($"ERROR: {t.FullName} has [RelmDatabase] but DatabaseName is null/empty.");
-                        continue;
-                    }
-
-                    if (string.IsNullOrWhiteSpace(tableName))
-                    {
-                        errors.Add($"ERROR: {t.FullName} has [RelmTable] but TableName is null/empty.");
-                        continue;
-                    }
-
-                    validated.Add(new ValidatedModelType(t, dbName, tableName));
-                }
-                catch (Exception ex)
-                {
-                    errors.Add($"ERROR: {t.FullName} attribute read failed: {ex.Message}");
-                }
-            }
-
-            // 5) Group by db
-            var byDb = validated
-                .GroupBy(v => v.DatabaseName, StringComparer.Ordinal)
-                .OrderBy(g => g.Key, StringComparer.Ordinal)
-                .ToDictionary(g => g.Key, g => g.ToList(), StringComparer.Ordinal);
-
-            return new ResolvedModelSet(setName, validated, byDb);
-            */
-            return ResolveSetAndDiagnostics(file, setName).Resolved;
+            return ResolveSetAndDiagnostics(file, setName, modelsAssembly).Resolved;
         }
-        /*
-        private static Attribute GetRequiredAttribute(Type t, string shortName)
-        {
-            // Attribute class names are "RelmDatabase" and "RelmTable" per your message.
-            // At runtime they might still be "RelmDatabaseAttribute". We'll accept both.
-            var attrs = t.GetCustomAttributes(inherit: true).OfType<Attribute>().ToList();
-
-            var match = attrs.FirstOrDefault(a =>
-                a.GetType().Name.Equals(shortName, StringComparison.Ordinal) ||
-                a.GetType().Name.Equals(shortName + "Attribute", StringComparison.Ordinal));
-
-            if (match is null)
-                throw new InvalidOperationException($"Type '{t.FullName}' is missing required [{shortName}] attribute.");
-
-            return match;
-        }
-
-        private static string? GetSingleStringValue(Attribute attr)
-        {
-            var type = attr.GetType();
-
-            // Use your explicit attribute contract:
-            // RelmDatabase.DatabaseName
-            // RelmTable.TableName
-            if (type.Name is nameof(RelmDatabase))
-            {
-                var prop = type.GetProperty(nameof(RelmDatabase.DatabaseName), BindingFlags.Public | BindingFlags.Instance);
-                return prop?.PropertyType == typeof(string) ? (string?)prop.GetValue(attr) : null;
-            }
-
-            if (type.Name is nameof(RelmTable))
-            {
-                var prop = type.GetProperty(nameof(RelmTable.TableName), BindingFlags.Public | BindingFlags.Instance);
-                return prop?.PropertyType == typeof(string) ? (string?)prop.GetValue(attr) : null;
-            }
-
-            // Defensive fallback for any future attributes:
-            foreach (var propName in new[] { "Name", "Value" })
-            {
-                var prop = type.GetProperty(propName, BindingFlags.Public | BindingFlags.Instance);
-                if (prop?.PropertyType == typeof(string))
-                {
-                    var val = (string?)prop.GetValue(attr);
-                    if (!string.IsNullOrWhiteSpace(val)) return val;
-                }
-            }
-
-            return null;
-        }
-
-        private static string? ExtractFirstCtorStringArgument(Attribute attr)
-        {
-            // Minimal reflection approach: prefer a readable property if present, else try ctor args via ToString parsing fallback.
-            // Better: CoreRelm metadata reader will expose this cleanly; this is MVP.
-
-            var type = attr.GetType();
-
-            // Try common property names first
-            foreach (var propName in new[] { "Name", "Database", "DatabaseName", "Value", "Table", "TableName" })
-            {
-                var prop = type.GetProperty(propName, BindingFlags.Public | BindingFlags.Instance);
-                if (prop?.PropertyType == typeof(string))
-                {
-                    var val = (string?)prop.GetValue(attr);
-                    if (!string.IsNullOrWhiteSpace(val)) return val;
-                }
-            }
-
-            // If no property exists, we cannot reliably extract ctor args without a metadata reader.
-            // Returning null will trigger a clear exception message above.
-            return null;
-        }
-        */
 
         /// <summary>
         /// Resolves a model set definition by name from the specified model sets file and returns the resolved set
@@ -256,12 +57,12 @@ namespace CoreRelm.Migrations
         /// <returns>A tuple containing the resolved model set and a diagnostics object with information about the resolution
         /// process, including any errors or warnings encountered.</returns>
         /// <exception cref="ArgumentException">Thrown if a model set with the specified name does not exist in the provided file.</exception>
-        public (ResolvedModelSet Resolved, ResolvedModelSetDiagnostics Diagnostics) ResolveSetWithDiagnostics(ModelSetsFile file, string setName)
+        public (ResolvedModelSet Resolved, ResolvedModelSetDiagnostics Diagnostics) ResolveSetWithDiagnostics(ModelSetsFile file, string setName, Assembly modelsAssembly)
         {
-            return ResolveSetAndDiagnostics(file, setName);
+            return ResolveSetAndDiagnostics(file, setName, modelsAssembly);
         }
 
-        private (ResolvedModelSet Resolved, ResolvedModelSetDiagnostics Diagnostics) ResolveSetAndDiagnostics(ModelSetsFile file, string setName)
+        private (ResolvedModelSet Resolved, ResolvedModelSetDiagnostics Diagnostics) ResolveSetAndDiagnostics(ModelSetsFile file, string setName, Assembly modelsAssembly)
         {
             ArgumentNullException.ThrowIfNull(file);
 
@@ -283,7 +84,7 @@ namespace CoreRelm.Migrations
                 .ToList();
             var explicitTypeNameCount = explicitTypeNames.Count;
 
-            var allTypes = SafeGetTypes(_modelsAssembly);
+            var allTypes = SafeGetTypes(modelsAssembly);
             var byFullName = allTypes
                 .Where(t => t.FullName is not null)
                 .ToDictionary(t => t.FullName!, t => t, StringComparer.Ordinal);
@@ -292,10 +93,10 @@ namespace CoreRelm.Migrations
             var errors = new List<string>();
             foreach (var typeName in explicitTypeNames)
             {
-                var t = ResolveTypeByName(_modelsAssembly, byFullName, typeName);
+                var t = ResolveTypeByName(modelsAssembly, byFullName, typeName);
                 if (t is null)
                 {
-                    errors.Add($"ERROR: Explicit type '{typeName}' not found in assembly '{_modelsAssembly.FullName}' (set '{setName}').");
+                    errors.Add($"ERROR: Explicit type '{typeName}' not found in assembly '{modelsAssembly.FullName}' (set '{setName}').");
                     continue;
                 }
                 explicitTypes.Add(t);
@@ -328,7 +129,7 @@ namespace CoreRelm.Migrations
                     typesByPrefix[prefix] = matches;
 
                     if (matches.Count == 0)
-                        errors.Add($"WARNING: Namespace prefix '{prefix}' did not match any types in assembly '{_modelsAssembly.FullName}' (set '{setName}').");
+                        errors.Add($"WARNING: Namespace prefix '{prefix}' did not match any types in assembly '{modelsAssembly.FullName}' (set '{setName}').");
 
                     namespaceMatches.AddRange(matches);
                 }

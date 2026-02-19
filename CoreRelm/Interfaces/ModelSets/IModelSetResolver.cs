@@ -10,7 +10,8 @@ namespace CoreRelm.Interfaces.ModelSets
 {
     public interface IModelSetResolver
     {
-        ResolvedModelSet ResolveSet(ModelSetsFile file, string setName);
-        (ResolvedModelSet Resolved, ResolvedModelSetDiagnostics Diagnostics) ResolveSetWithDiagnostics(ModelSetsFile file, string setName);
+        ModelSetsFile LoadModelSets(string? modelSetsPath);
+        ResolvedModelSet ResolveSet(ModelSetsFile file, string setName, Assembly modelsAssembly);
+        (ResolvedModelSet Resolved, ResolvedModelSetDiagnostics Diagnostics) ResolveSetWithDiagnostics(ModelSetsFile file, string setName, Assembly modelsAssembly);
     }
 }

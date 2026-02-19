@@ -1,5 +1,6 @@
 ﻿using CoreRelm.Interfaces.Metadata;
 using CoreRelm.Interfaces.Migrations;
+using CoreRelm.Interfaces.Migrations.Tooling;
 using CoreRelm.Interfaces.ModelSets;
 using CoreRelm.Migrations;
 using CoreRelm.RelmInternal.Helpers.Metadata;
@@ -85,6 +86,8 @@ namespace CoreRelm.Extensions
 
         private static void AddToolingParsers(IServiceCollection services)
         {
+
+            services.AddSingleton<IRelmMigrationTooling, RelmMigrationTooling>();
             //services.AddSingleton<IMigrationFileNameParser, MigrationFileNameParser>();
             services.AddSingleton<IModelSetParser, ModelSetParser>();
             services.AddSingleton<IModelSetResolver, ModelSetResolver>();

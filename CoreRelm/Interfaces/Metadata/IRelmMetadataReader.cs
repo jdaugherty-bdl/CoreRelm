@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace CoreRelm.Interfaces.Metadata
 {
 
-    internal interface IRelmMetadataReader
+    public interface IRelmMetadataReader
     {
         RelmEntityDescriptor Describe(Type relmModelType);
     }

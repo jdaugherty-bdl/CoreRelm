@@ -82,7 +82,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Utilities
             context = new ComplexTestContext("name=SimpleRelmMySql", autoVerifyTables: false);
 
             // create dummy data loaders for dummy data to be placed in both relevant data sets
-            var modelDataLoader = new Mock<RelmDefaultDataLoader<ComplexTestModel>>(); // { CallBase = true };
+            var modelDataLoader = new Mock<RelmDefaultDataLoader<ComplexTestModel>>(context); // { CallBase = true };
 
             // make sure GetLoadData() calls base so LastExecutedCommands (required for references) gets populated
             modelDataLoader.Setup(x => x.TableName).Returns("nothing_table");

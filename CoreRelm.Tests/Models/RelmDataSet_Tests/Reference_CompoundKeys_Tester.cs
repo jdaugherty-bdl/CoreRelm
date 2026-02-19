@@ -59,7 +59,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             context = new MultipleKeysTestContext("name=SimpleRelmMySql", autoVerifyTables: false);
 
             // create dummy data loaders for dummy data to be placed in both relevant data sets
-            var modelDataLoader = new Mock<RelmDefaultDataLoader<MultipleKeysTestObject>>(); // { CallBase = true };
+            var modelDataLoader = new Mock<RelmDefaultDataLoader<MultipleKeysTestObject>>(context);
 
             // make sure GetLoadData() calls base so LastExecutedCommands (required for references) gets populated
             modelDataLoader.Setup(x => x.TableName).Returns("nothing_table");
@@ -80,7 +80,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             if (addSecondId)
                 mockComplexReferenceObjects_ForeignKey.Add(new MultipleKeysReferenceObject_ForeignKey { ReferenceKey1 = "LOCALKEY1", ReferenceKey2 = "LOCALKEY2", MultipleKeysTestObject_Reference = null });
 
-            var referenceDataLoader = new Mock<RelmDefaultDataLoader<MultipleKeysReferenceObject_ForeignKey>>();
+            var referenceDataLoader = new Mock<RelmDefaultDataLoader<MultipleKeysReferenceObject_ForeignKey>>(context);
             referenceDataLoader.Setup(x => x.TableName).Returns("nothing_table");
             referenceDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
             referenceDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects_ForeignKey);
@@ -99,7 +99,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             if (addSecondId)
                 mockComplexReferenceObjects_Navigation.Add(new MultipleKeysReferenceObject_NavigationProperty { ReferenceKey1 = "LOCALKEY1", ReferenceKey2 = "LOCALKEY2", MultipleKeysTestObject_Reference = null });
 
-            var navigationDataLoader = new Mock<RelmDefaultDataLoader<MultipleKeysReferenceObject_NavigationProperty>>();
+            var navigationDataLoader = new Mock<RelmDefaultDataLoader<MultipleKeysReferenceObject_NavigationProperty>>(context);
             navigationDataLoader.Setup(x => x.TableName).Returns("nothing_table");
             navigationDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
             navigationDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects_Navigation);
@@ -118,7 +118,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             if (addSecondId)
                 mockComplexReferenceObjects_Principal.Add(new MultipleKeysReferenceObject_PrincipalEntity { ReferenceKey1 = "LOCALKEY1", ReferenceKey2 = "LOCALKEY2", MultipleKeysTestObject_Reference = null });
 
-            var principalDataLoader = new Mock<RelmDefaultDataLoader<MultipleKeysReferenceObject_PrincipalEntity>>();
+            var principalDataLoader = new Mock<RelmDefaultDataLoader<MultipleKeysReferenceObject_PrincipalEntity>>(context);
             principalDataLoader.Setup(x => x.TableName).Returns("nothing_table");
             principalDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
             principalDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects_Principal);

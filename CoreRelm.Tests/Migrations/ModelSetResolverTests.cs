@@ -30,10 +30,10 @@ namespace CoreRelm.Tests.Migrations
             };
 
             // Act
-            var resolver = new ModelSetResolver(Assembly.GetExecutingAssembly());
+            var resolver = new ModelSetResolver();
 
             // Assert
-            Assert.Throws<ModelSetNotFoundException>(() => resolver.ResolveSet(file, "nope"));
+            Assert.Throws<ModelSetNotFoundException>(() => resolver.ResolveSet(file, "nope", Assembly.GetExecutingAssembly()));
         }
 
         [Fact]
@@ -46,10 +46,10 @@ namespace CoreRelm.Tests.Migrations
             };
 
             // Act
-            var resolver = new ModelSetResolver(Assembly.GetExecutingAssembly());
+            var resolver = new ModelSetResolver();
             
             // Assert
-            Assert.Throws<ModelSetResolutionException>(() => resolver.ResolveSet(file, "nope"));
+            Assert.Throws<ModelSetResolutionException>(() => resolver.ResolveSet(file, "nope", Assembly.GetExecutingAssembly()));
         }
     }
 }

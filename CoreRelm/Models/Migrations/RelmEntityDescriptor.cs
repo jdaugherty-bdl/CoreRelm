@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.Models.Migrations
 {
-    internal sealed record RelmEntityDescriptor(
+    public sealed record RelmEntityDescriptor(
         string DatabaseName,
         string TableName,
         IReadOnlyList<RelmColumnDescriptor> Columns,

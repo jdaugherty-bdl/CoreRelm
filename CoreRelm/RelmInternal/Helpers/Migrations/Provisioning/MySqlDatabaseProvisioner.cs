@@ -1,4 +1,5 @@
 ﻿using BDL.Common.Logging.Extensions;
+using CoreRelm.Extensions;
 using CoreRelm.Interfaces.Migrations;
 using CoreRelm.Models;
 using CoreRelm.Models.Migrations;
@@ -9,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static CoreRelm.Enums.CharsetEnums;
 
 namespace CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
 {
@@ -67,10 +69,10 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
 
         public async Task InitializeEmptyDatabaseAsync(
             MigrationOptions migrationOptions,
-            string? charset = null,
-            string? collation = null)
+            DatabaseCharset? charset = null,
+            DatabaseCollation? collation = null)
         {
-            _log?.LogFormatted(LogLevel.Information, "Initializing empty database '{DatabaseName}' with charset '{Charset}' and collation '{Collation}'.", args: [migrationOptions.DatabaseName, charset ?? "default", collation ?? "default"], preIncreaseLevel: true);
+            _log?.LogFormatted(LogLevel.Information, "Initializing empty database '{DatabaseName}' with charset '{Charset}' and collation '{Collation}'.", args: [migrationOptions.DatabaseName, (charset ?? DatabaseCharset.Default).ToDescriptionString(), (collation ?? DatabaseCollation.Default).ToDescriptionString()], preIncreaseLevel: true);
             _log?.LogFormatted(LogLevel.Debug, "MySqlDatabaseProvisioner.InitializeEmptyDatabaseAsync: Initializing database '{DatabaseName}' using connection string template '{ConnectionStringTemplate}'.", args: [migrationOptions.DatabaseName, migrationOptions.ConnectionStringTemplate]);
 
             if (string.IsNullOrWhiteSpace(migrationOptions.ConnectionStringTemplate))
@@ -101,9 +103,9 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
 
             _log?.LogFormatted(LogLevel.Information, "Creating database '{DatabaseName}' if it does not exist.", args: [migrationOptions.DatabaseName]);
             var sql = $"CREATE DATABASE IF NOT EXISTS `{EscapeIdentifier(migrationOptions.DatabaseName)}`";
-            if (!string.IsNullOrWhiteSpace(charset))
+            if ((charset ?? DatabaseCharset.Default) != DatabaseCharset.Default)
                 sql += $" CHARACTER SET {charset}";
-            if (!string.IsNullOrWhiteSpace(collation))
+            if ((collation ?? DatabaseCollation.Default) != DatabaseCollation.Default)
                 sql += $" COLLATE {collation}";
             sql += ";";
 

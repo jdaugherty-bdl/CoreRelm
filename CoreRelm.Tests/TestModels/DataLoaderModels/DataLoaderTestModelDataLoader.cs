@@ -17,15 +17,15 @@ namespace CoreRelm.Tests.TestModels.DataLoaderModels
     {
         internal override string TableName => "DUMMY NAME";
 
-        public DataLoaderTestModelDataLoader(RelmContextOptionsBuilder contextOptionsBuilder) : base(contextOptionsBuilder) { }
+        public DataLoaderTestModelDataLoader(RelmContextOptionsBuilder contextOptionsBuilder) : base(new RelmContext(contextOptionsBuilder.SetAutoInitializeDataSets(false).SetAutoVerifyTables(false))) { }
 
-        public override ICollection<DataLoaderTestModel> PullData(string selectQuery, Dictionary<string, object> findOptions)
+        public override ICollection<DataLoaderTestModel?>? PullData(string selectQuery, Dictionary<string, object?> findOptions)
         {
-            return new List<DataLoaderTestModel>
-            {
-                new DataLoaderTestModel { InternalId = "LOADER1" },
-                new DataLoaderTestModel { InternalId = "LOADER2" }
-            };
+            return
+            [
+                new() { InternalId = "LOADER1" },
+                new() { InternalId = "LOADER2" }
+            ];
         }
     }
 }

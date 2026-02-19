@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.Models.Migrations
 {
-    internal sealed record RelmForeignKeyDescriptor(
+    public sealed record RelmForeignKeyDescriptor(
         string Name,
         IReadOnlyList<string> LocalColumns,
         string PrincipalTable,

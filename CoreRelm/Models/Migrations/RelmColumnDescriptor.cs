@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.Models.Migrations
 {
-    internal sealed record RelmColumnDescriptor(
+    public sealed record RelmColumnDescriptor(
         string? ColumnName,
         string? StoreType,
         bool IsNullable,

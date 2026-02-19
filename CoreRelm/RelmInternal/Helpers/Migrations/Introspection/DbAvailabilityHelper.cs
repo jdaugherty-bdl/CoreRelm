@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static CoreRelm.Enums.CharsetEnums;
 
 namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
 {
@@ -20,8 +21,8 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
             {
                 await provisioner.InitializeEmptyDatabaseAsync(
                     migrationOptions: migrationOptions,
-                    charset: "utf8mb4",
-                    collation: "utf8mb4_0900_ai_ci");
+                    charset: DatabaseCharset.Utf8mb4,
+                    collation: DatabaseCollation.Utf8mb40900AiCi);
 
                 logInfo("Database ensured: `{DatabaseName}`", [migrationOptions.DatabaseName]);
                 return true;

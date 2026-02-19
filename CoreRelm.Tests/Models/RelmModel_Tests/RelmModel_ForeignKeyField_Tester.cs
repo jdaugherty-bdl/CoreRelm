@@ -18,6 +18,7 @@ namespace CoreRelm.Tests.Models.RelmModel_Tests
     public class RelmModel_ForeignKeyField_Tester : IClassFixture<JsonConfigurationFixture>
     {
         private readonly IConfiguration _configuration;
+        private ComplexTestContext context;
 
         public RelmModel_ForeignKeyField_Tester(JsonConfigurationFixture fixture)
         {
@@ -37,7 +38,10 @@ namespace CoreRelm.Tests.Models.RelmModel_Tests
             if (addSecondId)
                 mockComplexReferenceObjects.Add(new ComplexReferenceObject { ComplexTestModelInternalId = "ID1", TestModel = null });
 
-            var referenceDataLoader = new Mock<RelmDefaultDataLoader<ComplexReferenceObject>>();
+            new ServiceCollection().AddCoreRelm(_configuration);
+            context = new ComplexTestContext(autoInitializeDataSets: false, autoVerifyTables: false);
+
+            var referenceDataLoader = new Mock<RelmDefaultDataLoader<ComplexReferenceObject>>(context);
             referenceDataLoader.Setup(x => x.TableName).Returns("nothing_table");
             referenceDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
             referenceDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects);
@@ -56,8 +60,6 @@ namespace CoreRelm.Tests.Models.RelmModel_Tests
 
             var modelDataLoader = SetupSingleReturnReferenceDataLoader(true, false);
 
-            new ServiceCollection().AddCoreRelm(_configuration);
-            var context = new ComplexTestContext(autoInitializeDataSets: false, autoVerifyTables: false);
             context.GetDataSet<ComplexReferenceObject>()?.SetDataLoader(modelDataLoader.Object);
             //context.ComplexReferenceObjects!.SetDataLoader(modelDataLoader.Object);
 
@@ -65,9 +67,13 @@ namespace CoreRelm.Tests.Models.RelmModel_Tests
             var exception = Record.Exception(() => complexTestModel.LoadForeignKeyField(context, x => x.ComplexReferenceObject));
 
             // Assert
+            /*
             Assert.NotNull(exception?.InnerException);
             Assert.IsType<MySqlException>(exception);
             Assert.IsType<MySqlException>(exception.InnerException);
+            */
+            Assert.NotNull(exception);
+            Assert.IsType<InvalidOperationException>(exception);
         }
 
         [Fact]
@@ -80,7 +86,6 @@ namespace CoreRelm.Tests.Models.RelmModel_Tests
             };
 
             var dataLoader = SetupSingleReturnReferenceDataLoader(false, false);
-            new ServiceCollection().AddCoreRelm(_configuration);
 
             // Act
             complexTestModel.LoadForeignKeyField(new ComplexTestContext(autoVerifyTables: false), x => x.ComplexReferenceObject, dataLoader.Object);
@@ -102,7 +107,6 @@ namespace CoreRelm.Tests.Models.RelmModel_Tests
             };
 
             var dataLoader = SetupSingleReturnReferenceDataLoader(true, false);
-            new ServiceCollection().AddCoreRelm(_configuration);
 
             // Act
             complexTestModel.LoadForeignKeyField(new ComplexTestContext(autoVerifyTables: false), x => x.ComplexReferenceObjects, dataLoader.Object);
