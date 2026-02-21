@@ -89,7 +89,7 @@
 
 
   <h1 id="CoreRelm_Models_RelmModel" data-uid="CoreRelm.Models.RelmModel" class="text-break">
-Class RelmModel  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L40"><i class="bi bi-code-slash"></i></a>
+Class RelmModel  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L87"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -103,7 +103,8 @@ manipulation, database operations, and DTO generation.</p>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[RelmTrigger(Triggers.TriggerTime.BEFORE, Triggers.TriggerEvent.INSERT, &quot;\r\n    BEGIN\r\n        IF NEW.InternalId IS NULL OR NEW.InternalId = &#39;&#39; THEN\r\n            SET NEW.InternalId = uuid_v4();\r\n        END IF;\r\n    END&quot;, null, Triggers.TriggerOrdering.FOLLOWS, null)]
+    <pre><code class="lang-csharp hljs">[RelmFunction(&quot;uuid_v4&quot;, &quot;\r\n        -- 16 cryptographically strong random bytes\r\n        DECLARE b BINARY(16);\r\n        SET b = RANDOM_BYTES(16);\r\n\r\n        -- Set version to 4 (0100xxxx) in byte 7 (1-indexed)\r\n        SET b = INSERT(b, 7, 1, CHAR((ASCII(SUBSTR(b, 7, 1)) &amp; 15) | 64 USING latin1));\r\n\r\n        -- Set variant to RFC 4122 (10xxxxxx) in byte 9\r\n        SET b = INSERT(b, 9, 1, CHAR((ASCII(SUBSTR(b, 9, 1)) &amp; 63) | 128 USING latin1));\r\n\r\n        -- Format as 8-4-4-4-12\r\n        RETURN LOWER(CONCAT(\r\n            HEX(SUBSTR(b,  1, 4)), &#39;-&#39;,\r\n            HEX(SUBSTR(b,  5, 2)), &#39;-&#39;,\r\n            HEX(SUBSTR(b,  7, 2)), &#39;-&#39;,\r\n            HEX(SUBSTR(b,  9, 2)), &#39;-&#39;,\r\n            HEX(SUBSTR(b, 11, 6))\r\n        ));&quot;, &quot;CHAR&quot;, 36, &quot;Generates a version 4 UUID as a string in the format &#39;xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx&#39;, where &#39;x&#39; is any hexadecimal digit and &#39;y&#39; is one of 8, 9, A, or B.&quot;, null, false, StoredProcedures.ProcedureDataAccess.NoSql, SecurityEnums.SqlSecurityLevel.Invoker)]
+[RelmTrigger(Triggers.TriggerTime.BEFORE, Triggers.TriggerEvent.INSERT, &quot;\r\n    BEGIN\r\n        IF NEW.InternalId IS NULL OR NEW.InternalId = &#39;&#39; THEN\r\n            SET NEW.InternalId = uuid_v4();\r\n        END IF;\r\n    END&quot;, null, Triggers.TriggerOrdering.FOLLOWS, null)]
 public class RelmModel : IRelmModel</code></pre>
   </div>
 
@@ -131,6 +132,7 @@ public class RelmModel : IRelmModel</code></pre>
       <div><a class="xref" href="CoreRelm.Models.Migrations.Execution.AppliedMigration.html">AppliedMigration</a></div>
       <div><a class="xref" href="CoreRelm.Models.Migrations.Introspection.ColumnSchema.html">ColumnSchema</a></div>
       <div><a class="xref" href="CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.html">ForeignKeySchema</a></div>
+      <div><a class="xref" href="CoreRelm.Models.Migrations.Introspection.FunctionParameterSchema.html">FunctionParameterSchema</a></div>
       <div><a class="xref" href="CoreRelm.Models.Migrations.Introspection.FunctionSchema.html">FunctionSchema</a></div>
       <div><a class="xref" href="CoreRelm.Models.Migrations.Introspection.IndexSchema.html">IndexSchema</a></div>
       <div><a class="xref" href="CoreRelm.Models.Migrations.Introspection.TriggerSchema.html">TriggerSchema</a></div>
@@ -243,7 +245,7 @@ a flexible foundation for working with relational data in the Relm framework.
 
   <h3 id="CoreRelm_Models_RelmModel__ctor" data-uid="CoreRelm.Models.RelmModel.#ctor">
   RelmModel()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L116"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L190"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="CoreRelm.Models.RelmModel.html">RelmModel</a> class.</p>
@@ -273,7 +275,7 @@ a flexible foundation for working with relational data in the Relm framework.
 
   <h3 id="CoreRelm_Models_RelmModel__ctor_CoreRelm_Interfaces_IRelmModel_" data-uid="CoreRelm.Models.RelmModel.#ctor(CoreRelm.Interfaces.IRelmModel)">
   RelmModel(IRelmModel)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L131"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L205"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="CoreRelm.Models.RelmModel.html">RelmModel</a> class by copying all writable properties  from the
@@ -319,7 +321,7 @@ target model  are ignored.</p>
 
   <h3 id="CoreRelm_Models_RelmModel__ctor_System_Data_DataRow_System_String_" data-uid="CoreRelm.Models.RelmModel.#ctor(System.Data.DataRow,System.String)">
   RelmModel(DataRow, string?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L164"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L238"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="CoreRelm.Models.RelmModel.html">RelmModel</a> class and populates its properties  using data
@@ -365,7 +367,7 @@ in the  <code class="paramref">modelData</code> match the property names of the 
 
   <h3 id="CoreRelm_Models_RelmModel_Active" data-uid="CoreRelm.Models.RelmModel.Active">
   Active
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L139"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets or sets a value indicating whether the entity is active.</p>
@@ -398,7 +400,7 @@ public bool Active { get; set; }</code></pre>
 
   <h3 id="CoreRelm_Models_RelmModel_CreateDate" data-uid="CoreRelm.Models.RelmModel.CreateDate">
   CreateDate
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L79"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L153"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets or sets the creation date and time of the entity.</p>
@@ -431,7 +433,7 @@ public DateTime CreateDate { get; set; }</code></pre>
 
   <h3 id="CoreRelm_Models_RelmModel_Id" data-uid="CoreRelm.Models.RelmModel.Id">
   Id
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L133"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets or sets the unique auto-number row identifier for the entity.</p>
@@ -464,7 +466,7 @@ public long? Id { get; set; }</code></pre>
 
   <h3 id="CoreRelm_Models_RelmModel_InternalId" data-uid="CoreRelm.Models.RelmModel.InternalId">
   InternalId
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L145"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets or sets the unique internal identifier for the entity.</p>
@@ -497,7 +499,7 @@ public string? InternalId { get; set; }</code></pre>
 
   <h3 id="CoreRelm_Models_RelmModel_LastUpdated" data-uid="CoreRelm.Models.RelmModel.LastUpdated">
   LastUpdated
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L159"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets or sets the timestamp of the last update.</p>
@@ -534,7 +536,7 @@ public DateTime LastUpdated { get; set; }</code></pre>
 
   <h3 id="CoreRelm_Models_RelmModel_CopyFromSource__1___0_" data-uid="CoreRelm.Models.RelmModel.CopyFromSource``1(``0)">
   CopyFromSource&lt;T&gt;(T)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L528"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L602"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Creates a new instance of the specified type <code class="typeparamref">T</code> and copies all public properties and
@@ -592,7 +594,7 @@ accessibility.</p>
 
   <h3 id="CoreRelm_Models_RelmModel_Duplicate" data-uid="CoreRelm.Models.RelmModel.Duplicate">
   Duplicate()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L901"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L975"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Creates a shallow copy of the current <a class="xref" href="CoreRelm.Models.RelmModel.html">RelmModel</a> instance.</p>
@@ -629,7 +631,7 @@ object are duplicated.  References to other objects within the instance are not 
 
   <h3 id="CoreRelm_Models_RelmModel_GenerateDTO_System_Collections_Generic_IEnumerable_System_String__System_Collections_Generic_IEnumerable_System_String__System_String_System_Func_CoreRelm_Interfaces_IRelmModel_System_Collections_Generic_Dictionary_System_String_System_Object___System_Int32_" data-uid="CoreRelm.Models.RelmModel.GenerateDTO(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String,System.Func{CoreRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}},System.Int32)">
   GenerateDTO(IEnumerable&lt;string&gt;?, IEnumerable&lt;string&gt;?, string?, Func&lt;IRelmModel, Dictionary&lt;string, object&gt;&gt;?, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L570"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L644"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Generates a dynamic Data Transfer Object (DTO) containing properties from the current object based on
@@ -690,7 +692,7 @@ the <a class="xref" href="CoreRelm.Attributes.RelmDto.html">RelmDto</a> attribut
 
   <h3 id="CoreRelm_Models_RelmModel_GetUnderscoreProperties_System_Boolean_" data-uid="CoreRelm.Models.RelmModel.GetUnderscoreProperties(System.Boolean)">
   GetUnderscoreProperties(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L303"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L377"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Retrieves a list of properties for the current object, with their names converted to underscore-separated
@@ -732,7 +734,7 @@ a tuple containing the original property name and its <a class="xref" href="http
 
   <h3 id="CoreRelm_Models_RelmModel_ResetCoreAttributes_System_Boolean_System_Boolean_" data-uid="CoreRelm.Models.RelmModel.ResetCoreAttributes(System.Boolean,System.Boolean)">
   ResetCoreAttributes(bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L95"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L169"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Resets the core attributes of the model to their default values.</p>
@@ -775,7 +777,7 @@ identifier.</p>
 
   <h3 id="CoreRelm_Models_RelmModel_ResetWithData_System_Data_DataRow_System_String_" data-uid="CoreRelm.Models.RelmModel.ResetWithData(System.Data.DataRow,System.String)">
   ResetWithData(DataRow, string?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L181"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L255"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Resets the current model instance with data from the specified <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.datarow">DataRow</a>.</p>
@@ -824,7 +826,7 @@ and column names suffixed with the table name.</p>
 
   <h3 id="CoreRelm_Models_RelmModel_WriteToDatabase_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
   WriteToDatabase(IRelmContext, int, bool, bool, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L466"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L540"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Writes the current object to the database using the table specified in the <code>RelmTable</code> attribute.</p>
@@ -891,7 +893,7 @@ type.</p>
 
   <h3 id="CoreRelm_Models_RelmModel_WriteToDatabase_CoreRelm_Options_RelmContextOptionsBuilder_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Options.RelmContextOptionsBuilder,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
   WriteToDatabase(RelmContextOptionsBuilder, int, bool, bool, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L510"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L584"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Writes the current object to the database using the table specified in the <code>RelmTable</code> attribute.</p>
@@ -952,7 +954,7 @@ avoid runtime errors.</p>
 
   <h3 id="CoreRelm_Models_RelmModel_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Models.RelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
   WriteToDatabase(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L396"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L470"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Writes the current object to the database using the table specified in the <code>RelmTable</code> attribute.</p>
@@ -1017,7 +1019,7 @@ database schema matches the structure of the object being written.</p>
 
   <h3 id="CoreRelm_Models_RelmModel_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Models.RelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
   WriteToDatabase(MySqlConnection, int, bool, bool, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L371"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L445"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Writes the current object to the database using the table specified in the <code>RelmTable</code> attribute.</p>
@@ -1078,7 +1080,7 @@ database schema matches the structure of the object being written.</p>
 
   <h3 id="CoreRelm_Models_RelmModel_WriteToDatabase_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Models.RelmModel.WriteToDatabase(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
   WriteToDatabase(Enum, int, bool, bool, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L326"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L400"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Writes the current object to the database using the table specified in the <code>RelmTable</code> attribute.</p>
@@ -1138,7 +1140,7 @@ Ensure that the database schema matches the structure of the object being writte
 
   <h3 id="CoreRelm_Models_RelmModel_WriteToDatabaseAsync_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmModel.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
   WriteToDatabaseAsync(IRelmContext, int, bool, bool, bool, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L488"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L562"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Writes data to the database using the specified context and batch size, with options to control column
@@ -1203,7 +1205,7 @@ behavior based on the constraints of your database schema.</p>
 
   <h3 id="CoreRelm_Models_RelmModel_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
   WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L438"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L512"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Writes data to the database using the specified connection and optional transaction.</p>
@@ -1267,7 +1269,7 @@ columns will be included; otherwise, they will be excluded.</p>
 
   <h3 id="CoreRelm_Models_RelmModel_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
   WriteToDatabaseAsync(MySqlConnection, int, bool, bool, bool, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L416"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L490"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Writes data to the database using the specified connection and optional transaction.</p>
@@ -1327,7 +1329,7 @@ columns will be included; otherwise, they will be excluded.</p>
 
   <h3 id="CoreRelm_Models_RelmModel_WriteToDatabaseAsync_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmModel.WriteToDatabaseAsync(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
   WriteToDatabaseAsync(Enum, int, bool, bool, bool, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L348"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L422"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Writes data to the specified database connection in batches.</p>
@@ -1392,7 +1394,7 @@ be allowed in the data being written.</p>
 
   <h3 id="CoreRelm_Models_RelmModel_DtoTypeProcessor" data-uid="CoreRelm.Models.RelmModel.DtoTypeProcessor">
   DtoTypeProcessor
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L128"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Occurs when a DTO (Data Transfer Object) is processed.</p>
@@ -1429,7 +1431,7 @@ processed DTO as needed.</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L40" class="edit-link">Edit this page</a>
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L87" class="edit-link">Edit this page</a>
         </div>
 
 

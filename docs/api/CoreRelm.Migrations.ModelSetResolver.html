@@ -151,41 +151,6 @@ Class ModelSetResolver  <a class="header-action link-secondary" title="View sour
 
 
 
-  <h2 class="section" id="constructors">Constructors
-</h2>
-
-
-  <a id="CoreRelm_Migrations_ModelSetResolver__ctor_" data-uid="CoreRelm.Migrations.ModelSetResolver.#ctor*"></a>
-
-  <h3 id="CoreRelm_Migrations_ModelSetResolver__ctor_System_Reflection_Assembly_" data-uid="CoreRelm.Migrations.ModelSetResolver.#ctor(System.Reflection.Assembly)">
-  ModelSetResolver(Assembly)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Migrations/ModelSetResolver.cs/#L21"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ModelSetResolver(Assembly modelsAssembly)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>modelsAssembly</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.assembly">Assembly</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-
   <h2 class="section" id="methods">Methods
 </h2>
 
@@ -194,7 +159,7 @@ Class ModelSetResolver  <a class="header-action link-secondary" title="View sour
 
   <h3 id="CoreRelm_Migrations_ModelSetResolver_LoadModelSets_System_String_" data-uid="CoreRelm.Migrations.ModelSetResolver.LoadModelSets(System.String)">
   LoadModelSets(string?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Migrations/ModelSetResolver.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Migrations/ModelSetResolver.cs/#L19"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -228,16 +193,16 @@ Class ModelSetResolver  <a class="header-action link-secondary" title="View sour
 
   <a id="CoreRelm_Migrations_ModelSetResolver_ResolveSet_" data-uid="CoreRelm.Migrations.ModelSetResolver.ResolveSet*"></a>
 
-  <h3 id="CoreRelm_Migrations_ModelSetResolver_ResolveSet_CoreRelm_Models_Migrations_ModelSetsFile_System_String_" data-uid="CoreRelm.Migrations.ModelSetResolver.ResolveSet(CoreRelm.Models.Migrations.ModelSetsFile,System.String)">
-  ResolveSet(ModelSetsFile, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Migrations/ModelSetResolver.cs/#L51"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Migrations_ModelSetResolver_ResolveSet_CoreRelm_Models_Migrations_ModelSetsFile_System_String_System_Reflection_Assembly_" data-uid="CoreRelm.Migrations.ModelSetResolver.ResolveSet(CoreRelm.Models.Migrations.ModelSetsFile,System.String,System.Reflection.Assembly)">
+  ResolveSet(ModelSetsFile, string, Assembly)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Migrations/ModelSetResolver.cs/#L42"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ResolvedModelSet ResolveSet(ModelSetsFile file, string setName)</code></pre>
+    <pre><code class="lang-csharp hljs">public ResolvedModelSet ResolveSet(ModelSetsFile file, string setName, Assembly modelsAssembly)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -245,6 +210,8 @@ Class ModelSetResolver  <a class="header-action link-secondary" title="View sour
     <dt><code>file</code> <a class="xref" href="CoreRelm.Models.Migrations.ModelSetsFile.html">ModelSetsFile</a></dt>
     <dd></dd>
     <dt><code>setName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>modelsAssembly</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.assembly">Assembly</a></dt>
     <dd></dd>
   </dl>
 
@@ -266,9 +233,9 @@ Class ModelSetResolver  <a class="header-action link-secondary" title="View sour
 
   <a id="CoreRelm_Migrations_ModelSetResolver_ResolveSetWithDiagnostics_" data-uid="CoreRelm.Migrations.ModelSetResolver.ResolveSetWithDiagnostics*"></a>
 
-  <h3 id="CoreRelm_Migrations_ModelSetResolver_ResolveSetWithDiagnostics_CoreRelm_Models_Migrations_ModelSetsFile_System_String_" data-uid="CoreRelm.Migrations.ModelSetResolver.ResolveSetWithDiagnostics(CoreRelm.Models.Migrations.ModelSetsFile,System.String)">
-  ResolveSetWithDiagnostics(ModelSetsFile, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Migrations/ModelSetResolver.cs/#L259"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Migrations_ModelSetResolver_ResolveSetWithDiagnostics_CoreRelm_Models_Migrations_ModelSetsFile_System_String_System_Reflection_Assembly_" data-uid="CoreRelm.Migrations.ModelSetResolver.ResolveSetWithDiagnostics(CoreRelm.Models.Migrations.ModelSetsFile,System.String,System.Reflection.Assembly)">
+  ResolveSetWithDiagnostics(ModelSetsFile, string, Assembly)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Migrations/ModelSetResolver.cs/#L60"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Resolves a model set definition by name from the specified model sets file and returns the resolved set
@@ -277,7 +244,7 @@ along with detailed diagnostics.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public (ResolvedModelSet Resolved, ResolvedModelSetDiagnostics Diagnostics) ResolveSetWithDiagnostics(ModelSetsFile file, string setName)</code></pre>
+    <pre><code class="lang-csharp hljs">public (ResolvedModelSet Resolved, ResolvedModelSetDiagnostics Diagnostics) ResolveSetWithDiagnostics(ModelSetsFile file, string setName, Assembly modelsAssembly)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -288,6 +255,8 @@ along with detailed diagnostics.</p>
     <dt><code>setName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd><p>The name of the model set to resolve. Must match a set defined in the provided file.</p>
 </dd>
+    <dt><code>modelsAssembly</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.assembly">Assembly</a></dt>
+    <dd></dd>
   </dl>
 
   <h4 class="section">Returns</h4>
@@ -304,7 +273,7 @@ process, including any errors or warnings encountered.</p>
 
 
 
-  <h4 class="section" id="CoreRelm_Migrations_ModelSetResolver_ResolveSetWithDiagnostics_CoreRelm_Models_Migrations_ModelSetsFile_System_String__remarks">Remarks</h4>
+  <h4 class="section" id="CoreRelm_Migrations_ModelSetResolver_ResolveSetWithDiagnostics_CoreRelm_Models_Migrations_ModelSetsFile_System_String_System_Reflection_Assembly__remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>The diagnostics object provides detailed information about the resolution process,
 such as missing types, attribute validation errors, and counts of included or excluded types. This method
 does not throw for missing or invalid attributes; instead, such issues are reported in the

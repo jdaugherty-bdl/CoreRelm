@@ -4,6 +4,9 @@ items:
   commentId: N:CoreRelm.Enums
   id: CoreRelm.Enums
   children:
+  - CoreRelm.Enums.CharsetEnums
+  - CoreRelm.Enums.CharsetEnums.DatabaseCharset
+  - CoreRelm.Enums.CharsetEnums.DatabaseCollation
   - CoreRelm.Enums.Commands
   - CoreRelm.Enums.Commands.Command
   - CoreRelm.Enums.ForeignKeys
@@ -13,6 +16,8 @@ items:
   - CoreRelm.Enums.Indexes.IndexType
   - CoreRelm.Enums.Indexes.LockOption
   - CoreRelm.Enums.Indexes.Visibility
+  - CoreRelm.Enums.MigrationEnums
+  - CoreRelm.Enums.MigrationEnums.RelmMigrationType
   - CoreRelm.Enums.SecurityEnums
   - CoreRelm.Enums.SecurityEnums.AccessLevel
   - CoreRelm.Enums.SecurityEnums.AccountStatus
@@ -22,6 +27,10 @@ items:
   - CoreRelm.Enums.SecurityEnums.PasswordStrength
   - CoreRelm.Enums.SecurityEnums.SqlSecurityLevel
   - CoreRelm.Enums.SecurityEnums.UserRole
+  - CoreRelm.Enums.StoredProcedures
+  - CoreRelm.Enums.StoredProcedures.ParameterDirection
+  - CoreRelm.Enums.StoredProcedures.ProcedureDataAccess
+  - CoreRelm.Enums.StoredProcedures.ProcedureType
   - CoreRelm.Enums.Triggers
   - CoreRelm.Enums.Triggers.TriggerEvent
   - CoreRelm.Enums.Triggers.TriggerOrdering
@@ -37,6 +46,58 @@ items:
   assemblies:
   - CoreRelm
 references:
+- uid: CoreRelm.Enums.CharsetEnums
+  commentId: T:CoreRelm.Enums.CharsetEnums
+  href: CoreRelm.Enums.CharsetEnums.html
+  name: CharsetEnums
+  nameWithType: CharsetEnums
+  fullName: CoreRelm.Enums.CharsetEnums
+- uid: CoreRelm.Enums.CharsetEnums.DatabaseCharset
+  commentId: T:CoreRelm.Enums.CharsetEnums.DatabaseCharset
+  parent: CoreRelm.Enums
+  href: CoreRelm.Enums.CharsetEnums.html
+  name: CharsetEnums.DatabaseCharset
+  nameWithType: CharsetEnums.DatabaseCharset
+  fullName: CoreRelm.Enums.CharsetEnums.DatabaseCharset
+  spec.csharp:
+  - uid: CoreRelm.Enums.CharsetEnums
+    name: CharsetEnums
+    href: CoreRelm.Enums.CharsetEnums.html
+  - name: .
+  - uid: CoreRelm.Enums.CharsetEnums.DatabaseCharset
+    name: DatabaseCharset
+    href: CoreRelm.Enums.CharsetEnums.DatabaseCharset.html
+  spec.vb:
+  - uid: CoreRelm.Enums.CharsetEnums
+    name: CharsetEnums
+    href: CoreRelm.Enums.CharsetEnums.html
+  - name: .
+  - uid: CoreRelm.Enums.CharsetEnums.DatabaseCharset
+    name: DatabaseCharset
+    href: CoreRelm.Enums.CharsetEnums.DatabaseCharset.html
+- uid: CoreRelm.Enums.CharsetEnums.DatabaseCollation
+  commentId: T:CoreRelm.Enums.CharsetEnums.DatabaseCollation
+  parent: CoreRelm.Enums
+  href: CoreRelm.Enums.CharsetEnums.html
+  name: CharsetEnums.DatabaseCollation
+  nameWithType: CharsetEnums.DatabaseCollation
+  fullName: CoreRelm.Enums.CharsetEnums.DatabaseCollation
+  spec.csharp:
+  - uid: CoreRelm.Enums.CharsetEnums
+    name: CharsetEnums
+    href: CoreRelm.Enums.CharsetEnums.html
+  - name: .
+  - uid: CoreRelm.Enums.CharsetEnums.DatabaseCollation
+    name: DatabaseCollation
+    href: CoreRelm.Enums.CharsetEnums.DatabaseCollation.html
+  spec.vb:
+  - uid: CoreRelm.Enums.CharsetEnums
+    name: CharsetEnums
+    href: CoreRelm.Enums.CharsetEnums.html
+  - name: .
+  - uid: CoreRelm.Enums.CharsetEnums.DatabaseCollation
+    name: DatabaseCollation
+    href: CoreRelm.Enums.CharsetEnums.DatabaseCollation.html
 - uid: CoreRelm.Enums.Commands
   commentId: T:CoreRelm.Enums.Commands
   href: CoreRelm.Enums.Commands.html
@@ -193,6 +254,35 @@ references:
   - uid: CoreRelm.Enums.Indexes.LockOption
     name: LockOption
     href: CoreRelm.Enums.Indexes.LockOption.html
+- uid: CoreRelm.Enums.MigrationEnums
+  commentId: T:CoreRelm.Enums.MigrationEnums
+  href: CoreRelm.Enums.MigrationEnums.html
+  name: MigrationEnums
+  nameWithType: MigrationEnums
+  fullName: CoreRelm.Enums.MigrationEnums
+- uid: CoreRelm.Enums.MigrationEnums.RelmMigrationType
+  commentId: T:CoreRelm.Enums.MigrationEnums.RelmMigrationType
+  parent: CoreRelm.Enums
+  href: CoreRelm.Enums.MigrationEnums.html
+  name: MigrationEnums.RelmMigrationType
+  nameWithType: MigrationEnums.RelmMigrationType
+  fullName: CoreRelm.Enums.MigrationEnums.RelmMigrationType
+  spec.csharp:
+  - uid: CoreRelm.Enums.MigrationEnums
+    name: MigrationEnums
+    href: CoreRelm.Enums.MigrationEnums.html
+  - name: .
+  - uid: CoreRelm.Enums.MigrationEnums.RelmMigrationType
+    name: RelmMigrationType
+    href: CoreRelm.Enums.MigrationEnums.RelmMigrationType.html
+  spec.vb:
+  - uid: CoreRelm.Enums.MigrationEnums
+    name: MigrationEnums
+    href: CoreRelm.Enums.MigrationEnums.html
+  - name: .
+  - uid: CoreRelm.Enums.MigrationEnums.RelmMigrationType
+    name: RelmMigrationType
+    href: CoreRelm.Enums.MigrationEnums.RelmMigrationType.html
 - uid: CoreRelm.Enums.SecurityEnums
   commentId: T:CoreRelm.Enums.SecurityEnums
   href: CoreRelm.Enums.SecurityEnums.html
@@ -383,6 +473,81 @@ references:
   - uid: CoreRelm.Enums.SecurityEnums.AccessLevel
     name: AccessLevel
     href: CoreRelm.Enums.SecurityEnums.AccessLevel.html
+- uid: CoreRelm.Enums.StoredProcedures
+  commentId: T:CoreRelm.Enums.StoredProcedures
+  href: CoreRelm.Enums.StoredProcedures.html
+  name: StoredProcedures
+  nameWithType: StoredProcedures
+  fullName: CoreRelm.Enums.StoredProcedures
+- uid: CoreRelm.Enums.StoredProcedures.ProcedureType
+  commentId: T:CoreRelm.Enums.StoredProcedures.ProcedureType
+  parent: CoreRelm.Enums
+  href: CoreRelm.Enums.StoredProcedures.html
+  name: StoredProcedures.ProcedureType
+  nameWithType: StoredProcedures.ProcedureType
+  fullName: CoreRelm.Enums.StoredProcedures.ProcedureType
+  spec.csharp:
+  - uid: CoreRelm.Enums.StoredProcedures
+    name: StoredProcedures
+    href: CoreRelm.Enums.StoredProcedures.html
+  - name: .
+  - uid: CoreRelm.Enums.StoredProcedures.ProcedureType
+    name: ProcedureType
+    href: CoreRelm.Enums.StoredProcedures.ProcedureType.html
+  spec.vb:
+  - uid: CoreRelm.Enums.StoredProcedures
+    name: StoredProcedures
+    href: CoreRelm.Enums.StoredProcedures.html
+  - name: .
+  - uid: CoreRelm.Enums.StoredProcedures.ProcedureType
+    name: ProcedureType
+    href: CoreRelm.Enums.StoredProcedures.ProcedureType.html
+- uid: CoreRelm.Enums.StoredProcedures.ParameterDirection
+  commentId: T:CoreRelm.Enums.StoredProcedures.ParameterDirection
+  parent: CoreRelm.Enums
+  href: CoreRelm.Enums.StoredProcedures.html
+  name: StoredProcedures.ParameterDirection
+  nameWithType: StoredProcedures.ParameterDirection
+  fullName: CoreRelm.Enums.StoredProcedures.ParameterDirection
+  spec.csharp:
+  - uid: CoreRelm.Enums.StoredProcedures
+    name: StoredProcedures
+    href: CoreRelm.Enums.StoredProcedures.html
+  - name: .
+  - uid: CoreRelm.Enums.StoredProcedures.ParameterDirection
+    name: ParameterDirection
+    href: CoreRelm.Enums.StoredProcedures.ParameterDirection.html
+  spec.vb:
+  - uid: CoreRelm.Enums.StoredProcedures
+    name: StoredProcedures
+    href: CoreRelm.Enums.StoredProcedures.html
+  - name: .
+  - uid: CoreRelm.Enums.StoredProcedures.ParameterDirection
+    name: ParameterDirection
+    href: CoreRelm.Enums.StoredProcedures.ParameterDirection.html
+- uid: CoreRelm.Enums.StoredProcedures.ProcedureDataAccess
+  commentId: T:CoreRelm.Enums.StoredProcedures.ProcedureDataAccess
+  parent: CoreRelm.Enums
+  href: CoreRelm.Enums.StoredProcedures.html
+  name: StoredProcedures.ProcedureDataAccess
+  nameWithType: StoredProcedures.ProcedureDataAccess
+  fullName: CoreRelm.Enums.StoredProcedures.ProcedureDataAccess
+  spec.csharp:
+  - uid: CoreRelm.Enums.StoredProcedures
+    name: StoredProcedures
+    href: CoreRelm.Enums.StoredProcedures.html
+  - name: .
+  - uid: CoreRelm.Enums.StoredProcedures.ProcedureDataAccess
+    name: ProcedureDataAccess
+    href: CoreRelm.Enums.StoredProcedures.ProcedureDataAccess.html
+  spec.vb:
+  - uid: CoreRelm.Enums.StoredProcedures
+    name: StoredProcedures
+    href: CoreRelm.Enums.StoredProcedures.html
+  - name: .
+  - uid: CoreRelm.Enums.StoredProcedures.ProcedureDataAccess
+    name: ProcedureDataAccess
+    href: CoreRelm.Enums.StoredProcedures.ProcedureDataAccess.html
 - uid: CoreRelm.Enums.Triggers
   commentId: T:CoreRelm.Enums.Triggers
   href: CoreRelm.Enums.Triggers.html

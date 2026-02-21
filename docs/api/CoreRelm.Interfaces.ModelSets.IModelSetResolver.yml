@@ -5,8 +5,9 @@ items:
   id: IModelSetResolver
   parent: CoreRelm.Interfaces.ModelSets
   children:
-  - CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSet(CoreRelm.Models.Migrations.ModelSetsFile,System.String)
-  - CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSetWithDiagnostics(CoreRelm.Models.Migrations.ModelSetsFile,System.String)
+  - CoreRelm.Interfaces.ModelSets.IModelSetResolver.LoadModelSets(System.String)
+  - CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSet(CoreRelm.Models.Migrations.ModelSetsFile,System.String,System.Reflection.Assembly)
+  - CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSetWithDiagnostics(CoreRelm.Models.Migrations.ModelSetsFile,System.String,System.Reflection.Assembly)
   langs:
   - csharp
   - vb
@@ -28,16 +29,50 @@ items:
   syntax:
     content: public interface IModelSetResolver
     content.vb: Public Interface IModelSetResolver
-- uid: CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSet(CoreRelm.Models.Migrations.ModelSetsFile,System.String)
-  commentId: M:CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSet(CoreRelm.Models.Migrations.ModelSetsFile,System.String)
-  id: ResolveSet(CoreRelm.Models.Migrations.ModelSetsFile,System.String)
+- uid: CoreRelm.Interfaces.ModelSets.IModelSetResolver.LoadModelSets(System.String)
+  commentId: M:CoreRelm.Interfaces.ModelSets.IModelSetResolver.LoadModelSets(System.String)
+  id: LoadModelSets(System.String)
   parent: CoreRelm.Interfaces.ModelSets.IModelSetResolver
   langs:
   - csharp
   - vb
-  name: ResolveSet(ModelSetsFile, string)
-  nameWithType: IModelSetResolver.ResolveSet(ModelSetsFile, string)
-  fullName: CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSet(CoreRelm.Models.Migrations.ModelSetsFile, string)
+  name: LoadModelSets(string?)
+  nameWithType: IModelSetResolver.LoadModelSets(string?)
+  fullName: CoreRelm.Interfaces.ModelSets.IModelSetResolver.LoadModelSets(string?)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Interfaces/ModelSets/IModelSetResolver.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: LoadModelSets
+    path: ../CoreRelm/Interfaces/ModelSets/IModelSetResolver.cs
+    startLine: 12
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces.ModelSets
+  syntax:
+    content: ModelSetsFile LoadModelSets(string? modelSetsPath)
+    parameters:
+    - id: modelSetsPath
+      type: System.String
+    return:
+      type: CoreRelm.Models.Migrations.ModelSetsFile
+    content.vb: Function LoadModelSets(modelSetsPath As String) As ModelSetsFile
+  overload: CoreRelm.Interfaces.ModelSets.IModelSetResolver.LoadModelSets*
+  nameWithType.vb: IModelSetResolver.LoadModelSets(String)
+  fullName.vb: CoreRelm.Interfaces.ModelSets.IModelSetResolver.LoadModelSets(String)
+  name.vb: LoadModelSets(String)
+- uid: CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSet(CoreRelm.Models.Migrations.ModelSetsFile,System.String,System.Reflection.Assembly)
+  commentId: M:CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSet(CoreRelm.Models.Migrations.ModelSetsFile,System.String,System.Reflection.Assembly)
+  id: ResolveSet(CoreRelm.Models.Migrations.ModelSetsFile,System.String,System.Reflection.Assembly)
+  parent: CoreRelm.Interfaces.ModelSets.IModelSetResolver
+  langs:
+  - csharp
+  - vb
+  name: ResolveSet(ModelSetsFile, string, Assembly)
+  nameWithType: IModelSetResolver.ResolveSet(ModelSetsFile, string, Assembly)
+  fullName: CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSet(CoreRelm.Models.Migrations.ModelSetsFile, string, System.Reflection.Assembly)
   type: Method
   source:
     remote:
@@ -46,34 +81,36 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ResolveSet
     path: ../CoreRelm/Interfaces/ModelSets/IModelSetResolver.cs
-    startLine: 12
+    startLine: 13
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Interfaces.ModelSets
   syntax:
-    content: ResolvedModelSet ResolveSet(ModelSetsFile file, string setName)
+    content: ResolvedModelSet ResolveSet(ModelSetsFile file, string setName, Assembly modelsAssembly)
     parameters:
     - id: file
       type: CoreRelm.Models.Migrations.ModelSetsFile
     - id: setName
       type: System.String
+    - id: modelsAssembly
+      type: System.Reflection.Assembly
     return:
       type: CoreRelm.Models.Migrations.ResolvedModelSet
-    content.vb: Function ResolveSet(file As ModelSetsFile, setName As String) As ResolvedModelSet
+    content.vb: Function ResolveSet(file As ModelSetsFile, setName As String, modelsAssembly As Assembly) As ResolvedModelSet
   overload: CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSet*
-  nameWithType.vb: IModelSetResolver.ResolveSet(ModelSetsFile, String)
-  fullName.vb: CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSet(CoreRelm.Models.Migrations.ModelSetsFile, String)
-  name.vb: ResolveSet(ModelSetsFile, String)
-- uid: CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSetWithDiagnostics(CoreRelm.Models.Migrations.ModelSetsFile,System.String)
-  commentId: M:CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSetWithDiagnostics(CoreRelm.Models.Migrations.ModelSetsFile,System.String)
-  id: ResolveSetWithDiagnostics(CoreRelm.Models.Migrations.ModelSetsFile,System.String)
+  nameWithType.vb: IModelSetResolver.ResolveSet(ModelSetsFile, String, Assembly)
+  fullName.vb: CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSet(CoreRelm.Models.Migrations.ModelSetsFile, String, System.Reflection.Assembly)
+  name.vb: ResolveSet(ModelSetsFile, String, Assembly)
+- uid: CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSetWithDiagnostics(CoreRelm.Models.Migrations.ModelSetsFile,System.String,System.Reflection.Assembly)
+  commentId: M:CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSetWithDiagnostics(CoreRelm.Models.Migrations.ModelSetsFile,System.String,System.Reflection.Assembly)
+  id: ResolveSetWithDiagnostics(CoreRelm.Models.Migrations.ModelSetsFile,System.String,System.Reflection.Assembly)
   parent: CoreRelm.Interfaces.ModelSets.IModelSetResolver
   langs:
   - csharp
   - vb
-  name: ResolveSetWithDiagnostics(ModelSetsFile, string)
-  nameWithType: IModelSetResolver.ResolveSetWithDiagnostics(ModelSetsFile, string)
-  fullName: CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSetWithDiagnostics(CoreRelm.Models.Migrations.ModelSetsFile, string)
+  name: ResolveSetWithDiagnostics(ModelSetsFile, string, Assembly)
+  nameWithType: IModelSetResolver.ResolveSetWithDiagnostics(ModelSetsFile, string, Assembly)
+  fullName: CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSetWithDiagnostics(CoreRelm.Models.Migrations.ModelSetsFile, string, System.Reflection.Assembly)
   type: Method
   source:
     remote:
@@ -82,24 +119,26 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ResolveSetWithDiagnostics
     path: ../CoreRelm/Interfaces/ModelSets/IModelSetResolver.cs
-    startLine: 13
+    startLine: 14
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Interfaces.ModelSets
   syntax:
-    content: (ResolvedModelSet Resolved, ResolvedModelSetDiagnostics Diagnostics) ResolveSetWithDiagnostics(ModelSetsFile file, string setName)
+    content: (ResolvedModelSet Resolved, ResolvedModelSetDiagnostics Diagnostics) ResolveSetWithDiagnostics(ModelSetsFile file, string setName, Assembly modelsAssembly)
     parameters:
     - id: file
       type: CoreRelm.Models.Migrations.ModelSetsFile
     - id: setName
       type: System.String
+    - id: modelsAssembly
+      type: System.Reflection.Assembly
     return:
       type: System.ValueTuple{CoreRelm.Models.Migrations.ResolvedModelSet,CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics}
-    content.vb: Function ResolveSetWithDiagnostics(file As ModelSetsFile, setName As String) As (Resolved As ResolvedModelSet, Diagnostics As ResolvedModelSetDiagnostics)
+    content.vb: Function ResolveSetWithDiagnostics(file As ModelSetsFile, setName As String, modelsAssembly As Assembly) As (Resolved As ResolvedModelSet, Diagnostics As ResolvedModelSetDiagnostics)
   overload: CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSetWithDiagnostics*
-  nameWithType.vb: IModelSetResolver.ResolveSetWithDiagnostics(ModelSetsFile, String)
-  fullName.vb: CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSetWithDiagnostics(CoreRelm.Models.Migrations.ModelSetsFile, String)
-  name.vb: ResolveSetWithDiagnostics(ModelSetsFile, String)
+  nameWithType.vb: IModelSetResolver.ResolveSetWithDiagnostics(ModelSetsFile, String, Assembly)
+  fullName.vb: CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSetWithDiagnostics(CoreRelm.Models.Migrations.ModelSetsFile, String, System.Reflection.Assembly)
+  name.vb: ResolveSetWithDiagnostics(ModelSetsFile, String, Assembly)
 references:
 - uid: CoreRelm.Interfaces.ModelSets
   commentId: N:CoreRelm.Interfaces.ModelSets
@@ -131,19 +170,12 @@ references:
   - uid: CoreRelm.Interfaces.ModelSets
     name: ModelSets
     href: CoreRelm.Interfaces.ModelSets.html
-- uid: CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSet*
-  commentId: Overload:CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSet
-  href: CoreRelm.Interfaces.ModelSets.IModelSetResolver.html#CoreRelm_Interfaces_ModelSets_IModelSetResolver_ResolveSet_CoreRelm_Models_Migrations_ModelSetsFile_System_String_
-  name: ResolveSet
-  nameWithType: IModelSetResolver.ResolveSet
-  fullName: CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSet
-- uid: CoreRelm.Models.Migrations.ModelSetsFile
-  commentId: T:CoreRelm.Models.Migrations.ModelSetsFile
-  parent: CoreRelm.Models.Migrations
-  href: CoreRelm.Models.Migrations.ModelSetsFile.html
-  name: ModelSetsFile
-  nameWithType: ModelSetsFile
-  fullName: CoreRelm.Models.Migrations.ModelSetsFile
+- uid: CoreRelm.Interfaces.ModelSets.IModelSetResolver.LoadModelSets*
+  commentId: Overload:CoreRelm.Interfaces.ModelSets.IModelSetResolver.LoadModelSets
+  href: CoreRelm.Interfaces.ModelSets.IModelSetResolver.html#CoreRelm_Interfaces_ModelSets_IModelSetResolver_LoadModelSets_System_String_
+  name: LoadModelSets
+  nameWithType: IModelSetResolver.LoadModelSets
+  fullName: CoreRelm.Interfaces.ModelSets.IModelSetResolver.LoadModelSets
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -155,13 +187,20 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
-- uid: CoreRelm.Models.Migrations.ResolvedModelSet
-  commentId: T:CoreRelm.Models.Migrations.ResolvedModelSet
+- uid: CoreRelm.Models.Migrations.ModelSetsFile
+  commentId: T:CoreRelm.Models.Migrations.ModelSetsFile
   parent: CoreRelm.Models.Migrations
-  href: CoreRelm.Models.Migrations.ResolvedModelSet.html
-  name: ResolvedModelSet
-  nameWithType: ResolvedModelSet
-  fullName: CoreRelm.Models.Migrations.ResolvedModelSet
+  href: CoreRelm.Models.Migrations.ModelSetsFile.html
+  name: ModelSetsFile
+  nameWithType: ModelSetsFile
+  fullName: CoreRelm.Models.Migrations.ModelSetsFile
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
 - uid: CoreRelm.Models.Migrations
   commentId: N:CoreRelm.Models.Migrations
   href: CoreRelm.html
@@ -192,16 +231,57 @@ references:
   - uid: CoreRelm.Models.Migrations
     name: Migrations
     href: CoreRelm.Models.Migrations.html
-- uid: System
-  commentId: N:System
+- uid: CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSet*
+  commentId: Overload:CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSet
+  href: CoreRelm.Interfaces.ModelSets.IModelSetResolver.html#CoreRelm_Interfaces_ModelSets_IModelSetResolver_ResolveSet_CoreRelm_Models_Migrations_ModelSetsFile_System_String_System_Reflection_Assembly_
+  name: ResolveSet
+  nameWithType: IModelSetResolver.ResolveSet
+  fullName: CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSet
+- uid: System.Reflection.Assembly
+  commentId: T:System.Reflection.Assembly
+  parent: System.Reflection
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.reflection.assembly
+  name: Assembly
+  nameWithType: Assembly
+  fullName: System.Reflection.Assembly
+- uid: CoreRelm.Models.Migrations.ResolvedModelSet
+  commentId: T:CoreRelm.Models.Migrations.ResolvedModelSet
+  parent: CoreRelm.Models.Migrations
+  href: CoreRelm.Models.Migrations.ResolvedModelSet.html
+  name: ResolvedModelSet
+  nameWithType: ResolvedModelSet
+  fullName: CoreRelm.Models.Migrations.ResolvedModelSet
+- uid: System.Reflection
+  commentId: N:System.Reflection
   isExternal: true
   href: https://learn.microsoft.com/dotnet/api/system
-  name: System
-  nameWithType: System
-  fullName: System
+  name: System.Reflection
+  nameWithType: System.Reflection
+  fullName: System.Reflection
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Reflection
+    name: Reflection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Reflection
+    name: Reflection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection
 - uid: CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSetWithDiagnostics*
   commentId: Overload:CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSetWithDiagnostics
-  href: CoreRelm.Interfaces.ModelSets.IModelSetResolver.html#CoreRelm_Interfaces_ModelSets_IModelSetResolver_ResolveSetWithDiagnostics_CoreRelm_Models_Migrations_ModelSetsFile_System_String_
+  href: CoreRelm.Interfaces.ModelSets.IModelSetResolver.html#CoreRelm_Interfaces_ModelSets_IModelSetResolver_ResolveSetWithDiagnostics_CoreRelm_Models_Migrations_ModelSetsFile_System_String_System_Reflection_Assembly_
   name: ResolveSetWithDiagnostics
   nameWithType: IModelSetResolver.ResolveSetWithDiagnostics
   fullName: CoreRelm.Interfaces.ModelSets.IModelSetResolver.ResolveSetWithDiagnostics

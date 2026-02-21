@@ -43,7 +43,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: RelmModel
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 39
+    startLine: 86
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -61,10 +61,14 @@ items:
   example: []
   syntax:
     content: >-
+      [RelmFunction("uuid_v4", "\r\n        -- 16 cryptographically strong random bytes\r\n        DECLARE b BINARY(16);\r\n        SET b = RANDOM_BYTES(16);\r\n\r\n        -- Set version to 4 (0100xxxx) in byte 7 (1-indexed)\r\n        SET b = INSERT(b, 7, 1, CHAR((ASCII(SUBSTR(b, 7, 1)) & 15) | 64 USING latin1));\r\n\r\n        -- Set variant to RFC 4122 (10xxxxxx) in byte 9\r\n        SET b = INSERT(b, 9, 1, CHAR((ASCII(SUBSTR(b, 9, 1)) & 63) | 128 USING latin1));\r\n\r\n        -- Format as 8-4-4-4-12\r\n        RETURN LOWER(CONCAT(\r\n            HEX(SUBSTR(b,  1, 4)), '-',\r\n            HEX(SUBSTR(b,  5, 2)), '-',\r\n            HEX(SUBSTR(b,  7, 2)), '-',\r\n            HEX(SUBSTR(b,  9, 2)), '-',\r\n            HEX(SUBSTR(b, 11, 6))\r\n        ));", "CHAR", 36, "Generates a version 4 UUID as a string in the format 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx', where 'x' is any hexadecimal digit and 'y' is one of 8, 9, A, or B.", null, false, StoredProcedures.ProcedureDataAccess.NoSql, SecurityEnums.SqlSecurityLevel.Invoker)]
+
       [RelmTrigger(Triggers.TriggerTime.BEFORE, Triggers.TriggerEvent.INSERT, "\r\n    BEGIN\r\n        IF NEW.InternalId IS NULL OR NEW.InternalId = '' THEN\r\n            SET NEW.InternalId = uuid_v4();\r\n        END IF;\r\n    END", null, Triggers.TriggerOrdering.FOLLOWS, null)]
 
       public class RelmModel : IRelmModel
     content.vb: >-
+      <RelmFunction("uuid_v4", vbCrLf & "        -- 16 cryptographically strong random bytes" & vbCrLf & "        DECLARE b BINARY(16);" & vbCrLf & "        SET b = RANDOM_BYTES(16);" & vbCrLf & vbCrLf & "        -- Set version to 4 (0100xxxx) in byte 7 (1-indexed)" & vbCrLf & "        SET b = INSERT(b, 7, 1, CHAR((ASCII(SUBSTR(b, 7, 1)) & 15) | 64 USING latin1));" & vbCrLf & vbCrLf & "        -- Set variant to RFC 4122 (10xxxxxx) in byte 9" & vbCrLf & "        SET b = INSERT(b, 9, 1, CHAR((ASCII(SUBSTR(b, 9, 1)) & 63) | 128 USING latin1));" & vbCrLf & vbCrLf & "        -- Format as 8-4-4-4-12" & vbCrLf & "        RETURN LOWER(CONCAT(" & vbCrLf & "            HEX(SUBSTR(b,  1, 4)), '-'," & vbCrLf & "            HEX(SUBSTR(b,  5, 2)), '-'," & vbCrLf & "            HEX(SUBSTR(b,  7, 2)), '-'," & vbCrLf & "            HEX(SUBSTR(b,  9, 2)), '-'," & vbCrLf & "            HEX(SUBSTR(b, 11, 6))" & vbCrLf & "        ));", "CHAR", 36, "Generates a version 4 UUID as a string in the format 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx', where 'x' is any hexadecimal digit and 'y' is one of 8, 9, A, or B.", Nothing, False, StoredProcedures.ProcedureDataAccess.NoSql, SecurityEnums.SqlSecurityLevel.Invoker)>
+
       <RelmTrigger(Triggers.TriggerTime.BEFORE, Triggers.TriggerEvent.INSERT, vbCrLf & "    BEGIN" & vbCrLf & "        IF NEW.InternalId IS NULL OR NEW.InternalId = '' THEN" & vbCrLf & "            SET NEW.InternalId = uuid_v4();" & vbCrLf & "        END IF;" & vbCrLf & "    END", Nothing, Triggers.TriggerOrdering.FOLLOWS, Nothing)>
 
       Public Class RelmModel Implements IRelmModel
@@ -74,6 +78,7 @@ items:
   - CoreRelm.Models.Migrations.Execution.AppliedMigration
   - CoreRelm.Models.Migrations.Introspection.ColumnSchema
   - CoreRelm.Models.Migrations.Introspection.ForeignKeySchema
+  - CoreRelm.Models.Migrations.Introspection.FunctionParameterSchema
   - CoreRelm.Models.Migrations.Introspection.FunctionSchema
   - CoreRelm.Models.Migrations.Introspection.IndexSchema
   - CoreRelm.Models.Migrations.Introspection.TriggerSchema
@@ -108,6 +113,26 @@ items:
   - CoreRelm.Models.RelmModel.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.RelmModel,{R}}},CoreRelm.Interfaces.IRelmDataLoader{{S}})
   - CoreRelm.Models.RelmModel.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.RelmModel,{R}}},CoreRelm.Interfaces.IRelmDataLoader{{S}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
   attributes:
+  - type: CoreRelm.Attributes.RelmFunction
+    ctor: CoreRelm.Attributes.RelmFunction.#ctor(System.String,System.String,System.String,System.Int32,System.String,System.String,System.Boolean,CoreRelm.Enums.StoredProcedures.ProcedureDataAccess,CoreRelm.Enums.SecurityEnums.SqlSecurityLevel)
+    arguments:
+    - type: System.String
+      value: uuid_v4
+    - type: System.String
+      value: "\r\n        -- 16 cryptographically strong random bytes\r\n        DECLARE b BINARY(16);\r\n        SET b = RANDOM_BYTES(16);\r\n\r\n        -- Set version to 4 (0100xxxx) in byte 7 (1-indexed)\r\n        SET b = INSERT(b, 7, 1, CHAR((ASCII(SUBSTR(b, 7, 1)) & 15) | 64 USING latin1));\r\n\r\n        -- Set variant to RFC 4122 (10xxxxxx) in byte 9\r\n        SET b = INSERT(b, 9, 1, CHAR((ASCII(SUBSTR(b, 9, 1)) & 63) | 128 USING latin1));\r\n\r\n        -- Format as 8-4-4-4-12\r\n        RETURN LOWER(CONCAT(\r\n            HEX(SUBSTR(b,  1, 4)), '-',\r\n            HEX(SUBSTR(b,  5, 2)), '-',\r\n            HEX(SUBSTR(b,  7, 2)), '-',\r\n            HEX(SUBSTR(b,  9, 2)), '-',\r\n            HEX(SUBSTR(b, 11, 6))\r\n        ));"
+    - type: System.String
+      value: CHAR
+    - type: System.Int32
+      value: 36
+    - type: System.String
+      value: Generates a version 4 UUID as a string in the format 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx', where 'x' is any hexadecimal digit and 'y' is one of 8, 9, A, or B.
+    - type: System.String
+    - type: System.Boolean
+      value: false
+    - type: CoreRelm.Enums.StoredProcedures.ProcedureDataAccess
+      value: 1
+    - type: CoreRelm.Enums.SecurityEnums.SqlSecurityLevel
+      value: 1
   - type: CoreRelm.Attributes.RelmTrigger
     ctor: CoreRelm.Attributes.RelmTrigger.#ctor(CoreRelm.Enums.Triggers.TriggerTime,CoreRelm.Enums.Triggers.TriggerEvent,System.String,System.String,CoreRelm.Enums.Triggers.TriggerOrdering,System.String)
     arguments:
@@ -139,7 +164,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DtoTypeProcessor
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 53
+    startLine: 127
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -172,7 +197,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Id
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 58
+    startLine: 132
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -211,7 +236,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Active
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 64
+    startLine: 138
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -250,7 +275,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: InternalId
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 70
+    startLine: 144
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -289,7 +314,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: CreateDate
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 78
+    startLine: 152
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -328,7 +353,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: LastUpdated
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 84
+    startLine: 158
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -367,7 +392,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ResetCoreAttributes
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 94
+    startLine: 168
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -412,7 +437,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 115
+    startLine: 189
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -444,7 +469,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 130
+    startLine: 204
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -491,7 +516,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 163
+    startLine: 237
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -537,7 +562,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ResetWithData
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 180
+    startLine: 254
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -587,7 +612,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetUnderscoreProperties
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 302
+    startLine: 376
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -634,7 +659,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WriteToDatabase
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 325
+    startLine: 399
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -696,7 +721,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WriteToDatabaseAsync
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 347
+    startLine: 421
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -758,7 +783,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WriteToDatabase
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 370
+    startLine: 444
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -821,7 +846,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WriteToDatabase
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 395
+    startLine: 469
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -889,7 +914,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WriteToDatabaseAsync
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 415
+    startLine: 489
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -954,7 +979,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WriteToDatabaseAsync
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 437
+    startLine: 511
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1024,7 +1049,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WriteToDatabase
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 465
+    startLine: 539
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1096,7 +1121,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WriteToDatabaseAsync
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 487
+    startLine: 561
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1166,7 +1191,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WriteToDatabase
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 509
+    startLine: 583
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1227,7 +1252,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: CopyFromSource
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 527
+    startLine: 601
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1281,7 +1306,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GenerateDTO
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 569
+    startLine: 643
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1346,7 +1371,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Duplicate
     path: ../CoreRelm/Models/RelmModel.cs
-    startLine: 900
+    startLine: 974
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models

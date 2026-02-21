@@ -5,7 +5,7 @@ items:
   id: MigrationSqlProviderFactory
   parent: CoreRelm.Migrations
   children:
-  - CoreRelm.Migrations.MigrationSqlProviderFactory.#ctor(CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector,CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner,CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer,CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder)
+  - CoreRelm.Migrations.MigrationSqlProviderFactory.#ctor(System.IServiceProvider,CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector,CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner,CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer,CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder,Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner})
   - CoreRelm.Migrations.MigrationSqlProviderFactory.CreateProvider(CoreRelm.Models.Migrations.MigrationOptions)
   langs:
   - csharp
@@ -21,7 +21,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: MigrationSqlProviderFactory
     path: ../CoreRelm/Migrations/MigrationSqlProviderFactory.cs
-    startLine: 14
+    startLine: 15
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Migrations
@@ -39,16 +39,16 @@ items:
   - System.Object.GetType
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: CoreRelm.Migrations.MigrationSqlProviderFactory.#ctor(CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector,CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner,CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer,CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder)
-  commentId: M:CoreRelm.Migrations.MigrationSqlProviderFactory.#ctor(CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector,CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner,CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer,CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder)
-  id: '#ctor(CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector,CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner,CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer,CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder)'
+- uid: CoreRelm.Migrations.MigrationSqlProviderFactory.#ctor(System.IServiceProvider,CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector,CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner,CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer,CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder,Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner})
+  commentId: M:CoreRelm.Migrations.MigrationSqlProviderFactory.#ctor(System.IServiceProvider,CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector,CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner,CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer,CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder,Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner})
+  id: '#ctor(System.IServiceProvider,CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector,CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner,CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer,CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder,Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner})'
   parent: CoreRelm.Migrations.MigrationSqlProviderFactory
   langs:
   - csharp
   - vb
-  name: MigrationSqlProviderFactory(IRelmSchemaIntrospector, IRelmMigrationPlanner, IRelmMigrationSqlRenderer, IRelmDesiredSchemaBuilder)
-  nameWithType: MigrationSqlProviderFactory.MigrationSqlProviderFactory(IRelmSchemaIntrospector, IRelmMigrationPlanner, IRelmMigrationSqlRenderer, IRelmDesiredSchemaBuilder)
-  fullName: CoreRelm.Migrations.MigrationSqlProviderFactory.MigrationSqlProviderFactory(CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector, CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner, CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer, CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder)
+  name: MigrationSqlProviderFactory(IServiceProvider, IRelmSchemaIntrospector, IRelmMigrationPlanner, IRelmMigrationSqlRenderer, IRelmDesiredSchemaBuilder, ILogger<MySqlDatabaseProvisioner>?)
+  nameWithType: MigrationSqlProviderFactory.MigrationSqlProviderFactory(IServiceProvider, IRelmSchemaIntrospector, IRelmMigrationPlanner, IRelmMigrationSqlRenderer, IRelmDesiredSchemaBuilder, ILogger<MySqlDatabaseProvisioner>?)
+  fullName: CoreRelm.Migrations.MigrationSqlProviderFactory.MigrationSqlProviderFactory(System.IServiceProvider, CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector, CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner, CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer, CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder, Microsoft.Extensions.Logging.ILogger<CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner>?)
   type: Constructor
   source:
     remote:
@@ -57,13 +57,15 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Migrations/MigrationSqlProviderFactory.cs
-    startLine: 21
+    startLine: 15
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Migrations
   syntax:
-    content: public MigrationSqlProviderFactory(IRelmSchemaIntrospector introspector, IRelmMigrationPlanner planner, IRelmMigrationSqlRenderer renderer, IRelmDesiredSchemaBuilder desiredBuilder)
+    content: public MigrationSqlProviderFactory(IServiceProvider serviceProvider, IRelmSchemaIntrospector introspector, IRelmMigrationPlanner planner, IRelmMigrationSqlRenderer renderer, IRelmDesiredSchemaBuilder desiredBuilder, ILogger<MySqlDatabaseProvisioner>? log = null)
     parameters:
+    - id: serviceProvider
+      type: System.IServiceProvider
     - id: introspector
       type: CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector
     - id: planner
@@ -72,11 +74,13 @@ items:
       type: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer
     - id: desiredBuilder
       type: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder
-    content.vb: Public Sub New(introspector As IRelmSchemaIntrospector, planner As IRelmMigrationPlanner, renderer As IRelmMigrationSqlRenderer, desiredBuilder As IRelmDesiredSchemaBuilder)
+    - id: log
+      type: Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner}
+    content.vb: Public Sub New(serviceProvider As IServiceProvider, introspector As IRelmSchemaIntrospector, planner As IRelmMigrationPlanner, renderer As IRelmMigrationSqlRenderer, desiredBuilder As IRelmDesiredSchemaBuilder, log As ILogger(Of MySqlDatabaseProvisioner) = Nothing)
   overload: CoreRelm.Migrations.MigrationSqlProviderFactory.#ctor*
-  nameWithType.vb: MigrationSqlProviderFactory.New(IRelmSchemaIntrospector, IRelmMigrationPlanner, IRelmMigrationSqlRenderer, IRelmDesiredSchemaBuilder)
-  fullName.vb: CoreRelm.Migrations.MigrationSqlProviderFactory.New(CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector, CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner, CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer, CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder)
-  name.vb: New(IRelmSchemaIntrospector, IRelmMigrationPlanner, IRelmMigrationSqlRenderer, IRelmDesiredSchemaBuilder)
+  nameWithType.vb: MigrationSqlProviderFactory.New(IServiceProvider, IRelmSchemaIntrospector, IRelmMigrationPlanner, IRelmMigrationSqlRenderer, IRelmDesiredSchemaBuilder, ILogger(Of MySqlDatabaseProvisioner))
+  fullName.vb: CoreRelm.Migrations.MigrationSqlProviderFactory.New(System.IServiceProvider, CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector, CoreRelm.Interfaces.Migrations.IRelmMigrationPlanner, CoreRelm.Interfaces.Migrations.IRelmMigrationSqlRenderer, CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder, Microsoft.Extensions.Logging.ILogger(Of CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner))
+  name.vb: New(IServiceProvider, IRelmSchemaIntrospector, IRelmMigrationPlanner, IRelmMigrationSqlRenderer, IRelmDesiredSchemaBuilder, ILogger(Of MySqlDatabaseProvisioner))
 - uid: CoreRelm.Migrations.MigrationSqlProviderFactory.CreateProvider(CoreRelm.Models.Migrations.MigrationOptions)
   commentId: M:CoreRelm.Migrations.MigrationSqlProviderFactory.CreateProvider(CoreRelm.Models.Migrations.MigrationOptions)
   id: CreateProvider(CoreRelm.Models.Migrations.MigrationOptions)
@@ -95,7 +99,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: CreateProvider
     path: ../CoreRelm/Migrations/MigrationSqlProviderFactory.cs
-    startLine: 33
+    startLine: 30
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Migrations
@@ -386,13 +390,21 @@ references:
     href: CoreRelm.Interfaces.Migrations.html
 - uid: CoreRelm.Migrations.MigrationSqlProviderFactory.#ctor*
   commentId: Overload:CoreRelm.Migrations.MigrationSqlProviderFactory.#ctor
-  href: CoreRelm.Migrations.MigrationSqlProviderFactory.html#CoreRelm_Migrations_MigrationSqlProviderFactory__ctor_CoreRelm_Interfaces_Metadata_IRelmSchemaIntrospector_CoreRelm_Interfaces_Migrations_IRelmMigrationPlanner_CoreRelm_Interfaces_Migrations_IRelmMigrationSqlRenderer_CoreRelm_Interfaces_Migrations_IRelmDesiredSchemaBuilder_
+  href: CoreRelm.Migrations.MigrationSqlProviderFactory.html#CoreRelm_Migrations_MigrationSqlProviderFactory__ctor_System_IServiceProvider_CoreRelm_Interfaces_Metadata_IRelmSchemaIntrospector_CoreRelm_Interfaces_Migrations_IRelmMigrationPlanner_CoreRelm_Interfaces_Migrations_IRelmMigrationSqlRenderer_CoreRelm_Interfaces_Migrations_IRelmDesiredSchemaBuilder_Microsoft_Extensions_Logging_ILogger_CoreRelm_RelmInternal_Helpers_Migrations_Provisioning_MySqlDatabaseProvisioner__
   name: MigrationSqlProviderFactory
   nameWithType: MigrationSqlProviderFactory.MigrationSqlProviderFactory
   fullName: CoreRelm.Migrations.MigrationSqlProviderFactory.MigrationSqlProviderFactory
   nameWithType.vb: MigrationSqlProviderFactory.New
   fullName.vb: CoreRelm.Migrations.MigrationSqlProviderFactory.New
   name.vb: New
+- uid: System.IServiceProvider
+  commentId: T:System.IServiceProvider
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iserviceprovider
+  name: IServiceProvider
+  nameWithType: IServiceProvider
+  fullName: System.IServiceProvider
 - uid: CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector
   commentId: T:CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector
   parent: CoreRelm.Interfaces.Metadata
@@ -421,6 +433,39 @@ references:
   name: IRelmDesiredSchemaBuilder
   nameWithType: IRelmDesiredSchemaBuilder
   fullName: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder
+- uid: Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner}
+  commentId: T:Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner}
+  parent: Microsoft.Extensions.Logging
+  definition: Microsoft.Extensions.Logging.ILogger`1
+  href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1
+  name: ILogger<MySqlDatabaseProvisioner>
+  nameWithType: ILogger<MySqlDatabaseProvisioner>
+  fullName: Microsoft.Extensions.Logging.ILogger<CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner>
+  nameWithType.vb: ILogger(Of MySqlDatabaseProvisioner)
+  fullName.vb: Microsoft.Extensions.Logging.ILogger(Of CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner)
+  name.vb: ILogger(Of MySqlDatabaseProvisioner)
+  spec.csharp:
+  - uid: Microsoft.Extensions.Logging.ILogger`1
+    name: ILogger
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1
+  - name: <
+  - uid: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner
+    name: MySqlDatabaseProvisioner
+    href: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.html
+  - name: '>'
+  spec.vb:
+  - uid: Microsoft.Extensions.Logging.ILogger`1
+    name: ILogger
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner
+    name: MySqlDatabaseProvisioner
+    href: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner.html
+  - name: )
 - uid: CoreRelm.Interfaces.Metadata
   commentId: N:CoreRelm.Interfaces.Metadata
   href: CoreRelm.html
@@ -451,6 +496,71 @@ references:
   - uid: CoreRelm.Interfaces.Metadata
     name: Metadata
     href: CoreRelm.Interfaces.Metadata.html
+- uid: Microsoft.Extensions.Logging.ILogger`1
+  commentId: T:Microsoft.Extensions.Logging.ILogger`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1
+  name: ILogger<TCategoryName>
+  nameWithType: ILogger<TCategoryName>
+  fullName: Microsoft.Extensions.Logging.ILogger<TCategoryName>
+  nameWithType.vb: ILogger(Of TCategoryName)
+  fullName.vb: Microsoft.Extensions.Logging.ILogger(Of TCategoryName)
+  name.vb: ILogger(Of TCategoryName)
+  spec.csharp:
+  - uid: Microsoft.Extensions.Logging.ILogger`1
+    name: ILogger
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1
+  - name: <
+  - name: TCategoryName
+  - name: '>'
+  spec.vb:
+  - uid: Microsoft.Extensions.Logging.ILogger`1
+    name: ILogger
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TCategoryName
+  - name: )
+- uid: Microsoft.Extensions.Logging
+  commentId: N:Microsoft.Extensions.Logging
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
+  name: Microsoft.Extensions.Logging
+  nameWithType: Microsoft.Extensions.Logging
+  fullName: Microsoft.Extensions.Logging
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.Extensions
+    name: Extensions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions
+  - name: .
+  - uid: Microsoft.Extensions.Logging
+    name: Logging
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.Extensions
+    name: Extensions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions
+  - name: .
+  - uid: Microsoft.Extensions.Logging
+    name: Logging
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging
 - uid: CoreRelm.Migrations.MigrationSqlProviderFactory.CreateProvider*
   commentId: Overload:CoreRelm.Migrations.MigrationSqlProviderFactory.CreateProvider
   href: CoreRelm.Migrations.MigrationSqlProviderFactory.html#CoreRelm_Migrations_MigrationSqlProviderFactory_CreateProvider_CoreRelm_Models_Migrations_MigrationOptions_

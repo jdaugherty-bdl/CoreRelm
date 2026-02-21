@@ -29,8 +29,18 @@ items:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
   syntax:
-    content: 'public class TriggerSchema : RelmModel, IRelmModel'
-    content.vb: Public Class TriggerSchema Inherits RelmModel Implements IRelmModel
+    content: >-
+      [RelmDatabase("INFORMATION_SCHEMA")]
+
+      [RelmTable("TRIGGERS")]
+
+      public class TriggerSchema : RelmModel, IRelmModel
+    content.vb: >-
+      <RelmDatabase("INFORMATION_SCHEMA")>
+
+      <RelmTable("TRIGGERS")>
+
+      Public Class TriggerSchema Inherits RelmModel Implements IRelmModel
   inheritance:
   - System.Object
   - CoreRelm.Models.RelmModel
@@ -84,6 +94,17 @@ items:
   - CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{{R}}}},CoreRelm.Interfaces.IRelmDataLoader{{S}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
   - CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,{R}}},CoreRelm.Interfaces.IRelmDataLoader{{S}})
   - CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,{R}}},CoreRelm.Interfaces.IRelmDataLoader{{S}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
+  attributes:
+  - type: CoreRelm.Attributes.RelmDatabase
+    ctor: CoreRelm.Attributes.RelmDatabase.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: INFORMATION_SCHEMA
+  - type: CoreRelm.Attributes.RelmTable
+    ctor: CoreRelm.Attributes.RelmTable.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: TRIGGERS
 - uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema.TriggerName
   commentId: P:CoreRelm.Models.Migrations.Introspection.TriggerSchema.TriggerName
   id: TriggerName
@@ -102,7 +123,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: TriggerName
     path: ../CoreRelm/Models/Migrations/Introspection/TriggerSchema.cs
-    startLine: 12
+    startLine: 14
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -137,7 +158,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: EventManipulation
     path: ../CoreRelm/Models/Migrations/Introspection/TriggerSchema.cs
-    startLine: 15
+    startLine: 17
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -172,7 +193,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ActionTiming
     path: ../CoreRelm/Models/Migrations/Introspection/TriggerSchema.cs
-    startLine: 18
+    startLine: 20
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -207,7 +228,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: EventObjectTable
     path: ../CoreRelm/Models/Migrations/Introspection/TriggerSchema.cs
-    startLine: 21
+    startLine: 23
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -242,7 +263,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ActionStatement
     path: ../CoreRelm/Models/Migrations/Introspection/TriggerSchema.cs
-    startLine: 24
+    startLine: 26
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection

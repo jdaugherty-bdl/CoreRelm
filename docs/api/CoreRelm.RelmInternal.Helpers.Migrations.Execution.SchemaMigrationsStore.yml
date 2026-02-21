@@ -5,10 +5,10 @@ items:
   id: SchemaMigrationsStore
   parent: CoreRelm.RelmInternal.Helpers.Migrations.Execution
   children:
-  - CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.#ctor(CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory)
+  - CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.#ctor(CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory,CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner,Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore})
   - CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.EnsureSchemaMigrationTableAsync(CoreRelm.Interfaces.IRelmContext,CoreRelm.Models.Migrations.MigrationOptions)
   - CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.GetAppliedMigrationsAsync(CoreRelm.Models.RelmContext,System.Threading.CancellationToken)
-  - CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.RecordAppliedMigrationAsync(CoreRelm.Interfaces.IRelmContext,System.String,System.String,System.Threading.CancellationToken)
+  - CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.RecordAppliedMigrationAsync(CoreRelm.Interfaces.IRelmContext,System.String,CoreRelm.Enums.MigrationEnums.RelmMigrationType,System.String,System.Threading.CancellationToken)
   langs:
   - csharp
   - vb
@@ -23,7 +23,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SchemaMigrationsStore
     path: ../CoreRelm/RelmInternal/Helpers/Migrations/Execution/SchemaMigrationsStore.cs
-    startLine: 18
+    startLine: 23
   assemblies:
   - CoreRelm
   namespace: CoreRelm.RelmInternal.Helpers.Migrations.Execution
@@ -41,16 +41,16 @@ items:
   - System.Object.GetType
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.#ctor(CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory)
-  commentId: M:CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.#ctor(CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory)
-  id: '#ctor(CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory)'
+- uid: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.#ctor(CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory,CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner,Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore})
+  commentId: M:CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.#ctor(CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory,CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner,Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore})
+  id: '#ctor(CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory,CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner,Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore})'
   parent: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore
   langs:
   - csharp
   - vb
-  name: SchemaMigrationsStore(IRelmMigrationSqlProviderFactory)
-  nameWithType: SchemaMigrationsStore.SchemaMigrationsStore(IRelmMigrationSqlProviderFactory)
-  fullName: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.SchemaMigrationsStore(CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory)
+  name: SchemaMigrationsStore(IRelmMigrationSqlProviderFactory, IRelmSqlScriptRunner, ILogger<SchemaMigrationsStore>?)
+  nameWithType: SchemaMigrationsStore.SchemaMigrationsStore(IRelmMigrationSqlProviderFactory, IRelmSqlScriptRunner, ILogger<SchemaMigrationsStore>?)
+  fullName: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.SchemaMigrationsStore(CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory, CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner, Microsoft.Extensions.Logging.ILogger<CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore>?)
   type: Constructor
   source:
     remote:
@@ -59,20 +59,24 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/RelmInternal/Helpers/Migrations/Execution/SchemaMigrationsStore.cs
-    startLine: 18
+    startLine: 23
   assemblies:
   - CoreRelm
   namespace: CoreRelm.RelmInternal.Helpers.Migrations.Execution
   syntax:
-    content: public SchemaMigrationsStore(IRelmMigrationSqlProviderFactory providerFactory)
+    content: public SchemaMigrationsStore(IRelmMigrationSqlProviderFactory providerFactory, IRelmSqlScriptRunner runner, ILogger<SchemaMigrationsStore>? log = null)
     parameters:
     - id: providerFactory
       type: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory
-    content.vb: Public Sub New(providerFactory As IRelmMigrationSqlProviderFactory)
+    - id: runner
+      type: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner
+    - id: log
+      type: Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore}
+    content.vb: Public Sub New(providerFactory As IRelmMigrationSqlProviderFactory, runner As IRelmSqlScriptRunner, log As ILogger(Of SchemaMigrationsStore) = Nothing)
   overload: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.#ctor*
-  nameWithType.vb: SchemaMigrationsStore.New(IRelmMigrationSqlProviderFactory)
-  fullName.vb: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.New(CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory)
-  name.vb: New(IRelmMigrationSqlProviderFactory)
+  nameWithType.vb: SchemaMigrationsStore.New(IRelmMigrationSqlProviderFactory, IRelmSqlScriptRunner, ILogger(Of SchemaMigrationsStore))
+  fullName.vb: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.New(CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory, CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner, Microsoft.Extensions.Logging.ILogger(Of CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore))
+  name.vb: New(IRelmMigrationSqlProviderFactory, IRelmSqlScriptRunner, ILogger(Of SchemaMigrationsStore))
 - uid: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.EnsureSchemaMigrationTableAsync(CoreRelm.Interfaces.IRelmContext,CoreRelm.Models.Migrations.MigrationOptions)
   commentId: M:CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.EnsureSchemaMigrationTableAsync(CoreRelm.Interfaces.IRelmContext,CoreRelm.Models.Migrations.MigrationOptions)
   id: EnsureSchemaMigrationTableAsync(CoreRelm.Interfaces.IRelmContext,CoreRelm.Models.Migrations.MigrationOptions)
@@ -91,7 +95,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: EnsureSchemaMigrationTableAsync
     path: ../CoreRelm/RelmInternal/Helpers/Migrations/Execution/SchemaMigrationsStore.cs
-    startLine: 24
+    startLine: 30
   assemblies:
   - CoreRelm
   namespace: CoreRelm.RelmInternal.Helpers.Migrations.Execution
@@ -127,7 +131,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetAppliedMigrationsAsync
     path: ../CoreRelm/RelmInternal/Helpers/Migrations/Execution/SchemaMigrationsStore.cs
-    startLine: 58
+    startLine: 124
   assemblies:
   - CoreRelm
   namespace: CoreRelm.RelmInternal.Helpers.Migrations.Execution
@@ -145,16 +149,16 @@ items:
   overload: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.GetAppliedMigrationsAsync*
   implements:
   - CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.GetAppliedMigrationsAsync(CoreRelm.Models.RelmContext,System.Threading.CancellationToken)
-- uid: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.RecordAppliedMigrationAsync(CoreRelm.Interfaces.IRelmContext,System.String,System.String,System.Threading.CancellationToken)
-  commentId: M:CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.RecordAppliedMigrationAsync(CoreRelm.Interfaces.IRelmContext,System.String,System.String,System.Threading.CancellationToken)
-  id: RecordAppliedMigrationAsync(CoreRelm.Interfaces.IRelmContext,System.String,System.String,System.Threading.CancellationToken)
+- uid: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.RecordAppliedMigrationAsync(CoreRelm.Interfaces.IRelmContext,System.String,CoreRelm.Enums.MigrationEnums.RelmMigrationType,System.String,System.Threading.CancellationToken)
+  commentId: M:CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.RecordAppliedMigrationAsync(CoreRelm.Interfaces.IRelmContext,System.String,CoreRelm.Enums.MigrationEnums.RelmMigrationType,System.String,System.Threading.CancellationToken)
+  id: RecordAppliedMigrationAsync(CoreRelm.Interfaces.IRelmContext,System.String,CoreRelm.Enums.MigrationEnums.RelmMigrationType,System.String,System.Threading.CancellationToken)
   parent: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore
   langs:
   - csharp
   - vb
-  name: RecordAppliedMigrationAsync(IRelmContext, string, string, CancellationToken)
-  nameWithType: SchemaMigrationsStore.RecordAppliedMigrationAsync(IRelmContext, string, string, CancellationToken)
-  fullName: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.RecordAppliedMigrationAsync(CoreRelm.Interfaces.IRelmContext, string, string, System.Threading.CancellationToken)
+  name: RecordAppliedMigrationAsync(IRelmContext, string, RelmMigrationType, string, CancellationToken)
+  nameWithType: SchemaMigrationsStore.RecordAppliedMigrationAsync(IRelmContext, string, MigrationEnums.RelmMigrationType, string, CancellationToken)
+  fullName: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.RecordAppliedMigrationAsync(CoreRelm.Interfaces.IRelmContext, string, CoreRelm.Enums.MigrationEnums.RelmMigrationType, string, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -163,31 +167,33 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: RecordAppliedMigrationAsync
     path: ../CoreRelm/RelmInternal/Helpers/Migrations/Execution/SchemaMigrationsStore.cs
-    startLine: 75
+    startLine: 141
   assemblies:
   - CoreRelm
   namespace: CoreRelm.RelmInternal.Helpers.Migrations.Execution
   example: []
   syntax:
-    content: public Task<int> RecordAppliedMigrationAsync(IRelmContext context, string migrationFile, string checksumSha256, CancellationToken ct = default)
+    content: public Task<int> RecordAppliedMigrationAsync(IRelmContext context, string migrationFile, MigrationEnums.RelmMigrationType migrationType, string checksumSha256, CancellationToken ct = default)
     parameters:
     - id: context
       type: CoreRelm.Interfaces.IRelmContext
     - id: migrationFile
       type: System.String
+    - id: migrationType
+      type: CoreRelm.Enums.MigrationEnums.RelmMigrationType
     - id: checksumSha256
       type: System.String
     - id: ct
       type: System.Threading.CancellationToken
     return:
       type: System.Threading.Tasks.Task{System.Int32}
-    content.vb: Public Function RecordAppliedMigrationAsync(context As IRelmContext, migrationFile As String, checksumSha256 As String, ct As CancellationToken = Nothing) As Task(Of Integer)
+    content.vb: Public Function RecordAppliedMigrationAsync(context As IRelmContext, migrationFile As String, migrationType As MigrationEnums.RelmMigrationType, checksumSha256 As String, ct As CancellationToken = Nothing) As Task(Of Integer)
   overload: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.RecordAppliedMigrationAsync*
   implements:
-  - CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.RecordAppliedMigrationAsync(CoreRelm.Interfaces.IRelmContext,System.String,System.String,System.Threading.CancellationToken)
-  nameWithType.vb: SchemaMigrationsStore.RecordAppliedMigrationAsync(IRelmContext, String, String, CancellationToken)
-  fullName.vb: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.RecordAppliedMigrationAsync(CoreRelm.Interfaces.IRelmContext, String, String, System.Threading.CancellationToken)
-  name.vb: RecordAppliedMigrationAsync(IRelmContext, String, String, CancellationToken)
+  - CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.RecordAppliedMigrationAsync(CoreRelm.Interfaces.IRelmContext,System.String,CoreRelm.Enums.MigrationEnums.RelmMigrationType,System.String,System.Threading.CancellationToken)
+  nameWithType.vb: SchemaMigrationsStore.RecordAppliedMigrationAsync(IRelmContext, String, MigrationEnums.RelmMigrationType, String, CancellationToken)
+  fullName.vb: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.RecordAppliedMigrationAsync(CoreRelm.Interfaces.IRelmContext, String, CoreRelm.Enums.MigrationEnums.RelmMigrationType, String, System.Threading.CancellationToken)
+  name.vb: RecordAppliedMigrationAsync(IRelmContext, String, RelmMigrationType, String, CancellationToken)
 references:
 - uid: CoreRelm.RelmInternal.Helpers.Migrations.Execution
   commentId: N:CoreRelm.RelmInternal.Helpers.Migrations.Execution
@@ -487,7 +493,7 @@ references:
     href: CoreRelm.Interfaces.Migrations.html
 - uid: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.#ctor*
   commentId: Overload:CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.#ctor
-  href: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.html#CoreRelm_RelmInternal_Helpers_Migrations_Execution_SchemaMigrationsStore__ctor_CoreRelm_Interfaces_Migrations_IRelmMigrationSqlProviderFactory_
+  href: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.html#CoreRelm_RelmInternal_Helpers_Migrations_Execution_SchemaMigrationsStore__ctor_CoreRelm_Interfaces_Migrations_IRelmMigrationSqlProviderFactory_CoreRelm_Interfaces_Migrations_IRelmSqlScriptRunner_Microsoft_Extensions_Logging_ILogger_CoreRelm_RelmInternal_Helpers_Migrations_Execution_SchemaMigrationsStore__
   name: SchemaMigrationsStore
   nameWithType: SchemaMigrationsStore.SchemaMigrationsStore
   fullName: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.SchemaMigrationsStore
@@ -501,6 +507,111 @@ references:
   name: IRelmMigrationSqlProviderFactory
   nameWithType: IRelmMigrationSqlProviderFactory
   fullName: CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory
+- uid: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner
+  commentId: T:CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner
+  parent: CoreRelm.Interfaces.Migrations
+  href: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.html
+  name: IRelmSqlScriptRunner
+  nameWithType: IRelmSqlScriptRunner
+  fullName: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner
+- uid: Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore}
+  commentId: T:Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore}
+  parent: Microsoft.Extensions.Logging
+  definition: Microsoft.Extensions.Logging.ILogger`1
+  href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1
+  name: ILogger<SchemaMigrationsStore>
+  nameWithType: ILogger<SchemaMigrationsStore>
+  fullName: Microsoft.Extensions.Logging.ILogger<CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore>
+  nameWithType.vb: ILogger(Of SchemaMigrationsStore)
+  fullName.vb: Microsoft.Extensions.Logging.ILogger(Of CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore)
+  name.vb: ILogger(Of SchemaMigrationsStore)
+  spec.csharp:
+  - uid: Microsoft.Extensions.Logging.ILogger`1
+    name: ILogger
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1
+  - name: <
+  - uid: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore
+    name: SchemaMigrationsStore
+    href: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.html
+  - name: '>'
+  spec.vb:
+  - uid: Microsoft.Extensions.Logging.ILogger`1
+    name: ILogger
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore
+    name: SchemaMigrationsStore
+    href: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.html
+  - name: )
+- uid: Microsoft.Extensions.Logging.ILogger`1
+  commentId: T:Microsoft.Extensions.Logging.ILogger`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1
+  name: ILogger<TCategoryName>
+  nameWithType: ILogger<TCategoryName>
+  fullName: Microsoft.Extensions.Logging.ILogger<TCategoryName>
+  nameWithType.vb: ILogger(Of TCategoryName)
+  fullName.vb: Microsoft.Extensions.Logging.ILogger(Of TCategoryName)
+  name.vb: ILogger(Of TCategoryName)
+  spec.csharp:
+  - uid: Microsoft.Extensions.Logging.ILogger`1
+    name: ILogger
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1
+  - name: <
+  - name: TCategoryName
+  - name: '>'
+  spec.vb:
+  - uid: Microsoft.Extensions.Logging.ILogger`1
+    name: ILogger
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TCategoryName
+  - name: )
+- uid: Microsoft.Extensions.Logging
+  commentId: N:Microsoft.Extensions.Logging
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
+  name: Microsoft.Extensions.Logging
+  nameWithType: Microsoft.Extensions.Logging
+  fullName: Microsoft.Extensions.Logging
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.Extensions
+    name: Extensions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions
+  - name: .
+  - uid: Microsoft.Extensions.Logging
+    name: Logging
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.Extensions
+    name: Extensions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions
+  - name: .
+  - uid: Microsoft.Extensions.Logging
+    name: Logging
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging
 - uid: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.EnsureSchemaMigrationTableAsync*
   commentId: Overload:CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.EnsureSchemaMigrationTableAsync
   href: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.html#CoreRelm_RelmInternal_Helpers_Migrations_Execution_SchemaMigrationsStore_EnsureSchemaMigrationTableAsync_CoreRelm_Interfaces_IRelmContext_CoreRelm_Models_Migrations_MigrationOptions_
@@ -877,25 +988,25 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.threading
 - uid: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.RecordAppliedMigrationAsync*
   commentId: Overload:CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.RecordAppliedMigrationAsync
-  href: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.html#CoreRelm_RelmInternal_Helpers_Migrations_Execution_SchemaMigrationsStore_RecordAppliedMigrationAsync_CoreRelm_Interfaces_IRelmContext_System_String_System_String_System_Threading_CancellationToken_
+  href: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.html#CoreRelm_RelmInternal_Helpers_Migrations_Execution_SchemaMigrationsStore_RecordAppliedMigrationAsync_CoreRelm_Interfaces_IRelmContext_System_String_CoreRelm_Enums_MigrationEnums_RelmMigrationType_System_String_System_Threading_CancellationToken_
   name: RecordAppliedMigrationAsync
   nameWithType: SchemaMigrationsStore.RecordAppliedMigrationAsync
   fullName: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.RecordAppliedMigrationAsync
-- uid: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.RecordAppliedMigrationAsync(CoreRelm.Interfaces.IRelmContext,System.String,System.String,System.Threading.CancellationToken)
-  commentId: M:CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.RecordAppliedMigrationAsync(CoreRelm.Interfaces.IRelmContext,System.String,System.String,System.Threading.CancellationToken)
+- uid: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.RecordAppliedMigrationAsync(CoreRelm.Interfaces.IRelmContext,System.String,CoreRelm.Enums.MigrationEnums.RelmMigrationType,System.String,System.Threading.CancellationToken)
+  commentId: M:CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.RecordAppliedMigrationAsync(CoreRelm.Interfaces.IRelmContext,System.String,CoreRelm.Enums.MigrationEnums.RelmMigrationType,System.String,System.Threading.CancellationToken)
   parent: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore
   isExternal: true
-  href: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.html#CoreRelm_Interfaces_Migrations_IRelmSchemaMigrationsStore_RecordAppliedMigrationAsync_CoreRelm_Interfaces_IRelmContext_System_String_System_String_System_Threading_CancellationToken_
-  name: RecordAppliedMigrationAsync(IRelmContext, string, string, CancellationToken)
-  nameWithType: IRelmSchemaMigrationsStore.RecordAppliedMigrationAsync(IRelmContext, string, string, CancellationToken)
-  fullName: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.RecordAppliedMigrationAsync(CoreRelm.Interfaces.IRelmContext, string, string, System.Threading.CancellationToken)
-  nameWithType.vb: IRelmSchemaMigrationsStore.RecordAppliedMigrationAsync(IRelmContext, String, String, CancellationToken)
-  fullName.vb: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.RecordAppliedMigrationAsync(CoreRelm.Interfaces.IRelmContext, String, String, System.Threading.CancellationToken)
-  name.vb: RecordAppliedMigrationAsync(IRelmContext, String, String, CancellationToken)
+  href: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.html#CoreRelm_Interfaces_Migrations_IRelmSchemaMigrationsStore_RecordAppliedMigrationAsync_CoreRelm_Interfaces_IRelmContext_System_String_CoreRelm_Enums_MigrationEnums_RelmMigrationType_System_String_System_Threading_CancellationToken_
+  name: RecordAppliedMigrationAsync(IRelmContext, string, RelmMigrationType, string, CancellationToken)
+  nameWithType: IRelmSchemaMigrationsStore.RecordAppliedMigrationAsync(IRelmContext, string, MigrationEnums.RelmMigrationType, string, CancellationToken)
+  fullName: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.RecordAppliedMigrationAsync(CoreRelm.Interfaces.IRelmContext, string, CoreRelm.Enums.MigrationEnums.RelmMigrationType, string, System.Threading.CancellationToken)
+  nameWithType.vb: IRelmSchemaMigrationsStore.RecordAppliedMigrationAsync(IRelmContext, String, MigrationEnums.RelmMigrationType, String, CancellationToken)
+  fullName.vb: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.RecordAppliedMigrationAsync(CoreRelm.Interfaces.IRelmContext, String, CoreRelm.Enums.MigrationEnums.RelmMigrationType, String, System.Threading.CancellationToken)
+  name.vb: RecordAppliedMigrationAsync(IRelmContext, String, RelmMigrationType, String, CancellationToken)
   spec.csharp:
-  - uid: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.RecordAppliedMigrationAsync(CoreRelm.Interfaces.IRelmContext,System.String,System.String,System.Threading.CancellationToken)
+  - uid: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.RecordAppliedMigrationAsync(CoreRelm.Interfaces.IRelmContext,System.String,CoreRelm.Enums.MigrationEnums.RelmMigrationType,System.String,System.Threading.CancellationToken)
     name: RecordAppliedMigrationAsync
-    href: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.html#CoreRelm_Interfaces_Migrations_IRelmSchemaMigrationsStore_RecordAppliedMigrationAsync_CoreRelm_Interfaces_IRelmContext_System_String_System_String_System_Threading_CancellationToken_
+    href: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.html#CoreRelm_Interfaces_Migrations_IRelmSchemaMigrationsStore_RecordAppliedMigrationAsync_CoreRelm_Interfaces_IRelmContext_System_String_CoreRelm_Enums_MigrationEnums_RelmMigrationType_System_String_System_Threading_CancellationToken_
   - name: (
   - uid: CoreRelm.Interfaces.IRelmContext
     name: IRelmContext
@@ -906,6 +1017,11 @@ references:
     name: string
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: CoreRelm.Enums.MigrationEnums.RelmMigrationType
+    name: RelmMigrationType
+    href: CoreRelm.Enums.MigrationEnums.RelmMigrationType.html
   - name: ','
   - name: " "
   - uid: System.String
@@ -920,9 +1036,9 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   - name: )
   spec.vb:
-  - uid: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.RecordAppliedMigrationAsync(CoreRelm.Interfaces.IRelmContext,System.String,System.String,System.Threading.CancellationToken)
+  - uid: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.RecordAppliedMigrationAsync(CoreRelm.Interfaces.IRelmContext,System.String,CoreRelm.Enums.MigrationEnums.RelmMigrationType,System.String,System.Threading.CancellationToken)
     name: RecordAppliedMigrationAsync
-    href: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.html#CoreRelm_Interfaces_Migrations_IRelmSchemaMigrationsStore_RecordAppliedMigrationAsync_CoreRelm_Interfaces_IRelmContext_System_String_System_String_System_Threading_CancellationToken_
+    href: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.html#CoreRelm_Interfaces_Migrations_IRelmSchemaMigrationsStore_RecordAppliedMigrationAsync_CoreRelm_Interfaces_IRelmContext_System_String_CoreRelm_Enums_MigrationEnums_RelmMigrationType_System_String_System_Threading_CancellationToken_
   - name: (
   - uid: CoreRelm.Interfaces.IRelmContext
     name: IRelmContext
@@ -933,6 +1049,11 @@ references:
     name: String
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: CoreRelm.Enums.MigrationEnums.RelmMigrationType
+    name: RelmMigrationType
+    href: CoreRelm.Enums.MigrationEnums.RelmMigrationType.html
   - name: ','
   - name: " "
   - uid: System.String
@@ -957,3 +1078,48 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
+- uid: CoreRelm.Enums.MigrationEnums.RelmMigrationType
+  commentId: T:CoreRelm.Enums.MigrationEnums.RelmMigrationType
+  parent: CoreRelm.Enums
+  href: CoreRelm.Enums.MigrationEnums.html
+  name: MigrationEnums.RelmMigrationType
+  nameWithType: MigrationEnums.RelmMigrationType
+  fullName: CoreRelm.Enums.MigrationEnums.RelmMigrationType
+  spec.csharp:
+  - uid: CoreRelm.Enums.MigrationEnums
+    name: MigrationEnums
+    href: CoreRelm.Enums.MigrationEnums.html
+  - name: .
+  - uid: CoreRelm.Enums.MigrationEnums.RelmMigrationType
+    name: RelmMigrationType
+    href: CoreRelm.Enums.MigrationEnums.RelmMigrationType.html
+  spec.vb:
+  - uid: CoreRelm.Enums.MigrationEnums
+    name: MigrationEnums
+    href: CoreRelm.Enums.MigrationEnums.html
+  - name: .
+  - uid: CoreRelm.Enums.MigrationEnums.RelmMigrationType
+    name: RelmMigrationType
+    href: CoreRelm.Enums.MigrationEnums.RelmMigrationType.html
+- uid: CoreRelm.Enums
+  commentId: N:CoreRelm.Enums
+  href: CoreRelm.html
+  name: CoreRelm.Enums
+  nameWithType: CoreRelm.Enums
+  fullName: CoreRelm.Enums
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Enums
+    name: Enums
+    href: CoreRelm.Enums.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Enums
+    name: Enums
+    href: CoreRelm.Enums.html

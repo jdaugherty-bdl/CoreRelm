@@ -176,7 +176,7 @@ build SQL queries.</p>
 
   <h3 id="CoreRelm_Models_RelmDefaultDataLoader_1__ctor" data-uid="CoreRelm.Models.RelmDefaultDataLoader`1.#ctor">
   RelmDefaultDataLoader()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmDefaultDataLoader.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmDefaultDataLoader.cs/#L56"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="CoreRelm.Models.RelmDefaultDataLoader-1.html#CoreRelm_Models_RelmDefaultDataLoader_1__ctor">RelmDefaultDataLoader()</a> class.</p>
@@ -205,9 +205,9 @@ the <span class="xref">CoreRelm.Models.RelmDefaultDataLoader&lt;T&gt;.InitialSet
 
   <a id="CoreRelm_Models_RelmDefaultDataLoader_1__ctor_" data-uid="CoreRelm.Models.RelmDefaultDataLoader`1.#ctor*"></a>
 
-  <h3 id="CoreRelm_Models_RelmDefaultDataLoader_1__ctor_CoreRelm_Options_RelmContextOptionsBuilder_" data-uid="CoreRelm.Models.RelmDefaultDataLoader`1.#ctor(CoreRelm.Options.RelmContextOptionsBuilder)">
-  RelmDefaultDataLoader(RelmContextOptionsBuilder)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmDefaultDataLoader.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Models_RelmDefaultDataLoader_1__ctor_CoreRelm_Interfaces_IRelmContext_" data-uid="CoreRelm.Models.RelmDefaultDataLoader`1.#ctor(CoreRelm.Interfaces.IRelmContext)">
+  RelmDefaultDataLoader(IRelmContext?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmDefaultDataLoader.cs/#L80"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="CoreRelm.Models.RelmDefaultDataLoader-1.html#CoreRelm_Models_RelmDefaultDataLoader_1__ctor">RelmDefaultDataLoader()</a> class with the specified context
@@ -216,14 +216,13 @@ options builder.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RelmDefaultDataLoader(RelmContextOptionsBuilder contextOptionsBuilder)</code></pre>
+    <pre><code class="lang-csharp hljs">public RelmDefaultDataLoader(IRelmContext? context)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>contextOptionsBuilder</code> <a class="xref" href="CoreRelm.Options.RelmContextOptionsBuilder.html">RelmContextOptionsBuilder</a></dt>
-    <dd><p>The builder used to configure options for the <a class="xref" href="CoreRelm.Models.RelmContext.html">RelmContext</a>.</p>
-</dd>
+    <dt><code>context</code> <a class="xref" href="CoreRelm.Interfaces.IRelmContext.html">IRelmContext</a></dt>
+    <dd></dd>
   </dl>
 
 
@@ -287,7 +286,7 @@ command executions.</p>
 
   <h3 id="CoreRelm_Models_RelmDefaultDataLoader_1_AddExpression_CoreRelm_Enums_Commands_Command_System_Linq_Expressions_Expression_" data-uid="CoreRelm.Models.RelmDefaultDataLoader`1.AddExpression(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)">
   AddExpression(Command, Expression)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmDefaultDataLoader.cs/#L124"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmDefaultDataLoader.cs/#L136"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Adds an expression to the specified command and returns a new execution command.</p>
@@ -334,7 +333,7 @@ command.</p>
 
   <h3 id="CoreRelm_Models_RelmDefaultDataLoader_1_AddSingleExpression_CoreRelm_Enums_Commands_Command_System_Linq_Expressions_Expression_" data-uid="CoreRelm.Models.RelmDefaultDataLoader`1.AddSingleExpression(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)">
   AddSingleExpression(Command, Expression?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmDefaultDataLoader.cs/#L142"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmDefaultDataLoader.cs/#L154"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Adds a single expression to the specified command and returns the resulting execution command.</p>
@@ -381,7 +380,7 @@ command is created.</p>
 
   <h3 id="CoreRelm_Models_RelmDefaultDataLoader_1_GetLoadData" data-uid="CoreRelm.Models.RelmDefaultDataLoader`1.GetLoadData">
   GetLoadData()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmDefaultDataLoader.cs/#L180"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmDefaultDataLoader.cs/#L192"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Retrieves a collection of data entities based on the current query configuration.</p>
@@ -419,7 +418,7 @@ corresponding data entities. The returned collection may be empty if no matching
 
   <h3 id="CoreRelm_Models_RelmDefaultDataLoader_1_GetLoadDataAsync_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmDefaultDataLoader`1.GetLoadDataAsync(System.Threading.CancellationToken)">
   GetLoadDataAsync(CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmDefaultDataLoader.cs/#L194"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmDefaultDataLoader.cs/#L206"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Retrieves a collection of data entities based on the current query configuration.</p>
@@ -462,7 +461,7 @@ corresponding data entities. The returned collection may be empty if no matching
 
   <h3 id="CoreRelm_Models_RelmDefaultDataLoader_1_HasUnderscoreProperty_System_String_" data-uid="CoreRelm.Models.RelmDefaultDataLoader`1.HasUnderscoreProperty(System.String)">
   HasUnderscoreProperty(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmDefaultDataLoader.cs/#L113"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmDefaultDataLoader.cs/#L125"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Determines whether the specified property key exists in the column registry.</p>
@@ -505,7 +504,7 @@ If the column registry is null, the method returns <a href="https://learn.micros
 
   <h3 id="CoreRelm_Models_RelmDefaultDataLoader_1_PullData_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="CoreRelm.Models.RelmDefaultDataLoader`1.PullData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
   PullData(string, Dictionary&lt;string, object?&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmDefaultDataLoader.cs/#L215"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmDefaultDataLoader.cs/#L227"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Executes the specified SQL query and retrieves a collection of data objects of type <code class="typeparamref">T</code>.</p>
@@ -554,8 +553,8 @@ Otherwise, the query is executed using the configured connection string type.</p
   <a id="CoreRelm_Models_RelmDefaultDataLoader_1_PullDataAsync_" data-uid="CoreRelm.Models.RelmDefaultDataLoader`1.PullDataAsync*"></a>
 
   <h3 id="CoreRelm_Models_RelmDefaultDataLoader_1_PullDataAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmDefaultDataLoader`1.PullDataAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
-  PullDataAsync(string, Dictionary&lt;string, object?&gt;, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmDefaultDataLoader.cs/#L235"><i class="bi bi-code-slash"></i></a>
+  PullDataAsync(string, Dictionary&lt;string, object?&gt;?, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmDefaultDataLoader.cs/#L247"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Executes the specified SQL query and retrieves a collection of data objects of type <code class="typeparamref">T</code>.</p>
@@ -563,7 +562,7 @@ Otherwise, the query is executed using the configured connection string type.</p
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual Task&lt;ICollection&lt;T?&gt;?&gt; PullDataAsync(string selectQuery, Dictionary&lt;string, object?&gt; findOptions, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;ICollection&lt;T?&gt;?&gt; PullDataAsync(string selectQuery, Dictionary&lt;string, object?&gt;? findOptions, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -607,7 +606,7 @@ Otherwise, the query is executed using the configured connection string type.</p
 
   <h3 id="CoreRelm_Models_RelmDefaultDataLoader_1_WriteData" data-uid="CoreRelm.Models.RelmDefaultDataLoader`1.WriteData">
   WriteData()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmDefaultDataLoader.cs/#L251"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmDefaultDataLoader.cs/#L269"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Executes a database operation to write data and returns the result of the operation.</p>
@@ -646,7 +645,7 @@ strings, depending on the specified options.</p>
 
   <h3 id="CoreRelm_Models_RelmDefaultDataLoader_1_WriteDataAsync_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmDefaultDataLoader`1.WriteDataAsync(System.Threading.CancellationToken)">
   WriteDataAsync(CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmDefaultDataLoader.cs/#L266"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmDefaultDataLoader.cs/#L284"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Executes a database operation to write data and returns the result of the operation.</p>

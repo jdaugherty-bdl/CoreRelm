@@ -1,0 +1,700 @@
+### YamlMime:ManagedReference
+items:
+- uid: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest
+  commentId: T:CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest
+  id: ApplyMigrationsRequest
+  parent: CoreRelm.Models.Migrations.Tooling.Apply
+  children:
+  - CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.#ctor(System.String,System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.Tooling.Apply.MigrationScript}},CoreRelm.Models.Migrations.Tooling.Apply.ApplyOptions)
+  - CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.DatabaseConnectionStringTemplate
+  - CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.Options
+  - CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.ScriptsByDatabase
+  - CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.ServerConnectionString
+  langs:
+  - csharp
+  - vb
+  name: ApplyMigrationsRequest
+  nameWithType: ApplyMigrationsRequest
+  fullName: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest
+  type: Class
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Tooling/Apply/ApplyMigrationsRequest.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: ApplyMigrationsRequest
+    path: ../CoreRelm/Models/Migrations/Tooling/Apply/ApplyMigrationsRequest.cs
+    startLine: 8
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Tooling.Apply
+  syntax:
+    content: 'public sealed record ApplyMigrationsRequest : IEquatable<ApplyMigrationsRequest>'
+    content.vb: Public NotInheritable Class ApplyMigrationsRequest Implements IEquatable(Of ApplyMigrationsRequest)
+  inheritance:
+  - System.Object
+  implements:
+  - System.IEquatable{CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest}
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.#ctor(System.String,System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.Tooling.Apply.MigrationScript}},CoreRelm.Models.Migrations.Tooling.Apply.ApplyOptions)
+  commentId: M:CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.#ctor(System.String,System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.Tooling.Apply.MigrationScript}},CoreRelm.Models.Migrations.Tooling.Apply.ApplyOptions)
+  id: '#ctor(System.String,System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.Tooling.Apply.MigrationScript}},CoreRelm.Models.Migrations.Tooling.Apply.ApplyOptions)'
+  parent: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest
+  langs:
+  - csharp
+  - vb
+  name: ApplyMigrationsRequest(string, string, IReadOnlyDictionary<string, IReadOnlyList<MigrationScript>>, ApplyOptions)
+  nameWithType: ApplyMigrationsRequest.ApplyMigrationsRequest(string, string, IReadOnlyDictionary<string, IReadOnlyList<MigrationScript>>, ApplyOptions)
+  fullName: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.ApplyMigrationsRequest(string, string, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IReadOnlyList<CoreRelm.Models.Migrations.Tooling.Apply.MigrationScript>>, CoreRelm.Models.Migrations.Tooling.Apply.ApplyOptions)
+  type: Constructor
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Tooling/Apply/ApplyMigrationsRequest.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: .ctor
+    path: ../CoreRelm/Models/Migrations/Tooling/Apply/ApplyMigrationsRequest.cs
+    startLine: 8
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Tooling.Apply
+  syntax:
+    content: public ApplyMigrationsRequest(string ServerConnectionString, string DatabaseConnectionStringTemplate, IReadOnlyDictionary<string, IReadOnlyList<MigrationScript>> ScriptsByDatabase, ApplyOptions Options)
+    parameters:
+    - id: ServerConnectionString
+      type: System.String
+    - id: DatabaseConnectionStringTemplate
+      type: System.String
+    - id: ScriptsByDatabase
+      type: System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.Tooling.Apply.MigrationScript}}
+    - id: Options
+      type: CoreRelm.Models.Migrations.Tooling.Apply.ApplyOptions
+    content.vb: Public Sub New(ServerConnectionString As String, DatabaseConnectionStringTemplate As String, ScriptsByDatabase As IReadOnlyDictionary(Of String, IReadOnlyList(Of MigrationScript)), Options As ApplyOptions)
+  overload: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.#ctor*
+  nameWithType.vb: ApplyMigrationsRequest.New(String, String, IReadOnlyDictionary(Of String, IReadOnlyList(Of MigrationScript)), ApplyOptions)
+  fullName.vb: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.New(String, String, System.Collections.Generic.IReadOnlyDictionary(Of String, System.Collections.Generic.IReadOnlyList(Of CoreRelm.Models.Migrations.Tooling.Apply.MigrationScript)), CoreRelm.Models.Migrations.Tooling.Apply.ApplyOptions)
+  name.vb: New(String, String, IReadOnlyDictionary(Of String, IReadOnlyList(Of MigrationScript)), ApplyOptions)
+- uid: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.ServerConnectionString
+  commentId: P:CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.ServerConnectionString
+  id: ServerConnectionString
+  parent: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest
+  langs:
+  - csharp
+  - vb
+  name: ServerConnectionString
+  nameWithType: ApplyMigrationsRequest.ServerConnectionString
+  fullName: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.ServerConnectionString
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Tooling/Apply/ApplyMigrationsRequest.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: ServerConnectionString
+    path: ../CoreRelm/Models/Migrations/Tooling/Apply/ApplyMigrationsRequest.cs
+    startLine: 10
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Tooling.Apply
+  syntax:
+    content: public string ServerConnectionString { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ServerConnectionString As String
+  overload: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.ServerConnectionString*
+- uid: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.DatabaseConnectionStringTemplate
+  commentId: P:CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.DatabaseConnectionStringTemplate
+  id: DatabaseConnectionStringTemplate
+  parent: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest
+  langs:
+  - csharp
+  - vb
+  name: DatabaseConnectionStringTemplate
+  nameWithType: ApplyMigrationsRequest.DatabaseConnectionStringTemplate
+  fullName: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.DatabaseConnectionStringTemplate
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Tooling/Apply/ApplyMigrationsRequest.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: DatabaseConnectionStringTemplate
+    path: ../CoreRelm/Models/Migrations/Tooling/Apply/ApplyMigrationsRequest.cs
+    startLine: 11
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Tooling.Apply
+  syntax:
+    content: public string DatabaseConnectionStringTemplate { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property DatabaseConnectionStringTemplate As String
+  overload: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.DatabaseConnectionStringTemplate*
+- uid: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.ScriptsByDatabase
+  commentId: P:CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.ScriptsByDatabase
+  id: ScriptsByDatabase
+  parent: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest
+  langs:
+  - csharp
+  - vb
+  name: ScriptsByDatabase
+  nameWithType: ApplyMigrationsRequest.ScriptsByDatabase
+  fullName: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.ScriptsByDatabase
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Tooling/Apply/ApplyMigrationsRequest.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: ScriptsByDatabase
+    path: ../CoreRelm/Models/Migrations/Tooling/Apply/ApplyMigrationsRequest.cs
+    startLine: 13
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Tooling.Apply
+  syntax:
+    content: public IReadOnlyDictionary<string, IReadOnlyList<MigrationScript>> ScriptsByDatabase { get; init; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.Tooling.Apply.MigrationScript}}
+    content.vb: Public Property ScriptsByDatabase As IReadOnlyDictionary(Of String, IReadOnlyList(Of MigrationScript))
+  overload: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.ScriptsByDatabase*
+- uid: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.Options
+  commentId: P:CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.Options
+  id: Options
+  parent: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest
+  langs:
+  - csharp
+  - vb
+  name: Options
+  nameWithType: ApplyMigrationsRequest.Options
+  fullName: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.Options
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Tooling/Apply/ApplyMigrationsRequest.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: Options
+    path: ../CoreRelm/Models/Migrations/Tooling/Apply/ApplyMigrationsRequest.cs
+    startLine: 14
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Tooling.Apply
+  syntax:
+    content: public ApplyOptions Options { get; init; }
+    parameters: []
+    return:
+      type: CoreRelm.Models.Migrations.Tooling.Apply.ApplyOptions
+    content.vb: Public Property Options As ApplyOptions
+  overload: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.Options*
+references:
+- uid: CoreRelm.Models.Migrations.Tooling.Apply
+  commentId: N:CoreRelm.Models.Migrations.Tooling.Apply
+  href: CoreRelm.html
+  name: CoreRelm.Models.Migrations.Tooling.Apply
+  nameWithType: CoreRelm.Models.Migrations.Tooling.Apply
+  fullName: CoreRelm.Models.Migrations.Tooling.Apply
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling
+    name: Tooling
+    href: CoreRelm.Models.Migrations.Tooling.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling.Apply
+    name: Apply
+    href: CoreRelm.Models.Migrations.Tooling.Apply.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling
+    name: Tooling
+    href: CoreRelm.Models.Migrations.Tooling.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling.Apply
+    name: Apply
+    href: CoreRelm.Models.Migrations.Tooling.Apply.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IEquatable{CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest}
+  commentId: T:System.IEquatable{CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<ApplyMigrationsRequest>
+  nameWithType: IEquatable<ApplyMigrationsRequest>
+  fullName: System.IEquatable<CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest>
+  nameWithType.vb: IEquatable(Of ApplyMigrationsRequest)
+  fullName.vb: System.IEquatable(Of CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest)
+  name.vb: IEquatable(Of ApplyMigrationsRequest)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest
+    name: ApplyMigrationsRequest
+    href: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest
+    name: ApplyMigrationsRequest
+    href: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.#ctor*
+  commentId: Overload:CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.#ctor
+  href: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.html#CoreRelm_Models_Migrations_Tooling_Apply_ApplyMigrationsRequest__ctor_System_String_System_String_System_Collections_Generic_IReadOnlyDictionary_System_String_System_Collections_Generic_IReadOnlyList_CoreRelm_Models_Migrations_Tooling_Apply_MigrationScript___CoreRelm_Models_Migrations_Tooling_Apply_ApplyOptions_
+  name: ApplyMigrationsRequest
+  nameWithType: ApplyMigrationsRequest.ApplyMigrationsRequest
+  fullName: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.ApplyMigrationsRequest
+  nameWithType.vb: ApplyMigrationsRequest.New
+  fullName.vb: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.New
+  name.vb: New
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.Tooling.Apply.MigrationScript}}
+  commentId: T:System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.Tooling.Apply.MigrationScript}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyDictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  name: IReadOnlyDictionary<string, IReadOnlyList<MigrationScript>>
+  nameWithType: IReadOnlyDictionary<string, IReadOnlyList<MigrationScript>>
+  fullName: System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IReadOnlyList<CoreRelm.Models.Migrations.Tooling.Apply.MigrationScript>>
+  nameWithType.vb: IReadOnlyDictionary(Of String, IReadOnlyList(Of MigrationScript))
+  fullName.vb: System.Collections.Generic.IReadOnlyDictionary(Of String, System.Collections.Generic.IReadOnlyList(Of CoreRelm.Models.Migrations.Tooling.Apply.MigrationScript))
+  name.vb: IReadOnlyDictionary(Of String, IReadOnlyList(Of MigrationScript))
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: CoreRelm.Models.Migrations.Tooling.Apply.MigrationScript
+    name: MigrationScript
+    href: CoreRelm.Models.Migrations.Tooling.Apply.MigrationScript.html
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.Tooling.Apply.MigrationScript
+    name: MigrationScript
+    href: CoreRelm.Models.Migrations.Tooling.Apply.MigrationScript.html
+  - name: )
+  - name: )
+- uid: CoreRelm.Models.Migrations.Tooling.Apply.ApplyOptions
+  commentId: T:CoreRelm.Models.Migrations.Tooling.Apply.ApplyOptions
+  parent: CoreRelm.Models.Migrations.Tooling.Apply
+  href: CoreRelm.Models.Migrations.Tooling.Apply.ApplyOptions.html
+  name: ApplyOptions
+  nameWithType: ApplyOptions
+  fullName: CoreRelm.Models.Migrations.Tooling.Apply.ApplyOptions
+- uid: System.Collections.Generic.IReadOnlyDictionary`2
+  commentId: T:System.Collections.Generic.IReadOnlyDictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  name: IReadOnlyDictionary<TKey, TValue>
+  nameWithType: IReadOnlyDictionary<TKey, TValue>
+  fullName: System.Collections.Generic.IReadOnlyDictionary<TKey, TValue>
+  nameWithType.vb: IReadOnlyDictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.IReadOnlyDictionary(Of TKey, TValue)
+  name.vb: IReadOnlyDictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.ServerConnectionString*
+  commentId: Overload:CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.ServerConnectionString
+  href: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.html#CoreRelm_Models_Migrations_Tooling_Apply_ApplyMigrationsRequest_ServerConnectionString
+  name: ServerConnectionString
+  nameWithType: ApplyMigrationsRequest.ServerConnectionString
+  fullName: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.ServerConnectionString
+- uid: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.DatabaseConnectionStringTemplate*
+  commentId: Overload:CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.DatabaseConnectionStringTemplate
+  href: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.html#CoreRelm_Models_Migrations_Tooling_Apply_ApplyMigrationsRequest_DatabaseConnectionStringTemplate
+  name: DatabaseConnectionStringTemplate
+  nameWithType: ApplyMigrationsRequest.DatabaseConnectionStringTemplate
+  fullName: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.DatabaseConnectionStringTemplate
+- uid: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.ScriptsByDatabase*
+  commentId: Overload:CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.ScriptsByDatabase
+  href: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.html#CoreRelm_Models_Migrations_Tooling_Apply_ApplyMigrationsRequest_ScriptsByDatabase
+  name: ScriptsByDatabase
+  nameWithType: ApplyMigrationsRequest.ScriptsByDatabase
+  fullName: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.ScriptsByDatabase
+- uid: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.Options*
+  commentId: Overload:CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.Options
+  href: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.html#CoreRelm_Models_Migrations_Tooling_Apply_ApplyMigrationsRequest_Options
+  name: Options
+  nameWithType: ApplyMigrationsRequest.Options
+  fullName: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.Options

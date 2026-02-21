@@ -157,8 +157,8 @@ Class SchemaIntrospectionOptions  <a class="header-action link-secondary" title=
 
   <a id="CoreRelm_Models_Migrations_Introspection_SchemaIntrospectionOptions__ctor_" data-uid="CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions.#ctor*"></a>
 
-  <h3 id="CoreRelm_Models_Migrations_Introspection_SchemaIntrospectionOptions__ctor_System_Boolean_" data-uid="CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions.#ctor(System.Boolean)">
-  SchemaIntrospectionOptions(bool)
+  <h3 id="CoreRelm_Models_Migrations_Introspection_SchemaIntrospectionOptions__ctor_System_String_System_Boolean_" data-uid="CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions.#ctor(System.String,System.Boolean)">
+  SchemaIntrospectionOptions(string?, bool)
   <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/SchemaIntrospectionOptions.cs/#L9"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -166,11 +166,13 @@ Class SchemaIntrospectionOptions  <a class="header-action link-secondary" title=
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SchemaIntrospectionOptions(bool IncludeViews = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public SchemaIntrospectionOptions(string? DatabaseName = null, bool IncludeViews = false)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
+    <dt><code>DatabaseName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
     <dt><code>IncludeViews</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd></dd>
   </dl>
@@ -190,11 +192,42 @@ Class SchemaIntrospectionOptions  <a class="header-action link-secondary" title=
 </h2>
 
 
+  <a id="CoreRelm_Models_Migrations_Introspection_SchemaIntrospectionOptions_DatabaseName_" data-uid="CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions.DatabaseName*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Introspection_SchemaIntrospectionOptions_DatabaseName" data-uid="CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions.DatabaseName">
+  DatabaseName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/SchemaIntrospectionOptions.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? DatabaseName { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="CoreRelm_Models_Migrations_Introspection_SchemaIntrospectionOptions_IncludeViews_" data-uid="CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions.IncludeViews*"></a>
 
   <h3 id="CoreRelm_Models_Migrations_Introspection_SchemaIntrospectionOptions_IncludeViews" data-uid="CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions.IncludeViews">
   IncludeViews
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/SchemaIntrospectionOptions.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/SchemaIntrospectionOptions.cs/#L11"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>

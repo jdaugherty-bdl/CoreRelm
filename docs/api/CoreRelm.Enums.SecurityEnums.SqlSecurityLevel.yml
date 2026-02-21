@@ -5,8 +5,8 @@ items:
   id: SecurityEnums.SqlSecurityLevel
   parent: CoreRelm.Enums
   children:
-  - CoreRelm.Enums.SecurityEnums.SqlSecurityLevel.DEFINER
-  - CoreRelm.Enums.SecurityEnums.SqlSecurityLevel.INVOKER
+  - CoreRelm.Enums.SecurityEnums.SqlSecurityLevel.Definer
+  - CoreRelm.Enums.SecurityEnums.SqlSecurityLevel.Invoker
   - CoreRelm.Enums.SecurityEnums.SqlSecurityLevel.None
   langs:
   - csharp
@@ -22,13 +22,15 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SqlSecurityLevel
     path: ../CoreRelm/Enums/SecurityEnums.cs
-    startLine: 10
+    startLine: 11
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Enums
   syntax:
     content: public enum SecurityEnums.SqlSecurityLevel
     content.vb: Public Enum SecurityEnums.SqlSecurityLevel
+  extensionMethods:
+  - System.Enum.CoreRelm.Extensions.EnumExtensions.ToDescriptionString
 - uid: CoreRelm.Enums.SecurityEnums.SqlSecurityLevel.None
   commentId: F:CoreRelm.Enums.SecurityEnums.SqlSecurityLevel.None
   id: None
@@ -47,7 +49,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: None
     path: ../CoreRelm/Enums/SecurityEnums.cs
-    startLine: 12
+    startLine: 13
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Enums
@@ -55,56 +57,56 @@ items:
     content: None = 0
     return:
       type: CoreRelm.Enums.SecurityEnums.SqlSecurityLevel
-- uid: CoreRelm.Enums.SecurityEnums.SqlSecurityLevel.INVOKER
-  commentId: F:CoreRelm.Enums.SecurityEnums.SqlSecurityLevel.INVOKER
-  id: INVOKER
+- uid: CoreRelm.Enums.SecurityEnums.SqlSecurityLevel.Invoker
+  commentId: F:CoreRelm.Enums.SecurityEnums.SqlSecurityLevel.Invoker
+  id: Invoker
   parent: CoreRelm.Enums.SecurityEnums.SqlSecurityLevel
   langs:
   - csharp
   - vb
-  name: INVOKER
-  nameWithType: SecurityEnums.SqlSecurityLevel.INVOKER
-  fullName: CoreRelm.Enums.SecurityEnums.SqlSecurityLevel.INVOKER
+  name: Invoker
+  nameWithType: SecurityEnums.SqlSecurityLevel.Invoker
+  fullName: CoreRelm.Enums.SecurityEnums.SqlSecurityLevel.Invoker
   type: Field
   source:
     remote:
       path: CoreRelm/Enums/SecurityEnums.cs
       branch: master
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: INVOKER
-    path: ../CoreRelm/Enums/SecurityEnums.cs
-    startLine: 13
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Enums
-  syntax:
-    content: INVOKER = 1
-    return:
-      type: CoreRelm.Enums.SecurityEnums.SqlSecurityLevel
-- uid: CoreRelm.Enums.SecurityEnums.SqlSecurityLevel.DEFINER
-  commentId: F:CoreRelm.Enums.SecurityEnums.SqlSecurityLevel.DEFINER
-  id: DEFINER
-  parent: CoreRelm.Enums.SecurityEnums.SqlSecurityLevel
-  langs:
-  - csharp
-  - vb
-  name: DEFINER
-  nameWithType: SecurityEnums.SqlSecurityLevel.DEFINER
-  fullName: CoreRelm.Enums.SecurityEnums.SqlSecurityLevel.DEFINER
-  type: Field
-  source:
-    remote:
-      path: CoreRelm/Enums/SecurityEnums.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: DEFINER
+    id: Invoker
     path: ../CoreRelm/Enums/SecurityEnums.cs
     startLine: 14
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Enums
   syntax:
-    content: DEFINER = 2
+    content: Invoker = 1
+    return:
+      type: CoreRelm.Enums.SecurityEnums.SqlSecurityLevel
+- uid: CoreRelm.Enums.SecurityEnums.SqlSecurityLevel.Definer
+  commentId: F:CoreRelm.Enums.SecurityEnums.SqlSecurityLevel.Definer
+  id: Definer
+  parent: CoreRelm.Enums.SecurityEnums.SqlSecurityLevel
+  langs:
+  - csharp
+  - vb
+  name: Definer
+  nameWithType: SecurityEnums.SqlSecurityLevel.Definer
+  fullName: CoreRelm.Enums.SecurityEnums.SqlSecurityLevel.Definer
+  type: Field
+  source:
+    remote:
+      path: CoreRelm/Enums/SecurityEnums.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: Definer
+    path: ../CoreRelm/Enums/SecurityEnums.cs
+    startLine: 16
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Enums
+  syntax:
+    content: Definer = 2
     return:
       type: CoreRelm.Enums.SecurityEnums.SqlSecurityLevel
 references:
@@ -130,6 +132,90 @@ references:
   - uid: CoreRelm.Enums
     name: Enums
     href: CoreRelm.Enums.html
+- uid: System.Enum.CoreRelm.Extensions.EnumExtensions.ToDescriptionString
+  commentId: M:CoreRelm.Extensions.EnumExtensions.ToDescriptionString(System.Enum)
+  parent: CoreRelm.Extensions.EnumExtensions
+  definition: CoreRelm.Extensions.EnumExtensions.ToDescriptionString(System.Enum)
+  href: CoreRelm.Extensions.EnumExtensions.html#CoreRelm_Extensions_EnumExtensions_ToDescriptionString_System_Enum_
+  name: ToDescriptionString(Enum)
+  nameWithType: EnumExtensions.ToDescriptionString(Enum)
+  fullName: CoreRelm.Extensions.EnumExtensions.ToDescriptionString(System.Enum)
+  spec.csharp:
+  - uid: CoreRelm.Extensions.EnumExtensions.ToDescriptionString(System.Enum)
+    name: ToDescriptionString
+    href: CoreRelm.Extensions.EnumExtensions.html#CoreRelm_Extensions_EnumExtensions_ToDescriptionString_System_Enum_
+  - name: (
+  - uid: System.Enum
+    name: Enum
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.enum
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Extensions.EnumExtensions.ToDescriptionString(System.Enum)
+    name: ToDescriptionString
+    href: CoreRelm.Extensions.EnumExtensions.html#CoreRelm_Extensions_EnumExtensions_ToDescriptionString_System_Enum_
+  - name: (
+  - uid: System.Enum
+    name: Enum
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.enum
+  - name: )
+- uid: CoreRelm.Extensions.EnumExtensions.ToDescriptionString(System.Enum)
+  commentId: M:CoreRelm.Extensions.EnumExtensions.ToDescriptionString(System.Enum)
+  isExternal: true
+  href: CoreRelm.Extensions.EnumExtensions.html#CoreRelm_Extensions_EnumExtensions_ToDescriptionString_System_Enum_
+  name: ToDescriptionString(Enum)
+  nameWithType: EnumExtensions.ToDescriptionString(Enum)
+  fullName: CoreRelm.Extensions.EnumExtensions.ToDescriptionString(System.Enum)
+  spec.csharp:
+  - uid: CoreRelm.Extensions.EnumExtensions.ToDescriptionString(System.Enum)
+    name: ToDescriptionString
+    href: CoreRelm.Extensions.EnumExtensions.html#CoreRelm_Extensions_EnumExtensions_ToDescriptionString_System_Enum_
+  - name: (
+  - uid: System.Enum
+    name: Enum
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.enum
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Extensions.EnumExtensions.ToDescriptionString(System.Enum)
+    name: ToDescriptionString
+    href: CoreRelm.Extensions.EnumExtensions.html#CoreRelm_Extensions_EnumExtensions_ToDescriptionString_System_Enum_
+  - name: (
+  - uid: System.Enum
+    name: Enum
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.enum
+  - name: )
+- uid: CoreRelm.Extensions.EnumExtensions
+  commentId: T:CoreRelm.Extensions.EnumExtensions
+  parent: CoreRelm.Extensions
+  href: CoreRelm.Extensions.EnumExtensions.html
+  name: EnumExtensions
+  nameWithType: EnumExtensions
+  fullName: CoreRelm.Extensions.EnumExtensions
+- uid: CoreRelm.Extensions
+  commentId: N:CoreRelm.Extensions
+  href: CoreRelm.html
+  name: CoreRelm.Extensions
+  nameWithType: CoreRelm.Extensions
+  fullName: CoreRelm.Extensions
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Extensions
+    name: Extensions
+    href: CoreRelm.Extensions.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Extensions
+    name: Extensions
+    href: CoreRelm.Extensions.html
 - uid: CoreRelm.Enums.SecurityEnums.SqlSecurityLevel
   commentId: T:CoreRelm.Enums.SecurityEnums.SqlSecurityLevel
   parent: CoreRelm.Enums

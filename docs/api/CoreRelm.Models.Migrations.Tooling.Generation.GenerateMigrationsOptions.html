@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class GenerateMigrationsOptions | CoreRelm </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class GenerateMigrationsOptions | CoreRelm ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/jdaugherty-bdl/CoreRelm/new/master/apiSpec/new?filename=CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions.md&amp;value=---%0Auid%3A%20CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="CoreRelm">
+            CoreRelm
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions">
+
+
+
+  <h1 id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions" class="text-break">
+Class GenerateMigrationsOptions  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Tooling/Generation/GenerateMigrationsOptions.cs/#L9"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="CoreRelm.html">CoreRelm</a>.<a class="xref" href="CoreRelm.Models.html">Models</a>.<a class="xref" href="CoreRelm.Models.Migrations.html">Migrations</a>.<a class="xref" href="CoreRelm.Models.Migrations.Tooling.html">Tooling</a>.<a class="xref" href="CoreRelm.Models.Migrations.Tooling.Generation.html">Generation</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>CoreRelm.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed record GenerateMigrationsOptions : IEquatable&lt;GenerateMigrationsOptions&gt;</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">GenerateMigrationsOptions</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.html">GenerateMigrationsOptions</a>&gt;</div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions__ctor_" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.#ctor*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions__ctor_System_String_System_String_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_String_System_Nullable_System_DateTime__System_Boolean_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.Nullable{System.DateTime},System.Boolean,System.Threading.CancellationToken)">
+  GenerateMigrationsOptions(string?, string?, string?, bool, bool, bool, bool, string, DateTime?, bool, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Tooling/Generation/GenerateMigrationsOptions.cs/#L9"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenerateMigrationsOptions(string? ConnectionString = null, string? ConnectionStringTemplate = null, string? DatabaseName = null, bool Destructive = false, bool IncludeUseDatabase = true, bool EnsureDatabaseExistsDuringGenerate = true, bool DropFunctionsOnCreate = false, string MigrationName = &quot;migration&quot;, DateTime? TimestampUtc = null, bool TreatMissingDatabaseAsEmpty = true, CancellationToken CancelToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ConnectionString</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>ConnectionStringTemplate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>DatabaseName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>Destructive</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>IncludeUseDatabase</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>EnsureDatabaseExistsDuringGenerate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>DropFunctionsOnCreate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>MigrationName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>TimestampUtc</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</dt>
+    <dd></dd>
+    <dt><code>TreatMissingDatabaseAsEmpty</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>CancelToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_CancelToken_" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.CancelToken*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_CancelToken" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.CancelToken">
+  CancelToken
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Tooling/Generation/GenerateMigrationsOptions.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CancellationToken CancelToken { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_ConnectionString_" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.ConnectionString*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_ConnectionString" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.ConnectionString">
+  ConnectionString
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Tooling/Generation/GenerateMigrationsOptions.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? ConnectionString { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_ConnectionStringTemplate_" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.ConnectionStringTemplate*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_ConnectionStringTemplate" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.ConnectionStringTemplate">
+  ConnectionStringTemplate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Tooling/Generation/GenerateMigrationsOptions.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? ConnectionStringTemplate { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_DatabaseName_" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.DatabaseName*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_DatabaseName" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.DatabaseName">
+  DatabaseName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Tooling/Generation/GenerateMigrationsOptions.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? DatabaseName { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_Destructive_" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.Destructive*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_Destructive" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.Destructive">
+  Destructive
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Tooling/Generation/GenerateMigrationsOptions.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Destructive { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_DropFunctionsOnCreate_" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.DropFunctionsOnCreate*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_DropFunctionsOnCreate" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.DropFunctionsOnCreate">
+  DropFunctionsOnCreate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Tooling/Generation/GenerateMigrationsOptions.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool DropFunctionsOnCreate { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_EnsureDatabaseExistsDuringGenerate_" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.EnsureDatabaseExistsDuringGenerate*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_EnsureDatabaseExistsDuringGenerate" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.EnsureDatabaseExistsDuringGenerate">
+  EnsureDatabaseExistsDuringGenerate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Tooling/Generation/GenerateMigrationsOptions.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool EnsureDatabaseExistsDuringGenerate { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_IncludeUseDatabase_" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.IncludeUseDatabase*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_IncludeUseDatabase" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.IncludeUseDatabase">
+  IncludeUseDatabase
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Tooling/Generation/GenerateMigrationsOptions.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IncludeUseDatabase { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_MigrationName_" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.MigrationName*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_MigrationName" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.MigrationName">
+  MigrationName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Tooling/Generation/GenerateMigrationsOptions.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string MigrationName { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_TimestampUtc_" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.TimestampUtc*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_TimestampUtc" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.TimestampUtc">
+  TimestampUtc
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Tooling/Generation/GenerateMigrationsOptions.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTime? TimestampUtc { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_TreatMissingDatabaseAsEmpty_" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.TreatMissingDatabaseAsEmpty*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_TreatMissingDatabaseAsEmpty" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.TreatMissingDatabaseAsEmpty">
+  TreatMissingDatabaseAsEmpty
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Tooling/Generation/GenerateMigrationsOptions.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TreatMissingDatabaseAsEmpty { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Tooling/Generation/GenerateMigrationsOptions.cs/#L9" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

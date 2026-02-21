@@ -89,7 +89,7 @@
 
 
   <h1 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema" class="text-break">
-Class FunctionSchema  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L11"><i class="bi bi-code-slash"></i></a>
+Class FunctionSchema  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L14"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -101,7 +101,9 @@ Class FunctionSchema  <a class="header-action link-secondary" title="View source
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class FunctionSchema : RelmModel, IRelmModel</code></pre>
+    <pre><code class="lang-csharp hljs">[RelmDatabase(&quot;INFORMATION_SCHEMA&quot;)]
+[RelmTable(&quot;ROUTINES&quot;)]
+public class FunctionSchema : RelmModel, IRelmModel</code></pre>
   </div>
 
 
@@ -280,11 +282,107 @@ Class FunctionSchema  <a class="header-action link-secondary" title="View source
 </h2>
 
 
+  <a id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_CharacterMaximumLength_" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.CharacterMaximumLength*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_CharacterMaximumLength" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.CharacterMaximumLength">
+  CharacterMaximumLength
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L69"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
+public long? CharacterMaximumLength { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_DataType_" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.DataType*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_DataType" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.DataType">
+  DataType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L57"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
+public string? DataType { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_DatetimePrecision_" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.DatetimePrecision*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_DatetimePrecision" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.DatetimePrecision">
+  DatetimePrecision
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L105"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
+public long? DatetimePrecision { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_Delimiter_" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.Delimiter*"></a>
 
   <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_Delimiter" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.Delimiter">
   Delimiter
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L18"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -315,7 +413,7 @@ Class FunctionSchema  <a class="header-action link-secondary" title="View source
 
   <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_DtdIdentifier" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.DtdIdentifier">
   DtdIdentifier
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L117"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -343,11 +441,74 @@ public string? DtdIdentifier { get; set; }</code></pre>
 
 
 
+  <a id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_DtdIdentifierValue_" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.DtdIdentifierValue*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_DtdIdentifierValue" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.DtdIdentifierValue">
+  DtdIdentifierValue
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L138"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? DtdIdentifierValue { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_FunctionParameters_" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.FunctionParameters*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_FunctionParameters" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.FunctionParameters">
+  FunctionParameters
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L212"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmForeignKey(&quot;SpecificName&quot;, &quot;SpecificName&quot;, null, ForeignKeys.ReferentialAction.Cascade)]
+public virtual ICollection&lt;FunctionParameterSchema&gt;? FunctionParameters { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;<a class="xref" href="CoreRelm.Models.Migrations.Introspection.FunctionParameterSchema.html">FunctionParameterSchema</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_IsDeterministic_" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.IsDeterministic*"></a>
 
   <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_IsDeterministic" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.IsDeterministic">
   IsDeterministic
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L187"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -375,19 +536,18 @@ public string? IsDeterministic { get; set; }</code></pre>
 
 
 
-  <a id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_IsDeterministicBool_" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.IsDeterministicBool*"></a>
+  <a id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_IsDeterministicValue_" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.IsDeterministicValue*"></a>
 
-  <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_IsDeterministicBool" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.IsDeterministicBool">
-  IsDeterministicBool
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_IsDeterministicValue" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.IsDeterministicValue">
+  IsDeterministicValue
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L199"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
-public bool IsDeterministicBool { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool IsDeterministicValue { get; set; }</code></pre>
   </div>
 
 
@@ -407,11 +567,75 @@ public bool IsDeterministicBool { get; }</code></pre>
 
 
 
+  <a id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_NumericPrecision_" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.NumericPrecision*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_NumericPrecision" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.NumericPrecision">
+  NumericPrecision
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L81"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
+public long? NumericPrecision { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_NumericScale_" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.NumericScale*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_NumericScale" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.NumericScale">
+  NumericScale
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L93"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
+public long? NumericScale { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_RoutineComment_" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.RoutineComment*"></a>
 
   <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_RoutineComment" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.RoutineComment">
   RoutineComment
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L53"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -443,7 +667,7 @@ public string? RoutineComment { get; set; }</code></pre>
 
   <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_RoutineDefinition" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.RoutineDefinition">
   RoutineDefinition
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L157"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -475,7 +699,7 @@ public string? RoutineDefinition { get; set; }</code></pre>
 
   <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_RoutineName" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.RoutineName">
   RoutineName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L23"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -503,11 +727,107 @@ public string? RoutineName { get; set; }</code></pre>
 
 
 
+  <a id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_RoutineSchema_" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.RoutineSchema*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_RoutineSchema" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.RoutineSchema">
+  RoutineSchema
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
+public string? RoutineSchema { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_RoutineType_" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.RoutineType*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_RoutineType" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.RoutineType">
+  RoutineType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
+public string? RoutineType { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_RoutineTypeValue_" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.RoutineTypeValue*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_RoutineTypeValue" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.RoutineTypeValue">
+  RoutineTypeValue
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
+public StoredProcedures.ProcedureType? RoutineTypeValue { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Enums.StoredProcedures.html">StoredProcedures</a>.<a class="xref" href="CoreRelm.Enums.StoredProcedures.ProcedureType.html">ProcedureType</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_SecurityType_" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.SecurityType*"></a>
 
   <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_SecurityType" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.SecurityType">
   SecurityType
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L183"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -535,11 +855,43 @@ public SecurityEnums.SqlSecurityLevel SecurityType { get; set; }</code></pre>
 
 
 
+  <a id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_SpecificName_" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.SpecificName*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_SpecificName" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.SpecificName">
+  SpecificName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
+public string? SpecificName { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_SqlDataAccess_" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.SqlDataAccess*"></a>
 
   <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_SqlDataAccess" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.SqlDataAccess">
   SqlDataAccess
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L161"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -567,11 +919,74 @@ public string? SqlDataAccess { get; set; }</code></pre>
 
 
 
+  <a id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_SqlDataAccessValue_" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.SqlDataAccessValue*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_SqlDataAccessValue" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.SqlDataAccessValue">
+  SqlDataAccessValue
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L173"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StoredProcedures.ProcedureDataAccess? SqlDataAccessValue { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Enums.StoredProcedures.html">StoredProcedures</a>.<a class="xref" href="CoreRelm.Enums.StoredProcedures.ProcedureDataAccess.html">ProcedureDataAccess</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_SqlMode_" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.SqlMode*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Introspection_FunctionSchema_SqlMode" data-uid="CoreRelm.Models.Migrations.Introspection.FunctionSchema.SqlMode">
+  SqlMode
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L209"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, MySqlDbType.VarChar, null, -1, null, true, false, false, false, null, false, false)]
+public string? SqlMode { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L11" class="edit-link">Edit this page</a>
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Introspection/FunctionSchema.cs/#L14" class="edit-link">Edit this page</a>
         </div>
 
 

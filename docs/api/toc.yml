@@ -26,6 +26,12 @@ items:
   - uid: CoreRelm.Attributes.RelmForeignKey
     name: RelmForeignKey
     type: Class
+  - uid: CoreRelm.Attributes.RelmFunction
+    name: RelmFunction
+    type: Class
+  - uid: CoreRelm.Attributes.RelmFunction`1
+    name: RelmFunction<T>
+    type: Class
   - uid: CoreRelm.Attributes.RelmIndex
     name: RelmIndex
     type: Class
@@ -40,6 +46,12 @@ items:
     type: Class
   - uid: CoreRelm.Attributes.RelmKey
     name: RelmKey
+    type: Class
+  - uid: CoreRelm.Attributes.RelmProcedure
+    name: RelmProcedure
+    type: Class
+  - uid: CoreRelm.Attributes.RelmProcedureParameter`1
+    name: RelmProcedureParameter<T>
     type: Class
   - uid: CoreRelm.Attributes.RelmTable
     name: RelmTable
@@ -60,10 +72,25 @@ items:
   - uid: CoreRelm.Attributes.BaseClasses.RelmIndexColumnBase
     name: RelmIndexColumnBase
     type: Class
+  - uid: CoreRelm.Attributes.BaseClasses.RelmProcedureParameterBase
+    name: RelmProcedureParameterBase
+    type: Class
+  - uid: CoreRelm.Attributes.BaseClasses.RelmStoredProcedure
+    name: RelmStoredProcedure
+    type: Class
 - uid: CoreRelm.Enums
   name: CoreRelm.Enums
   type: Namespace
   items:
+  - uid: CoreRelm.Enums.CharsetEnums
+    name: CharsetEnums
+    type: Class
+  - uid: CoreRelm.Enums.CharsetEnums.DatabaseCharset
+    name: CharsetEnums.DatabaseCharset
+    type: Enum
+  - uid: CoreRelm.Enums.CharsetEnums.DatabaseCollation
+    name: CharsetEnums.DatabaseCollation
+    type: Enum
   - uid: CoreRelm.Enums.Commands
     name: Commands
     type: Class
@@ -91,6 +118,12 @@ items:
   - uid: CoreRelm.Enums.Indexes.Visibility
     name: Indexes.Visibility
     type: Enum
+  - uid: CoreRelm.Enums.MigrationEnums
+    name: MigrationEnums
+    type: Class
+  - uid: CoreRelm.Enums.MigrationEnums.RelmMigrationType
+    name: MigrationEnums.RelmMigrationType
+    type: Enum
   - uid: CoreRelm.Enums.SecurityEnums
     name: SecurityEnums
     type: Class
@@ -117,6 +150,18 @@ items:
     type: Enum
   - uid: CoreRelm.Enums.SecurityEnums.UserRole
     name: SecurityEnums.UserRole
+    type: Enum
+  - uid: CoreRelm.Enums.StoredProcedures
+    name: StoredProcedures
+    type: Class
+  - uid: CoreRelm.Enums.StoredProcedures.ParameterDirection
+    name: StoredProcedures.ParameterDirection
+    type: Enum
+  - uid: CoreRelm.Enums.StoredProcedures.ProcedureDataAccess
+    name: StoredProcedures.ProcedureDataAccess
+    type: Enum
+  - uid: CoreRelm.Enums.StoredProcedures.ProcedureType
+    name: StoredProcedures.ProcedureType
     type: Enum
   - uid: CoreRelm.Enums.Triggers
     name: Triggers
@@ -168,6 +213,9 @@ items:
   - uid: CoreRelm.Extensions.DbContextExtensions
     name: DbContextExtensions
     type: Class
+  - uid: CoreRelm.Extensions.EnumExtensions
+    name: EnumExtensions
+    type: Class
   - uid: CoreRelm.Extensions.ListExtensions
     name: ListExtensions
     type: Class
@@ -215,6 +263,9 @@ items:
   name: CoreRelm.Interfaces.Metadata
   type: Namespace
   items:
+  - uid: CoreRelm.Interfaces.Metadata.IRelmMetadataReader
+    name: IRelmMetadataReader
+    type: Interface
   - uid: CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector
     name: IRelmSchemaIntrospector
     type: Interface
@@ -252,6 +303,13 @@ items:
   - uid: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner
     name: IRelmSqlScriptRunner
     type: Interface
+- uid: CoreRelm.Interfaces.Migrations.Tooling
+  name: CoreRelm.Interfaces.Migrations.Tooling
+  type: Namespace
+  items:
+  - uid: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling
+    name: IRelmMigrationTooling
+    type: Interface
 - uid: CoreRelm.Interfaces.ModelSets
   name: CoreRelm.Interfaces.ModelSets
   type: Namespace
@@ -276,9 +334,6 @@ items:
   name: CoreRelm.Migrations
   type: Namespace
   items:
-  - uid: CoreRelm.Migrations.DefaultRelmMigrationSqlProvider
-    name: DefaultRelmMigrationSqlProvider
-    type: Class
   - uid: CoreRelm.Migrations.MigrationSqlProviderFactory
     name: MigrationSqlProviderFactory
     type: Class
@@ -287,6 +342,9 @@ items:
     type: Class
   - uid: CoreRelm.Migrations.ModelSetResolver
     name: ModelSetResolver
+    type: Class
+  - uid: CoreRelm.Migrations.RelmMigrationTooling
+    name: RelmMigrationTooling
     type: Class
 - uid: CoreRelm.Models
   name: CoreRelm.Models
@@ -342,6 +400,18 @@ items:
   - uid: CoreRelm.Models.Migrations.ModelSetsFile
     name: ModelSetsFile
     type: Class
+  - uid: CoreRelm.Models.Migrations.RelmColumnDescriptor
+    name: RelmColumnDescriptor
+    type: Class
+  - uid: CoreRelm.Models.Migrations.RelmEntityDescriptor
+    name: RelmEntityDescriptor
+    type: Class
+  - uid: CoreRelm.Models.Migrations.RelmForeignKeyDescriptor
+    name: RelmForeignKeyDescriptor
+    type: Class
+  - uid: CoreRelm.Models.Migrations.RelmIndexDescriptor
+    name: RelmIndexDescriptor
+    type: Class
   - uid: CoreRelm.Models.Migrations.ResolvedModelSet
     name: ResolvedModelSet
     type: Class
@@ -367,6 +437,9 @@ items:
     type: Class
   - uid: CoreRelm.Models.Migrations.Introspection.ForeignKeySchema
     name: ForeignKeySchema
+    type: Class
+  - uid: CoreRelm.Models.Migrations.Introspection.FunctionParameterSchema
+    name: FunctionParameterSchema
     type: Class
   - uid: CoreRelm.Models.Migrations.Introspection.FunctionSchema
     name: FunctionSchema
@@ -439,6 +512,64 @@ items:
   - uid: CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions
     name: MySqlRenderOptions
     type: Class
+- uid: CoreRelm.Models.Migrations.Tooling.Apply
+  name: CoreRelm.Models.Migrations.Tooling.Apply
+  type: Namespace
+  items:
+  - uid: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest
+    name: ApplyMigrationsRequest
+    type: Class
+  - uid: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsResult
+    name: ApplyMigrationsResult
+    type: Class
+  - uid: CoreRelm.Models.Migrations.Tooling.Apply.ApplyOptions
+    name: ApplyOptions
+    type: Class
+  - uid: CoreRelm.Models.Migrations.Tooling.Apply.MigrationScript
+    name: MigrationScript
+    type: Class
+  - uid: CoreRelm.Models.Migrations.Tooling.Apply.PerDatabaseApplyResult
+    name: PerDatabaseApplyResult
+    type: Class
+- uid: CoreRelm.Models.Migrations.Tooling.Drift
+  name: CoreRelm.Models.Migrations.Tooling.Drift
+  type: Namespace
+  items:
+  - uid: CoreRelm.Models.Migrations.Tooling.Drift.MigrationStatusRequest
+    name: MigrationStatusRequest
+    type: Class
+  - uid: CoreRelm.Models.Migrations.Tooling.Drift.MigrationStatusResult
+    name: MigrationStatusResult
+    type: Class
+  - uid: CoreRelm.Models.Migrations.Tooling.Drift.PerDatabaseStatus
+    name: PerDatabaseStatus
+    type: Class
+  - uid: CoreRelm.Models.Migrations.Tooling.Drift.StatusOptions
+    name: StatusOptions
+    type: Class
+- uid: CoreRelm.Models.Migrations.Tooling.Generation
+  name: CoreRelm.Models.Migrations.Tooling.Generation
+  type: Namespace
+  items:
+  - uid: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions
+    name: GenerateMigrationsOptions
+    type: Class
+  - uid: CoreRelm.Models.Migrations.Tooling.Generation.MigrationGenerationResult
+    name: MigrationGenerationResult
+    type: Class
+  - uid: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult
+    name: PerDatabaseMigrationResult
+    type: Class
+- uid: CoreRelm.Models.Migrations.Tooling.Validation
+  name: CoreRelm.Models.Migrations.Tooling.Validation
+  type: Namespace
+  items:
+  - uid: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidateOptions
+    name: ModelSetValidateOptions
+    type: Class
+  - uid: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport
+    name: ModelSetValidationReport
+    type: Class
 - uid: CoreRelm.Options
   name: CoreRelm.Options
   type: Namespace
@@ -455,6 +586,13 @@ items:
   items:
   - uid: CoreRelm.Persistence.BulkTableWriter`1
     name: BulkTableWriter<T>
+    type: Class
+- uid: CoreRelm.RelmInternal.Contexts
+  name: CoreRelm.RelmInternal.Contexts
+  type: Namespace
+  items:
+  - uid: CoreRelm.RelmInternal.Contexts.InformationSchemaContext
+    name: InformationSchemaContext
     type: Class
 - uid: CoreRelm.RelmInternal.Helpers.Migrations.Execution
   name: CoreRelm.RelmInternal.Helpers.Migrations.Execution

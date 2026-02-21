@@ -5,7 +5,7 @@ items:
   id: IRelmSchemaIntrospector
   parent: CoreRelm.Interfaces.Metadata
   children:
-  - CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector.LoadSchemaAsync(CoreRelm.Interfaces.IRelmContext,CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions,System.Threading.CancellationToken)
+  - CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector.LoadSchemaAsync(CoreRelm.RelmInternal.Contexts.InformationSchemaContext,CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions,System.Threading.CancellationToken)
   langs:
   - csharp
   - vb
@@ -20,23 +20,23 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: IRelmSchemaIntrospector
     path: ../CoreRelm/Interfaces/Metadata/IRelmSchemaIntrospector.cs
-    startLine: 10
+    startLine: 11
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Interfaces.Metadata
   syntax:
     content: public interface IRelmSchemaIntrospector
     content.vb: Public Interface IRelmSchemaIntrospector
-- uid: CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector.LoadSchemaAsync(CoreRelm.Interfaces.IRelmContext,CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions,System.Threading.CancellationToken)
-  commentId: M:CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector.LoadSchemaAsync(CoreRelm.Interfaces.IRelmContext,CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions,System.Threading.CancellationToken)
-  id: LoadSchemaAsync(CoreRelm.Interfaces.IRelmContext,CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions,System.Threading.CancellationToken)
+- uid: CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector.LoadSchemaAsync(CoreRelm.RelmInternal.Contexts.InformationSchemaContext,CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions,System.Threading.CancellationToken)
+  commentId: M:CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector.LoadSchemaAsync(CoreRelm.RelmInternal.Contexts.InformationSchemaContext,CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions,System.Threading.CancellationToken)
+  id: LoadSchemaAsync(CoreRelm.RelmInternal.Contexts.InformationSchemaContext,CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions,System.Threading.CancellationToken)
   parent: CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector
   langs:
   - csharp
   - vb
-  name: LoadSchemaAsync(IRelmContext, SchemaIntrospectionOptions?, CancellationToken)
-  nameWithType: IRelmSchemaIntrospector.LoadSchemaAsync(IRelmContext, SchemaIntrospectionOptions?, CancellationToken)
-  fullName: CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector.LoadSchemaAsync(CoreRelm.Interfaces.IRelmContext, CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions?, System.Threading.CancellationToken)
+  name: LoadSchemaAsync(InformationSchemaContext, SchemaIntrospectionOptions?, CancellationToken)
+  nameWithType: IRelmSchemaIntrospector.LoadSchemaAsync(InformationSchemaContext, SchemaIntrospectionOptions?, CancellationToken)
+  fullName: CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector.LoadSchemaAsync(CoreRelm.RelmInternal.Contexts.InformationSchemaContext, CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions?, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -45,26 +45,26 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: LoadSchemaAsync
     path: ../CoreRelm/Interfaces/Metadata/IRelmSchemaIntrospector.cs
-    startLine: 12
+    startLine: 13
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Interfaces.Metadata
   syntax:
-    content: Task<SchemaSnapshot> LoadSchemaAsync(IRelmContext relmContext, SchemaIntrospectionOptions? options = null, CancellationToken ct = default)
+    content: Task<SchemaSnapshot> LoadSchemaAsync(InformationSchemaContext relmContext, SchemaIntrospectionOptions? options = null, CancellationToken ct = default)
     parameters:
     - id: relmContext
-      type: CoreRelm.Interfaces.IRelmContext
+      type: CoreRelm.RelmInternal.Contexts.InformationSchemaContext
     - id: options
       type: CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions
     - id: ct
       type: System.Threading.CancellationToken
     return:
       type: System.Threading.Tasks.Task{CoreRelm.Models.Migrations.Introspection.SchemaSnapshot}
-    content.vb: Function LoadSchemaAsync(relmContext As IRelmContext, options As SchemaIntrospectionOptions = Nothing, ct As CancellationToken = Nothing) As Task(Of SchemaSnapshot)
+    content.vb: Function LoadSchemaAsync(relmContext As InformationSchemaContext, options As SchemaIntrospectionOptions = Nothing, ct As CancellationToken = Nothing) As Task(Of SchemaSnapshot)
   overload: CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector.LoadSchemaAsync*
-  nameWithType.vb: IRelmSchemaIntrospector.LoadSchemaAsync(IRelmContext, SchemaIntrospectionOptions, CancellationToken)
-  fullName.vb: CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector.LoadSchemaAsync(CoreRelm.Interfaces.IRelmContext, CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions, System.Threading.CancellationToken)
-  name.vb: LoadSchemaAsync(IRelmContext, SchemaIntrospectionOptions, CancellationToken)
+  nameWithType.vb: IRelmSchemaIntrospector.LoadSchemaAsync(InformationSchemaContext, SchemaIntrospectionOptions, CancellationToken)
+  fullName.vb: CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector.LoadSchemaAsync(CoreRelm.RelmInternal.Contexts.InformationSchemaContext, CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions, System.Threading.CancellationToken)
+  name.vb: LoadSchemaAsync(InformationSchemaContext, SchemaIntrospectionOptions, CancellationToken)
 references:
 - uid: CoreRelm.Interfaces.Metadata
   commentId: N:CoreRelm.Interfaces.Metadata
@@ -98,17 +98,17 @@ references:
     href: CoreRelm.Interfaces.Metadata.html
 - uid: CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector.LoadSchemaAsync*
   commentId: Overload:CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector.LoadSchemaAsync
-  href: CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector.html#CoreRelm_Interfaces_Metadata_IRelmSchemaIntrospector_LoadSchemaAsync_CoreRelm_Interfaces_IRelmContext_CoreRelm_Models_Migrations_Introspection_SchemaIntrospectionOptions_System_Threading_CancellationToken_
+  href: CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector.html#CoreRelm_Interfaces_Metadata_IRelmSchemaIntrospector_LoadSchemaAsync_CoreRelm_RelmInternal_Contexts_InformationSchemaContext_CoreRelm_Models_Migrations_Introspection_SchemaIntrospectionOptions_System_Threading_CancellationToken_
   name: LoadSchemaAsync
   nameWithType: IRelmSchemaIntrospector.LoadSchemaAsync
   fullName: CoreRelm.Interfaces.Metadata.IRelmSchemaIntrospector.LoadSchemaAsync
-- uid: CoreRelm.Interfaces.IRelmContext
-  commentId: T:CoreRelm.Interfaces.IRelmContext
-  parent: CoreRelm.Interfaces
-  href: CoreRelm.Interfaces.IRelmContext.html
-  name: IRelmContext
-  nameWithType: IRelmContext
-  fullName: CoreRelm.Interfaces.IRelmContext
+- uid: CoreRelm.RelmInternal.Contexts.InformationSchemaContext
+  commentId: T:CoreRelm.RelmInternal.Contexts.InformationSchemaContext
+  parent: CoreRelm.RelmInternal.Contexts
+  href: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.html
+  name: InformationSchemaContext
+  nameWithType: InformationSchemaContext
+  fullName: CoreRelm.RelmInternal.Contexts.InformationSchemaContext
 - uid: CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions
   commentId: T:CoreRelm.Models.Migrations.Introspection.SchemaIntrospectionOptions
   parent: CoreRelm.Models.Migrations.Introspection
@@ -157,28 +157,36 @@ references:
     name: SchemaSnapshot
     href: CoreRelm.Models.Migrations.Introspection.SchemaSnapshot.html
   - name: )
-- uid: CoreRelm.Interfaces
-  commentId: N:CoreRelm.Interfaces
+- uid: CoreRelm.RelmInternal.Contexts
+  commentId: N:CoreRelm.RelmInternal.Contexts
   href: CoreRelm.html
-  name: CoreRelm.Interfaces
-  nameWithType: CoreRelm.Interfaces
-  fullName: CoreRelm.Interfaces
+  name: CoreRelm.RelmInternal.Contexts
+  nameWithType: CoreRelm.RelmInternal.Contexts
+  fullName: CoreRelm.RelmInternal.Contexts
   spec.csharp:
   - uid: CoreRelm
     name: CoreRelm
     href: CoreRelm.html
   - name: .
-  - uid: CoreRelm.Interfaces
-    name: Interfaces
-    href: CoreRelm.Interfaces.html
+  - uid: CoreRelm.RelmInternal
+    name: RelmInternal
+    href: CoreRelm.RelmInternal.html
+  - name: .
+  - uid: CoreRelm.RelmInternal.Contexts
+    name: Contexts
+    href: CoreRelm.RelmInternal.Contexts.html
   spec.vb:
   - uid: CoreRelm
     name: CoreRelm
     href: CoreRelm.html
   - name: .
-  - uid: CoreRelm.Interfaces
-    name: Interfaces
-    href: CoreRelm.Interfaces.html
+  - uid: CoreRelm.RelmInternal
+    name: RelmInternal
+    href: CoreRelm.RelmInternal.html
+  - name: .
+  - uid: CoreRelm.RelmInternal.Contexts
+    name: Contexts
+    href: CoreRelm.RelmInternal.Contexts.html
 - uid: CoreRelm.Models.Migrations.Introspection
   commentId: N:CoreRelm.Models.Migrations.Introspection
   href: CoreRelm.html

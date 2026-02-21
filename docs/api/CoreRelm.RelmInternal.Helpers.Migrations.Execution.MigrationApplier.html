@@ -89,7 +89,7 @@
 
 
   <h1 id="CoreRelm_RelmInternal_Helpers_Migrations_Execution_MigrationApplier" data-uid="CoreRelm.RelmInternal.Helpers.Migrations.Execution.MigrationApplier" class="text-break">
-Class MigrationApplier  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Helpers/Migrations/Execution/MigrationApplier.cs/#L17"><i class="bi bi-code-slash"></i></a>
+Class MigrationApplier  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Helpers/Migrations/Execution/MigrationApplier.cs/#L18"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -151,21 +151,25 @@ Class MigrationApplier  <a class="header-action link-secondary" title="View sour
 
   <a id="CoreRelm_RelmInternal_Helpers_Migrations_Execution_MigrationApplier__ctor_" data-uid="CoreRelm.RelmInternal.Helpers.Migrations.Execution.MigrationApplier.#ctor*"></a>
 
-  <h3 id="CoreRelm_RelmInternal_Helpers_Migrations_Execution_MigrationApplier__ctor_CoreRelm_Interfaces_Migrations_IRelmMigrationSqlProviderFactory_" data-uid="CoreRelm.RelmInternal.Helpers.Migrations.Execution.MigrationApplier.#ctor(CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory)">
-  MigrationApplier(IRelmMigrationSqlProviderFactory)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Helpers/Migrations/Execution/MigrationApplier.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_RelmInternal_Helpers_Migrations_Execution_MigrationApplier__ctor_CoreRelm_Interfaces_Migrations_IRelmSchemaMigrationsStore_CoreRelm_Interfaces_Migrations_IRelmSqlScriptRunner_CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_" data-uid="CoreRelm.RelmInternal.Helpers.Migrations.Execution.MigrationApplier.#ctor(CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore,CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner,CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner)">
+  MigrationApplier(IRelmSchemaMigrationsStore, IRelmSqlScriptRunner, IRelmDatabaseProvisioner)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Helpers/Migrations/Execution/MigrationApplier.cs/#L18"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MigrationApplier(IRelmMigrationSqlProviderFactory providerFactory)</code></pre>
+    <pre><code class="lang-csharp hljs">public MigrationApplier(IRelmSchemaMigrationsStore store, IRelmSqlScriptRunner runner, IRelmDatabaseProvisioner provisioner)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>providerFactory</code> <a class="xref" href="CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory.html">IRelmMigrationSqlProviderFactory</a></dt>
+    <dt><code>store</code> <a class="xref" href="CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.html">IRelmSchemaMigrationsStore</a></dt>
+    <dd></dd>
+    <dt><code>runner</code> <a class="xref" href="CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.html">IRelmSqlScriptRunner</a></dt>
+    <dd></dd>
+    <dt><code>provisioner</code> <a class="xref" href="CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.html">IRelmDatabaseProvisioner</a></dt>
     <dd></dd>
   </dl>
 
@@ -186,23 +190,21 @@ Class MigrationApplier  <a class="header-action link-secondary" title="View sour
 
   <a id="CoreRelm_RelmInternal_Helpers_Migrations_Execution_MigrationApplier_ApplyAsync_" data-uid="CoreRelm.RelmInternal.Helpers.Migrations.Execution.MigrationApplier.ApplyAsync*"></a>
 
-  <h3 id="CoreRelm_RelmInternal_Helpers_Migrations_Execution_MigrationApplier_ApplyAsync_CoreRelm_Models_Migrations_MigrationOptions_System_String_System_String_System_String_" data-uid="CoreRelm.RelmInternal.Helpers.Migrations.Execution.MigrationApplier.ApplyAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String)">
-  ApplyAsync(MigrationOptions, string, string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Helpers/Migrations/Execution/MigrationApplier.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_RelmInternal_Helpers_Migrations_Execution_MigrationApplier_ApplyAsync_CoreRelm_Models_Migrations_MigrationOptions_System_String_System_String_" data-uid="CoreRelm.RelmInternal.Helpers.Migrations.Execution.MigrationApplier.ApplyAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String)">
+  ApplyAsync(MigrationOptions, string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Helpers/Migrations/Execution/MigrationApplier.cs/#L27"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; ApplyAsync(MigrationOptions migrationOptions, string dbName, string migrationFileName, string sql)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; ApplyAsync(MigrationOptions migrationOptions, string migrationFileName, string sql)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>migrationOptions</code> <a class="xref" href="CoreRelm.Models.Migrations.MigrationOptions.html">MigrationOptions</a></dt>
-    <dd></dd>
-    <dt><code>dbName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
     <dt><code>migrationFileName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
@@ -230,7 +232,7 @@ Class MigrationApplier  <a class="header-action link-secondary" title="View sour
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Helpers/Migrations/Execution/MigrationApplier.cs/#L17" class="edit-link">Edit this page</a>
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Helpers/Migrations/Execution/MigrationApplier.cs/#L18" class="edit-link">Edit this page</a>
         </div>
 
 

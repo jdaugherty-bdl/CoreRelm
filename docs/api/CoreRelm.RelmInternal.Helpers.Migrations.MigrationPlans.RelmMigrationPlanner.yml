@@ -5,6 +5,7 @@ items:
   id: RelmMigrationPlanner
   parent: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
   children:
+  - CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner.#ctor(Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner})
   - CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner.Plan(CoreRelm.Models.Migrations.Introspection.SchemaSnapshot,CoreRelm.Models.Migrations.Introspection.SchemaSnapshot,CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions)
   langs:
   - csharp
@@ -20,7 +21,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: RelmMigrationPlanner
     path: ../CoreRelm/RelmInternal/Helpers/Migrations/MigrationPlans/RelmMigrationPlanner.cs
-    startLine: 13
+    startLine: 16
   assemblies:
   - CoreRelm
   namespace: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
@@ -38,6 +39,38 @@ items:
   - System.Object.GetType
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+- uid: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner.#ctor(Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner})
+  commentId: M:CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner.#ctor(Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner})
+  id: '#ctor(Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner})'
+  parent: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner
+  langs:
+  - csharp
+  - vb
+  name: RelmMigrationPlanner(ILogger<RelmMigrationPlanner>?)
+  nameWithType: RelmMigrationPlanner.RelmMigrationPlanner(ILogger<RelmMigrationPlanner>?)
+  fullName: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner.RelmMigrationPlanner(Microsoft.Extensions.Logging.ILogger<CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner>?)
+  type: Constructor
+  source:
+    remote:
+      path: CoreRelm/RelmInternal/Helpers/Migrations/MigrationPlans/RelmMigrationPlanner.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: .ctor
+    path: ../CoreRelm/RelmInternal/Helpers/Migrations/MigrationPlans/RelmMigrationPlanner.cs
+    startLine: 16
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
+  syntax:
+    content: public RelmMigrationPlanner(ILogger<RelmMigrationPlanner>? log = null)
+    parameters:
+    - id: log
+      type: Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner}
+    content.vb: Public Sub New(log As ILogger(Of RelmMigrationPlanner) = Nothing)
+  overload: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner.#ctor*
+  nameWithType.vb: RelmMigrationPlanner.New(ILogger(Of RelmMigrationPlanner))
+  fullName.vb: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner.New(Microsoft.Extensions.Logging.ILogger(Of CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner))
+  name.vb: New(ILogger(Of RelmMigrationPlanner))
 - uid: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner.Plan(CoreRelm.Models.Migrations.Introspection.SchemaSnapshot,CoreRelm.Models.Migrations.Introspection.SchemaSnapshot,CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions)
   commentId: M:CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner.Plan(CoreRelm.Models.Migrations.Introspection.SchemaSnapshot,CoreRelm.Models.Migrations.Introspection.SchemaSnapshot,CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions)
   id: Plan(CoreRelm.Models.Migrations.Introspection.SchemaSnapshot,CoreRelm.Models.Migrations.Introspection.SchemaSnapshot,CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions)
@@ -56,7 +89,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Plan
     path: ../CoreRelm/RelmInternal/Helpers/Migrations/MigrationPlans/RelmMigrationPlanner.cs
-    startLine: 15
+    startLine: 20
   assemblies:
   - CoreRelm
   namespace: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
@@ -373,6 +406,113 @@ references:
   - uid: CoreRelm.Interfaces.Migrations
     name: Migrations
     href: CoreRelm.Interfaces.Migrations.html
+- uid: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner.#ctor*
+  commentId: Overload:CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner.#ctor
+  href: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner.html#CoreRelm_RelmInternal_Helpers_Migrations_MigrationPlans_RelmMigrationPlanner__ctor_Microsoft_Extensions_Logging_ILogger_CoreRelm_RelmInternal_Helpers_Migrations_MigrationPlans_RelmMigrationPlanner__
+  name: RelmMigrationPlanner
+  nameWithType: RelmMigrationPlanner.RelmMigrationPlanner
+  fullName: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner.RelmMigrationPlanner
+  nameWithType.vb: RelmMigrationPlanner.New
+  fullName.vb: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner.New
+  name.vb: New
+- uid: Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner}
+  commentId: T:Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner}
+  parent: Microsoft.Extensions.Logging
+  definition: Microsoft.Extensions.Logging.ILogger`1
+  href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1
+  name: ILogger<RelmMigrationPlanner>
+  nameWithType: ILogger<RelmMigrationPlanner>
+  fullName: Microsoft.Extensions.Logging.ILogger<CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner>
+  nameWithType.vb: ILogger(Of RelmMigrationPlanner)
+  fullName.vb: Microsoft.Extensions.Logging.ILogger(Of CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner)
+  name.vb: ILogger(Of RelmMigrationPlanner)
+  spec.csharp:
+  - uid: Microsoft.Extensions.Logging.ILogger`1
+    name: ILogger
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1
+  - name: <
+  - uid: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner
+    name: RelmMigrationPlanner
+    href: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner.html
+  - name: '>'
+  spec.vb:
+  - uid: Microsoft.Extensions.Logging.ILogger`1
+    name: ILogger
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner
+    name: RelmMigrationPlanner
+    href: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner.html
+  - name: )
+- uid: Microsoft.Extensions.Logging.ILogger`1
+  commentId: T:Microsoft.Extensions.Logging.ILogger`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1
+  name: ILogger<TCategoryName>
+  nameWithType: ILogger<TCategoryName>
+  fullName: Microsoft.Extensions.Logging.ILogger<TCategoryName>
+  nameWithType.vb: ILogger(Of TCategoryName)
+  fullName.vb: Microsoft.Extensions.Logging.ILogger(Of TCategoryName)
+  name.vb: ILogger(Of TCategoryName)
+  spec.csharp:
+  - uid: Microsoft.Extensions.Logging.ILogger`1
+    name: ILogger
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1
+  - name: <
+  - name: TCategoryName
+  - name: '>'
+  spec.vb:
+  - uid: Microsoft.Extensions.Logging.ILogger`1
+    name: ILogger
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TCategoryName
+  - name: )
+- uid: Microsoft.Extensions.Logging
+  commentId: N:Microsoft.Extensions.Logging
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
+  name: Microsoft.Extensions.Logging
+  nameWithType: Microsoft.Extensions.Logging
+  fullName: Microsoft.Extensions.Logging
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.Extensions
+    name: Extensions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions
+  - name: .
+  - uid: Microsoft.Extensions.Logging
+    name: Logging
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.Extensions
+    name: Extensions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions
+  - name: .
+  - uid: Microsoft.Extensions.Logging
+    name: Logging
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging
 - uid: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner.Plan*
   commentId: Overload:CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner.Plan
   href: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner.html#CoreRelm_RelmInternal_Helpers_Migrations_MigrationPlans_RelmMigrationPlanner_Plan_CoreRelm_Models_Migrations_Introspection_SchemaSnapshot_CoreRelm_Models_Migrations_Introspection_SchemaSnapshot_CoreRelm_Models_Migrations_MigrationPlans_MigrationPlanOptions_

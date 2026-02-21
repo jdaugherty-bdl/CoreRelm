@@ -5,8 +5,8 @@ items:
   id: IRelmDatabaseProvisioner
   parent: CoreRelm.Interfaces.Migrations
   children:
-  - CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String)
-  - CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String)
+  - CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions)
+  - CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync(CoreRelm.Models.Migrations.MigrationOptions,System.Nullable{CoreRelm.Enums.CharsetEnums.DatabaseCharset},System.Nullable{CoreRelm.Enums.CharsetEnums.DatabaseCollation})
   langs:
   - csharp
   - vb
@@ -21,23 +21,23 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: IRelmDatabaseProvisioner
     path: ../CoreRelm/Interfaces/Migrations/IRelmDatabaseProvisioner.cs
-    startLine: 10
+    startLine: 11
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Interfaces.Migrations
   syntax:
     content: public interface IRelmDatabaseProvisioner
     content.vb: Public Interface IRelmDatabaseProvisioner
-- uid: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String)
-  commentId: M:CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String)
-  id: DatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String)
+- uid: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions)
+  commentId: M:CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions)
+  id: DatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions)
   parent: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner
   langs:
   - csharp
   - vb
-  name: DatabaseExistsAsync(MigrationOptions, string)
-  nameWithType: IRelmDatabaseProvisioner.DatabaseExistsAsync(MigrationOptions, string)
-  fullName: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions, string)
+  name: DatabaseExistsAsync(MigrationOptions)
+  nameWithType: IRelmDatabaseProvisioner.DatabaseExistsAsync(MigrationOptions)
+  fullName: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions)
   type: Method
   source:
     remote:
@@ -46,34 +46,29 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DatabaseExistsAsync
     path: ../CoreRelm/Interfaces/Migrations/IRelmDatabaseProvisioner.cs
-    startLine: 12
+    startLine: 13
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Interfaces.Migrations
   syntax:
-    content: Task<bool> DatabaseExistsAsync(MigrationOptions migrationOptions, string databaseName)
+    content: Task<bool> DatabaseExistsAsync(MigrationOptions migrationOptions)
     parameters:
     - id: migrationOptions
       type: CoreRelm.Models.Migrations.MigrationOptions
-    - id: databaseName
-      type: System.String
     return:
       type: System.Threading.Tasks.Task{System.Boolean}
-    content.vb: Function DatabaseExistsAsync(migrationOptions As MigrationOptions, databaseName As String) As Task(Of Boolean)
+    content.vb: Function DatabaseExistsAsync(migrationOptions As MigrationOptions) As Task(Of Boolean)
   overload: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync*
-  nameWithType.vb: IRelmDatabaseProvisioner.DatabaseExistsAsync(MigrationOptions, String)
-  fullName.vb: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions, String)
-  name.vb: DatabaseExistsAsync(MigrationOptions, String)
-- uid: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String)
-  commentId: M:CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String)
-  id: InitializeEmptyDatabaseAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String)
+- uid: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync(CoreRelm.Models.Migrations.MigrationOptions,System.Nullable{CoreRelm.Enums.CharsetEnums.DatabaseCharset},System.Nullable{CoreRelm.Enums.CharsetEnums.DatabaseCollation})
+  commentId: M:CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync(CoreRelm.Models.Migrations.MigrationOptions,System.Nullable{CoreRelm.Enums.CharsetEnums.DatabaseCharset},System.Nullable{CoreRelm.Enums.CharsetEnums.DatabaseCollation})
+  id: InitializeEmptyDatabaseAsync(CoreRelm.Models.Migrations.MigrationOptions,System.Nullable{CoreRelm.Enums.CharsetEnums.DatabaseCharset},System.Nullable{CoreRelm.Enums.CharsetEnums.DatabaseCollation})
   parent: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner
   langs:
   - csharp
   - vb
-  name: InitializeEmptyDatabaseAsync(MigrationOptions, string, string?, string?)
-  nameWithType: IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync(MigrationOptions, string, string?, string?)
-  fullName: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync(CoreRelm.Models.Migrations.MigrationOptions, string, string?, string?)
+  name: InitializeEmptyDatabaseAsync(MigrationOptions, DatabaseCharset?, DatabaseCollation?)
+  nameWithType: IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync(MigrationOptions, CharsetEnums.DatabaseCharset?, CharsetEnums.DatabaseCollation?)
+  fullName: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync(CoreRelm.Models.Migrations.MigrationOptions, CoreRelm.Enums.CharsetEnums.DatabaseCharset?, CoreRelm.Enums.CharsetEnums.DatabaseCollation?)
   type: Method
   source:
     remote:
@@ -82,28 +77,23 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: InitializeEmptyDatabaseAsync
     path: ../CoreRelm/Interfaces/Migrations/IRelmDatabaseProvisioner.cs
-    startLine: 13
+    startLine: 14
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Interfaces.Migrations
   syntax:
-    content: Task InitializeEmptyDatabaseAsync(MigrationOptions migrationOptions, string databaseName, string? charset = null, string? collation = null)
+    content: Task InitializeEmptyDatabaseAsync(MigrationOptions migrationOptions, CharsetEnums.DatabaseCharset? charset = null, CharsetEnums.DatabaseCollation? collation = null)
     parameters:
     - id: migrationOptions
       type: CoreRelm.Models.Migrations.MigrationOptions
-    - id: databaseName
-      type: System.String
     - id: charset
-      type: System.String
+      type: System.Nullable{CoreRelm.Enums.CharsetEnums.DatabaseCharset}
     - id: collation
-      type: System.String
+      type: System.Nullable{CoreRelm.Enums.CharsetEnums.DatabaseCollation}
     return:
       type: System.Threading.Tasks.Task
-    content.vb: Function InitializeEmptyDatabaseAsync(migrationOptions As MigrationOptions, databaseName As String, charset As String = Nothing, collation As String = Nothing) As Task
+    content.vb: Function InitializeEmptyDatabaseAsync(migrationOptions As MigrationOptions, charset As CharsetEnums.DatabaseCharset? = Nothing, collation As CharsetEnums.DatabaseCollation? = Nothing) As Task
   overload: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync*
-  nameWithType.vb: IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync(MigrationOptions, String, String, String)
-  fullName.vb: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync(CoreRelm.Models.Migrations.MigrationOptions, String, String, String)
-  name.vb: InitializeEmptyDatabaseAsync(MigrationOptions, String, String, String)
 references:
 - uid: CoreRelm.Interfaces.Migrations
   commentId: N:CoreRelm.Interfaces.Migrations
@@ -137,7 +127,7 @@ references:
     href: CoreRelm.Interfaces.Migrations.html
 - uid: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync*
   commentId: Overload:CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync
-  href: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.html#CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_DatabaseExistsAsync_CoreRelm_Models_Migrations_MigrationOptions_System_String_
+  href: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.html#CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_DatabaseExistsAsync_CoreRelm_Models_Migrations_MigrationOptions_
   name: DatabaseExistsAsync
   nameWithType: IRelmDatabaseProvisioner.DatabaseExistsAsync
   fullName: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync
@@ -148,17 +138,6 @@ references:
   name: MigrationOptions
   nameWithType: MigrationOptions
   fullName: CoreRelm.Models.Migrations.MigrationOptions
-- uid: System.String
-  commentId: T:System.String
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: string
-  nameWithType: string
-  fullName: string
-  nameWithType.vb: String
-  fullName.vb: String
-  name.vb: String
 - uid: System.Threading.Tasks.Task{System.Boolean}
   commentId: T:System.Threading.Tasks.Task{System.Boolean}
   parent: System.Threading.Tasks
@@ -224,13 +203,6 @@ references:
   - uid: CoreRelm.Models.Migrations
     name: Migrations
     href: CoreRelm.Models.Migrations.html
-- uid: System
-  commentId: N:System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System
-  nameWithType: System
-  fullName: System
 - uid: System.Threading.Tasks.Task`1
   commentId: T:System.Threading.Tasks.Task`1
   isExternal: true
@@ -298,10 +270,62 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
 - uid: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync*
   commentId: Overload:CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync
-  href: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.html#CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_InitializeEmptyDatabaseAsync_CoreRelm_Models_Migrations_MigrationOptions_System_String_System_String_System_String_
+  href: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.html#CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_InitializeEmptyDatabaseAsync_CoreRelm_Models_Migrations_MigrationOptions_System_Nullable_CoreRelm_Enums_CharsetEnums_DatabaseCharset__System_Nullable_CoreRelm_Enums_CharsetEnums_DatabaseCollation__
   name: InitializeEmptyDatabaseAsync
   nameWithType: IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync
   fullName: CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync
+- uid: System.Nullable{CoreRelm.Enums.CharsetEnums.DatabaseCharset}
+  commentId: T:System.Nullable{CoreRelm.Enums.CharsetEnums.DatabaseCharset}
+  parent: System
+  definition: System.Nullable`1
+  href: CoreRelm.Enums.CharsetEnums.html
+  name: CharsetEnums.DatabaseCharset?
+  nameWithType: CharsetEnums.DatabaseCharset?
+  fullName: CoreRelm.Enums.CharsetEnums.DatabaseCharset?
+  spec.csharp:
+  - uid: CoreRelm.Enums.CharsetEnums
+    name: CharsetEnums
+    href: CoreRelm.Enums.CharsetEnums.html
+  - name: .
+  - uid: CoreRelm.Enums.CharsetEnums.DatabaseCharset
+    name: DatabaseCharset
+    href: CoreRelm.Enums.CharsetEnums.DatabaseCharset.html
+  - name: '?'
+  spec.vb:
+  - uid: CoreRelm.Enums.CharsetEnums
+    name: CharsetEnums
+    href: CoreRelm.Enums.CharsetEnums.html
+  - name: .
+  - uid: CoreRelm.Enums.CharsetEnums.DatabaseCharset
+    name: DatabaseCharset
+    href: CoreRelm.Enums.CharsetEnums.DatabaseCharset.html
+  - name: '?'
+- uid: System.Nullable{CoreRelm.Enums.CharsetEnums.DatabaseCollation}
+  commentId: T:System.Nullable{CoreRelm.Enums.CharsetEnums.DatabaseCollation}
+  parent: System
+  definition: System.Nullable`1
+  href: CoreRelm.Enums.CharsetEnums.html
+  name: CharsetEnums.DatabaseCollation?
+  nameWithType: CharsetEnums.DatabaseCollation?
+  fullName: CoreRelm.Enums.CharsetEnums.DatabaseCollation?
+  spec.csharp:
+  - uid: CoreRelm.Enums.CharsetEnums
+    name: CharsetEnums
+    href: CoreRelm.Enums.CharsetEnums.html
+  - name: .
+  - uid: CoreRelm.Enums.CharsetEnums.DatabaseCollation
+    name: DatabaseCollation
+    href: CoreRelm.Enums.CharsetEnums.DatabaseCollation.html
+  - name: '?'
+  spec.vb:
+  - uid: CoreRelm.Enums.CharsetEnums
+    name: CharsetEnums
+    href: CoreRelm.Enums.CharsetEnums.html
+  - name: .
+  - uid: CoreRelm.Enums.CharsetEnums.DatabaseCollation
+    name: DatabaseCollation
+    href: CoreRelm.Enums.CharsetEnums.DatabaseCollation.html
+  - name: '?'
 - uid: System.Threading.Tasks.Task
   commentId: T:System.Threading.Tasks.Task
   parent: System.Threading.Tasks
@@ -310,3 +334,38 @@ references:
   name: Task
   nameWithType: Task
   fullName: System.Threading.Tasks.Task
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System

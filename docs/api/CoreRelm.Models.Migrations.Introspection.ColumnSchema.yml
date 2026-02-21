@@ -5,6 +5,7 @@ items:
   id: ColumnSchema
   parent: CoreRelm.Models.Migrations.Introspection
   children:
+  - CoreRelm.Models.Migrations.Introspection.ColumnSchema.AfterColumnName
   - CoreRelm.Models.Migrations.Introspection.ColumnSchema.Clone
   - CoreRelm.Models.Migrations.Introspection.ColumnSchema.ColumnKey
   - CoreRelm.Models.Migrations.Introspection.ColumnSchema.ColumnName
@@ -39,8 +40,18 @@ items:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
   syntax:
-    content: 'public class ColumnSchema : RelmModel, IRelmModel'
-    content.vb: Public Class ColumnSchema Inherits RelmModel Implements IRelmModel
+    content: >-
+      [RelmDatabase("INFORMATION_SCHEMA")]
+
+      [RelmTable("COLUMNS")]
+
+      public class ColumnSchema : RelmModel, IRelmModel
+    content.vb: >-
+      <RelmDatabase("INFORMATION_SCHEMA")>
+
+      <RelmTable("COLUMNS")>
+
+      Public Class ColumnSchema Inherits RelmModel Implements IRelmModel
   inheritance:
   - System.Object
   - CoreRelm.Models.RelmModel
@@ -94,6 +105,46 @@ items:
   - CoreRelm.Models.Migrations.Introspection.ColumnSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.ColumnSchema,System.Collections.Generic.ICollection{{R}}}},CoreRelm.Interfaces.IRelmDataLoader{{S}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
   - CoreRelm.Models.Migrations.Introspection.ColumnSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.ColumnSchema,{R}}},CoreRelm.Interfaces.IRelmDataLoader{{S}})
   - CoreRelm.Models.Migrations.Introspection.ColumnSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.ColumnSchema,{R}}},CoreRelm.Interfaces.IRelmDataLoader{{S}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
+  attributes:
+  - type: CoreRelm.Attributes.RelmDatabase
+    ctor: CoreRelm.Attributes.RelmDatabase.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: INFORMATION_SCHEMA
+  - type: CoreRelm.Attributes.RelmTable
+    ctor: CoreRelm.Attributes.RelmTable.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: COLUMNS
+- uid: CoreRelm.Models.Migrations.Introspection.ColumnSchema.AfterColumnName
+  commentId: P:CoreRelm.Models.Migrations.Introspection.ColumnSchema.AfterColumnName
+  id: AfterColumnName
+  parent: CoreRelm.Models.Migrations.Introspection.ColumnSchema
+  langs:
+  - csharp
+  - vb
+  name: AfterColumnName
+  nameWithType: ColumnSchema.AfterColumnName
+  fullName: CoreRelm.Models.Migrations.Introspection.ColumnSchema.AfterColumnName
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Introspection/ColumnSchema.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: AfterColumnName
+    path: ../CoreRelm/Models/Migrations/Introspection/ColumnSchema.cs
+    startLine: 13
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Introspection
+  syntax:
+    content: public string? AfterColumnName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property AfterColumnName As String
+  overload: CoreRelm.Models.Migrations.Introspection.ColumnSchema.AfterColumnName*
 - uid: CoreRelm.Models.Migrations.Introspection.ColumnSchema.TableName
   commentId: P:CoreRelm.Models.Migrations.Introspection.ColumnSchema.TableName
   id: TableName
@@ -112,7 +163,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: TableName
     path: ../CoreRelm/Models/Migrations/Introspection/ColumnSchema.cs
-    startLine: 11
+    startLine: 15
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -147,7 +198,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ColumnName
     path: ../CoreRelm/Models/Migrations/Introspection/ColumnSchema.cs
-    startLine: 14
+    startLine: 18
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -182,7 +233,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ColumnType
     path: ../CoreRelm/Models/Migrations/Introspection/ColumnSchema.cs
-    startLine: 17
+    startLine: 21
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -217,7 +268,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ColumnKey
     path: ../CoreRelm/Models/Migrations/Introspection/ColumnSchema.cs
-    startLine: 20
+    startLine: 24
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -252,7 +303,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: IsNullable
     path: ../CoreRelm/Models/Migrations/Introspection/ColumnSchema.cs
-    startLine: 23
+    startLine: 27
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -287,7 +338,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: IsNullableBool
     path: ../CoreRelm/Models/Migrations/Introspection/ColumnSchema.cs
-    startLine: 26
+    startLine: 30
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -316,7 +367,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: IsPrimaryKey
     path: ../CoreRelm/Models/Migrations/Introspection/ColumnSchema.cs
-    startLine: 28
+    startLine: 32
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -351,7 +402,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: IsForeignKey
     path: ../CoreRelm/Models/Migrations/Introspection/ColumnSchema.cs
-    startLine: 31
+    startLine: 35
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -386,7 +437,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: IsReadOnly
     path: ../CoreRelm/Models/Migrations/Introspection/ColumnSchema.cs
-    startLine: 34
+    startLine: 38
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -421,7 +472,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: IsUnique
     path: ../CoreRelm/Models/Migrations/Introspection/ColumnSchema.cs
-    startLine: 37
+    startLine: 41
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -456,7 +507,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DefaultValue
     path: ../CoreRelm/Models/Migrations/Introspection/ColumnSchema.cs
-    startLine: 40
+    startLine: 44
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -491,7 +542,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: IsAutoIncrement
     path: ../CoreRelm/Models/Migrations/Introspection/ColumnSchema.cs
-    startLine: 43
+    startLine: 47
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -526,7 +577,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Extra
     path: ../CoreRelm/Models/Migrations/Introspection/ColumnSchema.cs
-    startLine: 46
+    startLine: 50
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -561,7 +612,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: OrdinalPosition
     path: ../CoreRelm/Models/Migrations/Introspection/ColumnSchema.cs
-    startLine: 49
+    startLine: 53
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -596,7 +647,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Clone
     path: ../CoreRelm/Models/Migrations/Introspection/ColumnSchema.cs
-    startLine: 52
+    startLine: 56
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -6987,12 +7038,12 @@ references:
   - uid: CoreRelm.Extensions
     name: Extensions
     href: CoreRelm.Extensions.html
-- uid: CoreRelm.Models.Migrations.Introspection.ColumnSchema.TableName*
-  commentId: Overload:CoreRelm.Models.Migrations.Introspection.ColumnSchema.TableName
-  href: CoreRelm.Models.Migrations.Introspection.ColumnSchema.html#CoreRelm_Models_Migrations_Introspection_ColumnSchema_TableName
-  name: TableName
-  nameWithType: ColumnSchema.TableName
-  fullName: CoreRelm.Models.Migrations.Introspection.ColumnSchema.TableName
+- uid: CoreRelm.Models.Migrations.Introspection.ColumnSchema.AfterColumnName*
+  commentId: Overload:CoreRelm.Models.Migrations.Introspection.ColumnSchema.AfterColumnName
+  href: CoreRelm.Models.Migrations.Introspection.ColumnSchema.html#CoreRelm_Models_Migrations_Introspection_ColumnSchema_AfterColumnName
+  name: AfterColumnName
+  nameWithType: ColumnSchema.AfterColumnName
+  fullName: CoreRelm.Models.Migrations.Introspection.ColumnSchema.AfterColumnName
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -7004,6 +7055,12 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
+- uid: CoreRelm.Models.Migrations.Introspection.ColumnSchema.TableName*
+  commentId: Overload:CoreRelm.Models.Migrations.Introspection.ColumnSchema.TableName
+  href: CoreRelm.Models.Migrations.Introspection.ColumnSchema.html#CoreRelm_Models_Migrations_Introspection_ColumnSchema_TableName
+  name: TableName
+  nameWithType: ColumnSchema.TableName
+  fullName: CoreRelm.Models.Migrations.Introspection.ColumnSchema.TableName
 - uid: CoreRelm.Models.Migrations.Introspection.ColumnSchema.ColumnName*
   commentId: Overload:CoreRelm.Models.Migrations.Introspection.ColumnSchema.ColumnName
   href: CoreRelm.Models.Migrations.Introspection.ColumnSchema.html#CoreRelm_Models_Migrations_Introspection_ColumnSchema_ColumnName

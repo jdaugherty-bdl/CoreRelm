@@ -89,7 +89,7 @@
 
 
   <h1 id="CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner" data-uid="CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner" class="text-break">
-Interface IRelmDatabaseProvisioner  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/Migrations/IRelmDatabaseProvisioner.cs/#L11"><i class="bi bi-code-slash"></i></a>
+Interface IRelmDatabaseProvisioner  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/Migrations/IRelmDatabaseProvisioner.cs/#L12"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -122,23 +122,21 @@ Interface IRelmDatabaseProvisioner  <a class="header-action link-secondary" titl
 
   <a id="CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_DatabaseExistsAsync_" data-uid="CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync*"></a>
 
-  <h3 id="CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_DatabaseExistsAsync_CoreRelm_Models_Migrations_MigrationOptions_System_String_" data-uid="CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String)">
-  DatabaseExistsAsync(MigrationOptions, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/Migrations/IRelmDatabaseProvisioner.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_DatabaseExistsAsync_CoreRelm_Models_Migrations_MigrationOptions_" data-uid="CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.DatabaseExistsAsync(CoreRelm.Models.Migrations.MigrationOptions)">
+  DatabaseExistsAsync(MigrationOptions)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/Migrations/IRelmDatabaseProvisioner.cs/#L14"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; DatabaseExistsAsync(MigrationOptions migrationOptions, string databaseName)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; DatabaseExistsAsync(MigrationOptions migrationOptions)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>migrationOptions</code> <a class="xref" href="CoreRelm.Models.Migrations.MigrationOptions.html">MigrationOptions</a></dt>
-    <dd></dd>
-    <dt><code>databaseName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
   </dl>
 
@@ -160,27 +158,25 @@ Interface IRelmDatabaseProvisioner  <a class="header-action link-secondary" titl
 
   <a id="CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_InitializeEmptyDatabaseAsync_" data-uid="CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync*"></a>
 
-  <h3 id="CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_InitializeEmptyDatabaseAsync_CoreRelm_Models_Migrations_MigrationOptions_System_String_System_String_System_String_" data-uid="CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String,System.String)">
-  InitializeEmptyDatabaseAsync(MigrationOptions, string, string?, string?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/Migrations/IRelmDatabaseProvisioner.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_InitializeEmptyDatabaseAsync_CoreRelm_Models_Migrations_MigrationOptions_System_Nullable_CoreRelm_Enums_CharsetEnums_DatabaseCharset__System_Nullable_CoreRelm_Enums_CharsetEnums_DatabaseCollation__" data-uid="CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync(CoreRelm.Models.Migrations.MigrationOptions,System.Nullable{CoreRelm.Enums.CharsetEnums.DatabaseCharset},System.Nullable{CoreRelm.Enums.CharsetEnums.DatabaseCollation})">
+  InitializeEmptyDatabaseAsync(MigrationOptions, DatabaseCharset?, DatabaseCollation?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/Migrations/IRelmDatabaseProvisioner.cs/#L15"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task InitializeEmptyDatabaseAsync(MigrationOptions migrationOptions, string databaseName, string? charset = null, string? collation = null)</code></pre>
+    <pre><code class="lang-csharp hljs">Task InitializeEmptyDatabaseAsync(MigrationOptions migrationOptions, CharsetEnums.DatabaseCharset? charset = null, CharsetEnums.DatabaseCollation? collation = null)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>migrationOptions</code> <a class="xref" href="CoreRelm.Models.Migrations.MigrationOptions.html">MigrationOptions</a></dt>
     <dd></dd>
-    <dt><code>databaseName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dt><code>charset</code> <a class="xref" href="CoreRelm.Enums.CharsetEnums.html">CharsetEnums</a>.<a class="xref" href="CoreRelm.Enums.CharsetEnums.DatabaseCharset.html">DatabaseCharset</a>?</dt>
     <dd></dd>
-    <dt><code>charset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-    <dt><code>collation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dt><code>collation</code> <a class="xref" href="CoreRelm.Enums.CharsetEnums.html">CharsetEnums</a>.<a class="xref" href="CoreRelm.Enums.CharsetEnums.DatabaseCollation.html">DatabaseCollation</a>?</dt>
     <dd></dd>
   </dl>
 
@@ -204,7 +200,7 @@ Interface IRelmDatabaseProvisioner  <a class="header-action link-secondary" titl
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/Migrations/IRelmDatabaseProvisioner.cs/#L11" class="edit-link">Edit this page</a>
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/Migrations/IRelmDatabaseProvisioner.cs/#L12" class="edit-link">Edit this page</a>
         </div>
 
 

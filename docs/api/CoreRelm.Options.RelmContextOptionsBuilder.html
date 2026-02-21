@@ -1044,7 +1044,7 @@ within a transactional context. The property is null if no transaction is in pro
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>connectionDetails</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>A string containing the connection details. Must be in the format 'name=connectionString' to use a named
+    <dd><p>A string containing the connection details. Must be in the format 'name=connectionName' to use a named
 connection, or 'server=serverName;database=databaseName;user=userName;password=password' to specify
 individual connection parameters.</p>
 </dd>
@@ -1081,7 +1081,7 @@ connection parameters.</p>
 
   <h3 id="CoreRelm_Options_RelmContextOptionsBuilder_SetAllowUserVariables_System_Boolean_" data-uid="CoreRelm.Options.RelmContextOptionsBuilder.SetAllowUserVariables(System.Boolean)">
   SetAllowUserVariables(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L636"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L640"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Enables or disables the use of user-defined variables in SQL statements.</p>
@@ -1120,7 +1120,7 @@ connection parameters.</p>
 
   <h3 id="CoreRelm_Options_RelmContextOptionsBuilder_SetAutoInitializeDataSets_System_Boolean_" data-uid="CoreRelm.Options.RelmContextOptionsBuilder.SetAutoInitializeDataSets(System.Boolean)">
   SetAutoInitializeDataSets(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L678"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L682"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Enables or disables automatic initialization of data sets.</p>
@@ -1159,7 +1159,7 @@ connection parameters.</p>
 
   <h3 id="CoreRelm_Options_RelmContextOptionsBuilder_SetAutoOpenConnection_System_Boolean_" data-uid="CoreRelm.Options.RelmContextOptionsBuilder.SetAutoOpenConnection(System.Boolean)">
   SetAutoOpenConnection(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L612"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L616"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Enables or disables automatic opening of the connection when required by operations.</p>
@@ -1203,7 +1203,7 @@ before performing such operations.</p>
 
   <h3 id="CoreRelm_Options_RelmContextOptionsBuilder_SetAutoOpenTransaction_System_Boolean_" data-uid="CoreRelm.Options.RelmContextOptionsBuilder.SetAutoOpenTransaction(System.Boolean)">
   SetAutoOpenTransaction(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L624"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L628"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Enables or disables automatic opening of a transaction when executing database operations.</p>
@@ -1242,7 +1242,7 @@ before performing such operations.</p>
 
   <h3 id="CoreRelm_Options_RelmContextOptionsBuilder_SetAutoVerifyTables_System_Boolean_" data-uid="CoreRelm.Options.RelmContextOptionsBuilder.SetAutoVerifyTables(System.Boolean)">
   SetAutoVerifyTables(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L690"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L694"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Enables or disables automatic verification of tables before performing operations.</p>
@@ -1368,7 +1368,7 @@ before performing such operations.</p>
 
   <h3 id="CoreRelm_Options_RelmContextOptionsBuilder_SetConvertZeroDateTime_System_Boolean_" data-uid="CoreRelm.Options.RelmContextOptionsBuilder.SetConvertZeroDateTime(System.Boolean)">
   SetConvertZeroDateTime(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L651"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L655"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Specifies whether zero date values should be converted to DateTime.MinValue when retrieving data.</p>
@@ -1461,7 +1461,7 @@ connection.</p>
   <a id="CoreRelm_Options_RelmContextOptionsBuilder_SetDatabaseConnectionString_" data-uid="CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseConnectionString*"></a>
 
   <h3 id="CoreRelm_Options_RelmContextOptionsBuilder_SetDatabaseConnectionString_System_String_" data-uid="CoreRelm.Options.RelmContextOptionsBuilder.SetDatabaseConnectionString(System.String)">
-  SetDatabaseConnectionString(string)
+  SetDatabaseConnectionString(string?)
   <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L427"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -1470,7 +1470,7 @@ connection.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RelmContextOptionsBuilder SetDatabaseConnectionString(string DatabaseConnectionString)</code></pre>
+    <pre><code class="lang-csharp hljs">public RelmContextOptionsBuilder SetDatabaseConnectionString(string? DatabaseConnectionString)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1773,7 +1773,7 @@ it is cleared or replaced.</p>
 
   <h3 id="CoreRelm_Options_RelmContextOptionsBuilder_SetLockWaitTimeoutSeconds_System_Int32_" data-uid="CoreRelm.Options.RelmContextOptionsBuilder.SetLockWaitTimeoutSeconds(System.Int32)">
   SetLockWaitTimeoutSeconds(int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L666"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Options/RelmContextOptionsBuilder.cs/#L670"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Sets the lock wait timeout period, in seconds, for acquiring a lock.</p>

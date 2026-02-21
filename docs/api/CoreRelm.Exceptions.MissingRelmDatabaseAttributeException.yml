@@ -5,7 +5,7 @@ items:
   id: MissingRelmDatabaseAttributeException
   parent: CoreRelm.Exceptions
   children:
-  - CoreRelm.Exceptions.MissingRelmDatabaseAttributeException.#ctor(System.Type)
+  - CoreRelm.Exceptions.MissingRelmDatabaseAttributeException.#ctor(System.Type,System.Type)
   langs:
   - csharp
   - vb
@@ -48,16 +48,16 @@ items:
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
   - System.Object.ReferenceEquals(System.Object,System.Object)
-- uid: CoreRelm.Exceptions.MissingRelmDatabaseAttributeException.#ctor(System.Type)
-  commentId: M:CoreRelm.Exceptions.MissingRelmDatabaseAttributeException.#ctor(System.Type)
-  id: '#ctor(System.Type)'
+- uid: CoreRelm.Exceptions.MissingRelmDatabaseAttributeException.#ctor(System.Type,System.Type)
+  commentId: M:CoreRelm.Exceptions.MissingRelmDatabaseAttributeException.#ctor(System.Type,System.Type)
+  id: '#ctor(System.Type,System.Type)'
   parent: CoreRelm.Exceptions.MissingRelmDatabaseAttributeException
   langs:
   - csharp
   - vb
-  name: MissingRelmDatabaseAttributeException(Type)
-  nameWithType: MissingRelmDatabaseAttributeException.MissingRelmDatabaseAttributeException(Type)
-  fullName: CoreRelm.Exceptions.MissingRelmDatabaseAttributeException.MissingRelmDatabaseAttributeException(System.Type)
+  name: MissingRelmDatabaseAttributeException(Type, Type?)
+  nameWithType: MissingRelmDatabaseAttributeException.MissingRelmDatabaseAttributeException(Type, Type?)
+  fullName: CoreRelm.Exceptions.MissingRelmDatabaseAttributeException.MissingRelmDatabaseAttributeException(System.Type, System.Type?)
   type: Constructor
   source:
     remote:
@@ -66,20 +66,22 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Exceptions/MissingRelmDatabaseAttributeException.cs
-    startLine: 10
+    startLine: 8
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Exceptions
   syntax:
-    content: public MissingRelmDatabaseAttributeException(Type t)
+    content: public MissingRelmDatabaseAttributeException(Type t, Type? referencedType = null)
     parameters:
     - id: t
       type: System.Type
-    content.vb: Public Sub New(t As Type)
+    - id: referencedType
+      type: System.Type
+    content.vb: Public Sub New(t As Type, referencedType As Type = Nothing)
   overload: CoreRelm.Exceptions.MissingRelmDatabaseAttributeException.#ctor*
-  nameWithType.vb: MissingRelmDatabaseAttributeException.New(Type)
-  fullName.vb: CoreRelm.Exceptions.MissingRelmDatabaseAttributeException.New(System.Type)
-  name.vb: New(Type)
+  nameWithType.vb: MissingRelmDatabaseAttributeException.New(Type, Type)
+  fullName.vb: CoreRelm.Exceptions.MissingRelmDatabaseAttributeException.New(System.Type, System.Type)
+  name.vb: New(Type, Type)
 references:
 - uid: CoreRelm.Exceptions
   commentId: N:CoreRelm.Exceptions
@@ -453,7 +455,7 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.runtime.serialization
 - uid: CoreRelm.Exceptions.MissingRelmDatabaseAttributeException.#ctor*
   commentId: Overload:CoreRelm.Exceptions.MissingRelmDatabaseAttributeException.#ctor
-  href: CoreRelm.Exceptions.MissingRelmDatabaseAttributeException.html#CoreRelm_Exceptions_MissingRelmDatabaseAttributeException__ctor_System_Type_
+  href: CoreRelm.Exceptions.MissingRelmDatabaseAttributeException.html#CoreRelm_Exceptions_MissingRelmDatabaseAttributeException__ctor_System_Type_System_Type_
   name: MissingRelmDatabaseAttributeException
   nameWithType: MissingRelmDatabaseAttributeException.MissingRelmDatabaseAttributeException
   fullName: CoreRelm.Exceptions.MissingRelmDatabaseAttributeException.MissingRelmDatabaseAttributeException

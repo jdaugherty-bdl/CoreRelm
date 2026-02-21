@@ -6,7 +6,7 @@ items:
   parent: CoreRelm.Models
   children:
   - CoreRelm.Models.RelmDefaultDataLoader`1.#ctor
-  - CoreRelm.Models.RelmDefaultDataLoader`1.#ctor(CoreRelm.Options.RelmContextOptionsBuilder)
+  - CoreRelm.Models.RelmDefaultDataLoader`1.#ctor(CoreRelm.Interfaces.IRelmContext)
   - CoreRelm.Models.RelmDefaultDataLoader`1.AddExpression(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
   - CoreRelm.Models.RelmDefaultDataLoader`1.AddSingleExpression(CoreRelm.Enums.Commands.Command,System.Linq.Expressions.Expression)
   - CoreRelm.Models.RelmDefaultDataLoader`1.GetLoadData
@@ -125,7 +125,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Models/RelmDefaultDataLoader.cs
-    startLine: 54
+    startLine: 55
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -141,16 +141,16 @@ items:
   nameWithType.vb: RelmDefaultDataLoader(Of T).New()
   fullName.vb: CoreRelm.Models.RelmDefaultDataLoader(Of T).New()
   name.vb: New()
-- uid: CoreRelm.Models.RelmDefaultDataLoader`1.#ctor(CoreRelm.Options.RelmContextOptionsBuilder)
-  commentId: M:CoreRelm.Models.RelmDefaultDataLoader`1.#ctor(CoreRelm.Options.RelmContextOptionsBuilder)
-  id: '#ctor(CoreRelm.Options.RelmContextOptionsBuilder)'
+- uid: CoreRelm.Models.RelmDefaultDataLoader`1.#ctor(CoreRelm.Interfaces.IRelmContext)
+  commentId: M:CoreRelm.Models.RelmDefaultDataLoader`1.#ctor(CoreRelm.Interfaces.IRelmContext)
+  id: '#ctor(CoreRelm.Interfaces.IRelmContext)'
   parent: CoreRelm.Models.RelmDefaultDataLoader`1
   langs:
   - csharp
   - vb
-  name: RelmDefaultDataLoader(RelmContextOptionsBuilder)
-  nameWithType: RelmDefaultDataLoader<T>.RelmDefaultDataLoader(RelmContextOptionsBuilder)
-  fullName: CoreRelm.Models.RelmDefaultDataLoader<T>.RelmDefaultDataLoader(CoreRelm.Options.RelmContextOptionsBuilder)
+  name: RelmDefaultDataLoader(IRelmContext?)
+  nameWithType: RelmDefaultDataLoader<T>.RelmDefaultDataLoader(IRelmContext?)
+  fullName: CoreRelm.Models.RelmDefaultDataLoader<T>.RelmDefaultDataLoader(CoreRelm.Interfaces.IRelmContext?)
   type: Constructor
   source:
     remote:
@@ -159,7 +159,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Models/RelmDefaultDataLoader.cs
-    startLine: 64
+    startLine: 79
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -169,16 +169,15 @@ items:
     options builder.
   example: []
   syntax:
-    content: public RelmDefaultDataLoader(RelmContextOptionsBuilder contextOptionsBuilder)
+    content: public RelmDefaultDataLoader(IRelmContext? context)
     parameters:
-    - id: contextOptionsBuilder
-      type: CoreRelm.Options.RelmContextOptionsBuilder
-      description: The builder used to configure options for the <xref href="CoreRelm.Models.RelmContext" data-throw-if-not-resolved="false"></xref>.
-    content.vb: Public Sub New(contextOptionsBuilder As RelmContextOptionsBuilder)
+    - id: context
+      type: CoreRelm.Interfaces.IRelmContext
+    content.vb: Public Sub New(context As IRelmContext)
   overload: CoreRelm.Models.RelmDefaultDataLoader`1.#ctor*
-  nameWithType.vb: RelmDefaultDataLoader(Of T).New(RelmContextOptionsBuilder)
-  fullName.vb: CoreRelm.Models.RelmDefaultDataLoader(Of T).New(CoreRelm.Options.RelmContextOptionsBuilder)
-  name.vb: New(RelmContextOptionsBuilder)
+  nameWithType.vb: RelmDefaultDataLoader(Of T).New(IRelmContext)
+  fullName.vb: CoreRelm.Models.RelmDefaultDataLoader(Of T).New(CoreRelm.Interfaces.IRelmContext)
+  name.vb: New(IRelmContext)
 - uid: CoreRelm.Models.RelmDefaultDataLoader`1.HasUnderscoreProperty(System.String)
   commentId: M:CoreRelm.Models.RelmDefaultDataLoader`1.HasUnderscoreProperty(System.String)
   id: HasUnderscoreProperty(System.String)
@@ -197,7 +196,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: HasUnderscoreProperty
     path: ../CoreRelm/Models/RelmDefaultDataLoader.cs
-    startLine: 112
+    startLine: 124
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -240,7 +239,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AddExpression
     path: ../CoreRelm/Models/RelmDefaultDataLoader.cs
-    startLine: 123
+    startLine: 135
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -286,7 +285,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AddSingleExpression
     path: ../CoreRelm/Models/RelmDefaultDataLoader.cs
-    startLine: 141
+    startLine: 153
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -334,7 +333,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetLoadData
     path: ../CoreRelm/Models/RelmDefaultDataLoader.cs
-    startLine: 179
+    startLine: 191
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -374,7 +373,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetLoadDataAsync
     path: ../CoreRelm/Models/RelmDefaultDataLoader.cs
-    startLine: 193
+    startLine: 205
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -417,7 +416,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: PullData
     path: ../CoreRelm/Models/RelmDefaultDataLoader.cs
-    startLine: 214
+    startLine: 226
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -457,9 +456,9 @@ items:
   langs:
   - csharp
   - vb
-  name: PullDataAsync(string, Dictionary<string, object?>, CancellationToken)
-  nameWithType: RelmDefaultDataLoader<T>.PullDataAsync(string, Dictionary<string, object?>, CancellationToken)
-  fullName: CoreRelm.Models.RelmDefaultDataLoader<T>.PullDataAsync(string, System.Collections.Generic.Dictionary<string, object?>, System.Threading.CancellationToken)
+  name: PullDataAsync(string, Dictionary<string, object?>?, CancellationToken)
+  nameWithType: RelmDefaultDataLoader<T>.PullDataAsync(string, Dictionary<string, object?>?, CancellationToken)
+  fullName: CoreRelm.Models.RelmDefaultDataLoader<T>.PullDataAsync(string, System.Collections.Generic.Dictionary<string, object?>?, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -468,7 +467,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: PullDataAsync
     path: ../CoreRelm/Models/RelmDefaultDataLoader.cs
-    startLine: 234
+    startLine: 246
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -479,7 +478,7 @@ items:
         Otherwise, the query is executed using the configured connection string type.
   example: []
   syntax:
-    content: public virtual Task<ICollection<T?>?> PullDataAsync(string selectQuery, Dictionary<string, object?> findOptions, CancellationToken cancellationToken = default)
+    content: public virtual Task<ICollection<T?>?> PullDataAsync(string selectQuery, Dictionary<string, object?>? findOptions, CancellationToken cancellationToken = default)
     parameters:
     - id: selectQuery
       type: System.String
@@ -521,7 +520,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WriteData
     path: ../CoreRelm/Models/RelmDefaultDataLoader.cs
-    startLine: 250
+    startLine: 268
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -562,7 +561,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WriteDataAsync
     path: ../CoreRelm/Models/RelmDefaultDataLoader.cs
-    startLine: 265
+    startLine: 283
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1143,35 +1142,13 @@ references:
   name: RelmContext
   nameWithType: RelmContext
   fullName: CoreRelm.Models.RelmContext
-- uid: CoreRelm.Options.RelmContextOptionsBuilder
-  commentId: T:CoreRelm.Options.RelmContextOptionsBuilder
-  parent: CoreRelm.Options
-  href: CoreRelm.Options.RelmContextOptionsBuilder.html
-  name: RelmContextOptionsBuilder
-  nameWithType: RelmContextOptionsBuilder
-  fullName: CoreRelm.Options.RelmContextOptionsBuilder
-- uid: CoreRelm.Options
-  commentId: N:CoreRelm.Options
-  href: CoreRelm.html
-  name: CoreRelm.Options
-  nameWithType: CoreRelm.Options
-  fullName: CoreRelm.Options
-  spec.csharp:
-  - uid: CoreRelm
-    name: CoreRelm
-    href: CoreRelm.html
-  - name: .
-  - uid: CoreRelm.Options
-    name: Options
-    href: CoreRelm.Options.html
-  spec.vb:
-  - uid: CoreRelm
-    name: CoreRelm
-    href: CoreRelm.html
-  - name: .
-  - uid: CoreRelm.Options
-    name: Options
-    href: CoreRelm.Options.html
+- uid: CoreRelm.Interfaces.IRelmContext
+  commentId: T:CoreRelm.Interfaces.IRelmContext
+  parent: CoreRelm.Interfaces
+  href: CoreRelm.Interfaces.IRelmContext.html
+  name: IRelmContext
+  nameWithType: IRelmContext
+  fullName: CoreRelm.Interfaces.IRelmContext
 - uid: CoreRelm.Models.RelmDefaultDataLoader`1.HasUnderscoreProperty*
   commentId: Overload:CoreRelm.Models.RelmDefaultDataLoader`1.HasUnderscoreProperty
   href: CoreRelm.Models.RelmDefaultDataLoader-1.html#CoreRelm_Models_RelmDefaultDataLoader_1_HasUnderscoreProperty_System_String_

@@ -39,8 +39,18 @@ items:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
   syntax:
-    content: 'public class IndexSchema : RelmModel, IRelmModel'
-    content.vb: Public Class IndexSchema Inherits RelmModel Implements IRelmModel
+    content: >-
+      [RelmDatabase("INFORMATION_SCHEMA")]
+
+      [RelmTable("STATISTICS")]
+
+      public class IndexSchema : RelmModel, IRelmModel
+    content.vb: >-
+      <RelmDatabase("INFORMATION_SCHEMA")>
+
+      <RelmTable("STATISTICS")>
+
+      Public Class IndexSchema Inherits RelmModel Implements IRelmModel
   inheritance:
   - System.Object
   - CoreRelm.Models.RelmModel
@@ -94,6 +104,17 @@ items:
   - CoreRelm.Models.Migrations.Introspection.IndexSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.IndexSchema,System.Collections.Generic.ICollection{{R}}}},CoreRelm.Interfaces.IRelmDataLoader{{S}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
   - CoreRelm.Models.Migrations.Introspection.IndexSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.IndexSchema,{R}}},CoreRelm.Interfaces.IRelmDataLoader{{S}})
   - CoreRelm.Models.Migrations.Introspection.IndexSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.IndexSchema,{R}}},CoreRelm.Interfaces.IRelmDataLoader{{S}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
+  attributes:
+  - type: CoreRelm.Attributes.RelmDatabase
+    ctor: CoreRelm.Attributes.RelmDatabase.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: INFORMATION_SCHEMA
+  - type: CoreRelm.Attributes.RelmTable
+    ctor: CoreRelm.Attributes.RelmTable.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: STATISTICS
 - uid: CoreRelm.Models.Migrations.Introspection.IndexSchema.Columns
   commentId: P:CoreRelm.Models.Migrations.Introspection.IndexSchema.Columns
   id: Columns
@@ -112,7 +133,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Columns
     path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
-    startLine: 12
+    startLine: 14
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -141,7 +162,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: IsVisibleBool
     path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
-    startLine: 14
+    startLine: 16
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -170,7 +191,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: TableName
     path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
-    startLine: 16
+    startLine: 18
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -205,7 +226,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: IndexName
     path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
-    startLine: 19
+    startLine: 21
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -240,7 +261,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ColumnName
     path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
-    startLine: 22
+    startLine: 24
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -275,7 +296,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SubPart
     path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
-    startLine: 25
+    startLine: 27
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -310,7 +331,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SeqInIndex
     path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
-    startLine: 28
+    startLine: 30
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -345,7 +366,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Collation
     path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
-    startLine: 31
+    startLine: 33
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -380,7 +401,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: NonUnique
     path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
-    startLine: 34
+    startLine: 36
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -415,7 +436,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Expression
     path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
-    startLine: 37
+    startLine: 39
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -450,7 +471,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Comment
     path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
-    startLine: 40
+    startLine: 42
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -485,7 +506,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: IndexComment
     path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
-    startLine: 43
+    startLine: 45
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -520,7 +541,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: IndexType
     path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
-    startLine: 46
+    startLine: 48
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -555,7 +576,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: IndexTypeValue
     path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
-    startLine: 49
+    startLine: 51
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -590,7 +611,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: IsVisible
     path: ../CoreRelm/Models/Migrations/Introspection/IndexSchema.cs
-    startLine: 52
+    startLine: 54
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection

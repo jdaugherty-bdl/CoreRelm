@@ -34,11 +34,11 @@ items:
   example: []
   syntax:
     content: >-
-      [AttributeUsage(AttributeTargets.Struct|AttributeTargets.Property)]
+      [AttributeUsage(AttributeTargets.Property)]
 
       public sealed class RelmDto : Attribute
     content.vb: >-
-      <AttributeUsage(AttributeTargets.StructOrAttributeTargets.Property)>
+      <AttributeUsage(AttributeTargets.Property)>
 
       Public NotInheritable Class RelmDto Inherits Attribute
   inheritance:
@@ -91,7 +91,7 @@ items:
     ctor: System.AttributeUsageAttribute.#ctor(System.AttributeTargets)
     arguments:
     - type: System.AttributeTargets
-      value: 136
+      value: 128
 references:
 - uid: CoreRelm.Attributes
   commentId: N:CoreRelm.Attributes

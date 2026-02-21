@@ -1,0 +1,761 @@
+### YamlMime:ManagedReference
+items:
+- uid: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult
+  commentId: T:CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult
+  id: PerDatabaseMigrationResult
+  parent: CoreRelm.Models.Migrations.Tooling.Generation
+  children:
+  - CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.#ctor(System.String,System.Boolean,System.String,System.Collections.Generic.IReadOnlyList{System.String},System.Int32,System.Collections.Generic.IReadOnlyList{System.String})
+  - CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.Blockers
+  - CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.DatabaseName
+  - CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.HasChanges
+  - CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.Messages
+  - CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.OperationCount
+  - CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.Sql
+  langs:
+  - csharp
+  - vb
+  name: PerDatabaseMigrationResult
+  nameWithType: PerDatabaseMigrationResult
+  fullName: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult
+  type: Class
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Tooling/Generation/PerDatabaseMigrationResult.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: PerDatabaseMigrationResult
+    path: ../CoreRelm/Models/Migrations/Tooling/Generation/PerDatabaseMigrationResult.cs
+    startLine: 8
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Tooling.Generation
+  syntax:
+    content: 'public sealed record PerDatabaseMigrationResult : IEquatable<PerDatabaseMigrationResult>'
+    content.vb: Public NotInheritable Class PerDatabaseMigrationResult Implements IEquatable(Of PerDatabaseMigrationResult)
+  inheritance:
+  - System.Object
+  implements:
+  - System.IEquatable{CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult}
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.#ctor(System.String,System.Boolean,System.String,System.Collections.Generic.IReadOnlyList{System.String},System.Int32,System.Collections.Generic.IReadOnlyList{System.String})
+  commentId: M:CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.#ctor(System.String,System.Boolean,System.String,System.Collections.Generic.IReadOnlyList{System.String},System.Int32,System.Collections.Generic.IReadOnlyList{System.String})
+  id: '#ctor(System.String,System.Boolean,System.String,System.Collections.Generic.IReadOnlyList{System.String},System.Int32,System.Collections.Generic.IReadOnlyList{System.String})'
+  parent: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult
+  langs:
+  - csharp
+  - vb
+  name: PerDatabaseMigrationResult(string, bool, string?, IReadOnlyList<string>, int, IReadOnlyList<string>)
+  nameWithType: PerDatabaseMigrationResult.PerDatabaseMigrationResult(string, bool, string?, IReadOnlyList<string>, int, IReadOnlyList<string>)
+  fullName: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.PerDatabaseMigrationResult(string, bool, string?, System.Collections.Generic.IReadOnlyList<string>, int, System.Collections.Generic.IReadOnlyList<string>)
+  type: Constructor
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Tooling/Generation/PerDatabaseMigrationResult.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: .ctor
+    path: ../CoreRelm/Models/Migrations/Tooling/Generation/PerDatabaseMigrationResult.cs
+    startLine: 8
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Tooling.Generation
+  syntax:
+    content: public PerDatabaseMigrationResult(string DatabaseName, bool HasChanges, string? Sql, IReadOnlyList<string> Messages, int OperationCount, IReadOnlyList<string> Blockers)
+    parameters:
+    - id: DatabaseName
+      type: System.String
+    - id: HasChanges
+      type: System.Boolean
+    - id: Sql
+      type: System.String
+    - id: Messages
+      type: System.Collections.Generic.IReadOnlyList{System.String}
+    - id: OperationCount
+      type: System.Int32
+    - id: Blockers
+      type: System.Collections.Generic.IReadOnlyList{System.String}
+    content.vb: Public Sub New(DatabaseName As String, HasChanges As Boolean, Sql As String, Messages As IReadOnlyList(Of String), OperationCount As Integer, Blockers As IReadOnlyList(Of String))
+  overload: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.#ctor*
+  nameWithType.vb: PerDatabaseMigrationResult.New(String, Boolean, String, IReadOnlyList(Of String), Integer, IReadOnlyList(Of String))
+  fullName.vb: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.New(String, Boolean, String, System.Collections.Generic.IReadOnlyList(Of String), Integer, System.Collections.Generic.IReadOnlyList(Of String))
+  name.vb: New(String, Boolean, String, IReadOnlyList(Of String), Integer, IReadOnlyList(Of String))
+- uid: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.DatabaseName
+  commentId: P:CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.DatabaseName
+  id: DatabaseName
+  parent: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult
+  langs:
+  - csharp
+  - vb
+  name: DatabaseName
+  nameWithType: PerDatabaseMigrationResult.DatabaseName
+  fullName: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.DatabaseName
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Tooling/Generation/PerDatabaseMigrationResult.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: DatabaseName
+    path: ../CoreRelm/Models/Migrations/Tooling/Generation/PerDatabaseMigrationResult.cs
+    startLine: 9
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Tooling.Generation
+  syntax:
+    content: public string DatabaseName { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property DatabaseName As String
+  overload: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.DatabaseName*
+- uid: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.HasChanges
+  commentId: P:CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.HasChanges
+  id: HasChanges
+  parent: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult
+  langs:
+  - csharp
+  - vb
+  name: HasChanges
+  nameWithType: PerDatabaseMigrationResult.HasChanges
+  fullName: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.HasChanges
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Tooling/Generation/PerDatabaseMigrationResult.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: HasChanges
+    path: ../CoreRelm/Models/Migrations/Tooling/Generation/PerDatabaseMigrationResult.cs
+    startLine: 10
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Tooling.Generation
+  syntax:
+    content: public bool HasChanges { get; init; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property HasChanges As Boolean
+  overload: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.HasChanges*
+- uid: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.Sql
+  commentId: P:CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.Sql
+  id: Sql
+  parent: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult
+  langs:
+  - csharp
+  - vb
+  name: Sql
+  nameWithType: PerDatabaseMigrationResult.Sql
+  fullName: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.Sql
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Tooling/Generation/PerDatabaseMigrationResult.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: Sql
+    path: ../CoreRelm/Models/Migrations/Tooling/Generation/PerDatabaseMigrationResult.cs
+    startLine: 11
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Tooling.Generation
+  syntax:
+    content: public string? Sql { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Sql As String
+  overload: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.Sql*
+- uid: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.Messages
+  commentId: P:CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.Messages
+  id: Messages
+  parent: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult
+  langs:
+  - csharp
+  - vb
+  name: Messages
+  nameWithType: PerDatabaseMigrationResult.Messages
+  fullName: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.Messages
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Tooling/Generation/PerDatabaseMigrationResult.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: Messages
+    path: ../CoreRelm/Models/Migrations/Tooling/Generation/PerDatabaseMigrationResult.cs
+    startLine: 12
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Tooling.Generation
+  syntax:
+    content: public IReadOnlyList<string> Messages { get; init; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{System.String}
+    content.vb: Public Property Messages As IReadOnlyList(Of String)
+  overload: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.Messages*
+- uid: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.OperationCount
+  commentId: P:CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.OperationCount
+  id: OperationCount
+  parent: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult
+  langs:
+  - csharp
+  - vb
+  name: OperationCount
+  nameWithType: PerDatabaseMigrationResult.OperationCount
+  fullName: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.OperationCount
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Tooling/Generation/PerDatabaseMigrationResult.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: OperationCount
+    path: ../CoreRelm/Models/Migrations/Tooling/Generation/PerDatabaseMigrationResult.cs
+    startLine: 13
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Tooling.Generation
+  syntax:
+    content: public int OperationCount { get; init; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property OperationCount As Integer
+  overload: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.OperationCount*
+- uid: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.Blockers
+  commentId: P:CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.Blockers
+  id: Blockers
+  parent: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult
+  langs:
+  - csharp
+  - vb
+  name: Blockers
+  nameWithType: PerDatabaseMigrationResult.Blockers
+  fullName: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.Blockers
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Tooling/Generation/PerDatabaseMigrationResult.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: Blockers
+    path: ../CoreRelm/Models/Migrations/Tooling/Generation/PerDatabaseMigrationResult.cs
+    startLine: 14
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Tooling.Generation
+  syntax:
+    content: public IReadOnlyList<string> Blockers { get; init; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{System.String}
+    content.vb: Public Property Blockers As IReadOnlyList(Of String)
+  overload: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.Blockers*
+references:
+- uid: CoreRelm.Models.Migrations.Tooling.Generation
+  commentId: N:CoreRelm.Models.Migrations.Tooling.Generation
+  href: CoreRelm.html
+  name: CoreRelm.Models.Migrations.Tooling.Generation
+  nameWithType: CoreRelm.Models.Migrations.Tooling.Generation
+  fullName: CoreRelm.Models.Migrations.Tooling.Generation
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling
+    name: Tooling
+    href: CoreRelm.Models.Migrations.Tooling.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling.Generation
+    name: Generation
+    href: CoreRelm.Models.Migrations.Tooling.Generation.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling
+    name: Tooling
+    href: CoreRelm.Models.Migrations.Tooling.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling.Generation
+    name: Generation
+    href: CoreRelm.Models.Migrations.Tooling.Generation.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IEquatable{CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult}
+  commentId: T:System.IEquatable{CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<PerDatabaseMigrationResult>
+  nameWithType: IEquatable<PerDatabaseMigrationResult>
+  fullName: System.IEquatable<CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult>
+  nameWithType.vb: IEquatable(Of PerDatabaseMigrationResult)
+  fullName.vb: System.IEquatable(Of CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult)
+  name.vb: IEquatable(Of PerDatabaseMigrationResult)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult
+    name: PerDatabaseMigrationResult
+    href: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult
+    name: PerDatabaseMigrationResult
+    href: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.#ctor*
+  commentId: Overload:CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.#ctor
+  href: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.html#CoreRelm_Models_Migrations_Tooling_Generation_PerDatabaseMigrationResult__ctor_System_String_System_Boolean_System_String_System_Collections_Generic_IReadOnlyList_System_String__System_Int32_System_Collections_Generic_IReadOnlyList_System_String__
+  name: PerDatabaseMigrationResult
+  nameWithType: PerDatabaseMigrationResult.PerDatabaseMigrationResult
+  fullName: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.PerDatabaseMigrationResult
+  nameWithType.vb: PerDatabaseMigrationResult.New
+  fullName.vb: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.New
+  name.vb: New
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Collections.Generic.IReadOnlyList{System.String}
+  commentId: T:System.Collections.Generic.IReadOnlyList{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<string>
+  nameWithType: IReadOnlyList<string>
+  fullName: System.Collections.Generic.IReadOnlyList<string>
+  nameWithType.vb: IReadOnlyList(Of String)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of String)
+  name.vb: IReadOnlyList(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.DatabaseName*
+  commentId: Overload:CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.DatabaseName
+  href: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.html#CoreRelm_Models_Migrations_Tooling_Generation_PerDatabaseMigrationResult_DatabaseName
+  name: DatabaseName
+  nameWithType: PerDatabaseMigrationResult.DatabaseName
+  fullName: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.DatabaseName
+- uid: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.HasChanges*
+  commentId: Overload:CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.HasChanges
+  href: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.html#CoreRelm_Models_Migrations_Tooling_Generation_PerDatabaseMigrationResult_HasChanges
+  name: HasChanges
+  nameWithType: PerDatabaseMigrationResult.HasChanges
+  fullName: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.HasChanges
+- uid: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.Sql*
+  commentId: Overload:CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.Sql
+  href: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.html#CoreRelm_Models_Migrations_Tooling_Generation_PerDatabaseMigrationResult_Sql
+  name: Sql
+  nameWithType: PerDatabaseMigrationResult.Sql
+  fullName: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.Sql
+- uid: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.Messages*
+  commentId: Overload:CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.Messages
+  href: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.html#CoreRelm_Models_Migrations_Tooling_Generation_PerDatabaseMigrationResult_Messages
+  name: Messages
+  nameWithType: PerDatabaseMigrationResult.Messages
+  fullName: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.Messages
+- uid: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.OperationCount*
+  commentId: Overload:CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.OperationCount
+  href: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.html#CoreRelm_Models_Migrations_Tooling_Generation_PerDatabaseMigrationResult_OperationCount
+  name: OperationCount
+  nameWithType: PerDatabaseMigrationResult.OperationCount
+  fullName: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.OperationCount
+- uid: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.Blockers*
+  commentId: Overload:CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.Blockers
+  href: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.html#CoreRelm_Models_Migrations_Tooling_Generation_PerDatabaseMigrationResult_Blockers
+  name: Blockers
+  nameWithType: PerDatabaseMigrationResult.Blockers
+  fullName: CoreRelm.Models.Migrations.Tooling.Generation.PerDatabaseMigrationResult.Blockers

@@ -89,7 +89,7 @@
 
 
   <h1 id="CoreRelm_RelmInternal_Helpers_Migrations_Execution_SchemaMigrationsStore" data-uid="CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore" class="text-break">
-Class SchemaMigrationsStore  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Helpers/Migrations/Execution/SchemaMigrationsStore.cs/#L19"><i class="bi bi-code-slash"></i></a>
+Class SchemaMigrationsStore  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Helpers/Migrations/Execution/SchemaMigrationsStore.cs/#L24"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -157,21 +157,25 @@ Class SchemaMigrationsStore  <a class="header-action link-secondary" title="View
 
   <a id="CoreRelm_RelmInternal_Helpers_Migrations_Execution_SchemaMigrationsStore__ctor_" data-uid="CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.#ctor*"></a>
 
-  <h3 id="CoreRelm_RelmInternal_Helpers_Migrations_Execution_SchemaMigrationsStore__ctor_CoreRelm_Interfaces_Migrations_IRelmMigrationSqlProviderFactory_" data-uid="CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.#ctor(CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory)">
-  SchemaMigrationsStore(IRelmMigrationSqlProviderFactory)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Helpers/Migrations/Execution/SchemaMigrationsStore.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_RelmInternal_Helpers_Migrations_Execution_SchemaMigrationsStore__ctor_CoreRelm_Interfaces_Migrations_IRelmMigrationSqlProviderFactory_CoreRelm_Interfaces_Migrations_IRelmSqlScriptRunner_Microsoft_Extensions_Logging_ILogger_CoreRelm_RelmInternal_Helpers_Migrations_Execution_SchemaMigrationsStore__" data-uid="CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.#ctor(CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory,CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner,Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore})">
+  SchemaMigrationsStore(IRelmMigrationSqlProviderFactory, IRelmSqlScriptRunner, ILogger&lt;SchemaMigrationsStore&gt;?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Helpers/Migrations/Execution/SchemaMigrationsStore.cs/#L24"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SchemaMigrationsStore(IRelmMigrationSqlProviderFactory providerFactory)</code></pre>
+    <pre><code class="lang-csharp hljs">public SchemaMigrationsStore(IRelmMigrationSqlProviderFactory providerFactory, IRelmSqlScriptRunner runner, ILogger&lt;SchemaMigrationsStore&gt;? log = null)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>providerFactory</code> <a class="xref" href="CoreRelm.Interfaces.Migrations.IRelmMigrationSqlProviderFactory.html">IRelmMigrationSqlProviderFactory</a></dt>
+    <dd></dd>
+    <dt><code>runner</code> <a class="xref" href="CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.html">IRelmSqlScriptRunner</a></dt>
+    <dd></dd>
+    <dt><code>log</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1">ILogger</a>&lt;<a class="xref" href="CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.html">SchemaMigrationsStore</a>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -194,7 +198,7 @@ Class SchemaMigrationsStore  <a class="header-action link-secondary" title="View
 
   <h3 id="CoreRelm_RelmInternal_Helpers_Migrations_Execution_SchemaMigrationsStore_EnsureSchemaMigrationTableAsync_CoreRelm_Interfaces_IRelmContext_CoreRelm_Models_Migrations_MigrationOptions_" data-uid="CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.EnsureSchemaMigrationTableAsync(CoreRelm.Interfaces.IRelmContext,CoreRelm.Models.Migrations.MigrationOptions)">
   EnsureSchemaMigrationTableAsync(IRelmContext, MigrationOptions)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Helpers/Migrations/Execution/SchemaMigrationsStore.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Helpers/Migrations/Execution/SchemaMigrationsStore.cs/#L31"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -232,7 +236,7 @@ Class SchemaMigrationsStore  <a class="header-action link-secondary" title="View
 
   <h3 id="CoreRelm_RelmInternal_Helpers_Migrations_Execution_SchemaMigrationsStore_GetAppliedMigrationsAsync_CoreRelm_Models_RelmContext_System_Threading_CancellationToken_" data-uid="CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.GetAppliedMigrationsAsync(CoreRelm.Models.RelmContext,System.Threading.CancellationToken)">
   GetAppliedMigrationsAsync(RelmContext, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Helpers/Migrations/Execution/SchemaMigrationsStore.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Helpers/Migrations/Execution/SchemaMigrationsStore.cs/#L125"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -268,16 +272,16 @@ Class SchemaMigrationsStore  <a class="header-action link-secondary" title="View
 
   <a id="CoreRelm_RelmInternal_Helpers_Migrations_Execution_SchemaMigrationsStore_RecordAppliedMigrationAsync_" data-uid="CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.RecordAppliedMigrationAsync*"></a>
 
-  <h3 id="CoreRelm_RelmInternal_Helpers_Migrations_Execution_SchemaMigrationsStore_RecordAppliedMigrationAsync_CoreRelm_Interfaces_IRelmContext_System_String_System_String_System_Threading_CancellationToken_" data-uid="CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.RecordAppliedMigrationAsync(CoreRelm.Interfaces.IRelmContext,System.String,System.String,System.Threading.CancellationToken)">
-  RecordAppliedMigrationAsync(IRelmContext, string, string, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Helpers/Migrations/Execution/SchemaMigrationsStore.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_RelmInternal_Helpers_Migrations_Execution_SchemaMigrationsStore_RecordAppliedMigrationAsync_CoreRelm_Interfaces_IRelmContext_System_String_CoreRelm_Enums_MigrationEnums_RelmMigrationType_System_String_System_Threading_CancellationToken_" data-uid="CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore.RecordAppliedMigrationAsync(CoreRelm.Interfaces.IRelmContext,System.String,CoreRelm.Enums.MigrationEnums.RelmMigrationType,System.String,System.Threading.CancellationToken)">
+  RecordAppliedMigrationAsync(IRelmContext, string, RelmMigrationType, string, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Helpers/Migrations/Execution/SchemaMigrationsStore.cs/#L142"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;int&gt; RecordAppliedMigrationAsync(IRelmContext context, string migrationFile, string checksumSha256, CancellationToken ct = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;int&gt; RecordAppliedMigrationAsync(IRelmContext context, string migrationFile, MigrationEnums.RelmMigrationType migrationType, string checksumSha256, CancellationToken ct = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -285,6 +289,8 @@ Class SchemaMigrationsStore  <a class="header-action link-secondary" title="View
     <dt><code>context</code> <a class="xref" href="CoreRelm.Interfaces.IRelmContext.html">IRelmContext</a></dt>
     <dd></dd>
     <dt><code>migrationFile</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>migrationType</code> <a class="xref" href="CoreRelm.Enums.MigrationEnums.html">MigrationEnums</a>.<a class="xref" href="CoreRelm.Enums.MigrationEnums.RelmMigrationType.html">RelmMigrationType</a></dt>
     <dd></dd>
     <dt><code>checksumSha256</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
@@ -312,7 +318,7 @@ Class SchemaMigrationsStore  <a class="header-action link-secondary" title="View
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Helpers/Migrations/Execution/SchemaMigrationsStore.cs/#L19" class="edit-link">Edit this page</a>
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Helpers/Migrations/Execution/SchemaMigrationsStore.cs/#L24" class="edit-link">Edit this page</a>
         </div>
 
 

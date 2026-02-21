@@ -5,7 +5,7 @@ items:
   id: IRelmSqlScriptRunner
   parent: CoreRelm.Interfaces.Migrations
   children:
-  - CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync(CoreRelm.Interfaces.IRelmContext,System.String,System.Threading.CancellationToken)
+  - CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync(CoreRelm.Interfaces.IRelmContext,System.String,System.Threading.CancellationToken,System.Action{System.Exception})
   langs:
   - csharp
   - vb
@@ -27,16 +27,16 @@ items:
   syntax:
     content: public interface IRelmSqlScriptRunner
     content.vb: Public Interface IRelmSqlScriptRunner
-- uid: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync(CoreRelm.Interfaces.IRelmContext,System.String,System.Threading.CancellationToken)
-  commentId: M:CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync(CoreRelm.Interfaces.IRelmContext,System.String,System.Threading.CancellationToken)
-  id: ExecuteScriptAsync(CoreRelm.Interfaces.IRelmContext,System.String,System.Threading.CancellationToken)
+- uid: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync(CoreRelm.Interfaces.IRelmContext,System.String,System.Threading.CancellationToken,System.Action{System.Exception})
+  commentId: M:CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync(CoreRelm.Interfaces.IRelmContext,System.String,System.Threading.CancellationToken,System.Action{System.Exception})
+  id: ExecuteScriptAsync(CoreRelm.Interfaces.IRelmContext,System.String,System.Threading.CancellationToken,System.Action{System.Exception})
   parent: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner
   langs:
   - csharp
   - vb
-  name: ExecuteScriptAsync(IRelmContext, string, CancellationToken)
-  nameWithType: IRelmSqlScriptRunner.ExecuteScriptAsync(IRelmContext, string, CancellationToken)
-  fullName: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync(CoreRelm.Interfaces.IRelmContext, string, System.Threading.CancellationToken)
+  name: ExecuteScriptAsync(IRelmContext, string, CancellationToken, Action<Exception>?)
+  nameWithType: IRelmSqlScriptRunner.ExecuteScriptAsync(IRelmContext, string, CancellationToken, Action<Exception>?)
+  fullName: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync(CoreRelm.Interfaces.IRelmContext, string, System.Threading.CancellationToken, System.Action<System.Exception>?)
   type: Method
   source:
     remote:
@@ -50,7 +50,7 @@ items:
   - CoreRelm
   namespace: CoreRelm.Interfaces.Migrations
   syntax:
-    content: Task ExecuteScriptAsync(IRelmContext context, string sql, CancellationToken cancellationToken = default)
+    content: Task ExecuteScriptAsync(IRelmContext context, string sql, CancellationToken cancellationToken = default, Action<Exception>? exceptionHandler = null)
     parameters:
     - id: context
       type: CoreRelm.Interfaces.IRelmContext
@@ -58,13 +58,15 @@ items:
       type: System.String
     - id: cancellationToken
       type: System.Threading.CancellationToken
+    - id: exceptionHandler
+      type: System.Action{System.Exception}
     return:
       type: System.Threading.Tasks.Task
-    content.vb: Function ExecuteScriptAsync(context As IRelmContext, sql As String, cancellationToken As CancellationToken = Nothing) As Task
+    content.vb: Function ExecuteScriptAsync(context As IRelmContext, sql As String, cancellationToken As CancellationToken = Nothing, exceptionHandler As Action(Of Exception) = Nothing) As Task
   overload: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync*
-  nameWithType.vb: IRelmSqlScriptRunner.ExecuteScriptAsync(IRelmContext, String, CancellationToken)
-  fullName.vb: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync(CoreRelm.Interfaces.IRelmContext, String, System.Threading.CancellationToken)
-  name.vb: ExecuteScriptAsync(IRelmContext, String, CancellationToken)
+  nameWithType.vb: IRelmSqlScriptRunner.ExecuteScriptAsync(IRelmContext, String, CancellationToken, Action(Of Exception))
+  fullName.vb: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync(CoreRelm.Interfaces.IRelmContext, String, System.Threading.CancellationToken, System.Action(Of System.Exception))
+  name.vb: ExecuteScriptAsync(IRelmContext, String, CancellationToken, Action(Of Exception))
 references:
 - uid: CoreRelm.Interfaces.Migrations
   commentId: N:CoreRelm.Interfaces.Migrations
@@ -98,7 +100,7 @@ references:
     href: CoreRelm.Interfaces.Migrations.html
 - uid: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync*
   commentId: Overload:CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync
-  href: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.html#CoreRelm_Interfaces_Migrations_IRelmSqlScriptRunner_ExecuteScriptAsync_CoreRelm_Interfaces_IRelmContext_System_String_System_Threading_CancellationToken_
+  href: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.html#CoreRelm_Interfaces_Migrations_IRelmSqlScriptRunner_ExecuteScriptAsync_CoreRelm_Interfaces_IRelmContext_System_String_System_Threading_CancellationToken_System_Action_System_Exception__
   name: ExecuteScriptAsync
   nameWithType: IRelmSqlScriptRunner.ExecuteScriptAsync
   fullName: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync
@@ -128,6 +130,41 @@ references:
   name: CancellationToken
   nameWithType: CancellationToken
   fullName: System.Threading.CancellationToken
+- uid: System.Action{System.Exception}
+  commentId: T:System.Action{System.Exception}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<Exception>
+  nameWithType: Action<Exception>
+  fullName: System.Action<System.Exception>
+  nameWithType.vb: Action(Of Exception)
+  fullName.vb: System.Action(Of System.Exception)
+  name.vb: Action(Of Exception)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: System.Exception
+    name: Exception
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.exception
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Exception
+    name: Exception
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.exception
+  - name: )
 - uid: System.Threading.Tasks.Task
   commentId: T:System.Threading.Tasks.Task
   parent: System.Threading.Tasks
@@ -192,6 +229,34 @@ references:
     name: Threading
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.threading
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: System.Threading.Tasks
   commentId: N:System.Threading.Tasks
   isExternal: true

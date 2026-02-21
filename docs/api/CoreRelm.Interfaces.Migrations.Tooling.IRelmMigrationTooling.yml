@@ -1,0 +1,684 @@
+### YamlMime:ManagedReference
+items:
+- uid: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling
+  commentId: T:CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling
+  id: IRelmMigrationTooling
+  parent: CoreRelm.Interfaces.Migrations.Tooling
+  children:
+  - CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.ApplyMigrations(CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest)
+  - CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.GenerateMigrationsAsync(CoreRelm.Models.Migrations.ModelSetsFile,System.String,System.Reflection.Assembly,CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions)
+  - CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.GetStatusAsync(CoreRelm.Models.Migrations.Tooling.Drift.MigrationStatusRequest)
+  - CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.ValidateModelSet(CoreRelm.Models.Migrations.ModelSetsFile,System.String,System.Reflection.Assembly,CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidateOptions)
+  langs:
+  - csharp
+  - vb
+  name: IRelmMigrationTooling
+  nameWithType: IRelmMigrationTooling
+  fullName: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling
+  type: Interface
+  source:
+    remote:
+      path: CoreRelm/Interfaces/Migrations/Tooling/IRelmMigrationTooling.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: IRelmMigrationTooling
+    path: ../CoreRelm/Interfaces/Migrations/Tooling/IRelmMigrationTooling.cs
+    startLine: 14
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces.Migrations.Tooling
+  syntax:
+    content: public interface IRelmMigrationTooling
+    content.vb: Public Interface IRelmMigrationTooling
+- uid: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.ValidateModelSet(CoreRelm.Models.Migrations.ModelSetsFile,System.String,System.Reflection.Assembly,CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidateOptions)
+  commentId: M:CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.ValidateModelSet(CoreRelm.Models.Migrations.ModelSetsFile,System.String,System.Reflection.Assembly,CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidateOptions)
+  id: ValidateModelSet(CoreRelm.Models.Migrations.ModelSetsFile,System.String,System.Reflection.Assembly,CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidateOptions)
+  parent: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling
+  langs:
+  - csharp
+  - vb
+  name: ValidateModelSet(ModelSetsFile, string, Assembly, ModelSetValidateOptions?)
+  nameWithType: IRelmMigrationTooling.ValidateModelSet(ModelSetsFile, string, Assembly, ModelSetValidateOptions?)
+  fullName: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.ValidateModelSet(CoreRelm.Models.Migrations.ModelSetsFile, string, System.Reflection.Assembly, CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidateOptions?)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Interfaces/Migrations/Tooling/IRelmMigrationTooling.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: ValidateModelSet
+    path: ../CoreRelm/Interfaces/Migrations/Tooling/IRelmMigrationTooling.cs
+    startLine: 17
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces.Migrations.Tooling
+  syntax:
+    content: ModelSetValidationReport ValidateModelSet(ModelSetsFile modelSets, string setName, Assembly modelsAssembly, ModelSetValidateOptions? options = null)
+    parameters:
+    - id: modelSets
+      type: CoreRelm.Models.Migrations.ModelSetsFile
+    - id: setName
+      type: System.String
+    - id: modelsAssembly
+      type: System.Reflection.Assembly
+    - id: options
+      type: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidateOptions
+    return:
+      type: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport
+    content.vb: Function ValidateModelSet(modelSets As ModelSetsFile, setName As String, modelsAssembly As Assembly, options As ModelSetValidateOptions = Nothing) As ModelSetValidationReport
+  overload: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.ValidateModelSet*
+  nameWithType.vb: IRelmMigrationTooling.ValidateModelSet(ModelSetsFile, String, Assembly, ModelSetValidateOptions)
+  fullName.vb: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.ValidateModelSet(CoreRelm.Models.Migrations.ModelSetsFile, String, System.Reflection.Assembly, CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidateOptions)
+  name.vb: ValidateModelSet(ModelSetsFile, String, Assembly, ModelSetValidateOptions)
+- uid: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.GenerateMigrationsAsync(CoreRelm.Models.Migrations.ModelSetsFile,System.String,System.Reflection.Assembly,CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions)
+  commentId: M:CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.GenerateMigrationsAsync(CoreRelm.Models.Migrations.ModelSetsFile,System.String,System.Reflection.Assembly,CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions)
+  id: GenerateMigrationsAsync(CoreRelm.Models.Migrations.ModelSetsFile,System.String,System.Reflection.Assembly,CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions)
+  parent: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling
+  langs:
+  - csharp
+  - vb
+  name: GenerateMigrationsAsync(ModelSetsFile, string, Assembly, GenerateMigrationsOptions)
+  nameWithType: IRelmMigrationTooling.GenerateMigrationsAsync(ModelSetsFile, string, Assembly, GenerateMigrationsOptions)
+  fullName: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.GenerateMigrationsAsync(CoreRelm.Models.Migrations.ModelSetsFile, string, System.Reflection.Assembly, CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Interfaces/Migrations/Tooling/IRelmMigrationTooling.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: GenerateMigrationsAsync
+    path: ../CoreRelm/Interfaces/Migrations/Tooling/IRelmMigrationTooling.cs
+    startLine: 20
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces.Migrations.Tooling
+  syntax:
+    content: Task<MigrationGenerationResult> GenerateMigrationsAsync(ModelSetsFile modelSets, string setName, Assembly modelsAssembly, GenerateMigrationsOptions options)
+    parameters:
+    - id: modelSets
+      type: CoreRelm.Models.Migrations.ModelSetsFile
+    - id: setName
+      type: System.String
+    - id: modelsAssembly
+      type: System.Reflection.Assembly
+    - id: options
+      type: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions
+    return:
+      type: System.Threading.Tasks.Task{CoreRelm.Models.Migrations.Tooling.Generation.MigrationGenerationResult}
+    content.vb: Function GenerateMigrationsAsync(modelSets As ModelSetsFile, setName As String, modelsAssembly As Assembly, options As GenerateMigrationsOptions) As Task(Of MigrationGenerationResult)
+  overload: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.GenerateMigrationsAsync*
+  nameWithType.vb: IRelmMigrationTooling.GenerateMigrationsAsync(ModelSetsFile, String, Assembly, GenerateMigrationsOptions)
+  fullName.vb: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.GenerateMigrationsAsync(CoreRelm.Models.Migrations.ModelSetsFile, String, System.Reflection.Assembly, CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions)
+  name.vb: GenerateMigrationsAsync(ModelSetsFile, String, Assembly, GenerateMigrationsOptions)
+- uid: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.ApplyMigrations(CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest)
+  commentId: M:CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.ApplyMigrations(CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest)
+  id: ApplyMigrations(CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest)
+  parent: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling
+  langs:
+  - csharp
+  - vb
+  name: ApplyMigrations(ApplyMigrationsRequest)
+  nameWithType: IRelmMigrationTooling.ApplyMigrations(ApplyMigrationsRequest)
+  fullName: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.ApplyMigrations(CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Interfaces/Migrations/Tooling/IRelmMigrationTooling.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: ApplyMigrations
+    path: ../CoreRelm/Interfaces/Migrations/Tooling/IRelmMigrationTooling.cs
+    startLine: 23
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces.Migrations.Tooling
+  syntax:
+    content: ApplyMigrationsResult ApplyMigrations(ApplyMigrationsRequest request)
+    parameters:
+    - id: request
+      type: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest
+    return:
+      type: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsResult
+    content.vb: Function ApplyMigrations(request As ApplyMigrationsRequest) As ApplyMigrationsResult
+  overload: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.ApplyMigrations*
+- uid: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.GetStatusAsync(CoreRelm.Models.Migrations.Tooling.Drift.MigrationStatusRequest)
+  commentId: M:CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.GetStatusAsync(CoreRelm.Models.Migrations.Tooling.Drift.MigrationStatusRequest)
+  id: GetStatusAsync(CoreRelm.Models.Migrations.Tooling.Drift.MigrationStatusRequest)
+  parent: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling
+  langs:
+  - csharp
+  - vb
+  name: GetStatusAsync(MigrationStatusRequest)
+  nameWithType: IRelmMigrationTooling.GetStatusAsync(MigrationStatusRequest)
+  fullName: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.GetStatusAsync(CoreRelm.Models.Migrations.Tooling.Drift.MigrationStatusRequest)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Interfaces/Migrations/Tooling/IRelmMigrationTooling.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: GetStatusAsync
+    path: ../CoreRelm/Interfaces/Migrations/Tooling/IRelmMigrationTooling.cs
+    startLine: 26
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces.Migrations.Tooling
+  syntax:
+    content: Task<MigrationStatusResult> GetStatusAsync(MigrationStatusRequest request)
+    parameters:
+    - id: request
+      type: CoreRelm.Models.Migrations.Tooling.Drift.MigrationStatusRequest
+    return:
+      type: System.Threading.Tasks.Task{CoreRelm.Models.Migrations.Tooling.Drift.MigrationStatusResult}
+    content.vb: Function GetStatusAsync(request As MigrationStatusRequest) As Task(Of MigrationStatusResult)
+  overload: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.GetStatusAsync*
+references:
+- uid: CoreRelm.Interfaces.Migrations.Tooling
+  commentId: N:CoreRelm.Interfaces.Migrations.Tooling
+  href: CoreRelm.html
+  name: CoreRelm.Interfaces.Migrations.Tooling
+  nameWithType: CoreRelm.Interfaces.Migrations.Tooling
+  fullName: CoreRelm.Interfaces.Migrations.Tooling
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations
+    name: Migrations
+    href: CoreRelm.Interfaces.Migrations.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations.Tooling
+    name: Tooling
+    href: CoreRelm.Interfaces.Migrations.Tooling.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations
+    name: Migrations
+    href: CoreRelm.Interfaces.Migrations.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations.Tooling
+    name: Tooling
+    href: CoreRelm.Interfaces.Migrations.Tooling.html
+- uid: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.ValidateModelSet*
+  commentId: Overload:CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.ValidateModelSet
+  href: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.html#CoreRelm_Interfaces_Migrations_Tooling_IRelmMigrationTooling_ValidateModelSet_CoreRelm_Models_Migrations_ModelSetsFile_System_String_System_Reflection_Assembly_CoreRelm_Models_Migrations_Tooling_Validation_ModelSetValidateOptions_
+  name: ValidateModelSet
+  nameWithType: IRelmMigrationTooling.ValidateModelSet
+  fullName: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.ValidateModelSet
+- uid: CoreRelm.Models.Migrations.ModelSetsFile
+  commentId: T:CoreRelm.Models.Migrations.ModelSetsFile
+  parent: CoreRelm.Models.Migrations
+  href: CoreRelm.Models.Migrations.ModelSetsFile.html
+  name: ModelSetsFile
+  nameWithType: ModelSetsFile
+  fullName: CoreRelm.Models.Migrations.ModelSetsFile
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Reflection.Assembly
+  commentId: T:System.Reflection.Assembly
+  parent: System.Reflection
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.reflection.assembly
+  name: Assembly
+  nameWithType: Assembly
+  fullName: System.Reflection.Assembly
+- uid: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidateOptions
+  commentId: T:CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidateOptions
+  parent: CoreRelm.Models.Migrations.Tooling.Validation
+  href: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidateOptions.html
+  name: ModelSetValidateOptions
+  nameWithType: ModelSetValidateOptions
+  fullName: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidateOptions
+- uid: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport
+  commentId: T:CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport
+  parent: CoreRelm.Models.Migrations.Tooling.Validation
+  href: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.html
+  name: ModelSetValidationReport
+  nameWithType: ModelSetValidationReport
+  fullName: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport
+- uid: CoreRelm.Models.Migrations
+  commentId: N:CoreRelm.Models.Migrations
+  href: CoreRelm.html
+  name: CoreRelm.Models.Migrations
+  nameWithType: CoreRelm.Models.Migrations
+  fullName: CoreRelm.Models.Migrations
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Reflection
+  commentId: N:System.Reflection
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Reflection
+  nameWithType: System.Reflection
+  fullName: System.Reflection
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Reflection
+    name: Reflection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Reflection
+    name: Reflection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection
+- uid: CoreRelm.Models.Migrations.Tooling.Validation
+  commentId: N:CoreRelm.Models.Migrations.Tooling.Validation
+  href: CoreRelm.html
+  name: CoreRelm.Models.Migrations.Tooling.Validation
+  nameWithType: CoreRelm.Models.Migrations.Tooling.Validation
+  fullName: CoreRelm.Models.Migrations.Tooling.Validation
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling
+    name: Tooling
+    href: CoreRelm.Models.Migrations.Tooling.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling.Validation
+    name: Validation
+    href: CoreRelm.Models.Migrations.Tooling.Validation.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling
+    name: Tooling
+    href: CoreRelm.Models.Migrations.Tooling.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling.Validation
+    name: Validation
+    href: CoreRelm.Models.Migrations.Tooling.Validation.html
+- uid: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.GenerateMigrationsAsync*
+  commentId: Overload:CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.GenerateMigrationsAsync
+  href: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.html#CoreRelm_Interfaces_Migrations_Tooling_IRelmMigrationTooling_GenerateMigrationsAsync_CoreRelm_Models_Migrations_ModelSetsFile_System_String_System_Reflection_Assembly_CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_
+  name: GenerateMigrationsAsync
+  nameWithType: IRelmMigrationTooling.GenerateMigrationsAsync
+  fullName: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.GenerateMigrationsAsync
+- uid: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions
+  commentId: T:CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions
+  parent: CoreRelm.Models.Migrations.Tooling.Generation
+  href: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.html
+  name: GenerateMigrationsOptions
+  nameWithType: GenerateMigrationsOptions
+  fullName: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions
+- uid: System.Threading.Tasks.Task{CoreRelm.Models.Migrations.Tooling.Generation.MigrationGenerationResult}
+  commentId: T:System.Threading.Tasks.Task{CoreRelm.Models.Migrations.Tooling.Generation.MigrationGenerationResult}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<MigrationGenerationResult>
+  nameWithType: Task<MigrationGenerationResult>
+  fullName: System.Threading.Tasks.Task<CoreRelm.Models.Migrations.Tooling.Generation.MigrationGenerationResult>
+  nameWithType.vb: Task(Of MigrationGenerationResult)
+  fullName.vb: System.Threading.Tasks.Task(Of CoreRelm.Models.Migrations.Tooling.Generation.MigrationGenerationResult)
+  name.vb: Task(Of MigrationGenerationResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: CoreRelm.Models.Migrations.Tooling.Generation.MigrationGenerationResult
+    name: MigrationGenerationResult
+    href: CoreRelm.Models.Migrations.Tooling.Generation.MigrationGenerationResult.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.Tooling.Generation.MigrationGenerationResult
+    name: MigrationGenerationResult
+    href: CoreRelm.Models.Migrations.Tooling.Generation.MigrationGenerationResult.html
+  - name: )
+- uid: CoreRelm.Models.Migrations.Tooling.Generation
+  commentId: N:CoreRelm.Models.Migrations.Tooling.Generation
+  href: CoreRelm.html
+  name: CoreRelm.Models.Migrations.Tooling.Generation
+  nameWithType: CoreRelm.Models.Migrations.Tooling.Generation
+  fullName: CoreRelm.Models.Migrations.Tooling.Generation
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling
+    name: Tooling
+    href: CoreRelm.Models.Migrations.Tooling.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling.Generation
+    name: Generation
+    href: CoreRelm.Models.Migrations.Tooling.Generation.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling
+    name: Tooling
+    href: CoreRelm.Models.Migrations.Tooling.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling.Generation
+    name: Generation
+    href: CoreRelm.Models.Migrations.Tooling.Generation.html
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.ApplyMigrations*
+  commentId: Overload:CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.ApplyMigrations
+  href: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.html#CoreRelm_Interfaces_Migrations_Tooling_IRelmMigrationTooling_ApplyMigrations_CoreRelm_Models_Migrations_Tooling_Apply_ApplyMigrationsRequest_
+  name: ApplyMigrations
+  nameWithType: IRelmMigrationTooling.ApplyMigrations
+  fullName: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.ApplyMigrations
+- uid: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest
+  commentId: T:CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest
+  parent: CoreRelm.Models.Migrations.Tooling.Apply
+  href: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest.html
+  name: ApplyMigrationsRequest
+  nameWithType: ApplyMigrationsRequest
+  fullName: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsRequest
+- uid: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsResult
+  commentId: T:CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsResult
+  parent: CoreRelm.Models.Migrations.Tooling.Apply
+  href: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsResult.html
+  name: ApplyMigrationsResult
+  nameWithType: ApplyMigrationsResult
+  fullName: CoreRelm.Models.Migrations.Tooling.Apply.ApplyMigrationsResult
+- uid: CoreRelm.Models.Migrations.Tooling.Apply
+  commentId: N:CoreRelm.Models.Migrations.Tooling.Apply
+  href: CoreRelm.html
+  name: CoreRelm.Models.Migrations.Tooling.Apply
+  nameWithType: CoreRelm.Models.Migrations.Tooling.Apply
+  fullName: CoreRelm.Models.Migrations.Tooling.Apply
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling
+    name: Tooling
+    href: CoreRelm.Models.Migrations.Tooling.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling.Apply
+    name: Apply
+    href: CoreRelm.Models.Migrations.Tooling.Apply.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling
+    name: Tooling
+    href: CoreRelm.Models.Migrations.Tooling.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling.Apply
+    name: Apply
+    href: CoreRelm.Models.Migrations.Tooling.Apply.html
+- uid: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.GetStatusAsync*
+  commentId: Overload:CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.GetStatusAsync
+  href: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.html#CoreRelm_Interfaces_Migrations_Tooling_IRelmMigrationTooling_GetStatusAsync_CoreRelm_Models_Migrations_Tooling_Drift_MigrationStatusRequest_
+  name: GetStatusAsync
+  nameWithType: IRelmMigrationTooling.GetStatusAsync
+  fullName: CoreRelm.Interfaces.Migrations.Tooling.IRelmMigrationTooling.GetStatusAsync
+- uid: CoreRelm.Models.Migrations.Tooling.Drift.MigrationStatusRequest
+  commentId: T:CoreRelm.Models.Migrations.Tooling.Drift.MigrationStatusRequest
+  parent: CoreRelm.Models.Migrations.Tooling.Drift
+  href: CoreRelm.Models.Migrations.Tooling.Drift.MigrationStatusRequest.html
+  name: MigrationStatusRequest
+  nameWithType: MigrationStatusRequest
+  fullName: CoreRelm.Models.Migrations.Tooling.Drift.MigrationStatusRequest
+- uid: System.Threading.Tasks.Task{CoreRelm.Models.Migrations.Tooling.Drift.MigrationStatusResult}
+  commentId: T:System.Threading.Tasks.Task{CoreRelm.Models.Migrations.Tooling.Drift.MigrationStatusResult}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<MigrationStatusResult>
+  nameWithType: Task<MigrationStatusResult>
+  fullName: System.Threading.Tasks.Task<CoreRelm.Models.Migrations.Tooling.Drift.MigrationStatusResult>
+  nameWithType.vb: Task(Of MigrationStatusResult)
+  fullName.vb: System.Threading.Tasks.Task(Of CoreRelm.Models.Migrations.Tooling.Drift.MigrationStatusResult)
+  name.vb: Task(Of MigrationStatusResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: CoreRelm.Models.Migrations.Tooling.Drift.MigrationStatusResult
+    name: MigrationStatusResult
+    href: CoreRelm.Models.Migrations.Tooling.Drift.MigrationStatusResult.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.Tooling.Drift.MigrationStatusResult
+    name: MigrationStatusResult
+    href: CoreRelm.Models.Migrations.Tooling.Drift.MigrationStatusResult.html
+  - name: )
+- uid: CoreRelm.Models.Migrations.Tooling.Drift
+  commentId: N:CoreRelm.Models.Migrations.Tooling.Drift
+  href: CoreRelm.html
+  name: CoreRelm.Models.Migrations.Tooling.Drift
+  nameWithType: CoreRelm.Models.Migrations.Tooling.Drift
+  fullName: CoreRelm.Models.Migrations.Tooling.Drift
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling
+    name: Tooling
+    href: CoreRelm.Models.Migrations.Tooling.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling.Drift
+    name: Drift
+    href: CoreRelm.Models.Migrations.Tooling.Drift.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling
+    name: Tooling
+    href: CoreRelm.Models.Migrations.Tooling.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling.Drift
+    name: Drift
+    href: CoreRelm.Models.Migrations.Tooling.Drift.html

@@ -1039,9 +1039,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetScalar<T>(Enum, string, Dictionary<string, object>?, bool, bool)
-  nameWithType: RelmHelper.GetScalar<T>(Enum, string, Dictionary<string, object>?, bool, bool)
-  fullName: CoreRelm.RelmHelper.GetScalar<T>(System.Enum, string, System.Collections.Generic.Dictionary<string, object>?, bool, bool)
+  name: GetScalar<T>(Enum, string, Dictionary<string, object?>?, bool, bool)
+  nameWithType: RelmHelper.GetScalar<T>(Enum, string, Dictionary<string, object?>?, bool, bool)
+  fullName: CoreRelm.RelmHelper.GetScalar<T>(System.Enum, string, System.Collections.Generic.Dictionary<string, object?>?, bool, bool)
   type: Method
   source:
     remote:
@@ -1063,7 +1063,7 @@ items:
         other aggregate results, from a database query.
   example: []
   syntax:
-    content: public static T? GetScalar<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false)
+    content: public static T? GetScalar<T>(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false)
     parameters:
     - id: connectionName
       type: System.Enum
@@ -1106,9 +1106,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetScalarAsync<T>(Enum, string, Dictionary<string, object>?, bool, bool, CancellationToken)
-  nameWithType: RelmHelper.GetScalarAsync<T>(Enum, string, Dictionary<string, object>?, bool, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.GetScalarAsync<T>(System.Enum, string, System.Collections.Generic.Dictionary<string, object>?, bool, bool, System.Threading.CancellationToken)
+  name: GetScalarAsync<T>(Enum, string, Dictionary<string, object?>?, bool, bool, CancellationToken)
+  nameWithType: RelmHelper.GetScalarAsync<T>(Enum, string, Dictionary<string, object?>?, bool, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.GetScalarAsync<T>(System.Enum, string, System.Collections.Generic.Dictionary<string, object?>?, bool, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -1130,7 +1130,7 @@ items:
         other aggregate results, from a database query.
   example: []
   syntax:
-    content: public static Task<T?> GetScalarAsync<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
+    content: public static Task<T?> GetScalarAsync<T>(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
     parameters:
     - id: connectionName
       type: System.Enum
@@ -1175,9 +1175,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetScalar<T>(MySqlConnection, string, Dictionary<string, object>?, bool)
-  nameWithType: RelmHelper.GetScalar<T>(MySqlConnection, string, Dictionary<string, object>?, bool)
-  fullName: CoreRelm.RelmHelper.GetScalar<T>(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object>?, bool)
+  name: GetScalar<T>(MySqlConnection, string, Dictionary<string, object?>?, bool)
+  nameWithType: RelmHelper.GetScalar<T>(MySqlConnection, string, Dictionary<string, object?>?, bool)
+  fullName: CoreRelm.RelmHelper.GetScalar<T>(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object?>?, bool)
   type: Method
   source:
     remote:
@@ -1193,7 +1193,7 @@ items:
   summary: Executes a scalar query on the specified MySQL connection and returns the result as the specified type.
   example: []
   syntax:
-    content: public static T? GetScalar<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+    content: public static T? GetScalar<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -1231,9 +1231,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetScalar<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool)
-  nameWithType: RelmHelper.GetScalar<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool)
-  fullName: CoreRelm.RelmHelper.GetScalar<T>(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object>?, bool)
+  name: GetScalar<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool)
+  nameWithType: RelmHelper.GetScalar<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool)
+  fullName: CoreRelm.RelmHelper.GetScalar<T>(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object?>?, bool)
   type: Method
   source:
     remote:
@@ -1249,7 +1249,7 @@ items:
   summary: Executes a scalar query on the specified MySQL connection and returns the result as the specified type.
   example: []
   syntax:
-    content: public static T? GetScalar<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+    content: public static T? GetScalar<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -1292,9 +1292,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetScalarAsync<T>(MySqlConnection, string, Dictionary<string, object>?, bool, CancellationToken)
-  nameWithType: RelmHelper.GetScalarAsync<T>(MySqlConnection, string, Dictionary<string, object>?, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.GetScalarAsync<T>(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object>?, bool, System.Threading.CancellationToken)
+  name: GetScalarAsync<T>(MySqlConnection, string, Dictionary<string, object?>?, bool, CancellationToken)
+  nameWithType: RelmHelper.GetScalarAsync<T>(MySqlConnection, string, Dictionary<string, object?>?, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.GetScalarAsync<T>(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object?>?, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -1310,7 +1310,7 @@ items:
   summary: Executes a scalar query on the specified MySQL connection and returns the result as the specified type.
   example: []
   syntax:
-    content: public static Task<T?> GetScalarAsync<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+    content: public static Task<T?> GetScalarAsync<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -1350,9 +1350,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetScalarAsync<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool, CancellationToken)
-  nameWithType: RelmHelper.GetScalarAsync<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.GetScalarAsync<T>(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object>?, bool, System.Threading.CancellationToken)
+  name: GetScalarAsync<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool, CancellationToken)
+  nameWithType: RelmHelper.GetScalarAsync<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.GetScalarAsync<T>(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object?>?, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -1368,7 +1368,7 @@ items:
   summary: Executes a scalar query on the specified MySQL connection and returns the result as the specified type.
   example: []
   syntax:
-    content: public static Task<T?> GetScalarAsync<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+    content: public static Task<T?> GetScalarAsync<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -1413,9 +1413,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetScalar<T>(IRelmContext, string, Dictionary<string, object>?, bool)
-  nameWithType: RelmHelper.GetScalar<T>(IRelmContext, string, Dictionary<string, object>?, bool)
-  fullName: CoreRelm.RelmHelper.GetScalar<T>(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object>?, bool)
+  name: GetScalar<T>(IRelmContext, string, Dictionary<string, object?>?, bool)
+  nameWithType: RelmHelper.GetScalar<T>(IRelmContext, string, Dictionary<string, object?>?, bool)
+  fullName: CoreRelm.RelmHelper.GetScalar<T>(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object?>?, bool)
   type: Method
   source:
     remote:
@@ -1431,7 +1431,7 @@ items:
   summary: Executes a scalar query and retrieves the result as the specified type.
   example: []
   syntax:
-    content: public static T? GetScalar<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+    content: public static T? GetScalar<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
     parameters:
     - id: relmContext
       type: CoreRelm.Interfaces.IRelmContext
@@ -1469,9 +1469,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetScalarAsync<T>(IRelmContext, string, Dictionary<string, object>?, bool, CancellationToken)
-  nameWithType: RelmHelper.GetScalarAsync<T>(IRelmContext, string, Dictionary<string, object>?, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.GetScalarAsync<T>(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object>?, bool, System.Threading.CancellationToken)
+  name: GetScalarAsync<T>(IRelmContext, string, Dictionary<string, object?>?, bool, CancellationToken)
+  nameWithType: RelmHelper.GetScalarAsync<T>(IRelmContext, string, Dictionary<string, object?>?, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.GetScalarAsync<T>(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object?>?, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -1487,7 +1487,7 @@ items:
   summary: Executes a scalar query and retrieves the result as the specified type.
   example: []
   syntax:
-    content: public static Task<T?> GetScalarAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+    content: public static Task<T?> GetScalarAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
     parameters:
     - id: relmContext
       type: CoreRelm.Interfaces.IRelmContext
@@ -1527,9 +1527,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataRow(Enum, string, Dictionary<string, object>?, bool, bool)
-  nameWithType: RelmHelper.GetDataRow(Enum, string, Dictionary<string, object>?, bool, bool)
-  fullName: CoreRelm.RelmHelper.GetDataRow(System.Enum, string, System.Collections.Generic.Dictionary<string, object>?, bool, bool)
+  name: GetDataRow(Enum, string, Dictionary<string, object?>?, bool, bool)
+  nameWithType: RelmHelper.GetDataRow(Enum, string, Dictionary<string, object?>?, bool, bool)
+  fullName: CoreRelm.RelmHelper.GetDataRow(System.Enum, string, System.Collections.Generic.Dictionary<string, object?>?, bool, bool)
   type: Method
   source:
     remote:
@@ -1548,7 +1548,7 @@ items:
         applied to the query as named parameters.
   example: []
   syntax:
-    content: public static DataRow? GetDataRow(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false)
+    content: public static DataRow? GetDataRow(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false)
     parameters:
     - id: connectionName
       type: System.Enum
@@ -1588,9 +1588,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataRowAsync(Enum, string, Dictionary<string, object>?, bool, bool, CancellationToken)
-  nameWithType: RelmHelper.GetDataRowAsync(Enum, string, Dictionary<string, object>?, bool, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.GetDataRowAsync(System.Enum, string, System.Collections.Generic.Dictionary<string, object>?, bool, bool, System.Threading.CancellationToken)
+  name: GetDataRowAsync(Enum, string, Dictionary<string, object?>?, bool, bool, CancellationToken)
+  nameWithType: RelmHelper.GetDataRowAsync(Enum, string, Dictionary<string, object?>?, bool, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.GetDataRowAsync(System.Enum, string, System.Collections.Generic.Dictionary<string, object?>?, bool, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -1609,7 +1609,7 @@ items:
         applied to the query as named parameters.
   example: []
   syntax:
-    content: public static Task<DataRow?> GetDataRowAsync(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
+    content: public static Task<DataRow?> GetDataRowAsync(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
     parameters:
     - id: connectionName
       type: System.Enum
@@ -1651,9 +1651,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataRow(MySqlConnection, string, Dictionary<string, object>?, bool)
-  nameWithType: RelmHelper.GetDataRow(MySqlConnection, string, Dictionary<string, object>?, bool)
-  fullName: CoreRelm.RelmHelper.GetDataRow(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object>?, bool)
+  name: GetDataRow(MySqlConnection, string, Dictionary<string, object?>?, bool)
+  nameWithType: RelmHelper.GetDataRow(MySqlConnection, string, Dictionary<string, object?>?, bool)
+  fullName: CoreRelm.RelmHelper.GetDataRow(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object?>?, bool)
   type: Method
   source:
     remote:
@@ -1673,7 +1673,7 @@ items:
         method returns <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
   example: []
   syntax:
-    content: public static DataRow? GetDataRow(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+    content: public static DataRow? GetDataRow(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -1710,9 +1710,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataRow(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool)
-  nameWithType: RelmHelper.GetDataRow(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool)
-  fullName: CoreRelm.RelmHelper.GetDataRow(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object>?, bool)
+  name: GetDataRow(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool)
+  nameWithType: RelmHelper.GetDataRow(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool)
+  fullName: CoreRelm.RelmHelper.GetDataRow(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object?>?, bool)
   type: Method
   source:
     remote:
@@ -1732,7 +1732,7 @@ items:
         method returns <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
   example: []
   syntax:
-    content: public static DataRow? GetDataRow(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+    content: public static DataRow? GetDataRow(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -1774,9 +1774,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataRowAsync(MySqlConnection, string, Dictionary<string, object>?, bool, CancellationToken)
-  nameWithType: RelmHelper.GetDataRowAsync(MySqlConnection, string, Dictionary<string, object>?, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.GetDataRowAsync(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object>?, bool, System.Threading.CancellationToken)
+  name: GetDataRowAsync(MySqlConnection, string, Dictionary<string, object?>?, bool, CancellationToken)
+  nameWithType: RelmHelper.GetDataRowAsync(MySqlConnection, string, Dictionary<string, object?>?, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.GetDataRowAsync(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object?>?, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -1796,7 +1796,7 @@ items:
         method returns <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
   example: []
   syntax:
-    content: public static Task<DataRow?> GetDataRowAsync(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+    content: public static Task<DataRow?> GetDataRowAsync(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -1835,9 +1835,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataRowAsync(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool, CancellationToken)
-  nameWithType: RelmHelper.GetDataRowAsync(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.GetDataRowAsync(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object>?, bool, System.Threading.CancellationToken)
+  name: GetDataRowAsync(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool, CancellationToken)
+  nameWithType: RelmHelper.GetDataRowAsync(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.GetDataRowAsync(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object?>?, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -1857,7 +1857,7 @@ items:
         method returns <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
   example: []
   syntax:
-    content: public static Task<DataRow?> GetDataRowAsync(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+    content: public static Task<DataRow?> GetDataRowAsync(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -1901,9 +1901,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataRow(IRelmContext, string, Dictionary<string, object>?, bool)
-  nameWithType: RelmHelper.GetDataRow(IRelmContext, string, Dictionary<string, object>?, bool)
-  fullName: CoreRelm.RelmHelper.GetDataRow(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object>?, bool)
+  name: GetDataRow(IRelmContext, string, Dictionary<string, object?>?, bool)
+  nameWithType: RelmHelper.GetDataRow(IRelmContext, string, Dictionary<string, object?>?, bool)
+  fullName: CoreRelm.RelmHelper.GetDataRow(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object?>?, bool)
   type: Method
   source:
     remote:
@@ -1919,7 +1919,7 @@ items:
   summary: Executes the specified query and retrieves the first row of the result set as a <xref href="System.Data.DataRow" data-throw-if-not-resolved="false"></xref>.
   example: []
   syntax:
-    content: public static DataRow? GetDataRow(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+    content: public static DataRow? GetDataRow(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
     parameters:
     - id: relmContext
       type: CoreRelm.Interfaces.IRelmContext
@@ -1952,9 +1952,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataRowAsync(IRelmContext, string, Dictionary<string, object>?, bool, CancellationToken)
-  nameWithType: RelmHelper.GetDataRowAsync(IRelmContext, string, Dictionary<string, object>?, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.GetDataRowAsync(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object>?, bool, System.Threading.CancellationToken)
+  name: GetDataRowAsync(IRelmContext, string, Dictionary<string, object?>?, bool, CancellationToken)
+  nameWithType: RelmHelper.GetDataRowAsync(IRelmContext, string, Dictionary<string, object?>?, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.GetDataRowAsync(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object?>?, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -1970,7 +1970,7 @@ items:
   summary: Executes the specified query and retrieves the first row of the result set as a <xref href="System.Data.DataRow" data-throw-if-not-resolved="false"></xref>.
   example: []
   syntax:
-    content: public static Task<DataRow?> GetDataRowAsync(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+    content: public static Task<DataRow?> GetDataRowAsync(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
     parameters:
     - id: relmContext
       type: CoreRelm.Interfaces.IRelmContext
@@ -2005,9 +2005,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataTable(Enum, string, Dictionary<string, object>?, bool, bool)
-  nameWithType: RelmHelper.GetDataTable(Enum, string, Dictionary<string, object>?, bool, bool)
-  fullName: CoreRelm.RelmHelper.GetDataTable(System.Enum, string, System.Collections.Generic.Dictionary<string, object>?, bool, bool)
+  name: GetDataTable(Enum, string, Dictionary<string, object?>?, bool, bool)
+  nameWithType: RelmHelper.GetDataTable(Enum, string, Dictionary<string, object?>?, bool, bool)
+  fullName: CoreRelm.RelmHelper.GetDataTable(System.Enum, string, System.Collections.Generic.Dictionary<string, object?>?, bool, bool)
   type: Method
   source:
     remote:
@@ -2026,7 +2026,7 @@ items:
         are added to the query to prevent SQL injection.
   example: []
   syntax:
-    content: public static DataTable? GetDataTable(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false)
+    content: public static DataTable? GetDataTable(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false)
     parameters:
     - id: connectionName
       type: System.Enum
@@ -2064,9 +2064,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataTableAsync(Enum, string, Dictionary<string, object>?, bool, bool, CancellationToken)
-  nameWithType: RelmHelper.GetDataTableAsync(Enum, string, Dictionary<string, object>?, bool, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.GetDataTableAsync(System.Enum, string, System.Collections.Generic.Dictionary<string, object>?, bool, bool, System.Threading.CancellationToken)
+  name: GetDataTableAsync(Enum, string, Dictionary<string, object?>?, bool, bool, CancellationToken)
+  nameWithType: RelmHelper.GetDataTableAsync(Enum, string, Dictionary<string, object?>?, bool, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.GetDataTableAsync(System.Enum, string, System.Collections.Generic.Dictionary<string, object?>?, bool, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -2085,7 +2085,7 @@ items:
         are added to the query to prevent SQL injection.
   example: []
   syntax:
-    content: public static Task<DataTable?> GetDataTableAsync(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
+    content: public static Task<DataTable?> GetDataTableAsync(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
     parameters:
     - id: connectionName
       type: System.Enum
@@ -2125,9 +2125,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataTable(MySqlConnection, string, Dictionary<string, object>?, bool)
-  nameWithType: RelmHelper.GetDataTable(MySqlConnection, string, Dictionary<string, object>?, bool)
-  fullName: CoreRelm.RelmHelper.GetDataTable(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object>?, bool)
+  name: GetDataTable(MySqlConnection, string, Dictionary<string, object?>?, bool)
+  nameWithType: RelmHelper.GetDataTable(MySqlConnection, string, Dictionary<string, object?>?, bool)
+  fullName: CoreRelm.RelmHelper.GetDataTable(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object?>?, bool)
   type: Method
   source:
     remote:
@@ -2143,7 +2143,7 @@ items:
   summary: Executes the specified SQL query and retrieves the results as a <xref href="System.Data.DataTable" data-throw-if-not-resolved="false"></xref>.
   example: []
   syntax:
-    content: public static DataTable? GetDataTable(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+    content: public static DataTable? GetDataTable(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -2178,9 +2178,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataTable(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool)
-  nameWithType: RelmHelper.GetDataTable(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool)
-  fullName: CoreRelm.RelmHelper.GetDataTable(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object>?, bool)
+  name: GetDataTable(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool)
+  nameWithType: RelmHelper.GetDataTable(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool)
+  fullName: CoreRelm.RelmHelper.GetDataTable(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object?>?, bool)
   type: Method
   source:
     remote:
@@ -2196,7 +2196,7 @@ items:
   summary: Executes the specified SQL query and retrieves the results as a <xref href="System.Data.DataTable" data-throw-if-not-resolved="false"></xref>.
   example: []
   syntax:
-    content: public static DataTable? GetDataTable(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+    content: public static DataTable? GetDataTable(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -2236,9 +2236,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataTableAsync(MySqlConnection, string, Dictionary<string, object>?, bool, CancellationToken)
-  nameWithType: RelmHelper.GetDataTableAsync(MySqlConnection, string, Dictionary<string, object>?, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.GetDataTableAsync(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object>?, bool, System.Threading.CancellationToken)
+  name: GetDataTableAsync(MySqlConnection, string, Dictionary<string, object?>?, bool, CancellationToken)
+  nameWithType: RelmHelper.GetDataTableAsync(MySqlConnection, string, Dictionary<string, object?>?, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.GetDataTableAsync(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object?>?, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -2254,7 +2254,7 @@ items:
   summary: Executes the specified SQL query and retrieves the results as a <xref href="System.Data.DataTable" data-throw-if-not-resolved="false"></xref>.
   example: []
   syntax:
-    content: public static Task<DataTable?> GetDataTableAsync(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+    content: public static Task<DataTable?> GetDataTableAsync(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -2291,9 +2291,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataTableAsync(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool, CancellationToken)
-  nameWithType: RelmHelper.GetDataTableAsync(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.GetDataTableAsync(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object>?, bool, System.Threading.CancellationToken)
+  name: GetDataTableAsync(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool, CancellationToken)
+  nameWithType: RelmHelper.GetDataTableAsync(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.GetDataTableAsync(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object?>?, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -2309,7 +2309,7 @@ items:
   summary: Executes the specified SQL query and retrieves the results as a <xref href="System.Data.DataTable" data-throw-if-not-resolved="false"></xref>.
   example: []
   syntax:
-    content: public static Task<DataTable?> GetDataTableAsync(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+    content: public static Task<DataTable?> GetDataTableAsync(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -2351,9 +2351,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataTable(IRelmContext, string, Dictionary<string, object>?, bool)
-  nameWithType: RelmHelper.GetDataTable(IRelmContext, string, Dictionary<string, object>?, bool)
-  fullName: CoreRelm.RelmHelper.GetDataTable(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object>?, bool)
+  name: GetDataTable(IRelmContext, string, Dictionary<string, object?>?, bool)
+  nameWithType: RelmHelper.GetDataTable(IRelmContext, string, Dictionary<string, object?>?, bool)
+  fullName: CoreRelm.RelmHelper.GetDataTable(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object?>?, bool)
   type: Method
   source:
     remote:
@@ -2369,7 +2369,7 @@ items:
   summary: Executes the specified query against the provided Relm context and returns the results as a <xref href="System.Data.DataTable" data-throw-if-not-resolved="false"></xref>.
   example: []
   syntax:
-    content: public static DataTable? GetDataTable(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+    content: public static DataTable? GetDataTable(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
     parameters:
     - id: relmContext
       type: CoreRelm.Interfaces.IRelmContext
@@ -2400,9 +2400,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataTableAsync(IRelmContext, string, Dictionary<string, object>?, bool, CancellationToken)
-  nameWithType: RelmHelper.GetDataTableAsync(IRelmContext, string, Dictionary<string, object>?, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.GetDataTableAsync(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object>?, bool, System.Threading.CancellationToken)
+  name: GetDataTableAsync(IRelmContext, string, Dictionary<string, object?>?, bool, CancellationToken)
+  nameWithType: RelmHelper.GetDataTableAsync(IRelmContext, string, Dictionary<string, object?>?, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.GetDataTableAsync(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object?>?, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -2418,7 +2418,7 @@ items:
   summary: Executes the specified query against the provided Relm context and returns the results as a <xref href="System.Data.DataTable" data-throw-if-not-resolved="false"></xref>.
   example: []
   syntax:
-    content: public static Task<DataTable?> GetDataTableAsync(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+    content: public static Task<DataTable?> GetDataTableAsync(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
     parameters:
     - id: relmContext
       type: CoreRelm.Interfaces.IRelmContext
@@ -2451,9 +2451,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataObject<T>(Enum, string, Dictionary<string, object>?, bool, bool)
-  nameWithType: RelmHelper.GetDataObject<T>(Enum, string, Dictionary<string, object>?, bool, bool)
-  fullName: CoreRelm.RelmHelper.GetDataObject<T>(System.Enum, string, System.Collections.Generic.Dictionary<string, object>?, bool, bool)
+  name: GetDataObject<T>(Enum, string, Dictionary<string, object?>?, bool, bool)
+  nameWithType: RelmHelper.GetDataObject<T>(Enum, string, Dictionary<string, object?>?, bool, bool)
+  fullName: CoreRelm.RelmHelper.GetDataObject<T>(System.Enum, string, System.Collections.Generic.Dictionary<string, object?>?, bool, bool)
   type: Method
   source:
     remote:
@@ -2472,7 +2472,7 @@ items:
         multiple objects match the query, only the first one is returned.
   example: []
   syntax:
-    content: 'public static T? GetDataObject<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false) where T : IRelmModel, new()'
+    content: 'public static T? GetDataObject<T>(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false) where T : IRelmModel, new()'
     parameters:
     - id: connectionName
       type: System.Enum
@@ -2515,9 +2515,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataObjectAsync<T>(Enum, string, Dictionary<string, object>?, bool, bool, CancellationToken)
-  nameWithType: RelmHelper.GetDataObjectAsync<T>(Enum, string, Dictionary<string, object>?, bool, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.GetDataObjectAsync<T>(System.Enum, string, System.Collections.Generic.Dictionary<string, object>?, bool, bool, System.Threading.CancellationToken)
+  name: GetDataObjectAsync<T>(Enum, string, Dictionary<string, object?>?, bool, bool, CancellationToken)
+  nameWithType: RelmHelper.GetDataObjectAsync<T>(Enum, string, Dictionary<string, object?>?, bool, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.GetDataObjectAsync<T>(System.Enum, string, System.Collections.Generic.Dictionary<string, object?>?, bool, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -2536,7 +2536,7 @@ items:
         multiple objects match the query, only the first one is returned.
   example: []
   syntax:
-    content: 'public static Task<T?> GetDataObjectAsync<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default) where T : IRelmModel, new()'
+    content: 'public static Task<T?> GetDataObjectAsync<T>(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default) where T : IRelmModel, new()'
     parameters:
     - id: connectionName
       type: System.Enum
@@ -2581,9 +2581,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataObject<T>(MySqlConnection, string, Dictionary<string, object>?, bool)
-  nameWithType: RelmHelper.GetDataObject<T>(MySqlConnection, string, Dictionary<string, object>?, bool)
-  fullName: CoreRelm.RelmHelper.GetDataObject<T>(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object>?, bool)
+  name: GetDataObject<T>(MySqlConnection, string, Dictionary<string, object?>?, bool)
+  nameWithType: RelmHelper.GetDataObject<T>(MySqlConnection, string, Dictionary<string, object?>?, bool)
+  fullName: CoreRelm.RelmHelper.GetDataObject<T>(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object?>?, bool)
   type: Method
   source:
     remote:
@@ -2602,7 +2602,7 @@ items:
     parameters.
   example: []
   syntax:
-    content: 'public static T? GetDataObject<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new()'
+    content: 'public static T? GetDataObject<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true) where T : IRelmModel, new()'
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -2643,9 +2643,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataObject<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool)
-  nameWithType: RelmHelper.GetDataObject<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool)
-  fullName: CoreRelm.RelmHelper.GetDataObject<T>(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object>?, bool)
+  name: GetDataObject<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool)
+  nameWithType: RelmHelper.GetDataObject<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool)
+  fullName: CoreRelm.RelmHelper.GetDataObject<T>(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object?>?, bool)
   type: Method
   source:
     remote:
@@ -2664,7 +2664,7 @@ items:
     parameters.
   example: []
   syntax:
-    content: 'public static T? GetDataObject<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new()'
+    content: 'public static T? GetDataObject<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true) where T : IRelmModel, new()'
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -2710,9 +2710,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataObjectAsync<T>(MySqlConnection, string, Dictionary<string, object>?, bool, CancellationToken)
-  nameWithType: RelmHelper.GetDataObjectAsync<T>(MySqlConnection, string, Dictionary<string, object>?, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.GetDataObjectAsync<T>(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object>?, bool, System.Threading.CancellationToken)
+  name: GetDataObjectAsync<T>(MySqlConnection, string, Dictionary<string, object?>?, bool, CancellationToken)
+  nameWithType: RelmHelper.GetDataObjectAsync<T>(MySqlConnection, string, Dictionary<string, object?>?, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.GetDataObjectAsync<T>(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object?>?, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -2731,7 +2731,7 @@ items:
     parameters.
   example: []
   syntax:
-    content: 'public static Task<T?> GetDataObjectAsync<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel, new()'
+    content: 'public static Task<T?> GetDataObjectAsync<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel, new()'
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -2774,9 +2774,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataObjectAsync<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool, CancellationToken)
-  nameWithType: RelmHelper.GetDataObjectAsync<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.GetDataObjectAsync<T>(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object>?, bool, System.Threading.CancellationToken)
+  name: GetDataObjectAsync<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool, CancellationToken)
+  nameWithType: RelmHelper.GetDataObjectAsync<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.GetDataObjectAsync<T>(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object?>?, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -2795,7 +2795,7 @@ items:
     parameters.
   example: []
   syntax:
-    content: 'public static Task<T?> GetDataObjectAsync<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel, new()'
+    content: 'public static Task<T?> GetDataObjectAsync<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel, new()'
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -2843,9 +2843,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataObject<T>(IRelmContext, string, Dictionary<string, object>?, bool)
-  nameWithType: RelmHelper.GetDataObject<T>(IRelmContext, string, Dictionary<string, object>?, bool)
-  fullName: CoreRelm.RelmHelper.GetDataObject<T>(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object>?, bool)
+  name: GetDataObject<T>(IRelmContext, string, Dictionary<string, object?>?, bool)
+  nameWithType: RelmHelper.GetDataObject<T>(IRelmContext, string, Dictionary<string, object?>?, bool)
+  fullName: CoreRelm.RelmHelper.GetDataObject<T>(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object?>?, bool)
   type: Method
   source:
     remote:
@@ -2864,7 +2864,7 @@ items:
         properly constructed to avoid unexpected results.
   example: []
   syntax:
-    content: 'public static T? GetDataObject<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new()'
+    content: 'public static T? GetDataObject<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true) where T : IRelmModel, new()'
     parameters:
     - id: relmContext
       type: CoreRelm.Interfaces.IRelmContext
@@ -2905,9 +2905,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataObjectAsync<T>(IRelmContext, string, Dictionary<string, object>?, bool, CancellationToken)
-  nameWithType: RelmHelper.GetDataObjectAsync<T>(IRelmContext, string, Dictionary<string, object>?, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.GetDataObjectAsync<T>(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object>?, bool, System.Threading.CancellationToken)
+  name: GetDataObjectAsync<T>(IRelmContext, string, Dictionary<string, object?>?, bool, CancellationToken)
+  nameWithType: RelmHelper.GetDataObjectAsync<T>(IRelmContext, string, Dictionary<string, object?>?, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.GetDataObjectAsync<T>(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object?>?, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -2926,7 +2926,7 @@ items:
         properly constructed to avoid unexpected results.
   example: []
   syntax:
-    content: 'public static Task<T?> GetDataObjectAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel, new()'
+    content: 'public static Task<T?> GetDataObjectAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel, new()'
     parameters:
     - id: relmContext
       type: CoreRelm.Interfaces.IRelmContext
@@ -2969,9 +2969,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataObjects<T>(Enum, string, Dictionary<string, object>?, bool, bool)
-  nameWithType: RelmHelper.GetDataObjects<T>(Enum, string, Dictionary<string, object>?, bool, bool)
-  fullName: CoreRelm.RelmHelper.GetDataObjects<T>(System.Enum, string, System.Collections.Generic.Dictionary<string, object>?, bool, bool)
+  name: GetDataObjects<T>(Enum, string, Dictionary<string, object?>?, bool, bool)
+  nameWithType: RelmHelper.GetDataObjects<T>(Enum, string, Dictionary<string, object?>?, bool, bool)
+  fullName: CoreRelm.RelmHelper.GetDataObjects<T>(System.Enum, string, System.Collections.Generic.Dictionary<string, object?>?, bool, bool)
   type: Method
   source:
     remote:
@@ -2990,7 +2990,7 @@ items:
         Ensure that the SQL query and parameters are properly constructed to avoid runtime errors.
   example: []
   syntax:
-    content: 'public static IEnumerable<T?>? GetDataObjects<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false) where T : IRelmModel, new()'
+    content: 'public static IEnumerable<T?>? GetDataObjects<T>(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false) where T : IRelmModel, new()'
     parameters:
     - id: connectionName
       type: System.Enum
@@ -3035,9 +3035,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataObjectsAsync<T>(Enum, string, Dictionary<string, object>?, bool, bool, CancellationToken)
-  nameWithType: RelmHelper.GetDataObjectsAsync<T>(Enum, string, Dictionary<string, object>?, bool, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.GetDataObjectsAsync<T>(System.Enum, string, System.Collections.Generic.Dictionary<string, object>?, bool, bool, System.Threading.CancellationToken)
+  name: GetDataObjectsAsync<T>(Enum, string, Dictionary<string, object?>?, bool, bool, CancellationToken)
+  nameWithType: RelmHelper.GetDataObjectsAsync<T>(Enum, string, Dictionary<string, object?>?, bool, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.GetDataObjectsAsync<T>(System.Enum, string, System.Collections.Generic.Dictionary<string, object?>?, bool, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -3056,7 +3056,7 @@ items:
         Ensure that the SQL query and parameters are properly constructed to avoid runtime errors.
   example: []
   syntax:
-    content: 'public static Task<IEnumerable<T?>?> GetDataObjectsAsync<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default) where T : IRelmModel, new()'
+    content: 'public static Task<IEnumerable<T?>?> GetDataObjectsAsync<T>(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default) where T : IRelmModel, new()'
     parameters:
     - id: connectionName
       type: System.Enum
@@ -3103,9 +3103,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataObjects<T>(MySqlConnection, string, Dictionary<string, object>?, bool)
-  nameWithType: RelmHelper.GetDataObjects<T>(MySqlConnection, string, Dictionary<string, object>?, bool)
-  fullName: CoreRelm.RelmHelper.GetDataObjects<T>(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object>?, bool)
+  name: GetDataObjects<T>(MySqlConnection, string, Dictionary<string, object?>?, bool)
+  nameWithType: RelmHelper.GetDataObjects<T>(MySqlConnection, string, Dictionary<string, object?>?, bool)
+  fullName: CoreRelm.RelmHelper.GetDataObjects<T>(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object?>?, bool)
   type: Method
   source:
     remote:
@@ -3127,7 +3127,7 @@ items:
         the database. Ensure that the query matches the structure of the type <code class="typeparamref">T</code>.
   example: []
   syntax:
-    content: 'public static IEnumerable<T?>? GetDataObjects<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new()'
+    content: 'public static IEnumerable<T?>? GetDataObjects<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true) where T : IRelmModel, new()'
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -3165,9 +3165,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataObjects<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool)
-  nameWithType: RelmHelper.GetDataObjects<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool)
-  fullName: CoreRelm.RelmHelper.GetDataObjects<T>(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object>?, bool)
+  name: GetDataObjects<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool)
+  nameWithType: RelmHelper.GetDataObjects<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool)
+  fullName: CoreRelm.RelmHelper.GetDataObjects<T>(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object?>?, bool)
   type: Method
   source:
     remote:
@@ -3189,7 +3189,7 @@ items:
         the database. Ensure that the query matches the structure of the type <code class="typeparamref">T</code>.
   example: []
   syntax:
-    content: 'public static IEnumerable<T?>? GetDataObjects<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new()'
+    content: 'public static IEnumerable<T?>? GetDataObjects<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true) where T : IRelmModel, new()'
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -3230,9 +3230,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataObjectsAsync<T>(MySqlConnection, string, Dictionary<string, object>?, bool, CancellationToken)
-  nameWithType: RelmHelper.GetDataObjectsAsync<T>(MySqlConnection, string, Dictionary<string, object>?, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.GetDataObjectsAsync<T>(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object>?, bool, System.Threading.CancellationToken)
+  name: GetDataObjectsAsync<T>(MySqlConnection, string, Dictionary<string, object?>?, bool, CancellationToken)
+  nameWithType: RelmHelper.GetDataObjectsAsync<T>(MySqlConnection, string, Dictionary<string, object?>?, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.GetDataObjectsAsync<T>(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object?>?, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -3254,7 +3254,7 @@ items:
         the database. Ensure that the query matches the structure of the type <code class="typeparamref">T</code>.
   example: []
   syntax:
-    content: 'public static Task<IEnumerable<T?>?> GetDataObjectsAsync<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel, new()'
+    content: 'public static Task<IEnumerable<T?>?> GetDataObjectsAsync<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel, new()'
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -3294,9 +3294,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataObjectsAsync<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool, CancellationToken)
-  nameWithType: RelmHelper.GetDataObjectsAsync<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.GetDataObjectsAsync<T>(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object>?, bool, System.Threading.CancellationToken)
+  name: GetDataObjectsAsync<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool, CancellationToken)
+  nameWithType: RelmHelper.GetDataObjectsAsync<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.GetDataObjectsAsync<T>(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object?>?, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -3318,7 +3318,7 @@ items:
         the database. Ensure that the query matches the structure of the type <code class="typeparamref">T</code>.
   example: []
   syntax:
-    content: 'public static Task<IEnumerable<T?>?> GetDataObjectsAsync<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel, new()'
+    content: 'public static Task<IEnumerable<T?>?> GetDataObjectsAsync<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel, new()'
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -3361,9 +3361,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataObjects<T>(IRelmContext, string, Dictionary<string, object>?, bool)
-  nameWithType: RelmHelper.GetDataObjects<T>(IRelmContext, string, Dictionary<string, object>?, bool)
-  fullName: CoreRelm.RelmHelper.GetDataObjects<T>(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object>?, bool)
+  name: GetDataObjects<T>(IRelmContext, string, Dictionary<string, object?>?, bool)
+  nameWithType: RelmHelper.GetDataObjects<T>(IRelmContext, string, Dictionary<string, object?>?, bool)
+  fullName: CoreRelm.RelmHelper.GetDataObjects<T>(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object?>?, bool)
   type: Method
   source:
     remote:
@@ -3386,7 +3386,7 @@ items:
         errors.
   example: []
   syntax:
-    content: 'public static IEnumerable<T?>? GetDataObjects<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true) where T : IRelmModel, new()'
+    content: 'public static IEnumerable<T?>? GetDataObjects<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true) where T : IRelmModel, new()'
     parameters:
     - id: relmContext
       type: CoreRelm.Interfaces.IRelmContext
@@ -3429,9 +3429,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataObjectsAsync<T>(IRelmContext, string, Dictionary<string, object>?, bool, CancellationToken)
-  nameWithType: RelmHelper.GetDataObjectsAsync<T>(IRelmContext, string, Dictionary<string, object>?, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.GetDataObjectsAsync<T>(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object>?, bool, System.Threading.CancellationToken)
+  name: GetDataObjectsAsync<T>(IRelmContext, string, Dictionary<string, object?>?, bool, CancellationToken)
+  nameWithType: RelmHelper.GetDataObjectsAsync<T>(IRelmContext, string, Dictionary<string, object?>?, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.GetDataObjectsAsync<T>(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object?>?, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -3454,7 +3454,7 @@ items:
         errors.
   example: []
   syntax:
-    content: 'public static Task<IEnumerable<T?>?> GetDataObjectsAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel, new()'
+    content: 'public static Task<IEnumerable<T?>?> GetDataObjectsAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default) where T : IRelmModel, new()'
     parameters:
     - id: relmContext
       type: CoreRelm.Interfaces.IRelmContext
@@ -3551,9 +3551,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataList<T>(Enum, string, Dictionary<string, object>?, bool, bool)
-  nameWithType: RelmHelper.GetDataList<T>(Enum, string, Dictionary<string, object>?, bool, bool)
-  fullName: CoreRelm.RelmHelper.GetDataList<T>(System.Enum, string, System.Collections.Generic.Dictionary<string, object>?, bool, bool)
+  name: GetDataList<T>(Enum, string, Dictionary<string, object?>?, bool, bool)
+  nameWithType: RelmHelper.GetDataList<T>(Enum, string, Dictionary<string, object?>?, bool, bool)
+  fullName: CoreRelm.RelmHelper.GetDataList<T>(System.Enum, string, System.Collections.Generic.Dictionary<string, object?>?, bool, bool)
   type: Method
   source:
     remote:
@@ -3573,7 +3573,7 @@ items:
         results.
   example: []
   syntax:
-    content: public static IEnumerable<T?>? GetDataList<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false)
+    content: public static IEnumerable<T?>? GetDataList<T>(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false)
     parameters:
     - id: connectionName
       type: System.Enum
@@ -3614,9 +3614,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataListAsync<T>(Enum, string, Dictionary<string, object>?, bool, bool, CancellationToken)
-  nameWithType: RelmHelper.GetDataListAsync<T>(Enum, string, Dictionary<string, object>?, bool, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.GetDataListAsync<T>(System.Enum, string, System.Collections.Generic.Dictionary<string, object>?, bool, bool, System.Threading.CancellationToken)
+  name: GetDataListAsync<T>(Enum, string, Dictionary<string, object?>?, bool, bool, CancellationToken)
+  nameWithType: RelmHelper.GetDataListAsync<T>(Enum, string, Dictionary<string, object?>?, bool, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.GetDataListAsync<T>(System.Enum, string, System.Collections.Generic.Dictionary<string, object?>?, bool, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -3636,7 +3636,7 @@ items:
         results.
   example: []
   syntax:
-    content: public static Task<IEnumerable<T?>?> GetDataListAsync<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
+    content: public static Task<IEnumerable<T?>?> GetDataListAsync<T>(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
     parameters:
     - id: connectionName
       type: System.Enum
@@ -3679,9 +3679,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataList<T>(MySqlConnection, string, Dictionary<string, object>?, bool)
-  nameWithType: RelmHelper.GetDataList<T>(MySqlConnection, string, Dictionary<string, object>?, bool)
-  fullName: CoreRelm.RelmHelper.GetDataList<T>(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object>?, bool)
+  name: GetDataList<T>(MySqlConnection, string, Dictionary<string, object?>?, bool)
+  nameWithType: RelmHelper.GetDataList<T>(MySqlConnection, string, Dictionary<string, object?>?, bool)
+  fullName: CoreRelm.RelmHelper.GetDataList<T>(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object?>?, bool)
   type: Method
   source:
     remote:
@@ -3697,7 +3697,7 @@ items:
   summary: Executes the specified SQL query and retrieves a list of objects of type <code class="typeparamref">T</code>.
   example: []
   syntax:
-    content: public static IEnumerable<T?>? GetDataList<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+    content: public static IEnumerable<T?>? GetDataList<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -3731,9 +3731,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataList<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool)
-  nameWithType: RelmHelper.GetDataList<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool)
-  fullName: CoreRelm.RelmHelper.GetDataList<T>(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object>?, bool)
+  name: GetDataList<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool)
+  nameWithType: RelmHelper.GetDataList<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool)
+  fullName: CoreRelm.RelmHelper.GetDataList<T>(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object?>?, bool)
   type: Method
   source:
     remote:
@@ -3749,7 +3749,7 @@ items:
   summary: Executes the specified SQL query and retrieves a list of objects of type <code class="typeparamref">T</code>.
   example: []
   syntax:
-    content: public static IEnumerable<T?>? GetDataList<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+    content: public static IEnumerable<T?>? GetDataList<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -3788,9 +3788,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataListAsync<T>(MySqlConnection, string, Dictionary<string, object>?, bool, CancellationToken)
-  nameWithType: RelmHelper.GetDataListAsync<T>(MySqlConnection, string, Dictionary<string, object>?, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.GetDataListAsync<T>(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object>?, bool, System.Threading.CancellationToken)
+  name: GetDataListAsync<T>(MySqlConnection, string, Dictionary<string, object?>?, bool, CancellationToken)
+  nameWithType: RelmHelper.GetDataListAsync<T>(MySqlConnection, string, Dictionary<string, object?>?, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.GetDataListAsync<T>(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object?>?, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -3806,7 +3806,7 @@ items:
   summary: Executes the specified SQL query and retrieves a list of objects of type <code class="typeparamref">T</code>.
   example: []
   syntax:
-    content: public static Task<IEnumerable<T?>?> GetDataListAsync<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+    content: public static Task<IEnumerable<T?>?> GetDataListAsync<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -3842,9 +3842,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataListAsync<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool, CancellationToken)
-  nameWithType: RelmHelper.GetDataListAsync<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.GetDataListAsync<T>(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object>?, bool, System.Threading.CancellationToken)
+  name: GetDataListAsync<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool, CancellationToken)
+  nameWithType: RelmHelper.GetDataListAsync<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.GetDataListAsync<T>(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object?>?, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -3860,7 +3860,7 @@ items:
   summary: Executes the specified SQL query and retrieves a list of objects of type <code class="typeparamref">T</code>.
   example: []
   syntax:
-    content: public static Task<IEnumerable<T?>?> GetDataListAsync<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+    content: public static Task<IEnumerable<T?>?> GetDataListAsync<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -3901,9 +3901,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataList<T>(IRelmContext, string, Dictionary<string, object>?, bool)
-  nameWithType: RelmHelper.GetDataList<T>(IRelmContext, string, Dictionary<string, object>?, bool)
-  fullName: CoreRelm.RelmHelper.GetDataList<T>(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object>?, bool)
+  name: GetDataList<T>(IRelmContext, string, Dictionary<string, object?>?, bool)
+  nameWithType: RelmHelper.GetDataList<T>(IRelmContext, string, Dictionary<string, object?>?, bool)
+  fullName: CoreRelm.RelmHelper.GetDataList<T>(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object?>?, bool)
   type: Method
   source:
     remote:
@@ -3919,7 +3919,7 @@ items:
   summary: Executes a query against the specified Realm context and retrieves a collection of data items.
   example: []
   syntax:
-    content: public static IEnumerable<T?>? GetDataList<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+    content: public static IEnumerable<T?>? GetDataList<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
     parameters:
     - id: relmContext
       type: CoreRelm.Interfaces.IRelmContext
@@ -3958,9 +3958,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDataListAsync<T>(IRelmContext, string, Dictionary<string, object>?, bool, CancellationToken)
-  nameWithType: RelmHelper.GetDataListAsync<T>(IRelmContext, string, Dictionary<string, object>?, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.GetDataListAsync<T>(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object>?, bool, System.Threading.CancellationToken)
+  name: GetDataListAsync<T>(IRelmContext, string, Dictionary<string, object?>?, bool, CancellationToken)
+  nameWithType: RelmHelper.GetDataListAsync<T>(IRelmContext, string, Dictionary<string, object?>?, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.GetDataListAsync<T>(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object?>?, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -3976,7 +3976,7 @@ items:
   summary: Executes a query against the specified Realm context and retrieves a collection of data items.
   example: []
   syntax:
-    content: public static Task<IEnumerable<T?>?> GetDataListAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+    content: public static Task<IEnumerable<T?>?> GetDataListAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
     parameters:
     - id: relmContext
       type: CoreRelm.Interfaces.IRelmContext
@@ -5601,9 +5601,9 @@ items:
   langs:
   - csharp
   - vb
-  name: DoDatabaseWork(Enum, string, Dictionary<string, object>?, bool, bool)
-  nameWithType: RelmHelper.DoDatabaseWork(Enum, string, Dictionary<string, object>?, bool, bool)
-  fullName: CoreRelm.RelmHelper.DoDatabaseWork(System.Enum, string, System.Collections.Generic.Dictionary<string, object>?, bool, bool)
+  name: DoDatabaseWork(Enum, string, Dictionary<string, object?>?, bool, bool)
+  nameWithType: RelmHelper.DoDatabaseWork(Enum, string, Dictionary<string, object?>?, bool, bool)
+  fullName: CoreRelm.RelmHelper.DoDatabaseWork(System.Enum, string, System.Collections.Generic.Dictionary<string, object?>?, bool, bool)
   type: Method
   source:
     remote:
@@ -5624,7 +5624,7 @@ items:
         the target database.
   example: []
   syntax:
-    content: public static void DoDatabaseWork(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false)
+    content: public static void DoDatabaseWork(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false)
     parameters:
     - id: connectionName
       type: System.Enum
@@ -5657,9 +5657,9 @@ items:
   langs:
   - csharp
   - vb
-  name: DoDatabaseWorkAsync(Enum, string, Dictionary<string, object>?, bool, bool, CancellationToken)
-  nameWithType: RelmHelper.DoDatabaseWorkAsync(Enum, string, Dictionary<string, object>?, bool, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.DoDatabaseWorkAsync(System.Enum, string, System.Collections.Generic.Dictionary<string, object>?, bool, bool, System.Threading.CancellationToken)
+  name: DoDatabaseWorkAsync(Enum, string, Dictionary<string, object?>?, bool, bool, CancellationToken)
+  nameWithType: RelmHelper.DoDatabaseWorkAsync(Enum, string, Dictionary<string, object?>?, bool, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.DoDatabaseWorkAsync(System.Enum, string, System.Collections.Generic.Dictionary<string, object?>?, bool, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -5680,7 +5680,7 @@ items:
         the target database.
   example: []
   syntax:
-    content: public static Task DoDatabaseWorkAsync(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
+    content: public static Task DoDatabaseWorkAsync(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
     parameters:
     - id: connectionName
       type: System.Enum
@@ -5717,9 +5717,9 @@ items:
   langs:
   - csharp
   - vb
-  name: DoDatabaseWork(MySqlConnection, string, Dictionary<string, object>?, bool)
-  nameWithType: RelmHelper.DoDatabaseWork(MySqlConnection, string, Dictionary<string, object>?, bool)
-  fullName: CoreRelm.RelmHelper.DoDatabaseWork(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object>?, bool)
+  name: DoDatabaseWork(MySqlConnection, string, Dictionary<string, object?>?, bool)
+  nameWithType: RelmHelper.DoDatabaseWork(MySqlConnection, string, Dictionary<string, object?>?, bool)
+  fullName: CoreRelm.RelmHelper.DoDatabaseWork(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object?>?, bool)
   type: Method
   source:
     remote:
@@ -5738,7 +5738,7 @@ items:
         after use.
   example: []
   syntax:
-    content: public static void DoDatabaseWork(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+    content: public static void DoDatabaseWork(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -5770,9 +5770,9 @@ items:
   langs:
   - csharp
   - vb
-  name: DoDatabaseWork(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool)
-  nameWithType: RelmHelper.DoDatabaseWork(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool)
-  fullName: CoreRelm.RelmHelper.DoDatabaseWork(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object>?, bool)
+  name: DoDatabaseWork(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool)
+  nameWithType: RelmHelper.DoDatabaseWork(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool)
+  fullName: CoreRelm.RelmHelper.DoDatabaseWork(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object?>?, bool)
   type: Method
   source:
     remote:
@@ -5791,7 +5791,7 @@ items:
         after use.
   example: []
   syntax:
-    content: public static void DoDatabaseWork(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+    content: public static void DoDatabaseWork(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -5828,9 +5828,9 @@ items:
   langs:
   - csharp
   - vb
-  name: DoDatabaseWorkAsync(MySqlConnection, string, Dictionary<string, object>?, bool, CancellationToken)
-  nameWithType: RelmHelper.DoDatabaseWorkAsync(MySqlConnection, string, Dictionary<string, object>?, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.DoDatabaseWorkAsync(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object>?, bool, System.Threading.CancellationToken)
+  name: DoDatabaseWorkAsync(MySqlConnection, string, Dictionary<string, object?>?, bool, CancellationToken)
+  nameWithType: RelmHelper.DoDatabaseWorkAsync(MySqlConnection, string, Dictionary<string, object?>?, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.DoDatabaseWorkAsync(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object?>?, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -5849,7 +5849,7 @@ items:
         after use.
   example: []
   syntax:
-    content: public static Task DoDatabaseWorkAsync(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+    content: public static Task DoDatabaseWorkAsync(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -5885,9 +5885,9 @@ items:
   langs:
   - csharp
   - vb
-  name: DoDatabaseWorkAsync(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool, CancellationToken)
-  nameWithType: RelmHelper.DoDatabaseWorkAsync(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.DoDatabaseWorkAsync(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object>?, bool, System.Threading.CancellationToken)
+  name: DoDatabaseWorkAsync(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool, CancellationToken)
+  nameWithType: RelmHelper.DoDatabaseWorkAsync(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.DoDatabaseWorkAsync(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object?>?, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -5906,7 +5906,7 @@ items:
         after use.
   example: []
   syntax:
-    content: public static Task DoDatabaseWorkAsync(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+    content: public static Task DoDatabaseWorkAsync(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -5947,9 +5947,9 @@ items:
   langs:
   - csharp
   - vb
-  name: DoDatabaseWork(IRelmContext, string, Dictionary<string, object>?, bool)
-  nameWithType: RelmHelper.DoDatabaseWork(IRelmContext, string, Dictionary<string, object>?, bool)
-  fullName: CoreRelm.RelmHelper.DoDatabaseWork(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object>?, bool)
+  name: DoDatabaseWork(IRelmContext, string, Dictionary<string, object?>?, bool)
+  nameWithType: RelmHelper.DoDatabaseWork(IRelmContext, string, Dictionary<string, object?>?, bool)
+  fullName: CoreRelm.RelmHelper.DoDatabaseWork(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object?>?, bool)
   type: Method
   source:
     remote:
@@ -5969,7 +5969,7 @@ items:
         the target database.
   example: []
   syntax:
-    content: public static void DoDatabaseWork(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+    content: public static void DoDatabaseWork(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
     parameters:
     - id: relmContext
       type: CoreRelm.Interfaces.IRelmContext
@@ -5997,9 +5997,9 @@ items:
   langs:
   - csharp
   - vb
-  name: DoDatabaseWorkAsync(IRelmContext, string, Dictionary<string, object>?, bool, CancellationToken)
-  nameWithType: RelmHelper.DoDatabaseWorkAsync(IRelmContext, string, Dictionary<string, object>?, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.DoDatabaseWorkAsync(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object>?, bool, System.Threading.CancellationToken)
+  name: DoDatabaseWorkAsync(IRelmContext, string, Dictionary<string, object?>?, bool, CancellationToken)
+  nameWithType: RelmHelper.DoDatabaseWorkAsync(IRelmContext, string, Dictionary<string, object?>?, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.DoDatabaseWorkAsync(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object?>?, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -6019,7 +6019,7 @@ items:
         the target database.
   example: []
   syntax:
-    content: public static Task DoDatabaseWorkAsync(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+    content: public static Task DoDatabaseWorkAsync(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
     parameters:
     - id: relmContext
       type: CoreRelm.Interfaces.IRelmContext
@@ -6051,9 +6051,9 @@ items:
   langs:
   - csharp
   - vb
-  name: DoDatabaseWork<T>(Enum, string, Dictionary<string, object>?, bool, bool)
-  nameWithType: RelmHelper.DoDatabaseWork<T>(Enum, string, Dictionary<string, object>?, bool, bool)
-  fullName: CoreRelm.RelmHelper.DoDatabaseWork<T>(System.Enum, string, System.Collections.Generic.Dictionary<string, object>?, bool, bool)
+  name: DoDatabaseWork<T>(Enum, string, Dictionary<string, object?>?, bool, bool)
+  nameWithType: RelmHelper.DoDatabaseWork<T>(Enum, string, Dictionary<string, object?>?, bool, bool)
+  fullName: CoreRelm.RelmHelper.DoDatabaseWork<T>(System.Enum, string, System.Collections.Generic.Dictionary<string, object?>?, bool, bool)
   type: Method
   source:
     remote:
@@ -6073,7 +6073,7 @@ items:
         <code class="typeparamref">T</code> matches the expected result of the query.
   example: []
   syntax:
-    content: public static T? DoDatabaseWork<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false)
+    content: public static T? DoDatabaseWork<T>(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false)
     parameters:
     - id: connectionName
       type: System.Enum
@@ -6114,9 +6114,9 @@ items:
   langs:
   - csharp
   - vb
-  name: DoDatabaseWorkAsync<T>(Enum, string, Dictionary<string, object>?, bool, bool, CancellationToken)
-  nameWithType: RelmHelper.DoDatabaseWorkAsync<T>(Enum, string, Dictionary<string, object>?, bool, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.DoDatabaseWorkAsync<T>(System.Enum, string, System.Collections.Generic.Dictionary<string, object>?, bool, bool, System.Threading.CancellationToken)
+  name: DoDatabaseWorkAsync<T>(Enum, string, Dictionary<string, object?>?, bool, bool, CancellationToken)
+  nameWithType: RelmHelper.DoDatabaseWorkAsync<T>(Enum, string, Dictionary<string, object?>?, bool, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.DoDatabaseWorkAsync<T>(System.Enum, string, System.Collections.Generic.Dictionary<string, object?>?, bool, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -6136,7 +6136,7 @@ items:
         <code class="typeparamref">T</code> matches the expected result of the query.
   example: []
   syntax:
-    content: public static Task<T?> DoDatabaseWorkAsync<T>(Enum connectionName, string query, Dictionary<string, object>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
+    content: public static Task<T?> DoDatabaseWorkAsync<T>(Enum connectionName, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, bool allowUserVariables = false, CancellationToken cancellationToken = default)
     parameters:
     - id: connectionName
       type: System.Enum
@@ -6179,9 +6179,9 @@ items:
   langs:
   - csharp
   - vb
-  name: DoDatabaseWork<T>(MySqlConnection, string, Dictionary<string, object>?, bool)
-  nameWithType: RelmHelper.DoDatabaseWork<T>(MySqlConnection, string, Dictionary<string, object>?, bool)
-  fullName: CoreRelm.RelmHelper.DoDatabaseWork<T>(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object>?, bool)
+  name: DoDatabaseWork<T>(MySqlConnection, string, Dictionary<string, object?>?, bool)
+  nameWithType: RelmHelper.DoDatabaseWork<T>(MySqlConnection, string, Dictionary<string, object?>?, bool)
+  fullName: CoreRelm.RelmHelper.DoDatabaseWork<T>(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object?>?, bool)
   type: Method
   source:
     remote:
@@ -6201,7 +6201,7 @@ items:
         this method.
   example: []
   syntax:
-    content: public static T? DoDatabaseWork<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+    content: public static T? DoDatabaseWork<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -6237,9 +6237,9 @@ items:
   langs:
   - csharp
   - vb
-  name: DoDatabaseWork<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool)
-  nameWithType: RelmHelper.DoDatabaseWork<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool)
-  fullName: CoreRelm.RelmHelper.DoDatabaseWork<T>(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object>?, bool)
+  name: DoDatabaseWork<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool)
+  nameWithType: RelmHelper.DoDatabaseWork<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool)
+  fullName: CoreRelm.RelmHelper.DoDatabaseWork<T>(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object?>?, bool)
   type: Method
   source:
     remote:
@@ -6259,7 +6259,7 @@ items:
         this method.
   example: []
   syntax:
-    content: public static T? DoDatabaseWork<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+    content: public static T? DoDatabaseWork<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -6300,9 +6300,9 @@ items:
   langs:
   - csharp
   - vb
-  name: DoDatabaseWorkAsync<T>(MySqlConnection, string, Dictionary<string, object>?, bool, CancellationToken)
-  nameWithType: RelmHelper.DoDatabaseWorkAsync<T>(MySqlConnection, string, Dictionary<string, object>?, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.DoDatabaseWorkAsync<T>(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object>?, bool, System.Threading.CancellationToken)
+  name: DoDatabaseWorkAsync<T>(MySqlConnection, string, Dictionary<string, object?>?, bool, CancellationToken)
+  nameWithType: RelmHelper.DoDatabaseWorkAsync<T>(MySqlConnection, string, Dictionary<string, object?>?, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.DoDatabaseWorkAsync<T>(MySql.Data.MySqlClient.MySqlConnection, string, System.Collections.Generic.Dictionary<string, object?>?, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -6322,7 +6322,7 @@ items:
         this method.
   example: []
   syntax:
-    content: public static Task<T?> DoDatabaseWorkAsync<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+    content: public static Task<T?> DoDatabaseWorkAsync<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -6360,9 +6360,9 @@ items:
   langs:
   - csharp
   - vb
-  name: DoDatabaseWorkAsync<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool, CancellationToken)
-  nameWithType: RelmHelper.DoDatabaseWorkAsync<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object>?, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.DoDatabaseWorkAsync<T>(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object>?, bool, System.Threading.CancellationToken)
+  name: DoDatabaseWorkAsync<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool, CancellationToken)
+  nameWithType: RelmHelper.DoDatabaseWorkAsync<T>(MySqlConnection, MySqlTransaction, string, Dictionary<string, object?>?, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.DoDatabaseWorkAsync<T>(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, string, System.Collections.Generic.Dictionary<string, object?>?, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -6382,7 +6382,7 @@ items:
         this method.
   example: []
   syntax:
-    content: public static Task<T?> DoDatabaseWorkAsync<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+    content: public static Task<T?> DoDatabaseWorkAsync<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
     parameters:
     - id: establishedConnection
       type: MySql.Data.MySqlClient.MySqlConnection
@@ -6425,9 +6425,9 @@ items:
   langs:
   - csharp
   - vb
-  name: DoDatabaseWork<T>(IRelmContext, string, Dictionary<string, object>?, bool)
-  nameWithType: RelmHelper.DoDatabaseWork<T>(IRelmContext, string, Dictionary<string, object>?, bool)
-  fullName: CoreRelm.RelmHelper.DoDatabaseWork<T>(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object>?, bool)
+  name: DoDatabaseWork<T>(IRelmContext, string, Dictionary<string, object?>?, bool)
+  nameWithType: RelmHelper.DoDatabaseWork<T>(IRelmContext, string, Dictionary<string, object?>?, bool)
+  fullName: CoreRelm.RelmHelper.DoDatabaseWork<T>(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object?>?, bool)
   type: Method
   source:
     remote:
@@ -6447,7 +6447,7 @@ items:
         <code class="paramref">throwException</code> and <code class="paramref">useTransaction</code> parameters.
   example: []
   syntax:
-    content: public static T? DoDatabaseWork<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true)
+    content: public static T? DoDatabaseWork<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
     parameters:
     - id: relmContext
       type: CoreRelm.Interfaces.IRelmContext
@@ -6483,9 +6483,9 @@ items:
   langs:
   - csharp
   - vb
-  name: DoDatabaseWorkAsync<T>(IRelmContext, string, Dictionary<string, object>?, bool, CancellationToken)
-  nameWithType: RelmHelper.DoDatabaseWorkAsync<T>(IRelmContext, string, Dictionary<string, object>?, bool, CancellationToken)
-  fullName: CoreRelm.RelmHelper.DoDatabaseWorkAsync<T>(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object>?, bool, System.Threading.CancellationToken)
+  name: DoDatabaseWorkAsync<T>(IRelmContext, string, Dictionary<string, object?>?, bool, CancellationToken)
+  nameWithType: RelmHelper.DoDatabaseWorkAsync<T>(IRelmContext, string, Dictionary<string, object?>?, bool, CancellationToken)
+  fullName: CoreRelm.RelmHelper.DoDatabaseWorkAsync<T>(CoreRelm.Interfaces.IRelmContext, string, System.Collections.Generic.Dictionary<string, object?>?, bool, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -6505,7 +6505,7 @@ items:
         <code class="paramref">throwException</code> and <code class="paramref">useTransaction</code> parameters.
   example: []
   syntax:
-    content: public static Task<T?> DoDatabaseWorkAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+    content: public static Task<T?> DoDatabaseWorkAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
     parameters:
     - id: relmContext
       type: CoreRelm.Interfaces.IRelmContext

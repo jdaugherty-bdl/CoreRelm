@@ -1,0 +1,952 @@
+### YamlMime:ManagedReference
+items:
+- uid: CoreRelm.Models.Migrations.RelmEntityDescriptor
+  commentId: T:CoreRelm.Models.Migrations.RelmEntityDescriptor
+  id: RelmEntityDescriptor
+  parent: CoreRelm.Models.Migrations
+  children:
+  - CoreRelm.Models.Migrations.RelmEntityDescriptor.#ctor(System.String,System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.RelmColumnDescriptor},System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.RelmIndexDescriptor},System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.RelmForeignKeyDescriptor},System.Type,System.String,System.Collections.Generic.Dictionary{System.String,System.String})
+  - CoreRelm.Models.Migrations.RelmEntityDescriptor.ClrType
+  - CoreRelm.Models.Migrations.RelmEntityDescriptor.Columns
+  - CoreRelm.Models.Migrations.RelmEntityDescriptor.DatabaseName
+  - CoreRelm.Models.Migrations.RelmEntityDescriptor.ForeignKeys
+  - CoreRelm.Models.Migrations.RelmEntityDescriptor.Hints
+  - CoreRelm.Models.Migrations.RelmEntityDescriptor.Indexes
+  - CoreRelm.Models.Migrations.RelmEntityDescriptor.Notes
+  - CoreRelm.Models.Migrations.RelmEntityDescriptor.TableName
+  langs:
+  - csharp
+  - vb
+  name: RelmEntityDescriptor
+  nameWithType: RelmEntityDescriptor
+  fullName: CoreRelm.Models.Migrations.RelmEntityDescriptor
+  type: Class
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/RelmEntityDescriptor.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: RelmEntityDescriptor
+    path: ../CoreRelm/Models/Migrations/RelmEntityDescriptor.cs
+    startLine: 8
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations
+  syntax:
+    content: 'public sealed record RelmEntityDescriptor : IEquatable<RelmEntityDescriptor>'
+    content.vb: Public NotInheritable Class RelmEntityDescriptor Implements IEquatable(Of RelmEntityDescriptor)
+  inheritance:
+  - System.Object
+  implements:
+  - System.IEquatable{CoreRelm.Models.Migrations.RelmEntityDescriptor}
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: CoreRelm.Models.Migrations.RelmEntityDescriptor.#ctor(System.String,System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.RelmColumnDescriptor},System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.RelmIndexDescriptor},System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.RelmForeignKeyDescriptor},System.Type,System.String,System.Collections.Generic.Dictionary{System.String,System.String})
+  commentId: M:CoreRelm.Models.Migrations.RelmEntityDescriptor.#ctor(System.String,System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.RelmColumnDescriptor},System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.RelmIndexDescriptor},System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.RelmForeignKeyDescriptor},System.Type,System.String,System.Collections.Generic.Dictionary{System.String,System.String})
+  id: '#ctor(System.String,System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.RelmColumnDescriptor},System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.RelmIndexDescriptor},System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.RelmForeignKeyDescriptor},System.Type,System.String,System.Collections.Generic.Dictionary{System.String,System.String})'
+  parent: CoreRelm.Models.Migrations.RelmEntityDescriptor
+  langs:
+  - csharp
+  - vb
+  name: RelmEntityDescriptor(string, string, IReadOnlyList<RelmColumnDescriptor>, IReadOnlyList<RelmIndexDescriptor>, IReadOnlyList<RelmForeignKeyDescriptor>, Type, string?, Dictionary<string, string>)
+  nameWithType: RelmEntityDescriptor.RelmEntityDescriptor(string, string, IReadOnlyList<RelmColumnDescriptor>, IReadOnlyList<RelmIndexDescriptor>, IReadOnlyList<RelmForeignKeyDescriptor>, Type, string?, Dictionary<string, string>)
+  fullName: CoreRelm.Models.Migrations.RelmEntityDescriptor.RelmEntityDescriptor(string, string, System.Collections.Generic.IReadOnlyList<CoreRelm.Models.Migrations.RelmColumnDescriptor>, System.Collections.Generic.IReadOnlyList<CoreRelm.Models.Migrations.RelmIndexDescriptor>, System.Collections.Generic.IReadOnlyList<CoreRelm.Models.Migrations.RelmForeignKeyDescriptor>, System.Type, string?, System.Collections.Generic.Dictionary<string, string>)
+  type: Constructor
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/RelmEntityDescriptor.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: .ctor
+    path: ../CoreRelm/Models/Migrations/RelmEntityDescriptor.cs
+    startLine: 8
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations
+  syntax:
+    content: public RelmEntityDescriptor(string DatabaseName, string TableName, IReadOnlyList<RelmColumnDescriptor> Columns, IReadOnlyList<RelmIndexDescriptor> Indexes, IReadOnlyList<RelmForeignKeyDescriptor> ForeignKeys, Type ClrType, string? Notes, Dictionary<string, string> Hints)
+    parameters:
+    - id: DatabaseName
+      type: System.String
+    - id: TableName
+      type: System.String
+    - id: Columns
+      type: System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.RelmColumnDescriptor}
+    - id: Indexes
+      type: System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.RelmIndexDescriptor}
+    - id: ForeignKeys
+      type: System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.RelmForeignKeyDescriptor}
+    - id: ClrType
+      type: System.Type
+    - id: Notes
+      type: System.String
+    - id: Hints
+      type: System.Collections.Generic.Dictionary{System.String,System.String}
+    content.vb: Public Sub New(DatabaseName As String, TableName As String, Columns As IReadOnlyList(Of RelmColumnDescriptor), Indexes As IReadOnlyList(Of RelmIndexDescriptor), ForeignKeys As IReadOnlyList(Of RelmForeignKeyDescriptor), ClrType As Type, Notes As String, Hints As Dictionary(Of String, String))
+  overload: CoreRelm.Models.Migrations.RelmEntityDescriptor.#ctor*
+  nameWithType.vb: RelmEntityDescriptor.New(String, String, IReadOnlyList(Of RelmColumnDescriptor), IReadOnlyList(Of RelmIndexDescriptor), IReadOnlyList(Of RelmForeignKeyDescriptor), Type, String, Dictionary(Of String, String))
+  fullName.vb: CoreRelm.Models.Migrations.RelmEntityDescriptor.New(String, String, System.Collections.Generic.IReadOnlyList(Of CoreRelm.Models.Migrations.RelmColumnDescriptor), System.Collections.Generic.IReadOnlyList(Of CoreRelm.Models.Migrations.RelmIndexDescriptor), System.Collections.Generic.IReadOnlyList(Of CoreRelm.Models.Migrations.RelmForeignKeyDescriptor), System.Type, String, System.Collections.Generic.Dictionary(Of String, String))
+  name.vb: New(String, String, IReadOnlyList(Of RelmColumnDescriptor), IReadOnlyList(Of RelmIndexDescriptor), IReadOnlyList(Of RelmForeignKeyDescriptor), Type, String, Dictionary(Of String, String))
+- uid: CoreRelm.Models.Migrations.RelmEntityDescriptor.DatabaseName
+  commentId: P:CoreRelm.Models.Migrations.RelmEntityDescriptor.DatabaseName
+  id: DatabaseName
+  parent: CoreRelm.Models.Migrations.RelmEntityDescriptor
+  langs:
+  - csharp
+  - vb
+  name: DatabaseName
+  nameWithType: RelmEntityDescriptor.DatabaseName
+  fullName: CoreRelm.Models.Migrations.RelmEntityDescriptor.DatabaseName
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/RelmEntityDescriptor.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: DatabaseName
+    path: ../CoreRelm/Models/Migrations/RelmEntityDescriptor.cs
+    startLine: 9
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations
+  syntax:
+    content: public string DatabaseName { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property DatabaseName As String
+  overload: CoreRelm.Models.Migrations.RelmEntityDescriptor.DatabaseName*
+- uid: CoreRelm.Models.Migrations.RelmEntityDescriptor.TableName
+  commentId: P:CoreRelm.Models.Migrations.RelmEntityDescriptor.TableName
+  id: TableName
+  parent: CoreRelm.Models.Migrations.RelmEntityDescriptor
+  langs:
+  - csharp
+  - vb
+  name: TableName
+  nameWithType: RelmEntityDescriptor.TableName
+  fullName: CoreRelm.Models.Migrations.RelmEntityDescriptor.TableName
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/RelmEntityDescriptor.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: TableName
+    path: ../CoreRelm/Models/Migrations/RelmEntityDescriptor.cs
+    startLine: 10
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations
+  syntax:
+    content: public string TableName { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property TableName As String
+  overload: CoreRelm.Models.Migrations.RelmEntityDescriptor.TableName*
+- uid: CoreRelm.Models.Migrations.RelmEntityDescriptor.Columns
+  commentId: P:CoreRelm.Models.Migrations.RelmEntityDescriptor.Columns
+  id: Columns
+  parent: CoreRelm.Models.Migrations.RelmEntityDescriptor
+  langs:
+  - csharp
+  - vb
+  name: Columns
+  nameWithType: RelmEntityDescriptor.Columns
+  fullName: CoreRelm.Models.Migrations.RelmEntityDescriptor.Columns
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/RelmEntityDescriptor.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: Columns
+    path: ../CoreRelm/Models/Migrations/RelmEntityDescriptor.cs
+    startLine: 11
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations
+  syntax:
+    content: public IReadOnlyList<RelmColumnDescriptor> Columns { get; init; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.RelmColumnDescriptor}
+    content.vb: Public Property Columns As IReadOnlyList(Of RelmColumnDescriptor)
+  overload: CoreRelm.Models.Migrations.RelmEntityDescriptor.Columns*
+- uid: CoreRelm.Models.Migrations.RelmEntityDescriptor.Indexes
+  commentId: P:CoreRelm.Models.Migrations.RelmEntityDescriptor.Indexes
+  id: Indexes
+  parent: CoreRelm.Models.Migrations.RelmEntityDescriptor
+  langs:
+  - csharp
+  - vb
+  name: Indexes
+  nameWithType: RelmEntityDescriptor.Indexes
+  fullName: CoreRelm.Models.Migrations.RelmEntityDescriptor.Indexes
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/RelmEntityDescriptor.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: Indexes
+    path: ../CoreRelm/Models/Migrations/RelmEntityDescriptor.cs
+    startLine: 12
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations
+  syntax:
+    content: public IReadOnlyList<RelmIndexDescriptor> Indexes { get; init; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.RelmIndexDescriptor}
+    content.vb: Public Property Indexes As IReadOnlyList(Of RelmIndexDescriptor)
+  overload: CoreRelm.Models.Migrations.RelmEntityDescriptor.Indexes*
+- uid: CoreRelm.Models.Migrations.RelmEntityDescriptor.ForeignKeys
+  commentId: P:CoreRelm.Models.Migrations.RelmEntityDescriptor.ForeignKeys
+  id: ForeignKeys
+  parent: CoreRelm.Models.Migrations.RelmEntityDescriptor
+  langs:
+  - csharp
+  - vb
+  name: ForeignKeys
+  nameWithType: RelmEntityDescriptor.ForeignKeys
+  fullName: CoreRelm.Models.Migrations.RelmEntityDescriptor.ForeignKeys
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/RelmEntityDescriptor.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: ForeignKeys
+    path: ../CoreRelm/Models/Migrations/RelmEntityDescriptor.cs
+    startLine: 13
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations
+  syntax:
+    content: public IReadOnlyList<RelmForeignKeyDescriptor> ForeignKeys { get; init; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.RelmForeignKeyDescriptor}
+    content.vb: Public Property ForeignKeys As IReadOnlyList(Of RelmForeignKeyDescriptor)
+  overload: CoreRelm.Models.Migrations.RelmEntityDescriptor.ForeignKeys*
+- uid: CoreRelm.Models.Migrations.RelmEntityDescriptor.ClrType
+  commentId: P:CoreRelm.Models.Migrations.RelmEntityDescriptor.ClrType
+  id: ClrType
+  parent: CoreRelm.Models.Migrations.RelmEntityDescriptor
+  langs:
+  - csharp
+  - vb
+  name: ClrType
+  nameWithType: RelmEntityDescriptor.ClrType
+  fullName: CoreRelm.Models.Migrations.RelmEntityDescriptor.ClrType
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/RelmEntityDescriptor.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: ClrType
+    path: ../CoreRelm/Models/Migrations/RelmEntityDescriptor.cs
+    startLine: 14
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations
+  syntax:
+    content: public Type ClrType { get; init; }
+    parameters: []
+    return:
+      type: System.Type
+    content.vb: Public Property ClrType As Type
+  overload: CoreRelm.Models.Migrations.RelmEntityDescriptor.ClrType*
+- uid: CoreRelm.Models.Migrations.RelmEntityDescriptor.Notes
+  commentId: P:CoreRelm.Models.Migrations.RelmEntityDescriptor.Notes
+  id: Notes
+  parent: CoreRelm.Models.Migrations.RelmEntityDescriptor
+  langs:
+  - csharp
+  - vb
+  name: Notes
+  nameWithType: RelmEntityDescriptor.Notes
+  fullName: CoreRelm.Models.Migrations.RelmEntityDescriptor.Notes
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/RelmEntityDescriptor.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: Notes
+    path: ../CoreRelm/Models/Migrations/RelmEntityDescriptor.cs
+    startLine: 15
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations
+  syntax:
+    content: public string? Notes { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Notes As String
+  overload: CoreRelm.Models.Migrations.RelmEntityDescriptor.Notes*
+- uid: CoreRelm.Models.Migrations.RelmEntityDescriptor.Hints
+  commentId: P:CoreRelm.Models.Migrations.RelmEntityDescriptor.Hints
+  id: Hints
+  parent: CoreRelm.Models.Migrations.RelmEntityDescriptor
+  langs:
+  - csharp
+  - vb
+  name: Hints
+  nameWithType: RelmEntityDescriptor.Hints
+  fullName: CoreRelm.Models.Migrations.RelmEntityDescriptor.Hints
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/RelmEntityDescriptor.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: Hints
+    path: ../CoreRelm/Models/Migrations/RelmEntityDescriptor.cs
+    startLine: 16
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations
+  syntax:
+    content: public Dictionary<string, string> Hints { get; init; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.Dictionary{System.String,System.String}
+    content.vb: Public Property Hints As Dictionary(Of String, String)
+  overload: CoreRelm.Models.Migrations.RelmEntityDescriptor.Hints*
+references:
+- uid: CoreRelm.Models.Migrations
+  commentId: N:CoreRelm.Models.Migrations
+  href: CoreRelm.html
+  name: CoreRelm.Models.Migrations
+  nameWithType: CoreRelm.Models.Migrations
+  fullName: CoreRelm.Models.Migrations
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IEquatable{CoreRelm.Models.Migrations.RelmEntityDescriptor}
+  commentId: T:System.IEquatable{CoreRelm.Models.Migrations.RelmEntityDescriptor}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<RelmEntityDescriptor>
+  nameWithType: IEquatable<RelmEntityDescriptor>
+  fullName: System.IEquatable<CoreRelm.Models.Migrations.RelmEntityDescriptor>
+  nameWithType.vb: IEquatable(Of RelmEntityDescriptor)
+  fullName.vb: System.IEquatable(Of CoreRelm.Models.Migrations.RelmEntityDescriptor)
+  name.vb: IEquatable(Of RelmEntityDescriptor)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: CoreRelm.Models.Migrations.RelmEntityDescriptor
+    name: RelmEntityDescriptor
+    href: CoreRelm.Models.Migrations.RelmEntityDescriptor.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.RelmEntityDescriptor
+    name: RelmEntityDescriptor
+    href: CoreRelm.Models.Migrations.RelmEntityDescriptor.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: CoreRelm.Models.Migrations.RelmEntityDescriptor.#ctor*
+  commentId: Overload:CoreRelm.Models.Migrations.RelmEntityDescriptor.#ctor
+  href: CoreRelm.Models.Migrations.RelmEntityDescriptor.html#CoreRelm_Models_Migrations_RelmEntityDescriptor__ctor_System_String_System_String_System_Collections_Generic_IReadOnlyList_CoreRelm_Models_Migrations_RelmColumnDescriptor__System_Collections_Generic_IReadOnlyList_CoreRelm_Models_Migrations_RelmIndexDescriptor__System_Collections_Generic_IReadOnlyList_CoreRelm_Models_Migrations_RelmForeignKeyDescriptor__System_Type_System_String_System_Collections_Generic_Dictionary_System_String_System_String__
+  name: RelmEntityDescriptor
+  nameWithType: RelmEntityDescriptor.RelmEntityDescriptor
+  fullName: CoreRelm.Models.Migrations.RelmEntityDescriptor.RelmEntityDescriptor
+  nameWithType.vb: RelmEntityDescriptor.New
+  fullName.vb: CoreRelm.Models.Migrations.RelmEntityDescriptor.New
+  name.vb: New
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.RelmColumnDescriptor}
+  commentId: T:System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.RelmColumnDescriptor}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<RelmColumnDescriptor>
+  nameWithType: IReadOnlyList<RelmColumnDescriptor>
+  fullName: System.Collections.Generic.IReadOnlyList<CoreRelm.Models.Migrations.RelmColumnDescriptor>
+  nameWithType.vb: IReadOnlyList(Of RelmColumnDescriptor)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of CoreRelm.Models.Migrations.RelmColumnDescriptor)
+  name.vb: IReadOnlyList(Of RelmColumnDescriptor)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: CoreRelm.Models.Migrations.RelmColumnDescriptor
+    name: RelmColumnDescriptor
+    href: CoreRelm.Models.Migrations.RelmColumnDescriptor.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.RelmColumnDescriptor
+    name: RelmColumnDescriptor
+    href: CoreRelm.Models.Migrations.RelmColumnDescriptor.html
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.RelmIndexDescriptor}
+  commentId: T:System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.RelmIndexDescriptor}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<RelmIndexDescriptor>
+  nameWithType: IReadOnlyList<RelmIndexDescriptor>
+  fullName: System.Collections.Generic.IReadOnlyList<CoreRelm.Models.Migrations.RelmIndexDescriptor>
+  nameWithType.vb: IReadOnlyList(Of RelmIndexDescriptor)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of CoreRelm.Models.Migrations.RelmIndexDescriptor)
+  name.vb: IReadOnlyList(Of RelmIndexDescriptor)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: CoreRelm.Models.Migrations.RelmIndexDescriptor
+    name: RelmIndexDescriptor
+    href: CoreRelm.Models.Migrations.RelmIndexDescriptor.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.RelmIndexDescriptor
+    name: RelmIndexDescriptor
+    href: CoreRelm.Models.Migrations.RelmIndexDescriptor.html
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.RelmForeignKeyDescriptor}
+  commentId: T:System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.RelmForeignKeyDescriptor}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<RelmForeignKeyDescriptor>
+  nameWithType: IReadOnlyList<RelmForeignKeyDescriptor>
+  fullName: System.Collections.Generic.IReadOnlyList<CoreRelm.Models.Migrations.RelmForeignKeyDescriptor>
+  nameWithType.vb: IReadOnlyList(Of RelmForeignKeyDescriptor)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of CoreRelm.Models.Migrations.RelmForeignKeyDescriptor)
+  name.vb: IReadOnlyList(Of RelmForeignKeyDescriptor)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: CoreRelm.Models.Migrations.RelmForeignKeyDescriptor
+    name: RelmForeignKeyDescriptor
+    href: CoreRelm.Models.Migrations.RelmForeignKeyDescriptor.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.RelmForeignKeyDescriptor
+    name: RelmForeignKeyDescriptor
+    href: CoreRelm.Models.Migrations.RelmForeignKeyDescriptor.html
+  - name: )
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.type
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: System.Collections.Generic.Dictionary{System.String,System.String}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<string, string>
+  nameWithType: Dictionary<string, string>
+  fullName: System.Collections.Generic.Dictionary<string, string>
+  nameWithType.vb: Dictionary(Of String, String)
+  fullName.vb: System.Collections.Generic.Dictionary(Of String, String)
+  name.vb: Dictionary(Of String, String)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: CoreRelm.Models.Migrations.RelmEntityDescriptor.DatabaseName*
+  commentId: Overload:CoreRelm.Models.Migrations.RelmEntityDescriptor.DatabaseName
+  href: CoreRelm.Models.Migrations.RelmEntityDescriptor.html#CoreRelm_Models_Migrations_RelmEntityDescriptor_DatabaseName
+  name: DatabaseName
+  nameWithType: RelmEntityDescriptor.DatabaseName
+  fullName: CoreRelm.Models.Migrations.RelmEntityDescriptor.DatabaseName
+- uid: CoreRelm.Models.Migrations.RelmEntityDescriptor.TableName*
+  commentId: Overload:CoreRelm.Models.Migrations.RelmEntityDescriptor.TableName
+  href: CoreRelm.Models.Migrations.RelmEntityDescriptor.html#CoreRelm_Models_Migrations_RelmEntityDescriptor_TableName
+  name: TableName
+  nameWithType: RelmEntityDescriptor.TableName
+  fullName: CoreRelm.Models.Migrations.RelmEntityDescriptor.TableName
+- uid: CoreRelm.Models.Migrations.RelmEntityDescriptor.Columns*
+  commentId: Overload:CoreRelm.Models.Migrations.RelmEntityDescriptor.Columns
+  href: CoreRelm.Models.Migrations.RelmEntityDescriptor.html#CoreRelm_Models_Migrations_RelmEntityDescriptor_Columns
+  name: Columns
+  nameWithType: RelmEntityDescriptor.Columns
+  fullName: CoreRelm.Models.Migrations.RelmEntityDescriptor.Columns
+- uid: CoreRelm.Models.Migrations.RelmEntityDescriptor.Indexes*
+  commentId: Overload:CoreRelm.Models.Migrations.RelmEntityDescriptor.Indexes
+  href: CoreRelm.Models.Migrations.RelmEntityDescriptor.html#CoreRelm_Models_Migrations_RelmEntityDescriptor_Indexes
+  name: Indexes
+  nameWithType: RelmEntityDescriptor.Indexes
+  fullName: CoreRelm.Models.Migrations.RelmEntityDescriptor.Indexes
+- uid: CoreRelm.Models.Migrations.RelmEntityDescriptor.ForeignKeys*
+  commentId: Overload:CoreRelm.Models.Migrations.RelmEntityDescriptor.ForeignKeys
+  href: CoreRelm.Models.Migrations.RelmEntityDescriptor.html#CoreRelm_Models_Migrations_RelmEntityDescriptor_ForeignKeys
+  name: ForeignKeys
+  nameWithType: RelmEntityDescriptor.ForeignKeys
+  fullName: CoreRelm.Models.Migrations.RelmEntityDescriptor.ForeignKeys
+- uid: CoreRelm.Models.Migrations.RelmEntityDescriptor.ClrType*
+  commentId: Overload:CoreRelm.Models.Migrations.RelmEntityDescriptor.ClrType
+  href: CoreRelm.Models.Migrations.RelmEntityDescriptor.html#CoreRelm_Models_Migrations_RelmEntityDescriptor_ClrType
+  name: ClrType
+  nameWithType: RelmEntityDescriptor.ClrType
+  fullName: CoreRelm.Models.Migrations.RelmEntityDescriptor.ClrType
+- uid: CoreRelm.Models.Migrations.RelmEntityDescriptor.Notes*
+  commentId: Overload:CoreRelm.Models.Migrations.RelmEntityDescriptor.Notes
+  href: CoreRelm.Models.Migrations.RelmEntityDescriptor.html#CoreRelm_Models_Migrations_RelmEntityDescriptor_Notes
+  name: Notes
+  nameWithType: RelmEntityDescriptor.Notes
+  fullName: CoreRelm.Models.Migrations.RelmEntityDescriptor.Notes
+- uid: CoreRelm.Models.Migrations.RelmEntityDescriptor.Hints*
+  commentId: Overload:CoreRelm.Models.Migrations.RelmEntityDescriptor.Hints
+  href: CoreRelm.Models.Migrations.RelmEntityDescriptor.html#CoreRelm_Models_Migrations_RelmEntityDescriptor_Hints
+  name: Hints
+  nameWithType: RelmEntityDescriptor.Hints
+  fullName: CoreRelm.Models.Migrations.RelmEntityDescriptor.Hints

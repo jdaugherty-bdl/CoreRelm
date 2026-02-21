@@ -23,13 +23,15 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AccountStatus
     path: ../CoreRelm/Enums/SecurityEnums.cs
-    startLine: 17
+    startLine: 20
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Enums
   syntax:
     content: public enum SecurityEnums.AccountStatus
     content.vb: Public Enum SecurityEnums.AccountStatus
+  extensionMethods:
+  - System.Enum.CoreRelm.Extensions.EnumExtensions.ToDescriptionString
 - uid: CoreRelm.Enums.SecurityEnums.AccountStatus.Inactive
   commentId: F:CoreRelm.Enums.SecurityEnums.AccountStatus.Inactive
   id: Inactive
@@ -48,7 +50,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Inactive
     path: ../CoreRelm/Enums/SecurityEnums.cs
-    startLine: 19
+    startLine: 22
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Enums
@@ -74,7 +76,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Active
     path: ../CoreRelm/Enums/SecurityEnums.cs
-    startLine: 20
+    startLine: 23
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Enums
@@ -100,7 +102,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Suspended
     path: ../CoreRelm/Enums/SecurityEnums.cs
-    startLine: 21
+    startLine: 24
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Enums
@@ -126,7 +128,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Closed
     path: ../CoreRelm/Enums/SecurityEnums.cs
-    startLine: 22
+    startLine: 25
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Enums
@@ -157,6 +159,90 @@ references:
   - uid: CoreRelm.Enums
     name: Enums
     href: CoreRelm.Enums.html
+- uid: System.Enum.CoreRelm.Extensions.EnumExtensions.ToDescriptionString
+  commentId: M:CoreRelm.Extensions.EnumExtensions.ToDescriptionString(System.Enum)
+  parent: CoreRelm.Extensions.EnumExtensions
+  definition: CoreRelm.Extensions.EnumExtensions.ToDescriptionString(System.Enum)
+  href: CoreRelm.Extensions.EnumExtensions.html#CoreRelm_Extensions_EnumExtensions_ToDescriptionString_System_Enum_
+  name: ToDescriptionString(Enum)
+  nameWithType: EnumExtensions.ToDescriptionString(Enum)
+  fullName: CoreRelm.Extensions.EnumExtensions.ToDescriptionString(System.Enum)
+  spec.csharp:
+  - uid: CoreRelm.Extensions.EnumExtensions.ToDescriptionString(System.Enum)
+    name: ToDescriptionString
+    href: CoreRelm.Extensions.EnumExtensions.html#CoreRelm_Extensions_EnumExtensions_ToDescriptionString_System_Enum_
+  - name: (
+  - uid: System.Enum
+    name: Enum
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.enum
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Extensions.EnumExtensions.ToDescriptionString(System.Enum)
+    name: ToDescriptionString
+    href: CoreRelm.Extensions.EnumExtensions.html#CoreRelm_Extensions_EnumExtensions_ToDescriptionString_System_Enum_
+  - name: (
+  - uid: System.Enum
+    name: Enum
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.enum
+  - name: )
+- uid: CoreRelm.Extensions.EnumExtensions.ToDescriptionString(System.Enum)
+  commentId: M:CoreRelm.Extensions.EnumExtensions.ToDescriptionString(System.Enum)
+  isExternal: true
+  href: CoreRelm.Extensions.EnumExtensions.html#CoreRelm_Extensions_EnumExtensions_ToDescriptionString_System_Enum_
+  name: ToDescriptionString(Enum)
+  nameWithType: EnumExtensions.ToDescriptionString(Enum)
+  fullName: CoreRelm.Extensions.EnumExtensions.ToDescriptionString(System.Enum)
+  spec.csharp:
+  - uid: CoreRelm.Extensions.EnumExtensions.ToDescriptionString(System.Enum)
+    name: ToDescriptionString
+    href: CoreRelm.Extensions.EnumExtensions.html#CoreRelm_Extensions_EnumExtensions_ToDescriptionString_System_Enum_
+  - name: (
+  - uid: System.Enum
+    name: Enum
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.enum
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Extensions.EnumExtensions.ToDescriptionString(System.Enum)
+    name: ToDescriptionString
+    href: CoreRelm.Extensions.EnumExtensions.html#CoreRelm_Extensions_EnumExtensions_ToDescriptionString_System_Enum_
+  - name: (
+  - uid: System.Enum
+    name: Enum
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.enum
+  - name: )
+- uid: CoreRelm.Extensions.EnumExtensions
+  commentId: T:CoreRelm.Extensions.EnumExtensions
+  parent: CoreRelm.Extensions
+  href: CoreRelm.Extensions.EnumExtensions.html
+  name: EnumExtensions
+  nameWithType: EnumExtensions
+  fullName: CoreRelm.Extensions.EnumExtensions
+- uid: CoreRelm.Extensions
+  commentId: N:CoreRelm.Extensions
+  href: CoreRelm.html
+  name: CoreRelm.Extensions
+  nameWithType: CoreRelm.Extensions
+  fullName: CoreRelm.Extensions
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Extensions
+    name: Extensions
+    href: CoreRelm.Extensions.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Extensions
+    name: Extensions
+    href: CoreRelm.Extensions.html
 - uid: CoreRelm.Enums.SecurityEnums.AccountStatus
   commentId: T:CoreRelm.Enums.SecurityEnums.AccountStatus
   parent: CoreRelm.Enums

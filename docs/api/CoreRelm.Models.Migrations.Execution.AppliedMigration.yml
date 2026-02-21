@@ -6,10 +6,11 @@ items:
   parent: CoreRelm.Models.Migrations.Execution
   children:
   - CoreRelm.Models.Migrations.Execution.AppliedMigration.#ctor
-  - CoreRelm.Models.Migrations.Execution.AppliedMigration.#ctor(System.String,System.String,System.DateTime)
+  - CoreRelm.Models.Migrations.Execution.AppliedMigration.#ctor(System.String,CoreRelm.Enums.MigrationEnums.RelmMigrationType,System.String,System.DateTime)
   - CoreRelm.Models.Migrations.Execution.AppliedMigration.AppliedUtc
   - CoreRelm.Models.Migrations.Execution.AppliedMigration.ChecksumSha256
   - CoreRelm.Models.Migrations.Execution.AppliedMigration.FileName
+  - CoreRelm.Models.Migrations.Execution.AppliedMigration.MigrationType
   langs:
   - csharp
   - vb
@@ -24,7 +25,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AppliedMigration
     path: ../CoreRelm/Models/Migrations/Execution/AppliedMigration.cs
-    startLine: 9
+    startLine: 10
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Execution
@@ -123,7 +124,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: FileName
     path: ../CoreRelm/Models/Migrations/Execution/AppliedMigration.cs
-    startLine: 13
+    startLine: 14
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Execution
@@ -140,6 +141,64 @@ items:
 
       Public Property FileName As String
   overload: CoreRelm.Models.Migrations.Execution.AppliedMigration.FileName*
+- uid: CoreRelm.Models.Migrations.Execution.AppliedMigration.MigrationType
+  commentId: P:CoreRelm.Models.Migrations.Execution.AppliedMigration.MigrationType
+  id: MigrationType
+  parent: CoreRelm.Models.Migrations.Execution.AppliedMigration
+  langs:
+  - csharp
+  - vb
+  name: MigrationType
+  nameWithType: AppliedMigration.MigrationType
+  fullName: CoreRelm.Models.Migrations.Execution.AppliedMigration.MigrationType
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Execution/AppliedMigration.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: MigrationType
+    path: ../CoreRelm/Models/Migrations/Execution/AppliedMigration.cs
+    startLine: 17
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Execution
+  syntax:
+    content: >-
+      [RelmIndex(null, Indexes.IndexType.None, -1, null, null, Indexes.Visibility.None, null, null, Indexes.Algorithm.None, Indexes.LockOption.None)]
+
+      [RelmColumn(null, MySqlDbType.VarChar, null, 128, null, false, false, false, false, "Migration", false, false)]
+
+      public MigrationEnums.RelmMigrationType MigrationType { get; init; }
+    parameters: []
+    return:
+      type: CoreRelm.Enums.MigrationEnums.RelmMigrationType
+    content.vb: >-
+      <RelmIndex(Nothing, Indexes.IndexType.None, -1, Nothing, Nothing, Indexes.Visibility.None, Nothing, Nothing, Indexes.Algorithm.None, Indexes.LockOption.None)>
+
+      <RelmColumn(Nothing, MySqlDbType.VarChar, Nothing, 128, Nothing, False, False, False, False, "Migration", False, False)>
+
+      Public Property MigrationType As MigrationEnums.RelmMigrationType
+  overload: CoreRelm.Models.Migrations.Execution.AppliedMigration.MigrationType*
+  attributes:
+  - type: CoreRelm.Attributes.RelmIndex
+    ctor: CoreRelm.Attributes.RelmIndex.#ctor(System.String,CoreRelm.Enums.Indexes.IndexType,System.Int32,System.String,System.String,CoreRelm.Enums.Indexes.Visibility,System.String,System.String,CoreRelm.Enums.Indexes.Algorithm,CoreRelm.Enums.Indexes.LockOption)
+    arguments:
+    - type: System.String
+    - type: CoreRelm.Enums.Indexes.IndexType
+      value: 0
+    - type: System.Int32
+      value: -1
+    - type: System.String
+    - type: System.String
+    - type: CoreRelm.Enums.Indexes.Visibility
+      value: 0
+    - type: System.String
+    - type: System.String
+    - type: CoreRelm.Enums.Indexes.Algorithm
+      value: 0
+    - type: CoreRelm.Enums.Indexes.LockOption
+      value: 0
 - uid: CoreRelm.Models.Migrations.Execution.AppliedMigration.ChecksumSha256
   commentId: P:CoreRelm.Models.Migrations.Execution.AppliedMigration.ChecksumSha256
   id: ChecksumSha256
@@ -158,7 +217,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ChecksumSha256
     path: ../CoreRelm/Models/Migrations/Execution/AppliedMigration.cs
-    startLine: 16
+    startLine: 21
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Execution
@@ -193,7 +252,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AppliedUtc
     path: ../CoreRelm/Models/Migrations/Execution/AppliedMigration.cs
-    startLine: 19
+    startLine: 24
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Execution
@@ -228,7 +287,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Models/Migrations/Execution/AppliedMigration.cs
-    startLine: 22
+    startLine: 27
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Execution
@@ -239,16 +298,16 @@ items:
   nameWithType.vb: AppliedMigration.New()
   fullName.vb: CoreRelm.Models.Migrations.Execution.AppliedMigration.New()
   name.vb: New()
-- uid: CoreRelm.Models.Migrations.Execution.AppliedMigration.#ctor(System.String,System.String,System.DateTime)
-  commentId: M:CoreRelm.Models.Migrations.Execution.AppliedMigration.#ctor(System.String,System.String,System.DateTime)
-  id: '#ctor(System.String,System.String,System.DateTime)'
+- uid: CoreRelm.Models.Migrations.Execution.AppliedMigration.#ctor(System.String,CoreRelm.Enums.MigrationEnums.RelmMigrationType,System.String,System.DateTime)
+  commentId: M:CoreRelm.Models.Migrations.Execution.AppliedMigration.#ctor(System.String,CoreRelm.Enums.MigrationEnums.RelmMigrationType,System.String,System.DateTime)
+  id: '#ctor(System.String,CoreRelm.Enums.MigrationEnums.RelmMigrationType,System.String,System.DateTime)'
   parent: CoreRelm.Models.Migrations.Execution.AppliedMigration
   langs:
   - csharp
   - vb
-  name: AppliedMigration(string, string, DateTime)
-  nameWithType: AppliedMigration.AppliedMigration(string, string, DateTime)
-  fullName: CoreRelm.Models.Migrations.Execution.AppliedMigration.AppliedMigration(string, string, System.DateTime)
+  name: AppliedMigration(string, RelmMigrationType, string, DateTime)
+  nameWithType: AppliedMigration.AppliedMigration(string, MigrationEnums.RelmMigrationType, string, DateTime)
+  fullName: CoreRelm.Models.Migrations.Execution.AppliedMigration.AppliedMigration(string, CoreRelm.Enums.MigrationEnums.RelmMigrationType, string, System.DateTime)
   type: Constructor
   source:
     remote:
@@ -257,24 +316,26 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Models/Migrations/Execution/AppliedMigration.cs
-    startLine: 29
+    startLine: 35
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Execution
   syntax:
-    content: public AppliedMigration(string fileName, string checksumSha256, DateTime appliedUtc)
+    content: public AppliedMigration(string fileName, MigrationEnums.RelmMigrationType migrationType, string checksumSha256, DateTime appliedUtc)
     parameters:
     - id: fileName
       type: System.String
+    - id: migrationType
+      type: CoreRelm.Enums.MigrationEnums.RelmMigrationType
     - id: checksumSha256
       type: System.String
     - id: appliedUtc
       type: System.DateTime
-    content.vb: Public Sub New(fileName As String, checksumSha256 As String, appliedUtc As Date)
+    content.vb: Public Sub New(fileName As String, migrationType As MigrationEnums.RelmMigrationType, checksumSha256 As String, appliedUtc As Date)
   overload: CoreRelm.Models.Migrations.Execution.AppliedMigration.#ctor*
-  nameWithType.vb: AppliedMigration.New(String, String, Date)
-  fullName.vb: CoreRelm.Models.Migrations.Execution.AppliedMigration.New(String, String, Date)
-  name.vb: New(String, String, Date)
+  nameWithType.vb: AppliedMigration.New(String, MigrationEnums.RelmMigrationType, String, Date)
+  fullName.vb: CoreRelm.Models.Migrations.Execution.AppliedMigration.New(String, CoreRelm.Enums.MigrationEnums.RelmMigrationType, String, Date)
+  name.vb: New(String, RelmMigrationType, String, Date)
 references:
 - uid: CoreRelm.Models.Migrations.Execution
   commentId: N:CoreRelm.Models.Migrations.Execution
@@ -6673,6 +6734,57 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
+- uid: CoreRelm.Models.Migrations.Execution.AppliedMigration.MigrationType*
+  commentId: Overload:CoreRelm.Models.Migrations.Execution.AppliedMigration.MigrationType
+  href: CoreRelm.Models.Migrations.Execution.AppliedMigration.html#CoreRelm_Models_Migrations_Execution_AppliedMigration_MigrationType
+  name: MigrationType
+  nameWithType: AppliedMigration.MigrationType
+  fullName: CoreRelm.Models.Migrations.Execution.AppliedMigration.MigrationType
+- uid: CoreRelm.Enums.MigrationEnums.RelmMigrationType
+  commentId: T:CoreRelm.Enums.MigrationEnums.RelmMigrationType
+  parent: CoreRelm.Enums
+  href: CoreRelm.Enums.MigrationEnums.html
+  name: MigrationEnums.RelmMigrationType
+  nameWithType: MigrationEnums.RelmMigrationType
+  fullName: CoreRelm.Enums.MigrationEnums.RelmMigrationType
+  spec.csharp:
+  - uid: CoreRelm.Enums.MigrationEnums
+    name: MigrationEnums
+    href: CoreRelm.Enums.MigrationEnums.html
+  - name: .
+  - uid: CoreRelm.Enums.MigrationEnums.RelmMigrationType
+    name: RelmMigrationType
+    href: CoreRelm.Enums.MigrationEnums.RelmMigrationType.html
+  spec.vb:
+  - uid: CoreRelm.Enums.MigrationEnums
+    name: MigrationEnums
+    href: CoreRelm.Enums.MigrationEnums.html
+  - name: .
+  - uid: CoreRelm.Enums.MigrationEnums.RelmMigrationType
+    name: RelmMigrationType
+    href: CoreRelm.Enums.MigrationEnums.RelmMigrationType.html
+- uid: CoreRelm.Enums
+  commentId: N:CoreRelm.Enums
+  href: CoreRelm.html
+  name: CoreRelm.Enums
+  nameWithType: CoreRelm.Enums
+  fullName: CoreRelm.Enums
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Enums
+    name: Enums
+    href: CoreRelm.Enums.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Enums
+    name: Enums
+    href: CoreRelm.Enums.html
 - uid: CoreRelm.Models.Migrations.Execution.AppliedMigration.ChecksumSha256*
   commentId: Overload:CoreRelm.Models.Migrations.Execution.AppliedMigration.ChecksumSha256
   href: CoreRelm.Models.Migrations.Execution.AppliedMigration.html#CoreRelm_Models_Migrations_Execution_AppliedMigration_ChecksumSha256

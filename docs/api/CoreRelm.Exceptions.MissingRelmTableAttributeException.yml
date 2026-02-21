@@ -5,7 +5,7 @@ items:
   id: MissingRelmTableAttributeException
   parent: CoreRelm.Exceptions
   children:
-  - CoreRelm.Exceptions.MissingRelmTableAttributeException.#ctor(System.Type)
+  - CoreRelm.Exceptions.MissingRelmTableAttributeException.#ctor(System.Type,System.Type)
   langs:
   - csharp
   - vb
@@ -48,16 +48,16 @@ items:
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
   - System.Object.ReferenceEquals(System.Object,System.Object)
-- uid: CoreRelm.Exceptions.MissingRelmTableAttributeException.#ctor(System.Type)
-  commentId: M:CoreRelm.Exceptions.MissingRelmTableAttributeException.#ctor(System.Type)
-  id: '#ctor(System.Type)'
+- uid: CoreRelm.Exceptions.MissingRelmTableAttributeException.#ctor(System.Type,System.Type)
+  commentId: M:CoreRelm.Exceptions.MissingRelmTableAttributeException.#ctor(System.Type,System.Type)
+  id: '#ctor(System.Type,System.Type)'
   parent: CoreRelm.Exceptions.MissingRelmTableAttributeException
   langs:
   - csharp
   - vb
-  name: MissingRelmTableAttributeException(Type)
-  nameWithType: MissingRelmTableAttributeException.MissingRelmTableAttributeException(Type)
-  fullName: CoreRelm.Exceptions.MissingRelmTableAttributeException.MissingRelmTableAttributeException(System.Type)
+  name: MissingRelmTableAttributeException(Type, Type?)
+  nameWithType: MissingRelmTableAttributeException.MissingRelmTableAttributeException(Type, Type?)
+  fullName: CoreRelm.Exceptions.MissingRelmTableAttributeException.MissingRelmTableAttributeException(System.Type, System.Type?)
   type: Constructor
   source:
     remote:
@@ -66,20 +66,22 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Exceptions/MissingRelmTableAttributeException.cs
-    startLine: 10
+    startLine: 8
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Exceptions
   syntax:
-    content: public MissingRelmTableAttributeException(Type t)
+    content: public MissingRelmTableAttributeException(Type t, Type? referencedType = null)
     parameters:
     - id: t
       type: System.Type
-    content.vb: Public Sub New(t As Type)
+    - id: referencedType
+      type: System.Type
+    content.vb: Public Sub New(t As Type, referencedType As Type = Nothing)
   overload: CoreRelm.Exceptions.MissingRelmTableAttributeException.#ctor*
-  nameWithType.vb: MissingRelmTableAttributeException.New(Type)
-  fullName.vb: CoreRelm.Exceptions.MissingRelmTableAttributeException.New(System.Type)
-  name.vb: New(Type)
+  nameWithType.vb: MissingRelmTableAttributeException.New(Type, Type)
+  fullName.vb: CoreRelm.Exceptions.MissingRelmTableAttributeException.New(System.Type, System.Type)
+  name.vb: New(Type, Type)
 references:
 - uid: CoreRelm.Exceptions
   commentId: N:CoreRelm.Exceptions
@@ -453,7 +455,7 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.runtime.serialization
 - uid: CoreRelm.Exceptions.MissingRelmTableAttributeException.#ctor*
   commentId: Overload:CoreRelm.Exceptions.MissingRelmTableAttributeException.#ctor
-  href: CoreRelm.Exceptions.MissingRelmTableAttributeException.html#CoreRelm_Exceptions_MissingRelmTableAttributeException__ctor_System_Type_
+  href: CoreRelm.Exceptions.MissingRelmTableAttributeException.html#CoreRelm_Exceptions_MissingRelmTableAttributeException__ctor_System_Type_System_Type_
   name: MissingRelmTableAttributeException
   nameWithType: MissingRelmTableAttributeException.MissingRelmTableAttributeException
   fullName: CoreRelm.Exceptions.MissingRelmTableAttributeException.MissingRelmTableAttributeException

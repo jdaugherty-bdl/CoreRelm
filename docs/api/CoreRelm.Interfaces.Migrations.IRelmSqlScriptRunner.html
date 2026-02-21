@@ -122,8 +122,8 @@ Interface IRelmSqlScriptRunner  <a class="header-action link-secondary" title="V
 
   <a id="CoreRelm_Interfaces_Migrations_IRelmSqlScriptRunner_ExecuteScriptAsync_" data-uid="CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync*"></a>
 
-  <h3 id="CoreRelm_Interfaces_Migrations_IRelmSqlScriptRunner_ExecuteScriptAsync_CoreRelm_Interfaces_IRelmContext_System_String_System_Threading_CancellationToken_" data-uid="CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync(CoreRelm.Interfaces.IRelmContext,System.String,System.Threading.CancellationToken)">
-  ExecuteScriptAsync(IRelmContext, string, CancellationToken)
+  <h3 id="CoreRelm_Interfaces_Migrations_IRelmSqlScriptRunner_ExecuteScriptAsync_CoreRelm_Interfaces_IRelmContext_System_String_System_Threading_CancellationToken_System_Action_System_Exception__" data-uid="CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner.ExecuteScriptAsync(CoreRelm.Interfaces.IRelmContext,System.String,System.Threading.CancellationToken,System.Action{System.Exception})">
+  ExecuteScriptAsync(IRelmContext, string, CancellationToken, Action&lt;Exception&gt;?)
   <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/Migrations/IRelmSqlScriptRunner.cs/#L11"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -131,7 +131,7 @@ Interface IRelmSqlScriptRunner  <a class="header-action link-secondary" title="V
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task ExecuteScriptAsync(IRelmContext context, string sql, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">Task ExecuteScriptAsync(IRelmContext context, string sql, CancellationToken cancellationToken = default, Action&lt;Exception&gt;? exceptionHandler = null)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -141,6 +141,8 @@ Interface IRelmSqlScriptRunner  <a class="header-action link-secondary" title="V
     <dt><code>sql</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
     <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>exceptionHandler</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a>&gt;</dt>
     <dd></dd>
   </dl>
 

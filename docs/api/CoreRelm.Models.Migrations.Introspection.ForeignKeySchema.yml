@@ -34,8 +34,18 @@ items:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
   syntax:
-    content: 'public class ForeignKeySchema : RelmModel, IRelmModel'
-    content.vb: Public Class ForeignKeySchema Inherits RelmModel Implements IRelmModel
+    content: >-
+      [RelmDatabase("INFORMATION_SCHEMA")]
+
+      [RelmTable("KEY_COLUMN_USAGE")]
+
+      public class ForeignKeySchema : RelmModel, IRelmModel
+    content.vb: >-
+      <RelmDatabase("INFORMATION_SCHEMA")>
+
+      <RelmTable("KEY_COLUMN_USAGE")>
+
+      Public Class ForeignKeySchema Inherits RelmModel Implements IRelmModel
   inheritance:
   - System.Object
   - CoreRelm.Models.RelmModel
@@ -89,6 +99,17 @@ items:
   - CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.ForeignKeySchema,System.Collections.Generic.ICollection{{R}}}},CoreRelm.Interfaces.IRelmDataLoader{{S}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
   - CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.ForeignKeySchema,{R}}},CoreRelm.Interfaces.IRelmDataLoader{{S}})
   - CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.ForeignKeySchema,{R}}},CoreRelm.Interfaces.IRelmDataLoader{{S}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
+  attributes:
+  - type: CoreRelm.Attributes.RelmDatabase
+    ctor: CoreRelm.Attributes.RelmDatabase.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: INFORMATION_SCHEMA
+  - type: CoreRelm.Attributes.RelmTable
+    ctor: CoreRelm.Attributes.RelmTable.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: KEY_COLUMN_USAGE
 - uid: CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.ConstraintName
   commentId: P:CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.ConstraintName
   id: ConstraintName
@@ -107,7 +128,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ConstraintName
     path: ../CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs
-    startLine: 11
+    startLine: 13
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -142,7 +163,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: TableName
     path: ../CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs
-    startLine: 14
+    startLine: 16
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -177,7 +198,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ColumnName
     path: ../CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs
-    startLine: 17
+    startLine: 19
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -212,7 +233,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ColumnNames
     path: ../CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs
-    startLine: 20
+    startLine: 22
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -247,7 +268,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ReferencedTableName
     path: ../CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs
-    startLine: 23
+    startLine: 25
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -282,7 +303,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ReferencedColumnName
     path: ../CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs
-    startLine: 26
+    startLine: 28
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -317,7 +338,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ReferencedColumnNames
     path: ../CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs
-    startLine: 29
+    startLine: 31
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -352,7 +373,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: UpdateRule
     path: ../CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs
-    startLine: 32
+    startLine: 34
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -387,7 +408,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DeleteRule
     path: ../CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs
-    startLine: 35
+    startLine: 37
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
@@ -422,7 +443,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: OrdinalPosition
     path: ../CoreRelm/Models/Migrations/Introspection/ForeignKeySchema.cs
-    startLine: 38
+    startLine: 40
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Introspection
