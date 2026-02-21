@@ -7,6 +7,7 @@ using CoreRelm.Models.Migrations.Tooling.Apply;
 using CoreRelm.Models.Migrations.Tooling.Drift;
 using CoreRelm.Models.Migrations.Tooling.Generation;
 using CoreRelm.Models.Migrations.Tooling.Validation;
+using CoreRelm.RelmInternal.Contexts;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -293,7 +294,8 @@ namespace CoreRelm.Tests.Migrations
                 renderer,
                 provisioner,
                 migrationsStore,
-                log: null
+                log: null,
+                informationSchemaContextFactory: connString => new InformationSchemaContext(connString, autoOpenConnection: false, autoInitializeDataSets: false, autoVerifyTables: false)
             );
         }
 

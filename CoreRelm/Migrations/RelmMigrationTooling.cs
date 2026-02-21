@@ -33,36 +33,37 @@ namespace CoreRelm.Migrations
     public sealed class RelmMigrationTooling(
         IModelSetResolver modelSetResolver,
         IRelmSchemaIntrospector introspector,
-        IRelmDesiredSchemaBuilder _desiredBuilder,
+        IRelmDesiredSchemaBuilder desiredBuilder,
         IRelmMigrationPlanner planner,
         IRelmMigrationSqlRenderer renderer,
         IRelmDatabaseProvisioner provisioner,
         IRelmSchemaMigrationsStore migrationsStore,
         ILogger<RelmMigrationTooling>? log = null) : IRelmMigrationTooling
     {
-        private readonly Func<string, RelmContext> _contextFactory = dbConn =>
+        private readonly Func<string, InformationSchemaContext> _informationSchemaContextFactory = dbConn =>
             new InformationSchemaContext(dbConn, autoInitializeDataSets: false, autoVerifyTables: false);
 
+        // internal constructor for testing
         internal RelmMigrationTooling(
             IModelSetResolver modelSetResolver,
             IRelmSchemaIntrospector introspector,
-            IRelmDesiredSchemaBuilder _desiredBuilder,
+            IRelmDesiredSchemaBuilder desiredBuilder,
             IRelmMigrationPlanner planner,
             IRelmMigrationSqlRenderer renderer,
             IRelmDatabaseProvisioner provisioner,
             IRelmSchemaMigrationsStore migrationsStore,
             ILogger<RelmMigrationTooling>? log,
-            Func<string, RelmContext> contextFactory) : this(
+            Func<string, InformationSchemaContext> informationSchemaContextFactory) : this(
                 modelSetResolver,
                 introspector,
-                _desiredBuilder,
+                desiredBuilder,
                 planner,
                 renderer,
                 provisioner,
                 migrationsStore,
                 log)
         {
-            _contextFactory = contextFactory ?? throw new ArgumentNullException(nameof(contextFactory));
+            _informationSchemaContextFactory = informationSchemaContextFactory ?? throw new ArgumentNullException(nameof(informationSchemaContextFactory));
         }
 
         private IReadOnlyDictionary<string, List<ValidatedModelType>>? ResolveAndValidateModelSets(ModelSetsFile modelSets, string setName, Assembly modelsAssembly, List<string> warnings, List<string> errors)
@@ -178,11 +179,11 @@ namespace CoreRelm.Migrations
                     var dbConn = options.ConnectionStringTemplate?.Replace("{db}", databaseName, StringComparison.Ordinal)
                         ?? throw new ArgumentException("Connection string template is required.", nameof(options.ConnectionStringTemplate));
 
-                    actual = await introspector.LoadSchemaAsync(new InformationSchemaContext(dbConn, autoInitializeDataSets: false, autoVerifyTables: false));
+                    actual = await introspector.LoadSchemaAsync(_informationSchemaContextFactory(dbConn));
                 }
 
                 // Build desired schema from CLR types subset
-                var desired = _desiredBuilder.Build(databaseName, types);
+                var desired = desiredBuilder.Build(databaseName, types);
                 // ^ You’ll implement this in CoreRelm based on your existing DesiredSchemaBuilder logic.
                 // It should create a schema snapshot compatible with your planner.
 
@@ -295,7 +296,8 @@ namespace CoreRelm.Migrations
                     ?? throw new ArgumentException("Connection string template is required.", nameof(request.ConnectionStringTemplate));
 
                 // Ensure SchemaMigrations table exists, then read applied list
-                var applied = await migrationsStore.GetAppliedMigrationsAsync(new InformationSchemaContext(dbConn, autoInitializeDataSets: false, autoVerifyTables: false));
+                //var applied = await migrationsStore.GetAppliedMigrationsAsync(new InformationSchemaContext(dbConn, autoInitializeDataSets: false, autoVerifyTables: false));
+                var applied = await migrationsStore.GetAppliedMigrationsAsync(_informationSchemaContextFactory(dbConn));
                 // ^ implemented in store: open connection, ensure table, return map filename->checksum
 
                 if (applied == null)
