@@ -10,12 +10,7 @@ using CoreRelm.Models.Migrations.Introspection;
 using CoreRelm.Models.Migrations.MigrationPlans;
 using CoreRelm.Models.Migrations.Rendering;
 using CoreRelm.RelmInternal.Contexts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoreRelm.Tests
 {
@@ -31,12 +26,28 @@ namespace CoreRelm.Tests
         public ResolvedModelSet ResolveSet(ModelSetsFile file, string setName, Assembly modelsAssembly) => _resolved;
 
         public (ResolvedModelSet Resolved, ResolvedModelSetDiagnostics Diagnostics) ResolveSetWithDiagnostics(ModelSetsFile file, string setName, Assembly modelsAssembly)
-            => (_resolved, new ResolvedModelSetDiagnostics(setName, 0, 0, 0, 0, 0, 0, 0, 0, _resolved.AllModels.Count, 0, 0, 0, Array.Empty<string>()));
+            => (_resolved, new ResolvedModelSetDiagnostics(
+            SetName: setName,
+            AssemblyTypeCount: 0,
+            ExplicitTypeNameCount: 0,
+            ExplicitTypesResolvedCount: 0,
+            NamespacePrefixCount: 0,
+            NamespaceMatchedCount: 0,
+            CandidateCountBeforeFilter: 0,
+            AbstractExcludedCount: 0,
+            NotRelmModelExcludedCount: 0,
+            IncludedCount: _resolved.AllModels.Count,
+            MissingRelmDatabaseCount: 0,
+            MissingRelmTableCount: 0,
+            AttributeValueErrorCount: 0,
+            Errors: []
+        ));
     }
 
     public sealed class FakeSchemaIntrospector : IRelmSchemaIntrospector
     {
-        public Func<InformationSchemaContext, SchemaIntrospectionOptions?, CancellationToken, Task<SchemaSnapshot>> Handler { get; set; } = (_, _, _) => Task.FromResult(SchemaSnapshotFactory.Empty("test"));
+        public Func<InformationSchemaContext, SchemaIntrospectionOptions?, CancellationToken, Task<SchemaSnapshot>> Handler { get; set; } 
+            = (_, _, _) => Task.FromResult(SchemaSnapshotFactory.Empty("test"));
 
         public Task<SchemaSnapshot> LoadSchemaAsync(InformationSchemaContext ctx, SchemaIntrospectionOptions? options = null, CancellationToken ct = default) 
             => Handler(ctx, options, ct);
