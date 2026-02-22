@@ -4,7 +4,10 @@ using CoreRelm.Interfaces.Migrations;
 using CoreRelm.Models.Migrations.Introspection;
 using CoreRelm.Models.Migrations.MigrationPlans;
 using CoreRelm.Models.Migrations.Rendering;
+using CoreRelm.Models.Migrations.Tooling.Apply;
+using CoreRelm.RelmInternal.Helpers.Migrations.MigrationFiles;
 using CoreRelm.RelmInternal.Helpers.Migrations.Provisioning;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MoreLinq.Extensions;
 using System;
@@ -14,12 +17,15 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using static CoreRelm.Enums.Indexes;
+using static CoreRelm.Enums.MigrationEnums;
 using static CoreRelm.Enums.SecurityEnums;
 using static CoreRelm.Enums.StoredProcedures;
 
 namespace CoreRelm.RelmInternal.Helpers.Migrations.Rendering
 {
-    public sealed class MySqlMigrationSqlRenderer(ILogger<MySqlMigrationSqlRenderer>? log = null) : IRelmMigrationSqlRenderer
+    public sealed class MySqlMigrationSqlRenderer(
+        [FromKeyedServices("MaxSupportedMigrationFileVersion")] Version maxSupportedVersion,
+        ILogger<MySqlMigrationSqlRenderer>? log = null) : IRelmMigrationSqlRenderer
     {
         private readonly ILogger<MySqlMigrationSqlRenderer>? _log = log;
 
@@ -40,12 +46,33 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Rendering
             _log?.LogFormatted(LogLevel.Information, "Generating SQL for operations", args: []);
             var query = new StringBuilder();
 
+            var header = new ParsedMigrationHeader(
+                Tool: this.GetType().FullName?.Split(['.'], StringSplitOptions.TrimEntries).FirstOrDefault(),
+                ToolVersion: maxSupportedVersion.ToString(),
+                MigrationName: plan.MigrationName,
+                ModelSetName: plan.ModelSetName,
+                DatabaseName: plan.DatabaseName,
+                GeneratedUtc: plan.StampUtc,
+                ChecksumSha256: MigrationHeaderFormatter.ChecksumPlaceholder64Zeros,
+                Extras: new Dictionary<string, string>
+                {
+                    { "BlockerCount", plan.Blockers.Count.ToString() },
+                    { "WarningCount", plan.Warnings.Count.ToString() },
+                    { "OperationCount", plan.Operations.Count.ToString() }
+                });
+
+            var safeName = UrlStringHelper.Slugify(plan.MigrationName);
+            var headerString = MigrationHeaderFormatter.BuildHeader(header, plan.MigrationType.ToString(), plan.DatabaseName, plan.StampUtc, safeName,);
+
+            /*
             query.AppendLine("-- =============================================");
             query.AppendLine($"-- LEDGERLITE");
             query.AppendLine($"-- Migration Script for database: {plan.DatabaseName}");
             query.AppendLine($"-- Generated UTC: {plan.StampUtc:yyyy-MM-ddTHH:mm:ssZ}");
             query.AppendLine("-- =============================================");
             query.AppendLine();
+            */
+            query.AppendLine(headerString);
 
             if (options.IncludeUseDatabase)
             {

@@ -14,6 +14,7 @@ using CoreRelm.Models.Migrations.Tooling.Generation;
 using CoreRelm.Models.Migrations.Tooling.Validation;
 using CoreRelm.RelmInternal.Contexts;
 using CoreRelm.RelmInternal.Helpers.Migrations.Introspection;
+using CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans;
 using Moq;
 using System.Reflection;
 
@@ -78,7 +79,7 @@ public sealed class RelmMigrationToolingTests_V2 : IClassFixture<JsonConfigurati
         var planner = new Mock<IRelmMigrationPlanner>(MockBehavior.Strict);
         planner.Setup(p => p.Plan(It.IsAny<SchemaSnapshot>(), It.IsAny<SchemaSnapshot>(), It.IsAny<MigrationPlanOptions>()))
             .Returns((SchemaSnapshot desired, SchemaSnapshot actual, MigrationPlanOptions opt) =>
-                new MigrationPlan(db, Operations: [], Warnings: [], Blockers: [], StampUtc: opt.StampUtc));
+                new MigrationPlan(db, opt.MigrationName, opt.ModelSetName, [], [], [], opt.StampUtc));
 
         var renderer = new Mock<IRelmMigrationSqlRenderer>(MockBehavior.Strict);
 
@@ -103,6 +104,7 @@ public sealed class RelmMigrationToolingTests_V2 : IClassFixture<JsonConfigurati
         renderer.Verify(r => r.Render(It.IsAny<MigrationPlan>(), It.IsAny<MySqlRenderOptions>()), Times.Never);
     }
 
+
     [Fact]
     public async Task GenerateMigrationsAsync_Blockers_PreventSql()
     {
@@ -112,7 +114,7 @@ public sealed class RelmMigrationToolingTests_V2 : IClassFixture<JsonConfigurati
         var planner = new Mock<IRelmMigrationPlanner>(MockBehavior.Strict);
         planner.Setup(p => p.Plan(It.IsAny<SchemaSnapshot>(), It.IsAny<SchemaSnapshot>(), It.IsAny<MigrationPlanOptions>()))
             .Returns((SchemaSnapshot desired, SchemaSnapshot actual, MigrationPlanOptions opt) =>
-                new MigrationPlan(db, Operations: [Mock.Of<IMigrationOperation>()], Warnings: [], Blockers: ["blocker"], StampUtc: opt.StampUtc));
+                new MigrationPlan(db, opt.MigrationName, opt.ModelSetName, [Mock.Of<IMigrationOperation>()], [], ["blocker"], opt.StampUtc));
 
         var renderer = new Mock<IRelmMigrationSqlRenderer>(MockBehavior.Strict);
 
@@ -145,7 +147,7 @@ public sealed class RelmMigrationToolingTests_V2 : IClassFixture<JsonConfigurati
         var planner = new Mock<IRelmMigrationPlanner>(MockBehavior.Strict);
         planner.Setup(p => p.Plan(It.IsAny<SchemaSnapshot>(), It.IsAny<SchemaSnapshot>(), It.IsAny<MigrationPlanOptions>()))
             .Returns((SchemaSnapshot desired, SchemaSnapshot actual, MigrationPlanOptions opt) =>
-                new MigrationPlan(db, Operations: [Mock.Of<IMigrationOperation>()], Warnings: [], Blockers: [], StampUtc: opt.StampUtc));
+                new MigrationPlan(db, opt.MigrationName, opt.ModelSetName, [Mock.Of<IMigrationOperation>()], [], [], opt.StampUtc));
 
         MySqlRenderOptions? captured = null;
         var renderer = new Mock<IRelmMigrationSqlRenderer>(MockBehavior.Strict);
@@ -293,5 +295,91 @@ public sealed class RelmMigrationToolingTests_V2 : IClassFixture<JsonConfigurati
             log: null,
             informationSchemaContextFactory: cs => new InformationSchemaContext(cs, autoOpenConnection: false, autoInitializeDataSets: false, autoVerifyTables: false)
         );
+    }
+
+    [Fact]
+    public async Task GenerateMigrationsAsync_PassesMigrationMetadataToPlanner()
+    {
+        // Arrange
+        const string db = "db1";
+        var resolved = MakeResolvedSet((db, typeof(string)));
+        MigrationPlanOptions? captured = null;
+
+        var planner = new Mock<IRelmMigrationPlanner>(MockBehavior.Strict);
+        planner.Setup(p => p.Plan(It.IsAny<SchemaSnapshot>(), It.IsAny<SchemaSnapshot>(), It.IsAny<MigrationPlanOptions>()))
+            .Returns((SchemaSnapshot desired, SchemaSnapshot actual, MigrationPlanOptions opt) =>
+            {
+                captured = opt;
+                return new MigrationPlan(db, opt.MigrationName, opt.ModelSetName, [], [], [], opt.StampUtc);
+            });
+
+        var renderer = new Mock<IRelmMigrationSqlRenderer>(MockBehavior.Strict);
+
+        var tooling = BuildTooling(resolved: resolved, planner: planner.Object, renderer: renderer.Object);
+
+        var options = new GenerateMigrationsOptions(
+            ConnectionStringTemplate: "Server=localhost;Database={db};Uid=x;Pwd=y;",
+            EnsureDatabaseExistsDuringGenerate: false,
+            TreatMissingDatabaseAsEmpty: true,
+            MigrationName: "custom-migration"
+        );
+
+        // Act
+        _ = await tooling.GenerateMigrationsAsync(new ModelSetsFile(), "set", ThisAssembly, options);
+
+        // Assert
+        Assert.NotNull(captured);
+        Assert.Equal("custom-migration", captured!.MigrationName);
+        Assert.Equal("set", captured.ModelSetName);
+    }
+
+    [Fact]
+    public void Plan_SetsMigrationNameAndModelSetName_FromOptions()
+    {
+        // Arrange
+        var planner = new RelmMigrationPlanner();
+        var desired = new SchemaSnapshot(
+            "db1",
+            new Dictionary<string, TableSchema>(StringComparer.Ordinal),
+            new Dictionary<string, FunctionSchema>(StringComparer.OrdinalIgnoreCase));
+        var actual = new SchemaSnapshot(
+            "db1",
+            new Dictionary<string, TableSchema>(StringComparer.Ordinal),
+            new Dictionary<string, FunctionSchema>(StringComparer.OrdinalIgnoreCase));
+        var options = new MigrationPlanOptions(
+            DropFunctionsOnCreate: false,
+            Destructive: false,
+            MigrationName: "migration-1",
+            ModelSetName: "set-1",
+            ScopeTables: new HashSet<string>(StringComparer.Ordinal),
+            StampUtc: DateTime.UtcNow
+        );
+
+        // Act
+        var plan = planner.Plan(desired, actual, options);
+
+        // Assert
+        Assert.Equal("migration-1", plan.MigrationName);
+        Assert.Equal("set-1", plan.ModelSetName);
+    }
+
+    [Fact]
+    public void MigrationPlan_HasChanges_WhenBlockersPresent()
+    {
+        // Arrange
+        var plan = new MigrationPlan(
+            DatabaseName: "db1",
+            MigrationName: "migration-1",
+            ModelSetName: "set-1",
+            Operations: [],
+            Warnings: [],
+            Blockers: ["blocker"],
+            StampUtc: DateTime.UtcNow);
+
+        // Act
+        var hasChanges = plan.HasChanges;
+
+        // Assert
+        Assert.True(hasChanges);
     }
 }

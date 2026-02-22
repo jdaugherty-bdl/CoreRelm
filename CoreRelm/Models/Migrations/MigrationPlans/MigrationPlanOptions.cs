@@ -9,6 +9,8 @@ namespace CoreRelm.Models.Migrations.MigrationPlans
     public sealed record MigrationPlanOptions(
         bool DropFunctionsOnCreate,
         bool Destructive,
+        string MigrationName,
+        string ModelSetName,
         ISet<string> ScopeTables,
         DateTime StampUtc
     );

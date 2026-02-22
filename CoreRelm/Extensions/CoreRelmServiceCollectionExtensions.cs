@@ -1,8 +1,10 @@
 ﻿using CoreRelm.Interfaces.Metadata;
 using CoreRelm.Interfaces.Migrations;
+using CoreRelm.Interfaces.Migrations.MigrationFiles;
 using CoreRelm.Interfaces.Migrations.Tooling;
 using CoreRelm.Interfaces.ModelSets;
 using CoreRelm.Migrations;
+using CoreRelm.Migrations.MigrationFiles;
 using CoreRelm.RelmInternal.Helpers.Metadata;
 using CoreRelm.RelmInternal.Helpers.Migrations.Execution;
 using CoreRelm.RelmInternal.Helpers.Migrations.Introspection;
@@ -14,6 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -86,11 +89,19 @@ namespace CoreRelm.Extensions
 
         private static void AddToolingParsers(IServiceCollection services)
         {
-
             services.AddSingleton<IRelmMigrationTooling, RelmMigrationTooling>();
-            //services.AddSingleton<IMigrationFileNameParser, MigrationFileNameParser>();
+            services.AddSingleton<IMigrationFileNameParser, MigrationFileNameParser>();
             services.AddSingleton<IModelSetParser, ModelSetParser>();
             services.AddSingleton<IModelSetResolver, ModelSetResolver>();
+
+            var versionString = typeof(MigrationScriptHeaderParser).Assembly
+                .GetCustomAttributes<AssemblyMetadataAttribute>()
+                .FirstOrDefault(a => a.Key == "MaxSupportedMigrationFileVersion")?.Value;
+
+            var maxVersion = Version.TryParse(versionString, out var v) ? v : new Version(1, 0, 0);
+            services.AddKeyedSingleton("MaxSupportedMigrationFileVersion", maxVersion);
+
+            services.AddTransient<MigrationScriptHeaderParser>();
         }
     }
 }

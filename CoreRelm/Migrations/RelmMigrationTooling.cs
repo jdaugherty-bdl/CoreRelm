@@ -192,6 +192,8 @@ namespace CoreRelm.Migrations
                 var planOptions = new MigrationPlanOptions(
                     DropFunctionsOnCreate: options.DropFunctionsOnCreate,
                     Destructive: options.Destructive,
+                    MigrationName: options.MigrationName,
+                    ModelSetName: setName,
                     ScopeTables: scopeTables,
                     StampUtc: stamp
                 );

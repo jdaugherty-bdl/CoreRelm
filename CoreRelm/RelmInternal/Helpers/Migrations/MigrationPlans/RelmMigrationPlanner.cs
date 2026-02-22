@@ -125,7 +125,14 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
             migrationOperations = OrderOperations(migrationOperations);
 
             _log?.LogFormatted(LogLevel.Information, "Finished creating migration plan with {OperationCount} operations, {WarningCount} warnings, and {BlockerCount} blockers", args: [migrationOperations.Count, warnings.Count, blockers.Count], preDecreaseLevel: true);
-            return new MigrationPlan(desired.DatabaseName, migrationOperations, warnings, blockers, options.StampUtc);
+            return new MigrationPlan(
+                desired.DatabaseName,
+                options.MigrationName,
+                options.ModelSetName,
+                migrationOperations, 
+                warnings, 
+                blockers, 
+                options.StampUtc);
         }
 
         private List<IMigrationOperation> ReorderForeignKeys(

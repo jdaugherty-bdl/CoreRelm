@@ -26,7 +26,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
         IRelmSqlScriptRunner runner,
         ILogger<SchemaMigrationsStore>? log = null) : IRelmSchemaMigrationsStore
     {
-        private const string migrationName = "[Relm] Ensure Schema Migrations Table";
+        private const string migrationName = "[CoreRelm] Ensure Schema Migrations Table";
 
         public async Task<int> EnsureSchemaMigrationTableAsync(IRelmContext context, MigrationOptions migrationOptions)
         {
@@ -36,20 +36,25 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
             if (string.IsNullOrWhiteSpace(context.ContextOptions.DatabaseConnection?.Database))
                 throw new InvalidOperationException("Database connection information is missing or incomplete.");
 
-            var databaseName = context.ContextOptions.DatabaseConnection!.Database;
+            var localMigrationOptions = migrationOptions with
+            {
+                DatabaseName = context.ContextOptions.DatabaseConnection!.Database,
+                MigrationName = migrationName,
+                StampUtc = DateTime.UtcNow
+            };
 
             log?.LogFormatted(LogLevel.Information, "Generating migration SQL to ensure schema migrations table exists");
-            var provider = providerFactory.CreateProvider(migrationOptions);
+            var provider = providerFactory.CreateProvider(localMigrationOptions);
 
             log?.LogFormatted(LogLevel.Information, "Preparing model information for migrations table SQL generation");
             var models = new List<ValidatedModelType>
             {
-                new(typeof(AppliedMigration), databaseName, RelmHelper.GetDalTable<AppliedMigration>() ?? "schema_migrations")
+                new(typeof(AppliedMigration), localMigrationOptions.DatabaseName, RelmHelper.GetDalTable<AppliedMigration>() ?? "schema_migrations")
             };
 
             log?.LogFormatted(LogLevel.Information, "Invoking migration SQL provider to generate SQL for ensuring schema migrations table exists...");
             log?.SaveIndentLevel("GenerateAsync");
-            var result = await provider.GenerateAsync(DateTime.UtcNow, databaseName, models);
+            var result = await provider.GenerateAsync(models);
             log?.RestoreIndentLevel("GenerateAsync");
             if (!result.HasChanges)
             {
@@ -65,24 +70,24 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
             var checksum = result.Sql.Sha256Hex();
             log?.LogFormatted(LogLevel.Information, "Generated migration SQL checksum (SHA-256): {Checksum}", args: [checksum], preIncreaseLevel: true);
 
-            var safeName = UrlStringHelper.Slugify(migrationName);
+            var safeName = UrlStringHelper.Slugify(localMigrationOptions.MigrationName);
             log?.LogFormatted(LogLevel.Information, "Generated safe migration name for file naming: {SafeName}", args: [safeName]);
 
-            var migrationFileName = $"SYSTEM_MIGRATION_{DateTime.UtcNow:yyyyMMdd_HHmmss}_{safeName}__db-{databaseName}.sql";
+            var migrationFileName = $"SYSTEM_MIGRATION_{localMigrationOptions.StampUtc:yyyyMMdd_HHmmss}_{safeName}__db-{localMigrationOptions.DatabaseName}.sql";
             log?.LogFormatted(LogLevel.Information, "Constructed migration file name: {FileName}", args: [migrationFileName]);
 
-            var migrationFilePath = Path.Combine(migrationOptions.MigrationsPath ?? ".", migrationFileName);
-            if (migrationOptions.SaveSystemMigrations && !string.IsNullOrWhiteSpace(migrationOptions.MigrationsPath))
+            var migrationFilePath = Path.Combine(localMigrationOptions.MigrationsPath ?? ".", migrationFileName);
+            if (localMigrationOptions.SaveSystemMigrations && !string.IsNullOrWhiteSpace(localMigrationOptions.MigrationsPath))
             {
-                log?.LogFormatted(LogLevel.Information, "Saving generated migration SQL to file as per configuration. Path: {MigrationsPath}", args: [migrationOptions.MigrationsPath], singleIndentLine: true);
-                if (!Directory.Exists(migrationOptions.MigrationsPath))
-                    Directory.CreateDirectory(migrationOptions.MigrationsPath);
+                log?.LogFormatted(LogLevel.Information, "Saving generated migration SQL to file as per configuration. Path: {MigrationsPath}", args: [localMigrationOptions.MigrationsPath], singleIndentLine: true);
+                if (!Directory.Exists(localMigrationOptions.MigrationsPath))
+                    Directory.CreateDirectory(localMigrationOptions.MigrationsPath);
 
-                await File.WriteAllTextAsync(migrationFilePath, result.Sql, migrationOptions.CancelToken);
+                await File.WriteAllTextAsync(migrationFilePath, result.Sql, localMigrationOptions.CancelToken);
             }
 
             log?.LogFormatted(LogLevel.Information, "Executing migration SQL to ensure schema migrations table exists...");
-            await runner.ExecuteScriptAsync(context, result.Sql, migrationOptions.CancelToken, exceptionHandler: (ex) =>
+            await runner.ExecuteScriptAsync(context, result.Sql, localMigrationOptions.CancelToken, exceptionHandler: (ex) =>
             {
                 log?.LogFormatted(LogLevel.Error, "Error executing migration SQL for ensuring schema migrations table exists: {ExceptionMessage}", args: [ex.Message], preIncreaseLevel: true);
 
@@ -90,7 +95,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
                     log?.LogFormatted(LogLevel.Error, "Database error details - Error Code: {ErrorCode}, SQL State: {SqlState}", args: [dbEx.ErrorCode, dbEx.SqlState]);
 
                 var errorFileName = $"ERROR_{migrationFileName}";
-                var errorFilePath = Path.Combine(migrationOptions.MigrationErrorPath, errorFileName);
+                var errorFilePath = Path.Combine(localMigrationOptions.MigrationErrorPath, errorFileName);
                 log?.LogFormatted(LogLevel.Information, "Saving failed migration SQL to error path for analysis. Path: {ErrorFilePath}", args: [errorFilePath]);
 
                 if (File.Exists(migrationFilePath))
@@ -99,10 +104,10 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
                     File.Delete(migrationFilePath);
                 }
 
-                if (!Directory.Exists(migrationOptions.MigrationErrorPath))
+                if (!Directory.Exists(localMigrationOptions.MigrationErrorPath))
                 {
-                    log?.LogFormatted(LogLevel.Information, "Creating migration error directory as it does not exist. Path: {ErrorPath}", args: [migrationOptions.MigrationErrorPath]);
-                    Directory.CreateDirectory(migrationOptions.MigrationErrorPath);
+                    log?.LogFormatted(LogLevel.Information, "Creating migration error directory as it does not exist. Path: {ErrorPath}", args: [localMigrationOptions.MigrationErrorPath]);
+                    Directory.CreateDirectory(localMigrationOptions.MigrationErrorPath);
                 }
 
                 log?.LogFormatted(LogLevel.Information, "Saving migration file", args: []);
@@ -112,11 +117,11 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
             });
 
             log?.LogFormatted(LogLevel.Information, "Recording applied migration - '{Recording}'", args: ["Ensuring schema migrations table exists"]);
-            var rowsUpdated = await RecordAppliedMigrationAsync(context, migrationFileName, RelmMigrationType.SystemMigration, checksum, migrationOptions.CancelToken);
+            var rowsUpdated = await RecordAppliedMigrationAsync(context, migrationFileName, RelmMigrationType.SystemMigration, checksum, localMigrationOptions.CancelToken);
 
             log?.LogFormatted(LogLevel.Information, "Recorded applied migration. Rows updated: {RowsUpdated}", args: [rowsUpdated]);
 
-            log?.LogFormatted(LogLevel.Information, "Completed ensuring schema migrations table exists for database: {Database}", args: [databaseName], preDecreaseLevel: true);
+            log?.LogFormatted(LogLevel.Information, "Completed ensuring schema migrations table exists for database: {Database}", args: [localMigrationOptions.DatabaseName], preDecreaseLevel: true);
 
             log?.RestoreIndentLevel("EnsureSchemaMigrationTableAsync");
             return rowsUpdated;

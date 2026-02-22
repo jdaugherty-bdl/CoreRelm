@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.Models.Migrations
 {
-    public class MigrationOptions
+    public record MigrationOptions
     {
         public string? DatabaseName { get; set; }
         public string? ConnectionStringTemplate { get; set; }
         public string? SetName { get; set; }
+        public string? MigrationName { get; set; }
+        public DateTime StampUtc { get; set; }
         public string? MigrationsPath { get; set; } = "./migrations";
         public string? ModelSetsPath { get; set; } = "./migrations/modelsets.json";
         public string MigrationErrorPath { get; set; } = "./migrations/_errors";

@@ -5,11 +5,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static CoreRelm.Enums.MigrationEnums;
 
 namespace CoreRelm.Models.Migrations.MigrationPlans
 {
     public sealed record MigrationPlan(
         string DatabaseName,
+        string MigrationName,
+        string ModelSetName,
+        RelmMigrationType MigrationType,
         IReadOnlyList<IMigrationOperation> Operations,
         IReadOnlyList<string> Warnings,
         IReadOnlyList<string> Blockers,

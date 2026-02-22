@@ -487,10 +487,12 @@ namespace CoreRelm.Tests
         public void RelmHelper_LoadDataLoaderField_Single_Boolean()
         {
             // Arrange
+            new ServiceCollection().AddCoreRelm(_configuration);
+            var context = new ComplexTestContext(autoInitializeDataSets: false, autoVerifyTables: false);
             var complexTestModel = new ComplexTestModel();
 
             // Act
-            RelmHelper.LoadDataLoaderField(new ComplexTestContext(autoVerifyTables: false), complexTestModel, x => x.TestFieldBoolean);
+            RelmHelper.LoadDataLoaderField(context, complexTestModel, x => x.TestFieldBoolean);
 
             // Assert
             Assert.NotNull(complexTestModel.TestFieldBoolean);
@@ -501,10 +503,12 @@ namespace CoreRelm.Tests
         public void RelmHelper_LoadDataLoadersField_Multiple_Boolean()
         {
             // Arrange
+            new ServiceCollection().AddCoreRelm(_configuration);
+            var context = new ComplexTestContext(autoInitializeDataSets: false, autoVerifyTables: false);
             var complexTestModel = new ComplexTestModel();
 
             // Act
-            RelmHelper.LoadDataLoaderField(new ComplexTestContext(autoVerifyTables: false), complexTestModel, x => x.TestFieldBooleans);
+            RelmHelper.LoadDataLoaderField(context, complexTestModel, x => x.TestFieldBooleans);
 
             // Assert
             Assert.Equal(4, complexTestModel?.TestFieldBooleans?.Count);

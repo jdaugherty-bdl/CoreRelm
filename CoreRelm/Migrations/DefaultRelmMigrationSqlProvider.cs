@@ -53,24 +53,18 @@ namespace CoreRelm.Migrations
             _log = log;
         }
 
-        public MigrationGenerateResult Generate(
-            DateTime stampUtc,
-            string dbName,
-            List<ValidatedModelType> modelsForDb)
+        public MigrationGenerateResult Generate(List<ValidatedModelType> modelsForDb)
         {
             // This provider is intended to be used in an async flow,
             // but IMigrationSqlProvider is sync. We keep it sync by calling .GetAwaiter().GetResult().
             // If you prefer, change the provider interface to async later.
 
-            return GenerateAsync(stampUtc, dbName, modelsForDb)
+            return GenerateAsync(modelsForDb)
                 .GetAwaiter()
                 .GetResult();
         }
 
-        public async Task<MigrationGenerateResult> GenerateAsync(
-            DateTime stampUtc,
-            string dbName,
-            List<ValidatedModelType> modelsForDb)
+        public async Task<MigrationGenerateResult> GenerateAsync(List<ValidatedModelType> modelsForDb)
         {
             _log?.SaveIndentLevel("DefaultRelmMigrationSqlProvider.GenerateAsync");
 
@@ -87,7 +81,7 @@ namespace CoreRelm.Migrations
             // For now, we build it from the resolved model list (table names + columns etc. must come from CoreRelm metadata reader).
             // If you already have a DesiredSnapshot builder in CoreRelm, call that instead.
             _log?.SaveIndentLevel("desired");
-            var desired = await _desiredBuilder.BuildAsync(dbName, modelsForDb);
+            var desired = await _desiredBuilder.BuildAsync(_migrationOptions.DatabaseName, modelsForDb);
             _log?.RestoreIndentLevel("desired");
 
             // Actual schema:
@@ -95,7 +89,7 @@ namespace CoreRelm.Migrations
             // - otherwise warn and treat as empty (per your policy for non-apply paths)
             SchemaSnapshot actual;
             _log?.LogFormatted(LogLevel.Information, "Checking database availability...", args: [], postIncreaseLevel: true);
-            _migrationOptions.DatabaseName = dbName;
+            //_migrationOptions.DatabaseName = dbName;
             _log?.SaveIndentLevel("availability");
             var dbExists = await DbAvailabilityHelper.WarnIfMissingAsync(_migrationOptions, _provisioner, message => _log?.LogWarning(message));
             _log?.RestoreIndentLevel("availability");
@@ -109,18 +103,20 @@ namespace CoreRelm.Migrations
                 var context = new InformationSchemaContext(dbConn, autoInitializeDataSets: false, autoVerifyTables: false);
 
                 _log?.SaveIndentLevel("introspecting");
-                actual = await _introspector.LoadSchemaAsync(context, new SchemaIntrospectionOptions { DatabaseName = dbName });
+                actual = await _introspector.LoadSchemaAsync(context, new SchemaIntrospectionOptions { DatabaseName = _migrationOptions.DatabaseName });
                 _log?.RestoreIndentLevel("introspecting");
             }
             else
-                actual = SchemaSnapshotFactory.Empty(dbName);
+                actual = SchemaSnapshotFactory.Empty(_migrationOptions.DatabaseName);
 
             _log?.LogFormatted(LogLevel.Information, "Planning migration...", args: []);
             var planOptions = new MigrationPlanOptions(
                 DropFunctionsOnCreate: _migrationOptions.DropFunctionsOnCreate,
                 Destructive: _migrationOptions.Destructive,
+                MigrationName: $"Migration_{DateTime.UtcNow:yyyyMMdd_HHmmss}",
+                ModelSetName: "Default", // You can customize this if you have multiple model sets or want to include more context
                 ScopeTables: scopeTables,
-                StampUtc: stampUtc
+                StampUtc: _migrationOptions.StampUtc
             );
 
             _log?.SaveIndentLevel("planning");
@@ -130,8 +126,8 @@ namespace CoreRelm.Migrations
             if (plan.Operations.Count == 0 && plan.Blockers.Count == 0)
             {
                 return MigrationGenerateResult.NoChanges(
-                    dbName,
-                    $"No changes detected for database '{dbName}'. No migration file written.");
+                    _migrationOptions.DatabaseName,
+                    $"No changes detected for database '{_migrationOptions.DatabaseName}'. No migration file written.");
             }
 
             _log?.SaveIndentLevel("rendering");
@@ -148,9 +144,9 @@ namespace CoreRelm.Migrations
             _log?.RestoreIndentLevel("DefaultRelmMigrationSqlProvider.GenerateAsync");
 
             return MigrationGenerateResult.Changes(
-                dbName,
+                _migrationOptions.DatabaseName,
                 sql,
-                $"Changes detected for database '{dbName}'. Migration will be generated.");
+                $"Changes detected for database '{_migrationOptions.DatabaseName}'. Migration will be generated.");
         }
     }
 }
