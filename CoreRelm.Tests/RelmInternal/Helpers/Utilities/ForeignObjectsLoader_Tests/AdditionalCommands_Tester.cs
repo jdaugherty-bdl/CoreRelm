@@ -23,8 +23,8 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Utilities
     {
         private readonly IConfiguration _configuration;
         private ComplexTestContext context;
-        private List<ComplexTestModel> mockComplexTestModels;
-        private LambdaExpression containsLambda;
+        private List<ComplexTestModel?>? mockComplexTestModels;
+        private LambdaExpression? containsLambda;
 
         public ForeignObjectsLoader_Tester(JsonConfigurationFixture fixture)
         {
@@ -35,10 +35,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Utilities
         private ComplexTestContext SetupContext(bool haveTwoRoots = true)
         {
             // dummy data
-            mockComplexTestModels = new List<ComplexTestModel>
+            mockComplexTestModels = new List<ComplexTestModel?>
             {
-                new ComplexTestModel
-                {
+                new() {
                     InternalId = "ID1",
                     ComplexReferenceObjectLocalKey = "LOCALKEY1",
                     ComplexReferenceObjects = null,
@@ -81,6 +80,8 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Utilities
 
             new ServiceCollection().AddCoreRelm(_configuration);
             context = new RelmContextOptionsBuilder()
+                .SetAutoOpenConnection(false)
+                .SetAutoInitializeDataSets(false)
                 .SetAutoVerifyTables(false)
                 .Build<ComplexTestContext>()
                 ?? throw new InvalidOperationException("Failed to build ComplexTestContext");
@@ -91,7 +92,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Utilities
             // make sure GetLoadData() calls base so LastExecutedCommands (required for references) gets populated
             modelDataLoader.Setup(x => x.TableName).Returns("nothing_table");
             modelDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
-            modelDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexTestModels);
+            modelDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object?>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexTestModels);
 
             context.GetDataSet<ComplexTestModel>()?.SetDataLoader(modelDataLoader.Object);
 

@@ -195,6 +195,7 @@ namespace CoreRelm.Tests
             // Arrange
             new ServiceCollection().AddCoreRelm(_configuration);
             var context = new RelmContextOptionsBuilder()
+                .SetAutoOpenConnection(false)
                 .SetAutoInitializeDataSets(false)
                 .SetAutoVerifyTables(false)
                 .Build<ComplexTestContext>()
@@ -240,6 +241,7 @@ namespace CoreRelm.Tests
             // Arrange
             new ServiceCollection().AddCoreRelm(_configuration);
             var context = new RelmContextOptionsBuilder()
+                .SetAutoOpenConnection(false)
                 .SetAutoInitializeDataSets(false)
                 .SetAutoVerifyTables(false)
                 .Build<ComplexTestContext>()
@@ -278,6 +280,7 @@ namespace CoreRelm.Tests
             SetupContext(true);
             new ServiceCollection().AddCoreRelm(_configuration);
             var context = new RelmContextOptionsBuilder()
+                .SetAutoOpenConnection(false)
                 .SetAutoInitializeDataSets(false)
                 .SetAutoVerifyTables(false)
                 .Build<ComplexTestContext>()
@@ -316,6 +319,7 @@ namespace CoreRelm.Tests
             SetupContext(false);
             new ServiceCollection().AddCoreRelm(_configuration);
             var context = new RelmContextOptionsBuilder()
+                .SetAutoOpenConnection(false)
                 .SetAutoInitializeDataSets(false)
                 .SetAutoVerifyTables(false)
                 .Build<ComplexTestContext>()
@@ -341,6 +345,7 @@ namespace CoreRelm.Tests
             // Arrange
             new ServiceCollection().AddCoreRelm(_configuration);
             var context = new RelmContextOptionsBuilder()
+                .SetAutoOpenConnection(false)
                 .SetAutoInitializeDataSets(false)
                 .SetAutoVerifyTables(false)
                 .Build<ComplexTestContext>()
@@ -378,6 +383,7 @@ namespace CoreRelm.Tests
             // Arrange
             new ServiceCollection().AddCoreRelm(_configuration);
             var context = new RelmContextOptionsBuilder()
+                .SetAutoOpenConnection(false)
                 .SetAutoInitializeDataSets(false)
                 .SetAutoVerifyTables(false)
                 .Build<ComplexTestContext>()
@@ -404,6 +410,7 @@ namespace CoreRelm.Tests
             // Arrange
             new ServiceCollection().AddCoreRelm(_configuration);
             var context = new RelmContextOptionsBuilder()
+                .SetAutoOpenConnection(false)
                 .SetAutoInitializeDataSets(false)
                 .SetAutoVerifyTables(false)
                 .Build<ComplexTestContext>()
@@ -441,6 +448,7 @@ namespace CoreRelm.Tests
             // Arrange
             new ServiceCollection().AddCoreRelm(_configuration);
             var context = new RelmContextOptionsBuilder()
+                .SetAutoOpenConnection(false)
                 .SetAutoInitializeDataSets(false)
                 .SetAutoVerifyTables(false)
                 .Build<ComplexTestContext>()
@@ -467,6 +475,7 @@ namespace CoreRelm.Tests
             // Arrange
             new ServiceCollection().AddCoreRelm(_configuration);
             var context = new RelmContextOptionsBuilder()
+                .SetAutoOpenConnection(false)
                 .SetAutoInitializeDataSets(false)
                 .SetAutoVerifyTables(false)
                 .Build<ComplexTestContext>()
@@ -504,6 +513,7 @@ namespace CoreRelm.Tests
             // Arrange
             new ServiceCollection().AddCoreRelm(_configuration);
             var context = new RelmContextOptionsBuilder()
+                .SetAutoOpenConnection(false)
                 .SetAutoInitializeDataSets(false)
                 .SetAutoVerifyTables(false)
                 .Build<ComplexTestContext>()
@@ -530,6 +540,7 @@ namespace CoreRelm.Tests
             // Arrange
             new ServiceCollection().AddCoreRelm(_configuration);
             var context = new RelmContextOptionsBuilder()
+                .SetAutoOpenConnection(false)
                 .SetAutoInitializeDataSets(false)
                 .SetAutoVerifyTables(false)
                 .Build<ComplexTestContext>()
@@ -550,6 +561,7 @@ namespace CoreRelm.Tests
             // Arrange
             new ServiceCollection().AddCoreRelm(_configuration);
             var context = new RelmContextOptionsBuilder()
+                .SetAutoOpenConnection(false)
                 .SetAutoInitializeDataSets(false)
                 .SetAutoVerifyTables(false)
                 .Build<ComplexTestContext>()

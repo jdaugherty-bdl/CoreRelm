@@ -18,17 +18,16 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
     public class Reference_NonDefaultForeignKey_Tester : IClassFixture<JsonConfigurationFixture>
     {
         private readonly IConfiguration _configuration;
-        private NonDefaultForeignKeysTestContext context;
+        private readonly NonDefaultForeignKeysTestContext context;
 
         public Reference_NonDefaultForeignKey_Tester(JsonConfigurationFixture fixture)
         {
             _configuration = fixture.Configuration;
 
             // dummy data
-            var mockComplexTestModels = new List<NonDefaultForeignKeysTestObject>
+            var mockComplexTestModels = new List<NonDefaultForeignKeysTestObject?>
             {
-                new NonDefaultForeignKeysTestObject
-                {
+                new() {
                     InternalId = "ID1",
                     NonDefaultForeignKeysReferenceObjectLocalKey = "LOCALKEY1",
                     NonDefaultForeignKeysReferenceObject_ForeignKeys = null,
@@ -38,8 +37,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
                     NonDefaultForeignKeysReferenceObject_PrincipalEntities = null,
                     NonDefaultForeignKeysReferenceObject_PrincipalEntity_Item = null,
                 },
-                new NonDefaultForeignKeysTestObject
-                {
+                new() {
                     InternalId = "ID1",
                     NonDefaultForeignKeysReferenceObjectLocalKey = "LOCALKEY2",
                     NonDefaultForeignKeysReferenceObject_ForeignKeys = null,
@@ -53,6 +51,8 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
 
             new ServiceCollection().AddCoreRelm(_configuration);
             context = new RelmContextOptionsBuilder("name=SimpleRelmMySql")
+                .SetAutoOpenConnection(false)
+                .SetAutoInitializeDataSets(false)
                 .SetAutoVerifyTables(false)
                 .Build<NonDefaultForeignKeysTestContext>()
                 ?? throw new InvalidOperationException("Failed to build NonDefaultForeignKeysTestContext");
@@ -63,64 +63,64 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             // make sure GetLoadData() calls base so LastExecutedCommands (required for references) gets populated
             modelDataLoader.Setup(x => x.TableName).Returns("nothing_table");
             modelDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
-            modelDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexTestModels);
+            modelDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object?>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexTestModels);
 
             context.GetDataSet<NonDefaultForeignKeysTestObject>()?.SetDataLoader(modelDataLoader.Object);
         }
 
         private void SetupReferenceDataLoader(bool addSecondId)
         {
-            var mockComplexReferenceObjects_ForeignKey = new List<NonDefaultForeignKeysReferenceObject_ForeignKey>
+            var mockComplexReferenceObjects_ForeignKey = new List<NonDefaultForeignKeysReferenceObject_ForeignKey?>
             {
-                new NonDefaultForeignKeysReferenceObject_ForeignKey { ReferenceKey = "LOCALKEY1", NonDefaultForeignKeysTestObject_Reference= null },
-                new NonDefaultForeignKeysReferenceObject_ForeignKey { ReferenceKey = "LOCALKEY2", NonDefaultForeignKeysTestObject_Reference = null },
+                new() { ReferenceKey = "LOCALKEY1", NonDefaultForeignKeysTestObject_Reference= null },
+                new() { ReferenceKey = "LOCALKEY2", NonDefaultForeignKeysTestObject_Reference = null },
             };
 
             if (addSecondId)
-                mockComplexReferenceObjects_ForeignKey.Add(new NonDefaultForeignKeysReferenceObject_ForeignKey { ReferenceKey = "LOCALKEY1", NonDefaultForeignKeysTestObject_Reference = null });
+                mockComplexReferenceObjects_ForeignKey.Add(new() { ReferenceKey = "LOCALKEY1", NonDefaultForeignKeysTestObject_Reference = null });
 
             var referenceDataLoader = new Mock<RelmDefaultDataLoader<NonDefaultForeignKeysReferenceObject_ForeignKey>>(context);
             referenceDataLoader.Setup(x => x.TableName).Returns("nothing_table");
             referenceDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
-            referenceDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects_ForeignKey);
+            referenceDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object?>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects_ForeignKey);
 
             context.GetDataSet<NonDefaultForeignKeysReferenceObject_ForeignKey>()?.SetDataLoader(referenceDataLoader.Object);
         }
 
         private void SetupNavigationDataLoader(bool addSecondId)
         {
-            var mockComplexReferenceObjects_Navigation = new List<NonDefaultForeignKeysReferenceObject_NavigationProperty>
+            var mockComplexReferenceObjects_Navigation = new List<NonDefaultForeignKeysReferenceObject_NavigationProperty?>
             {
-                new NonDefaultForeignKeysReferenceObject_NavigationProperty { ReferenceKey = "LOCALKEY1", NonDefaultForeignKeysTestObject_Reference = null },
-                new NonDefaultForeignKeysReferenceObject_NavigationProperty { ReferenceKey = "LOCALKEY2", NonDefaultForeignKeysTestObject_Reference = null },
+                new() { ReferenceKey = "LOCALKEY1", NonDefaultForeignKeysTestObject_Reference = null },
+                new() { ReferenceKey = "LOCALKEY2", NonDefaultForeignKeysTestObject_Reference = null },
             };
 
             if (addSecondId)
-                mockComplexReferenceObjects_Navigation.Add(new NonDefaultForeignKeysReferenceObject_NavigationProperty { ReferenceKey = "LOCALKEY1", NonDefaultForeignKeysTestObject_Reference = null });
+                mockComplexReferenceObjects_Navigation.Add(new() { ReferenceKey = "LOCALKEY1", NonDefaultForeignKeysTestObject_Reference = null });
 
             var navigationDataLoader = new Mock<RelmDefaultDataLoader<NonDefaultForeignKeysReferenceObject_NavigationProperty>>(context);
             navigationDataLoader.Setup(x => x.TableName).Returns("nothing_table");
             navigationDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
-            navigationDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects_Navigation);
+            navigationDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object?>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects_Navigation);
 
             context.GetDataSet<NonDefaultForeignKeysReferenceObject_NavigationProperty>()?.SetDataLoader(navigationDataLoader.Object);
         }
 
         private void SetupPrincipalDataLoader(bool addSecondId)
         {
-            var mockComplexReferenceObjects_Principal = new List<NonDefaultForeignKeysReferenceObject_PrincipalEntity>
+            var mockComplexReferenceObjects_Principal = new List<NonDefaultForeignKeysReferenceObject_PrincipalEntity?>
             {
-                new NonDefaultForeignKeysReferenceObject_PrincipalEntity { ReferenceKey = "LOCALKEY1", NonDefaultForeignKeysTestObject_Reference = null },
-                new NonDefaultForeignKeysReferenceObject_PrincipalEntity { ReferenceKey = "LOCALKEY2", NonDefaultForeignKeysTestObject_Reference = null },
+                new() { ReferenceKey = "LOCALKEY1", NonDefaultForeignKeysTestObject_Reference = null },
+                new() { ReferenceKey = "LOCALKEY2", NonDefaultForeignKeysTestObject_Reference = null },
             };
 
             if (addSecondId)
-                mockComplexReferenceObjects_Principal.Add(new NonDefaultForeignKeysReferenceObject_PrincipalEntity { ReferenceKey = "LOCALKEY1", NonDefaultForeignKeysTestObject_Reference = null });
+                mockComplexReferenceObjects_Principal.Add(new() { ReferenceKey = "LOCALKEY1", NonDefaultForeignKeysTestObject_Reference = null });
 
             var principalDataLoader = new Mock<RelmDefaultDataLoader<NonDefaultForeignKeysReferenceObject_PrincipalEntity>>(context);
             principalDataLoader.Setup(x => x.TableName).Returns("nothing_table");
             principalDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
-            principalDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects_Principal);
+            principalDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object?>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects_Principal);
 
             context.GetDataSet<NonDefaultForeignKeysReferenceObject_PrincipalEntity>()?.SetDataLoader(principalDataLoader.Object);
         }

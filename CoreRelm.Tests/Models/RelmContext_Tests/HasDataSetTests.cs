@@ -28,6 +28,7 @@ namespace CoreRelm.Tests.Models.RelmContext_Tests
             // Arrange
             var context = new RelmContextOptionsBuilder("x", "x", "x", "x")
                 .SetAutoOpenConnection(false)
+                .SetAutoInitializeDataSets(false)
                 .SetAutoVerifyTables(false)
                 .Build<ComplexTestContext>()
                 ?? throw new InvalidOperationException("Failed to build ComplexTestContext");
@@ -64,6 +65,7 @@ namespace CoreRelm.Tests.Models.RelmContext_Tests
             // Arrange
             var context = new RelmContextOptionsBuilder("x", "x", "x", "x")
                 .SetAutoOpenConnection(false)
+                .SetAutoInitializeDataSets(false)
                 .SetAutoVerifyTables(false)
                 .Build<ComplexTestContext>()
                 ?? throw new InvalidOperationException("Failed to build ComplexTestContext");

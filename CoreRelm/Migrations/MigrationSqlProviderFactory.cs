@@ -1,6 +1,7 @@
 ﻿using CoreRelm.Interfaces.Metadata;
 using CoreRelm.Interfaces.Migrations;
 using CoreRelm.Models.Migrations;
+using CoreRelm.RelmInternal.Helpers.Migrations.Providers;
 using CoreRelm.RelmInternal.Helpers.Migrations.Provisioning;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;

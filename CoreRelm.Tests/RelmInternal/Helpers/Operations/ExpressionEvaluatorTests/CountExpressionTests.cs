@@ -24,7 +24,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
     public class CountExpressionTests : IClassFixture<JsonConfigurationFixture>
     {
         private readonly IConfiguration _configuration;
-        private ComplexTestContext context;
+        private readonly ComplexTestContext context;
         private readonly ExpressionEvaluator<ComplexTestModel> evaluator;
 
         public CountExpressionTests(JsonConfigurationFixture fixture)
@@ -32,14 +32,16 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             _configuration = fixture.Configuration;
 
             // dummy data
-            var mockComplexTestModels = new List<ComplexTestModel>
+            var mockComplexTestModels = new List<ComplexTestModel?>
             {
-                new ComplexTestModel { InternalId = "ID1" },
-                new ComplexTestModel { InternalId = "ID2" },
+                new() { InternalId = "ID1" },
+                new() { InternalId = "ID2" },
             };
 
             new ServiceCollection().AddCoreRelm(_configuration);
             context = new RelmContextOptionsBuilder()
+                .SetAutoOpenConnection(false)
+                .SetAutoInitializeDataSets(false)
                 .SetAutoVerifyTables(false)
                 .Build<ComplexTestContext>()
                 ?? throw new InvalidOperationException("Failed to build ComplexTestContext");
@@ -50,7 +52,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             // make sure GetLoadData() calls base so LastExecutedCommands (required for references) gets populated
             modelDataLoader.Setup(x => x.TableName).Returns("DUMMY NAME");
             modelDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
-            modelDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexTestModels);
+            modelDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object?>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexTestModels);
 
             context.SetDataSet(new ComplexTestModel());
             context.GetDataSet<ComplexTestModel>()?.SetDataLoader(modelDataLoader.Object);
@@ -65,7 +67,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
         public void Get_Count_Should_Return_2()
         {
             // Arrange & Act
-            var modelsCount = context.GetDataSet<ComplexTestModel>()?.Load().Count();
+            var modelsCount = context.GetDataSet<ComplexTestModel>()?.Load()?.Count;
 
             // Assert
             Assert.Equal(2, modelsCount);
@@ -75,9 +77,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
         public void TestCountQuery_NoOperand()
         {
             // Act
-            var result = evaluator.EvaluateCount(new KeyValuePair<Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateCount(new KeyValuePair<Command, List<IRelmExecutionCommand?>>(
                 Command.Count,
-                new List<IRelmExecutionCommand> { new RelmExecutionCommand(Command.Count, null) }));
+                [new RelmExecutionCommand(Command.Count, null)]));
 
             // Assert
             Assert.Equal(" COUNT(*) AS `count_rows` ", result);
@@ -90,9 +92,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             Expression<Func<ComplexTestModel, object>>? predicate = x => x.Id;
 
             // Act
-            var result = evaluator.EvaluateCount(new KeyValuePair<Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateCount(new KeyValuePair<Command, List<IRelmExecutionCommand?>>(
                 Command.Count,
-                new List<IRelmExecutionCommand> { new RelmExecutionCommand(Command.Count, predicate.Body) }));
+                [new RelmExecutionCommand(Command.Count, predicate.Body)]));
 
             // Assert
             Assert.Equal(" COUNT(a.`Id`) AS `count_Id` ", result);
@@ -105,9 +107,9 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             Expression<Func<ComplexTestModel, object>>? predicate = x => new { x.Id, x.TestColumnInternalId };
 
             // Act
-            var result = evaluator.EvaluateCount(new KeyValuePair<Command, List<IRelmExecutionCommand>>(
+            var result = evaluator.EvaluateCount(new KeyValuePair<Command, List<IRelmExecutionCommand?>>(
                 Command.Count,
-                new List<IRelmExecutionCommand> { new RelmExecutionCommand(Command.Count, predicate.Body) }));
+                [new RelmExecutionCommand(Command.Count, predicate.Body)]));
 
             // Assert
             Assert.Equal(" COUNT(a.`Id`) AS `count_Id` , COUNT(a.`test_column_InternalId`) AS `count_test_column_InternalId` ", result);

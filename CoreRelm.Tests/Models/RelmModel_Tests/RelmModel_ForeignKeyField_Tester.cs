@@ -16,21 +16,16 @@ using CoreRelm.Options;
 namespace CoreRelm.Tests.Models.RelmModel_Tests
 {
     [Collection("JsonConfiguration")]
-    public class RelmModel_ForeignKeyField_Tester : IClassFixture<JsonConfigurationFixture>
+    public class RelmModel_ForeignKeyField_Tester(JsonConfigurationFixture fixture) : IClassFixture<JsonConfigurationFixture>
     {
-        private readonly IConfiguration _configuration;
-        private ComplexTestContext context;
-
-        public RelmModel_ForeignKeyField_Tester(JsonConfigurationFixture fixture)
-        {
-            _configuration = fixture.Configuration;
-        }
+        private readonly IConfiguration _configuration = fixture.Configuration;
+        private ComplexTestContext? context;
 
         private Mock<RelmDefaultDataLoader<ComplexReferenceObject>> SetupSingleReturnReferenceDataLoader(bool addSecondId, bool haveTwoRoots)
         {
             var mockComplexReferenceObjects = new List<ComplexReferenceObject>
             {
-                new ComplexReferenceObject { ComplexTestModelInternalId = "ID1", TestModel = null },
+                new() { ComplexTestModelInternalId = "ID1", TestModel = null },
             };
 
             if (haveTwoRoots)
@@ -41,6 +36,7 @@ namespace CoreRelm.Tests.Models.RelmModel_Tests
 
             new ServiceCollection().AddCoreRelm(_configuration);
             context = new RelmContextOptionsBuilder()
+                .SetAutoOpenConnection(false)
                 .SetAutoInitializeDataSets(false)
                 .SetAutoVerifyTables(false)
                 .Build<ComplexTestContext>()
@@ -49,7 +45,7 @@ namespace CoreRelm.Tests.Models.RelmModel_Tests
             var referenceDataLoader = new Mock<RelmDefaultDataLoader<ComplexReferenceObject>>(context);
             referenceDataLoader.Setup(x => x.TableName).Returns("nothing_table");
             referenceDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
-            referenceDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects);
+            referenceDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object?>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects);
 
             return referenceDataLoader;
         }
@@ -65,18 +61,12 @@ namespace CoreRelm.Tests.Models.RelmModel_Tests
 
             var modelDataLoader = SetupSingleReturnReferenceDataLoader(true, false);
 
-            context.GetDataSet<ComplexReferenceObject>()?.SetDataLoader(modelDataLoader.Object);
-            //context.ComplexReferenceObjects!.SetDataLoader(modelDataLoader.Object);
+            context!.GetDataSet<ComplexReferenceObject>()?.SetDataLoader(modelDataLoader.Object);
 
             // Act
             var exception = Record.Exception(() => complexTestModel.LoadForeignKeyField(context, x => x.ComplexReferenceObject));
 
             // Assert
-            /*
-            Assert.NotNull(exception?.InnerException);
-            Assert.IsType<MySqlException>(exception);
-            Assert.IsType<MySqlException>(exception.InnerException);
-            */
             Assert.NotNull(exception);
             Assert.IsType<InvalidOperationException>(exception);
         }
@@ -96,7 +86,7 @@ namespace CoreRelm.Tests.Models.RelmModel_Tests
             complexTestModel.LoadForeignKeyField(context, x => x.ComplexReferenceObject, dataLoader.Object);
 
             // Assert
-            dataLoader.Verify(r => r.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>()));
+            dataLoader.Verify(r => r.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object?>>(), It.IsAny<CancellationToken>()));
 
             Assert.NotNull(complexTestModel.ComplexReferenceObject);
             Assert.Equal(complexTestModel.InternalId, complexTestModel.ComplexReferenceObject.ComplexTestModelInternalId);
@@ -117,7 +107,7 @@ namespace CoreRelm.Tests.Models.RelmModel_Tests
             complexTestModel.LoadForeignKeyField(context, x => x.ComplexReferenceObjects, dataLoader.Object);
 
             // Assert
-            dataLoader.Verify(r => r.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>()));
+            dataLoader.Verify(r => r.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object?>>(), It.IsAny<CancellationToken>()));
 
             Assert.NotNull(complexTestModel.ComplexReferenceObjects);
             Assert.Equal(2, complexTestModel.ComplexReferenceObjects.Count);

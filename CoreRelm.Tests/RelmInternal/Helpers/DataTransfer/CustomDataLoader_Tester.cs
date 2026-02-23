@@ -44,6 +44,8 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.DataTransfer
 
             new ServiceCollection().AddCoreRelm(_configuration);
             context = new RelmContextOptionsBuilder()
+                .SetAutoOpenConnection(false)
+                .SetAutoInitializeDataSets(false)
                 .SetAutoVerifyTables(false)
                 .Build<ComplexTestContext>()
                 ?? throw new InvalidOperationException("Failed to build ComplexTestContext");

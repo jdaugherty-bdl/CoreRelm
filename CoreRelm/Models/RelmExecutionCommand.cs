@@ -114,7 +114,7 @@ namespace CoreRelm.Models
         /// <exception cref="InvalidOperationException">Thrown if the initial expression is not a lambda expression in the form of 'x => x.PropertyName'.</exception>
         /// <exception cref="Exception">Thrown if no primary keys or reference keys are found for the provided collection.</exception>
         /// <exception cref="MemberAccessException">Thrown if the foreign key referenced by the RelmForeignKey attribute cannot be found.</exception>
-        public ForeignKeyNavigationOptions GetForeignKeyNavigationOptions<T>(ICollection<T> _items)
+        public ForeignKeyNavigationOptions GetForeignKeyNavigationOptions<T>(ICollection<T>? _items)
         {
             var navigationOptions = new ForeignKeyNavigationOptions
             {
@@ -130,7 +130,7 @@ namespace CoreRelm.Models
 
             // go through all items in the current data set and collect all relmkey values
             navigationOptions.ItemPrimaryKeys = [.. _items
-                .Select(x => x
+                ?.Select(x => x
                     ?.GetType()
                     .GetProperties()
                     .Intersect(navigationOptions.ReferenceKeys)
@@ -138,7 +138,8 @@ namespace CoreRelm.Models
                     .Where(y => y.Item2 != null)
                     .Cast<Tuple<PropertyInfo, object>>()
                     .ToList()
-                    ?? [])];
+                    ?? [])
+                ?? []];
 
             //if ((itemPrimaryKeys?.Count ?? 0) <= 0)
             if (navigationOptions.ItemPrimaryKeys == null)
@@ -192,7 +193,7 @@ namespace CoreRelm.Models
                         .FirstOrDefault());
 
                     navigationOptions.ItemPrimaryKeys = [.. _items
-                        .Select(x => x
+                        ?.Select(x => x
                             ?.GetType()
                             .GetProperties()
                             .Intersect(navigationOptions.ReferenceKeys)
@@ -200,7 +201,8 @@ namespace CoreRelm.Models
                             .Where(y => y.Item2 != null)
                             .Cast<Tuple<PropertyInfo, object>>()
                             .ToList()
-                            ?? [])];
+                            ?? [])
+                        ?? []];
                 }
                 else
                 {
@@ -212,7 +214,7 @@ namespace CoreRelm.Models
                     navigationOptions.ReferenceKeys = GetReferenceKeys<T>([.. targetForeignKeyDecorators.SelectMany(x => x.Value.SelectMany(y => y.Value ?? []).ToArray())]);
 
                     navigationOptions.ItemPrimaryKeys = [.. _items
-                        .Select(x => x
+                        ?.Select(x => x
                             ?.GetType()
                             .GetProperties()
                             .Intersect(navigationOptions.ReferenceKeys)
@@ -220,7 +222,8 @@ namespace CoreRelm.Models
                             .Where(y => y.Item2 != null)
                             .Cast<Tuple<PropertyInfo, object>>()
                             .ToList()
-                            ?? [])];
+                            ?? [])
+                        ?? []];
                 }
 
                 //navigationOptions.NavigationProperty = navigationProps.FirstOrDefault();

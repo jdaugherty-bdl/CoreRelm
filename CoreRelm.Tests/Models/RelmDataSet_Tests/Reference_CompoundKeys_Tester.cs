@@ -21,17 +21,16 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
     public class Reference_CompoundKeys_Tester : IClassFixture<JsonConfigurationFixture>
     {
         private readonly IConfiguration _configuration;
-        private MultipleKeysTestContext context;
+        private readonly MultipleKeysTestContext context;
 
         public Reference_CompoundKeys_Tester(JsonConfigurationFixture fixture) 
         {
             _configuration = fixture.Configuration;
 
             // dummy data
-            var mockComplexTestModels = new List<MultipleKeysTestObject>
+            var mockComplexTestModels = new List<MultipleKeysTestObject?>
             {
-                new MultipleKeysTestObject
-                { 
+                new() { 
                     InternalId = "ID1", 
                     MultipleKeysReferenceObjectLocalKey1 = "LOCALKEY1",
                     MultipleKeysReferenceObjectLocalKey2 = "LOCALKEY2",
@@ -42,8 +41,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
                     MultipleKeysReferenceObject_PrincipalEntities = null,
                     MultipleKeysReferenceObject_PrincipalEntity_Item = null,
                 },
-                new MultipleKeysTestObject
-                { 
+                new() { 
                     InternalId = "ID2",
                     MultipleKeysReferenceObjectLocalKey1 = "LOCALKEY3",
                     MultipleKeysReferenceObjectLocalKey2 = "LOCALKEY4",
@@ -58,6 +56,8 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
 
             new ServiceCollection().AddCoreRelm(_configuration);
             context = new RelmContextOptionsBuilder("name=SimpleRelmMySql")
+                .SetAutoOpenConnection(false)
+                .SetAutoInitializeDataSets(false)
                 .SetAutoVerifyTables(false)
                 .Build<MultipleKeysTestContext>()
                 ?? throw new InvalidOperationException("Failed to build MultipleKeysTestContext");
@@ -68,17 +68,17 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             // make sure GetLoadData() calls base so LastExecutedCommands (required for references) gets populated
             modelDataLoader.Setup(x => x.TableName).Returns("nothing_table");
             modelDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
-            modelDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexTestModels);
+            modelDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object?>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexTestModels);
             
             context.GetDataSet<MultipleKeysTestObject>()?.SetDataLoader(modelDataLoader.Object);
         }
 
         private void SetupReferenceDataLoader(bool addSecondId)
         {
-            var mockComplexReferenceObjects_ForeignKey = new List<MultipleKeysReferenceObject_ForeignKey>
+            var mockComplexReferenceObjects_ForeignKey = new List<MultipleKeysReferenceObject_ForeignKey?>
             {
-                new MultipleKeysReferenceObject_ForeignKey { ReferenceKey1 = "LOCALKEY1", ReferenceKey2 = "LOCALKEY2", MultipleKeysTestObject_Reference = null },
-                new MultipleKeysReferenceObject_ForeignKey { ReferenceKey1 = "LOCALKEY3", ReferenceKey2 = "LOCALKEY4", MultipleKeysTestObject_Reference = null },
+                new() { ReferenceKey1 = "LOCALKEY1", ReferenceKey2 = "LOCALKEY2", MultipleKeysTestObject_Reference = null },
+                new() { ReferenceKey1 = "LOCALKEY3", ReferenceKey2 = "LOCALKEY4", MultipleKeysTestObject_Reference = null },
             };
 
             if (addSecondId)
@@ -87,17 +87,17 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             var referenceDataLoader = new Mock<RelmDefaultDataLoader<MultipleKeysReferenceObject_ForeignKey>>(context);
             referenceDataLoader.Setup(x => x.TableName).Returns("nothing_table");
             referenceDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
-            referenceDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects_ForeignKey);
+            referenceDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object?>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects_ForeignKey);
 
             context.GetDataSet<MultipleKeysReferenceObject_ForeignKey>()?.SetDataLoader(referenceDataLoader.Object);
         }
 
         private void SetupNavigationDataLoader(bool addSecondId)
         {
-            var mockComplexReferenceObjects_Navigation = new List<MultipleKeysReferenceObject_NavigationProperty>
+            var mockComplexReferenceObjects_Navigation = new List<MultipleKeysReferenceObject_NavigationProperty?>
             {
-                new MultipleKeysReferenceObject_NavigationProperty { ReferenceKey1 = "LOCALKEY1", ReferenceKey2 = "LOCALKEY2", MultipleKeysTestObject_Reference = null },
-                new MultipleKeysReferenceObject_NavigationProperty { ReferenceKey1 = "LOCALKEY3", ReferenceKey2 = "LOCALKEY4", MultipleKeysTestObject_Reference = null },
+                new() { ReferenceKey1 = "LOCALKEY1", ReferenceKey2 = "LOCALKEY2", MultipleKeysTestObject_Reference = null },
+                new() { ReferenceKey1 = "LOCALKEY3", ReferenceKey2 = "LOCALKEY4", MultipleKeysTestObject_Reference = null },
             };
 
             if (addSecondId)
@@ -106,26 +106,26 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             var navigationDataLoader = new Mock<RelmDefaultDataLoader<MultipleKeysReferenceObject_NavigationProperty>>(context);
             navigationDataLoader.Setup(x => x.TableName).Returns("nothing_table");
             navigationDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
-            navigationDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects_Navigation);
+            navigationDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object?>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects_Navigation);
 
             context.GetDataSet<MultipleKeysReferenceObject_NavigationProperty>()?.SetDataLoader(navigationDataLoader.Object);
         }
 
         private void SetupPrincipalDataLoader(bool addSecondId)
         {
-            var mockComplexReferenceObjects_Principal = new List<MultipleKeysReferenceObject_PrincipalEntity>
+            var mockComplexReferenceObjects_Principal = new List<MultipleKeysReferenceObject_PrincipalEntity?>
             {
-                new MultipleKeysReferenceObject_PrincipalEntity { ReferenceKey1 = "LOCALKEY1", ReferenceKey2 = "LOCALKEY2", MultipleKeysTestObject_Reference = null },
-                new MultipleKeysReferenceObject_PrincipalEntity { ReferenceKey1 = "LOCALKEY3", ReferenceKey2 = "LOCALKEY4", MultipleKeysTestObject_Reference = null },
+                new() { ReferenceKey1 = "LOCALKEY1", ReferenceKey2 = "LOCALKEY2", MultipleKeysTestObject_Reference = null },
+                new() { ReferenceKey1 = "LOCALKEY3", ReferenceKey2 = "LOCALKEY4", MultipleKeysTestObject_Reference = null },
             };
 
             if (addSecondId)
-                mockComplexReferenceObjects_Principal.Add(new MultipleKeysReferenceObject_PrincipalEntity { ReferenceKey1 = "LOCALKEY1", ReferenceKey2 = "LOCALKEY2", MultipleKeysTestObject_Reference = null });
+                mockComplexReferenceObjects_Principal.Add(new() { ReferenceKey1 = "LOCALKEY1", ReferenceKey2 = "LOCALKEY2", MultipleKeysTestObject_Reference = null });
 
             var principalDataLoader = new Mock<RelmDefaultDataLoader<MultipleKeysReferenceObject_PrincipalEntity>>(context);
             principalDataLoader.Setup(x => x.TableName).Returns("nothing_table");
             principalDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
-            principalDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects_Principal);
+            principalDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object?>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects_Principal);
 
             context.GetDataSet<MultipleKeysReferenceObject_PrincipalEntity>()?.SetDataLoader(principalDataLoader.Object);
         }
@@ -140,8 +140,8 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             context.GetDataSet<MultipleKeysTestObject>()?.Reference(x => x.MultipleKeysReferenceObject_ForeignKeys).Load();
 
             // Assert
-            var firstModel = context.MultipleKeysTestObjects.First();
-            var secondModel = context.MultipleKeysTestObjects.Skip(1).First();
+            var firstModel = context.MultipleKeysTestObjects?.First();
+            var secondModel = context.MultipleKeysTestObjects?.Skip(1).First();
 
             Assert.NotNull(firstModel?.MultipleKeysReferenceObject_ForeignKeys);
             Assert.NotNull(secondModel?.MultipleKeysReferenceObject_ForeignKeys);
@@ -172,11 +172,11 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             context.GetDataSet<MultipleKeysTestObject>()?.Reference(x => x.MultipleKeysReferenceObject_ForeignKey_Item).Load();
 
             // Assert
-            var firstModel = context.MultipleKeysTestObjects.First();
+            var firstModel = context.MultipleKeysTestObjects?.First();
 
-            Assert.NotNull(firstModel.MultipleKeysReferenceObject_ForeignKey_Item);
-            Assert.Equal(firstModel.MultipleKeysReferenceObjectLocalKey1, firstModel.MultipleKeysReferenceObject_ForeignKey_Item?.ReferenceKey1);
-            Assert.Equal(firstModel.MultipleKeysReferenceObjectLocalKey2, firstModel.MultipleKeysReferenceObject_ForeignKey_Item?.ReferenceKey2);
+            Assert.NotNull(firstModel?.MultipleKeysReferenceObject_ForeignKey_Item);
+            Assert.Equal(firstModel?.MultipleKeysReferenceObjectLocalKey1, firstModel?.MultipleKeysReferenceObject_ForeignKey_Item?.ReferenceKey1);
+            Assert.Equal(firstModel?.MultipleKeysReferenceObjectLocalKey2, firstModel?.MultipleKeysReferenceObject_ForeignKey_Item?.ReferenceKey2);
         }
 
         [Fact]
@@ -189,8 +189,8 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             context.GetDataSet<MultipleKeysTestObject>()?.Reference(x => x.MultipleKeysReferenceObject_NavigationProperties).Load();
 
             // Assert
-            var firstModel = context.MultipleKeysTestObjects.First();
-            var secondModel = context.MultipleKeysTestObjects.Skip(1).First();
+            var firstModel = context.MultipleKeysTestObjects?.First();
+            var secondModel = context.MultipleKeysTestObjects?.Skip(1).First();
 
             Assert.NotNull(firstModel?.MultipleKeysReferenceObject_NavigationProperties);
             Assert.NotNull(secondModel?.MultipleKeysReferenceObject_NavigationProperties);
@@ -221,11 +221,11 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             context.GetDataSet<MultipleKeysTestObject>()?.Reference(x => x.MultipleKeysReferenceObject_NavigationProperty_Item).Load();
 
             // Assert
-            var firstModel = context.MultipleKeysTestObjects.First();
+            var firstModel = context.MultipleKeysTestObjects?.First();
 
-            Assert.NotNull(firstModel.MultipleKeysReferenceObject_NavigationProperty_Item);
-            Assert.Equal(firstModel.MultipleKeysReferenceObjectLocalKey1, firstModel.MultipleKeysReferenceObject_NavigationProperty_Item?.ReferenceKey1);
-            Assert.Equal(firstModel.MultipleKeysReferenceObjectLocalKey2, firstModel.MultipleKeysReferenceObject_NavigationProperty_Item?.ReferenceKey2);
+            Assert.NotNull(firstModel?.MultipleKeysReferenceObject_NavigationProperty_Item);
+            Assert.Equal(firstModel?.MultipleKeysReferenceObjectLocalKey1, firstModel?.MultipleKeysReferenceObject_NavigationProperty_Item?.ReferenceKey1);
+            Assert.Equal(firstModel?.MultipleKeysReferenceObjectLocalKey2, firstModel?.MultipleKeysReferenceObject_NavigationProperty_Item?.ReferenceKey2);
         }
 
         [Fact]
@@ -238,8 +238,8 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             context.GetDataSet<MultipleKeysTestObject>()?.Reference(x => x.MultipleKeysReferenceObject_PrincipalEntities).Load();
 
             // Assert
-            var firstModel = context.MultipleKeysTestObjects.First();
-            var secondModel = context.MultipleKeysTestObjects.Skip(1).First();
+            var firstModel = context.MultipleKeysTestObjects?.First();
+            var secondModel = context.MultipleKeysTestObjects?.Skip(1).First();
 
             Assert.NotNull(firstModel?.MultipleKeysReferenceObject_PrincipalEntities);
             Assert.NotNull(secondModel?.MultipleKeysReferenceObject_PrincipalEntities);
