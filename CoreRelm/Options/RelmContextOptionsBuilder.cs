@@ -1,5 +1,7 @@
-﻿using MySql.Data.MySqlClient;
+﻿using CoreRelm.Interfaces;
+using CoreRelm.Models;
 using CoreRelm.RelmInternal.Helpers.Operations;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -9,6 +11,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using static CoreRelm.Options.RelmContextOptions;
 
 namespace CoreRelm.Options
 {
@@ -23,130 +26,27 @@ namespace CoreRelm.Options
     /// context. This class is not thread-safe.</remarks>
     public class RelmContextOptionsBuilder
     {
-        /// <summary>
-        /// Specifies the types of options that can be used to configure a database context using an options builder.
-        /// </summary>
-        /// <remarks>Use this enumeration to indicate how the options builder should obtain or interpret
-        /// connection information when configuring a database context. The selected value determines whether a raw
-        /// connection string, a named connection string, or an existing open connection is used.</remarks>
-        public enum OptionsBuilderTypes
-        {
-            /// <summary>
-            /// Sets the option builder connection type to use a raw connection string.
-            /// </summary>
-            ConnectionString,
-            /// <summary>
-            /// Sets the option builder connection type to use a named connection string.
-            /// </summary>
-            NamedConnectionString,
-            /// <summary>
-            /// Sets the option builder connection type to use an open connection.
-            /// </summary>
-            OpenConnection
-        }
-
-        /// <summary>
-        /// Gets the name or network address of the database server to which the application is connected.
-        /// </summary>
-        public string? DatabaseServer { get; private set; }
-        
-        /// <summary>
-        /// Gets the port number used to connect to the database as a string value.
-        /// </summary>
-        /// <remarks>The port value may be null if not specified. The format should be a valid port number
-        /// as a string, such as "5432" for PostgreSQL or "1433" for SQL Server.</remarks>
-        public string? DatabasePort { get; private set; }
-
-        /// <summary>
-        /// Gets the name of the database associated with this instance.
-        /// </summary>
-        public string? DatabaseName { get; private set; }
-
-        /// <summary>
-        /// Gets the user name used to connect to the database.
-        /// </summary>
-        public string? DatabaseUser { get; private set; }
-
-        /// <summary>
-        /// Gets the password used to connect to the database.
-        /// </summary>
-        public string? DatabasePassword { get; private set; }
-
-        /// <summary>
-        /// Gets the connection string used to connect to the database.
-        /// </summary>
-        public string? DatabaseConnectionString { get; private set; }
-
-        /// <summary>
-        /// Gets or sets the name of the connection to use for database operations.
-        /// </summary>
-        public string? NamedConnection { get; set; }
-
-        /// <summary>
-        /// Gets the active MySQL database connection used by the application.
-        /// </summary>
-        public MySqlConnection? DatabaseConnection { get; private set; }
-
-        /// <summary>
-        /// Gets the current database transaction associated with the connection.
-        /// </summary>
-        /// <remarks>Use this property to access the active MySQL transaction for executing commands
-        /// within a transactional context. The property is null if no transaction is in progress.</remarks>
-        public MySqlTransaction? DatabaseTransaction { get; private set; }
-
-        /// <summary>
-        /// Gets a value indicating whether the connection should be automatically opened when required.
-        /// </summary>
-        public bool AutoOpenConnection { get; private set; } = true;
-
-        /// <summary>
-        /// Gets a value indicating whether a transaction is automatically opened when a database connection is
-        /// established.
-        /// </summary>
-        public bool AutoOpenTransaction { get; private set; } = false;
-
-        /// <summary>
-        /// Gets a value indicating whether user-defined variables are permitted in SQL statements.
-        /// </summary>
-        public bool AllowUserVariables { get; private set; } = false;
-
-        /// <summary>
-        /// Gets a value indicating whether date and time values of zero are converted to DateTime.MinValue when
-        /// retrieved from the database.
-        /// </summary>
-        /// <remarks>When enabled, date and time fields with a value of '0000-00-00' or '0000-00-00
-        /// 00:00:00' are returned as DateTime.MinValue instead of causing an exception or being treated as invalid.
-        /// This option is useful when working with databases that allow zero date values.</remarks>
-        public bool ConvertZeroDateTime { get; private set; } = false;
-
-        /// <summary>
-        /// Gets the maximum number of seconds to wait for a lock to be acquired before timing out.
-        /// </summary>
-        public int LockWaitTimeoutSeconds { get; private set; } = 30;
-
-        /// <summary>
-        /// Gets a value indicating whether data sets are automatically initialized when the component is created.
-        /// </summary>
-        public bool AutoInitializeDataSets { get; private set; } = true;
-
-        /// <summary>
-        /// Gets a value indicating whether table verification is performed automatically before database operations.
-        /// </summary>
-        public bool AutoVerifyTables { get; private set; } = true;
-
-        /// <summary>
-        /// Gets the type of options builder used to configure options for this instance.
-        /// </summary>
-        public OptionsBuilderTypes OptionsBuilderType => _optionsBuilderType;
-        private OptionsBuilderTypes _optionsBuilderType;
-
-        /// <summary>
-        /// Gets the type of the connection string used by the data source.
-        /// </summary>
-        public Enum? ConnectionStringType => _connectionStringType;
+        private string? _databaseServer;
+        private string? _databasePort;
+        private string? _databaseName;
+        private string? _databaseUser;
+        private string? _databasePassword;
+        private string? _databaseConnectionString;
+        private string? _namedConnection;
+        private MySqlConnection? _databaseConnection;
+        private MySqlTransaction? _databaseTransaction;
+        private bool _autoOpenConnection;
+        private bool _autoOpenTransaction;
+        private bool _allowUserVariables;
+        private bool _convertZeroDateTime;
+        private int _lockWaitTimeoutSeconds;
+        private bool _autoInitializeDataSets;
+        private bool _autoVerifyTables;
+        private OptionsBuilderTypes _optionsBuilderType = OptionsBuilderTypes.None;
         private Enum? _connectionStringType;
+        private bool _useInternalTransaction = true;
 
-        internal bool CanOpenConnection { get; set; } = true;
+        public OptionsBuilderTypes OptionsBuilderType => _optionsBuilderType;
 
         /// <summary>
         /// Initializes a new instance of the RelmContextOptionsBuilder class.
@@ -233,7 +133,87 @@ namespace CoreRelm.Options
         public RelmContextOptionsBuilder(MySqlConnection connection, MySqlTransaction? transaction)
         {
             SetDatabaseConnection(connection);
+
+            _useInternalTransaction = transaction == null;
+
             SetDatabaseTransaction(transaction);
+        }
+
+        public RelmContextOptionsBuilder(IRelmContext? relmContext) : this(relmContext?.ContextOptions)
+        {
+            ArgumentNullException.ThrowIfNull(relmContext, nameof(relmContext));
+
+            if (relmContext.ContextOptions == null)
+                throw new ArgumentException("The provided IRelmContext does not have options configured.", nameof(relmContext));
+        }
+
+        public RelmContextOptionsBuilder(RelmContextOptions? contextOptions)
+        {
+            ArgumentNullException.ThrowIfNull(contextOptions, nameof(contextOptions));
+
+            _databaseConnection = contextOptions.DatabaseConnection;
+            _databaseTransaction = contextOptions.DatabaseTransaction;
+            _databaseServer = contextOptions.DatabaseServer;
+            _databasePort = contextOptions.DatabasePort;
+            _databaseName = contextOptions.DatabaseName;
+            _databaseUser = contextOptions.DatabaseUser;
+            _databasePassword = contextOptions.DatabasePassword;
+            _namedConnection = contextOptions.NamedConnection;
+            _databaseConnectionString = contextOptions.DatabaseConnectionString;
+            _autoOpenConnection = contextOptions.AutoOpenConnection;
+            _autoOpenTransaction = contextOptions.AutoOpenTransaction;
+            _allowUserVariables = contextOptions.AllowUserVariables;
+            _convertZeroDateTime = contextOptions.ConvertZeroDateTime;
+            _lockWaitTimeoutSeconds = contextOptions.LockWaitTimeoutSeconds;
+            _autoInitializeDataSets = contextOptions.AutoInitializeDataSets;
+            _autoVerifyTables = contextOptions.AutoVerifyTables;
+            _optionsBuilderType = contextOptions.OptionsBuilderType;
+            _connectionStringType = contextOptions.ConnectionStringType;
+        }
+
+        public RelmContextOptions BuildOptions()
+        {
+            return BuildOptions(validateSettings: true);
+        }
+
+        internal RelmContextOptions BuildOptions(bool validateSettings = true)
+        {
+            if (validateSettings && !ValidateAllSettings())
+                throw new InvalidOperationException("Invalid configuration. Ensure all required settings are provided based on the selected connection method.");
+
+            var newOptions = new RelmContextOptions
+            {
+                DatabaseConnection = _databaseConnection,
+                DatabaseTransaction = _databaseTransaction,
+                DatabaseServer = _databaseServer,
+                DatabasePort = _databasePort,
+                DatabaseName = _databaseName,
+                DatabaseUser = _databaseUser,
+                DatabasePassword = _databasePassword,
+                NamedConnection = _namedConnection,
+                DatabaseConnectionString = _databaseConnectionString,
+                AutoOpenConnection = _autoOpenConnection,
+                AutoOpenTransaction = _autoOpenTransaction,
+                AllowUserVariables = _allowUserVariables,
+                ConvertZeroDateTime = _convertZeroDateTime,
+                LockWaitTimeoutSeconds = _lockWaitTimeoutSeconds,
+                AutoInitializeDataSets = _autoInitializeDataSets,
+                AutoVerifyTables = _autoVerifyTables,
+            };
+
+            // this is not normally allowed to be set outside of the RelmContextOptions class so we make it internal and only set it here in the builder
+            newOptions.SetOptionsBuilderType(_optionsBuilderType);
+            newOptions.SetConnectionStringType(_connectionStringType);
+
+            return newOptions;
+        }
+
+        public T? Build<T>() where T : IRelmContext
+        {
+            var options = this.BuildOptions();
+
+            return (T?)Activator.CreateInstance(typeof(T), [options]) 
+                ?? throw new InvalidOperationException($"Failed to create an instance of type '{typeof(T).FullName}'. Ensure that the type has a constructor that accepts a RelmContextOptionsBuilder parameter.");
         }
 
         /// <summary>
@@ -247,7 +227,9 @@ namespace CoreRelm.Options
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="connection"/> is null.</exception>
         public RelmContextOptionsBuilder SetDatabaseConnection(MySqlConnection? connection)
         {
-            DatabaseConnection = connection ?? throw new ArgumentNullException(nameof(connection), "Connection cannot be null.");
+            ArgumentNullException.ThrowIfNull(connection, nameof(connection));
+
+            _databaseConnection = connection;
 
             _optionsBuilderType = OptionsBuilderTypes.OpenConnection;
 
@@ -265,7 +247,16 @@ namespace CoreRelm.Options
         /// <returns>The current instance of the <see cref="RelmContextOptionsBuilder"/> class.</returns>
         public RelmContextOptionsBuilder SetDatabaseTransaction(MySqlTransaction? transaction)
         {
-            DatabaseTransaction = transaction;
+            if (transaction != null && _databaseConnection == null)
+                throw new InvalidOperationException("Cannot set a transaction without an associated database connection. Set the database connection before setting a transaction.");
+
+            if (transaction == null)
+                throw new ArgumentNullException(nameof(transaction));
+
+            if (transaction != null && !_useInternalTransaction)
+                throw new InvalidOperationException("Cannot set a transaction when using an open connection with external transaction management. Ensure that the connection and transaction settings are compatible.");
+
+            _databaseTransaction = transaction;
 
             _optionsBuilderType = OptionsBuilderTypes.OpenConnection;
 
@@ -283,18 +274,26 @@ namespace CoreRelm.Options
             if (string.IsNullOrEmpty(databaseServer))
                 throw new ArgumentNullException(nameof(databaseServer), "Database server cannot be null or empty.");
 
-            this.DatabaseServer = databaseServer;
+            _databaseServer = databaseServer;
 
-            _optionsBuilderType = OptionsBuilderTypes.ConnectionString;
+            _optionsBuilderType = OptionsBuilderTypes.ConnectionDetails;
 
             return this;
         }
 
         public RelmContextOptionsBuilder SetDatabasePort(string databasePort)
         {
-            this.DatabasePort = databasePort;
+            if (string.IsNullOrEmpty(databasePort))
+                throw new ArgumentNullException(nameof(databasePort), "Database port cannot be null or empty.");
 
-            _optionsBuilderType = OptionsBuilderTypes.ConnectionString;
+            // convert to int and validate that it's a valid port number (1-65535)
+            if (!int.TryParse(databasePort, out int port) || port <= 0 || port > 65535)
+                throw new ArgumentException("Invalid database port. Must be a valid integer between 1 and 65535.", nameof(databasePort));
+
+            // store the parsed port number as this is the most likely valid number
+            _databasePort = port.ToString();
+
+            _optionsBuilderType = OptionsBuilderTypes.ConnectionDetails;
 
             return this;
         }
@@ -318,9 +317,9 @@ namespace CoreRelm.Options
             if (!Regex.IsMatch(databaseName, pattern))
                 throw new ArgumentException("Invalid database name. Must be alphanumeric with underscores.", nameof(databaseName));
 
-            this.DatabaseName = databaseName;
+            _databaseName = databaseName;
 
-            _optionsBuilderType = OptionsBuilderTypes.ConnectionString;
+            _optionsBuilderType = OptionsBuilderTypes.ConnectionDetails;
 
             return this;
         }
@@ -336,9 +335,9 @@ namespace CoreRelm.Options
             if (string.IsNullOrEmpty(databaseUser))
                 throw new ArgumentNullException(nameof(databaseUser), "Database user cannot be null or empty.");
 
-            this.DatabaseUser = databaseUser;
+            _databaseUser = databaseUser;
 
-            _optionsBuilderType = OptionsBuilderTypes.ConnectionString;
+            _optionsBuilderType = OptionsBuilderTypes.ConnectionDetails;
 
             return this;
         }
@@ -354,9 +353,9 @@ namespace CoreRelm.Options
             if (string.IsNullOrEmpty(databasePassword))
                 throw new ArgumentNullException(nameof(databasePassword), "Database password cannot be null or empty.");
 
-            this.DatabasePassword = databasePassword;
+            _databasePassword = databasePassword;
 
-            _optionsBuilderType = OptionsBuilderTypes.ConnectionString;
+            _optionsBuilderType = OptionsBuilderTypes.ConnectionDetails;
 
             return this;
         }
@@ -387,7 +386,7 @@ namespace CoreRelm.Options
 
             _connectionStringType = connectionStringType;
 
-            NamedConnection = connectionStringType.ToString();
+            _namedConnection = connectionStringType.ToString();
 
             _optionsBuilderType = OptionsBuilderTypes.NamedConnectionString;
 
@@ -405,7 +404,7 @@ namespace CoreRelm.Options
             if (string.IsNullOrEmpty(namedConnection))
                 throw new ArgumentNullException(nameof(namedConnection));
 
-            NamedConnection = namedConnection;
+            _namedConnection = namedConnection;
 
             /*
             if (!Enum.TryParse(DatabaseConnectionString, out _connectionStringType))
@@ -429,7 +428,9 @@ namespace CoreRelm.Options
             if (string.IsNullOrEmpty(DatabaseConnectionString))
                 throw new ArgumentNullException(nameof(DatabaseConnectionString));
 
-            this.DatabaseConnectionString = DatabaseConnectionString;
+            _databaseConnectionString = DatabaseConnectionString;
+
+            _optionsBuilderType = OptionsBuilderTypes.ConnectionString;
 
             return this;
         }
@@ -449,12 +450,14 @@ namespace CoreRelm.Options
         /// <exception cref="ArgumentException">Thrown if the configured connection string type is invalid.</exception>
         public bool ValidateAllSettings(bool throwExceptions = true)
         {
-            if (_optionsBuilderType == OptionsBuilderTypes.NamedConnectionString)
+            if (_optionsBuilderType == OptionsBuilderTypes.None)
+                return true;
+            else if (_optionsBuilderType == OptionsBuilderTypes.NamedConnectionString)
             {
-                if (string.IsNullOrEmpty(DatabaseConnectionString))
+                if (string.IsNullOrEmpty(_namedConnection))
                 {
                     if (throwExceptions)
-                        throw new ArgumentNullException(nameof(DatabaseConnectionString), "DatabaseConnectionString cannot be null or empty when using a named connection string.");
+                        throw new ArgumentNullException(nameof(_namedConnection), "NamedConnection cannot be null or empty when using a named connection string.");
                     else
                         return false;
                 }
@@ -463,10 +466,10 @@ namespace CoreRelm.Options
             }
             else if (_optionsBuilderType == OptionsBuilderTypes.OpenConnection)
             {
-                if (DatabaseConnection == null)
+                if (_databaseConnection == null)
                 {
                     if (throwExceptions)
-                        throw new ArgumentNullException(nameof(DatabaseConnection), "Database connection cannot be null.");
+                        throw new ArgumentNullException(nameof(_databaseConnection), "Database connection cannot be null.");
                     else
                         return false;
                 }
@@ -475,34 +478,46 @@ namespace CoreRelm.Options
             }
             else if (_optionsBuilderType == OptionsBuilderTypes.ConnectionString)
             {
-                if (string.IsNullOrEmpty(DatabaseServer))
+                if (string.IsNullOrEmpty(_databaseConnectionString))
                 {
                     if (throwExceptions)
-                        throw new ArgumentNullException(nameof(DatabaseServer), "Database Server cannot be null or empty when using a connection string.");
+                        throw new ArgumentNullException(nameof(_databaseConnectionString), "Database connection string cannot be null or empty when using a connection string.");
                     else
                         return false;
                 }
 
-                if (string.IsNullOrEmpty(DatabaseName))
+                return true;
+            }
+            else if (_optionsBuilderType == OptionsBuilderTypes.ConnectionDetails)
+            {
+                if (string.IsNullOrEmpty(_databaseServer))
                 {
                     if (throwExceptions)
-                        throw new ArgumentNullException(nameof(DatabaseName), "Database Name cannot be null or empty when using a connection string.");
+                        throw new ArgumentNullException(nameof(_databaseServer), "Database Server cannot be null or empty when using connection details.");
                     else
                         return false;
                 }
 
-                if (string.IsNullOrEmpty(DatabaseUser))
+                if (string.IsNullOrEmpty(_databaseName))
                 {
                     if (throwExceptions)
-                        throw new ArgumentNullException(nameof(DatabaseUser), "Username cannot be null or empty when using a connection string.");
+                        throw new ArgumentNullException(nameof(_databaseName), "Database Name cannot be null or empty when using connection details.");
                     else
                         return false;
                 }
 
-                if (string.IsNullOrEmpty(DatabasePassword))
+                if (string.IsNullOrEmpty(_databaseUser))
                 {
                     if (throwExceptions)
-                        throw new ArgumentNullException(nameof(DatabasePassword), "Password cannot be null or empty when using a connection string.");
+                        throw new ArgumentNullException(nameof(_databaseUser), "Username cannot be null or empty when using connection details.");
+                    else
+                        return false;
+                }
+
+                if (string.IsNullOrEmpty(_databasePassword))
+                {
+                    if (throwExceptions)
+                        throw new ArgumentNullException(nameof(_databasePassword), "Password cannot be null or empty when using connection details.");
                     else
                         return false;
                 }
@@ -511,7 +526,7 @@ namespace CoreRelm.Options
             }
             else
             {
-                throw new ArgumentException($"Invalid connection string type '{ConnectionStringType}'.");
+                throw new ArgumentException($"Invalid connection string type '{_connectionStringType}'.");
             }
         }
 
@@ -528,7 +543,12 @@ namespace CoreRelm.Options
         /// <exception cref="ArgumentNullException">Thrown if the connectionDetails parameter is null, empty, or consists only of white-space characters.</exception>
         /// <exception cref="ArgumentException">Thrown if the connectionDetails parameter does not match the required format or is missing required
         /// connection parameters.</exception>
-        public void ParseConnectionDetails(string connectionDetails)
+        public void ParseConnectionDetails()
+        {
+            ParseConnectionDetails(_databaseConnectionString);
+        }
+
+        public void ParseConnectionDetails(string? connectionDetails)
         {
             if (string.IsNullOrWhiteSpace(connectionDetails))
                 throw new ArgumentNullException(nameof(connectionDetails));
@@ -570,13 +590,12 @@ namespace CoreRelm.Options
 
             if (connectionOptions.TryGetValue("name", out string? nameValue))
             {
-                SetNamedConnection(nameValue);
-
                 var connectionBuilder = RelmHelper.GetConnectionBuilderFromName(nameValue);
                 var connectionString = connectionBuilder?.ConnectionString 
                     ?? throw new ArgumentNullException(nameof(MySqlConnectionStringBuilder.ConnectionString));
 
                 SetDatabaseConnectionString(connectionString);
+                SetNamedConnection(nameValue);
             }
             else
             {
@@ -601,7 +620,7 @@ namespace CoreRelm.Options
                 else if (connectionOptions.TryGetValue("password", out string? passwordValue))
                     SetDatabasePassword(passwordValue);
 
-                DatabaseConnectionString = $"server={DatabaseServer}{(string.IsNullOrWhiteSpace(DatabasePort) ? null : $";port={DatabasePort}")};database={DatabaseName};user id={DatabaseUser};password={DatabasePassword}";
+                SetDatabaseConnectionString($"server={_databaseServer}{(string.IsNullOrWhiteSpace(_databasePort) ? null : $";port={_databasePort}")};database={_databaseName};user id={_databaseUser};password={_databasePassword}");
             }
         }
 
@@ -615,7 +634,10 @@ namespace CoreRelm.Options
         /// <returns>The current instance of the <see cref="RelmContextOptionsBuilder"/> class.</returns>
         public RelmContextOptionsBuilder SetAutoOpenConnection(bool autoOpenConnection)
         {
-            this.AutoOpenConnection = autoOpenConnection;
+            if (_optionsBuilderType == OptionsBuilderTypes.OpenConnection && autoOpenConnection)
+                throw new InvalidOperationException("Cannot enable automatic connection opening when using an open connection. The connection must be managed manually.");
+
+            _autoOpenConnection = autoOpenConnection;
 
             return this;
         }
@@ -627,7 +649,7 @@ namespace CoreRelm.Options
         /// <returns>The current instance of the <see cref="RelmContextOptionsBuilder"/> class.</returns>
         public RelmContextOptionsBuilder SetAutoOpenTransaction(bool autoOpenTransaction)
         {
-            this.AutoOpenTransaction = autoOpenTransaction;
+            _autoOpenTransaction = autoOpenTransaction;
 
             return this;
         }
@@ -639,7 +661,7 @@ namespace CoreRelm.Options
         /// <returns>The current instance of the <see cref="RelmContextOptionsBuilder"/> class.</returns>
         public RelmContextOptionsBuilder SetAllowUserVariables(bool allowUserVariables)
         {
-            this.AllowUserVariables = allowUserVariables;
+            _allowUserVariables = allowUserVariables;
 
             return this;
         }
@@ -654,7 +676,7 @@ namespace CoreRelm.Options
         /// <returns>The current instance of the <see cref="RelmContextOptionsBuilder"/> class.</returns>
         public RelmContextOptionsBuilder SetConvertZeroDateTime(bool convertZeroDateTime)
         {
-            this.ConvertZeroDateTime = convertZeroDateTime;
+            _convertZeroDateTime = convertZeroDateTime;
 
             return this;
         }
@@ -669,7 +691,7 @@ namespace CoreRelm.Options
         /// <returns>The current instance of the <see cref="RelmContextOptionsBuilder"/> class.</returns>
         public RelmContextOptionsBuilder SetLockWaitTimeoutSeconds(int lockWaitTimeoutSeconds)
         {
-            this.LockWaitTimeoutSeconds = lockWaitTimeoutSeconds;
+            _lockWaitTimeoutSeconds = lockWaitTimeoutSeconds;
 
             return this;
         }
@@ -681,7 +703,7 @@ namespace CoreRelm.Options
         /// <returns>The current instance of the <see cref="RelmContextOptionsBuilder"/> class.</returns>
         public RelmContextOptionsBuilder SetAutoInitializeDataSets(bool autoInitializeDataSets)
         {
-            this.AutoInitializeDataSets = autoInitializeDataSets;
+            _autoInitializeDataSets = autoInitializeDataSets;
 
             return this;
         }
@@ -693,7 +715,7 @@ namespace CoreRelm.Options
         /// <returns>The current instance of the <see cref="RelmContextOptionsBuilder"/> class.</returns>
         public RelmContextOptionsBuilder SetAutoVerifyTables(bool autoVerifyTables)
         {
-            this.AutoVerifyTables = autoVerifyTables;
+            _autoVerifyTables = autoVerifyTables;
 
             return this;
         }

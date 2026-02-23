@@ -16,7 +16,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
 {
     internal class DataLoaderHelper<T> where T : IRelmModel, new()
     {
-        private readonly ICollection<T> targetObjects;
+        private readonly ICollection<T?> targetObjects;
         private readonly IRelmContext relmContext;
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// </summary>
         /// <param name="relmContext">The context used to interact with the data source. This parameter cannot be <see langword="null"/>.</param>
         /// <param name="targetObjects">A collection of target objects to be processed. This parameter cannot be <see langword="null"/>.</param>
-        public DataLoaderHelper(IRelmContext relmContext, ICollection<T> targetObjects)
+        public DataLoaderHelper(IRelmContext relmContext, ICollection<T?> targetObjects)
         {
             this.targetObjects = targetObjects;
             this.relmContext = relmContext;
@@ -49,12 +49,12 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// </summary>
         /// <remarks>This constructor sets up the <see cref="RelmContext"/> using the provided
         /// options builder and initializes the helper with a single target object.</remarks>
-        /// <param name="relmContextOptionsBuilder">The options builder used to configure the <see cref="RelmContext"/> instance.</param>
+        /// <param name="relmContextOptions">The options builder used to configure the <see cref="RelmContext"/> instance.</param>
         /// <param name="targetObject">The target object of type <typeparamref name="T"/> to be associated with this helper.</param>
-        public DataLoaderHelper(RelmContextOptionsBuilder relmContextOptionsBuilder, T targetObject)
+        public DataLoaderHelper(RelmContextOptions relmContextOptions, T targetObject)
         {
             this.targetObjects = [targetObject];
-            this.relmContext = new RelmContext(relmContextOptionsBuilder);
+            this.relmContext = new RelmContext(relmContextOptions);
         }
 
         /// <summary>
@@ -64,13 +64,13 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <remarks>This class is designed to streamline data loading processes by leveraging the
         /// provided <see cref="RelmContext"/> configured with the specified options. Ensure that the <paramref
         /// name="targetObjects"/> collection is properly initialized before using this helper.</remarks>
-        /// <param name="relmContextOptionsBuilder">The options builder used to configure the <see cref="RelmContext"/> for data operations.</param>
+        /// <param name="relmContextOptions">The options builder used to configure the <see cref="RelmContext"/> for data operations.</param>
         /// <param name="targetObjects">The collection of objects of type <typeparamref name="T"/> that will be the target of data loading
         /// operations.</param>
-        public DataLoaderHelper(RelmContextOptionsBuilder relmContextOptionsBuilder, ICollection<T> targetObjects)
+        public DataLoaderHelper(RelmContextOptions relmContextOptions, ICollection<T?> targetObjects)
         {
             this.targetObjects = targetObjects;
-            this.relmContext = new RelmContext(relmContextOptionsBuilder);
+            this.relmContext = new RelmContext(relmContextOptions);
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <exception cref="InvalidOperationException">Thrown if the provided lambda expression does not represent a valid member expression.</exception>
         /// <exception cref="MemberAccessException">Thrown if the specified field does not have a <see cref="RelmDataLoader"/> attribute or if the attribute is
         /// not configured correctly.</exception>
-        internal ICollection<T> LoadField<R>(Expression<Func<T, R>> predicate)
+        internal ICollection<T?> LoadField<R>(Expression<Func<T, R>> predicate)
         {
             return LoadFieldAsync(predicate)
                 .GetAwaiter()
@@ -106,7 +106,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <exception cref="InvalidOperationException">Thrown if the provided lambda expression does not represent a valid member expression.</exception>
         /// <exception cref="MemberAccessException">Thrown if the specified field does not have a <see cref="RelmDataLoader"/> attribute or if the attribute is
         /// not configured correctly.</exception>
-        internal async Task<ICollection<T>> LoadFieldAsync<R>(Expression<Func<T, R>> predicate, CancellationToken cancellationToken = default)
+        internal async Task<ICollection<T?>> LoadFieldAsync<R>(Expression<Func<T, R>> predicate, CancellationToken cancellationToken = default)
         {
             var referenceProperty = predicate.Body as MemberExpression
                 ?? throw new InvalidOperationException("Collection or property must be represented by a lambda expression in the form of 'x => x.PropertyName'.");

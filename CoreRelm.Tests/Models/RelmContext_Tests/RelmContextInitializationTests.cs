@@ -30,10 +30,14 @@ namespace CoreRelm.Tests.Models.RelmContext_Tests
             string validConnectionString = "name=SimpleRelmMySql";
 
             // Act
-            var dataSet = new RelmContext(validConnectionString, autoOpenConnection: false, autoInitializeDataSets: false, autoVerifyTables: false);
+            var context = new RelmContextOptionsBuilder(validConnectionString)
+                .SetAutoOpenConnection(false)
+                .SetAutoInitializeDataSets(false)
+                .SetAutoVerifyTables(false)
+                .Build<RelmContext>();
 
             // Assert
-            Assert.NotNull(dataSet);
+            Assert.NotNull(context);
         }
 
         [Fact]
@@ -43,10 +47,10 @@ namespace CoreRelm.Tests.Models.RelmContext_Tests
             string invalidConnectionString = "";
 
             // Act & Assert
-            Assert.Throws<ArgumentNullException>(() => new RelmContext(invalidConnectionString));
+            //Assert.Throws<ArgumentNullException>(() => new RelmContext(invalidConnectionString));
+            Assert.Throws<ArgumentNullException>(() => new RelmContextOptionsBuilder(invalidConnectionString));
         }
 
-        /*
         [Fact]
         public void Should_Throw_Exception_With_Invalid_Named_Connection_String()
         {
@@ -54,24 +58,23 @@ namespace CoreRelm.Tests.Models.RelmContext_Tests
             string invalidConnectionString = "name=InvalidConnectionString";
 
             // Act & Assert
-            Assert.Throws<ArgumentException>(() => new RelmContext(invalidConnectionString));
+            Assert.Throws<ArgumentException>(() => new RelmContextOptionsBuilder(invalidConnectionString));
         }
-        */
 
         [Fact]
         public void Should_Initialize_With_Valid_OptionsBuilder_ConnectionString()
         {
             // Arrange
             new ServiceCollection().AddCoreRelm(_configuration);
-            var validOptions = new RelmContextOptionsBuilder()
+
+            // Act
+            var dataSet = new RelmContextOptionsBuilder()
                 .SetNamedConnection("SimpleRelmMySql")
                 .SetDatabaseConnectionString(RelmHelper.GetConnectionBuilderFromName("SimpleRelmMySql")?.ConnectionString)
                 .SetAutoOpenConnection(false)
                 .SetAutoInitializeDataSets(false)
-                .SetAutoVerifyTables(false);
-
-            // Act
-            var dataSet = new RelmContext(validOptions);
+                .SetAutoVerifyTables(false)
+                .Build<RelmContext>();
 
             // Assert
             Assert.NotNull(dataSet);
@@ -81,24 +84,7 @@ namespace CoreRelm.Tests.Models.RelmContext_Tests
         public void Should_Throw_Exception_With_Null_ConnectionString()
         {
             // Act & Assert
-            Assert.Throws<ArgumentNullException>(() => new RelmContext(default(string)));
-        }
-
-        [Fact]
-        public void Should_Throw_Exception_With_Null_OptionsBuilder()
-        {
-            // Act & Assert
-            Assert.Throws<ArgumentNullException>(() => new RelmContext(default(RelmContextOptionsBuilder)));
-        }
-
-        [Fact]
-        public void Should_Throw_Exception_With_Empty_OptionsBuilder()
-        {
-            // Arrange
-            var invalidOptions = new RelmContextOptionsBuilder();
-
-            // Act & Assert
-            Assert.Throws<ArgumentNullException>(() => new RelmContext(invalidOptions));
+            Assert.Throws<ArgumentNullException>(() => new RelmContextOptionsBuilder(default(string)));
         }
     }
 }

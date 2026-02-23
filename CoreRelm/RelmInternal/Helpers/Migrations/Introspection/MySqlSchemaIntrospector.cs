@@ -29,10 +29,12 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
         );
 
         public async Task<SchemaSnapshot> LoadSchemaAsync(
-            InformationSchemaContext relmContext,
+            InformationSchemaContext? relmContext,
             SchemaIntrospectionOptions? options = null,
             CancellationToken cancellationToken = default)
         {
+            ArgumentNullException.ThrowIfNull(relmContext, nameof(relmContext));
+
             options ??= new SchemaIntrospectionOptions();
 
             var databaseName = options?.DatabaseName ?? await GetCurrentDatabaseAsync(relmContext, cancellationToken);

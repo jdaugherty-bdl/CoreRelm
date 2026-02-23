@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using CoreRelm.Options;
 
 namespace CoreRelm.Tests.Models.RelmModel_Tests
 {
@@ -39,7 +40,11 @@ namespace CoreRelm.Tests.Models.RelmModel_Tests
                 mockComplexReferenceObjects.Add(new ComplexReferenceObject { ComplexTestModelInternalId = "ID1", TestModel = null });
 
             new ServiceCollection().AddCoreRelm(_configuration);
-            context = new ComplexTestContext(autoInitializeDataSets: false, autoVerifyTables: false);
+            context = new RelmContextOptionsBuilder()
+                .SetAutoInitializeDataSets(false)
+                .SetAutoVerifyTables(false)
+                .Build<ComplexTestContext>()
+                ?? throw new InvalidOperationException("Failed to build ComplexTestContext");
 
             var referenceDataLoader = new Mock<RelmDefaultDataLoader<ComplexReferenceObject>>(context);
             referenceDataLoader.Setup(x => x.TableName).Returns("nothing_table");
@@ -88,7 +93,7 @@ namespace CoreRelm.Tests.Models.RelmModel_Tests
             var dataLoader = SetupSingleReturnReferenceDataLoader(false, false);
 
             // Act
-            complexTestModel.LoadForeignKeyField(new ComplexTestContext(autoVerifyTables: false), x => x.ComplexReferenceObject, dataLoader.Object);
+            complexTestModel.LoadForeignKeyField(context, x => x.ComplexReferenceObject, dataLoader.Object);
 
             // Assert
             dataLoader.Verify(r => r.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>()));
@@ -109,7 +114,7 @@ namespace CoreRelm.Tests.Models.RelmModel_Tests
             var dataLoader = SetupSingleReturnReferenceDataLoader(true, false);
 
             // Act
-            complexTestModel.LoadForeignKeyField(new ComplexTestContext(autoVerifyTables: false), x => x.ComplexReferenceObjects, dataLoader.Object);
+            complexTestModel.LoadForeignKeyField(context, x => x.ComplexReferenceObjects, dataLoader.Object);
 
             // Assert
             dataLoader.Verify(r => r.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>()));

@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CoreRelm.Extensions;
+using CoreRelm.Options;
 
 namespace CoreRelm.Tests.RelmInternal.Helpers.DataTransfer
 {
@@ -42,7 +43,10 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.DataTransfer
             };
 
             new ServiceCollection().AddCoreRelm(_configuration);
-            context = new ComplexTestContext("name=SimpleRelmMySql", autoVerifyTables: false);
+            context = new RelmContextOptionsBuilder()
+                .SetAutoVerifyTables(false)
+                .Build<ComplexTestContext>()
+                ?? throw new InvalidOperationException("Failed to build ComplexTestContext");
 
             // create dummy data loaders for dummy data to be placed in both relevant data sets
             var modelDataLoader = new Mock<RelmDefaultDataLoader<ComplexTestModel>>(context);
@@ -52,14 +56,14 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.DataTransfer
             modelDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
             modelDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexTestModels);
 
-            context.ComplexTestModels!.SetDataLoader(modelDataLoader.Object);
+            context.GetDataSet<ComplexTestModel>()?.SetDataLoader(modelDataLoader.Object);
         }
 
         [Fact]
         public void FieldLoaderAttribute_DefaultRelmKey_UsedToResolveProperty_SingleReturn()
         {
             // Arrange & Act
-            context.ComplexTestModels!.Load();
+            context.GetDataSet<ComplexTestModel>()?.Load();
 
             // Assert
             var firstModel = context.ComplexTestModels.First();
@@ -73,7 +77,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.DataTransfer
         public void FieldLoaderAttribute_DefaultRelmKey_UsedToResolveProperty_ListReturn()
         {
             // Arrange & Act
-            context.ComplexTestModels!.Load();
+            context.GetDataSet<ComplexTestModel>()?.Load();
 
             // Assert
             var firstModel = context.ComplexTestModels.First();
@@ -98,7 +102,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.DataTransfer
         public void DataLoaderAttribute_IsSuccessful()
         {
             // Arrange
-            context.ComplexTestModels!.Load();
+            context.GetDataSet<ComplexTestModel>()?.Load();
 
             // Assert
             var firstModel = context.ComplexTestModels.First();

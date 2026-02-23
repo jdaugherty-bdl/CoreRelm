@@ -1,6 +1,7 @@
 ﻿using CoreRelm.Extensions;
 using CoreRelm.Interfaces;
 using CoreRelm.Models;
+using CoreRelm.Options;
 using CoreRelm.Tests.TestModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -193,7 +194,11 @@ namespace CoreRelm.Tests
         {
             // Arrange
             new ServiceCollection().AddCoreRelm(_configuration);
-            var context = new ComplexTestContext(autoInitializeDataSets: false, autoVerifyTables: false);
+            var context = new RelmContextOptionsBuilder()
+                .SetAutoInitializeDataSets(false)
+                .SetAutoVerifyTables(false)
+                .Build<ComplexTestContext>()
+                ?? throw new InvalidOperationException("Failed to build ComplexTestContext");
             var modelDataLoader = SetupReferenceDataLoader(context, true);
 
             // Act
@@ -234,7 +239,11 @@ namespace CoreRelm.Tests
         {
             // Arrange
             new ServiceCollection().AddCoreRelm(_configuration);
-            var context = new ComplexTestContext(autoInitializeDataSets: false, autoVerifyTables: false);
+            var context = new RelmContextOptionsBuilder()
+                .SetAutoInitializeDataSets(false)
+                .SetAutoVerifyTables(false)
+                .Build<ComplexTestContext>()
+                ?? throw new InvalidOperationException("Failed to build ComplexTestContext");
             var modelDataLoader = SetupReferenceDataLoader(context, false);
 
             // Act
@@ -268,7 +277,11 @@ namespace CoreRelm.Tests
             // Arrange
             SetupContext(true);
             new ServiceCollection().AddCoreRelm(_configuration);
-            var context = new ComplexTestContext(autoInitializeDataSets: false, autoVerifyTables: false);
+            var context = new RelmContextOptionsBuilder()
+                .SetAutoInitializeDataSets(false)
+                .SetAutoVerifyTables(false)
+                .Build<ComplexTestContext>()
+                ?? throw new InvalidOperationException("Failed to build ComplexTestContext");
             var modelDataLoader = SetupSingleReturnReferenceDataLoader(context, true, true);
 
             // Act
@@ -302,7 +315,11 @@ namespace CoreRelm.Tests
             // Arrange
             SetupContext(false);
             new ServiceCollection().AddCoreRelm(_configuration);
-            var context = new ComplexTestContext(autoInitializeDataSets: false, autoVerifyTables: false);
+            var context = new RelmContextOptionsBuilder()
+                .SetAutoInitializeDataSets(false)
+                .SetAutoVerifyTables(false)
+                .Build<ComplexTestContext>()
+                ?? throw new InvalidOperationException("Failed to build ComplexTestContext");
             var modelDataLoader = SetupSingleReturnReferenceDataLoader(context, false, false);
 
             // Act
@@ -323,7 +340,11 @@ namespace CoreRelm.Tests
         {
             // Arrange
             new ServiceCollection().AddCoreRelm(_configuration);
-            var context = new ComplexTestContext(autoInitializeDataSets: false, autoVerifyTables: false);
+            var context = new RelmContextOptionsBuilder()
+                .SetAutoInitializeDataSets(false)
+                .SetAutoVerifyTables(false)
+                .Build<ComplexTestContext>()
+                ?? throw new InvalidOperationException("Failed to build ComplexTestContext");
             var modelDataLoader = SetupNavigationDataLoader(context, true);
 
             // Act
@@ -356,7 +377,11 @@ namespace CoreRelm.Tests
         {
             // Arrange
             new ServiceCollection().AddCoreRelm(_configuration);
-            var context = new ComplexTestContext(autoInitializeDataSets: false, autoVerifyTables: false);
+            var context = new RelmContextOptionsBuilder()
+                .SetAutoInitializeDataSets(false)
+                .SetAutoVerifyTables(false)
+                .Build<ComplexTestContext>()
+                ?? throw new InvalidOperationException("Failed to build ComplexTestContext");
             var modelDataLoader = SetupNavigationDataLoader(context, false);
 
             // Act
@@ -378,7 +403,11 @@ namespace CoreRelm.Tests
         {
             // Arrange
             new ServiceCollection().AddCoreRelm(_configuration);
-            var context = new ComplexTestContext(autoInitializeDataSets: false, autoVerifyTables: false);
+            var context = new RelmContextOptionsBuilder()
+                .SetAutoInitializeDataSets(false)
+                .SetAutoVerifyTables(false)
+                .Build<ComplexTestContext>()
+                ?? throw new InvalidOperationException("Failed to build ComplexTestContext");
             var modelDataLoader = SetupPrincipalDataLoader(context, true);
 
             // Act
@@ -411,7 +440,11 @@ namespace CoreRelm.Tests
         {
             // Arrange
             new ServiceCollection().AddCoreRelm(_configuration);
-            var context = new ComplexTestContext(autoInitializeDataSets: false, autoVerifyTables: false);
+            var context = new RelmContextOptionsBuilder()
+                .SetAutoInitializeDataSets(false)
+                .SetAutoVerifyTables(false)
+                .Build<ComplexTestContext>()
+                ?? throw new InvalidOperationException("Failed to build ComplexTestContext");
             var modelDataLoader = SetupPrincipalDataLoader(context, false);
 
             // Act
@@ -433,7 +466,11 @@ namespace CoreRelm.Tests
         {
             // Arrange
             new ServiceCollection().AddCoreRelm(_configuration);
-            var context = new ComplexTestContext(autoInitializeDataSets: false, autoVerifyTables: false);
+            var context = new RelmContextOptionsBuilder()
+                .SetAutoInitializeDataSets(false)
+                .SetAutoVerifyTables(false)
+                .Build<ComplexTestContext>()
+                ?? throw new InvalidOperationException("Failed to build ComplexTestContext");
             var modelDataLoader = SetupPrincipalDataLoaderLocalKey(context, true);
 
             // Act
@@ -466,7 +503,11 @@ namespace CoreRelm.Tests
         {
             // Arrange
             new ServiceCollection().AddCoreRelm(_configuration);
-            var context = new ComplexTestContext(autoInitializeDataSets: false, autoVerifyTables: false);
+            var context = new RelmContextOptionsBuilder()
+                .SetAutoInitializeDataSets(false)
+                .SetAutoVerifyTables(false)
+                .Build<ComplexTestContext>()
+                ?? throw new InvalidOperationException("Failed to build ComplexTestContext");
             var modelDataLoader = SetupPrincipalDataLoaderLocalKey(context, false);
 
             // Act
@@ -488,7 +529,11 @@ namespace CoreRelm.Tests
         {
             // Arrange
             new ServiceCollection().AddCoreRelm(_configuration);
-            var context = new ComplexTestContext(autoInitializeDataSets: false, autoVerifyTables: false);
+            var context = new RelmContextOptionsBuilder()
+                .SetAutoInitializeDataSets(false)
+                .SetAutoVerifyTables(false)
+                .Build<ComplexTestContext>()
+                ?? throw new InvalidOperationException("Failed to build ComplexTestContext");
             var complexTestModel = new ComplexTestModel();
 
             // Act
@@ -504,7 +549,11 @@ namespace CoreRelm.Tests
         {
             // Arrange
             new ServiceCollection().AddCoreRelm(_configuration);
-            var context = new ComplexTestContext(autoInitializeDataSets: false, autoVerifyTables: false);
+            var context = new RelmContextOptionsBuilder()
+                .SetAutoInitializeDataSets(false)
+                .SetAutoVerifyTables(false)
+                .Build<ComplexTestContext>()
+                ?? throw new InvalidOperationException("Failed to build ComplexTestContext");
             var complexTestModel = new ComplexTestModel();
 
             // Act

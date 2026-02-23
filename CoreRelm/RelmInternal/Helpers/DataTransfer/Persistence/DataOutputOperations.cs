@@ -13,6 +13,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using CoreRelm.Options;
 
 namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence
 {
@@ -76,7 +77,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence
         /// table.</returns>
         internal static BulkTableWriter<T> GetBulkTableWriter<T>(MySqlConnection existingConnection, string? insertQuery = null, bool throwException = true, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
         {
-            return GetBulkTableWriter<T>(new RelmContext(existingConnection), insertQuery: insertQuery, throwException: throwException, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
+            return GetBulkTableWriter<T>(new RelmContextOptionsBuilder(existingConnection).Build<RelmContext>(), insertQuery: insertQuery, throwException: throwException, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
         }
 
         /// <summary>
@@ -108,7 +109,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence
         /// table.</returns>
         internal static BulkTableWriter<T> GetBulkTableWriter<T>(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, string? insertQuery = null, bool throwException = true, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
         {
-            return GetBulkTableWriter<T>(new RelmContext(existingConnection, sqlTransaction), insertQuery: insertQuery, throwException: throwException, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
+            return GetBulkTableWriter<T>(new RelmContextOptionsBuilder(existingConnection, sqlTransaction).Build<RelmContext>(), insertQuery: insertQuery, throwException: throwException, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
         }
 
         /// <summary>
@@ -313,7 +314,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence
         /// <returns>The number of rows successfully written to the target table.</returns>
         internal static int BulkTableWrite<T>(MySqlConnection existingConnection, T sourceData, string? tableName = null, Type? forceType = null, int batchSize = 100, string? databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
         {
-            return BulkTableWrite<T>(new RelmContext(existingConnection), sourceData, tableName: tableName, forceType: forceType, batchSize: batchSize, databaseName: databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
+            return BulkTableWrite<T>(new RelmContextOptionsBuilder(existingConnection).Build<RelmContext>(), sourceData, tableName: tableName, forceType: forceType, batchSize: batchSize, databaseName: databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
         }
 
         /// <summary>
@@ -349,7 +350,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence
         /// <returns>The number of rows successfully written to the target table.</returns>
         internal static int BulkTableWrite<T>(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, T sourceData, string? tableName = null, Type? forceType = null, int batchSize = 100, string? databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
         {
-            return BulkTableWrite<T>(new RelmContext(existingConnection, sqlTransaction), sourceData, tableName: tableName, forceType: forceType, batchSize: batchSize, databaseName: databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
+            return BulkTableWrite<T>(new RelmContextOptionsBuilder(existingConnection, sqlTransaction).Build<RelmContext>(), sourceData, tableName: tableName, forceType: forceType, batchSize: batchSize, databaseName: databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
         }
 
         /// <summary>
@@ -384,7 +385,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence
         /// <returns>The number of rows successfully written to the target table.</returns>
         internal static async Task<int> BulkTableWriteAsync<T>(MySqlConnection existingConnection, T sourceData, string? tableName = null, Type? forceType = null, int batchSize = 100, string? databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false, CancellationToken cancellationToken = default)
         {
-            return await BulkTableWriteAsync<T>(new RelmContext(existingConnection), sourceData, tableName: tableName, forceType: forceType, batchSize: batchSize, databaseName: databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns, cancellationToken: cancellationToken);
+            return await BulkTableWriteAsync<T>(new RelmContextOptionsBuilder(existingConnection).Build<RelmContext>(), sourceData, tableName: tableName, forceType: forceType, batchSize: batchSize, databaseName: databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns, cancellationToken: cancellationToken);
         }
 
         /// <summary>
@@ -420,7 +421,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence
         /// <returns>The number of rows successfully written to the target table.</returns>
         internal static async Task<int> BulkTableWriteAsync<T>(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, T sourceData, string? tableName = null, Type? forceType = null, int batchSize = 100, string? databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false, CancellationToken cancellationToken = default)
         {
-            return await BulkTableWriteAsync<T>(new RelmContext(existingConnection, sqlTransaction), sourceData, tableName: tableName, forceType: forceType, batchSize: batchSize, databaseName: databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns, cancellationToken: cancellationToken);
+            return await BulkTableWriteAsync<T>(new RelmContextOptionsBuilder(existingConnection, sqlTransaction).Build<RelmContext>(), sourceData, tableName: tableName, forceType: forceType, batchSize: batchSize, databaseName: databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns, cancellationToken: cancellationToken);
         }
 
         /// <summary>
@@ -551,7 +552,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence
         /// <returns>The total number of rows successfully written to the database.</returns>
         internal static int BulkTableWrite<T>(MySqlConnection existingConnection, IEnumerable<T> sourceData, string? tableName = null, Type? forceType = null, int batchSize = 100, string? databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
         {
-            return BulkTableWrite<T>(new RelmContext(existingConnection), sourceData, tableName: tableName, forceType: forceType, batchSize: batchSize, databaseName: databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
+            return BulkTableWrite<T>(new RelmContextOptionsBuilder(existingConnection).Build<RelmContext>(), sourceData, tableName: tableName, forceType: forceType, batchSize: batchSize, databaseName: databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
         }
 
         /// <summary>
@@ -587,7 +588,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence
         /// <returns>The total number of rows successfully written to the database.</returns>
         internal static int BulkTableWrite<T>(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, IEnumerable<T> sourceData, string? tableName = null, Type? forceType = null, int batchSize = 100, string? databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
         {
-            return BulkTableWrite<T>(new RelmContext(existingConnection, sqlTransaction), sourceData, tableName: tableName, forceType: forceType, batchSize: batchSize, databaseName: databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
+            return BulkTableWrite<T>(new RelmContextOptionsBuilder(existingConnection, sqlTransaction).Build<RelmContext>(), sourceData, tableName: tableName, forceType: forceType, batchSize: batchSize, databaseName: databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
         }
 
         /// <summary>
@@ -621,7 +622,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence
         /// <returns>The total number of rows successfully written to the database.</returns>
         internal static async Task<int> BulkTableWriteAsync<T>(MySqlConnection existingConnection, IEnumerable<T> sourceData, string? tableName = null, Type? forceType = null, int batchSize = 100, string? databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false, CancellationToken cancellationToken = default)
         {
-            return await BulkTableWriteAsync<T>(new RelmContext(existingConnection), sourceData, tableName: tableName, forceType: forceType, batchSize: batchSize, databaseName: databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns, cancellationToken: cancellationToken);
+            return await BulkTableWriteAsync<T>(new RelmContextOptionsBuilder(existingConnection).Build<RelmContext>(), sourceData, tableName: tableName, forceType: forceType, batchSize: batchSize, databaseName: databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns, cancellationToken: cancellationToken);
         }
 
         /// <summary>
@@ -657,7 +658,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence
         /// <returns>The total number of rows successfully written to the database.</returns>
         internal static async Task<int> BulkTableWriteAsync<T>(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, IEnumerable<T> sourceData, string? tableName = null, Type? forceType = null, int batchSize = 100, string? databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false, CancellationToken cancellationToken = default)
         {
-            return await BulkTableWriteAsync<T>(new RelmContext(existingConnection, sqlTransaction), sourceData, tableName: tableName, forceType: forceType, batchSize: batchSize, databaseName: databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns, cancellationToken: cancellationToken);
+            return await BulkTableWriteAsync<T>(new RelmContextOptionsBuilder(existingConnection, sqlTransaction).Build<RelmContext>(), sourceData, tableName: tableName, forceType: forceType, batchSize: batchSize, databaseName: databaseName, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns, cancellationToken: cancellationToken);
         }
 
         /// <summary>

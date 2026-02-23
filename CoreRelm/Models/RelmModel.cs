@@ -581,7 +581,7 @@ namespace CoreRelm.Models
         /// <param name="allowAutoDateColumns">A value indicating whether columns with automatic date generation (e.g., timestamps) are allowed to be
         /// written. Defaults to <see langword="false" />.</param>
         /// <returns>The number of records successfully written to the database.</returns>
-        public int WriteToDatabase(RelmContextOptionsBuilder relmContextOptions, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
+        public int WriteToDatabase(RelmContextOptions relmContextOptions, int batchSize = 100, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
         {
             return DataOutputOperations.BulkTableWrite(new RelmContext(relmContextOptions), this, forceType: this.GetType(), batchSize: batchSize, allowAutoIncrementColumns: allowAutoIncrementColumns, allowPrimaryKeyColumns: allowPrimaryKeyColumns, allowUniqueColumns: allowUniqueColumns, allowAutoDateColumns: allowAutoDateColumns);
         }

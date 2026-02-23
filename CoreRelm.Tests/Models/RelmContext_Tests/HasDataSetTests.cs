@@ -18,20 +18,23 @@ namespace CoreRelm.Tests.Models.RelmContext_Tests
         public HasDataSetTests(JsonConfigurationFixture fixture)
         {
             _configuration = fixture.Configuration;
+
+            RelmHelper.UseConfiguration(fixture.Configuration);
         }
 
         [Fact]
         public void HasDataSet_ReturnsTrue_WhenDataSetTypeIsAttached()
         {
             // Arrange
-            var optionsBuilder = new RelmContextOptionsBuilder("x", "x", "x", "x")
+            var context = new RelmContextOptionsBuilder("x", "x", "x", "x")
                 .SetAutoOpenConnection(false)
-                .SetAutoVerifyTables(false);
-            var context = new ComplexTestContext(optionsBuilder);
+                .SetAutoVerifyTables(false)
+                .Build<ComplexTestContext>()
+                ?? throw new InvalidOperationException("Failed to build ComplexTestContext");
 
             // Act
-            //context.GetDataSet<ComplexTestModel>(); // Ensure the dataset is attached
-            bool result = context.HasDataSet<ComplexTestModel>();
+            context.GetDataSet<ComplexTestModel>();
+            bool result = context.HasDataSet<ComplexTestModel>(); // Ensure the dataset is attached
 
             // Assert
             Assert.True(result);
@@ -41,11 +44,12 @@ namespace CoreRelm.Tests.Models.RelmContext_Tests
         public void HasDataSet_ReturnsFalse_WhenDataSetTypeIsNotAttached()
         {
             // Arrange
-            var optionsBuilder = new RelmContextOptionsBuilder("x", "x", "x", "x")
+            var context = new RelmContextOptionsBuilder("x", "x", "x", "x")
                 .SetAutoOpenConnection(false)
                 .SetAutoInitializeDataSets(false)
-                .SetAutoVerifyTables(false);
-            var context = new RelmContext(optionsBuilder);
+                .SetAutoVerifyTables(false)
+                .Build<ComplexTestContext>()
+                ?? throw new InvalidOperationException("Failed to build ComplexTestContext");
 
             // Act
             bool result = context.HasDataSet<ComplexTestModel>(throwException: false);
@@ -58,13 +62,15 @@ namespace CoreRelm.Tests.Models.RelmContext_Tests
         public void HasDataSet_TypeOverload_ReturnsTrue_WhenDataSetTypeIsAttached()
         {
             // Arrange
-            var optionsBuilder = new RelmContextOptionsBuilder("x", "x", "x", "x")
+            var context = new RelmContextOptionsBuilder("x", "x", "x", "x")
                 .SetAutoOpenConnection(false)
-                .SetAutoVerifyTables(false);
-            var context = new ComplexTestContext(optionsBuilder);
+                .SetAutoVerifyTables(false)
+                .Build<ComplexTestContext>()
+                ?? throw new InvalidOperationException("Failed to build ComplexTestContext");
             // Assuming you have a way to attach a dataset of type "YourDataSetType"
 
             // Act
+            context.GetDataSet<ComplexTestModel>(); // Ensure the dataset is attached
             bool result = context.HasDataSet(typeof(ComplexTestModel));
 
             // Assert
@@ -75,11 +81,12 @@ namespace CoreRelm.Tests.Models.RelmContext_Tests
         public void HasDataSet_TypeOverload_ReturnsFalse_WhenDataSetTypeIsNotAttached()
         {
             // Arrange
-            var optionsBuilder = new RelmContextOptionsBuilder("x", "x", "x", "x")
+            var context = new RelmContextOptionsBuilder("x", "x", "x", "x")
                 .SetAutoOpenConnection(false)
                 .SetAutoInitializeDataSets(false)
-                .SetAutoVerifyTables(false);
-            var context = new RelmContext(optionsBuilder);
+                .SetAutoVerifyTables(false)
+                .Build<ComplexTestContext>()
+                ?? throw new InvalidOperationException("Failed to build ComplexTestContext");
 
             // Act
             bool result = context.HasDataSet(typeof(ComplexTestModel), throwException: false);

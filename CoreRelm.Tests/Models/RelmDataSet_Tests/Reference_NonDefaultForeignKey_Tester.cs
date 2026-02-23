@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CoreRelm.Extensions;
+using CoreRelm.Options;
 
 namespace CoreRelm.Tests.Models.RelmDataSet_Tests
 {
@@ -51,7 +52,10 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             };
 
             new ServiceCollection().AddCoreRelm(_configuration);
-            context = new NonDefaultForeignKeysTestContext("name=SimpleRelmMySql", autoVerifyTables: false);
+            context = new RelmContextOptionsBuilder("name=SimpleRelmMySql")
+                .SetAutoVerifyTables(false)
+                .Build<NonDefaultForeignKeysTestContext>()
+                ?? throw new InvalidOperationException("Failed to build NonDefaultForeignKeysTestContext");
 
             // create dummy data loaders for dummy data to be placed in both relevant data sets
             var modelDataLoader = new Mock<RelmDefaultDataLoader<NonDefaultForeignKeysTestObject>>(context); // { CallBase = true };
@@ -61,7 +65,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             modelDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
             modelDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexTestModels);
 
-            context.NonDefaultForeignKeysTestObjects!.SetDataLoader(modelDataLoader.Object);
+            context.GetDataSet<NonDefaultForeignKeysTestObject>()?.SetDataLoader(modelDataLoader.Object);
         }
 
         private void SetupReferenceDataLoader(bool addSecondId)
@@ -80,7 +84,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             referenceDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
             referenceDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects_ForeignKey);
 
-            context.NonDefaultForeignKeysReferenceObject_ForeignKeys!.SetDataLoader(referenceDataLoader.Object);
+            context.GetDataSet<NonDefaultForeignKeysReferenceObject_ForeignKey>()?.SetDataLoader(referenceDataLoader.Object);
         }
 
         private void SetupNavigationDataLoader(bool addSecondId)
@@ -99,7 +103,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             navigationDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
             navigationDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects_Navigation);
 
-            context.NonDefaultForeignKeysReferenceObject_NavigationProperties!.SetDataLoader(navigationDataLoader.Object);
+            context.GetDataSet<NonDefaultForeignKeysReferenceObject_NavigationProperty>()?.SetDataLoader(navigationDataLoader.Object);
         }
 
         private void SetupPrincipalDataLoader(bool addSecondId)
@@ -118,7 +122,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             principalDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
             principalDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects_Principal);
 
-            context.NonDefaultForeignKeysReferenceObject_PrincipalEntities!.SetDataLoader(principalDataLoader.Object);
+            context.GetDataSet<NonDefaultForeignKeysReferenceObject_PrincipalEntity>()?.SetDataLoader(principalDataLoader.Object);
         }
 
         [Fact]

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static CoreRelm.Options.RelmContextOptions;
 
 namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
 {
@@ -29,9 +30,10 @@ namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
 
             // Act
             builder.SetNamedConnection(expectedNamedConnection);
+            var options = builder.BuildOptions();
 
             // Assert
-            Assert.Equal(expectedNamedConnection, builder.NamedConnection);
+            Assert.Equal(expectedNamedConnection, options.NamedConnection);
         }
 
         [Fact]
@@ -39,13 +41,14 @@ namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
         {
             // Arrange
             var builder = new RelmContextOptionsBuilder();
-            var expectedConnectionStringType = RelmContextOptionsBuilder.OptionsBuilderTypes.NamedConnectionString; // Make sure this is valid
+            var expectedConnectionStringType = OptionsBuilderTypes.NamedConnectionString; // Make sure this is valid
 
             // Act
             builder.SetNamedConnection("SimpleRelmMySql");
+            var options = builder.BuildOptions();
 
             // Assert
-            Assert.Equal(expectedConnectionStringType, builder.OptionsBuilderType);
+            Assert.Equal(expectedConnectionStringType, options.OptionsBuilderType);
         }
 
         /*
@@ -66,14 +69,15 @@ namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
         {
             // Arrange
             var builder = new RelmContextOptionsBuilder();
-            var expectedType = RelmContextOptionsBuilder.OptionsBuilderTypes.NamedConnectionString;
+            var expectedType = OptionsBuilderTypes.NamedConnectionString;
             var validConnectionStringType = "SimpleRelmMySql"; // Make sure this is valid
 
             // Act
             builder.SetNamedConnection(validConnectionStringType);
+            var options = builder.BuildOptions();
 
             // Assert
-            Assert.Equal(expectedType, builder.OptionsBuilderType);
+            Assert.Equal(expectedType, options.OptionsBuilderType);
         }
 
         [Fact]

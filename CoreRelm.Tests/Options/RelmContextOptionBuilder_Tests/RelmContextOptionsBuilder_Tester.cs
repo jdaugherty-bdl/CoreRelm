@@ -6,6 +6,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static CoreRelm.Options.RelmContextOptions;
 using static CoreRelm.Options.RelmContextOptionsBuilder;
 
 namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
@@ -44,7 +45,9 @@ namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
         public void RelmContextOptionsBuilder_Constructor_NamedConnection()
         {
             // Arrange & Act
-            var builder = new RelmContextOptionsBuilder("name=SimpleRelmMySql");
+            RelmHelper.UseConfiguration(_configuration);
+            var builder = new RelmContextOptionsBuilder("name=SimpleRelmMySql")
+                .BuildOptions();
 
             // Assert
             Assert.Equal("SimpleRelmMySql", builder.NamedConnection);
@@ -67,7 +70,8 @@ namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
         public void RelmContextOptionsBuilder_Constructor_ConnectionString()
         {
             // Arrange & Act
-            var builder = new RelmContextOptionsBuilder("server=localhost;database=simple_relm;user=simplerelmuser;password=simplerelmpassword");
+            var builder = new RelmContextOptionsBuilder("server=localhost;database=simple_relm;user=simplerelmuser;password=simplerelmpassword")
+                .BuildOptions();
 
             // Assert
             Assert.Equal(OptionsBuilderTypes.ConnectionString, builder.OptionsBuilderType);
@@ -122,13 +126,14 @@ namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
 
             // Act
             builder.ParseConnectionDetails("server=localhost;database=simple_relm;user=simplerelmuser;password=simplerelmpassword");
+            var options = builder.BuildOptions();
 
             // Assert
-            Assert.Equal(OptionsBuilderTypes.ConnectionString, builder.OptionsBuilderType);
-            Assert.Equal("localhost", builder.DatabaseServer);
-            Assert.Equal("simple_relm", builder.DatabaseName);
-            Assert.Equal("simplerelmuser", builder.DatabaseUser);
-            Assert.Equal("simplerelmpassword", builder.DatabasePassword);
+            Assert.Equal(OptionsBuilderTypes.ConnectionString, options.OptionsBuilderType);
+            Assert.Equal("localhost", options.DatabaseServer);
+            Assert.Equal("simple_relm", options.DatabaseName);
+            Assert.Equal("simplerelmuser", options.DatabaseUser);
+            Assert.Equal("simplerelmpassword", options.DatabasePassword);
         }
 
         [Fact]
@@ -136,10 +141,13 @@ namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
         {
             // Arrange
             var builder = new RelmContextOptionsBuilder();
+            
             // Act
             builder.SetDatabaseName("simple_relm");
+            var options = builder.BuildOptions(validateSettings: false);
+            
             // Assert
-            Assert.Equal("simple_relm", builder.DatabaseName);
+            Assert.Equal("simple_relm", options.DatabaseName);
         }
 
         [Fact]
@@ -157,30 +165,39 @@ namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
         {
             // Arrange
             var builder = new RelmContextOptionsBuilder();
+            
             // Act
             builder.SetDatabasePassword("simplerelmpassword");
+            var options = builder.BuildOptions(validateSettings: false);
+            
             // Assert
-            Assert.Equal("simplerelmpassword", builder.DatabasePassword);
+            Assert.Equal("simplerelmpassword", options.DatabasePassword);
         }
         [Fact]
         public void RelmContextOptionsBuilder_AddDatabaseServer()
         {
             // Arrange
             var builder = new RelmContextOptionsBuilder();
+            
             // Act
             builder.SetDatabaseServer("localhost");
+            var options = builder.BuildOptions(validateSettings: false);
+            
             // Assert
-            Assert.Equal("localhost", builder.DatabaseServer);
+            Assert.Equal("localhost", options.DatabaseServer);
         }
         [Fact]
         public void RelmContextOptionsBuilder_AddDatabaseUser()
         {
             // Arrange
             var builder = new RelmContextOptionsBuilder();
+            
             // Act
             builder.SetDatabaseUser("simplerelmuser");
+            var options = builder.BuildOptions(validateSettings: false);
+            
             // Assert
-            Assert.Equal("simplerelmuser", builder.DatabaseUser);
+            Assert.Equal("simplerelmuser", options.DatabaseUser);
         }
     }
 }

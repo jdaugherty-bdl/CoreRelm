@@ -13,11 +13,9 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.Tests.TestModels.DataLoaderModels
 {
-    internal class DataLoaderTestModelDataLoader : RelmDefaultDataLoader<DataLoaderTestModel>
+    internal class DataLoaderTestModelDataLoader(RelmContextOptions contextOptions) : RelmDefaultDataLoader<DataLoaderTestModel>(new RelmContextOptionsBuilder(contextOptions).SetAutoInitializeDataSets(false).SetAutoVerifyTables(false).Build<RelmContext>())
     {
         internal override string TableName => "DUMMY NAME";
-
-        public DataLoaderTestModelDataLoader(RelmContextOptionsBuilder contextOptionsBuilder) : base(new RelmContext(contextOptionsBuilder.SetAutoInitializeDataSets(false).SetAutoVerifyTables(false))) { }
 
         public override ICollection<DataLoaderTestModel?>? PullData(string selectQuery, Dictionary<string, object?> findOptions)
         {

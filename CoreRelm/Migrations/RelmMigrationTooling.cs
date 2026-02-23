@@ -11,6 +11,7 @@ using CoreRelm.Models.Migrations.Tooling.Apply;
 using CoreRelm.Models.Migrations.Tooling.Drift;
 using CoreRelm.Models.Migrations.Tooling.Generation;
 using CoreRelm.Models.Migrations.Tooling.Validation;
+using CoreRelm.Options;
 using CoreRelm.RelmInternal.Contexts;
 using CoreRelm.RelmInternal.Helpers.Migrations.Introspection;
 using CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans;
@@ -41,7 +42,12 @@ namespace CoreRelm.Migrations
         ILogger<RelmMigrationTooling>? log = null) : IRelmMigrationTooling
     {
         private readonly Func<string, InformationSchemaContext> _informationSchemaContextFactory = dbConn =>
-            new InformationSchemaContext(dbConn, autoInitializeDataSets: false, autoVerifyTables: false);
+            new RelmContextOptionsBuilder(dbConn)
+                .SetAutoInitializeDataSets(false)
+                .SetAutoVerifyTables(false)
+                .Build<InformationSchemaContext>()
+            ??
+            throw new InvalidOperationException("Migration tooling failed to build InformationSchemaContext.");
 
         // internal constructor for testing
         internal RelmMigrationTooling(

@@ -20,7 +20,7 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
     internal class ForeignKeyLoader<T> where T : IRelmModel, new()
     {
         private readonly ICollection<T> targetObjects;
-        private readonly RelmContextOptionsBuilder contextOptions;
+        private readonly RelmContextOptions contextOptions;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ForeignKeyLoader{T}"/> class for the specified target object.
@@ -43,7 +43,7 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
         /// <param name="contextOptions">The options used to configure the context for loading foreign key relationships.This parameter must not be null.</param>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="targetObject"/> is <see langword="null"/> or if <paramref name="contextOptions"/> is <see langword="null"/>.</exception>
         /// <exception cref="ArgumentException">Thrown if <paramref name="targetObject"/> is <see langword="null"/>.</exception>
-        public ForeignKeyLoader(T targetObject, RelmContextOptionsBuilder contextOptions) : this([targetObject], contextOptions)
+        public ForeignKeyLoader(T targetObject, RelmContextOptions contextOptions) : this([targetObject], contextOptions)
         {
         }
 
@@ -69,7 +69,7 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
         /// null.</param>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="targetObjects"/> is <see langword="null"/> or if <paramref name="contextOptions"/> is <see langword="null"/>.</exception>
         /// <exception cref="ArgumentException">Thrown if <paramref name="targetObjects"/> is empty or contains <see langword="null"/> values.</exception>
-        public ForeignKeyLoader(ICollection<T> targetObjects, RelmContextOptionsBuilder contextOptions)
+        public ForeignKeyLoader(ICollection<T> targetObjects, RelmContextOptions contextOptions)
         {
             this.targetObjects = targetObjects ?? throw new ArgumentNullException(nameof(targetObjects));
             this.contextOptions = contextOptions ?? throw new ArgumentNullException(nameof(contextOptions));
@@ -406,19 +406,18 @@ namespace CoreRelm.RelmInternal.Helpers.Utilities
             var contextArgs = new List<object?> { contextOptions };
 
             // if we can't find a constructor with the builder by itself, look for one that has it plus other parameters
-            var contextConstructor = relevantContext.GetConstructor([typeof(RelmContextOptionsBuilder)]);
+            var contextConstructor = relevantContext.GetConstructor([typeof(RelmContextOptions)]);
             if (contextConstructor == null)
             {
                 var allConstructors = relevantContext.GetConstructors();
-                contextConstructor = allConstructors.FirstOrDefault(x => x.GetParameters().Select(y => y.ParameterType).Contains(typeof(RelmContextOptionsBuilder)));
-
+                contextConstructor = allConstructors.FirstOrDefault(x => x.GetParameters().Select(y => y.ParameterType).Contains(typeof(RelmContextOptions)));
                 if (contextConstructor == null)
-                    throw new InvalidOperationException($"No valid constructor found for context type [{relevantContext.Name}] that accepts a RelmContextOptionsBuilder parameter.");
+                    throw new InvalidOperationException($"No valid constructor found for context type [{relevantContext.Name}] that accepts a RelmContextOptions parameter.");
                 else
                 {
                     foreach (var parameter in contextConstructor.GetParameters())
                     {
-                        if (parameter.ParameterType != typeof(RelmContextOptionsBuilder))
+                        if (parameter.ParameterType != typeof(RelmContextOptions))
                         {
                             contextArgs.Add(parameter.DefaultValue);
                         }

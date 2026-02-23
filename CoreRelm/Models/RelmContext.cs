@@ -1,11 +1,13 @@
-﻿using MySql.Data.MySqlClient;
-using CoreRelm.Attributes;
+﻿using CoreRelm.Attributes;
 using CoreRelm.Extensions;
 using CoreRelm.Interfaces;
+using CoreRelm.Models.Migrations.Execution;
 using CoreRelm.Options;
 using CoreRelm.Persistence;
 using CoreRelm.RelmInternal.Helpers.DataTransfer;
+using CoreRelm.RelmInternal.Helpers.DataTransfer.Async;
 using CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,8 +18,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
-using CoreRelm.RelmInternal.Helpers.DataTransfer.Async;
-using CoreRelm.Models.Migrations.Execution;
+using static CoreRelm.Options.RelmContextOptions;
 
 namespace CoreRelm.Models
 {
@@ -45,7 +46,7 @@ namespace CoreRelm.Models
         /// database providers or additional options. This method is typically called by the framework during context
         /// initialization.</remarks>
         /// <param name="OptionsBuilder">A builder used to configure options for the context. Cannot be null.</param>
-        public virtual void OnConfigure(RelmContextOptionsBuilder OptionsBuilder) { }
+        public virtual void OnConfigure(RelmContextOptions OptionsBuilder) { }
 
         /// <summary>
         /// Gets the options builder used to configure the context.
@@ -53,7 +54,9 @@ namespace CoreRelm.Models
         /// <remarks>Use this property to customize context-specific settings before building or
         /// initializing the context. Changes to the options should be made prior to finalizing the context
         /// configuration.</remarks>
-        public RelmContextOptionsBuilder ContextOptions { get; private set; }
+        //public RelmContextOptionsBuilder ContextOptions { get; private set; }
+        private RelmContextOptions _contextOptions;
+        public RelmContextOptions ContextOptions => _contextOptions;
 
         private List<PropertyInfo>? _enumeratedDataSets;
         private List<object>? _attachedDataSets;
@@ -61,161 +64,153 @@ namespace CoreRelm.Models
         private bool _localOpenConnection = false;
         private bool _localOpenTransaction = false;
 
-        public IRelmDataSet<AppliedMigration> AppliedMigrations { get; set; }
-
-        /// <summary>
-        /// Initializes a new instance of the RelmContext class using the specified context options and configuration
-        /// settings.
-        /// </summary>
-        /// <param name="relmContext">The context options provider used to configure the RelmContext. Cannot be null.</param>
-        /// <param name="autoOpenConnection">true to automatically open the database connection when the context is created; otherwise, false.</param>
-        /// <param name="autoOpenTransaction">true to automatically begin a transaction when the context is created; otherwise, false.</param>
-        /// <param name="allowUserVariables">true to allow user-defined variables in database queries; otherwise, false.</param>
-        /// <param name="convertZeroDateTime">true to convert zero date/time values to null when reading from the database; otherwise, false.</param>
-        /// <param name="lockWaitTimeoutSeconds">The maximum time, in seconds, to wait for a database lock before timing out. Specify 0 to use the default
-        /// timeout.</param>
-        /// <param name="autoInitializeDataSets">true to automatically initialize data sets when the context is created; otherwise, false.</param>
-        /// <param name="autoVerifyTables">true to automatically verify table existence when the context is created; otherwise, false.</param>
-        /// <exception cref="ArgumentNullException">Thrown if relmContext or relmContext.ContextOptions is null.</exception>
-        public RelmContext(IRelmContext relmContext, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true)
+        public RelmContext(RelmContextOptions? contextOptions)
         {
-            if (relmContext == null)
-                throw new ArgumentNullException(nameof(relmContext), "RelmContext cannot be null.");
-            ContextOptions = relmContext.ContextOptions ?? throw new ArgumentNullException(nameof(IRelmContext.ContextOptions), "RelmContextOptionsBuilder cannot be null.");
-            ContextOptions.ValidateAllSettings();
-            InitializeContext(autoOpenConnection, autoOpenTransaction, allowUserVariables, convertZeroDateTime, lockWaitTimeoutSeconds, autoInitializeDataSets, autoVerifyTables);
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the RelmContext class with the specified context options and
-        /// configuration settings.
-        /// </summary>
-        /// <remarks>All configuration settings are validated before the context is initialized. This
-        /// constructor allows fine-grained control over connection and transaction behavior, as well as SQL
-        /// compatibility options.</remarks>
-        /// <param name="optionsBuilder">The options builder used to configure the context. Cannot be null.</param>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="optionsBuilder"/> is null.</exception>
-        public RelmContext(RelmContextOptionsBuilder optionsBuilder)
-        {
-            ContextOptions = optionsBuilder ?? throw new ArgumentNullException(nameof(optionsBuilder), "RelmContextOptionsBuilder cannot be null.");
-            ContextOptions.ValidateAllSettings();
-            InitializeContext(optionsBuilder.AutoOpenConnection, optionsBuilder.AutoOpenTransaction, optionsBuilder.AllowUserVariables, optionsBuilder.ConvertZeroDateTime, optionsBuilder.LockWaitTimeoutSeconds, optionsBuilder.AutoInitializeDataSets, optionsBuilder.AutoVerifyTables);
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the RelmContext class with the specified connection options and behavior
-        /// settings.
-        /// </summary>
-        /// <remarks>Use this constructor to customize context behavior such as connection management,
-        /// transaction handling, and query options. These settings affect how the context interacts with the database
-        /// and may impact performance or compatibility depending on the database provider.</remarks>
-        /// <param name="connectionStringType">The type of connection string to use for configuring the database context. Determines how the context
-        /// connects to the underlying data source.</param>
-        /// <param name="autoOpenConnection">true to automatically open the database connection when the context is created; otherwise, false. The
-        /// default is true.</param>
-        /// <param name="autoOpenTransaction">true to automatically begin a transaction when the context is created; otherwise, false. The default is
-        /// false.</param>
-        /// <param name="allowUserVariables">true to allow user-defined variables in database queries; otherwise, false. The default is false.</param>
-        /// <param name="convertZeroDateTime">true to convert zero date/time values from the database to DateTime.MinValue; otherwise, false. The default
-        /// is false.</param>
-        /// <param name="lockWaitTimeoutSeconds">The maximum number of seconds to wait for a database lock before timing out. Specify 0 to use the default
-        /// timeout.</param>
-        /// <param name="autoInitializeDataSets">true to automatically initialize data sets when the context is created; otherwise, false.</param>
-        /// <param name="autoVerifyTables">true to automatically verify table existence when the context is created; otherwise, false.</param>
-        public RelmContext(Enum connectionStringType, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true)
-        {
-            // set the options and allow user to override
-            ContextOptions = new RelmContextOptionsBuilder(connectionStringType);
-            InitializeContext(autoOpenConnection, autoOpenTransaction, allowUserVariables, convertZeroDateTime, lockWaitTimeoutSeconds, autoInitializeDataSets, autoVerifyTables);
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the RelmContext class with the specified connection details and
-        /// configuration options.
-        /// </summary>
-        /// <param name="connectionDetails">The connection string or details used to establish a database connection.</param>
-        /// <param name="autoOpenConnection">true to automatically open the database connection upon context initialization; otherwise, false.</param>
-        /// <param name="autoOpenTransaction">true to automatically begin a transaction when the context is initialized; otherwise, false.</param>
-        /// <param name="allowUserVariables">true to allow the use of user-defined variables in database queries; otherwise, false.</param>
-        /// <param name="convertZeroDateTime">true to convert zero date/time values to null when reading from the database; otherwise, false.</param>
-        /// <param name="lockWaitTimeoutSeconds">The number of seconds to wait for a database lock before timing out. Specify 0 to use the default timeout.</param>
-        /// <param name="autoInitializeDataSets">true to automatically initialize data sets when the context is created; otherwise, false.</param>
-        /// <param name="autoVerifyTables">true to automatically verify table existence when the context is created; otherwise, false.</param>
-        public RelmContext(string connectionDetails, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true)
-        {
-            // set the options and allow user to override
-            ContextOptions = new RelmContextOptionsBuilder(connectionDetails);
-            InitializeContext(autoOpenConnection, autoOpenTransaction, allowUserVariables, convertZeroDateTime, lockWaitTimeoutSeconds, autoInitializeDataSets, autoVerifyTables);
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the RelmContext class using the specified MySQL connection and
-        /// configuration options.
-        /// </summary>
-        /// <param name="connection">The MySqlConnection to use for database operations. Cannot be null.</param>
-        /// <param name="autoOpenConnection">Specifies whether the database connection should be automatically opened when the context is created. If
-        /// <see langword="true"/>, the connection is opened; otherwise, it remains closed until explicitly opened.</param>
-        /// <param name="autoOpenTransaction">Specifies whether a database transaction should be automatically started when the context is created. If
-        /// <see langword="true"/>, a transaction is started; otherwise, no transaction is started by default.</param>
-        /// <param name="allowUserVariables">Specifies whether user-defined variables are allowed in SQL statements executed by this context. If <see
-        /// langword="true"/>, user variables are permitted.</param>
-        /// <param name="convertZeroDateTime">Specifies whether zero date/time values from the database should be converted to DateTime.MinValue. If <see
-        /// langword="true"/>, zero date/time values are converted; otherwise, they are not.</param>
-        /// <param name="lockWaitTimeoutSeconds">The number of seconds to wait for a database lock before timing out. Specify 0 to use the default server
-        /// setting.</param>
-        /// <param name="autoInitializeDataSets">true to automatically initialize data sets when the context is created; otherwise, false.</param>
-        /// <param name="autoVerifyTables">true to automatically verify table existence when the context is created; otherwise, false.</param>
-        public RelmContext(MySqlConnection connection, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true)
-        {
-            ContextOptions = new RelmContextOptionsBuilder(connection);
-            InitializeContext(autoOpenConnection, autoOpenTransaction, allowUserVariables, convertZeroDateTime, lockWaitTimeoutSeconds, autoInitializeDataSets, autoVerifyTables);
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the RelmContext class using the specified MySQL connection, transaction,
-        /// and context options.
-        /// </summary>
-        /// <param name="connection">The MySqlConnection to use for database operations. Must not be null and should be open or capable of being
-        /// opened if <paramref name="autoOpenConnection"/> is <see langword="true"/>.</param>
-        /// <param name="transaction">The MySqlTransaction to associate with the context. Can be null if no transaction is required.</param>
-        /// <param name="autoOpenConnection">Specifies whether the context should automatically open the connection if it is not already open. If <see
-        /// langword="true"/>, the connection will be opened as needed.</param>
-        /// <param name="allowUserVariables">Indicates whether user-defined variables are allowed in SQL statements executed by the context. Set to <see
-        /// langword="true"/> to enable support for user variables.</param>
-        /// <param name="convertZeroDateTime">Specifies whether zero date/time values from the database should be converted to DateTime.MinValue instead
-        /// of throwing an exception. Set to <see langword="true"/> to enable conversion.</param>
-        /// <param name="lockWaitTimeoutSeconds">The maximum number of seconds to wait for a database lock before timing out. Specify 0 to use the default
-        /// server setting.</param>
-        /// <param name="autoInitializeDataSets">true to automatically initialize data sets when the context is created; otherwise, false.</param>
-        /// <param name="autoVerifyTables">true to automatically verify table existence when the context is created; otherwise, false.</param>
-        public RelmContext(MySqlConnection connection, MySqlTransaction? transaction, bool autoOpenConnection = true, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true)
-        {
-            ContextOptions = new RelmContextOptionsBuilder(connection, transaction);
-            InitializeContext(autoOpenConnection, autoOpenTransaction: false, allowUserVariables, convertZeroDateTime, lockWaitTimeoutSeconds, autoInitializeDataSets, autoVerifyTables);
-        }
-
-        private void InitializeContext(bool autoOpenConnection, bool autoOpenTransaction, bool allowUserVariables, bool convertZeroDateTime, int lockWaitTimeoutSeconds, bool autoInitializeDataSets, bool autoVerifyTables)
-        {
-            if (ContextOptions.DatabaseConnection == null)
-                ContextOptions.SetDatabaseConnection(RelmHelper.GetConnectionFromConnectionString(ContextOptions.DatabaseConnectionString!, allowUserVariables: allowUserVariables, convertZeroDateTime: convertZeroDateTime, lockWaitTimeoutSeconds: lockWaitTimeoutSeconds));
-
-            if ((autoOpenConnection || autoOpenTransaction) && ContextOptions.DatabaseConnection != null)
-                StartConnection(autoOpenTransaction: autoOpenTransaction, lockWaitTimeoutSeconds: lockWaitTimeoutSeconds);
-
-            ContextOptions.SetAutoOpenConnection(autoOpenConnection);
-            ContextOptions.SetAutoOpenTransaction(autoOpenTransaction);
-            ContextOptions.SetAllowUserVariables(allowUserVariables);
-            ContextOptions.SetConvertZeroDateTime(convertZeroDateTime);
-            ContextOptions.SetLockWaitTimeoutSeconds(lockWaitTimeoutSeconds);
-            ContextOptions.SetAutoInitializeDataSets(autoInitializeDataSets);
-            ContextOptions.SetAutoVerifyTables(autoVerifyTables);
-
-            _attachedDataSets = [];
+            InitializeOptions(contextOptions);
 
             // call the user's OnConfigure method
             OnConfigure(ContextOptions);
 
             InitializeDataSets();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the RelmContext class using the specified context options and connection
+        /// string information.
+        /// </summary>
+        /// <remarks>This constructor is intended for use by derived classes that need to specify a
+        /// different connection string without manually constructing context options.</remarks>
+        /// <param name="contextOptions">The options used to configure the context. If null, default options will be applied.</param>
+        /// <param name="connectionUpdateData">The connection string or named connection to be used for establishing the database connection. Cannot be
+        /// null.</param>
+        /// <param name="optionsBuilderType">Specifies whether the connectionUpdateData parameter is a direct connection string or a named connection
+        /// string.</param>
+        /// <exception cref="ArgumentException">Thrown if the provided optionsBuilderType is not supported.</exception>
+        /// <exception cref="ArgumentNullException">Thrown if connectionUpdateData is null or if the built context options are null.</exception>
+        protected RelmContext(RelmContextOptions? contextOptions, string? connectionUpdateData, OptionsBuilderTypes optionsBuilderType)
+        {
+            ArgumentNullException.ThrowIfNull(connectionUpdateData);
+
+            InitializeOptions(contextOptions);
+
+            var optionsBuilder = new RelmContextOptionsBuilder(contextOptions);
+
+            switch (optionsBuilderType)
+            {
+                case OptionsBuilderTypes.ConnectionString:
+                    optionsBuilder.SetDatabaseConnectionString(connectionUpdateData);
+                    break;
+                case OptionsBuilderTypes.NamedConnectionString:
+                    optionsBuilder.SetNamedConnection(connectionUpdateData);
+                    break;
+                default:
+                    throw new ArgumentException($"Unsupported options builder type: {optionsBuilderType}", nameof(optionsBuilderType));
+            }
+
+            _contextOptions = optionsBuilder.BuildOptions()
+                ?? throw new ArgumentNullException(nameof(contextOptions));
+
+            // call the user's OnConfigure method
+            OnConfigure(ContextOptions);
+
+            InitializeDataSets();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the RelmContext class using the specified context options and connection type.
+        /// </summary>
+        /// <remarks>This constructor sets up the context options and initializes the data sets based on
+        /// the provided parameters. It is important to ensure that the connectionType is valid to avoid runtime
+        /// errors.</remarks>
+        /// <param name="contextOptions">The options used to configure the context. This parameter can be null; if provided, it must contain valid
+        /// configuration settings for the context.</param>
+        /// <param name="connectionType">The type of connection to be used for the context. This parameter cannot be null and determines the
+        /// connection string type applied to the context.</param>
+        /// <exception cref="ArgumentNullException">Thrown if the connectionType parameter is null.</exception>
+        protected RelmContext(RelmContextOptions? contextOptions, Enum? connectionType)
+        {
+            ArgumentNullException.ThrowIfNull(connectionType);
+
+            InitializeOptions(contextOptions);
+
+            _contextOptions = new RelmContextOptionsBuilder(contextOptions)
+                .SetConnectionStringType(connectionType)
+                .BuildOptions()
+                ?? throw new ArgumentNullException(nameof(contextOptions));
+
+            OnConfigure(ContextOptions);
+            
+            InitializeDataSets();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the RelmContext class using the specified context options and database
+        /// connection.
+        /// </summary>
+        /// <remarks>This constructor configures the context and prepares the necessary data sets for
+        /// database operations. Supplying custom context options allows for advanced configuration; otherwise, default
+        /// settings are used.</remarks>
+        /// <param name="contextOptions">The options used to configure the context. If null, default options are applied.</param>
+        /// <param name="sqlConnection">The MySqlConnection instance used to establish a connection to the database. This parameter must not be
+        /// null.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the sqlConnection parameter is null.</exception>
+        protected RelmContext(RelmContextOptions? contextOptions, MySqlConnection? sqlConnection)
+        {
+            ArgumentNullException.ThrowIfNull(sqlConnection);
+
+            InitializeOptions(contextOptions);
+
+            _contextOptions = new RelmContextOptionsBuilder(contextOptions)
+                .SetDatabaseConnection(sqlConnection)
+                .BuildOptions()
+                ?? throw new ArgumentNullException(nameof(contextOptions));
+
+            OnConfigure(ContextOptions);
+            
+            InitializeDataSets();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the RelmContext class using the specified context options, database
+        /// connection, and transaction.
+        /// </summary>
+        /// <remarks>This constructor configures the context and initializes data sets based on the
+        /// provided connection and transaction.</remarks>
+        /// <param name="contextOptions">The options used to configure the context. If null, default options are applied.</param>
+        /// <param name="sqlConnection">The MySqlConnection instance used to establish a connection to the database. Cannot be null.</param>
+        /// <param name="sqlTransaction">The MySqlTransaction instance associated with the database connection. Cannot be null.</param>
+        /// <exception cref="ArgumentNullException">Thrown if sqlConnection or sqlTransaction is null.</exception>
+        protected RelmContext(RelmContextOptions? contextOptions, MySqlConnection? sqlConnection, MySqlTransaction? sqlTransaction)
+        {
+            ArgumentNullException.ThrowIfNull(sqlConnection);
+            ArgumentNullException.ThrowIfNull(sqlTransaction);
+
+            InitializeOptions(contextOptions);
+
+            _contextOptions = new RelmContextOptionsBuilder(contextOptions)
+                .SetDatabaseConnection(sqlConnection)
+                .SetDatabaseTransaction(sqlTransaction)
+                .BuildOptions()
+                ?? throw new ArgumentNullException(nameof(contextOptions));
+
+            OnConfigure(ContextOptions);
+            
+            InitializeDataSets();
+        }
+
+        private void InitializeOptions(RelmContextOptions? contextOptions)
+        {
+            ArgumentNullException.ThrowIfNull(contextOptions, nameof(contextOptions));
+
+            _contextOptions = contextOptions;
+
+            if (ContextOptions.DatabaseConnection == null)
+                ContextOptions.SetDatabaseConnection(RelmHelper.GetConnectionFromConnectionString(ContextOptions.DatabaseConnectionString!, allowUserVariables: ContextOptions.AllowUserVariables, convertZeroDateTime: ContextOptions.ConvertZeroDateTime, lockWaitTimeoutSeconds: ContextOptions.LockWaitTimeoutSeconds));
+
+            if ((ContextOptions.AutoOpenConnection || ContextOptions.AutoOpenTransaction) && ContextOptions.DatabaseConnection != null)
+                StartConnection(autoOpenTransaction: ContextOptions.AutoOpenTransaction, lockWaitTimeoutSeconds: ContextOptions.LockWaitTimeoutSeconds);
+
+            _attachedDataSets = [];
         }
 
         private void InitializeDataSets()

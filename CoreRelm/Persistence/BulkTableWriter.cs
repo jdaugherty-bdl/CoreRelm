@@ -14,6 +14,7 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using CoreRelm.Options;
 
 namespace CoreRelm.Persistence
 {
@@ -127,7 +128,11 @@ namespace CoreRelm.Persistence
         internal BulkTableWriter(MySqlConnection existingConnection, string? insertQuery = null, bool throwException = true, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
         {
             _existingConnection = existingConnection;
-            _existingContext = new RelmContext(existingConnection, autoInitializeDataSets: false, autoVerifyTables: false);
+            //_existingContext = new RelmContext(existingConnection, autoInitializeDataSets: false, autoVerifyTables: false);
+            _existingContext = new RelmContextOptionsBuilder(existingConnection)
+                .SetAutoInitializeDataSets(false)
+                .SetAutoVerifyTables(false)
+                .Build<RelmContext>();
 
             CommonSetup(insertQuery, throwException, null, false, allowAutoIncrementColumns, allowPrimaryKeyColumns, allowUniqueColumns, allowAutoDateColumns);
         }
@@ -158,7 +163,11 @@ namespace CoreRelm.Persistence
         internal BulkTableWriter(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, string? insertQuery = null, bool throwException = true, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
         {
             _existingConnection = existingConnection;
-            _existingContext = new RelmContext(existingConnection, autoInitializeDataSets: false, autoVerifyTables: false);
+            //_existingContext = new RelmContext(existingConnection, autoInitializeDataSets: false, autoVerifyTables: false);
+            _existingContext = new RelmContextOptionsBuilder(existingConnection, sqlTransaction)
+                .SetAutoInitializeDataSets(false)
+                .SetAutoVerifyTables(false)
+                .Build<RelmContext>();
 
             CommonSetup(insertQuery, throwException, sqlTransaction, false, allowAutoIncrementColumns, allowPrimaryKeyColumns, allowUniqueColumns, allowAutoDateColumns);
         }
@@ -810,7 +819,7 @@ namespace CoreRelm.Persistence
         /// </summary>
         /// <param name="tableName">The name of the table. Cannot be null or empty.</param>
         /// <returns>The current <see cref="BulkTableWriter{T}"/> instance, allowing for method chaining.</returns>
-        public BulkTableWriter<T> SetTableName(string tableName)
+        public BulkTableWriter<T> SetTableName(string? tableName)
         {
             if (string.IsNullOrWhiteSpace(tableName))
                 throw new ArgumentException("Table name cannot be null or empty.", nameof(tableName));
@@ -825,7 +834,7 @@ namespace CoreRelm.Persistence
         /// </summary>
         /// <param name="databaseName">The name of the database. Cannot be null or empty.</param>
         /// <returns>The current instance of <see cref="BulkTableWriter{T}"/> to allow method chaining.</returns>
-        public BulkTableWriter<T> SetDatabaseName(string databaseName)
+        public BulkTableWriter<T> SetDatabaseName(string? databaseName)
         {
             if (string.IsNullOrWhiteSpace(databaseName))
                 throw new ArgumentException("Database name cannot be null or empty.", nameof(databaseName));

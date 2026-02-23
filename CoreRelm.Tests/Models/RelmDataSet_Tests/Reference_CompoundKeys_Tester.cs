@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CoreRelm.Extensions;
+using CoreRelm.Options;
 
 namespace CoreRelm.Tests.Models.RelmDataSet_Tests
 {
@@ -56,7 +57,10 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             };
 
             new ServiceCollection().AddCoreRelm(_configuration);
-            context = new MultipleKeysTestContext("name=SimpleRelmMySql", autoVerifyTables: false);
+            context = new RelmContextOptionsBuilder("name=SimpleRelmMySql")
+                .SetAutoVerifyTables(false)
+                .Build<MultipleKeysTestContext>()
+                ?? throw new InvalidOperationException("Failed to build MultipleKeysTestContext");
 
             // create dummy data loaders for dummy data to be placed in both relevant data sets
             var modelDataLoader = new Mock<RelmDefaultDataLoader<MultipleKeysTestObject>>(context);
@@ -66,7 +70,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             modelDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
             modelDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexTestModels);
             
-            context.MultipleKeysTestObjects!.SetDataLoader(modelDataLoader.Object);
+            context.GetDataSet<MultipleKeysTestObject>()?.SetDataLoader(modelDataLoader.Object);
         }
 
         private void SetupReferenceDataLoader(bool addSecondId)
@@ -85,7 +89,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             referenceDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
             referenceDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects_ForeignKey);
 
-            context.MultipleKeysReferenceObject_ForeignKeys!.SetDataLoader(referenceDataLoader.Object);
+            context.GetDataSet<MultipleKeysReferenceObject_ForeignKey>()?.SetDataLoader(referenceDataLoader.Object);
         }
 
         private void SetupNavigationDataLoader(bool addSecondId)
@@ -104,7 +108,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             navigationDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
             navigationDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects_Navigation);
 
-            context.MultipleKeysReferenceObject_NavigationProperties!.SetDataLoader(navigationDataLoader.Object);
+            context.GetDataSet<MultipleKeysReferenceObject_NavigationProperty>()?.SetDataLoader(navigationDataLoader.Object);
         }
 
         private void SetupPrincipalDataLoader(bool addSecondId)
@@ -123,7 +127,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             principalDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
             principalDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects_Principal);
 
-            context.MultipleKeysReferenceObject_PrincipalEntities!.SetDataLoader(principalDataLoader.Object);
+            context.GetDataSet<MultipleKeysReferenceObject_PrincipalEntity>()?.SetDataLoader(principalDataLoader.Object);
         }
 
         [Fact]
@@ -133,7 +137,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             SetupReferenceDataLoader(true);
 
             // Act
-            context.MultipleKeysTestObjects!.Reference(x => x.MultipleKeysReferenceObject_ForeignKeys).Load();
+            context.GetDataSet<MultipleKeysTestObject>()?.Reference(x => x.MultipleKeysReferenceObject_ForeignKeys).Load();
 
             // Assert
             var firstModel = context.MultipleKeysTestObjects.First();
@@ -165,7 +169,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             SetupReferenceDataLoader(false);
 
             // Act
-            context.MultipleKeysTestObjects!.Reference(x => x.MultipleKeysReferenceObject_ForeignKey_Item).Load();
+            context.GetDataSet<MultipleKeysTestObject>()?.Reference(x => x.MultipleKeysReferenceObject_ForeignKey_Item).Load();
 
             // Assert
             var firstModel = context.MultipleKeysTestObjects.First();
@@ -182,7 +186,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             SetupNavigationDataLoader(true);
 
             // Act
-            context.MultipleKeysTestObjects!.Reference(x => x.MultipleKeysReferenceObject_NavigationProperties).Load();
+            context.GetDataSet<MultipleKeysTestObject>()?.Reference(x => x.MultipleKeysReferenceObject_NavigationProperties).Load();
 
             // Assert
             var firstModel = context.MultipleKeysTestObjects.First();
@@ -214,7 +218,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             SetupNavigationDataLoader(false);
 
             // Act
-            context.MultipleKeysTestObjects!.Reference(x => x.MultipleKeysReferenceObject_NavigationProperty_Item).Load();
+            context.GetDataSet<MultipleKeysTestObject>()?.Reference(x => x.MultipleKeysReferenceObject_NavigationProperty_Item).Load();
 
             // Assert
             var firstModel = context.MultipleKeysTestObjects.First();
@@ -231,7 +235,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             SetupPrincipalDataLoader(true);
 
             // Act
-            context.MultipleKeysTestObjects!.Reference(x => x.MultipleKeysReferenceObject_PrincipalEntities).Load();
+            context.GetDataSet<MultipleKeysTestObject>()?.Reference(x => x.MultipleKeysReferenceObject_PrincipalEntities).Load();
 
             // Assert
             var firstModel = context.MultipleKeysTestObjects.First();

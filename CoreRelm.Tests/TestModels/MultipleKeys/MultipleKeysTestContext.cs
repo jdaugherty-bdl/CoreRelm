@@ -10,11 +10,8 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.Tests.TestModels.MultipleKeys
 {
-    public class MultipleKeysTestContext : RelmContext, IRelmContext_TESTING
+    public class MultipleKeysTestContext(RelmContextOptions? contextOptions) : RelmContext(contextOptions ?? throw new ArgumentNullException(nameof(contextOptions))), IRelmContext_TESTING
     {
-        public MultipleKeysTestContext(string? connectionString, bool autoInitializeDataSets = true, bool autoVerifyTables = true) : base(connectionString, autoOpenConnection: false, autoInitializeDataSets: autoInitializeDataSets, autoVerifyTables: autoVerifyTables) { }
-        public MultipleKeysTestContext(RelmContextOptionsBuilder? options) : base(options?.SetAutoOpenConnection(false)) { }
-
         public virtual IRelmDataSet<MultipleKeysTestObject>? MultipleKeysTestObjects { get; set; }
         public virtual IRelmDataSet<MultipleKeysReferenceObject_ForeignKey>? MultipleKeysReferenceObject_ForeignKeys { get; set; }
         public virtual IRelmDataSet<MultipleKeysReferenceObject_NavigationProperty>? MultipleKeysReferenceObject_NavigationProperties { get; set; }
@@ -25,9 +22,9 @@ namespace CoreRelm.Tests.TestModels.MultipleKeys
             base.SetDataSet(dataSet);
         }
 
-        public override void OnConfigure(RelmContextOptionsBuilder OptionsBuilder)
+        public override void OnConfigure(RelmContextOptions contextOptions)
         {
-            OptionsBuilder.CanOpenConnection = false;
+            contextOptions.CanOpenConnection = false;
         }
     }
 }

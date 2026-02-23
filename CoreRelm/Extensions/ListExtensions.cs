@@ -390,11 +390,11 @@ namespace CoreRelm.Extensions
         /// <typeparam name="T">The type of the model in the collection. Must implement <see cref="IRelmModel"/>.</typeparam>
         /// <typeparam name="R">The type of the related model to be loaded. Must implement <see cref="IRelmModel"/>.</typeparam>
         /// <param name="modelData">The collection of models for which the foreign key field will be loaded.</param>
-        /// <param name="relmContextOptionsBuilder">The context options builder used to configure the loading process.</param>
+        /// <param name="relmContextOptions">The context options builder used to configure the loading process.</param>
         /// <param name="predicate">An expression specifying the foreign key field to load.</param>
         /// <returns>A collection of models with the specified foreign key field resolved.</returns>
-        public static ICollection<T>? LoadForeignKeyField<T, R>(this ICollection<T> modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, R>> predicate) where T : IRelmModel, new() where R : IRelmModel, new()
-        	=> new ForeignKeyLoader<T>(modelData, relmContextOptionsBuilder).LoadForeignKey(predicate);
+        public static ICollection<T>? LoadForeignKeyField<T, R>(this ICollection<T> modelData, RelmContextOptions relmContextOptions, Expression<Func<T, R>> predicate) where T : IRelmModel, new() where R : IRelmModel, new()
+        	=> new ForeignKeyLoader<T>(modelData, relmContextOptions).LoadForeignKey(predicate);
 
         /// <summary>
         /// Loads and resolves a foreign key field for the specified model data collection.
@@ -405,11 +405,11 @@ namespace CoreRelm.Extensions
         /// <typeparam name="T">The type of the model in the collection. Must implement <see cref="IRelmModel"/>.</typeparam>
         /// <typeparam name="R">The type of the related model to be loaded. Must implement <see cref="IRelmModel"/>.</typeparam>
         /// <param name="modelData">The collection of models for which the foreign key field will be loaded.</param>
-        /// <param name="relmContextOptionsBuilder">The context options builder used to configure the loading process.</param>
+        /// <param name="relmContextOptions">The context options builder used to configure the loading process.</param>
         /// <param name="predicate">An expression specifying the foreign key field to load.</param>
         /// <returns>A collection of models with the specified foreign key field resolved.</returns>
-        public static async Task<ICollection<T>?> LoadForeignKeyFieldAsync<T, R>(this ICollection<T> modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, R>> predicate, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new()
-        	=> await new ForeignKeyLoader<T>(modelData, relmContextOptionsBuilder).LoadForeignKeyAsync(predicate, cancellationToken: cancellationToken);
+        public static async Task<ICollection<T>?> LoadForeignKeyFieldAsync<T, R>(this ICollection<T> modelData, RelmContextOptions relmContextOptions, Expression<Func<T, R>> predicate, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new()
+        	=> await new ForeignKeyLoader<T>(modelData, relmContextOptions).LoadForeignKeyAsync(predicate, cancellationToken: cancellationToken);
 
         /// <summary>
         /// Loads and populates a foreign key field for a collection of models based on the specified predicate and
@@ -426,8 +426,8 @@ namespace CoreRelm.Extensions
         /// <param name="predicate">An expression specifying the foreign key relationship between the primary model and the related model.</param>
         /// <param name="additionalConstraints">An optional expression specifying additional constraints to apply when loading the foreign key data.</param>
         /// <returns>A collection of primary models with the specified foreign key field populated.</returns>
-        public static ICollection<T>? LoadForeignKeyField<T, R>(this ICollection<T> modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, R>> predicate, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()
-        	=> new ForeignKeyLoader<T>(modelData, relmContextOptionsBuilder).LoadForeignKey(predicate, additionalConstraints);
+        public static ICollection<T>? LoadForeignKeyField<T, R>(this ICollection<T> modelData, RelmContextOptions relmContextOptions, Expression<Func<T, R>> predicate, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()
+        	=> new ForeignKeyLoader<T>(modelData, relmContextOptions).LoadForeignKey(predicate, additionalConstraints);
 
         /// <summary>
         /// Loads and populates a foreign key field for a collection of models based on the specified predicate and
@@ -444,8 +444,8 @@ namespace CoreRelm.Extensions
         /// <param name="predicate">An expression specifying the foreign key relationship between the primary model and the related model.</param>
         /// <param name="additionalConstraints">An optional expression specifying additional constraints to apply when loading the foreign key data.</param>
         /// <returns>A collection of primary models with the specified foreign key field populated.</returns>
-        public static async Task<ICollection<T>?> LoadForeignKeyFieldAsync<T, R>(this ICollection<T> modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, R>> predicate, Expression<Func<R, object>> additionalConstraints, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new()
-        	=> await new ForeignKeyLoader<T>(modelData, relmContextOptionsBuilder).LoadForeignKeyAsync(predicate, additionalConstraints, cancellationToken: cancellationToken);
+        public static async Task<ICollection<T>?> LoadForeignKeyFieldAsync<T, R>(this ICollection<T> modelData, RelmContextOptions relmContextOptions, Expression<Func<T, R>> predicate, Expression<Func<R, object>> additionalConstraints, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new()
+        	=> await new ForeignKeyLoader<T>(modelData, relmContextOptions).LoadForeignKeyAsync(predicate, additionalConstraints, cancellationToken: cancellationToken);
 
         /// <summary>
         /// Loads and resolves a foreign key field for a collection of models, using the specified predicate and custom
@@ -462,8 +462,8 @@ namespace CoreRelm.Extensions
         /// <param name="predicate">An expression specifying the foreign key relationship to resolve.</param>
         /// <param name="customDataLoader">A custom data loader used to fetch the related data.</param>
         /// <returns>A collection of the primary models with the specified foreign key field resolved.</returns>
-        public static ICollection<T>? LoadForeignKeyField<T, R, S>(this ICollection<T> modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, R>> predicate, IRelmDataLoader<S> customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()
-        	=> new ForeignKeyLoader<T>(modelData, relmContextOptionsBuilder).LoadForeignKey(predicate, customDataLoader);
+        public static ICollection<T>? LoadForeignKeyField<T, R, S>(this ICollection<T> modelData, RelmContextOptions relmContextOptions, Expression<Func<T, R>> predicate, IRelmDataLoader<S> customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()
+        	=> new ForeignKeyLoader<T>(modelData, relmContextOptions).LoadForeignKey(predicate, customDataLoader);
 
         /// <summary>
         /// Loads and resolves a foreign key field for a collection of models, using the specified predicate and custom
@@ -480,8 +480,8 @@ namespace CoreRelm.Extensions
         /// <param name="predicate">An expression specifying the foreign key relationship to resolve.</param>
         /// <param name="customDataLoader">A custom data loader used to fetch the related data.</param>
         /// <returns>A collection of the primary models with the specified foreign key field resolved.</returns>
-        public static Task<ICollection<T>?> LoadForeignKeyFieldAsync<T, R, S>(this ICollection<T> modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, R>> predicate, IRelmDataLoader<S> customDataLoader, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()
-        	=> new ForeignKeyLoader<T>(modelData, relmContextOptionsBuilder).LoadForeignKeyAsync(predicate, customDataLoader, cancellationToken: cancellationToken);
+        public static Task<ICollection<T>?> LoadForeignKeyFieldAsync<T, R, S>(this ICollection<T> modelData, RelmContextOptions relmContextOptions, Expression<Func<T, R>> predicate, IRelmDataLoader<S> customDataLoader, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()
+        	=> new ForeignKeyLoader<T>(modelData, relmContextOptions).LoadForeignKeyAsync(predicate, customDataLoader, cancellationToken: cancellationToken);
 
         /// <summary>
         /// Loads and resolves a foreign key field for a collection of models, applying additional constraints if
@@ -496,8 +496,8 @@ namespace CoreRelm.Extensions
         /// <param name="customDataLoader">A custom data loader used to fetch the related data.</param>
         /// <param name="additionalConstraints">An optional expression specifying additional constraints to apply when resolving the foreign key field.</param>
         /// <returns>A collection of the primary models with the foreign key field resolved and loaded.</returns>
-        public static ICollection<T>? LoadForeignKeyField<T, R, S>(this ICollection<T> modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, R>> predicate, IRelmDataLoader<S> customDataLoader, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()
-        	=> new ForeignKeyLoader<T>(modelData, relmContextOptionsBuilder).LoadForeignKey(predicate, customDataLoader, additionalConstraints);
+        public static ICollection<T>? LoadForeignKeyField<T, R, S>(this ICollection<T> modelData, RelmContextOptions relmContextOptions, Expression<Func<T, R>> predicate, IRelmDataLoader<S> customDataLoader, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()
+        	=> new ForeignKeyLoader<T>(modelData, relmContextOptions).LoadForeignKey(predicate, customDataLoader, additionalConstraints);
 
         /// <summary>
         /// Loads and resolves a foreign key field for a collection of models, applying additional constraints if
@@ -512,8 +512,8 @@ namespace CoreRelm.Extensions
         /// <param name="customDataLoader">A custom data loader used to fetch the related data.</param>
         /// <param name="additionalConstraints">An optional expression specifying additional constraints to apply when resolving the foreign key field.</param>
         /// <returns>A collection of the primary models with the foreign key field resolved and loaded.</returns>
-        public static async Task<ICollection<T>?> LoadForeignKeyFieldAsync<T, R, S>(this ICollection<T> modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, R>> predicate, IRelmDataLoader<S> customDataLoader, Expression<Func<R, object>> additionalConstraints, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()
-        	=> await new ForeignKeyLoader<T>(modelData, relmContextOptionsBuilder).LoadForeignKeyAsync(predicate, customDataLoader, additionalConstraints, cancellationToken: cancellationToken);
+        public static async Task<ICollection<T>?> LoadForeignKeyFieldAsync<T, R, S>(this ICollection<T> modelData, RelmContextOptions relmContextOptions, Expression<Func<T, R>> predicate, IRelmDataLoader<S> customDataLoader, Expression<Func<R, object>> additionalConstraints, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()
+        	=> await new ForeignKeyLoader<T>(modelData, relmContextOptions).LoadForeignKeyAsync(predicate, customDataLoader, additionalConstraints, cancellationToken: cancellationToken);
 
         /************************************************************************************************************************/
         /****************************************** RelmContext load list property ******************************************/
@@ -666,17 +666,17 @@ namespace CoreRelm.Extensions
         /// <summary>
         /// Loads and populates a foreign key collection field for the specified collection of model data.
         /// </summary>
-        /// <remarks>This method uses the provided <paramref name="relmContextOptionsBuilder"/> to
+        /// <remarks>This method uses the provided <paramref name="relmContextOptions"/> to
         /// configure the loading process and populates the foreign key field specified by the <paramref
         /// name="predicate"/> for each item in the <paramref name="modelData"/> collection.</remarks>
         /// <typeparam name="T">The type of the primary model in the collection. Must implement <see cref="IRelmModel"/>.</typeparam>
         /// <typeparam name="R">The type of the related model representing the foreign key. Must implement <see cref="IRelmModel"/>.</typeparam>
         /// <param name="modelData">The collection of primary model data for which the foreign key field will be loaded.</param>
-        /// <param name="relmContextOptionsBuilder">The context options builder used to configure the data loading process.</param>
+        /// <param name="relmContextOptions">The context options builder used to configure the data loading process.</param>
         /// <param name="predicate">An expression specifying the foreign key field to load, represented as a navigation property.</param>
         /// <returns>A collection of the primary model data with the specified foreign key field populated.</returns>
-        public static ICollection<T>? LoadForeignKeyField<T, R>(this ICollection<T> modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, ICollection<R>>> predicate) where T : IRelmModel, new() where R : IRelmModel, new()
-            => new ForeignKeyLoader<T>(modelData, relmContextOptionsBuilder).LoadForeignKey(predicate);
+        public static ICollection<T>? LoadForeignKeyField<T, R>(this ICollection<T> modelData, RelmContextOptions relmContextOptions, Expression<Func<T, ICollection<R>>> predicate) where T : IRelmModel, new() where R : IRelmModel, new()
+            => new ForeignKeyLoader<T>(modelData, relmContextOptions).LoadForeignKey(predicate);
         
         /// <summary>
         /// Loads and populates a foreign key collection field for the specified collection of model data.
@@ -690,8 +690,8 @@ namespace CoreRelm.Extensions
         /// <param name="relmContextOptionsBuilder">The context options builder used to configure the data loading process.</param>
         /// <param name="predicate">An expression specifying the foreign key field to load, represented as a navigation property.</param>
         /// <returns>A collection of the primary model data with the specified foreign key field populated.</returns>
-        public static async Task<ICollection<T>?> LoadForeignKeyFieldAsync<T, R>(this ICollection<T> modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, ICollection<R>>> predicate, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new()
-            => await new ForeignKeyLoader<T>(modelData, relmContextOptionsBuilder).LoadForeignKeyAsync(predicate, cancellationToken: cancellationToken);
+        public static async Task<ICollection<T>?> LoadForeignKeyFieldAsync<T, R>(this ICollection<T> modelData, RelmContextOptions relmContextOptions, Expression<Func<T, ICollection<R>>> predicate, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new()
+            => await new ForeignKeyLoader<T>(modelData, relmContextOptions).LoadForeignKeyAsync(predicate, cancellationToken: cancellationToken);
 
         /// <summary>
         /// Loads and populates a foreign key collection field for the specified model data.
@@ -707,8 +707,8 @@ namespace CoreRelm.Extensions
         /// <param name="predicate">An expression specifying the foreign key collection property to populate.</param>
         /// <param name="additionalConstraints">An optional expression defining additional constraints to apply when loading the related data.</param>
         /// <returns>A collection of the primary model instances with the specified foreign key field populated.</returns>
-        public static ICollection<T>? LoadForeignKeyField<T, R>(this ICollection<T> modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, ICollection<R>>> predicate, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()
-        	=> new ForeignKeyLoader<T>(modelData, relmContextOptionsBuilder).LoadForeignKey(predicate, additionalConstraints);        
+        public static ICollection<T>? LoadForeignKeyField<T, R>(this ICollection<T> modelData, RelmContextOptions relmContextOptions, Expression<Func<T, ICollection<R>>> predicate, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new()
+        	=> new ForeignKeyLoader<T>(modelData, relmContextOptions).LoadForeignKey(predicate, additionalConstraints);        
 
         /// <summary>
         /// Loads and populates a foreign key collection field for the specified model data.
@@ -724,8 +724,8 @@ namespace CoreRelm.Extensions
         /// <param name="predicate">An expression specifying the foreign key collection property to populate.</param>
         /// <param name="additionalConstraints">An optional expression defining additional constraints to apply when loading the related data.</param>
         /// <returns>A collection of the primary model instances with the specified foreign key field populated.</returns>
-        public static async Task<ICollection<T>?> LoadForeignKeyFieldAsync<T, R>(this ICollection<T> modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, ICollection<R>>> predicate, Expression<Func<R, object>> additionalConstraints, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new()
-        	=> await new ForeignKeyLoader<T>(modelData, relmContextOptionsBuilder).LoadForeignKeyAsync(predicate, additionalConstraints, cancellationToken: cancellationToken);
+        public static async Task<ICollection<T>?> LoadForeignKeyFieldAsync<T, R>(this ICollection<T> modelData, RelmContextOptions relmContextOptions, Expression<Func<T, ICollection<R>>> predicate, Expression<Func<R, object>> additionalConstraints, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new()
+        	=> await new ForeignKeyLoader<T>(modelData, relmContextOptions).LoadForeignKeyAsync(predicate, additionalConstraints, cancellationToken: cancellationToken);
 
         /// <summary>
         /// Loads and populates a foreign key collection field for the specified model data.
@@ -742,8 +742,8 @@ namespace CoreRelm.Extensions
         /// <param name="predicate">An expression specifying the foreign key collection property to populate.</param>
         /// <param name="customDataLoader">A custom data loader used to retrieve the related data.</param>
         /// <returns>The original collection of primary model instances with the specified foreign key field populated.</returns>
-        public static ICollection<T>? LoadForeignKeyField<T, R, S>(this ICollection<T> modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S> customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()
-        	=> new ForeignKeyLoader<T>(modelData, relmContextOptionsBuilder).LoadForeignKey(predicate, customDataLoader);
+        public static ICollection<T>? LoadForeignKeyField<T, R, S>(this ICollection<T> modelData, RelmContextOptions relmContextOptions, Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S> customDataLoader) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()
+        	=> new ForeignKeyLoader<T>(modelData, relmContextOptions).LoadForeignKey(predicate, customDataLoader);
 
         /// <summary>
         /// Loads and populates a foreign key collection field for the specified model data.
@@ -756,12 +756,12 @@ namespace CoreRelm.Extensions
         /// <typeparam name="R">The type of the related model in the foreign key collection.</typeparam>
         /// <typeparam name="S">The type of the model used by the custom data loader.</typeparam>
         /// <param name="modelData">The collection of primary model instances for which the foreign key field will be loaded.</param>
-        /// <param name="relmContextOptionsBuilder">The options builder used to configure the data loading context.</param>
+        /// <param name="relmContextOptions">The options builder used to configure the data loading context.</param>
         /// <param name="predicate">An expression specifying the foreign key collection property to populate.</param>
         /// <param name="customDataLoader">A custom data loader used to retrieve the related data.</param>
         /// <returns>The original collection of primary model instances with the specified foreign key field populated.</returns>
-        public static async Task<ICollection<T>?> LoadForeignKeyFieldAsync<T, R, S>(this ICollection<T> modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S> customDataLoader, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()
-        	=> await new ForeignKeyLoader<T>(modelData, relmContextOptionsBuilder).LoadForeignKeyAsync(predicate, customDataLoader, cancellationToken: cancellationToken);
+        public static async Task<ICollection<T>?> LoadForeignKeyFieldAsync<T, R, S>(this ICollection<T> modelData, RelmContextOptions relmContextOptions, Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S> customDataLoader, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()
+        	=> await new ForeignKeyLoader<T>(modelData, relmContextOptions).LoadForeignKeyAsync(predicate, customDataLoader, cancellationToken: cancellationToken);
 
         /// <summary>
         /// Loads and populates a foreign key collection field for a collection of model data.
@@ -779,8 +779,8 @@ namespace CoreRelm.Extensions
         /// <param name="customDataLoader">A custom data loader used to retrieve the related data.</param>
         /// <param name="additionalConstraints">An expression specifying additional constraints to apply when loading the foreign key field.</param>
         /// <returns>A collection of the primary model data with the specified foreign key field populated.</returns>
-        public static ICollection<T>? LoadForeignKeyField<T, R, S>(this ICollection<T> modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S> customDataLoader, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()
-        	=> new ForeignKeyLoader<T>(modelData, relmContextOptionsBuilder).LoadForeignKey(predicate, customDataLoader, additionalConstraints);
+        public static ICollection<T>? LoadForeignKeyField<T, R, S>(this ICollection<T> modelData, RelmContextOptions relmContextOptions, Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S> customDataLoader, Expression<Func<R, object>> additionalConstraints) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()
+        	=> new ForeignKeyLoader<T>(modelData, relmContextOptions).LoadForeignKey(predicate, customDataLoader, additionalConstraints);
 
         /// <summary>
         /// Loads and populates a foreign key collection field for a collection of model data.
@@ -798,8 +798,8 @@ namespace CoreRelm.Extensions
         /// <param name="customDataLoader">A custom data loader used to retrieve the related data.</param>
         /// <param name="additionalConstraints">An expression specifying additional constraints to apply when loading the foreign key field.</param>
         /// <returns>A collection of the primary model data with the specified foreign key field populated.</returns>
-        public static async Task<ICollection<T>?> LoadForeignKeyFieldAsync<T, R, S>(this ICollection<T> modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S> customDataLoader, Expression<Func<R, object>> additionalConstraints, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()
-        	=> await new ForeignKeyLoader<T>(modelData, relmContextOptionsBuilder).LoadForeignKeyAsync(predicate, customDataLoader, additionalConstraints, cancellationToken);
+        public static async Task<ICollection<T>?> LoadForeignKeyFieldAsync<T, R, S>(this ICollection<T> modelData, RelmContextOptions relmContextOptions, Expression<Func<T, ICollection<R>>> predicate, IRelmDataLoader<S> customDataLoader, Expression<Func<R, object>> additionalConstraints, CancellationToken cancellationToken = default) where T : IRelmModel, new() where R : IRelmModel, new() where S : IRelmModel, new()
+        	=> await new ForeignKeyLoader<T>(modelData, relmContextOptions).LoadForeignKeyAsync(predicate, customDataLoader, additionalConstraints, cancellationToken);
 
         /************************************************************************************************************************/
         /****************************************** Data loader fields ******************************************/
@@ -817,7 +817,7 @@ namespace CoreRelm.Extensions
         /// <param name="relmContext">The context used to access the data loader. Cannot be <see langword="null"/>.</param>
         /// <param name="predicate">An expression specifying the field to be loaded. Cannot be <see langword="null"/>.</param>
         /// <returns>The original collection of models with the specified field loaded.</returns>
-        public static ICollection<T> LoadDataLoaderField<T, R>(this ICollection<T> modelData, IRelmContext relmContext, Expression<Func<T, R>> predicate) where T : IRelmModel, new()
+        public static ICollection<T?> LoadDataLoaderField<T, R>(this ICollection<T?> modelData, IRelmContext relmContext, Expression<Func<T, R>> predicate) where T : IRelmModel, new()
             => new DataLoaderHelper<T>(relmContext, modelData).LoadField(predicate);
 
         /// <summary>
@@ -832,7 +832,7 @@ namespace CoreRelm.Extensions
         /// <param name="relmContext">The context used to access the data loader. Cannot be <see langword="null"/>.</param>
         /// <param name="predicate">An expression specifying the field to be loaded. Cannot be <see langword="null"/>.</param>
         /// <returns>The original collection of models with the specified field loaded.</returns>
-        public static async Task<ICollection<T>> LoadDataLoaderFieldAsync<T, R>(this ICollection<T> modelData, IRelmContext relmContext, Expression<Func<T, R>> predicate, CancellationToken cancellationToken = default) where T : IRelmModel, new()
+        public static async Task<ICollection<T?>> LoadDataLoaderFieldAsync<T, R>(this ICollection<T?> modelData, IRelmContext relmContext, Expression<Func<T, R>> predicate, CancellationToken cancellationToken = default) where T : IRelmModel, new()
             => await new DataLoaderHelper<T>(relmContext, modelData).LoadFieldAsync(predicate, cancellationToken: cancellationToken);
 
         /// <summary>
@@ -848,8 +848,8 @@ namespace CoreRelm.Extensions
         /// <param name="relmContextOptionsBuilder">The options builder used to configure the database context for loading the field.</param>
         /// <param name="predicate">An expression specifying the field to be loaded for each model in the collection.</param>
         /// <returns>The updated collection of models with the specified field populated.</returns>
-        public static ICollection<T> LoadDataLoaderField<T, R>(this ICollection<T> modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, R>> predicate) where T : IRelmModel, new()
-            => new DataLoaderHelper<T>(relmContextOptionsBuilder, modelData).LoadField(predicate);
+        public static ICollection<T?> LoadDataLoaderField<T, R>(this ICollection<T?> modelData, RelmContextOptions relmContextOptions, Expression<Func<T, R>> predicate) where T : IRelmModel, new()
+            => new DataLoaderHelper<T>(relmContextOptions, modelData).LoadField(predicate);
 
         /// <summary>
         /// Loads and populates a specified field for a collection of models using a data loader.
@@ -864,8 +864,8 @@ namespace CoreRelm.Extensions
         /// <param name="relmContextOptionsBuilder">The options builder used to configure the database context for loading the field.</param>
         /// <param name="predicate">An expression specifying the field to be loaded for each model in the collection.</param>
         /// <returns>The updated collection of models with the specified field populated.</returns>
-        public static async Task<ICollection<T>> LoadDataLoaderFieldAsync<T, R>(this ICollection<T> modelData, RelmContextOptionsBuilder relmContextOptionsBuilder, Expression<Func<T, R>> predicate, CancellationToken cancellationToken = default) where T : IRelmModel, new()
-            => await new DataLoaderHelper<T>(relmContextOptionsBuilder, modelData).LoadFieldAsync(predicate, cancellationToken: cancellationToken);
+        public static async Task<ICollection<T?>> LoadDataLoaderFieldAsync<T, R>(this ICollection<T?> modelData, RelmContextOptions relmContextOptions, Expression<Func<T, R>> predicate, CancellationToken cancellationToken = default) where T : IRelmModel, new()
+            => await new DataLoaderHelper<T>(relmContextOptions, modelData).LoadFieldAsync(predicate, cancellationToken: cancellationToken);
 
         /************************************************************************************************************************/
         /****************************************** Other functions ******************************************/

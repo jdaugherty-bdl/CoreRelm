@@ -1,10 +1,14 @@
-﻿using Moq;
-using CoreRelm.Attributes;
+﻿using CoreRelm.Attributes;
+using CoreRelm.Extensions;
 using CoreRelm.Interfaces;
 using CoreRelm.Models;
+using CoreRelm.Options;
 using CoreRelm.RelmInternal.Helpers.DataTransfer;
 using CoreRelm.RelmInternal.Helpers.Operations;
 using CoreRelm.Tests.TestModels;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +17,6 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using static CoreRelm.Enums.Commands;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using CoreRelm.Extensions;
 
 namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTests
 {
@@ -38,7 +39,10 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             };
 
             new ServiceCollection().AddCoreRelm(_configuration);
-            context = new ComplexTestContext("name=SimpleRelmMySql", autoVerifyTables: false);
+            context = new RelmContextOptionsBuilder()
+                .SetAutoVerifyTables(false)
+                .Build<ComplexTestContext>()
+                ?? throw new InvalidOperationException("Failed to build ComplexTestContext");
 
             // create dummy data loaders for dummy data to be placed in both relevant data sets
             var modelDataLoader = new Mock<RelmDefaultDataLoader<ComplexTestModel>>(context);
@@ -49,7 +53,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             modelDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexTestModels);
 
             context.SetDataSet(new ComplexTestModel());
-            context.ComplexTestModels!.SetDataLoader(modelDataLoader.Object);
+            context.GetDataSet<ComplexTestModel>()?.SetDataLoader(modelDataLoader.Object);
 
             var tableName = typeof(ComplexTestModel).GetCustomAttribute<RelmTable>(false)?.TableName ?? throw new ArgumentNullException();
             var underscoreProperties = DataNamingHelper.GetUnderscoreProperties<ComplexTestModel>(true, false).ToDictionary(x => x.Value.Item1, x => x.Key);
@@ -61,7 +65,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
         public void Get_Count_Should_Return_2()
         {
             // Arrange & Act
-            var modelsCount = context.ComplexTestModels!.Load().Count();
+            var modelsCount = context.GetDataSet<ComplexTestModel>()?.Load().Count();
 
             // Assert
             Assert.Equal(2, modelsCount);

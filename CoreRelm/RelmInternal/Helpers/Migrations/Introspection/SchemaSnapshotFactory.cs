@@ -9,7 +9,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
 {
     public static class SchemaSnapshotFactory
     {
-        public static SchemaSnapshot Empty(string dbName) =>
+        public static SchemaSnapshot Empty(string? dbName) =>
             new(
                 DatabaseName: dbName,
                 Tables: new Dictionary<string, TableSchema>(StringComparer.Ordinal),

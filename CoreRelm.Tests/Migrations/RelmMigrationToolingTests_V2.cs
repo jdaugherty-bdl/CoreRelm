@@ -12,11 +12,13 @@ using CoreRelm.Models.Migrations.Tooling.Apply;
 using CoreRelm.Models.Migrations.Tooling.Drift;
 using CoreRelm.Models.Migrations.Tooling.Generation;
 using CoreRelm.Models.Migrations.Tooling.Validation;
+using CoreRelm.Options;
 using CoreRelm.RelmInternal.Contexts;
 using CoreRelm.RelmInternal.Helpers.Migrations.Introspection;
 using CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans;
 using Moq;
 using System.Reflection;
+using static CoreRelm.Enums.MigrationEnums;
 
 namespace CoreRelm.Tests.Migrations;
 
@@ -79,7 +81,7 @@ public sealed class RelmMigrationToolingTests_V2 : IClassFixture<JsonConfigurati
         var planner = new Mock<IRelmMigrationPlanner>(MockBehavior.Strict);
         planner.Setup(p => p.Plan(It.IsAny<SchemaSnapshot>(), It.IsAny<SchemaSnapshot>(), It.IsAny<MigrationPlanOptions>()))
             .Returns((SchemaSnapshot desired, SchemaSnapshot actual, MigrationPlanOptions opt) =>
-                new MigrationPlan(db, opt.MigrationName, opt.ModelSetName, [], [], [], opt.StampUtc));
+                new MigrationPlan(db, opt.MigrationName, opt.ModelSetName, RelmMigrationType.Migration, [], [], [], opt.StampUtc));
 
         var renderer = new Mock<IRelmMigrationSqlRenderer>(MockBehavior.Strict);
 
@@ -114,7 +116,7 @@ public sealed class RelmMigrationToolingTests_V2 : IClassFixture<JsonConfigurati
         var planner = new Mock<IRelmMigrationPlanner>(MockBehavior.Strict);
         planner.Setup(p => p.Plan(It.IsAny<SchemaSnapshot>(), It.IsAny<SchemaSnapshot>(), It.IsAny<MigrationPlanOptions>()))
             .Returns((SchemaSnapshot desired, SchemaSnapshot actual, MigrationPlanOptions opt) =>
-                new MigrationPlan(db, opt.MigrationName, opt.ModelSetName, [Mock.Of<IMigrationOperation>()], [], ["blocker"], opt.StampUtc));
+                new MigrationPlan(db, opt.MigrationName, opt.ModelSetName, RelmMigrationType.Migration, [Mock.Of<IMigrationOperation>()], [], ["blocker"], opt.StampUtc));
 
         var renderer = new Mock<IRelmMigrationSqlRenderer>(MockBehavior.Strict);
 
@@ -147,7 +149,7 @@ public sealed class RelmMigrationToolingTests_V2 : IClassFixture<JsonConfigurati
         var planner = new Mock<IRelmMigrationPlanner>(MockBehavior.Strict);
         planner.Setup(p => p.Plan(It.IsAny<SchemaSnapshot>(), It.IsAny<SchemaSnapshot>(), It.IsAny<MigrationPlanOptions>()))
             .Returns((SchemaSnapshot desired, SchemaSnapshot actual, MigrationPlanOptions opt) =>
-                new MigrationPlan(db, opt.MigrationName, opt.ModelSetName, [Mock.Of<IMigrationOperation>()], [], [], opt.StampUtc));
+                new MigrationPlan(db, opt.MigrationName, opt.ModelSetName, RelmMigrationType.Migration, [Mock.Of<IMigrationOperation>()], [], [], opt.StampUtc));
 
         MySqlRenderOptions? captured = null;
         var renderer = new Mock<IRelmMigrationSqlRenderer>(MockBehavior.Strict);
@@ -293,7 +295,7 @@ public sealed class RelmMigrationToolingTests_V2 : IClassFixture<JsonConfigurati
             provisioner,
             migrationsStore,
             log: null,
-            informationSchemaContextFactory: cs => new InformationSchemaContext(cs, autoOpenConnection: false, autoInitializeDataSets: false, autoVerifyTables: false)
+            informationSchemaContextFactory: cs => new RelmContextOptionsBuilder(cs).SetAutoOpenConnection(false).SetAutoInitializeDataSets(false).SetAutoVerifyTables(false).Build<InformationSchemaContext>() ?? throw new InvalidOperationException("Failed to build InformationSchemaContext")
         );
     }
 
@@ -310,7 +312,7 @@ public sealed class RelmMigrationToolingTests_V2 : IClassFixture<JsonConfigurati
             .Returns((SchemaSnapshot desired, SchemaSnapshot actual, MigrationPlanOptions opt) =>
             {
                 captured = opt;
-                return new MigrationPlan(db, opt.MigrationName, opt.ModelSetName, [], [], [], opt.StampUtc);
+                return new MigrationPlan(db, opt.MigrationName, opt.ModelSetName, RelmMigrationType.Migration, [], [], [], opt.StampUtc);
             });
 
         var renderer = new Mock<IRelmMigrationSqlRenderer>(MockBehavior.Strict);
@@ -371,6 +373,7 @@ public sealed class RelmMigrationToolingTests_V2 : IClassFixture<JsonConfigurati
             DatabaseName: "db1",
             MigrationName: "migration-1",
             ModelSetName: "set-1",
+            MigrationType: RelmMigrationType.Migration,
             Operations: [],
             Warnings: [],
             Blockers: ["blocker"],

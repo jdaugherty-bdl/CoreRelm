@@ -11,11 +11,8 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.Tests.TestModels.NonDefaultForeignKeys
 {
-    public class NonDefaultForeignKeysTestContext : RelmContext, IRelmContext_TESTING
+    public class NonDefaultForeignKeysTestContext(RelmContextOptions? contextOptions) : RelmContext(contextOptions ?? throw new ArgumentNullException(nameof(contextOptions))), IRelmContext_TESTING
     {
-        public NonDefaultForeignKeysTestContext(string? connectionString, bool autoInitializeDataSets = true, bool autoVerifyTables = true) : base(connectionString, autoOpenConnection: false, autoInitializeDataSets: autoInitializeDataSets, autoVerifyTables: autoVerifyTables) { }
-        public NonDefaultForeignKeysTestContext(RelmContextOptionsBuilder? options) : base(options?.SetAutoOpenConnection(false)) { }
-
         public virtual IRelmDataSet<NonDefaultForeignKeysTestObject>? NonDefaultForeignKeysTestObjects { get; set; }
         public virtual IRelmDataSet<NonDefaultForeignKeysReferenceObject_ForeignKey>? NonDefaultForeignKeysReferenceObject_ForeignKeys { get; set; }
         public virtual IRelmDataSet<NonDefaultForeignKeysReferenceObject_NavigationProperty>? NonDefaultForeignKeysReferenceObject_NavigationProperties { get; set; }
@@ -26,7 +23,7 @@ namespace CoreRelm.Tests.TestModels.NonDefaultForeignKeys
             base.SetDataSet(dataSet);
         }
 
-        public override void OnConfigure(RelmContextOptionsBuilder OptionsBuilder)
+        public override void OnConfigure(RelmContextOptions OptionsBuilder)
         {
             OptionsBuilder.CanOpenConnection = false;
         }

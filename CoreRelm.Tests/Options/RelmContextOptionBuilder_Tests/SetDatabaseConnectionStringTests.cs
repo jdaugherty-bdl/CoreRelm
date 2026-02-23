@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static CoreRelm.Options.RelmContextOptions;
 
 namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
 {
@@ -13,32 +14,34 @@ namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
         public void SetDatabaseConnectionString_SetsDatabaseConnectionStringConstructorCorrectly()
         {
             // Arrange
-            var expectedConnectionStringType = RelmContextOptionsBuilder.OptionsBuilderTypes.ConnectionString; // Make sure this is valid
+            var expectedConnectionStringType = OptionsBuilderTypes.ConnectionString; // Make sure this is valid
             var expectedDatabaseConnectionString = "server=localhost;database=simple_relm;user id=simplerelmuser;password=simplerelmpassword";
 
             // Act
             var builder = new RelmContextOptionsBuilder(expectedDatabaseConnectionString);
+            var options = builder.BuildOptions();
 
             // Assert
-            Assert.Equal(expectedConnectionStringType, builder.OptionsBuilderType);
-            Assert.Equal(expectedDatabaseConnectionString, builder.DatabaseConnectionString);
+            Assert.Equal(expectedConnectionStringType, options.OptionsBuilderType);
+            Assert.Equal(expectedDatabaseConnectionString, options.DatabaseConnectionString);
         }
 
         [Fact]
         public void SetDatabaseConnectionString_SetsDatabaseConnectionStringPropertyCorrectly()
         {
             // Arrange
-            var expectedConnectionStringType = RelmContextOptionsBuilder.OptionsBuilderTypes.ConnectionString; // Make sure this is valid
+            var expectedConnectionStringType = OptionsBuilderTypes.ConnectionString; // Make sure this is valid
             var expectedDatabaseConnectionString = "server=localhost;database=simple_relm;user id=simplerelmuser;password=simplerelmpassword";
             
             var builder = new RelmContextOptionsBuilder();
 
             // Act
             builder.SetDatabaseConnectionString(expectedDatabaseConnectionString);
+            var options = builder.BuildOptions();
 
             // Assert
-            Assert.Equal(expectedConnectionStringType, builder.OptionsBuilderType);
-            Assert.Equal(expectedDatabaseConnectionString, builder.DatabaseConnectionString);
+            Assert.Equal(expectedConnectionStringType, options.OptionsBuilderType);
+            Assert.Equal(expectedDatabaseConnectionString, options.DatabaseConnectionString);
         }
 
         [Fact]
@@ -51,7 +54,21 @@ namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
             builder.SetDatabaseConnectionString("INVALID CONNECTION STRING");
 
             // Assert
-            Assert.Throws<ArgumentNullException>(() => builder.ValidateAllSettings());
+            Assert.Throws<ArgumentException>(() => builder.ParseConnectionDetails());
+        }
+
+        [Fact]
+        public void SetDatabaseConnectionString_ReturnsTrue_ForValidatedAllSettings()
+        {
+            // Arrange
+            var builder = new RelmContextOptionsBuilder();
+
+            // Act 
+            builder.SetDatabaseConnectionString("INVALID CONNECTION STRING");
+            var validated = builder.ValidateAllSettings();
+
+            // Assert
+            Assert.True(validated);
         }
 
         [Fact]
@@ -59,14 +76,15 @@ namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
         {
             // Arrange
             var builder = new RelmContextOptionsBuilder();
-            var expectedType = RelmContextOptionsBuilder.OptionsBuilderTypes.ConnectionString;
+            var expectedType = OptionsBuilderTypes.ConnectionString;
             var validConnectionStringType = "server=localhost;database=simple_relm;user id=simplerelmuser;password=simplerelmpassword"; // Make sure this is valid
 
             // Act
             builder.SetDatabaseConnectionString(validConnectionStringType);
+            var options = builder.BuildOptions();
 
             // Assert
-            Assert.Equal(expectedType, builder.OptionsBuilderType);
+            Assert.Equal(expectedType, options.OptionsBuilderType);
         }
 
         [Fact]

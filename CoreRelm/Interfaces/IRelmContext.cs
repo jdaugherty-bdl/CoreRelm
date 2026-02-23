@@ -28,10 +28,14 @@ namespace CoreRelm.Interfaces
     /// threads.</remarks>
     public interface IRelmContext
     {
+        /*
         /// <summary>
         /// Gets the builder used to configure options for the current Relm context.
         /// </summary>
         RelmContextOptionsBuilder ContextOptions { get; }
+        */
+        RelmContextOptions ContextOptions { get; }
+
 
         /// <summary>
         /// Begins a new database transaction on the current connection.

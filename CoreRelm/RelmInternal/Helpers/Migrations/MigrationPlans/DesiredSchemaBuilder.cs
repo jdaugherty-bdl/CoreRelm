@@ -29,8 +29,10 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
     {
         private ILogger<DesiredSchemaBuilder>? _log = log;
 
-        public async Task<SchemaSnapshot> BuildAsync(string databaseFilter, List < ValidatedModelType> modelsForDb)
+        public async Task<SchemaSnapshot> BuildAsync(string? databaseFilter, List < ValidatedModelType> modelsForDb)
         {
+            ArgumentNullException.ThrowIfNull(databaseFilter);
+
             var desired = Build(databaseFilter, modelsForDb);
 
             return desired;

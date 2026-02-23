@@ -2,6 +2,7 @@
 using CoreRelm.Interfaces.Migrations;
 using CoreRelm.Models;
 using CoreRelm.Models.Migrations;
+using CoreRelm.Options;
 using CoreRelm.RelmInternal.Helpers.Migrations.Introspection;
 using CoreRelm.RelmInternal.Helpers.Migrations.Provisioning;
 using MySql.Data.MySqlClient;
@@ -40,7 +41,12 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
             var dbConn = migrationOptions.ConnectionStringTemplate?.Replace("{db}", migrationOptions.DatabaseName, StringComparison.Ordinal)
                 ?? throw new InvalidOperationException("Database connection string template is not set.");
 
-            var context = new RelmContext(dbConn, autoInitializeDataSets: false, autoVerifyTables: false); // turn off auto-verify because we may be creating tables here
+            var context = new RelmContextOptionsBuilder(dbConn)
+                .SetAutoInitializeDataSets(false)
+                .SetAutoVerifyTables(false) // turn off auto-verify because we may be creating tables here
+                .Build<RelmContext>() 
+                ?? 
+                throw new InvalidOperationException("Failed to build RelmContext for migration application.");
 
             var checksum = sql.Sha256Hex();
 

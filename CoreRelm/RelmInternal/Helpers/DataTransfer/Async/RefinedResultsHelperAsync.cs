@@ -1,5 +1,6 @@
 ﻿using CoreRelm.Interfaces;
 using CoreRelm.Models;
+using CoreRelm.Options;
 using CoreRelm.RelmInternal.Helpers.Utilities;
 using MySql.Data.MySqlClient;
 using System;
@@ -58,7 +59,8 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Async
         /// name="throwException"/> is <see langword="false"/> and an error occurs.</returns>
         internal static async Task<T?> GetScalarAsync<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
         {
-            return await GetScalarAsync<T>(new RelmContext(establishedConnection), query, parameters, throwException: throwException, cancellationToken: cancellationToken);
+            //return await GetScalarAsync<T>(new RelmContext(establishedConnection), query, parameters, throwException: throwException, cancellationToken: cancellationToken);
+            return await GetScalarAsync<T>(new RelmContextOptionsBuilder(establishedConnection).Build<RelmContext>(), query, parameters, throwException: throwException, cancellationToken: cancellationToken);
         }
 
         /// <summary>
@@ -84,7 +86,8 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Async
         /// name="throwException"/> is <see langword="false"/> and an error occurs.</returns>
         internal static async Task<T?> GetScalarAsync<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
         {
-            return await GetScalarAsync<T>(new RelmContext(establishedConnection, sqlTransaction), query, parameters, throwException: throwException, cancellationToken: cancellationToken);
+            //return await GetScalarAsync<T>(new RelmContext(establishedConnection, sqlTransaction), query, parameters, throwException: throwException, cancellationToken: cancellationToken);
+            return await GetScalarAsync<T>(new RelmContextOptionsBuilder(establishedConnection, sqlTransaction).Build<RelmContext>(), query, parameters, throwException: throwException, cancellationToken: cancellationToken);
         }
 
         /// <summary>
@@ -102,8 +105,11 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Async
         /// <returns>A task representing the asynchronous operation. The task result contains the value of the first column of
         /// the first row in the result set, cast to type T. Returns the default value of T if no result is found or if
         /// throwException is false and an error occurs.</returns>
-        internal async static Task<T?> GetScalarAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        internal async static Task<T?> GetScalarAsync<T>(IRelmContext? relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
         {
+            if (relmContext == null)
+                throw new ArgumentNullException(nameof(relmContext));
+
             return await DatabaseWorkHelper.DoDatabaseWorkAsync(relmContext, query,
                 async (cmd, cancellationToken) =>
                 {
@@ -271,7 +277,8 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Async
         /// cref="DataTable"/> will be empty.</returns>
         internal static async Task<DataTable?> GetDataTableAsync(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
         {
-            return await GetDataTableAsync(new RelmContext(establishedConnection, autoInitializeDataSets: false, autoVerifyTables: false), query, parameters, throwException: throwException, cancellationToken: cancellationToken);
+            //return await GetDataTableAsync(new RelmContext(establishedConnection, autoInitializeDataSets: false, autoVerifyTables: false), query, parameters, throwException: throwException, cancellationToken: cancellationToken);
+            return await GetDataTableAsync(new RelmContextOptionsBuilder(establishedConnection).SetAutoInitializeDataSets(false).SetAutoVerifyTables(false).Build<RelmContext>(), query, parameters, throwException: throwException, cancellationToken: cancellationToken);
         }
 
         /// <summary>
@@ -294,7 +301,8 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Async
         /// cref="DataTable"/> will be empty.</returns>
         internal static async Task<DataTable?> GetDataTableAsync(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
         {
-            return await GetDataTableAsync(new RelmContext(establishedConnection, sqlTransaction, autoInitializeDataSets: false, autoVerifyTables: false), query, parameters, throwException: throwException, cancellationToken: cancellationToken);
+            //return await GetDataTableAsync(new RelmContext(establishedConnection, sqlTransaction, autoInitializeDataSets: false, autoVerifyTables: false), query, parameters, throwException: throwException, cancellationToken: cancellationToken);
+            return await GetDataTableAsync(new RelmContextOptionsBuilder(establishedConnection, sqlTransaction).SetAutoInitializeDataSets(false).SetAutoVerifyTables(false).Build<RelmContext>(), query, parameters, throwException: throwException, cancellationToken: cancellationToken);
         }
 
         /// <summary>
@@ -313,8 +321,11 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Async
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the asynchronous operation.</param>
         /// <returns>A task that represents the asynchronous operation. The task result contains a DataTable with the query
         /// results, or null if an error occurs and throwException is false.</returns>
-        internal async static Task<DataTable?> GetDataTableAsync(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        internal async static Task<DataTable?> GetDataTableAsync(IRelmContext? relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
         {
+            if (relmContext == null)
+                throw new ArgumentNullException(nameof(relmContext));
+
             return await DatabaseWorkHelper.DoDatabaseWorkAsync<DataTable>(relmContext, query,
                 async (cmd, cancellationToken) =>
                 {

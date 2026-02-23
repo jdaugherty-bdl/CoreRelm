@@ -860,7 +860,7 @@ namespace CoreRelm.Models
         {
             int rowsUpdated;
             var contextOptions = _currentContext?.ContextOptions ?? new();
-            if (contextOptions.OptionsBuilderType == Options.RelmContextOptionsBuilder.OptionsBuilderTypes.OpenConnection)
+            if (contextOptions.OptionsBuilderType == Options.RelmContextOptions.OptionsBuilderTypes.OpenConnection)
                 rowsUpdated = _items == null ? 0 : (await _items.Where(x => x != null).Select(x => x!).WriteToDatabaseAsync(contextOptions.DatabaseConnection, sqlTransaction: contextOptions.DatabaseTransaction, cancellationToken: cancellationToken));
             else
                 rowsUpdated = _items == null ? 0 : (await _items.Where(x => x != null).Select(x => x!).WriteToDatabaseAsync(contextOptions.ConnectionStringType, cancellationToken: cancellationToken));
@@ -1006,7 +1006,7 @@ namespace CoreRelm.Models
             if (persist)
             {
                 var contextOptions = _currentContext?.ContextOptions;
-                if (contextOptions?.OptionsBuilderType == Options.RelmContextOptionsBuilder.OptionsBuilderTypes.OpenConnection)
+                if (contextOptions?.OptionsBuilderType == Options.RelmContextOptions.OptionsBuilderTypes.OpenConnection)
                     return await _items.Where(x => x != null).Select(x => x!).WriteToDatabaseAsync(contextOptions?.DatabaseConnection, sqlTransaction: contextOptions?.DatabaseTransaction);
                 else
                     return await _items.Where(x => x != null).Select(x => x!).WriteToDatabaseAsync(contextOptions?.ConnectionStringType);

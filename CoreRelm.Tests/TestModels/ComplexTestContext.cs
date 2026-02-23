@@ -1,23 +1,19 @@
-﻿using MySql.Data.MySqlClient;
-using CoreRelm.Interfaces;
+﻿using CoreRelm.Interfaces;
 using CoreRelm.Models;
 using CoreRelm.Options;
 using CoreRelm.Tests.Interfaces;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static CoreRelm.Options.RelmContextOptions;
 
 namespace CoreRelm.Tests.TestModels
 {
-    public class ComplexTestContext : RelmContext, IRelmContext_TESTING
+    public class ComplexTestContext(RelmContextOptions? contextOptions) : RelmContext(contextOptions, "name=SimpleRelmMySql", OptionsBuilderTypes.NamedConnectionString), IRelmContext_TESTING
     {
-        public ComplexTestContext(bool autoInitializeDataSets = true, bool autoVerifyTables = true) : base("name=SimpleRelmMySql", autoOpenConnection: false, autoInitializeDataSets: autoInitializeDataSets, autoVerifyTables: autoVerifyTables) { }
-        public ComplexTestContext(string? connectionString, bool autoInitializeDataSets = true, bool autoVerifyTables = true) : base(connectionString, autoOpenConnection: false, autoInitializeDataSets: autoInitializeDataSets, autoVerifyTables: autoVerifyTables) { }
-        public ComplexTestContext(RelmContextOptionsBuilder? options) : base(options) { }
-        public ComplexTestContext(MySqlConnection connection, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool autoInitializeDataSets = true, bool autoVerifyTables = true) : base(connection, autoOpenConnection, autoOpenTransaction, autoInitializeDataSets: autoInitializeDataSets, autoVerifyTables: autoVerifyTables) { }
-
         public virtual IRelmDataSet<ComplexTestModel>? ComplexTestModels { get; set; }
         public virtual IRelmDataSet<ComplexReferenceObject>? ComplexReferenceObjects { get; set; }
         public virtual IRelmDataSet<ComplexReferenceObject_NavigationProperty>? ComplexReferenceObject_NavigationProperties { get; set; }
@@ -30,9 +26,9 @@ namespace CoreRelm.Tests.TestModels
             base.SetDataSet(dataSet);
         }
 
-        public override void OnConfigure(RelmContextOptionsBuilder OptionsBuilder)
+        public override void OnConfigure(RelmContextOptions contextOptions)
         {
-            OptionsBuilder.CanOpenConnection = false;
+            contextOptions.CanOpenConnection = false;
         }
     }
 }

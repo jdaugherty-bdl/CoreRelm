@@ -1,4 +1,5 @@
-﻿using CoreRelm.Quickstart.Contexts;
+﻿using CoreRelm.Options;
+using CoreRelm.Quickstart.Contexts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,8 @@ namespace CoreRelm.Quickstart.Examples.Context
     {
         internal void RunExamples()
         {
-            // Example usage to create an unscoped context
-            var unscopedContext = new ExampleContext();
+            // Example usage to create an unscoped context with auto-open connection
+            var unscopedContext = new RelmContextOptionsBuilder().SetAutoOpenConnection(true).Build<ExampleContext>() ?? throw new InvalidOperationException("Failed to create ExampleContext");
             unscopedContext.BeginTransaction();
 
             try
@@ -27,8 +28,8 @@ namespace CoreRelm.Quickstart.Examples.Context
                 throw;
             }
 
-            // Example usage to create an unscoped context with auto-open transaction
-            var unscopedContextAutoTransaction = new ExampleContext(autoOpenTransaction: true);
+            // Example usage to create an unscoped context with auto-open connection and transaction
+            var unscopedContextAutoTransaction = new RelmContextOptionsBuilder().SetAutoOpenTransaction(true).Build<ExampleContext>() ?? throw new InvalidOperationException("Failed to create ExampleContext");
             try
             {
                 // Perform database operations here using unscopedContextAutoTransaction
@@ -41,8 +42,8 @@ namespace CoreRelm.Quickstart.Examples.Context
                 throw;
             }
 
-            // Example usage to create an unscoped quick context
-            var unscopedQuickContext = new ExampleContext(autoInitializeDataSets: false, autoVerifyTables: false);
+            // Example usage to create an unscoped quick context with auto-open connection
+            var unscopedQuickContext = new RelmContextOptionsBuilder().SetAutoInitializeDataSets(false).SetAutoVerifyTables(false).Build<ExampleContext>() ?? throw new InvalidOperationException("Failed to create ExampleContext");
             unscopedQuickContext.BeginTransaction();
             
             try
@@ -57,8 +58,8 @@ namespace CoreRelm.Quickstart.Examples.Context
                 throw;
             }
 
-            // Example usage to create an unscoped quick context with auto-open transaction
-            var unscopedQuickContextAutoTransaction = new ExampleContext(autoOpenTransaction: true, autoInitializeDataSets: false, autoVerifyTables: false);
+            // Example usage to create an unscoped quick context with auto-open connection and transaction
+            var unscopedQuickContextAutoTransaction = new RelmContextOptionsBuilder().SetAutoOpenTransaction(true).SetAutoInitializeDataSets(false).SetAutoVerifyTables(false).Build<ExampleContext>() ?? throw new InvalidOperationException("Failed to create ExampleContext");
             try
             {
                 // Perform database operations here using unscopedQuickContextAutoTransaction

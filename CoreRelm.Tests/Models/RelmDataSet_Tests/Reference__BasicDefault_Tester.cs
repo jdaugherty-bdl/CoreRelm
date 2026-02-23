@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CoreRelm.Extensions;
+using CoreRelm.Options;
 
 namespace CoreRelm.Tests.Models.RelmDataSet_Tests
 {
@@ -74,8 +75,14 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
                     TestFieldBoolean = null,
                 });
 
-            new ServiceCollection().AddCoreRelm(_configuration);
-            context = new ComplexTestContext("name=SimpleRelmMySql", autoVerifyTables: false);
+            //new ServiceCollection().AddCoreRelm(_configuration);
+            RelmHelper.UseConfiguration(_configuration);
+            context = new RelmContextOptionsBuilder("name=SimpleRelmMySql")
+                .SetAutoOpenConnection(false)
+                .SetAutoInitializeDataSets(false)
+                .SetAutoVerifyTables(false)
+                .Build<ComplexTestContext>()
+                ?? throw new InvalidOperationException("Failed to build ComplexTestContext");
 
             // create dummy data loaders for dummy data to be placed in both relevant data sets
             var modelDataLoader = new Mock<RelmDefaultDataLoader<ComplexTestModel>>(context); // { CallBase = true };
@@ -85,7 +92,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             modelDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
             modelDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexTestModels);
 
-            context.ComplexTestModels!.SetDataLoader(modelDataLoader.Object);
+            context.GetDataSet<ComplexTestModel>()?.SetDataLoader(modelDataLoader.Object);
 
             return context;
         }
@@ -108,7 +115,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             referenceDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
             referenceDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects);
 
-            context.ComplexReferenceObjects!.SetDataLoader(referenceDataLoader.Object);
+            context.GetDataSet<ComplexReferenceObject>()?.SetDataLoader(referenceDataLoader.Object);
         }
 
         private void SetupReferenceDataLoader(bool addSecondId)
@@ -127,7 +134,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             referenceDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
             referenceDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects);
 
-            context.ComplexReferenceObjects!.SetDataLoader(referenceDataLoader.Object);
+            context.GetDataSet<ComplexReferenceObject>()?.SetDataLoader(referenceDataLoader.Object);
         }
 
         private void SetupNavigationDataLoader(bool addSecondId)
@@ -146,7 +153,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             navigationDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
             navigationDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects_Navigation);
 
-            context.ComplexReferenceObject_NavigationProperties!.SetDataLoader(navigationDataLoader.Object);
+            context.GetDataSet<ComplexReferenceObject_NavigationProperty>()?.SetDataLoader(navigationDataLoader.Object);
         }
 
         private void SetupPrincipalDataLoader(bool addSecondId)
@@ -165,7 +172,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             principalDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
             principalDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects_Principal);
 
-            context.ComplexReferenceObject_PrincipalEntities!.SetDataLoader(principalDataLoader.Object);
+            context.GetDataSet<ComplexReferenceObject_PrincipalEntity>()?.SetDataLoader(principalDataLoader.Object);
         }
 
         private void SetupPrincipalDataLoaderLocalKey(bool addSecondId)
@@ -184,7 +191,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             principalDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
             principalDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexReferenceObjects_Principal);
 
-            context.ComplexReferenceObject_PrincipalEntities!.SetDataLoader(principalDataLoader.Object);
+            context.GetDataSet<ComplexReferenceObject_PrincipalEntity>()?.SetDataLoader(principalDataLoader.Object);
         }
 
         [Fact]
@@ -194,10 +201,10 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             SetupPrincipalDataLoaderLocalKey(false);
 
             // Act
-            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject_PrincipalEntity_LocalKey, x => x.Active == true).Load(loadDataLoaders: false);
+            context.GetDataSet<ComplexTestModel>()?.Reference(x => x.ComplexReferenceObject_PrincipalEntity_LocalKey, x => x.Active == true).Load(loadDataLoaders: false);
 
             // Assert
-            var firstModel = context.ComplexTestModels.First();
+            var firstModel = context.ComplexTestModels!.First();
 
             Assert.NotNull(firstModel.ComplexReferenceObject_PrincipalEntity_LocalKey);
             Assert.Equal(firstModel.ComplexReferenceObjectLocalKey, firstModel?.ComplexReferenceObject_PrincipalEntity_LocalKey?.ComplexTestModelLocalKey);
@@ -210,7 +217,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             SetupPrincipalDataLoaderLocalKey(false);
 
             // Act
-            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject_PrincipalEntity_LocalKey).Load(loadDataLoaders: false);
+            context.GetDataSet<ComplexTestModel>()?.Reference(x => x.ComplexReferenceObject_PrincipalEntity_LocalKey).Load(loadDataLoaders: false);
 
             // Assert
             var firstModel = context.ComplexTestModels.First();
@@ -226,7 +233,7 @@ namespace CoreRelm.Tests.Models.RelmDataSet_Tests
             SetupPrincipalDataLoaderLocalKey(true);
 
             // Act
-            context.ComplexTestModels!.Reference(x => x.ComplexReferenceObject_PrincipalEntities_LocalKeys, x => x.Active == true).Load(loadDataLoaders: false);
+            context.GetDataSet<ComplexTestModel>()?.Reference(x => x.ComplexReferenceObject_PrincipalEntities_LocalKeys, x => x.Active == true).Load(loadDataLoaders: false);
 
             // Assert
             var firstModel = context.ComplexTestModels.First();

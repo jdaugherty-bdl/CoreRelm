@@ -1,8 +1,12 @@
-﻿using Moq;
+﻿using CoreRelm.Extensions;
 using CoreRelm.Models;
+using CoreRelm.Options;
 using CoreRelm.RelmInternal.Helpers.Operations;
 using CoreRelm.RelmInternal.Helpers.Utilities;
 using CoreRelm.Tests.TestModels;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
@@ -11,9 +15,6 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using static CoreRelm.Enums.Commands;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using CoreRelm.Extensions;
 
 namespace CoreRelm.Tests.RelmInternal.Helpers.Utilities
 {
@@ -79,7 +80,10 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Utilities
                 });
 
             new ServiceCollection().AddCoreRelm(_configuration);
-            context = new ComplexTestContext("name=SimpleRelmMySql", autoVerifyTables: false);
+            context = new RelmContextOptionsBuilder()
+                .SetAutoVerifyTables(false)
+                .Build<ComplexTestContext>()
+                ?? throw new InvalidOperationException("Failed to build ComplexTestContext");
 
             // create dummy data loaders for dummy data to be placed in both relevant data sets
             var modelDataLoader = new Mock<RelmDefaultDataLoader<ComplexTestModel>>(context); // { CallBase = true };
@@ -89,7 +93,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Utilities
             modelDataLoader.Setup(x => x.GetLoadDataAsync(It.IsAny<CancellationToken>())).CallBase();
             modelDataLoader.Setup(x => x.PullDataAsync(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockComplexTestModels);
 
-            context.ComplexTestModels!.SetDataLoader(modelDataLoader.Object);
+            context.GetDataSet<ComplexTestModel>()?.SetDataLoader(modelDataLoader.Object);
 
             return context;
         }

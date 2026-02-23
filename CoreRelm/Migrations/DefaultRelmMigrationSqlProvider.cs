@@ -6,6 +6,7 @@ using CoreRelm.Models.Migrations;
 using CoreRelm.Models.Migrations.Introspection;
 using CoreRelm.Models.Migrations.MigrationPlans;
 using CoreRelm.Models.Migrations.Rendering;
+using CoreRelm.Options;
 using CoreRelm.RelmInternal.Contexts;
 using CoreRelm.RelmInternal.Helpers.Migrations.Introspection;
 using CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans;
@@ -100,7 +101,10 @@ namespace CoreRelm.Migrations
                 if (string.IsNullOrWhiteSpace(dbConn))
                     throw new ArgumentException("Connection string is required.", nameof(dbConn));
 
-                var context = new InformationSchemaContext(dbConn, autoInitializeDataSets: false, autoVerifyTables: false);
+                var context = new RelmContextOptionsBuilder(dbConn)
+                    .SetAutoInitializeDataSets(false)
+                    .SetAutoVerifyTables(false)
+                    .Build<InformationSchemaContext>();
 
                 _log?.SaveIndentLevel("introspecting");
                 actual = await _introspector.LoadSchemaAsync(context, new SchemaIntrospectionOptions { DatabaseName = _migrationOptions.DatabaseName });

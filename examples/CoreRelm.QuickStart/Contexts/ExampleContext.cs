@@ -12,16 +12,9 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.Quickstart.Contexts
 {
-    internal class ExampleContext : RelmContext
+    internal class ExampleContext(RelmContextOptions contextOptions) : RelmContext(contextOptions)
     {
-        public ExampleContext(bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true) : base("name=ExampleContextDatabase", autoOpenConnection: autoOpenConnection, autoOpenTransaction: autoOpenTransaction, allowUserVariables: allowUserVariables, convertZeroDateTime: convertZeroDateTime, lockWaitTimeoutSeconds: lockWaitTimeoutSeconds, autoInitializeDataSets: autoInitializeDataSets, autoVerifyTables: autoVerifyTables) { }
-        public ExampleContext(Enum connectionStringType, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true) : base(connectionStringType, autoOpenConnection: autoOpenConnection, autoOpenTransaction: autoOpenTransaction, allowUserVariables: allowUserVariables, convertZeroDateTime: convertZeroDateTime, lockWaitTimeoutSeconds: lockWaitTimeoutSeconds, autoInitializeDataSets: autoInitializeDataSets, autoVerifyTables: autoVerifyTables) { }
-        public ExampleContext(MySqlConnection connection, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true) : base(connection, autoOpenConnection: autoOpenConnection, autoOpenTransaction: autoOpenTransaction, allowUserVariables: allowUserVariables, convertZeroDateTime: convertZeroDateTime, lockWaitTimeoutSeconds: lockWaitTimeoutSeconds, autoInitializeDataSets: autoInitializeDataSets, autoVerifyTables: autoVerifyTables) { }
-        public ExampleContext(MySqlConnection connection, MySqlTransaction transaction, bool autoOpenConnection = true, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true) : base(connection, transaction, autoOpenConnection: autoOpenConnection, allowUserVariables: allowUserVariables, convertZeroDateTime: convertZeroDateTime, lockWaitTimeoutSeconds: lockWaitTimeoutSeconds, autoInitializeDataSets: autoInitializeDataSets, autoVerifyTables: autoVerifyTables) { }
-        public ExampleContext(RelmContextOptionsBuilder builder) : base(builder) { }
-        public ExampleContext(IRelmContext relmContext, bool autoOpenConnection = true, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true) : base(relmContext, autoOpenConnection: autoOpenConnection, autoOpenTransaction: autoOpenConnection, allowUserVariables: allowUserVariables, convertZeroDateTime: convertZeroDateTime, lockWaitTimeoutSeconds: lockWaitTimeoutSeconds, autoInitializeDataSets: autoInitializeDataSets, autoVerifyTables: autoVerifyTables) { }
-
-        public IRelmDataSet<ExampleModel> ExampleModels { get; set; }
-        public IRelmDataSet<ExampleGroup> ExampleGroups { get; set; }
+        public IRelmDataSet<ExampleModel>? ExampleModels { get; set; }
+        public IRelmDataSet<ExampleGroup>? ExampleGroups { get; set; }
     }
 }

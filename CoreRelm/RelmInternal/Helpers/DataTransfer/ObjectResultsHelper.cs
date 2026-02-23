@@ -12,6 +12,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using CoreRelm.RelmInternal.Helpers.DataTransfer.Async;
+using CoreRelm.Options;
 
 namespace CoreRelm.RelmInternal.Helpers.DataTransfer
 {
@@ -77,7 +78,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// The collection will be empty if the query returns no results.</returns>
         internal static IEnumerable<T?>? GetDataList<T>(MySqlConnection existingConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
         {
-            var relmContext = new RelmContext(existingConnection);
+            var relmContext = new RelmContextOptionsBuilder(existingConnection).Build<RelmContext>();
 
             return GetDataList<T>(relmContext, query, parameters: parameters, throwException: throwException);
         }
@@ -98,7 +99,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// The collection will be empty if the query returns no results.</returns>
         internal static IEnumerable<T?>? GetDataList<T>(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
         {
-            var relmContext = new RelmContext(existingConnection, sqlTransaction);
+            var relmContext = new RelmContextOptionsBuilder(existingConnection, sqlTransaction).Build<RelmContext>();
 
             return GetDataList<T>(relmContext, query, parameters: parameters, throwException: throwException);
         }
@@ -117,7 +118,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// The collection will be empty if the query returns no results.</returns>
         internal static async Task<IEnumerable<T?>?> GetDataListAsync<T>(MySqlConnection existingConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
         {
-            var relmContext = new RelmContext(existingConnection);
+            var relmContext = new RelmContextOptionsBuilder(existingConnection).Build<RelmContext>();
 
             return await GetDataListAsync<T>(relmContext, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
         }
@@ -138,7 +139,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// The collection will be empty if the query returns no results.</returns>
         internal static async Task<IEnumerable<T?>?> GetDataListAsync<T>(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
         {
-            var relmContext = new RelmContext(existingConnection, sqlTransaction);
+            var relmContext = new RelmContextOptionsBuilder(existingConnection, sqlTransaction).Build<RelmContext>();
 
             return await GetDataListAsync<T>(relmContext, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
         }
@@ -157,7 +158,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <returns>An <see cref="IEnumerable{T}"/> containing the query results converted to the specified type.  Returns an
         /// empty sequence if the query produces no results or if <paramref name="throwException"/> is <see
         /// langword="false"/> and the query fails.</returns>
-        internal static IEnumerable<T?>? GetDataList<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
+        internal static IEnumerable<T?>? GetDataList<T>(IRelmContext? relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
         {
             return GetDataListAsync<T>(relmContext, query, parameters: parameters, throwException: throwException)
                 .GetAwaiter()
@@ -178,8 +179,10 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <returns>An <see cref="IEnumerable{T}"/> containing the query results converted to the specified type.  Returns an
         /// empty sequence if the query produces no results or if <paramref name="throwException"/> is <see
         /// langword="false"/> and the query fails.</returns>
-        internal static async Task<IEnumerable<T?>?> GetDataListAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        internal static async Task<IEnumerable<T?>?> GetDataListAsync<T>(IRelmContext? relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
         {
+            ArgumentNullException.ThrowIfNull(relmContext);
+
             var dataTable = await RefinedResultsHelperAsync.GetDataTableAsync(relmContext, query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
 
             return dataTable

@@ -11,6 +11,7 @@ using CoreRelm.Models.Migrations.MigrationPlans;
 using CoreRelm.Models.Migrations.Rendering;
 using CoreRelm.RelmInternal.Contexts;
 using System.Reflection;
+using static CoreRelm.Enums.MigrationEnums;
 
 namespace CoreRelm.Tests
 {
@@ -68,7 +69,7 @@ namespace CoreRelm.Tests
     public sealed class FakeMigrationPlanner : IRelmMigrationPlanner
     {
         public Func<SchemaSnapshot, SchemaSnapshot, MigrationPlanOptions, MigrationPlan> Handler { get; set; }
-            = (desired, actual, options) => new MigrationPlan(desired.DatabaseName, options.MigrationName, options.ModelSetName, [], [], [], options.StampUtc);
+            = (desired, actual, options) => new MigrationPlan(desired.DatabaseName, options.MigrationName, options.ModelSetName, RelmMigrationType.Migration, [], [], [], options.StampUtc);
 
         public MigrationPlan Plan(SchemaSnapshot desired, SchemaSnapshot actual, MigrationPlanOptions options) => Handler(desired, actual, options);
     }

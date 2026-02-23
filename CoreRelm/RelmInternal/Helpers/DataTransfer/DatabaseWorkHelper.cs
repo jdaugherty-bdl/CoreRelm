@@ -86,7 +86,8 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// are thrown; otherwise, errors are suppressed.</param>
         internal static void DoDatabaseWork(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
         {
-            DoDatabaseWork(new RelmContext(establishedConnection), query, parameters: parameters, throwException: throwException);
+            //DoDatabaseWork(new RelmContext(establishedConnection), query, parameters: parameters, throwException: throwException);
+            DoDatabaseWork(new RelmContextOptionsBuilder(establishedConnection).Build<RelmContext>(), query, parameters: parameters, throwException: throwException);
         }
 
         /// <summary>
@@ -104,7 +105,8 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// are thrown; otherwise, errors are suppressed.</param>
         internal static void DoDatabaseWork(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
         {
-            DoDatabaseWork(new RelmContext(establishedConnection, sqlTransaction), query, parameters: parameters, throwException: throwException);
+            //DoDatabaseWork(new RelmContext(establishedConnection, sqlTransaction), query, parameters: parameters, throwException: throwException);
+            DoDatabaseWork(new RelmContextOptionsBuilder(establishedConnection, sqlTransaction).Build<RelmContext>(), query, parameters: parameters, throwException: throwException);
         }
 
         /// <summary>
@@ -121,7 +123,8 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// are thrown; otherwise, errors are suppressed.</param>
         internal static async Task DoDatabaseWorkAsync(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
         {
-            await DoDatabaseWorkAsync(new RelmContext(establishedConnection), query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
+            //await DoDatabaseWorkAsync(new RelmContext(establishedConnection), query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
+            await DoDatabaseWorkAsync(new RelmContextOptionsBuilder(establishedConnection).Build<RelmContext>(), query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
         }
 
         /// <summary>
@@ -139,7 +142,8 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// are thrown; otherwise, errors are suppressed.</param>
         internal static async Task DoDatabaseWorkAsync(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
         {
-            await DoDatabaseWorkAsync(new RelmContext(establishedConnection, sqlTransaction), query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
+            //await DoDatabaseWorkAsync(new RelmContext(establishedConnection, sqlTransaction), query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
+            await DoDatabaseWorkAsync(new RelmContextOptionsBuilder(establishedConnection, sqlTransaction).Build<RelmContext>(), query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
         }
 
         /// <summary>
@@ -154,8 +158,10 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// represent parameter values. Can be <see langword="null"/> if no parameters are required.</param>
         /// <param name="throwException">A value indicating whether an exception should be thrown if the operation fails.  If <see langword="true"/>,
         /// exceptions will be propagated; otherwise, failures will be suppressed.</param>
-        internal static void DoDatabaseWork(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
+        internal static void DoDatabaseWork(IRelmContext? relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
         {
+            ArgumentNullException.ThrowIfNull(relmContext);
+
             DoDatabaseWorkAsync(relmContext, query, parameters: parameters, throwException: throwException)
                 .GetAwaiter()
                 .GetResult();
@@ -173,8 +179,10 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <param name="throwException">true to throw an exception if the command fails; otherwise, false to suppress exceptions.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the asynchronous operation.</param>
         /// <returns>A task that represents the asynchronous operation.</returns>
-        internal async static Task DoDatabaseWorkAsync(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        internal async static Task DoDatabaseWorkAsync(IRelmContext? relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
         {
+            ArgumentNullException.ThrowIfNull(relmContext);
+
             await DoDatabaseWorkAsync<int>(relmContext, query,
                 async (cmd, cancellationToken) =>
                 {
@@ -249,7 +257,8 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <returns>The result of the database operation, cast to the specified type <typeparamref name="T"/>.</returns>
         internal static T? DoDatabaseWork<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
         {
-            return DoDatabaseWork<T>(new RelmContext(establishedConnection), query, parameters: parameters, throwException: throwException);
+            //return DoDatabaseWork<T>(new RelmContext(establishedConnection), query, parameters: parameters, throwException: throwException);
+            return DoDatabaseWork<T>(new RelmContextOptionsBuilder(establishedConnection).Build<RelmContext>(), query, parameters: parameters, throwException: throwException);
         }
 
         /// <summary>
@@ -270,7 +279,8 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <returns>The result of the database operation, cast to the specified type <typeparamref name="T"/>.</returns>
         internal static T? DoDatabaseWork<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
         {
-            return DoDatabaseWork<T>(new RelmContext(establishedConnection, sqlTransaction), query, parameters: parameters, throwException: throwException);
+            //return DoDatabaseWork<T>(new RelmContext(establishedConnection, sqlTransaction), query, parameters: parameters, throwException: throwException);
+            return DoDatabaseWork<T>(new RelmContextOptionsBuilder(establishedConnection, sqlTransaction).Build<RelmContext>(), query, parameters: parameters, throwException: throwException);
         }
 
         /// <summary>
@@ -290,7 +300,8 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <returns>The result of the database operation, cast to the specified type <typeparamref name="T"/>.</returns>
         internal static async Task<T?> DoDatabaseWorkAsync<T>(MySqlConnection establishedConnection, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
         {
-            return await DoDatabaseWorkAsync<T>(new RelmContext(establishedConnection), query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
+            //return await DoDatabaseWorkAsync<T>(new RelmContext(establishedConnection), query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
+            return await DoDatabaseWorkAsync<T>(new RelmContextOptionsBuilder(establishedConnection).Build<RelmContext>(), query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
         }
 
         /// <summary>
@@ -311,7 +322,8 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <returns>The result of the database operation, cast to the specified type <typeparamref name="T"/>.</returns>
         internal static async Task<T?> DoDatabaseWorkAsync<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
         {
-            return await DoDatabaseWorkAsync<T>(new RelmContext(establishedConnection, sqlTransaction), query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
+            //return await DoDatabaseWorkAsync<T>(new RelmContext(establishedConnection, sqlTransaction), query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
+            return await DoDatabaseWorkAsync<T>(new RelmContextOptionsBuilder(establishedConnection, sqlTransaction).Build<RelmContext>(), query, parameters: parameters, throwException: throwException, cancellationToken: cancellationToken);
         }
 
         /// <summary>
@@ -331,8 +343,10 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// exceptions are thrown on failure; otherwise, they are suppressed.</param>
         /// <returns>The result of the database operation, converted to the specified type <typeparamref name="T"/>. Returns the
         /// default value of <typeparamref name="T"/> if the type is unsupported or if the operation produces no result.</returns>
-        internal static T? DoDatabaseWork<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
+        internal static T? DoDatabaseWork<T>(IRelmContext? relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true)
         {
+            ArgumentNullException.ThrowIfNull(relmContext);
+
             return DoDatabaseWorkAsync<T>(relmContext, query, parameters: parameters, throwException: throwException)
                 .GetAwaiter()
                 .GetResult();
@@ -355,8 +369,10 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the asynchronous operation.</param>
         /// <returns>A task that represents the asynchronous operation. The task result contains the outcome of the command,
         /// converted to the specified type T. Returns the default value of T if the type is not supported.</returns>
-        internal async static Task<T?> DoDatabaseWorkAsync<T>(IRelmContext relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
+        internal async static Task<T?> DoDatabaseWorkAsync<T>(IRelmContext? relmContext, string query, Dictionary<string, object?>? parameters = null, bool throwException = true, CancellationToken cancellationToken = default)
         {
+            ArgumentNullException.ThrowIfNull(relmContext);
+
             return await DoDatabaseWorkAsync<T>(relmContext, query,
                 async (cmd, cancellationToken) =>
                 {
@@ -429,7 +445,8 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// errors are suppressed.</param>
         internal static void DoDatabaseWork(MySqlConnection establishedConnection, string query, Func<MySqlCommand, object> actionCallback, bool throwException = true)
         {
-            DoDatabaseWork<object>(new RelmContext(establishedConnection, autoInitializeDataSets: false, autoVerifyTables: false), query, actionCallback, throwException: throwException);
+            //DoDatabaseWork<object>(new RelmContext(establishedConnection, autoInitializeDataSets: false, autoVerifyTables: false), query, actionCallback, throwException: throwException);
+            DoDatabaseWork<object>(new RelmContextOptionsBuilder(establishedConnection).SetAutoInitializeDataSets(false).SetAutoVerifyTables(false).Build<RelmContext>(), query, actionCallback, throwException: throwException);
         }
 
         /// <summary>
@@ -447,7 +464,8 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// errors are suppressed.</param>
         internal static void DoDatabaseWork(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Func<MySqlCommand, object> actionCallback, bool throwException = true)
         {
-            DoDatabaseWork<object>(new RelmContext(establishedConnection, sqlTransaction, autoInitializeDataSets: false, autoVerifyTables: false), query, actionCallback, throwException: throwException);
+            //DoDatabaseWork<object>(new RelmContext(establishedConnection, sqlTransaction, autoInitializeDataSets: false, autoVerifyTables: false), query, actionCallback, throwException: throwException);
+            DoDatabaseWork<object>(new RelmContextOptionsBuilder(establishedConnection, sqlTransaction).SetAutoInitializeDataSets(false).SetAutoVerifyTables(false).Build<RelmContext>(), query, actionCallback, throwException: throwException);
         }
 
         /// <summary>
@@ -464,7 +482,8 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// errors are suppressed.</param>
         internal static async Task DoDatabaseWorkAsync(MySqlConnection establishedConnection, string query, Func<MySqlCommand, CancellationToken, Task<object?>> actionCallback, bool throwException = true, CancellationToken cancellationToken = default)
         {
-            await DoDatabaseWorkAsync<object>(new RelmContext(establishedConnection, autoInitializeDataSets: false, autoVerifyTables: false), query, actionCallback, throwException: throwException, cancellationToken: cancellationToken);
+            //await DoDatabaseWorkAsync<object>(new RelmContext(establishedConnection, autoInitializeDataSets: false, autoVerifyTables: false), query, actionCallback, throwException: throwException, cancellationToken: cancellationToken);
+            await DoDatabaseWorkAsync<object>(new RelmContextOptionsBuilder(establishedConnection).SetAutoInitializeDataSets(false).SetAutoVerifyTables(false).Build<RelmContext>(), query, actionCallback, throwException: throwException, cancellationToken: cancellationToken);
         }
 
         /// <summary>
@@ -482,7 +501,8 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// errors are suppressed.</param>
         internal static async Task DoDatabaseWorkAsync(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Func<MySqlCommand, CancellationToken, Task<object?>> actionCallback, bool throwException = true, CancellationToken cancellationToken = default)
         {
-            await DoDatabaseWorkAsync<object>(new RelmContext(establishedConnection, sqlTransaction, autoInitializeDataSets: false, autoVerifyTables: false), query, actionCallback, throwException: throwException, cancellationToken: cancellationToken);
+            //await DoDatabaseWorkAsync<object>(new RelmContext(establishedConnection, sqlTransaction, autoInitializeDataSets: false, autoVerifyTables: false), query, actionCallback, throwException: throwException, cancellationToken: cancellationToken);
+            await DoDatabaseWorkAsync<object>(new RelmContextOptionsBuilder(establishedConnection, sqlTransaction).SetAutoInitializeDataSets(false).SetAutoVerifyTables(false).Build<RelmContext>(), query, actionCallback, throwException: throwException, cancellationToken: cancellationToken);
         }
 
         /// <summary>
@@ -580,7 +600,8 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <returns>The result of the operation, as defined by the <paramref name="actionCallback"/>.</returns>
         internal static T? DoDatabaseWork<T>(MySqlConnection establishedConnection, string query, Func<MySqlCommand, T?> actionCallback, bool throwException = true)
         {
-            return DoDatabaseWork<T>(new RelmContext(establishedConnection, autoInitializeDataSets: false, autoVerifyTables: false), query, actionCallback, throwException: throwException);
+            //return DoDatabaseWork<T>(new RelmContext(establishedConnection, autoInitializeDataSets: false, autoVerifyTables: false), query, actionCallback, throwException: throwException);
+            return DoDatabaseWork<T>(new RelmContextOptionsBuilder(establishedConnection).SetAutoInitializeDataSets(false).SetAutoVerifyTables(false).Build<RelmContext>(), query, actionCallback, throwException: throwException);
         }
 
         /// <summary>
@@ -602,7 +623,8 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <returns>The result of the operation, as defined by the <paramref name="actionCallback"/>.</returns>
         internal static T? DoDatabaseWork<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Func<MySqlCommand, T?> actionCallback, bool throwException = true)
         {
-            return DoDatabaseWork<T>(new RelmContext(establishedConnection, sqlTransaction, autoInitializeDataSets: false, autoVerifyTables: false), query, actionCallback, throwException: throwException);
+            //return DoDatabaseWork<T>(new RelmContext(establishedConnection, sqlTransaction, autoInitializeDataSets: false, autoVerifyTables: false), query, actionCallback, throwException: throwException);
+            return DoDatabaseWork<T>(new RelmContextOptionsBuilder(establishedConnection, sqlTransaction).SetAutoInitializeDataSets(false).SetAutoVerifyTables(false).Build<RelmContext>(), query, actionCallback, throwException: throwException);
         }
 
         /// <summary>
@@ -622,7 +644,8 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <returns>The result of the operation, as defined by the <paramref name="actionCallback"/>.</returns>
         internal static async Task<T?> DoDatabaseWorkAsync<T>(MySqlConnection establishedConnection, string query, Func<MySqlCommand, CancellationToken, Task<T?>> actionCallback, bool throwException = true, CancellationToken cancellationToken = default)
         {
-            return await DoDatabaseWorkAsync<T>(new RelmContext(establishedConnection, autoInitializeDataSets: false, autoVerifyTables: false), query, actionCallback, throwException: throwException, cancellationToken: cancellationToken);
+            //return await DoDatabaseWorkAsync<T>(new RelmContext(establishedConnection, autoInitializeDataSets: false, autoVerifyTables: false), query, actionCallback, throwException: throwException, cancellationToken: cancellationToken);
+            return await DoDatabaseWorkAsync<T>(new RelmContextOptionsBuilder(establishedConnection).SetAutoInitializeDataSets(false).SetAutoVerifyTables(false).Build<RelmContext>(), query, actionCallback, throwException: throwException, cancellationToken: cancellationToken);
         }
 
         /// <summary>
@@ -644,7 +667,8 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <returns>The result of the operation, as defined by the <paramref name="actionCallback"/>.</returns>
         internal static async Task<T?> DoDatabaseWorkAsync<T>(MySqlConnection establishedConnection, MySqlTransaction sqlTransaction, string query, Func<MySqlCommand, CancellationToken, Task<T?>> actionCallback, bool throwException = true, CancellationToken cancellationToken = default)
         {
-            return await DoDatabaseWorkAsync<T>(new RelmContext(establishedConnection, sqlTransaction, autoInitializeDataSets: false, autoVerifyTables: false), query, actionCallback, throwException: throwException, cancellationToken: cancellationToken);
+            //return await DoDatabaseWorkAsync<T>(new RelmContext(establishedConnection, sqlTransaction, autoInitializeDataSets: false, autoVerifyTables: false), query, actionCallback, throwException: throwException, cancellationToken: cancellationToken);
+            return await DoDatabaseWorkAsync<T>(new RelmContextOptionsBuilder(establishedConnection, sqlTransaction).SetAutoInitializeDataSets(false).SetAutoVerifyTables(false).Build<RelmContext>(), query, actionCallback, throwException: throwException, cancellationToken: cancellationToken);
         }
 
         /// <summary>
@@ -662,8 +686,11 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <param name="throwException">Specifies whether to throw an exception if an error occurs. If <see langword="true"/>, exceptions will be
         /// propagated; otherwise, errors will be suppressed.</param>
         /// <returns>The result of the database operation, as defined by the <typeparamref name="T"/> type.</returns>
-        internal static T? DoDatabaseWork<T>(IRelmContext relmContext, string query, Func<MySqlCommand, T?> actionCallback, bool throwException = true)
+        internal static T? DoDatabaseWork<T>(IRelmContext? relmContext, string query, Func<MySqlCommand, T?> actionCallback, bool throwException = true)
         {
+            ArgumentNullException.ThrowIfNull(relmContext);
+
+            //return DoDatabaseWork<T>(relmContext.ContextOptions, query, actionCallback, throwException: throwException);
             return DoDatabaseWork<T>(relmContext.ContextOptions, query, actionCallback, throwException: throwException);
         }
 
@@ -681,8 +708,11 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the asynchronous operation.</param>
         /// <returns>A task that represents the asynchronous operation. The task result contains the value returned by the
         /// callback, cast to type T.</returns>
-        internal async static Task<T?> DoDatabaseWorkAsync<T>(IRelmContext relmContext, string query, Func<MySqlCommand, CancellationToken, Task<T?>> actionCallback, bool throwException = true, CancellationToken cancellationToken = default)
+        internal async static Task<T?> DoDatabaseWorkAsync<T>(IRelmContext? relmContext, string query, Func<MySqlCommand, CancellationToken, Task<T?>> actionCallback, bool throwException = true, CancellationToken cancellationToken = default)
         {
+            ArgumentNullException.ThrowIfNull(relmContext);
+
+            //return await DoDatabaseWorkAsync<T>(relmContext.ContextOptions, query, actionCallback, throwException: throwException, cancellationToken: cancellationToken);
             return await DoDatabaseWorkAsync<T>(relmContext.ContextOptions, query, actionCallback, throwException: throwException, cancellationToken: cancellationToken);
         }
 
@@ -705,7 +735,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// langword="false"/>.</returns>
         /// <exception cref="Exception">Thrown if a general error occurs during the execution of the query and <paramref name="throwException"/> is
         /// <see langword="true"/>.</exception>
-        internal static T? DoDatabaseWork<T>(RelmContextOptionsBuilder contextOptions, string query, Func<MySqlCommand, T?> actionCallback, bool throwException = true)
+        internal static T? DoDatabaseWork<T>(RelmContextOptions contextOptions, string query, Func<MySqlCommand, T?> actionCallback, bool throwException = true)
         {
             return DoDatabaseWorkAsync<T>(
                 contextOptions,
@@ -730,7 +760,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the asynchronous operation.</param>
         /// <returns>A task that represents the asynchronous operation. The task result contains the value returned by the
         /// callback, cast to the specified type.</returns>
-        internal async static Task<T?> DoDatabaseWorkAsync<T>(RelmContextOptionsBuilder contextOptions, string query, Func<MySqlCommand, Task<T?>> actionCallback, bool throwException = true, CancellationToken cancellationToken = default)
+        internal async static Task<T?> DoDatabaseWorkAsync<T>(RelmContextOptions contextOptions, string query, Func<MySqlCommand, Task<T?>> actionCallback, bool throwException = true, CancellationToken cancellationToken = default)
         {
             return await DoDatabaseWorkAsync<T>(
                 contextOptions,
@@ -765,7 +795,7 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
         /// <exception cref="Exception">Thrown if a general error occurs during the execution of the query and <paramref name="throwException"/> is
         /// <see langword="true"/>.</exception>
         private async static Task<T?> DoDatabaseWorkAsync<T>(
-            RelmContextOptionsBuilder contextOptions, 
+            RelmContextOptions contextOptions, 
             string query, 
             Func<MySqlCommand, CancellationToken, Task<T?>> actionCallback, 
             bool throwException = true, 
@@ -804,23 +834,21 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer
                 }
 
                 // execute the SQL
-                using (var cmd = new MySqlCommand(query, contextOptions.DatabaseConnection, contextOptions.DatabaseTransaction))
+                using var cmd = new MySqlCommand(query, contextOptions.DatabaseConnection, contextOptions.DatabaseTransaction);
+                cmd.CommandTimeout = int.MaxValue;
+
+                // execute whatever code the caller provided
+                var result = await actionCallback(cmd, cancellationToken).ConfigureAwait(false);
+
+                // if we opened the transaction here, just commit it because we're going to be closing it right away
+                if (openedNewTransaction)
                 {
-                    cmd.CommandTimeout = int.MaxValue;
-
-                    // execute whatever code the caller provided
-                    var result = await actionCallback(cmd, cancellationToken).ConfigureAwait(false);
-
-                    // if we opened the transaction here, just commit it because we're going to be closing it right away
-                    if (openedNewTransaction)
-                    {
-                        contextOptions.DatabaseTransaction?.Commit();
-                        contextOptions.DatabaseTransaction?.Dispose();
-                        contextOptions.SetDatabaseTransaction(null);
-                    }
-
-                    return (T?)result;
+                    contextOptions.DatabaseTransaction?.Commit();
+                    contextOptions.DatabaseTransaction?.Dispose();
+                    contextOptions.SetDatabaseTransaction(null);
                 }
+
+                return (T?)result;
             }
             catch (MySqlException mysqlEx) // use special handling for MySQL exceptions
             {

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static CoreRelm.Enums.MigrationEnums;
 using static CoreRelm.Enums.SecurityEnums;
 using static CoreRelm.Enums.StoredProcedures;
 
@@ -129,6 +130,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                 desired.DatabaseName,
                 options.MigrationName,
                 options.ModelSetName,
+                RelmMigrationType.Migration,
                 migrationOperations, 
                 warnings, 
                 blockers, 

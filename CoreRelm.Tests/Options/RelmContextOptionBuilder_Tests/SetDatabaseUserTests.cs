@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static CoreRelm.Options.RelmContextOptions;
 
 namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
 {
@@ -18,9 +19,10 @@ namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
 
             // Act
             builder.SetDatabaseUser(expectedDatabaseUser);
+            var options = builder.BuildOptions(validateSettings: false);
 
             // Assert
-            Assert.Equal(expectedDatabaseUser, builder.DatabaseUser);
+            Assert.Equal(expectedDatabaseUser, options.DatabaseUser);
         }
 
         [Fact]
@@ -28,13 +30,14 @@ namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
         {
             // Arrange
             var builder = new RelmContextOptionsBuilder();
-            var expectedType = RelmContextOptionsBuilder.OptionsBuilderTypes.ConnectionString;
+            var expectedType = OptionsBuilderTypes.ConnectionDetails;
 
             // Act
             builder.SetDatabaseUser("TestUser");
+            var options = builder.BuildOptions(validateSettings: false);
 
             // Assert
-            Assert.Equal(expectedType, builder.OptionsBuilderType);
+            Assert.Equal(expectedType, options.OptionsBuilderType);
         }
 
         [Fact]

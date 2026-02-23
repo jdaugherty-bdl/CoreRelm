@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static CoreRelm.Enums.Triggers;
 using CoreRelm.Models;
+using CoreRelm.Options;
 
 namespace CoreRelm.RelmInternal.Helpers.Operations
 {
@@ -68,7 +69,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
             using var conn = (RelmHelper.ConnectionHelper?.GetConnectionFromType(connectionName))
                 ?? throw new InvalidOperationException($"Could not get a valid connection for connection type '{connectionName}'.");
 
-            return TruncateTable(new RelmContext(conn, autoInitializeDataSets: false, autoVerifyTables: false), tableName: tableName, forceType: forceType);
+            return TruncateTable(new RelmContextOptionsBuilder(conn).SetAutoInitializeDataSets(false).SetAutoVerifyTables(false).Build<RelmContext>(), tableName: tableName, forceType: forceType);
         }
 
         /// <summary>
@@ -88,7 +89,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         /// <returns><see langword="true"/> if the table was successfully truncated; otherwise, <see langword="false"/>.</returns>
         internal static bool TruncateTable<T>(MySqlConnection existingConnection, string? tableName = null, Type? forceType = null)
         {
-            return TruncateTable(new RelmContext(existingConnection, autoInitializeDataSets: false, autoVerifyTables: false), tableName: tableName, forceType: forceType ?? typeof(T));
+            return TruncateTable(new RelmContextOptionsBuilder(existingConnection).SetAutoInitializeDataSets(false).SetAutoVerifyTables(false).Build<RelmContext>(), tableName: tableName, forceType: forceType ?? typeof(T));
         }
 
         /// <summary>
@@ -110,7 +111,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         /// <returns><see langword="true"/> if the table was successfully truncated; otherwise, <see langword="false"/>.</returns>
         internal static bool TruncateTable<T>(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, string? tableName = null, Type? forceType = null)
         {
-            return TruncateTable(new RelmContext(existingConnection, sqlTransaction, autoInitializeDataSets: false, autoVerifyTables: false), tableName: tableName, forceType: forceType ?? typeof(T));
+            return TruncateTable(new RelmContextOptionsBuilder(existingConnection, sqlTransaction).SetAutoInitializeDataSets(false).SetAutoVerifyTables(false).Build<RelmContext>(), tableName: tableName, forceType: forceType ?? typeof(T));
         }
 
         /// <summary>
@@ -125,8 +126,10 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         /// <returns>true if the table was successfully truncated; otherwise, false.</returns>
         /// <exception cref="CustomAttributeFormatException">Thrown if neither <paramref name="tableName"/> nor a valid <see cref="RelmTable"/> attribute on <paramref
         /// name="forceType"/> is provided.</exception>
-        internal static bool TruncateTable(IRelmContext relmContext, string? tableName = null, Type? forceType = null)
+        internal static bool TruncateTable(IRelmContext? relmContext, string? tableName = null, Type? forceType = null)
         {
+            ArgumentNullException.ThrowIfNull(relmContext, nameof(relmContext));
+
             var localTableName = tableName ?? forceType?.GetCustomAttribute<RelmTable>()?.TableName ?? throw new CustomAttributeFormatException(CoreUtilities.NoDalTableAttributeError);
 
             var truncateQuery = $"TRUNCATE {localTableName};";
@@ -239,7 +242,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         /// <returns><see langword="true"/> if the table was successfully created; otherwise, <see langword="false"/>.</returns>
         internal static bool CreateTable<T>(Enum connectionName, bool truncateIfExists = false)
         {
-            using var context = new RelmContext(connectionName)
+            using var context = new RelmContextOptionsBuilder(connectionName).Build<RelmContext>()
                 ?? throw new InvalidOperationException($"Could not get a valid connection for connection type '{connectionName}'.");
 
             return CreateTable<T>(context, truncateIfExists: truncateIfExists);
@@ -263,7 +266,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         /// langword="true"/>.</exception>
         internal static bool CreateTable<T>(MySqlConnection existingConnection, bool truncateIfExists = false, bool dropIfExists = false)
         {
-            return CreateTable<T>(new RelmContext(existingConnection), truncateIfExists: truncateIfExists, dropIfExists: dropIfExists);
+            return CreateTable<T>(new RelmContextOptionsBuilder(existingConnection).Build<RelmContext>(), truncateIfExists: truncateIfExists, dropIfExists: dropIfExists);
         }
 
         /// <summary>
@@ -286,7 +289,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         /// langword="true"/>.</exception>
         internal static bool CreateTable<T>(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, bool truncateIfExists = false, bool dropIfExists = false)
         {
-            return CreateTable<T>(new RelmContext(existingConnection, sqlTransaction), truncateIfExists: truncateIfExists, dropIfExists: dropIfExists);
+            return CreateTable<T>(new RelmContextOptionsBuilder(existingConnection, sqlTransaction).Build<RelmContext>(), truncateIfExists: truncateIfExists, dropIfExists: dropIfExists);
         }
 
         /// <summary>
@@ -299,8 +302,10 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         /// <param name="dropIfExists">true to drop the table if it already exists before creating it; otherwise, false.</param>
         /// <returns>true if the table was created successfully; otherwise, false.</returns>
         /// <exception cref="ArgumentException">Thrown if both truncateIfExists and dropIfExists are set to true.</exception>
-        internal static bool CreateTable<T>(IRelmContext relmContext, bool truncateIfExists = false, bool dropIfExists = false)
+        internal static bool CreateTable<T>(IRelmContext? relmContext, bool truncateIfExists = false, bool dropIfExists = false)
         {
+            ArgumentNullException.ThrowIfNull(relmContext, nameof(relmContext));
+
             if (truncateIfExists && dropIfExists)
                 throw new ArgumentException("Cannot both truncate and drop table on create.");
 
@@ -308,7 +313,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
 
             var rowsUpdated = relmContext.DoDatabaseWork<int>(createdTable.ToString());
 
-            return true;
+            return rowsUpdated > 0;
         }
 
         /// <summary>
@@ -322,8 +327,12 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         /// <returns><see langword="true"/> if the table exists; otherwise, <see langword="false"/>.</returns>
         internal static bool TableExists(Enum connectionName, string tableName)
         {
-            using var context = new RelmContext(connectionName, autoInitializeDataSets: false, autoVerifyTables: false)
-                ?? throw new InvalidOperationException($"Could not get a valid connection for connection type '{connectionName}'.");
+            using var context = new RelmContextOptionsBuilder(connectionName)
+                .SetAutoInitializeDataSets(false)
+                .SetAutoVerifyTables(false)
+                .Build<RelmContext>()
+                ?? 
+                throw new InvalidOperationException($"Could not get a valid connection for connection type '{connectionName}'.");
 
             return TableExists(context, tableName);
         }
@@ -342,11 +351,16 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         /// langword="false"/>.</returns>
         internal static bool TableExists(MySqlConnection existingConnection, MySqlTransaction? sqlTransaction, string tableName)
         {
-            return TableExists(new RelmContext(existingConnection, sqlTransaction, autoInitializeDataSets: false, autoVerifyTables: false), tableName);
+            return TableExists(new RelmContextOptionsBuilder(existingConnection, sqlTransaction)
+                .SetAutoInitializeDataSets(false)
+                .SetAutoVerifyTables(false)
+                .Build<RelmContext>(), tableName);  
         }
 
-        internal static bool TableExists(IRelmContext relmContext, string tableName)
+        internal static bool TableExists(IRelmContext? relmContext, string tableName)
         {
+            ArgumentNullException.ThrowIfNull(relmContext, nameof(relmContext));
+
             // pull the table details from the database
             var existsQuery = @"SELECT TABLE_NAME
                 FROM information_schema.tables
@@ -354,7 +368,7 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
                     AND table_name = @table_name
                 LIMIT 1;";
 
-            var localTableName = RefinedResultsHelper.GetScalar<string>(relmContext, existsQuery, new Dictionary<string, object>
+            var localTableName = RefinedResultsHelper.GetScalar<string>(relmContext, existsQuery, new Dictionary<string, object?>
             {
                 ["@table_schema"] = relmContext.ContextOptions?.DatabaseConnection?.Database,
                 ["@table_name"] = tableName

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static CoreRelm.Options.RelmContextOptions;
 
 namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
 {
@@ -22,9 +23,10 @@ namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
 
             // Act
             builder.SetConnectionStringType(expectedConnectionStringType);
+            var options = builder.BuildOptions();
 
             // Assert
-            Assert.Equal(expectedConnectionStringType, builder.ConnectionStringType);
+            Assert.Equal(expectedConnectionStringType, options.ConnectionStringType);
         }
 
         [Fact]
@@ -36,9 +38,10 @@ namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
 
             // Act
             builder.SetConnectionStringType(expectedConnectionStringType);
+            var options = builder.BuildOptions();
 
             // Assert
-            Assert.Equal(expectedConnectionStringType, builder.ConnectionStringType);
+            Assert.Equal(expectedConnectionStringType, options.ConnectionStringType);
         }
 
         [Fact]
@@ -46,14 +49,15 @@ namespace CoreRelm.Tests.Options.RelmContextOptionBuilder_Tests
         {
             // Arrange
             var builder = new RelmContextOptionsBuilder();
-            var expectedType = RelmContextOptionsBuilder.OptionsBuilderTypes.NamedConnectionString;
+            var expectedType = OptionsBuilderTypes.NamedConnectionString;
             var validConnectionStringType = ConnectionStringTypes.TestDatabase; // Replace with a valid enum value
 
             // Act
             builder.SetConnectionStringType(validConnectionStringType);
+            var options = builder.BuildOptions();
 
             // Assert
-            Assert.Equal(expectedType, builder.OptionsBuilderType);
+            Assert.Equal(expectedType, options.OptionsBuilderType);
         }
     }
 }
