@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoreRelm.RelmInternal.Contexts
+namespace CoreRelm.Migrations.Contexts
 {
     public class InformationSchemaContext(RelmContextOptions relmContextOptions) : RelmContext(relmContextOptions)
     {

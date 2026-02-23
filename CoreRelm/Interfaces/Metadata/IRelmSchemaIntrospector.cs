@@ -1,6 +1,6 @@
-﻿using CoreRelm.Models.Migrations;
+﻿using CoreRelm.Migrations.Contexts;
+using CoreRelm.Models.Migrations;
 using CoreRelm.Models.Migrations.Introspection;
-using CoreRelm.RelmInternal.Contexts;
 using System;
 using System.Collections.Generic;
 using System.Linq;

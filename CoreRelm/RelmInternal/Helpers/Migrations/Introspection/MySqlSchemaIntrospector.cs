@@ -1,8 +1,8 @@
 ﻿using CoreRelm.Interfaces;
 using CoreRelm.Interfaces.Metadata;
+using CoreRelm.Migrations.Contexts;
 using CoreRelm.Models;
 using CoreRelm.Models.Migrations.Introspection;
-using CoreRelm.RelmInternal.Contexts;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
