@@ -14,7 +14,7 @@ namespace CoreRelm.RelmInternal.Models
     /// <summary>
     /// Class to hold foreign key navigation options, used internally by CoreRelm to manage relationships between models.
     /// </summary>
-    public class ForeignKeyNavigationOptions
+    internal class ForeignKeyNavigationOptions
     {
         internal PropertyInfo[]? ForeignKeyProperties { get; set; } = default;
         //public PropertyInfo NavigationProperty { get; set; } = default;

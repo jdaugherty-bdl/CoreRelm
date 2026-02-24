@@ -50,14 +50,5 @@ namespace CoreRelm.Interfaces
         /// <returns>A list of <see cref="RelmExecutionCommand"/> objects representing additional commands. The list may be empty
         /// if there are no additional commands to process.</returns>
         List<RelmExecutionCommand> GetAdditionalCommands();
-
-        /// <summary>
-        /// Retrieves navigation options for foreign key relationships based on the provided collection of items.
-        /// </summary>
-        /// <typeparam name="T">The type of elements contained in the collection for which to retrieve navigation options.</typeparam>
-        /// <param name="_items">The collection of items used to determine the available foreign key navigation options. Cannot be null.</param>
-        /// <returns>A <see cref="ForeignKeyNavigationOptions"/> instance representing the available navigation options for the
-        /// specified items.</returns>
-        ForeignKeyNavigationOptions GetForeignKeyNavigationOptions<T>(ICollection<T> _items);
     }
 }
