@@ -21,7 +21,7 @@ using static CoreRelm.Enums.MigrationEnums;
 
 namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
 {
-    public sealed class SchemaMigrationsStore(
+    internal sealed class SchemaMigrationsStore(
         IRelmMigrationSqlProviderFactory providerFactory,
         IRelmSqlScriptRunner runner,
         ILogger<SchemaMigrationsStore>? log = null) : IRelmSchemaMigrationsStore
