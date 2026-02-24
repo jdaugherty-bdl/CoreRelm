@@ -117,7 +117,7 @@ person.FirstName = "Ada";
 person.LastName = "Lovelace";
 person.WriteToDatabase(context);
 
-var loaded = context.People.Find(person.InternalId);
+var found = context.People.Find(person.InternalId);
 
 var results = context.People
     .Where(x => x.LastName == "Lovelace")

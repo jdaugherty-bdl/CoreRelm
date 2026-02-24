@@ -1,6 +1,6 @@
 # CoreRelm
 
-[![.NET](https://img.shields.io/badge/.NET-Core%208%2B-blue)](#support)
+[![.NET](https://img.shields.io/badge/.NET-%208%2B-blue)](#support)
 [![Database](https://img.shields.io/badge/MySQL-8%2B-orange)](#support)
 [![Status](https://img.shields.io/badge/status-active%20development-yellow)](#support)
 
@@ -13,6 +13,8 @@ CoreRelm is a good fit when you want:
 - Predictable behavior and readable calls
 - A simple context + dataset workflow
 - MySQL 8+ focused usage
+
+API Documentation: https://jdaugherty-bdl.github.io/CoreRelm/index.html
 
 ## Table of Contents
 
@@ -28,7 +30,7 @@ CoreRelm is a good fit when you want:
 
 ## Support
 
-- CoreRelm supports **Core 8+**
+- CoreRelm supports **.NET 8+**
 - Database provider: **MySQL 8+ only**
 - Status: **Active development**
 
