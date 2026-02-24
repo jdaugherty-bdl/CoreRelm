@@ -14,7 +14,7 @@ using static CoreRelm.Enums.CharsetEnums;
 
 namespace CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
 {
-    public sealed class MySqlDatabaseProvisioner(ILogger<MySqlDatabaseProvisioner>? log = null) : IRelmDatabaseProvisioner
+    internal sealed class MySqlDatabaseProvisioner(ILogger<MySqlDatabaseProvisioner>? log = null) : IRelmDatabaseProvisioner
     {
         private ILogger<MySqlDatabaseProvisioner>? _log = log;
         private static string EscapeIdentifier(string s) => s.Replace("`", "``", StringComparison.Ordinal);
