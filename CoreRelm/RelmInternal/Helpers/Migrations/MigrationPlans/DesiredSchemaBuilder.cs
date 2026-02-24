@@ -25,7 +25,7 @@ using static CoreRelm.Enums.StoredProcedures;
 
 namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
 {
-    public sealed class DesiredSchemaBuilder(ILogger<DesiredSchemaBuilder>? log = null) : IRelmDesiredSchemaBuilder
+    internal sealed class DesiredSchemaBuilder(ILogger<DesiredSchemaBuilder>? log = null) : IRelmDesiredSchemaBuilder
     {
         private ILogger<DesiredSchemaBuilder>? _log = log;
 
