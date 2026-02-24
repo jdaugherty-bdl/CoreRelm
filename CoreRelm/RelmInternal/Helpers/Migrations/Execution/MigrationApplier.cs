@@ -1,5 +1,6 @@
 ﻿using CoreRelm.Extensions;
 using CoreRelm.Interfaces.Migrations;
+using CoreRelm.Interfaces.Migrations.Execution;
 using CoreRelm.Models;
 using CoreRelm.Models.Migrations;
 using CoreRelm.Options;
@@ -16,10 +17,11 @@ using static CoreRelm.Enums.MigrationEnums;
 
 namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
 {
-    public sealed class MigrationApplier(
+    internal sealed class MigrationApplier(
         IRelmSchemaMigrationsStore store,
         IRelmSqlScriptRunner runner,
         IRelmDatabaseProvisioner provisioner)
+        : IMigrationApplier
     {
         private readonly IRelmDatabaseProvisioner _provisioner = provisioner;
         private readonly IRelmSchemaMigrationsStore _store = store;

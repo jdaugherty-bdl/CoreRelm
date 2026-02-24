@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.Models.Migrations
 {
-
     public sealed record ResolvedModelSetDiagnostics(
         string SetName,
         int AssemblyTypeCount,

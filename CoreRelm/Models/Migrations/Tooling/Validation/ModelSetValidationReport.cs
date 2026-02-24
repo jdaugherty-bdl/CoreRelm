@@ -10,6 +10,7 @@ namespace CoreRelm.Models.Migrations.Tooling.Validation
         string SetName,
         IReadOnlyList<string> Warnings,
         IReadOnlyList<string> Errors,
-        IReadOnlyDictionary<string, IReadOnlyList<ValidatedModelType>> TypesByDatabase
+        IReadOnlyDictionary<string, IReadOnlyList<ValidatedModelType>> TypesByDatabase,
+        ResolvedModelSetDiagnostics? Diagnostics
     );
 }

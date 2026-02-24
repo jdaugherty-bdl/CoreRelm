@@ -1,5 +1,6 @@
 ﻿using CoreRelm.Interfaces.Metadata;
 using CoreRelm.Interfaces.Migrations;
+using CoreRelm.Interfaces.Migrations.Execution;
 using CoreRelm.Interfaces.Migrations.MigrationFiles;
 using CoreRelm.Interfaces.Migrations.Tooling;
 using CoreRelm.Interfaces.ModelSets;
@@ -67,6 +68,8 @@ namespace CoreRelm.Extensions
             services.AddSingleton<IRelmSqlScriptRunner, MySqlScriptRunner>();
             services.AddSingleton<IRelmSchemaMigrationsStore, SchemaMigrationsStore>();
             services.AddSingleton<IRelmDesiredSchemaBuilder, DesiredSchemaBuilder>();
+            
+            services.AddSingleton<IMigrationApplier, MigrationApplier>();
         }
 
         private static void AddToolingParsers(IServiceCollection services)

@@ -72,21 +72,22 @@ namespace CoreRelm.Migrations
             _informationSchemaContextFactory = informationSchemaContextFactory ?? throw new ArgumentNullException(nameof(informationSchemaContextFactory));
         }
 
-        private IReadOnlyDictionary<string, List<ValidatedModelType>>? ResolveAndValidateModelSets(ModelSetsFile modelSets, string setName, Assembly modelsAssembly, List<string> warnings, List<string> errors)
+        private (IReadOnlyDictionary<string, List<ValidatedModelType>>? ModelsByDatabase, ResolvedModelSetDiagnostics? Diagnostics) ResolveAndValidateModelSets(ModelSetsFile modelSets, string setName, Assembly modelsAssembly, List<string> warnings, List<string> errors)
         {
             ResolvedModelSet resolved;
+            ResolvedModelSetDiagnostics diagnostics;
             try
             {
-                resolved = modelSetResolver.ResolveSet(modelSets, setName, modelsAssembly);
+                (resolved, diagnostics) = modelSetResolver.ResolveSetWithDiagnostics(modelSets, setName, modelsAssembly);
                 warnings.AddRange(resolved.Warnings);
             }
             catch (Exception ex)
             {
                 errors.Add(ex.Message);
-                return null;
+                return (null, null);
             }
 
-            return resolved.ModelsByDatabase;
+            return (resolved.ModelsByDatabase, diagnostics);
         }
 
         public ModelSetValidationReport ValidateModelSet(ModelSetsFile modelSets, string setName, Assembly modelsAssembly, ModelSetValidateOptions? options = null)
@@ -96,9 +97,9 @@ namespace CoreRelm.Migrations
             var warnings = new List<string>();
             var errors = new List<string>();
 
-            var databaseValidations = ResolveAndValidateModelSets(modelSets, setName, modelsAssembly, warnings, errors);
+            var (databaseValidations, databaseDiagnostics) = ResolveAndValidateModelSets(modelSets, setName, modelsAssembly, warnings, errors);
             if (databaseValidations == null)
-                return new ModelSetValidationReport(setName, warnings, errors, new Dictionary<string, IReadOnlyList<ValidatedModelType>>());
+                return new ModelSetValidationReport(setName, warnings, errors, new Dictionary<string, IReadOnlyList<ValidatedModelType>>(), databaseDiagnostics);
 
             // Apply database filter if requested
             if (!string.IsNullOrWhiteSpace(options.DatabaseFilter))
@@ -113,7 +114,7 @@ namespace CoreRelm.Migrations
                 kvp => (IReadOnlyList<ValidatedModelType>)[.. kvp.Value.OrderBy(t => t.ClrType.FullName, StringComparer.Ordinal)],
                 StringComparer.Ordinal);
 
-            return new ModelSetValidationReport(setName, warnings, errors, result);
+            return new ModelSetValidationReport(setName, warnings, errors, result, databaseDiagnostics);
         }
 
         public async Task<MigrationGenerationResult> GenerateMigrationsAsync(ModelSetsFile modelSets, string setName, Assembly modelsAssembly, GenerateMigrationsOptions options)
@@ -124,7 +125,7 @@ namespace CoreRelm.Migrations
 
             var byDb = new Dictionary<string, PerDatabaseMigrationResult>(StringComparer.Ordinal);
 
-            var databaseValidations = ResolveAndValidateModelSets(modelSets, setName, modelsAssembly, warnings, errors);
+            var (databaseValidations, databaseDiagnostics) = ResolveAndValidateModelSets(modelSets, setName, modelsAssembly, warnings, errors);
             if (databaseValidations == null)
                 return new MigrationGenerationResult(setName, stamp, byDb, warnings, errors);
 
