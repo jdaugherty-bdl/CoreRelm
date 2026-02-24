@@ -17,6 +17,8 @@ It is designed for developers who want:
 
 CoreRelm emphasizes explicitness over magic. You can use high-level helpers when they help, but you are still close to the database and in control of what happens.
 
+API Documentation: https://jdaugherty-bdl.github.io/CoreRelm/index.html
+
 ## Table of Contents
 
 - [Why CoreRelm](#why-corerelm)
@@ -102,12 +104,10 @@ public class ExampleContext(RelmContextOptions options) : RelmContext(options)
 ### 3) Build options and create a context
 
 ```csharp
-using CoreRelm.Options;
-
 using var context = new RelmContextOptionsBuilder("localhost", "example_database", "root", "password")
     .Build<ExampleContext>();
 ```
-This context will eager load every data set upon build as `AutoInitializeDataSets` is enabled by default. You can disable this behavior in the options builder if you prefer to initialize and verify data sets manually.
+This context will eagerly initialize every data set (but not retrieve data) upon build as `AutoInitializeDataSets` is enabled by default. You can disable this behavior in the options builder if you prefer to initialize and verify data sets manually.
 
 ### 4) Read and write data
 
@@ -152,10 +152,16 @@ try
 catch
 {
     context.RollbackTransaction();
+
+    // Optional diagnostics (where applicable):
+    // context.HasError
+    // context.LastExecutionError
+    // context.LastExecutionException
+
     throw;
 }
 ```
-In this example `GetDataSet` is used to initialize the lazy-loaded `People` data set manually, but you can also initialize it automatically on context build by leaving `AutoInitializeDataSets` enabled (the default).
+In this example `GetDataSet` is used to initialize the lazy-initialized `People` data set manually, but you can also initialize it automatically on context build by leaving `AutoInitializeDataSets` enabled (the default).
 
 ## Features
 
