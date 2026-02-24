@@ -15,7 +15,7 @@ namespace CoreRelm.Quickstart.Examples.Attributes
             var tableName = RelmHelper.GetDalTable<ExampleModel>();
 
             // Example usage to get column name from attribute
-            var columnName = RelmHelper.GetColumnName<ExampleModel>(x => x.ModelName);
+            var columnName = RelmHelper.GetColumnName<ExampleModel>(x => x.ModelName!);
         }
     }
 }
