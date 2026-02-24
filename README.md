@@ -1,281 +1,445 @@
 # CoreRelm
 
-**CoreRelm** is a lightweight, attribute-based ORM / data access layer for C# and .NET Framework developers who want a small, predictable alternative to heavyweight ORMs.
+[![.NET](https://img.shields.io/badge/.NET-%208%2B-blue)](#supported-and-current-status)
+[![Database](https://img.shields.io/badge/MySQL-8%2B-orange)](#supported-and-current-status)
+[![Docs](https://img.shields.io/badge/docs-API%20%2B%20Quickstart-brightgreen)](#what-is-documented-here)
+[![Status](https://img.shields.io/badge/status-active%20development-yellow)](#supported-and-current-status)
 
-It sits close to ADO.NET, but gives you:
+CoreRelm is a lightweight, attribute-based ORM for C# that stays close to ADO.NET style development while reducing repetitive data access code.
 
-- Strongly-typed table/column access via attributes and expressions
-- A simple context model (`RelmContext`)
-- Helper methods for the common database shapes you actually use
-- A clean, explicit pattern for transactions and error handling
+It is designed for developers who want:
 
-It’s especially aimed at **.NET Core** apps and services that need something quick and focused, but it also works from modern .NET projects.
+- Strong control over SQL and transactions
+- Attribute-driven model mapping
+- A simple context and dataset workflow
+- Predictable behavior without heavy abstraction
+- A clear path from model definition to database operations
 
-> ⚠️ **Status:** CoreRelm is under active development. APIs and examples may evolve as features are added and real-world scenarios are covered. Feedback, issues, and PRs are welcome.
+CoreRelm emphasizes explicitness over magic. You can use high-level helpers when they help, but you are still close to the database and in control of what happens.
 
-> ❗ **.NET Core 9+ ONLY** ❗ For the .NET Framework 4.8 version of this library, please go to https://github.com/jdaugherty-bdl/SimpleRelm 
+## Table of Contents
 
-Documentation: https://jdaugherty-bdl.github.io/CoreRelm/index.html
+- [Why CoreRelm](#why-corerelm)
+- [Supported and Current Status](#supported-and-current-status)
+- [Quick Start in 60 Seconds](#quick-start-in-60-seconds)
+- [Features](#features)
+- [What the Quickstart demonstrates](#what-the-quickstart-demonstrates)
+- [Feature Matrix](#feature-matrix)
+- [What is documented here](#what-is-documented-here)
+- [Quickstart examples](#quickstart-examples)
+- [Migrations](#migrations)
+- [Error handling](#error-handling)
+- [CoreRelm vs EF and Dapper](#corerelm-vs-ef-and-dapper)
+- [Contributing](#contributing)
+- [Roadmap](#roadmap)
+- [Related project](#related-project)
 
----
+## Why CoreRelm
 
-## Features
+CoreRelm is intended for projects that want a practical middle ground:
 
-- **Lightweight ORM**  
-  Thin abstraction on top of ADO.NET to keep things transparent and predictable.
+- More structure and mapping support than writing raw ADO.NET everywhere
+- More explicit control and transparency than heavier ORMs
+- A consistent attribute-based model system for schema and query usage
+- A simple, readable API for common CRUD and data-loading patterns
 
-- **POCO-friendly mapping**  
-  Map query results directly into your own C# classes without invasive attributes or base classes.
+If you prefer seeing what the call looks like and understanding what happens, CoreRelm is built for that style.
 
-- **Explicit transactions**  
-  You stay in control of when transactions begin, commit, and roll back — no hidden magic.
+## Supported and Current Status
 
-- **`using`-friendly API**  
-  Designed to be used in a `using` block so connections/transactions are cleaned up correctly.
+> **Support**
+>
+> - CoreRelm supports **.NET 8+**
+> - Database provider: **MySQL 8+ only**
+>
+> **Status**
+>
+> - Active development
+> - API surface is evolving
+> - Quickstart examples are documentation-style examples and may not be intended to compile or run as-is
+>
+> **Packaging**
+>
+> - Project/reference usage is supported
+> - Additional packaging/distribution options may be added over time
 
-- **Framework & Core friendly**  
-  Built with traditional .NET Framework apps in mind, but usable from modern .NET (Core) projects as well.
+## Quick Start in 60 Seconds
 
-- **Actively evolving**  
-  New features and refinements are being added as the library is used in real projects.
+This section shows the shape of a typical CoreRelm setup.
 
----
+> These examples are intended to demonstrate what usage calls may look like.  
+> They are documentation examples, not guaranteed runnable snippets.
 
-## Key concepts
-
-CoreRelm revolves around a few core pieces:
-
-- **Models**  
-  Inherit from `RelmModel` and decorate with attributes such as:
-  - `[RelmTable("example_models")]`
-  - `[RelmColumn]` / `[RelmColumn("actual_column_name")]`
-  - `[RelmForeignKey(...)]`
-
-  ```csharp
-  using CoreRelm.Attributes;
-  using CoreRelm.Models;
-
-  [RelmTable("example_models")]
-  internal class ExampleModel : RelmModel
-  {
-      [RelmColumn]
-      public string GroupInternalId { get; set; }   // group_InternalId
-
-      [RelmColumn]
-      public string ModelName { get; set; }         // model_name
-
-      [RelmColumn]
-      public int ModelIndex { get; set; }           // model_index
-
-      [RelmColumn("bool_column")]
-      public bool IsBoolColumn { get; set; }        // bool_column
-
-      [RelmForeignKey(
-          ForeignKey: nameof(ExampleGroup.InternalId),
-          LocalKey: nameof(GroupInternalId))]
-      public virtual ExampleGroup Group { get; set; }
-  }
-  ```
-
-- **Contexts**  
-  You create your own context classes that inherit from:
-
-  - `RelmContext` – **eager**: preloads table metadata up-front by turning on auto-initialize data sets and auto-verify tables
-  - `RelmContext` – **lazy**: loads metadata on first use by turning off auto-initialize data sets and auto-verify tables
-
-  and expose your datasets as `IRelmDataSet` properties:
-
-  ```csharp
-  internal class ExampleContext : RelmContext
-  {
-      public ExampleContext(
-          bool autoOpenConnection = true,
-          bool autoOpenTransaction = false,
-          bool allowUserVariables = false,
-          bool convertZeroDateTime = false,
-          int  lockWaitTimeoutSeconds = 0)
-          : base("name=ExampleContextDatabase",
-                 autoOpenConnection:  autoOpenConnection,
-                 autoOpenTransaction: autoOpenTransaction,
-                 allowUserVariables:  allowUserVariables,
-                 convertZeroDateTime: convertZeroDateTime,
-                 lockWaitTimeoutSeconds: lockWaitTimeoutSeconds)
-      {
-      }
-
-      public IRelmDataSet ExampleModels { get; set; }
-      public IRelmDataSet ExampleGroups { get; set; }
-  }
-  ```
-
-- **Helpers & interfaces**  
-  The `RelmHelper` static class and `IRelmContext` / `IRelmQuickContext`
-  interfaces provide the main API surface:
-
-  - `RelmHelper.GetDalTable()`
-  - `RelmHelper.GetColumnName(x => x.SomeProperty)`
-  - `RelmHelper.StandardConnectionWrapper(...)`
-  - `RelmHelper.DoDatabaseWork(...)`
-  - `RelmHelper.GetDataObject(...) / GetDataObjects(...)`
-  - `RelmHelper.GetLastInsertId(...)`
-  - `RelmHelper.GetIdFromInternalId(...)`
-
-  Most of these also exist as instance methods on `IRelmContext` (`relmContext.DoDatabaseWork(...)`, etc.).
-
----
-
-## Features
-
-From the Quickstart examples, CoreRelm currently provides:
-
-- **Attribute-based mapping**
-  - `[RelmTable]`, `[RelmColumn]`, `[RelmForeignKey]` give you strongly-typed access to table and column names without scattering strings everywhere.
-  - `RelmHelper.GetDalTable()` and `RelmHelper.GetColumnName(...)` use those attributes.
-
-- **Two context modes**
-  - `RelmContext` – **eager** reads the database and preloads datasets/metadata when created (slightly heavier startup, faster subsequent operations).
-  - `RelmContext` – **lazy** lazy-loads metadata as needed (faster startup, first operations may be slower).
-
-- **Standard connection wrapper**
-  - `RelmHelper.StandardConnectionWrapper(...)` lets you run a lambda with a raw `connection` and `transaction` without manually wiring up boilerplate.
-
-- **Data access helpers**
-  - `DoDatabaseWork` for command/query execution (with or without parameters, with or without return values).
-  - `GetDataObject` / `GetDataObjects` for object-shaped results.
-  - Additional examples show DataRow/DataTable/DataList usage.
-
-- **Identity helpers**
-  - `GetLastInsertId` to retrieve the last auto-increment ID.
-  - `GetIdFromInternalId` to resolve IDs from internal GUIDs.
-
-- **Bulk operations**
-  - `BulkTableWriterExamples` demonstrates writing multiple rows efficiently via the bulk writer helpers.
-
-- **Explicit transaction handling**
-  - `autoOpenTransaction: true` plus a `try/catch` pattern where you explicitly call `RollbackTransactions()` on failure.
-
-Concrete usage for all of these lives under:
-
-```text
-examples/CoreRelm.Quickstart
-```
-
----
-
-## Getting started
-
-### 1. Add CoreRelm to your solution
-
-Right now the library is consumed as a project reference:
-
-1. Clone this repository.
-2. Add the `CoreRelm` project to your solution.
-3. Add a reference from your application to the `CoreRelm` project.
-
-(When/if a NuGet package is published, this can become a simple `dotnet add package CoreRelm` step.)
-
-### 2. Define a model and context
-
-Use attributes on your models and expose `IRelmDataSet` properties on a context that inherits from `RelmContext`.
-
-The Quickstart project includes:
-
-- `Models/ExampleModel.cs`
-- `Models/ExampleGroup.cs`
-- `Contexts/ExampleContext.cs`
-
-These show the expected pattern end-to-end.
-
----
-
-## Usage patterns
-
-### Using RelmContext vs RelmQuickContext
-
-The Quickstart `Program.cs` demonstrates both:
+### 1) Define a model
 
 ```csharp
-// Relm Context: preloads datasets and metadata
-using (var relmContext = new ExampleContext())
+using CoreRelm.Attributes;
+
+[RelmTable("people")]
+public class PersonModel : RelmModel
 {
-    var identityExamples   = new Examples.Identity.IdentityExamples();
-    var dataRowExamples    = new Examples.Data.DataRowExamples();
-    var dataTableExamples  = new Examples.Data.DataTableExamples();
-    var dataObjectExamples = new Examples.Data.DataObjectExamples();
-    var dataListExamples   = new Examples.Data.DataListExamples();
+    [RelmColumn] // will automatically create a column named "first_name"
+    public string FirstName { get; set; } = string.Empty;
 
-    identityExamples.RunExamples(relmContext);
-    dataRowExamples.RunExamples(relmContext);
-    dataTableExamples.RunExamples(relmContext);
-    dataObjectExamples.RunExamples(relmContext);
-    dataListExamples.RunExamples(relmContext);
-}
-
-// Relm Quick Context: lazy-loads metadata on first use
-using (var relmQuickContext = new ExampleContext(autoInitializeDataSets: false, autoVerifyTables: false))
-{
-    var identityExamples   = new Examples.Identity.IdentityExamples();
-    var dataRowExamples    = new Examples.Data.DataRowExamples();
-    var dataTableExamples  = new Examples.Data.DataTableExamples();
-    var dataObjectExamples = new Examples.Data.DataObjectExamples();
-    var dataListExamples   = new Examples.Data.DataListExamples();
-
-    identityExamples.RunExamples(relmQuickContext);
-    dataRowExamples.RunExamples(relmQuickContext);
-    dataTableExamples.RunExamples(relmQuickContext);
-    dataObjectExamples.RunExamples(relmQuickContext);
-    dataListExamples.RunExamples(relmQuickContext);
+    [RelmColumn] // will automatically create a column named "last_name"
+    public string LastName { get; set; } = string.Empty;
 }
 ```
+The `Id`, `active`, `InternalId`, `create_date`, and `last_updated` are automatically defined in the `RelmModel` class.
 
-### Recommended transaction pattern
-
-When you want CoreRelm to manage a transaction for you, pass `autoOpenTransaction: true` and explicitly roll back on error:
+### 2) Define a context
 
 ```csharp
-using (var relmContext = new ExampleContext(autoOpenTransaction: true))
-{
-    try
-    {
-        var databaseWorkExamples    = new Examples.Data.DatabaseWorkExamples();
-        var bulkTableWriteExamples  = new Examples.BulkWriter.BulkTableWriterExamples();
+using CoreRelm;
+using CoreRelm.Models;
 
-        databaseWorkExamples.RunExamples(relmContext);
-        bulkTableWriteExamples.RunExamples(relmContext);
-        // On success, the transaction is allowed to complete normally.
-    }
-    catch (Exception ex)
+public class ExampleContext : RelmContext
+{
+    public RelmDataSet<PersonModel>? People { get; set; }
+
+    public ExampleContext(RelmContextOptions options)
+        : base(options)
     {
-        // On failure, explicitly roll back any open transactions.
-        relmContext.RollbackTransactions();
-        Console.WriteLine($"An error occurred: {ex.Message}");
-        throw;
     }
 }
 ```
 
-If you just need quick, one-off access to a connection/transaction without a full context, you can use:
+### 3) Build options and create a context
 
 ```csharp
-using static CoreRelm.Quickstart.Enums.ConnectionStrings;
+using CoreRelm.Options;
 
-var result = RelmHelper.StandardConnectionWrapper(
-    ConnectionStringTypes.ExampleContextDatabase,
-    (connection, transaction) =>
-    {
-        // Use the connection and transaction as needed
-        return true;
-    },
-    ExceptionHandler: (exception, st) =>
-    {
-        Console.WriteLine($"An error occurred: {exception.Message}");
-    });
+using var context = new RelmContextOptionsBuilder()
+    .SetServer("localhost")
+    .SetDatabase("ExampleDatabase")
+    .SetUserId("root")
+    .SetPassword("password")
+    .Build<ExampleContext>();
 ```
 
----
+### 4) Read and write data
 
-For more detailed examples (DataRow/DataTable/DataObject/DataList, identity helpers, bulk writer, etc.), see the files under:
+```csharp
+var person = context.GetDataSet<PersonModel>().New();
+person.FirstName = "Ada";
+person.LastName = "Lovelace";
+person.WriteToDatabase(context);
 
-```text
-examples/CoreRelm.Quickstart/Examples
+var loaded = context.GetDataSet<PersonModel>().Find(person.InternalId);
+
+var results = context.People
+    .Where(x => x.LastName == "Lovelace")
+    .OrderBy(x => x.FirstName)
+    .Load();
 ```
+
+### 5) Use an explicit transaction
+
+```csharp
+using CoreRelm.Options;
+
+using var context = new RelmContextOptionsBuilder()
+    .SetServer("localhost")
+    .SetDatabase("ExampleDatabase")
+    .SetUserId("root")
+    .SetPassword("password")
+    .Build<ExampleContext>();
+
+context.BeginTransaction();
+
+try
+{
+    var person = context.GetDataSet<PersonModel>().New();
+    person.FirstName = "Grace";
+    person.LastName = "Hopper";
+    person.Save();
+
+    context.CommitTransaction();
+}
+catch
+{
+    context.RollbackTransaction();
+    throw;
+}
+```
+
+## Features
+
+CoreRelm includes support for:
+
+- Attribute-based model mapping
+- Context and dataset patterns
+- Identity and key handling
+- Foreign key relationships and reference loading
+- DTO mapping patterns
+- Data loader patterns
+- Bulk write helpers
+- Context configuration through options builders
+- Helper APIs for metadata and mapping support
+- Migrations tooling and model/schema workflows
+- MySQL-focused provider behavior for MySQL 8+
+
+## What the Quickstart demonstrates
+
+The `examples/CoreRelm.Quickstart` project is intended to show what API usage calls may look like.
+
+It is a documentation-style example project and is not required to compile or run.
+
+The Quickstart is used to demonstrate:
+
+- Context usage patterns
+- Connection examples
+- Dataset operations
+- Data retrieval call shapes
+- DTO usage patterns
+- Data loader usage patterns
+- Foreign key loading patterns
+- Identity examples
+- Bulk writer examples
+- Model reset examples
+- Model property naming examples
+- Attribute usage examples
+- Migrations examples (planned and included as documentation-style examples)
+
+## Feature Matrix
+
+This matrix shows where to look for each type of information.
+
+### Runtime ORM usage
+
+- **README**
+  - Introductory examples
+  - Core concepts
+  - Basic usage patterns
+- **Quickstart**
+  - Documentation-style API call examples
+  - Broader examples across public features
+- **API docs**
+  - Type/member reference details
+- **Tests**
+  - Behavioral coverage and edge cases
+
+### Migrations
+
+- **README**
+  - High-level migrations overview and example usage shape
+- **Quickstart**
+  - Documentation-style migrations examples
+- **API docs**
+  - Tooling and type/member reference details
+- **Tests**
+  - Parsing/planning/tooling behavior validation
+
+### Error handling and diagnostics
+
+- **README**
+  - Recommended handling patterns
+- **Quickstart**
+  - Example call shapes
+- **API docs**
+  - Member reference
+- **Tests**
+  - Behavior verification
+
+## What is documented here
+
+This README is focused on:
+
+- What CoreRelm is
+- When to use it
+- A fast “first look” setup
+- High-level feature overview
+- Transaction and error handling guidance
+- Migrations overview
+- Pointers to deeper documentation
+
+For detailed API reference, use the generated docs in `docs/api`.
+
+For broader usage examples, use `examples/CoreRelm.Quickstart`.
+
+For behavior and edge cases, review `CoreRelm.Tests`.
+
+## Quickstart examples
+
+Quickstart examples are intentionally documentation-first.
+
+They are meant to show:
+
+- What a call may look like
+- How a feature is typically used
+- The shape of the API for a common scenario
+
+They are not required to be executable examples.
+
+This allows the Quickstart project to demonstrate public features clearly without forcing every sample to be fully wired to a live database.
+
+## Migrations
+
+CoreRelm includes migrations-related APIs and tooling as part of the public surface.
+
+Migrations are documented in three places:
+
+- This README (high-level overview)
+- Quickstart examples (documentation-style usage examples)
+- API docs (`docs/api`) for full type/member reference
+
+### Migrations usage shape (example)
+
+> This example demonstrates intent and call shape only.
+
+```csharp
+// Example only: demonstrate what migrations tooling usage may look like.
+
+var migrationTool = new RelmMigrationTooling();
+var result = migrationTool.GenerateMigration(/* model set / options */);
+
+if (!result.Success)
+{
+    // inspect errors
+}
+
+var applyResult = migrationTool.ApplyMigrations(/* connection / options */);
+```
+
+### Migrations guidance
+
+- Keep migrations explicit and reviewable
+- Treat generated SQL and migration steps as part of your deployment artifacts
+- Use tests and staging verification before production execution
+- Prefer clear naming and consistent migration organization
+
+## Error handling
+
+CoreRelm is designed to work well with explicit error handling and transaction boundaries.
+
+### Recommended pattern
+
+- Start a transaction explicitly when the operation spans multiple writes
+- Commit only after all operations succeed
+- Roll back on failure
+- Inspect context/tooling error state where applicable
+- Re-throw or wrap exceptions at application boundaries as appropriate
+
+### Example pattern
+
+```csharp
+using var context = new ExampleContext(options);
+context.BeginTransaction();
+
+try
+{
+    // multiple operations
+    // context.People.Add(...)
+    // context.SaveChanges() or model.Save()
+
+    context.CommitTransaction();
+}
+catch (Exception ex)
+{
+    context.RollbackTransaction();
+
+    // Optional: inspect CoreRelm error state where applicable
+    // var hasError = context.HasError;
+    // var lastError = context.LastExecutionError;
+    // var lastException = context.LastExecutionException;
+
+    throw;
+}
+```
+
+### Error handling notes
+
+- Prefer explicit transactions for multi-step write workflows
+- Do not assume partial writes are safe without a transaction
+- Log both application exceptions and ORM/database diagnostic details when available
+- Keep error-handling paths simple and consistent across contexts/services
+
+## CoreRelm vs EF and Dapper
+
+CoreRelm is not intended to replace every ORM pattern.
+
+It is best viewed as a different tradeoff.
+
+### Compared to Entity Framework
+
+CoreRelm generally favors:
+
+- More explicit behavior
+- Less hidden query translation complexity
+- A simpler mental model for developers who want direct control
+- Fewer framework conventions driving runtime behavior
+
+Entity Framework generally offers:
+
+- Rich ecosystem and tooling
+- Deep change tracking and LINQ support
+- Broad provider support
+- Higher-level abstraction for large app architectures
+
+### Compared to Dapper
+
+CoreRelm generally offers:
+
+- More built-in structure around models and datasets
+- Attribute-based mapping and metadata
+- A more consistent ORM-style workflow for repeated patterns
+- A unified place for schema-related metadata and runtime usage patterns
+
+Dapper generally offers:
+
+- Extremely lightweight micro-ORM usage
+- Very direct SQL-first mapping
+- Minimal abstraction overhead
+- Great fit for teams that want to hand-author most SQL
+
+### When CoreRelm is a strong fit
+
+- You want attribute-based models and consistent mapping
+- You want ORM helpers without giving up explicit control
+- You prefer readable, predictable data-access patterns
+- You are targeting MySQL 8+ and want a focused provider story
+
+## Contributing
+
+Contributions are welcome.
+
+### General guidelines
+
+- Keep changes focused and well-scoped
+- Prefer clear, explicit code over clever abstractions
+- Add or update tests for behavior changes
+- Update Quickstart examples for public API changes
+- Update README and API docs references when relevant
+
+### Documentation contributions
+
+If you add or change a public feature, please update:
+
+- `README.md` for high-level guidance
+- `examples/CoreRelm.Quickstart` for usage-shape examples
+- `docs/api` generated documentation (as applicable)
+
+### Pull request suggestions
+
+- Include a short summary of what changed
+- Note any public API changes
+- Note any migration-related implications
+- Include before/after usage examples when possible
+
+## Roadmap
+
+The roadmap will evolve as the library grows.
+
+Current areas of focus include:
+
+- Expanding Quickstart coverage for all public features
+- Migrations examples and documentation depth
+- Additional documentation consistency across README, Quickstart, and API docs
+- Continued runtime and tooling refinement
+- API polish and developer experience improvements
+
+## Related project
+
+If you are looking for the .NET Framework 4.8 version, see **SimpleRelm**.
+
+CoreRelm is the Core 8+ line and is the active path for this repository.
