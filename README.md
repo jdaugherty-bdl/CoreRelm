@@ -78,10 +78,10 @@ using CoreRelm.Attributes;
 [RelmTable("people")]
 public class PersonModel : RelmModel
 {
-    [RelmColumn] // will automatically create a column named "first_name"
+    [RelmColumn] // column name: "first_name"
     public string FirstName { get; set; } = string.Empty;
 
-    [RelmColumn] // will automatically create a column named "last_name"
+    [RelmColumn] // column name: "last_name"
     public string LastName { get; set; } = string.Empty;
 }
 ```
@@ -93,14 +93,9 @@ The `Id`, `active`, `InternalId`, `create_date`, and `last_updated` are automati
 using CoreRelm;
 using CoreRelm.Models;
 
-public class ExampleContext : RelmContext
+public class ExampleContext(RelmContextOptions options) : RelmContext(options)
 {
     public RelmDataSet<PersonModel>? People { get; set; }
-
-    public ExampleContext(RelmContextOptions options)
-        : base(options)
-    {
-    }
 }
 ```
 
@@ -109,11 +104,7 @@ public class ExampleContext : RelmContext
 ```csharp
 using CoreRelm.Options;
 
-using var context = new RelmContextOptionsBuilder()
-    .SetServer("localhost")
-    .SetDatabase("ExampleDatabase")
-    .SetUserId("root")
-    .SetPassword("password")
+using var context = new RelmContextOptionsBuilder("localhost", "example_database", "root", "password")
     .Build<ExampleContext>();
 ```
 
