@@ -23,18 +23,13 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
         IRelmDatabaseProvisioner provisioner)
         : IMigrationApplier
     {
-        private readonly IRelmDatabaseProvisioner _provisioner = provisioner;
-        private readonly IRelmSchemaMigrationsStore _store = store;
-        private readonly IRelmSqlScriptRunner _runner = runner;
-
         public async Task<bool> ApplyAsync(
             MigrationOptions migrationOptions,
             string migrationFileName,
             string sql)
         {
-            var ok = await DbAvailabilityHelper.EnsureForApplyOrMigrateAsync(
+            var ok = await provisioner.EnsureForApplyOrMigrateAsync(
                 migrationOptions,
-                _provisioner,
                 logInfo: (msg, args) => { if (!migrationOptions.Quiet) Console.WriteLine(msg); },
                 logWarn: (msg, args) => Console.WriteLine("ERROR: " + msg));
 
@@ -52,10 +47,10 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
 
             var checksum = sql.Sha256Hex();
 
-            await _store.EnsureSchemaMigrationTableAsync(context, migrationOptions);
+            await store.EnsureSchemaMigrationTableAsync(context, migrationOptions);
 
             // Drift safety: if a migration file name was already applied, do not reapply
-            var applied = await _store.GetAppliedMigrationsAsync(context, migrationOptions.CancelToken);
+            var applied = await store.GetAppliedMigrationsAsync(context, migrationOptions.CancelToken);
             if (applied?.ContainsKey(migrationFileName) ?? false)
             {
                 if (!migrationOptions.Quiet)
@@ -65,8 +60,8 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
 
             try
             {
-                await _runner.ExecuteScriptAsync(context, sql, migrationOptions.CancelToken);
-                await _store.RecordAppliedMigrationAsync(context, migrationFileName, RelmMigrationType.Migration, checksum, migrationOptions.CancelToken);
+                await runner.ExecuteScriptAsync(context, sql, migrationOptions.CancelToken);
+                await store.RecordAppliedMigrationAsync(context, migrationFileName, RelmMigrationType.Migration, checksum, migrationOptions.CancelToken);
 
                 if (!migrationOptions.Quiet)
                     Console.WriteLine($"Applied and recorded on `{migrationOptions.DatabaseName}`: {migrationFileName}");

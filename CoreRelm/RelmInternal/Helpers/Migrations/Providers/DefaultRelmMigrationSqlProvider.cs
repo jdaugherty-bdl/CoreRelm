@@ -92,7 +92,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Providers
             _log?.LogFormatted(LogLevel.Information, "Checking database availability...", args: [], postIncreaseLevel: true);
             //_migrationOptions.DatabaseName = dbName;
             _log?.SaveIndentLevel("availability");
-            var dbExists = await DbAvailabilityHelper.WarnIfMissingAsync(_migrationOptions, _provisioner, message => _log?.LogWarning(message));
+            var dbExists = await _provisioner.WarnIfMissingAsync(_migrationOptions, message => _log?.LogWarning(message));
             _log?.RestoreIndentLevel("availability");
 
             if (dbExists)

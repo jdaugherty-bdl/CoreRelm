@@ -114,5 +114,50 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
             await cmd.ExecuteNonQueryAsync(migrationOptions.CancelToken);
             _log?.LogFormatted(LogLevel.Information, "Database '{DatabaseName}' initialized (created if it did not exist).", args: [migrationOptions.DatabaseName], singleIndentLine: true, postDecreaseLevel: true);
         }
+
+        public async Task<bool> EnsureForApplyOrMigrateAsync(
+            MigrationOptions migrationOptions,
+            Action<string, object[]?> logInfo,
+            Action<string, object[]?> logWarn)
+        {
+            try
+            {
+                await InitializeEmptyDatabaseAsync(
+                    migrationOptions: migrationOptions,
+                    charset: DatabaseCharset.Utf8mb4,
+                    collation: DatabaseCollation.Utf8mb40900AiCi);
+
+                logInfo("Database ensured: `{DatabaseName}`", [migrationOptions.DatabaseName]);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Apply/migrate path: this is a real failure (permissions, connectivity, etc.)
+                // You can either throw or return false and let caller set exit code.
+                logWarn("FAILED to ensure database `{DatabaseName}`: {ErrorMessage}", [migrationOptions.DatabaseName, ex.Message]);
+                return false;
+            }
+        }
+
+        public async Task<bool> WarnIfMissingAsync(
+            MigrationOptions migrationOptions,
+            Action<string> logWarn)
+        {
+            try
+            {
+                var exists = await DatabaseExistsAsync(migrationOptions);
+                if (!exists)
+                {
+                    logWarn($"Database `{migrationOptions.DatabaseName}` does not exist. It will be created during apply/db migrate.");
+                }
+                return exists;
+            }
+            catch (Exception ex)
+            {
+                // Non-apply path: never error out; just warn.
+                logWarn($"Could not verify existence of database `{migrationOptions.DatabaseName}` (will be created during apply/db migrate): {ex.Message}");
+                return false;
+            }
+        }
     }
 }
