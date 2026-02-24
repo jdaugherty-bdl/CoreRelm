@@ -9,27 +9,26 @@ using static CoreRelm.Enums.StoredProcedures;
 
 namespace CoreRelm.Attributes
 {
-    public class RelmProcedure : RelmStoredProcedure
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
+    public class RelmProcedure(
+        string name,
+        string body,
+        string comment = null,
+        string language = null,
+        bool isDeterministic = false,
+        ProcedureDataAccess dataAccess = ProcedureDataAccess.None,
+        SqlSecurityLevel securityLevel = SqlSecurityLevel.None) 
+        : RelmStoredProcedure(
+            name,
+            body,
+            null,
+            -1,
+            comment,
+            language,
+            isDeterministic,
+            dataAccess,
+            securityLevel)
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
     {
-        public RelmProcedure(
-            string name,
-            string body,
-            string comment = null,
-            string language = null,
-            bool isDeterministic = false,
-            ProcedureDataAccess dataAccess = ProcedureDataAccess.None,
-            SqlSecurityLevel securityLevel = SqlSecurityLevel.None)
-            : base(
-                name,
-                body,
-                null,
-                -1,
-                comment,
-                language,
-                isDeterministic,
-                dataAccess,
-                securityLevel)
-        {
-        }
     }
 }

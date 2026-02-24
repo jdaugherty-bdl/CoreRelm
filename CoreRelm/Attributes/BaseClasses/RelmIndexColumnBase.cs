@@ -21,6 +21,7 @@ namespace CoreRelm.Attributes.BaseClasses
     /// otherwise, <see langword="false"/>.</param>
     /// <param name="order">The zero-based position of the item within a collection or sequence.</param>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Property, AllowMultiple = true)]
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
     public class RelmIndexColumnBase(
         string columnName, 
         int length = -1, 
@@ -28,6 +29,7 @@ namespace CoreRelm.Attributes.BaseClasses
         bool isDescending = false, 
         int order = 0
         ) : Attribute
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
     {
         /// <summary>
         /// Gets or sets the key value used for indexing columns during migration.

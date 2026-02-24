@@ -32,6 +32,7 @@ namespace CoreRelm.Attributes.BaseClasses
     /// <param name="algorithmType">The algorithm to use for the index, such as B-tree or hash. Determines the internal structure of the index.</param>
     /// <param name="lockOption">The lock option to use when creating or modifying the index. Controls concurrency behavior during index
     /// operations.</param>
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
     public class RelmIndexBase(
         string[] indexedPropertyNames = null,
         string indexName = null,
@@ -45,6 +46,7 @@ namespace CoreRelm.Attributes.BaseClasses
         Algorithm algorithmType = Algorithm.None,
         LockOption lockOption = LockOption.None
         ) : Attribute
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
     {
         /// <summary>
         /// Gets or sets the key value used for indexing columns during migration.
@@ -64,8 +66,6 @@ namespace CoreRelm.Attributes.BaseClasses
         /// optimization.</remarks>
         public List<RelmIndexColumnBase>? IndexedProperties { get; set; }
 
-
-
         /// <summary>
         /// Gets the names of the properties included in the index definition.
         /// </summary>
@@ -82,6 +82,14 @@ namespace CoreRelm.Attributes.BaseClasses
         public IndexType? IndexTypeValue { get; set; } = indexType;
 
         /// <summary>
+        /// Gets or sets the size, in bytes, of the key block used for cryptographic operations.
+        /// </summary>
+        /// <remarks>The key block size must be a positive integer that is compatible with the
+        /// requirements of the underlying cryptographic algorithm. Ensure that the specified size adheres to the
+        /// standards of the encryption method in use.</remarks>
+        public int KeyBlockSize { get; set; } = keyBlockSize;
+
+        /// <summary>
         /// Gets or sets the name of the parser to be used for the index.
         /// </summary>
         public string? ParserName { get; set; } = parserName;
@@ -95,6 +103,21 @@ namespace CoreRelm.Attributes.BaseClasses
         /// Gets or sets the visibility of the index.
         /// </summary>
         public Visibility? IndexVisibility { get; set; } = visibility;
+
+        /// <summary>
+        /// Gets or sets the engine attribute that specifies a particular characteristic or configuration value for the
+        /// engine.
+        /// </summary>
+        /// <remarks>Assign a value that matches the expected format and requirements of the engine. The
+        /// meaning and valid values for this attribute may vary depending on the engine's implementation.</remarks>
+        public string EngineAttribute { get; set; } = engineAttribute;
+
+        /// <summary>
+        /// Gets or sets the secondary engine attribute for the configuration.
+        /// </summary>
+        /// <remarks>Use this property to specify or retrieve the attribute associated with the secondary
+        /// engine. Ensure that the value assigned is valid for the intended engine configuration.</remarks>
+        public string SecondaryEngineAttribute { get; set; } = secondaryEngineAttribute;
 
         /// <summary>
         /// Gets or sets the algorithm to be used for the index.

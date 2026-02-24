@@ -26,6 +26,7 @@ namespace CoreRelm.Attributes
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Property, AllowMultiple = true)]
     public sealed class RelmIndexColumn<T> : RelmIndexColumnBase
     {
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
         public RelmIndexColumn(
             T indexKey, 
             string columnName, 
@@ -39,6 +40,7 @@ namespace CoreRelm.Attributes
               expression, 
               isDescending, 
               order)
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
         {
             if (indexKey == null)
                 throw new ArgumentException("Index key cannot be null.", nameof(indexKey));

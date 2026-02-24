@@ -40,7 +40,21 @@ namespace CoreRelm.Attributes
     /// <param name="isVirtual">A value indicating whether the column is a virtual column (i.e., its value is computed rather than stored).
     /// The default is <see langword="false"/>.</param>
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Struct)]
-    public sealed class RelmColumn(string columnType = null, MySqlDbType columnDbType = MySqlDbType.VarChar, string columnName = null, int columnSize = -1, int[] compoundColumnSize = null, bool isNullable = true, bool primaryKey = false, bool autonumber = false, bool unique = false, string? defaultValue = null, bool allowDataTruncation = false, bool isVirtual = false) : Attribute
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
+    public sealed class RelmColumn(
+        string columnType = null, 
+        MySqlDbType columnDbType = MySqlDbType.VarChar, 
+        string columnName = null, 
+        int columnSize = -1, 
+        int[] compoundColumnSize = null, 
+        bool isNullable = true, 
+        bool primaryKey = false, 
+        bool autonumber = false, 
+        bool unique = false, 
+        string? defaultValue = null, 
+        bool allowDataTruncation = false, 
+        bool isVirtual = false) : Attribute
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
     {
         /// <summary>
         /// Gets or sets the database column type to use for this property. Will override default type mapping.

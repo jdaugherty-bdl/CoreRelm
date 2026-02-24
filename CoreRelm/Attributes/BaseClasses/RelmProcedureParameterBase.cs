@@ -12,8 +12,7 @@ namespace CoreRelm.Attributes.BaseClasses
         ParameterDirection parameterDirection,
         string name,
         string dbType,
-        int size
-        ) : Attribute
+        int size) : Attribute
     {
         public  object? ProcedureKeyHolder { get; set; }
 

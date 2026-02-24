@@ -61,7 +61,15 @@ namespace CoreRelm.Attributes
         /// order is required.</param>
         /// <param name="otherTriggerName">The name of another trigger to reference or relate to. Optional; can be null if not applicable.</param>
         /// <exception cref="ArgumentNullException">Thrown if triggerBody is null.</exception>
-        public RelmTrigger(TriggerTime triggerTime, TriggerEvent triggerEvent, string triggerBody, string triggerName = null, TriggerOrdering triggerOrder = TriggerOrdering.FOLLOWS, string? otherTriggerName = null)
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
+        public RelmTrigger(
+            TriggerTime triggerTime, 
+            TriggerEvent triggerEvent, 
+            string triggerBody, 
+            string triggerName = null, 
+            TriggerOrdering triggerOrder = TriggerOrdering.FOLLOWS, 
+            string? otherTriggerName = null)
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
         {
             if (triggerBody == null)
                 throw new ArgumentNullException(nameof(triggerBody), "Trigger body cannot be null.");

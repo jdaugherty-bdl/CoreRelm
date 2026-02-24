@@ -36,6 +36,7 @@ namespace CoreRelm.Attributes
         /// <param name="algorithmType">The algorithm to use for the index, or Algorithm.None to use the default.</param>
         /// <param name="lockOption">The locking option to use for the index, or LockOption.None for the default behavior.</param>
         /// <exception cref="ArgumentException">Thrown if indexKey is null.</exception>
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
         public RelmIndex(
             T indexKey,
             string indexName = null,
@@ -60,6 +61,7 @@ namespace CoreRelm.Attributes
             secondaryEngineAttribute,
             algorithmType,
             lockOption)
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
         {
             if (indexKey == null)
                 throw new ArgumentException("Index key cannot be null.", nameof(indexKey));
@@ -90,6 +92,7 @@ namespace CoreRelm.Attributes
         /// <param name="secondaryEngineAttribute">An optional secondary engine-specific attribute for the index.</param>
         /// <param name="algorithmType">The algorithm to use for the index, or Algorithm.None to use the default.</param>
         /// <param name="lockOption">The locking option to use for the index, or LockOption.None for the default behavior.</param>
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
         public RelmIndex(
             string indexName = null,
             IndexType indexType = IndexType.None,
@@ -113,6 +116,7 @@ namespace CoreRelm.Attributes
                 secondaryEngineAttribute,
                 algorithmType,
                 lockOption)
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
         {
             // No pairing key; ensure holder is null for clarity.
             IndexKeyHolder = null;

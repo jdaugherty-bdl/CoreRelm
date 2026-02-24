@@ -11,6 +11,7 @@ namespace CoreRelm.Attributes
 {
     public class RelmFunction<T> : RelmStoredProcedure
     {
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
         public RelmFunction(
             T procedureKey,
             string name,
@@ -22,6 +23,7 @@ namespace CoreRelm.Attributes
             bool isDeterministic = false,
             ProcedureDataAccess dataAccess = ProcedureDataAccess.None,
             SqlSecurityLevel securityLevel = SqlSecurityLevel.None) 
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
             : base(
                 name,
                 body,
@@ -42,6 +44,7 @@ namespace CoreRelm.Attributes
 
     public class RelmFunction : RelmStoredProcedure
     {
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
         public RelmFunction(
             string name,
             string body,
@@ -52,6 +55,7 @@ namespace CoreRelm.Attributes
             bool isDeterministic = false,
             ProcedureDataAccess dataAccess = ProcedureDataAccess.None,
             SqlSecurityLevel securityLevel = SqlSecurityLevel.None) 
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
             : base(
                 name,
                 body,

@@ -11,6 +11,7 @@ using static CoreRelm.Enums.StoredProcedures;
 namespace CoreRelm.Attributes.BaseClasses
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = true)]
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
     public class RelmStoredProcedure(
         string name,
         string body,
@@ -21,6 +22,7 @@ namespace CoreRelm.Attributes.BaseClasses
         bool isDeterministic = false,
         ProcedureDataAccess dataAccess = ProcedureDataAccess.None,
         SqlSecurityLevel securityLevel = SqlSecurityLevel.None) : Attribute
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
     {
         public object? ProcedureKeyHolder { get; set; } 
 

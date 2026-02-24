@@ -32,6 +32,7 @@ namespace CoreRelm.Attributes
         /// <param name="secondaryEngineAttribute">An optional secondary engine-specific attribute for the index.</param>
         /// <param name="algorithmType">The algorithm to use for the index, or Algorithm.None to use the default.</param>
         /// <param name="lockOption">The locking option to use for the index, or LockOption.None for the default behavior.</param>
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
         public RelmIndexNamed(
             string[] indexedPropertyNames,
             string indexName = null,
@@ -56,6 +57,7 @@ namespace CoreRelm.Attributes
                 secondaryEngineAttribute,
                 algorithmType,
                 lockOption)
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
         {
             if (indexedPropertyNames is null || indexedPropertyNames.Length == 0)
                 throw new ArgumentException("You must supply at least one indexed property name.", nameof(indexedPropertyNames));
