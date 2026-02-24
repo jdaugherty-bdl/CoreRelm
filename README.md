@@ -78,14 +78,14 @@ using CoreRelm.Attributes;
 [RelmTable("people")]
 public class PersonModel : RelmModel
 {
-    [RelmColumn] // column name: "first_name"
-    public string FirstName { get; set; } = string.Empty;
+    [RelmColumn]
+    public string FirstName { get; set; } = string.Empty; // column name: "first_name"
 
-    [RelmColumn] // column name: "last_name"
-    public string LastName { get; set; } = string.Empty;
+    [RelmColumn]
+    public string LastName { get; set; } = string.Empty; // column name: "last_name"
 }
 ```
-The `Id`, `active`, `InternalId`, `create_date`, and `last_updated` are automatically defined in the `RelmModel` class.
+The `Id`, `active`, `InternalId`, `create_date`, and `last_updated` columns are automatically defined in the `RelmModel` class.
 
 ### 2) Define a context
 
@@ -107,16 +107,17 @@ using CoreRelm.Options;
 using var context = new RelmContextOptionsBuilder("localhost", "example_database", "root", "password")
     .Build<ExampleContext>();
 ```
+This context will eager load every data set upon build as `AutoInitializeDataSets` is enabled by default. You can disable this behavior in the options builder if you prefer to initialize and verify data sets manually.
 
 ### 4) Read and write data
 
 ```csharp
-var person = context.GetDataSet<PersonModel>().New();
+var person = context.People.New();
 person.FirstName = "Ada";
 person.LastName = "Lovelace";
 person.WriteToDatabase(context);
 
-var loaded = context.GetDataSet<PersonModel>().Find(person.InternalId);
+var loaded = context.People.Find(person.InternalId);
 
 var results = context.People
     .Where(x => x.LastName == "Lovelace")
@@ -134,6 +135,7 @@ using var context = new RelmContextOptionsBuilder()
     .SetDatabase("ExampleDatabase")
     .SetUserId("root")
     .SetPassword("password")
+	.AutoInitializeDataSets(false) // optional, enabled by default
     .Build<ExampleContext>();
 
 context.BeginTransaction();
@@ -153,6 +155,7 @@ catch
     throw;
 }
 ```
+In this example `GetDataSet` is used to initialize the lazy-loaded `People` data set manually, but you can also initialize it automatically on context build by leaving `AutoInitializeDataSets` enabled (the default).
 
 ## Features
 
