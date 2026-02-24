@@ -23,7 +23,7 @@ using static CoreRelm.Enums.StoredProcedures;
 
 namespace CoreRelm.RelmInternal.Helpers.Migrations.Rendering
 {
-    public sealed class MySqlMigrationSqlRenderer(
+    internal sealed class MySqlMigrationSqlRenderer(
         [FromKeyedServices("MaxSupportedMigrationFileVersion")] Version maxSupportedVersion,
         ILogger<MySqlMigrationSqlRenderer>? log = null) : IRelmMigrationSqlRenderer
     {
