@@ -5,7 +5,8 @@ items:
   id: ModelSetValidationReport
   parent: CoreRelm.Models.Migrations.Tooling.Validation
   children:
-  - CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.#ctor(System.String,System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType}})
+  - CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.#ctor(System.String,System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType}},CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics)
+  - CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.Diagnostics
   - CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.Errors
   - CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.SetName
   - CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.TypesByDatabase
@@ -42,16 +43,16 @@ items:
   - System.Object.GetType
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.#ctor(System.String,System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType}})
-  commentId: M:CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.#ctor(System.String,System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType}})
-  id: '#ctor(System.String,System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType}})'
+- uid: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.#ctor(System.String,System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType}},CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics)
+  commentId: M:CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.#ctor(System.String,System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType}},CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics)
+  id: '#ctor(System.String,System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType}},CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics)'
   parent: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport
   langs:
   - csharp
   - vb
-  name: ModelSetValidationReport(string, IReadOnlyList<string>, IReadOnlyList<string>, IReadOnlyDictionary<string, IReadOnlyList<ValidatedModelType>>)
-  nameWithType: ModelSetValidationReport.ModelSetValidationReport(string, IReadOnlyList<string>, IReadOnlyList<string>, IReadOnlyDictionary<string, IReadOnlyList<ValidatedModelType>>)
-  fullName: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.ModelSetValidationReport(string, System.Collections.Generic.IReadOnlyList<string>, System.Collections.Generic.IReadOnlyList<string>, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IReadOnlyList<CoreRelm.Models.Migrations.ValidatedModelType>>)
+  name: ModelSetValidationReport(string, IReadOnlyList<string>, IReadOnlyList<string>, IReadOnlyDictionary<string, IReadOnlyList<ValidatedModelType>>, ResolvedModelSetDiagnostics?)
+  nameWithType: ModelSetValidationReport.ModelSetValidationReport(string, IReadOnlyList<string>, IReadOnlyList<string>, IReadOnlyDictionary<string, IReadOnlyList<ValidatedModelType>>, ResolvedModelSetDiagnostics?)
+  fullName: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.ModelSetValidationReport(string, System.Collections.Generic.IReadOnlyList<string>, System.Collections.Generic.IReadOnlyList<string>, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IReadOnlyList<CoreRelm.Models.Migrations.ValidatedModelType>>, CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics?)
   type: Constructor
   source:
     remote:
@@ -65,7 +66,7 @@ items:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Tooling.Validation
   syntax:
-    content: public ModelSetValidationReport(string SetName, IReadOnlyList<string> Warnings, IReadOnlyList<string> Errors, IReadOnlyDictionary<string, IReadOnlyList<ValidatedModelType>> TypesByDatabase)
+    content: public ModelSetValidationReport(string SetName, IReadOnlyList<string> Warnings, IReadOnlyList<string> Errors, IReadOnlyDictionary<string, IReadOnlyList<ValidatedModelType>> TypesByDatabase, ResolvedModelSetDiagnostics? Diagnostics)
     parameters:
     - id: SetName
       type: System.String
@@ -75,11 +76,13 @@ items:
       type: System.Collections.Generic.IReadOnlyList{System.String}
     - id: TypesByDatabase
       type: System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType}}
-    content.vb: Public Sub New(SetName As String, Warnings As IReadOnlyList(Of String), Errors As IReadOnlyList(Of String), TypesByDatabase As IReadOnlyDictionary(Of String, IReadOnlyList(Of ValidatedModelType)))
+    - id: Diagnostics
+      type: CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics
+    content.vb: Public Sub New(SetName As String, Warnings As IReadOnlyList(Of String), Errors As IReadOnlyList(Of String), TypesByDatabase As IReadOnlyDictionary(Of String, IReadOnlyList(Of ValidatedModelType)), Diagnostics As ResolvedModelSetDiagnostics)
   overload: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.#ctor*
-  nameWithType.vb: ModelSetValidationReport.New(String, IReadOnlyList(Of String), IReadOnlyList(Of String), IReadOnlyDictionary(Of String, IReadOnlyList(Of ValidatedModelType)))
-  fullName.vb: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.New(String, System.Collections.Generic.IReadOnlyList(Of String), System.Collections.Generic.IReadOnlyList(Of String), System.Collections.Generic.IReadOnlyDictionary(Of String, System.Collections.Generic.IReadOnlyList(Of CoreRelm.Models.Migrations.ValidatedModelType)))
-  name.vb: New(String, IReadOnlyList(Of String), IReadOnlyList(Of String), IReadOnlyDictionary(Of String, IReadOnlyList(Of ValidatedModelType)))
+  nameWithType.vb: ModelSetValidationReport.New(String, IReadOnlyList(Of String), IReadOnlyList(Of String), IReadOnlyDictionary(Of String, IReadOnlyList(Of ValidatedModelType)), ResolvedModelSetDiagnostics)
+  fullName.vb: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.New(String, System.Collections.Generic.IReadOnlyList(Of String), System.Collections.Generic.IReadOnlyList(Of String), System.Collections.Generic.IReadOnlyDictionary(Of String, System.Collections.Generic.IReadOnlyList(Of CoreRelm.Models.Migrations.ValidatedModelType)), CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics)
+  name.vb: New(String, IReadOnlyList(Of String), IReadOnlyList(Of String), IReadOnlyDictionary(Of String, IReadOnlyList(Of ValidatedModelType)), ResolvedModelSetDiagnostics)
 - uid: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.SetName
   commentId: P:CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.SetName
   id: SetName
@@ -196,6 +199,35 @@ items:
       type: System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType}}
     content.vb: Public Property TypesByDatabase As IReadOnlyDictionary(Of String, IReadOnlyList(Of ValidatedModelType))
   overload: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.TypesByDatabase*
+- uid: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.Diagnostics
+  commentId: P:CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.Diagnostics
+  id: Diagnostics
+  parent: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport
+  langs:
+  - csharp
+  - vb
+  name: Diagnostics
+  nameWithType: ModelSetValidationReport.Diagnostics
+  fullName: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.Diagnostics
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Tooling/Validation/ModelSetValidationReport.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: Diagnostics
+    path: ../CoreRelm/Models/Migrations/Tooling/Validation/ModelSetValidationReport.cs
+    startLine: 13
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Tooling.Validation
+  syntax:
+    content: public ResolvedModelSetDiagnostics? Diagnostics { get; init; }
+    parameters: []
+    return:
+      type: CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics
+    content.vb: Public Property Diagnostics As ResolvedModelSetDiagnostics
+  overload: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.Diagnostics*
 references:
 - uid: CoreRelm.Models.Migrations.Tooling.Validation
   commentId: N:CoreRelm.Models.Migrations.Tooling.Validation
@@ -519,7 +551,7 @@ references:
   - name: )
 - uid: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.#ctor*
   commentId: Overload:CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.#ctor
-  href: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.html#CoreRelm_Models_Migrations_Tooling_Validation_ModelSetValidationReport__ctor_System_String_System_Collections_Generic_IReadOnlyList_System_String__System_Collections_Generic_IReadOnlyList_System_String__System_Collections_Generic_IReadOnlyDictionary_System_String_System_Collections_Generic_IReadOnlyList_CoreRelm_Models_Migrations_ValidatedModelType___
+  href: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.html#CoreRelm_Models_Migrations_Tooling_Validation_ModelSetValidationReport__ctor_System_String_System_Collections_Generic_IReadOnlyList_System_String__System_Collections_Generic_IReadOnlyList_System_String__System_Collections_Generic_IReadOnlyDictionary_System_String_System_Collections_Generic_IReadOnlyList_CoreRelm_Models_Migrations_ValidatedModelType___CoreRelm_Models_Migrations_ResolvedModelSetDiagnostics_
   name: ModelSetValidationReport
   nameWithType: ModelSetValidationReport.ModelSetValidationReport
   fullName: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.ModelSetValidationReport
@@ -631,6 +663,13 @@ references:
     href: CoreRelm.Models.Migrations.ValidatedModelType.html
   - name: )
   - name: )
+- uid: CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics
+  commentId: T:CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics
+  parent: CoreRelm.Models.Migrations
+  href: CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics.html
+  name: ResolvedModelSetDiagnostics
+  nameWithType: ResolvedModelSetDiagnostics
+  fullName: CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics
 - uid: System.Collections.Generic.IReadOnlyList`1
   commentId: T:System.Collections.Generic.IReadOnlyList`1
   isExternal: true
@@ -730,6 +769,36 @@ references:
   - name: " "
   - name: TValue
   - name: )
+- uid: CoreRelm.Models.Migrations
+  commentId: N:CoreRelm.Models.Migrations
+  href: CoreRelm.html
+  name: CoreRelm.Models.Migrations
+  nameWithType: CoreRelm.Models.Migrations
+  fullName: CoreRelm.Models.Migrations
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
 - uid: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.SetName*
   commentId: Overload:CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.SetName
   href: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.html#CoreRelm_Models_Migrations_Tooling_Validation_ModelSetValidationReport_SetName
@@ -754,3 +823,9 @@ references:
   name: TypesByDatabase
   nameWithType: ModelSetValidationReport.TypesByDatabase
   fullName: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.TypesByDatabase
+- uid: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.Diagnostics*
+  commentId: Overload:CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.Diagnostics
+  href: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.html#CoreRelm_Models_Migrations_Tooling_Validation_ModelSetValidationReport_Diagnostics
+  name: Diagnostics
+  nameWithType: ModelSetValidationReport.Diagnostics
+  fullName: CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.Diagnostics

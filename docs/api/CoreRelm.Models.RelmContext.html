@@ -89,7 +89,7 @@
 
 
   <h1 id="CoreRelm_Models_RelmContext" data-uid="CoreRelm.Models.RelmContext" class="text-break">
-Class RelmContext  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L38"><i class="bi bi-code-slash"></i></a>
+Class RelmContext  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L39"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -129,7 +129,7 @@ connection strategies.</p>
   <dl class="typelist derived">
     <dt>Derived</dt>
     <dd>
-      <div><a class="xref" href="CoreRelm.RelmInternal.Contexts.InformationSchemaContext.html">InformationSchemaContext</a></div>
+      <div><a class="xref" href="CoreRelm.Migrations.Contexts.InformationSchemaContext.html">InformationSchemaContext</a></div>
     </dd>
   </dl>
 
@@ -186,47 +186,22 @@ required.</p>
 
   <a id="CoreRelm_Models_RelmContext__ctor_" data-uid="CoreRelm.Models.RelmContext.#ctor*"></a>
 
-  <h3 id="CoreRelm_Models_RelmContext__ctor_CoreRelm_Interfaces_IRelmContext_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Int32_System_Boolean_System_Boolean_" data-uid="CoreRelm.Models.RelmContext.#ctor(CoreRelm.Interfaces.IRelmContext,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)">
-  RelmContext(IRelmContext, bool, bool, bool, bool, int, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L80"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Models_RelmContext__ctor_CoreRelm_Options_RelmContextOptions_" data-uid="CoreRelm.Models.RelmContext.#ctor(CoreRelm.Options.RelmContextOptions)">
+  RelmContext(RelmContextOptions?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L67"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Initializes a new instance of the RelmContext class using the specified context options and configuration
-settings.</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RelmContext(IRelmContext relmContext, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true)</code></pre>
+    <pre><code class="lang-csharp hljs">public RelmContext(RelmContextOptions? contextOptions)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>relmContext</code> <a class="xref" href="CoreRelm.Interfaces.IRelmContext.html">IRelmContext</a></dt>
-    <dd><p>The context options provider used to configure the RelmContext. Cannot be null.</p>
-</dd>
-    <dt><code>autoOpenConnection</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>true to automatically open the database connection when the context is created; otherwise, false.</p>
-</dd>
-    <dt><code>autoOpenTransaction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>true to automatically begin a transaction when the context is created; otherwise, false.</p>
-</dd>
-    <dt><code>allowUserVariables</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>true to allow user-defined variables in database queries; otherwise, false.</p>
-</dd>
-    <dt><code>convertZeroDateTime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>true to convert zero date/time values to null when reading from the database; otherwise, false.</p>
-</dd>
-    <dt><code>lockWaitTimeoutSeconds</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>The maximum time, in seconds, to wait for a database lock before timing out. Specify 0 to use the default
-timeout.</p>
-</dd>
-    <dt><code>autoInitializeDataSets</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>true to automatically initialize data sets when the context is created; otherwise, false.</p>
-</dd>
-    <dt><code>autoVerifyTables</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>true to automatically verify table existence when the context is created; otherwise, false.</p>
-</dd>
+    <dt><code>contextOptions</code> <a class="xref" href="CoreRelm.Options.RelmContextOptions.html">RelmContextOptions</a></dt>
+    <dd></dd>
   </dl>
 
 
@@ -237,35 +212,33 @@ timeout.</p>
 
 
 
-  <h4 class="section">Exceptions</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
-    <dd><p>Thrown if relmContext or relmContext.ContextOptions is null.</p>
-</dd>
-  </dl>
 
 
 
   <a id="CoreRelm_Models_RelmContext__ctor_" data-uid="CoreRelm.Models.RelmContext.#ctor*"></a>
 
-  <h3 id="CoreRelm_Models_RelmContext__ctor_CoreRelm_Options_RelmContextOptionsBuilder_" data-uid="CoreRelm.Models.RelmContext.#ctor(CoreRelm.Options.RelmContextOptionsBuilder)">
-  RelmContext(RelmContextOptionsBuilder)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L98"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Models_RelmContext__ctor_CoreRelm_Options_RelmContextOptions_MySql_Data_MySqlClient_MySqlConnection_" data-uid="CoreRelm.Models.RelmContext.#ctor(CoreRelm.Options.RelmContextOptions,MySql.Data.MySqlClient.MySqlConnection)">
+  RelmContext(RelmContextOptions?, MySqlConnection?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L157"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Initializes a new instance of the RelmContext class with the specified context options and
-configuration settings.</p>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the RelmContext class using the specified context options and database
+connection.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RelmContext(RelmContextOptionsBuilder optionsBuilder)</code></pre>
+    <pre><code class="lang-csharp hljs">protected RelmContext(RelmContextOptions? contextOptions, MySqlConnection? sqlConnection)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>optionsBuilder</code> <a class="xref" href="CoreRelm.Options.RelmContextOptionsBuilder.html">RelmContextOptionsBuilder</a></dt>
-    <dd><p>The options builder used to configure the context. Cannot be null.</p>
+    <dt><code>contextOptions</code> <a class="xref" href="CoreRelm.Options.RelmContextOptions.html">RelmContextOptions</a></dt>
+    <dd><p>The options used to configure the context. If null, default options are applied.</p>
+</dd>
+    <dt><code>sqlConnection</code> <span class="xref">MySqlConnection</span></dt>
+    <dd><p>The MySqlConnection instance used to establish a connection to the database. This parameter must not be
+null.</p>
 </dd>
   </dl>
 
@@ -276,16 +249,16 @@ configuration settings.</p>
 
 
 
-  <h4 class="section" id="CoreRelm_Models_RelmContext__ctor_CoreRelm_Options_RelmContextOptionsBuilder__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>All configuration settings are validated before the context is initialized. This
-constructor allows fine-grained control over connection and transaction behavior, as well as SQL
-compatibility options.</p>
+  <h4 class="section" id="CoreRelm_Models_RelmContext__ctor_CoreRelm_Options_RelmContextOptions_MySql_Data_MySqlClient_MySqlConnection__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This constructor configures the context and prepares the necessary data sets for
+database operations. Supplying custom context options allows for advanced configuration; otherwise, default
+settings are used.</p>
 </div>
 
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
-    <dd><p>Thrown if <code class="paramref">optionsBuilder</code> is null.</p>
+    <dd><p>Thrown when the sqlConnection parameter is null.</p>
 </dd>
   </dl>
 
@@ -293,48 +266,30 @@ compatibility options.</p>
 
   <a id="CoreRelm_Models_RelmContext__ctor_" data-uid="CoreRelm.Models.RelmContext.#ctor*"></a>
 
-  <h3 id="CoreRelm_Models_RelmContext__ctor_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Boolean_System_Boolean_System_Boolean_System_Int32_System_Boolean_System_Boolean_" data-uid="CoreRelm.Models.RelmContext.#ctor(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)">
-  RelmContext(MySqlConnection, MySqlTransaction?, bool, bool, bool, int, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L191"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Models_RelmContext__ctor_CoreRelm_Options_RelmContextOptions_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_" data-uid="CoreRelm.Models.RelmContext.#ctor(CoreRelm.Options.RelmContextOptions,MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction)">
+  RelmContext(RelmContextOptions?, MySqlConnection?, MySqlTransaction?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L183"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Initializes a new instance of the RelmContext class using the specified MySQL connection, transaction,
-and context options.</p>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the RelmContext class using the specified context options, database
+connection, and transaction.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RelmContext(MySqlConnection connection, MySqlTransaction? transaction, bool autoOpenConnection = true, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true)</code></pre>
+    <pre><code class="lang-csharp hljs">protected RelmContext(RelmContextOptions? contextOptions, MySqlConnection? sqlConnection, MySqlTransaction? sqlTransaction)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>connection</code> <span class="xref">MySqlConnection</span></dt>
-    <dd><p>The MySqlConnection to use for database operations. Must not be null and should be open or capable of being
-opened if <code class="paramref">autoOpenConnection</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>.</p>
+    <dt><code>contextOptions</code> <a class="xref" href="CoreRelm.Options.RelmContextOptions.html">RelmContextOptions</a></dt>
+    <dd><p>The options used to configure the context. If null, default options are applied.</p>
 </dd>
-    <dt><code>transaction</code> <span class="xref">MySqlTransaction</span></dt>
-    <dd><p>The MySqlTransaction to associate with the context. Can be null if no transaction is required.</p>
+    <dt><code>sqlConnection</code> <span class="xref">MySqlConnection</span></dt>
+    <dd><p>The MySqlConnection instance used to establish a connection to the database. Cannot be null.</p>
 </dd>
-    <dt><code>autoOpenConnection</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>Specifies whether the context should automatically open the connection if it is not already open. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, the connection will be opened as needed.</p>
-</dd>
-    <dt><code>allowUserVariables</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>Indicates whether user-defined variables are allowed in SQL statements executed by the context. Set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to enable support for user variables.</p>
-</dd>
-    <dt><code>convertZeroDateTime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>Specifies whether zero date/time values from the database should be converted to DateTime.MinValue instead
-of throwing an exception. Set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to enable conversion.</p>
-</dd>
-    <dt><code>lockWaitTimeoutSeconds</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>The maximum number of seconds to wait for a database lock before timing out. Specify 0 to use the default
-server setting.</p>
-</dd>
-    <dt><code>autoInitializeDataSets</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>true to automatically initialize data sets when the context is created; otherwise, false.</p>
-</dd>
-    <dt><code>autoVerifyTables</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>true to automatically verify table existence when the context is created; otherwise, false.</p>
+    <dt><code>sqlTransaction</code> <span class="xref">MySqlTransaction</span></dt>
+    <dd><p>The MySqlTransaction instance associated with the database connection. Cannot be null.</p>
 </dd>
   </dl>
 
@@ -345,54 +300,44 @@ server setting.</p>
 
 
 
+  <h4 class="section" id="CoreRelm_Models_RelmContext__ctor_CoreRelm_Options_RelmContextOptions_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This constructor configures the context and initializes data sets based on the
+provided connection and transaction.</p>
+</div>
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown if sqlConnection or sqlTransaction is null.</p>
+</dd>
+  </dl>
 
 
 
   <a id="CoreRelm_Models_RelmContext__ctor_" data-uid="CoreRelm.Models.RelmContext.#ctor*"></a>
 
-  <h3 id="CoreRelm_Models_RelmContext__ctor_MySql_Data_MySqlClient_MySqlConnection_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Int32_System_Boolean_System_Boolean_" data-uid="CoreRelm.Models.RelmContext.#ctor(MySql.Data.MySqlClient.MySqlConnection,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)">
-  RelmContext(MySqlConnection, bool, bool, bool, bool, int, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L168"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Models_RelmContext__ctor_CoreRelm_Options_RelmContextOptions_System_Enum_" data-uid="CoreRelm.Models.RelmContext.#ctor(CoreRelm.Options.RelmContextOptions,System.Enum)">
+  RelmContext(RelmContextOptions?, Enum?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L130"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Initializes a new instance of the RelmContext class using the specified MySQL connection and
-configuration options.</p>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the RelmContext class using the specified context options and connection type.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RelmContext(MySqlConnection connection, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true)</code></pre>
+    <pre><code class="lang-csharp hljs">protected RelmContext(RelmContextOptions? contextOptions, Enum? connectionType)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>connection</code> <span class="xref">MySqlConnection</span></dt>
-    <dd><p>The MySqlConnection to use for database operations. Cannot be null.</p>
+    <dt><code>contextOptions</code> <a class="xref" href="CoreRelm.Options.RelmContextOptions.html">RelmContextOptions</a></dt>
+    <dd><p>The options used to configure the context. This parameter can be null; if provided, it must contain valid
+configuration settings for the context.</p>
 </dd>
-    <dt><code>autoOpenConnection</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>Specifies whether the database connection should be automatically opened when the context is created. If
-<a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, the connection is opened; otherwise, it remains closed until explicitly opened.</p>
-</dd>
-    <dt><code>autoOpenTransaction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>Specifies whether a database transaction should be automatically started when the context is created. If
-<a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, a transaction is started; otherwise, no transaction is started by default.</p>
-</dd>
-    <dt><code>allowUserVariables</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>Specifies whether user-defined variables are allowed in SQL statements executed by this context. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, user variables are permitted.</p>
-</dd>
-    <dt><code>convertZeroDateTime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>Specifies whether zero date/time values from the database should be converted to DateTime.MinValue. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, zero date/time values are converted; otherwise, they are not.</p>
-</dd>
-    <dt><code>lockWaitTimeoutSeconds</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>The number of seconds to wait for a database lock before timing out. Specify 0 to use the default server
-setting.</p>
-</dd>
-    <dt><code>autoInitializeDataSets</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>true to automatically initialize data sets when the context is created; otherwise, false.</p>
-</dd>
-    <dt><code>autoVerifyTables</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>true to automatically verify table existence when the context is created; otherwise, false.</p>
+    <dt><code>connectionType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.enum">Enum</a></dt>
+    <dd><p>The type of connection to be used for the context. This parameter cannot be null and determines the
+connection string type applied to the context.</p>
 </dd>
   </dl>
 
@@ -403,56 +348,49 @@ setting.</p>
 
 
 
+  <h4 class="section" id="CoreRelm_Models_RelmContext__ctor_CoreRelm_Options_RelmContextOptions_System_Enum__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This constructor sets up the context options and initializes the data sets based on
+the provided parameters. It is important to ensure that the connectionType is valid to avoid runtime
+errors.</p>
+</div>
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown if the connectionType parameter is null.</p>
+</dd>
+  </dl>
 
 
 
   <a id="CoreRelm_Models_RelmContext__ctor_" data-uid="CoreRelm.Models.RelmContext.#ctor*"></a>
 
-  <h3 id="CoreRelm_Models_RelmContext__ctor_System_Enum_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Int32_System_Boolean_System_Boolean_" data-uid="CoreRelm.Models.RelmContext.#ctor(System.Enum,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)">
-  RelmContext(Enum, bool, bool, bool, bool, int, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L125"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Models_RelmContext__ctor_CoreRelm_Options_RelmContextOptions_System_String_CoreRelm_Options_RelmContextOptions_OptionsBuilderTypes_" data-uid="CoreRelm.Models.RelmContext.#ctor(CoreRelm.Options.RelmContextOptions,System.String,CoreRelm.Options.RelmContextOptions.OptionsBuilderTypes)">
+  RelmContext(RelmContextOptions?, string?, OptionsBuilderTypes)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L90"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Initializes a new instance of the RelmContext class with the specified connection options and behavior
-settings.</p>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the RelmContext class using the specified context options and connection
+string information.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RelmContext(Enum connectionStringType, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true)</code></pre>
+    <pre><code class="lang-csharp hljs">protected RelmContext(RelmContextOptions? contextOptions, string? connectionUpdateData, RelmContextOptions.OptionsBuilderTypes optionsBuilderType)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>connectionStringType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.enum">Enum</a></dt>
-    <dd><p>The type of connection string to use for configuring the database context. Determines how the context
-connects to the underlying data source.</p>
+    <dt><code>contextOptions</code> <a class="xref" href="CoreRelm.Options.RelmContextOptions.html">RelmContextOptions</a></dt>
+    <dd><p>The options used to configure the context. If null, default options will be applied.</p>
 </dd>
-    <dt><code>autoOpenConnection</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>true to automatically open the database connection when the context is created; otherwise, false. The
-default is true.</p>
+    <dt><code>connectionUpdateData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The connection string or named connection to be used for establishing the database connection. Cannot be
+null.</p>
 </dd>
-    <dt><code>autoOpenTransaction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>true to automatically begin a transaction when the context is created; otherwise, false. The default is
-false.</p>
-</dd>
-    <dt><code>allowUserVariables</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>true to allow user-defined variables in database queries; otherwise, false. The default is false.</p>
-</dd>
-    <dt><code>convertZeroDateTime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>true to convert zero date/time values from the database to DateTime.MinValue; otherwise, false. The default
-is false.</p>
-</dd>
-    <dt><code>lockWaitTimeoutSeconds</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>The maximum number of seconds to wait for a database lock before timing out. Specify 0 to use the default
-timeout.</p>
-</dd>
-    <dt><code>autoInitializeDataSets</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>true to automatically initialize data sets when the context is created; otherwise, false.</p>
-</dd>
-    <dt><code>autoVerifyTables</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>true to automatically verify table existence when the context is created; otherwise, false.</p>
+    <dt><code>optionsBuilderType</code> <a class="xref" href="CoreRelm.Options.RelmContextOptions.html">RelmContextOptions</a>.<a class="xref" href="CoreRelm.Options.RelmContextOptions.OptionsBuilderTypes.html">OptionsBuilderTypes</a></dt>
+    <dd><p>Specifies whether the connectionUpdateData parameter is a direct connection string or a named connection
+string.</p>
 </dd>
   </dl>
 
@@ -463,67 +401,20 @@ timeout.</p>
 
 
 
-  <h4 class="section" id="CoreRelm_Models_RelmContext__ctor_System_Enum_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Int32_System_Boolean_System_Boolean__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>Use this constructor to customize context behavior such as connection management,
-transaction handling, and query options. These settings affect how the context interacts with the database
-and may impact performance or compatibility depending on the database provider.</p>
+  <h4 class="section" id="CoreRelm_Models_RelmContext__ctor_CoreRelm_Options_RelmContextOptions_System_String_CoreRelm_Options_RelmContextOptions_OptionsBuilderTypes__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This constructor is intended for use by derived classes that need to specify a
+different connection string without manually constructing context options.</p>
 </div>
 
-
-
-
-  <a id="CoreRelm_Models_RelmContext__ctor_" data-uid="CoreRelm.Models.RelmContext.#ctor*"></a>
-
-  <h3 id="CoreRelm_Models_RelmContext__ctor_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Int32_System_Boolean_System_Boolean_" data-uid="CoreRelm.Models.RelmContext.#ctor(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)">
-  RelmContext(string, bool, bool, bool, bool, int, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L144"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Initializes a new instance of the RelmContext class with the specified connection details and
-configuration options.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RelmContext(string connectionDetails, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
+  <h4 class="section">Exceptions</h4>
   <dl class="parameters">
-    <dt><code>connectionDetails</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>The connection string or details used to establish a database connection.</p>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown if the provided optionsBuilderType is not supported.</p>
 </dd>
-    <dt><code>autoOpenConnection</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>true to automatically open the database connection upon context initialization; otherwise, false.</p>
-</dd>
-    <dt><code>autoOpenTransaction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>true to automatically begin a transaction when the context is initialized; otherwise, false.</p>
-</dd>
-    <dt><code>allowUserVariables</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>true to allow the use of user-defined variables in database queries; otherwise, false.</p>
-</dd>
-    <dt><code>convertZeroDateTime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>true to convert zero date/time values to null when reading from the database; otherwise, false.</p>
-</dd>
-    <dt><code>lockWaitTimeoutSeconds</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>The number of seconds to wait for a database lock before timing out. Specify 0 to use the default timeout.</p>
-</dd>
-    <dt><code>autoInitializeDataSets</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>true to automatically initialize data sets when the context is created; otherwise, false.</p>
-</dd>
-    <dt><code>autoVerifyTables</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>true to automatically verify table existence when the context is created; otherwise, false.</p>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown if connectionUpdateData is null or if the built context options are null.</p>
 </dd>
   </dl>
-
-
-
-
-
-
-
-
-
 
 
 
@@ -531,18 +422,18 @@ configuration options.</p>
 </h2>
 
 
-  <a id="CoreRelm_Models_RelmContext_AppliedMigrations_" data-uid="CoreRelm.Models.RelmContext.AppliedMigrations*"></a>
+  <a id="CoreRelm_Models_RelmContext_ContextOptions_" data-uid="CoreRelm.Models.RelmContext.ContextOptions*"></a>
 
-  <h3 id="CoreRelm_Models_RelmContext_AppliedMigrations" data-uid="CoreRelm.Models.RelmContext.AppliedMigrations">
-  AppliedMigrations
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Models_RelmContext_ContextOptions" data-uid="CoreRelm.Models.RelmContext.ContextOptions">
+  ContextOptions
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L59"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IRelmDataSet&lt;AppliedMigration&gt; AppliedMigrations { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public RelmContextOptions ContextOptions { get; }</code></pre>
   </div>
 
 
@@ -551,50 +442,13 @@ configuration options.</p>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet</a>&lt;<a class="xref" href="CoreRelm.Models.Migrations.Execution.AppliedMigration.html">AppliedMigration</a>&gt;</dt>
+    <dt><a class="xref" href="CoreRelm.Options.RelmContextOptions.html">RelmContextOptions</a></dt>
     <dd></dd>
   </dl>
 
 
 
 
-
-
-
-
-  <a id="CoreRelm_Models_RelmContext_ContextOptions_" data-uid="CoreRelm.Models.RelmContext.ContextOptions*"></a>
-
-  <h3 id="CoreRelm_Models_RelmContext_ContextOptions" data-uid="CoreRelm.Models.RelmContext.ContextOptions">
-  ContextOptions
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L56"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Gets the options builder used to configure the context.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RelmContextOptionsBuilder ContextOptions { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="CoreRelm.Options.RelmContextOptionsBuilder.html">RelmContextOptionsBuilder</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-  <h4 class="section" id="CoreRelm_Models_RelmContext_ContextOptions_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>Use this property to customize context-specific settings before building or
-initializing the context. Changes to the options should be made prior to finalizing the context
-configuration.</p>
-</div>
 
 
 
@@ -607,7 +461,7 @@ configuration.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_BeginTransaction" data-uid="CoreRelm.Models.RelmContext.BeginTransaction">
   BeginTransaction()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L462"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L457"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Begins a database transaction on the current MySQL connection and returns a transaction object for managing
@@ -647,7 +501,7 @@ operation. Ensure that the underlying database connection is open before calling
 
   <h3 id="CoreRelm_Models_RelmContext_BeginTransactionAsync_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmContext.BeginTransactionAsync(System.Threading.CancellationToken)">
   BeginTransactionAsync(CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L478"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L473"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Begins a database transaction on the current MySQL connection and returns a transaction object for managing
@@ -692,7 +546,7 @@ operation. Ensure that the underlying database connection is open before calling
 
   <h3 id="CoreRelm_Models_RelmContext_BulkTableWriteAsync__1___0_System_String_System_Type_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmContext.BulkTableWriteAsync``1(``0,System.String,System.Type,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
   BulkTableWriteAsync&lt;T&gt;(T, string?, Type?, int, bool, bool, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1237"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1232"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Writes a collection of data to a database table in bulk, optionally using batching and transaction support.</p>
@@ -767,7 +621,7 @@ tables with auto-increment, primary key, or unique constraints.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_BulkTableWrite__1___0_System_String_System_Type_System_Int32_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Models.RelmContext.BulkTableWrite``1(``0,System.String,System.Type,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
   BulkTableWrite&lt;T&gt;(T, string?, Type?, int, bool, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1210"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1205"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Writes a collection of data to a database table in bulk, optionally using batching and transaction support.</p>
@@ -840,7 +694,7 @@ tables with auto-increment, primary key, or unique constraints.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_CommitTransaction" data-uid="CoreRelm.Models.RelmContext.CommitTransaction">
   CommitTransaction()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L492"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L487"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Commits the current database transaction, finalizing all changes made during the transaction.</p>
@@ -872,7 +726,7 @@ intended changes have been made within the transaction scope.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_CommitTransactionAsync_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmContext.CommitTransactionAsync(System.Threading.CancellationToken)">
   CommitTransactionAsync(CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L505"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L500"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Commits the current database transaction, finalizing all changes made during the transaction.</p>
@@ -914,7 +768,7 @@ intended changes have been made within the transaction scope.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_Dispose" data-uid="CoreRelm.Models.RelmContext.Dispose">
   Dispose()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L550"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L545"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Releases all resources used by the current instance of the class.</p>
@@ -946,7 +800,7 @@ further.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_Dispose_System_Boolean_" data-uid="CoreRelm.Models.RelmContext.Dispose(System.Boolean)">
   Dispose(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L564"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L559"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Releases the unmanaged resources used by the object and optionally releases the managed resources.</p>
@@ -984,7 +838,7 @@ IDisposable. Override this method in a derived class to release additional resou
 
   <h3 id="CoreRelm_Models_RelmContext_DoDatabaseWork_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_" data-uid="CoreRelm.Models.RelmContext.DoDatabaseWork(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)">
   DoDatabaseWork(string, Dictionary&lt;string, object&gt;?, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1253"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1248"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Executes a database operation using the specified SQL query and parameters, with optional exception handling
@@ -1031,7 +885,7 @@ the operation may not complete as expected.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_DoDatabaseWork_System_String_System_Func_MySql_Data_MySqlClient_MySqlCommand_System_Object__System_Boolean_" data-uid="CoreRelm.Models.RelmContext.DoDatabaseWork(System.String,System.Func{MySql.Data.MySqlClient.MySqlCommand,System.Object},System.Boolean)">
   DoDatabaseWork(string, Func&lt;MySqlCommand, object&gt;, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1320"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1315"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Executes a database operation using the specified SQL query and callback, with optional exception handling
@@ -1079,7 +933,7 @@ non-query commands.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_DoDatabaseWorkAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmContext.DoDatabaseWorkAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Threading.CancellationToken)">
   DoDatabaseWorkAsync(string, Dictionary&lt;string, object&gt;?, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1268"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1263"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Executes an asynchronous database operation using the specified query and parameters.</p>
@@ -1132,7 +986,7 @@ the operation may not complete as expected.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_DoDatabaseWorkAsync_System_String_System_Func_MySql_Data_MySqlClient_MySqlCommand_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Object___System_Boolean_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmContext.DoDatabaseWorkAsync(System.String,System.Func{MySql.Data.MySqlClient.MySqlCommand,System.Threading.CancellationToken,System.Threading.Tasks.Task{System.Object}},System.Boolean,System.Threading.CancellationToken)">
   DoDatabaseWorkAsync(string, Func&lt;MySqlCommand, CancellationToken, Task&lt;object?&gt;&gt;, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1336"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1331"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Executes a database operation using the specified SQL query and callback, with optional exception handling
@@ -1187,7 +1041,7 @@ non-query commands.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_DoDatabaseWorkAsync__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmContext.DoDatabaseWorkAsync``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Threading.CancellationToken)">
   DoDatabaseWorkAsync&lt;T&gt;(string, Dictionary&lt;string, object&gt;?, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1304"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1299"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Executes the specified database query asynchronously and returns the result as an instance of the specified
@@ -1248,7 +1102,7 @@ within a transaction, which may impact performance and rollback behavior. Ensure
 
   <h3 id="CoreRelm_Models_RelmContext_DoDatabaseWorkAsync__1_System_String_System_Func_MySql_Data_MySqlClient_MySqlCommand_System_Threading_CancellationToken_System_Threading_Tasks_Task___0___System_Boolean_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmContext.DoDatabaseWorkAsync``1(System.String,System.Func{MySql.Data.MySqlClient.MySqlCommand,System.Threading.CancellationToken,System.Threading.Tasks.Task{``0}},System.Boolean,System.Threading.CancellationToken)">
   DoDatabaseWorkAsync&lt;T&gt;(string, Func&lt;MySqlCommand, CancellationToken, Task&lt;T?&gt;&gt;, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1370"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1365"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Executes a database operation using the specified query and callback, optionally within a transaction, and
@@ -1309,7 +1163,7 @@ an error occurs depends on the value of <code class="paramref">throwException</c
 
   <h3 id="CoreRelm_Models_RelmContext_DoDatabaseWork__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_" data-uid="CoreRelm.Models.RelmContext.DoDatabaseWork``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)">
   DoDatabaseWork&lt;T&gt;(string, Dictionary&lt;string, object&gt;?, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1286"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1281"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Executes a database query and returns the result as the specified type.</p>
@@ -1367,7 +1221,7 @@ within a transaction, which may impact performance and rollback behavior. Ensure
 
   <h3 id="CoreRelm_Models_RelmContext_DoDatabaseWork__1_System_String_System_Func_MySql_Data_MySqlClient_MySqlCommand___0__System_Boolean_" data-uid="CoreRelm.Models.RelmContext.DoDatabaseWork``1(System.String,System.Func{MySql.Data.MySqlClient.MySqlCommand,``0},System.Boolean)">
   DoDatabaseWork&lt;T&gt;(string, Func&lt;MySqlCommand, T&gt;, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1353"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1348"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Executes a database operation using the specified query and callback, optionally within a transaction, and
@@ -1426,7 +1280,7 @@ an error occurs depends on the value of <code class="paramref">throwException</c
 
   <h3 id="CoreRelm_Models_RelmContext_EndConnection_System_Boolean_" data-uid="CoreRelm.Models.RelmContext.EndConnection(System.Boolean)">
   EndConnection(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L409"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L404"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Ends the current database connection and optionally commits the active transaction.</p>
@@ -1463,7 +1317,7 @@ this method has no effect.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_EndConnectionAsync_System_Boolean_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmContext.EndConnectionAsync(System.Boolean,System.Threading.CancellationToken)">
   EndConnectionAsync(bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L424"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L419"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Ends the current database connection and optionally commits the active transaction.</p>
@@ -1507,7 +1361,7 @@ this method has no effect.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_Finalize" data-uid="CoreRelm.Models.RelmContext.Finalize">
   ~RelmContext()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L589"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L584"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Finalizes the RelmContext instance and releases unmanaged resources before the object is reclaimed by
@@ -1540,7 +1394,7 @@ released. If you have already called Dispose, the finalizer will not release res
 
   <h3 id="CoreRelm_Models_RelmContext_FirstOrDefaultAsync__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Boolean_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmContext.FirstOrDefaultAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Boolean,System.Threading.CancellationToken)">
   FirstOrDefaultAsync&lt;T&gt;(Expression&lt;Func&lt;T, bool&gt;&gt;, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L831"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L826"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Returns the first element of type T that matches the specified predicate, or the default value if no such
@@ -1591,7 +1445,7 @@ element is found.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_FirstOrDefault__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Boolean_" data-uid="CoreRelm.Models.RelmContext.FirstOrDefault``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Boolean)">
   FirstOrDefault&lt;T&gt;(Expression&lt;Func&lt;T, bool&gt;&gt;, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L818"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L813"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Returns the first element of type T that matches the specified predicate, or the default value if no such
@@ -1640,7 +1494,7 @@ element is found.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_GetAsync__1_System_Boolean_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmContext.GetAsync``1(System.Boolean,System.Threading.CancellationToken)">
   GetAsync&lt;T&gt;(bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L776"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L771"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Retrieves a collection of entities of type <code class="typeparamref">T</code> from the associated data set.</p>
@@ -1695,7 +1549,7 @@ empty if no entities are present.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_GetAsync__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Boolean_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmContext.GetAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Boolean,System.Threading.CancellationToken)">
   GetAsync&lt;T&gt;(Expression&lt;Func&lt;T, bool&gt;&gt;, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L805"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L800"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Retrieves a collection of entities of type T that satisfy the specified predicate.</p>
@@ -1746,7 +1600,7 @@ entities satisfy the predicate.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_GetBulkTableWriter__1_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Models.RelmContext.GetBulkTableWriter``1(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
   GetBulkTableWriter&lt;T&gt;(string?, bool, bool, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1183"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1178"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Creates and returns a bulk table writer for efficiently inserting multiple records of type T into the
@@ -1813,7 +1667,7 @@ flags match your table schema and insertion requirements.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_GetDataListAsync__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmContext.GetDataListAsync``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Threading.CancellationToken)">
   GetDataListAsync&lt;T&gt;(string, Dictionary&lt;string, object&gt;?, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1123"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1118"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Executes the specified query asynchronously and returns a collection of results mapped to the specified type.</p>
@@ -1874,7 +1728,7 @@ instead of throwing an exception.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_GetDataList__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_" data-uid="CoreRelm.Models.RelmContext.GetDataList``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)">
   GetDataList&lt;T&gt;(string, Dictionary&lt;string, object&gt;?, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1106"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1101"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Executes the specified query and returns a collection of results mapped to the specified type.</p>
@@ -1933,7 +1787,7 @@ instead of throwing an exception.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_GetDataObjectAsync__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmContext.GetDataObjectAsync``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Threading.CancellationToken)">
   GetDataObjectAsync&lt;T&gt;(string, Dictionary&lt;string, object&gt;?, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1055"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1050"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Retrieves a data object of the specified type by executing the provided query string with optional
@@ -1991,7 +1845,7 @@ constructor.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_GetDataObject__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_" data-uid="CoreRelm.Models.RelmContext.GetDataObject``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)">
   GetDataObject&lt;T&gt;(string, Dictionary&lt;string, object&gt;?, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1038"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1033"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Retrieves a data object of the specified type by executing the provided query string with optional
@@ -2047,7 +1901,7 @@ constructor.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_GetDataObjectsAsync__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmContext.GetDataObjectsAsync``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Threading.CancellationToken)">
   GetDataObjectsAsync&lt;T&gt;(string, Dictionary&lt;string, object&gt;?, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1089"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1084"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Executes the specified query and returns a collection of data objects of type <code class="typeparamref">T</code> that
@@ -2105,7 +1959,7 @@ constructor.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_GetDataObjects__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_" data-uid="CoreRelm.Models.RelmContext.GetDataObjects``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)">
   GetDataObjects&lt;T&gt;(string, Dictionary&lt;string, object&gt;?, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1072"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1067"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Executes the specified query and returns a collection of data objects of type <code class="typeparamref">T</code> that
@@ -2161,7 +2015,7 @@ constructor.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_GetDataRow_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_" data-uid="CoreRelm.Models.RelmContext.GetDataRow(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)">
   GetDataRow(string, Dictionary&lt;string, object&gt;?, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L977"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L972"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Executes the specified SQL query and returns the first matching data row from the result set.</p>
@@ -2208,7 +2062,7 @@ throwException is false.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_GetDataRowAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmContext.GetDataRowAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Threading.CancellationToken)">
   GetDataRowAsync(string, Dictionary&lt;string, object&gt;?, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L989"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L984"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Executes the specified SQL query and returns the first matching data row from the result set.</p>
@@ -2257,7 +2111,7 @@ throwException is false.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_GetDataSet_System_Type_" data-uid="CoreRelm.Models.RelmContext.GetDataSet(System.Type)">
   GetDataSet(Type)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L624"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L619"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Retrieves an instance of a data set of the specified type.</p>
@@ -2296,7 +2150,7 @@ throwException is false.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_GetDataSet_System_Type_System_Boolean_" data-uid="CoreRelm.Models.RelmContext.GetDataSet(System.Type,System.Boolean)">
   GetDataSet(Type, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L647"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L642"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Retrieves the data set instance associated with the specified entity type. If the data set is not
@@ -2354,7 +2208,7 @@ is found for the type, or if the data set cannot be initialized and <code class=
 
   <h3 id="CoreRelm_Models_RelmContext_GetDataSetType_System_Type_" data-uid="CoreRelm.Models.RelmContext.GetDataSetType(System.Type)">
   GetDataSetType(Type)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L715"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L710"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Retrieves an instance of a data set corresponding to the specified type.</p>
@@ -2393,7 +2247,7 @@ is found for the type, or if the data set cannot be initialized and <code class=
 
   <h3 id="CoreRelm_Models_RelmContext_GetDataSetType_System_Type_System_Boolean_" data-uid="CoreRelm.Models.RelmContext.GetDataSetType(System.Type,System.Boolean)">
   GetDataSetType(Type, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L727"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L722"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the dataset of the given type.</p>
@@ -2441,7 +2295,7 @@ is found for the type, or if the data set cannot be initialized and <code class=
 
   <h3 id="CoreRelm_Models_RelmContext_GetDataSetType__1" data-uid="CoreRelm.Models.RelmContext.GetDataSetType``1">
   GetDataSetType&lt;T&gt;()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L693"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L688"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Retrieves a data set instance for the specified model type.</p>
@@ -2481,7 +2335,7 @@ parameterless constructor.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_GetDataSetType__1_System_Boolean_" data-uid="CoreRelm.Models.RelmContext.GetDataSetType``1(System.Boolean)">
   GetDataSetType&lt;T&gt;(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L705"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L700"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the dataset of the given type.</p>
@@ -2532,7 +2386,7 @@ parameterless constructor.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_GetDataSet__1" data-uid="CoreRelm.Models.RelmContext.GetDataSet``1">
   GetDataSet&lt;T&gt;()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L599"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L594"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Retrieves a data set for the specified model type.</p>
@@ -2571,7 +2425,7 @@ parameterless constructor.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_GetDataSet__1_System_Boolean_" data-uid="CoreRelm.Models.RelmContext.GetDataSet``1(System.Boolean)">
   GetDataSet&lt;T&gt;(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L614"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L609"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Retrieves a strongly typed data set for the specified model type.</p>
@@ -2618,7 +2472,7 @@ parameterless constructor.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_GetDataTable_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_" data-uid="CoreRelm.Models.RelmContext.GetDataTable(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)">
   GetDataTable(string, Dictionary&lt;string, object&gt;?, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1005"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1000"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Executes the specified SQL query and returns the results as a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.datatable">DataTable</a>.</p>
@@ -2670,7 +2524,7 @@ the query and parameters are properly formatted to avoid runtime errors.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_GetDataTableAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmContext.GetDataTableAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Threading.CancellationToken)">
   GetDataTableAsync(string, Dictionary&lt;string, object&gt;?, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1021"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1016"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Executes the specified SQL query and returns the results as a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.datatable">DataTable</a>.</p>
@@ -2724,7 +2578,7 @@ the query and parameters are properly formatted to avoid runtime errors.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_GetIdFromInternalId_System_String_System_String_" data-uid="CoreRelm.Models.RelmContext.GetIdFromInternalId(System.String,System.String)">
   GetIdFromInternalId(string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L955"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L950"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Retrieves the external identifier associated with the specified internal identifier for a given table.</p>
@@ -2767,7 +2621,7 @@ if no matching identifier is found.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_GetIdFromInternalIdAsync_System_String_System_String_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmContext.GetIdFromInternalIdAsync(System.String,System.String,System.Threading.CancellationToken)">
   GetIdFromInternalIdAsync(string, string, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L965"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L960"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Retrieves the external identifier associated with the specified internal identifier for a given table.</p>
@@ -2812,7 +2666,7 @@ if no matching identifier is found.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_GetLastInsertId" data-uid="CoreRelm.Models.RelmContext.GetLastInsertId">
   GetLastInsertId()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L938"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L933"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Retrieves the identifier of the most recently inserted row for the current context.</p>
@@ -2845,7 +2699,7 @@ if no matching identifier is found.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_GetLastInsertIdAsync_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmContext.GetLastInsertIdAsync(System.Threading.CancellationToken)">
   GetLastInsertIdAsync(CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L945"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L940"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Retrieves the identifier of the most recently inserted row for the current context.</p>
@@ -2883,7 +2737,7 @@ if no matching identifier is found.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_GetScalarAsync__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmContext.GetScalarAsync``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Threading.CancellationToken)">
   GetScalarAsync&lt;T&gt;(string, Dictionary&lt;string, object&gt;?, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1161"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1156"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Asynchronously executes a SQL query and returns the first column of the first row in the result set as a
@@ -2947,7 +2801,7 @@ default(T) instead of throwing an exception.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_GetScalar__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_" data-uid="CoreRelm.Models.RelmContext.GetScalar``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)">
   GetScalar&lt;T&gt;(string, Dictionary&lt;string, object&gt;?, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1141"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1136"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Executes the specified SQL query and returns the first column of the first row in the result set, cast to
@@ -3007,7 +2861,7 @@ will be thrown.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_Get__1_System_Boolean_" data-uid="CoreRelm.Models.RelmContext.Get``1(System.Boolean)">
   Get&lt;T&gt;(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L759"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L754"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Retrieves a collection of entities of type <code class="typeparamref">T</code> from the associated data set.</p>
@@ -3060,7 +2914,7 @@ empty if no entities are present.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_Get__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Boolean_" data-uid="CoreRelm.Models.RelmContext.Get``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Boolean)">
   Get&lt;T&gt;(Expression&lt;Func&lt;T, bool&gt;&gt;, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L792"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L787"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Retrieves a collection of entities of type T that satisfy the specified predicate.</p>
@@ -3109,7 +2963,7 @@ entities satisfy the predicate.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_HasDataSet_System_Type_System_Boolean_" data-uid="CoreRelm.Models.RelmContext.HasDataSet(System.Type,System.Boolean)">
   HasDataSet(Type, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L682"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L677"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Checks if the DALDataSet of a specific type is attached to the current DALContext instance.</p>
@@ -3151,7 +3005,7 @@ entities satisfy the predicate.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_HasDataSet__1_System_Boolean_" data-uid="CoreRelm.Models.RelmContext.HasDataSet``1(System.Boolean)">
   HasDataSet&lt;T&gt;(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L671"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L666"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Checks if the DALDataSet of a specific type is attached to the current DALContext instance.</p>
@@ -3195,7 +3049,7 @@ entities satisfy the predicate.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_HasTransaction" data-uid="CoreRelm.Models.RelmContext.HasTransaction">
   HasTransaction()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L448"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L443"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Determines whether there is an active database transaction associated with the current context.</p>
@@ -3226,9 +3080,9 @@ entities satisfy the predicate.</p>
 
   <a id="CoreRelm_Models_RelmContext_OnConfigure_" data-uid="CoreRelm.Models.RelmContext.OnConfigure*"></a>
 
-  <h3 id="CoreRelm_Models_RelmContext_OnConfigure_CoreRelm_Options_RelmContextOptionsBuilder_" data-uid="CoreRelm.Models.RelmContext.OnConfigure(CoreRelm.Options.RelmContextOptionsBuilder)">
-  OnConfigure(RelmContextOptionsBuilder)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Models_RelmContext_OnConfigure_CoreRelm_Options_RelmContextOptions_" data-uid="CoreRelm.Models.RelmContext.OnConfigure(CoreRelm.Options.RelmContextOptions)">
+  OnConfigure(RelmContextOptions)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L49"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Configures a triggerable event for after the database options are set, the connection is
@@ -3237,12 +3091,12 @@ open, and any transations have been started.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual void OnConfigure(RelmContextOptionsBuilder OptionsBuilder)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual void OnConfigure(RelmContextOptions OptionsBuilder)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>OptionsBuilder</code> <a class="xref" href="CoreRelm.Options.RelmContextOptionsBuilder.html">RelmContextOptionsBuilder</a></dt>
+    <dt><code>OptionsBuilder</code> <a class="xref" href="CoreRelm.Options.RelmContextOptions.html">RelmContextOptions</a></dt>
     <dd><p>A builder used to configure options for the context. Cannot be null.</p>
 </dd>
   </dl>
@@ -3254,7 +3108,7 @@ open, and any transations have been started.</p>
 
 
 
-  <h4 class="section" id="CoreRelm_Models_RelmContext_OnConfigure_CoreRelm_Options_RelmContextOptionsBuilder__remarks">Remarks</h4>
+  <h4 class="section" id="CoreRelm_Models_RelmContext_OnConfigure_CoreRelm_Options_RelmContextOptions__remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>Override this method to customize how the context is configured, such as specifying
 database providers or additional options. This method is typically called by the framework during context
 initialization.</p>
@@ -3267,7 +3121,7 @@ initialization.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_RollbackTransaction" data-uid="CoreRelm.Models.RelmContext.RollbackTransaction">
   RollbackTransaction()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L521"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L516"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Rolls back the current database transaction, reverting all changes made during the transaction.</p>
@@ -3298,7 +3152,7 @@ method, the transaction is considered closed and cannot be committed.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_RollbackTransactionAsync_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmContext.RollbackTransactionAsync(System.Threading.CancellationToken)">
   RollbackTransactionAsync(CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L533"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L528"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Rolls back the current database transaction, reverting all changes made during the transaction.</p>
@@ -3339,7 +3193,7 @@ method, the transaction is considered closed and cannot be committed.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_RunAsync__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmContext.RunAsync``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
   RunAsync&lt;T&gt;(string, Dictionary&lt;string, object&gt;?, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L888"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L883"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Executes the specified query and returns a collection of data objects of type T that match the query
@@ -3398,7 +3252,7 @@ objects are found.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_Run__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="CoreRelm.Models.RelmContext.Run``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
   Run&lt;T&gt;(string, Dictionary&lt;string, object&gt;?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L870"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L865"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Executes the specified query and returns a collection of data objects of type T that match the query
@@ -3455,7 +3309,7 @@ objects are found.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_SaveAll" data-uid="CoreRelm.Models.RelmContext.SaveAll">
   SaveAll()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L906"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L901"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Saves all attached data sets by invoking their respective Save methods.</p>
@@ -3488,7 +3342,7 @@ successfully.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_SaveAllAsync_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmContext.SaveAllAsync(System.Threading.CancellationToken)">
   SaveAllAsync(CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L920"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L915"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Saves all attached data sets by invoking their respective Save methods.</p>
@@ -3531,7 +3385,7 @@ successfully.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_SetDataLoader__1_CoreRelm_Interfaces_IRelmDataLoader___0__" data-uid="CoreRelm.Models.RelmContext.SetDataLoader``1(CoreRelm.Interfaces.IRelmDataLoader{``0})">
   SetDataLoader&lt;T&gt;(IRelmDataLoader&lt;T&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L297"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L292"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Sets the data loader to be used for the specified data set type.</p>
@@ -3577,7 +3431,7 @@ parameterless constructor.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_StartConnection_System_Boolean_System_Int32_" data-uid="CoreRelm.Models.RelmContext.StartConnection(System.Boolean,System.Int32)">
   StartConnection(bool, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L350"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L345"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Opens the database connection if it is not already open and optionally begins a new transaction.</p>
@@ -3625,7 +3479,7 @@ connection is open, a new transaction is started automatically.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_StartConnectionAsync_System_Boolean_System_Int32_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmContext.StartConnectionAsync(System.Boolean,System.Int32,System.Threading.CancellationToken)">
   StartConnectionAsync(bool, int, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L367"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L362"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Opens the database connection if it is not already open and optionally begins a new transaction.</p>
@@ -3680,7 +3534,7 @@ connection is open, a new transaction is started automatically.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_Where__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___" data-uid="CoreRelm.Models.RelmContext.Where``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
   Where&lt;T&gt;(Expression&lt;Func&lt;T, bool&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L848"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L843"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Filters the elements of the data set based on a specified predicate.</p>
@@ -3740,7 +3594,7 @@ further queried or enumerated. This method does not modify the original data set
 
   <h3 id="CoreRelm_Models_RelmContext_WriteToDatabase_CoreRelm_Interfaces_IRelmModel_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Models.RelmContext.WriteToDatabase(CoreRelm.Interfaces.IRelmModel,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
   WriteToDatabase(IRelmModel, int, bool, bool, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1392"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1387"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Writes the specified data model to the database using configurable options for batch size and column
@@ -3803,7 +3657,7 @@ violations depending on the database schema.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_WriteToDatabase_System_Collections_Generic_IEnumerable_CoreRelm_Interfaces_IRelmModel__System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="CoreRelm.Models.RelmContext.WriteToDatabase(System.Collections.Generic.IEnumerable{CoreRelm.Interfaces.IRelmModel},System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
   WriteToDatabase(IEnumerable&lt;IRelmModel&gt;, int, bool, bool, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1436"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1431"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Writes the specified collection of Relm models to the database in batches, with options to control how
@@ -3866,7 +3720,7 @@ batches.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_WriteToDatabaseAsync_CoreRelm_Interfaces_IRelmModel_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmContext.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmModel,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
   WriteToDatabaseAsync(IRelmModel, int, bool, bool, bool, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1414"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1409"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Writes the specified data model to the database using configurable options for batch size and column
@@ -3931,7 +3785,7 @@ violations depending on the database schema.</p>
 
   <h3 id="CoreRelm_Models_RelmContext_WriteToDatabaseAsync_System_Collections_Generic_IEnumerable_CoreRelm_Interfaces_IRelmModel__System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.RelmContext.WriteToDatabaseAsync(System.Collections.Generic.IEnumerable{CoreRelm.Interfaces.IRelmModel},System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
   WriteToDatabaseAsync(IEnumerable&lt;IRelmModel&gt;, int, bool, bool, bool, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1458"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L1453"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Writes the specified collection of Relm models to the database in batches, with options to control how
@@ -3996,7 +3850,7 @@ batches.</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L38" class="edit-link">Edit this page</a>
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmContext.cs/#L39" class="edit-link">Edit this page</a>
         </div>
 
 

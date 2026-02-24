@@ -1,0 +1,519 @@
+### YamlMime:ManagedReference
+items:
+- uid: CoreRelm.Migrations.MigrationFiles.MigrationFileNameParser
+  commentId: T:CoreRelm.Migrations.MigrationFiles.MigrationFileNameParser
+  id: MigrationFileNameParser
+  parent: CoreRelm.Migrations.MigrationFiles
+  children:
+  - CoreRelm.Migrations.MigrationFiles.MigrationFileNameParser.TryParse(System.String,CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationFileName@,System.String@)
+  langs:
+  - csharp
+  - vb
+  name: MigrationFileNameParser
+  nameWithType: MigrationFileNameParser
+  fullName: CoreRelm.Migrations.MigrationFiles.MigrationFileNameParser
+  type: Class
+  source:
+    remote:
+      path: CoreRelm/Migrations/MigrationFiles/MigrationFileNameParser.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: MigrationFileNameParser
+    path: ../CoreRelm/Migrations/MigrationFiles/MigrationFileNameParser.cs
+    startLine: 17
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Migrations.MigrationFiles
+  summary: >-
+    Parses migration file names with the formats:
+      RelmMigration_yyyyMMdd_HHmmss_{safeName}__db-{databaseName}.sql
+      SYSTEM_MIGRATION_yyyyMMdd_HHmmss_{safeName}__db-{databaseName}.sql
+
+    Notes:
+
+    - Accepts filename only; if a path is provided, Path.GetFileName() is used.
+
+    - databaseName allowed chars: [A-Za-z0-9_]+ (underscores allowed; dashes/dots rejected).
+  example: []
+  syntax:
+    content: 'public sealed class MigrationFileNameParser : IMigrationFileNameParser'
+    content.vb: Public NotInheritable Class MigrationFileNameParser Implements IMigrationFileNameParser
+  inheritance:
+  - System.Object
+  implements:
+  - CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationFileNameParser
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: CoreRelm.Migrations.MigrationFiles.MigrationFileNameParser.TryParse(System.String,CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationFileName@,System.String@)
+  commentId: M:CoreRelm.Migrations.MigrationFiles.MigrationFileNameParser.TryParse(System.String,CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationFileName@,System.String@)
+  id: TryParse(System.String,CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationFileName@,System.String@)
+  parent: CoreRelm.Migrations.MigrationFiles.MigrationFileNameParser
+  langs:
+  - csharp
+  - vb
+  name: TryParse(string, out ParsedMigrationFileName, out string?)
+  nameWithType: MigrationFileNameParser.TryParse(string, out ParsedMigrationFileName, out string?)
+  fullName: CoreRelm.Migrations.MigrationFiles.MigrationFileNameParser.TryParse(string, out CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationFileName, out string?)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Migrations/MigrationFiles/MigrationFileNameParser.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: TryParse
+    path: ../CoreRelm/Migrations/MigrationFiles/MigrationFileNameParser.cs
+    startLine: 24
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Migrations.MigrationFiles
+  example: []
+  syntax:
+    content: public bool TryParse(string fileName, out ParsedMigrationFileName parsed, out string? error)
+    parameters:
+    - id: fileName
+      type: System.String
+    - id: parsed
+      type: CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationFileName
+    - id: error
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Function TryParse(fileName As String, parsed As ParsedMigrationFileName, [error] As String) As Boolean
+  overload: CoreRelm.Migrations.MigrationFiles.MigrationFileNameParser.TryParse*
+  implements:
+  - CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationFileNameParser.TryParse(System.String,CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationFileName@,System.String@)
+  nameWithType.vb: MigrationFileNameParser.TryParse(String, ParsedMigrationFileName, String)
+  fullName.vb: CoreRelm.Migrations.MigrationFiles.MigrationFileNameParser.TryParse(String, CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationFileName, String)
+  name.vb: TryParse(String, ParsedMigrationFileName, String)
+references:
+- uid: CoreRelm.Migrations.MigrationFiles
+  commentId: N:CoreRelm.Migrations.MigrationFiles
+  href: CoreRelm.html
+  name: CoreRelm.Migrations.MigrationFiles
+  nameWithType: CoreRelm.Migrations.MigrationFiles
+  fullName: CoreRelm.Migrations.MigrationFiles
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Migrations
+    name: Migrations
+    href: CoreRelm.Migrations.html
+  - name: .
+  - uid: CoreRelm.Migrations.MigrationFiles
+    name: MigrationFiles
+    href: CoreRelm.Migrations.MigrationFiles.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Migrations
+    name: Migrations
+    href: CoreRelm.Migrations.html
+  - name: .
+  - uid: CoreRelm.Migrations.MigrationFiles
+    name: MigrationFiles
+    href: CoreRelm.Migrations.MigrationFiles.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationFileNameParser
+  commentId: T:CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationFileNameParser
+  parent: CoreRelm.Interfaces.Migrations.MigrationFiles
+  href: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationFileNameParser.html
+  name: IMigrationFileNameParser
+  nameWithType: IMigrationFileNameParser
+  fullName: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationFileNameParser
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CoreRelm.Interfaces.Migrations.MigrationFiles
+  commentId: N:CoreRelm.Interfaces.Migrations.MigrationFiles
+  href: CoreRelm.html
+  name: CoreRelm.Interfaces.Migrations.MigrationFiles
+  nameWithType: CoreRelm.Interfaces.Migrations.MigrationFiles
+  fullName: CoreRelm.Interfaces.Migrations.MigrationFiles
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations
+    name: Migrations
+    href: CoreRelm.Interfaces.Migrations.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations.MigrationFiles
+    name: MigrationFiles
+    href: CoreRelm.Interfaces.Migrations.MigrationFiles.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations
+    name: Migrations
+    href: CoreRelm.Interfaces.Migrations.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations.MigrationFiles
+    name: MigrationFiles
+    href: CoreRelm.Interfaces.Migrations.MigrationFiles.html
+- uid: CoreRelm.Migrations.MigrationFiles.MigrationFileNameParser.TryParse*
+  commentId: Overload:CoreRelm.Migrations.MigrationFiles.MigrationFileNameParser.TryParse
+  href: CoreRelm.Migrations.MigrationFiles.MigrationFileNameParser.html#CoreRelm_Migrations_MigrationFiles_MigrationFileNameParser_TryParse_System_String_CoreRelm_Models_Migrations_Tooling_Apply_ParsedMigrationFileName__System_String__
+  name: TryParse
+  nameWithType: MigrationFileNameParser.TryParse
+  fullName: CoreRelm.Migrations.MigrationFiles.MigrationFileNameParser.TryParse
+- uid: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationFileNameParser.TryParse(System.String,CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationFileName@,System.String@)
+  commentId: M:CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationFileNameParser.TryParse(System.String,CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationFileName@,System.String@)
+  parent: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationFileNameParser
+  isExternal: true
+  href: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationFileNameParser.html#CoreRelm_Interfaces_Migrations_MigrationFiles_IMigrationFileNameParser_TryParse_System_String_CoreRelm_Models_Migrations_Tooling_Apply_ParsedMigrationFileName__System_String__
+  name: TryParse(string, out ParsedMigrationFileName, out string)
+  nameWithType: IMigrationFileNameParser.TryParse(string, out ParsedMigrationFileName, out string)
+  fullName: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationFileNameParser.TryParse(string, out CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationFileName, out string)
+  nameWithType.vb: IMigrationFileNameParser.TryParse(String, ParsedMigrationFileName, String)
+  fullName.vb: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationFileNameParser.TryParse(String, CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationFileName, String)
+  name.vb: TryParse(String, ParsedMigrationFileName, String)
+  spec.csharp:
+  - uid: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationFileNameParser.TryParse(System.String,CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationFileName@,System.String@)
+    name: TryParse
+    href: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationFileNameParser.html#CoreRelm_Interfaces_Migrations_MigrationFiles_IMigrationFileNameParser_TryParse_System_String_CoreRelm_Models_Migrations_Tooling_Apply_ParsedMigrationFileName__System_String__
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: out
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationFileName
+    name: ParsedMigrationFileName
+    href: CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationFileName.html
+  - name: ','
+  - name: " "
+  - name: out
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationFileNameParser.TryParse(System.String,CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationFileName@,System.String@)
+    name: TryParse
+    href: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationFileNameParser.html#CoreRelm_Interfaces_Migrations_MigrationFiles_IMigrationFileNameParser_TryParse_System_String_CoreRelm_Models_Migrations_Tooling_Apply_ParsedMigrationFileName__System_String__
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationFileName
+    name: ParsedMigrationFileName
+    href: CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationFileName.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationFileName
+  commentId: T:CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationFileName
+  parent: CoreRelm.Models.Migrations.Tooling.Apply
+  href: CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationFileName.html
+  name: ParsedMigrationFileName
+  nameWithType: ParsedMigrationFileName
+  fullName: CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationFileName
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: CoreRelm.Models.Migrations.Tooling.Apply
+  commentId: N:CoreRelm.Models.Migrations.Tooling.Apply
+  href: CoreRelm.html
+  name: CoreRelm.Models.Migrations.Tooling.Apply
+  nameWithType: CoreRelm.Models.Migrations.Tooling.Apply
+  fullName: CoreRelm.Models.Migrations.Tooling.Apply
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling
+    name: Tooling
+    href: CoreRelm.Models.Migrations.Tooling.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling.Apply
+    name: Apply
+    href: CoreRelm.Models.Migrations.Tooling.Apply.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling
+    name: Tooling
+    href: CoreRelm.Models.Migrations.Tooling.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling.Apply
+    name: Apply
+    href: CoreRelm.Models.Migrations.Tooling.Apply.html

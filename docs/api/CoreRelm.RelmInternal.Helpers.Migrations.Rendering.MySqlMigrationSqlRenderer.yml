@@ -5,7 +5,7 @@ items:
   id: MySqlMigrationSqlRenderer
   parent: CoreRelm.RelmInternal.Helpers.Migrations.Rendering
   children:
-  - CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer.#ctor(Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer})
+  - CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer.#ctor(System.Version,Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer})
   - CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer.Render(CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan,CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions)
   langs:
   - csharp
@@ -21,7 +21,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: MySqlMigrationSqlRenderer
     path: ../CoreRelm/RelmInternal/Helpers/Migrations/Rendering/MySqlMigrationSqlRenderer.cs
-    startLine: 21
+    startLine: 25
   assemblies:
   - CoreRelm
   namespace: CoreRelm.RelmInternal.Helpers.Migrations.Rendering
@@ -39,16 +39,16 @@ items:
   - System.Object.GetType
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer.#ctor(Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer})
-  commentId: M:CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer.#ctor(Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer})
-  id: '#ctor(Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer})'
+- uid: CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer.#ctor(System.Version,Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer})
+  commentId: M:CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer.#ctor(System.Version,Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer})
+  id: '#ctor(System.Version,Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer})'
   parent: CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer
   langs:
   - csharp
   - vb
-  name: MySqlMigrationSqlRenderer(ILogger<MySqlMigrationSqlRenderer>?)
-  nameWithType: MySqlMigrationSqlRenderer.MySqlMigrationSqlRenderer(ILogger<MySqlMigrationSqlRenderer>?)
-  fullName: CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer.MySqlMigrationSqlRenderer(Microsoft.Extensions.Logging.ILogger<CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer>?)
+  name: MySqlMigrationSqlRenderer(Version, ILogger<MySqlMigrationSqlRenderer>?)
+  nameWithType: MySqlMigrationSqlRenderer.MySqlMigrationSqlRenderer(Version, ILogger<MySqlMigrationSqlRenderer>?)
+  fullName: CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer.MySqlMigrationSqlRenderer(System.Version, Microsoft.Extensions.Logging.ILogger<CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer>?)
   type: Constructor
   source:
     remote:
@@ -57,20 +57,28 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/RelmInternal/Helpers/Migrations/Rendering/MySqlMigrationSqlRenderer.cs
-    startLine: 21
+    startLine: 25
   assemblies:
   - CoreRelm
   namespace: CoreRelm.RelmInternal.Helpers.Migrations.Rendering
   syntax:
-    content: public MySqlMigrationSqlRenderer(ILogger<MySqlMigrationSqlRenderer>? log = null)
+    content: public MySqlMigrationSqlRenderer(Version maxSupportedVersion, ILogger<MySqlMigrationSqlRenderer>? log = null)
     parameters:
+    - id: maxSupportedVersion
+      type: System.Version
+      attributes:
+      - type: Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute
+        ctor: Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute.#ctor(System.Object)
+        arguments:
+        - type: System.String
+          value: MaxSupportedMigrationFileVersion
     - id: log
       type: Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer}
-    content.vb: Public Sub New(log As ILogger(Of MySqlMigrationSqlRenderer) = Nothing)
+    content.vb: Public Sub New(maxSupportedVersion As Version, log As ILogger(Of MySqlMigrationSqlRenderer) = Nothing)
   overload: CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer.#ctor*
-  nameWithType.vb: MySqlMigrationSqlRenderer.New(ILogger(Of MySqlMigrationSqlRenderer))
-  fullName.vb: CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer.New(Microsoft.Extensions.Logging.ILogger(Of CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer))
-  name.vb: New(ILogger(Of MySqlMigrationSqlRenderer))
+  nameWithType.vb: MySqlMigrationSqlRenderer.New(Version, ILogger(Of MySqlMigrationSqlRenderer))
+  fullName.vb: CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer.New(System.Version, Microsoft.Extensions.Logging.ILogger(Of CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer))
+  name.vb: New(Version, ILogger(Of MySqlMigrationSqlRenderer))
 - uid: CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer.Render(CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan,CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions)
   commentId: M:CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer.Render(CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan,CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions)
   id: Render(CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan,CoreRelm.Models.Migrations.Rendering.MySqlRenderOptions)
@@ -89,7 +97,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Render
     path: ../CoreRelm/RelmInternal/Helpers/Migrations/Rendering/MySqlMigrationSqlRenderer.cs
-    startLine: 25
+    startLine: 31
   assemblies:
   - CoreRelm
   namespace: CoreRelm.RelmInternal.Helpers.Migrations.Rendering
@@ -409,13 +417,21 @@ references:
     href: CoreRelm.Interfaces.Migrations.html
 - uid: CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer.#ctor*
   commentId: Overload:CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer.#ctor
-  href: CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer.html#CoreRelm_RelmInternal_Helpers_Migrations_Rendering_MySqlMigrationSqlRenderer__ctor_Microsoft_Extensions_Logging_ILogger_CoreRelm_RelmInternal_Helpers_Migrations_Rendering_MySqlMigrationSqlRenderer__
+  href: CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer.html#CoreRelm_RelmInternal_Helpers_Migrations_Rendering_MySqlMigrationSqlRenderer__ctor_System_Version_Microsoft_Extensions_Logging_ILogger_CoreRelm_RelmInternal_Helpers_Migrations_Rendering_MySqlMigrationSqlRenderer__
   name: MySqlMigrationSqlRenderer
   nameWithType: MySqlMigrationSqlRenderer.MySqlMigrationSqlRenderer
   fullName: CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer.MySqlMigrationSqlRenderer
   nameWithType.vb: MySqlMigrationSqlRenderer.New
   fullName.vb: CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer.New
   name.vb: New
+- uid: System.Version
+  commentId: T:System.Version
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.version
+  name: Version
+  nameWithType: Version
+  fullName: System.Version
 - uid: Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer}
   commentId: T:Microsoft.Extensions.Logging.ILogger{CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer}
   parent: Microsoft.Extensions.Logging

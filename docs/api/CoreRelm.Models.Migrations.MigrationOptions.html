@@ -101,7 +101,7 @@ Class MigrationOptions  <a class="header-action link-secondary" title="View sour
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class MigrationOptions</code></pre>
+    <pre><code class="lang-csharp hljs">public record MigrationOptions : IEquatable&lt;MigrationOptions&gt;</code></pre>
   </div>
 
 
@@ -115,6 +115,12 @@ Class MigrationOptions  <a class="header-action link-secondary" title="View sour
     </dd>
   </dl>
 
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="CoreRelm.Models.Migrations.MigrationOptions.html">MigrationOptions</a>&gt;</div>
+    </dd>
+  </dl>
 
 
   <dl class="typelist inheritedMembers">
@@ -156,7 +162,7 @@ Class MigrationOptions  <a class="header-action link-secondary" title="View sour
 
   <h3 id="CoreRelm_Models_Migrations_MigrationOptions_Apply" data-uid="CoreRelm.Models.Migrations.MigrationOptions.Apply">
   Apply
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationOptions.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationOptions.cs/#L24"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -187,7 +193,7 @@ Class MigrationOptions  <a class="header-action link-secondary" title="View sour
 
   <h3 id="CoreRelm_Models_Migrations_MigrationOptions_CancelToken" data-uid="CoreRelm.Models.Migrations.MigrationOptions.CancelToken">
   CancelToken
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationOptions.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationOptions.cs/#L26"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -280,7 +286,7 @@ Class MigrationOptions  <a class="header-action link-secondary" title="View sour
 
   <h3 id="CoreRelm_Models_Migrations_MigrationOptions_Destructive" data-uid="CoreRelm.Models.Migrations.MigrationOptions.Destructive">
   Destructive
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationOptions.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationOptions.cs/#L23"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -311,7 +317,7 @@ Class MigrationOptions  <a class="header-action link-secondary" title="View sour
 
   <h3 id="CoreRelm_Models_Migrations_MigrationOptions_DropFunctionsOnCreate" data-uid="CoreRelm.Models.Migrations.MigrationOptions.DropFunctionsOnCreate">
   DropFunctionsOnCreate
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationOptions.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationOptions.cs/#L22"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -342,7 +348,7 @@ Class MigrationOptions  <a class="header-action link-secondary" title="View sour
 
   <h3 id="CoreRelm_Models_Migrations_MigrationOptions_JsonFlag" data-uid="CoreRelm.Models.Migrations.MigrationOptions.JsonFlag">
   JsonFlag
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationOptions.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationOptions.cs/#L20"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -373,7 +379,7 @@ Class MigrationOptions  <a class="header-action link-secondary" title="View sour
 
   <h3 id="CoreRelm_Models_Migrations_MigrationOptions_JsonPath" data-uid="CoreRelm.Models.Migrations.MigrationOptions.JsonPath">
   JsonPath
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationOptions.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationOptions.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -404,7 +410,7 @@ Class MigrationOptions  <a class="header-action link-secondary" title="View sour
 
   <h3 id="CoreRelm_Models_Migrations_MigrationOptions_MigrationErrorPath" data-uid="CoreRelm.Models.Migrations.MigrationOptions.MigrationErrorPath">
   MigrationErrorPath
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationOptions.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationOptions.cs/#L18"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -431,11 +437,42 @@ Class MigrationOptions  <a class="header-action link-secondary" title="View sour
 
 
 
+  <a id="CoreRelm_Models_Migrations_MigrationOptions_MigrationName_" data-uid="CoreRelm.Models.Migrations.MigrationOptions.MigrationName*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_MigrationOptions_MigrationName" data-uid="CoreRelm.Models.Migrations.MigrationOptions.MigrationName">
+  MigrationName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationOptions.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? MigrationName { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="CoreRelm_Models_Migrations_MigrationOptions_MigrationsPath_" data-uid="CoreRelm.Models.Migrations.MigrationOptions.MigrationsPath*"></a>
 
   <h3 id="CoreRelm_Models_Migrations_MigrationOptions_MigrationsPath" data-uid="CoreRelm.Models.Migrations.MigrationOptions.MigrationsPath">
   MigrationsPath
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationOptions.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationOptions.cs/#L16"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -466,7 +503,7 @@ Class MigrationOptions  <a class="header-action link-secondary" title="View sour
 
   <h3 id="CoreRelm_Models_Migrations_MigrationOptions_ModelSetsPath" data-uid="CoreRelm.Models.Migrations.MigrationOptions.ModelSetsPath">
   ModelSetsPath
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationOptions.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationOptions.cs/#L17"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -497,7 +534,7 @@ Class MigrationOptions  <a class="header-action link-secondary" title="View sour
 
   <h3 id="CoreRelm_Models_Migrations_MigrationOptions_Quiet" data-uid="CoreRelm.Models.Migrations.MigrationOptions.Quiet">
   Quiet
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationOptions.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationOptions.cs/#L19"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -528,7 +565,7 @@ Class MigrationOptions  <a class="header-action link-secondary" title="View sour
 
   <h3 id="CoreRelm_Models_Migrations_MigrationOptions_SaveSystemMigrations" data-uid="CoreRelm.Models.Migrations.MigrationOptions.SaveSystemMigrations">
   SaveSystemMigrations
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationOptions.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationOptions.cs/#L25"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -576,6 +613,37 @@ Class MigrationOptions  <a class="header-action link-secondary" title="View sour
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_Migrations_MigrationOptions_StampUtc_" data-uid="CoreRelm.Models.Migrations.MigrationOptions.StampUtc*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_MigrationOptions_StampUtc" data-uid="CoreRelm.Models.Migrations.MigrationOptions.StampUtc">
+  StampUtc
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationOptions.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTime StampUtc { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
     <dd></dd>
   </dl>
 

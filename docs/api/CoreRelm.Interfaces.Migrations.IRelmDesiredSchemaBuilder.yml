@@ -35,9 +35,9 @@ items:
   langs:
   - csharp
   - vb
-  name: BuildAsync(string, List<ValidatedModelType>)
-  nameWithType: IRelmDesiredSchemaBuilder.BuildAsync(string, List<ValidatedModelType>)
-  fullName: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder.BuildAsync(string, System.Collections.Generic.List<CoreRelm.Models.Migrations.ValidatedModelType>)
+  name: BuildAsync(string?, List<ValidatedModelType>)
+  nameWithType: IRelmDesiredSchemaBuilder.BuildAsync(string?, List<ValidatedModelType>)
+  fullName: CoreRelm.Interfaces.Migrations.IRelmDesiredSchemaBuilder.BuildAsync(string?, System.Collections.Generic.List<CoreRelm.Models.Migrations.ValidatedModelType>)
   type: Method
   source:
     remote:
@@ -51,7 +51,7 @@ items:
   - CoreRelm
   namespace: CoreRelm.Interfaces.Migrations
   syntax:
-    content: Task<SchemaSnapshot> BuildAsync(string databaseFilter, List<ValidatedModelType> modelsForDb)
+    content: Task<SchemaSnapshot> BuildAsync(string? databaseFilter, List<ValidatedModelType> modelsForDb)
     parameters:
     - id: databaseFilter
       type: System.String

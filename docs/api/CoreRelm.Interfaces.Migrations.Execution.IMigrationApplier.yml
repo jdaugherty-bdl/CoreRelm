@@ -1,0 +1,267 @@
+### YamlMime:ManagedReference
+items:
+- uid: CoreRelm.Interfaces.Migrations.Execution.IMigrationApplier
+  commentId: T:CoreRelm.Interfaces.Migrations.Execution.IMigrationApplier
+  id: IMigrationApplier
+  parent: CoreRelm.Interfaces.Migrations.Execution
+  children:
+  - CoreRelm.Interfaces.Migrations.Execution.IMigrationApplier.ApplyAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String)
+  langs:
+  - csharp
+  - vb
+  name: IMigrationApplier
+  nameWithType: IMigrationApplier
+  fullName: CoreRelm.Interfaces.Migrations.Execution.IMigrationApplier
+  type: Interface
+  source:
+    remote:
+      path: CoreRelm/Interfaces/Migrations/Execution/IMigrationApplier.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: IMigrationApplier
+    path: ../CoreRelm/Interfaces/Migrations/Execution/IMigrationApplier.cs
+    startLine: 9
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces.Migrations.Execution
+  syntax:
+    content: public interface IMigrationApplier
+    content.vb: Public Interface IMigrationApplier
+- uid: CoreRelm.Interfaces.Migrations.Execution.IMigrationApplier.ApplyAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String)
+  commentId: M:CoreRelm.Interfaces.Migrations.Execution.IMigrationApplier.ApplyAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String)
+  id: ApplyAsync(CoreRelm.Models.Migrations.MigrationOptions,System.String,System.String)
+  parent: CoreRelm.Interfaces.Migrations.Execution.IMigrationApplier
+  langs:
+  - csharp
+  - vb
+  name: ApplyAsync(MigrationOptions, string, string)
+  nameWithType: IMigrationApplier.ApplyAsync(MigrationOptions, string, string)
+  fullName: CoreRelm.Interfaces.Migrations.Execution.IMigrationApplier.ApplyAsync(CoreRelm.Models.Migrations.MigrationOptions, string, string)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Interfaces/Migrations/Execution/IMigrationApplier.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: ApplyAsync
+    path: ../CoreRelm/Interfaces/Migrations/Execution/IMigrationApplier.cs
+    startLine: 11
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces.Migrations.Execution
+  syntax:
+    content: Task<bool> ApplyAsync(MigrationOptions migrationOptions, string migrationFileName, string sql)
+    parameters:
+    - id: migrationOptions
+      type: CoreRelm.Models.Migrations.MigrationOptions
+    - id: migrationFileName
+      type: System.String
+    - id: sql
+      type: System.String
+    return:
+      type: System.Threading.Tasks.Task{System.Boolean}
+    content.vb: Function ApplyAsync(migrationOptions As MigrationOptions, migrationFileName As String, sql As String) As Task(Of Boolean)
+  overload: CoreRelm.Interfaces.Migrations.Execution.IMigrationApplier.ApplyAsync*
+  nameWithType.vb: IMigrationApplier.ApplyAsync(MigrationOptions, String, String)
+  fullName.vb: CoreRelm.Interfaces.Migrations.Execution.IMigrationApplier.ApplyAsync(CoreRelm.Models.Migrations.MigrationOptions, String, String)
+  name.vb: ApplyAsync(MigrationOptions, String, String)
+references:
+- uid: CoreRelm.Interfaces.Migrations.Execution
+  commentId: N:CoreRelm.Interfaces.Migrations.Execution
+  href: CoreRelm.html
+  name: CoreRelm.Interfaces.Migrations.Execution
+  nameWithType: CoreRelm.Interfaces.Migrations.Execution
+  fullName: CoreRelm.Interfaces.Migrations.Execution
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations
+    name: Migrations
+    href: CoreRelm.Interfaces.Migrations.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations.Execution
+    name: Execution
+    href: CoreRelm.Interfaces.Migrations.Execution.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations
+    name: Migrations
+    href: CoreRelm.Interfaces.Migrations.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations.Execution
+    name: Execution
+    href: CoreRelm.Interfaces.Migrations.Execution.html
+- uid: CoreRelm.Interfaces.Migrations.Execution.IMigrationApplier.ApplyAsync*
+  commentId: Overload:CoreRelm.Interfaces.Migrations.Execution.IMigrationApplier.ApplyAsync
+  href: CoreRelm.Interfaces.Migrations.Execution.IMigrationApplier.html#CoreRelm_Interfaces_Migrations_Execution_IMigrationApplier_ApplyAsync_CoreRelm_Models_Migrations_MigrationOptions_System_String_System_String_
+  name: ApplyAsync
+  nameWithType: IMigrationApplier.ApplyAsync
+  fullName: CoreRelm.Interfaces.Migrations.Execution.IMigrationApplier.ApplyAsync
+- uid: CoreRelm.Models.Migrations.MigrationOptions
+  commentId: T:CoreRelm.Models.Migrations.MigrationOptions
+  parent: CoreRelm.Models.Migrations
+  href: CoreRelm.Models.Migrations.MigrationOptions.html
+  name: MigrationOptions
+  nameWithType: MigrationOptions
+  fullName: CoreRelm.Models.Migrations.MigrationOptions
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Threading.Tasks.Task{System.Boolean}
+  commentId: T:System.Threading.Tasks.Task{System.Boolean}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<bool>
+  nameWithType: Task<bool>
+  fullName: System.Threading.Tasks.Task<bool>
+  nameWithType.vb: Task(Of Boolean)
+  fullName.vb: System.Threading.Tasks.Task(Of Boolean)
+  name.vb: Task(Of Boolean)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: CoreRelm.Models.Migrations
+  commentId: N:CoreRelm.Models.Migrations
+  href: CoreRelm.html
+  name: CoreRelm.Models.Migrations
+  nameWithType: CoreRelm.Models.Migrations
+  fullName: CoreRelm.Models.Migrations
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks

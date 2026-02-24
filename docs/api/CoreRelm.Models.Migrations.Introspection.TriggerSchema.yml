@@ -64,7 +64,7 @@ items:
   - CoreRelm.Models.RelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
   - CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
   - CoreRelm.Models.RelmModel.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  - CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Options.RelmContextOptionsBuilder,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  - CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Options.RelmContextOptions,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
   - CoreRelm.Models.RelmModel.CopyFromSource``1({T})
   - CoreRelm.Models.RelmModel.GenerateDTO(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String,System.Func{CoreRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}},System.Int32)
   - CoreRelm.Models.RelmModel.Duplicate
@@ -77,23 +77,23 @@ items:
   - System.Object.ToString
   extensionMethods:
   - CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField``2(CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,{S}}})
-  - CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField``2(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,{S}}})
+  - CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField``2(CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,{S}}})
   - CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{{R}}}})
   - CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{{R}}}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
   - CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,{R}}})
   - CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,{R}}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
-  - CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{{R}}}})
-  - CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{{R}}}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
-  - CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,{R}}})
-  - CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,{R}}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
+  - CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{{R}}}})
+  - CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{{R}}}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
+  - CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,{R}}})
+  - CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,{R}}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
   - CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{{R}}}},CoreRelm.Interfaces.IRelmDataLoader{{S}})
   - CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{{R}}}},CoreRelm.Interfaces.IRelmDataLoader{{S}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
   - CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,{R}}},CoreRelm.Interfaces.IRelmDataLoader{{S}})
   - CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Interfaces.IRelmContext,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,{R}}},CoreRelm.Interfaces.IRelmDataLoader{{S}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
-  - CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{{R}}}},CoreRelm.Interfaces.IRelmDataLoader{{S}})
-  - CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{{R}}}},CoreRelm.Interfaces.IRelmDataLoader{{S}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
-  - CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,{R}}},CoreRelm.Interfaces.IRelmDataLoader{{S}})
-  - CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,{R}}},CoreRelm.Interfaces.IRelmDataLoader{{S}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
+  - CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{{R}}}},CoreRelm.Interfaces.IRelmDataLoader{{S}})
+  - CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{{R}}}},CoreRelm.Interfaces.IRelmDataLoader{{S}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
+  - CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,{R}}},CoreRelm.Interfaces.IRelmDataLoader{{S}})
+  - CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,{R}}},CoreRelm.Interfaces.IRelmDataLoader{{S}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
   attributes:
   - type: CoreRelm.Attributes.RelmDatabase
     ctor: CoreRelm.Attributes.RelmDatabase.#ctor(System.String)
@@ -1287,25 +1287,25 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   - name: )
-- uid: CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Options.RelmContextOptionsBuilder,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  commentId: M:CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Options.RelmContextOptionsBuilder,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+- uid: CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Options.RelmContextOptions,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  commentId: M:CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Options.RelmContextOptions,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
   parent: CoreRelm.Models.RelmModel
   isExternal: true
-  href: CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_CoreRelm_Options_RelmContextOptionsBuilder_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
-  name: WriteToDatabase(RelmContextOptionsBuilder, int, bool, bool, bool, bool)
-  nameWithType: RelmModel.WriteToDatabase(RelmContextOptionsBuilder, int, bool, bool, bool, bool)
-  fullName: CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Options.RelmContextOptionsBuilder, int, bool, bool, bool, bool)
-  nameWithType.vb: RelmModel.WriteToDatabase(RelmContextOptionsBuilder, Integer, Boolean, Boolean, Boolean, Boolean)
-  fullName.vb: CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Options.RelmContextOptionsBuilder, Integer, Boolean, Boolean, Boolean, Boolean)
-  name.vb: WriteToDatabase(RelmContextOptionsBuilder, Integer, Boolean, Boolean, Boolean, Boolean)
+  href: CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_CoreRelm_Options_RelmContextOptions_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  name: WriteToDatabase(RelmContextOptions, int, bool, bool, bool, bool)
+  nameWithType: RelmModel.WriteToDatabase(RelmContextOptions, int, bool, bool, bool, bool)
+  fullName: CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Options.RelmContextOptions, int, bool, bool, bool, bool)
+  nameWithType.vb: RelmModel.WriteToDatabase(RelmContextOptions, Integer, Boolean, Boolean, Boolean, Boolean)
+  fullName.vb: CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Options.RelmContextOptions, Integer, Boolean, Boolean, Boolean, Boolean)
+  name.vb: WriteToDatabase(RelmContextOptions, Integer, Boolean, Boolean, Boolean, Boolean)
   spec.csharp:
-  - uid: CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Options.RelmContextOptionsBuilder,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  - uid: CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Options.RelmContextOptions,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
     name: WriteToDatabase
-    href: CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_CoreRelm_Options_RelmContextOptionsBuilder_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+    href: CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_CoreRelm_Options_RelmContextOptions_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
   - name: (
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -1338,13 +1338,13 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
   spec.vb:
-  - uid: CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Options.RelmContextOptionsBuilder,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  - uid: CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Options.RelmContextOptions,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
     name: WriteToDatabase
-    href: CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_CoreRelm_Options_RelmContextOptionsBuilder_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+    href: CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_CoreRelm_Options_RelmContextOptions_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
   - name: (
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -1905,21 +1905,21 @@ references:
   - name: )
   - name: )
   - name: )
-- uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField``2(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,{S}}})
-  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}})
+- uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField``2(CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,{S}}})
+  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField``2(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,``1}})
   parent: CoreRelm.Extensions.ModelExtensions
-  definition: CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadDataLoaderField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___
-  name: LoadDataLoaderField<TriggerSchema, S>(TriggerSchema, RelmContextOptionsBuilder, Expression<Func<TriggerSchema, S>>)
-  nameWithType: ModelExtensions.LoadDataLoaderField<TriggerSchema, S>(TriggerSchema, RelmContextOptionsBuilder, Expression<Func<TriggerSchema, S>>)
-  fullName: CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField<CoreRelm.Models.Migrations.Introspection.TriggerSchema, S>(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression<System.Func<CoreRelm.Models.Migrations.Introspection.TriggerSchema, S>>)
-  nameWithType.vb: ModelExtensions.LoadDataLoaderField(Of TriggerSchema, S)(TriggerSchema, RelmContextOptionsBuilder, Expression(Of Func(Of TriggerSchema, S)))
-  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, S)(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression(Of System.Func(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, S)))
-  name.vb: LoadDataLoaderField(Of TriggerSchema, S)(TriggerSchema, RelmContextOptionsBuilder, Expression(Of Func(Of TriggerSchema, S)))
+  definition: CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField``2(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,``1}})
+  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadDataLoaderField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___
+  name: LoadDataLoaderField<TriggerSchema, S>(TriggerSchema, RelmContextOptions, Expression<Func<TriggerSchema, S>>)
+  nameWithType: ModelExtensions.LoadDataLoaderField<TriggerSchema, S>(TriggerSchema, RelmContextOptions, Expression<Func<TriggerSchema, S>>)
+  fullName: CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField<CoreRelm.Models.Migrations.Introspection.TriggerSchema, S>(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression<System.Func<CoreRelm.Models.Migrations.Introspection.TriggerSchema, S>>)
+  nameWithType.vb: ModelExtensions.LoadDataLoaderField(Of TriggerSchema, S)(TriggerSchema, RelmContextOptions, Expression(Of Func(Of TriggerSchema, S)))
+  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, S)(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression(Of System.Func(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, S)))
+  name.vb: LoadDataLoaderField(Of TriggerSchema, S)(TriggerSchema, RelmContextOptions, Expression(Of Func(Of TriggerSchema, S)))
   spec.csharp:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField``2(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,``1}})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField``2(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,``1}})
     name: LoadDataLoaderField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadDataLoaderField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadDataLoaderField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___
   - name: <
   - uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema
     name: TriggerSchema
@@ -1934,9 +1934,9 @@ references:
     href: CoreRelm.Models.Migrations.Introspection.TriggerSchema.html
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -1959,9 +1959,9 @@ references:
   - name: '>'
   - name: )
   spec.vb:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField``2(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,``1}})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField``2(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,``1}})
     name: LoadDataLoaderField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadDataLoaderField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadDataLoaderField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___
   - name: (
   - name: Of
   - name: " "
@@ -1978,9 +1978,9 @@ references:
     href: CoreRelm.Models.Migrations.Introspection.TriggerSchema.html
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -2530,21 +2530,21 @@ references:
   - name: )
   - name: )
   - name: )
-- uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{{R}}}})
-  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})
+- uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{{R}}}})
+  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})
   parent: CoreRelm.Extensions.ModelExtensions
-  definition: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})
-  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____
-  name: LoadForeignKeyField<TriggerSchema, R>(TriggerSchema, RelmContextOptionsBuilder, Expression<Func<TriggerSchema, ICollection<R>>>)
-  nameWithType: ModelExtensions.LoadForeignKeyField<TriggerSchema, R>(TriggerSchema, RelmContextOptionsBuilder, Expression<Func<TriggerSchema, ICollection<R>>>)
-  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<CoreRelm.Models.Migrations.Introspection.TriggerSchema, R>(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression<System.Func<CoreRelm.Models.Migrations.Introspection.TriggerSchema, System.Collections.Generic.ICollection<R>>>)
-  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of TriggerSchema, R)(TriggerSchema, RelmContextOptionsBuilder, Expression(Of Func(Of TriggerSchema, ICollection(Of R))))
-  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, R)(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression(Of System.Func(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, System.Collections.Generic.ICollection(Of R))))
-  name.vb: LoadForeignKeyField(Of TriggerSchema, R)(TriggerSchema, RelmContextOptionsBuilder, Expression(Of Func(Of TriggerSchema, ICollection(Of R))))
+  definition: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})
+  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____
+  name: LoadForeignKeyField<TriggerSchema, R>(TriggerSchema, RelmContextOptions, Expression<Func<TriggerSchema, ICollection<R>>>)
+  nameWithType: ModelExtensions.LoadForeignKeyField<TriggerSchema, R>(TriggerSchema, RelmContextOptions, Expression<Func<TriggerSchema, ICollection<R>>>)
+  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<CoreRelm.Models.Migrations.Introspection.TriggerSchema, R>(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression<System.Func<CoreRelm.Models.Migrations.Introspection.TriggerSchema, System.Collections.Generic.ICollection<R>>>)
+  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of TriggerSchema, R)(TriggerSchema, RelmContextOptions, Expression(Of Func(Of TriggerSchema, ICollection(Of R))))
+  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, R)(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression(Of System.Func(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, System.Collections.Generic.ICollection(Of R))))
+  name.vb: LoadForeignKeyField(Of TriggerSchema, R)(TriggerSchema, RelmContextOptions, Expression(Of Func(Of TriggerSchema, ICollection(Of R))))
   spec.csharp:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{``1}}})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{``1}}})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____
   - name: <
   - uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema
     name: TriggerSchema
@@ -2559,9 +2559,9 @@ references:
     href: CoreRelm.Models.Migrations.Introspection.TriggerSchema.html
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -2590,9 +2590,9 @@ references:
   - name: '>'
   - name: )
   spec.vb:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{``1}}})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{``1}}})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____
   - name: (
   - name: Of
   - name: " "
@@ -2609,9 +2609,9 @@ references:
     href: CoreRelm.Models.Migrations.Introspection.TriggerSchema.html
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -2645,21 +2645,21 @@ references:
   - name: )
   - name: )
   - name: )
-- uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{{R}}}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
-  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+- uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{{R}}}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
+  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
   parent: CoreRelm.Extensions.ModelExtensions
-  definition: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  name: LoadForeignKeyField<TriggerSchema, R>(TriggerSchema, RelmContextOptionsBuilder, Expression<Func<TriggerSchema, ICollection<R>>>, Expression<Func<R, object>>)
-  nameWithType: ModelExtensions.LoadForeignKeyField<TriggerSchema, R>(TriggerSchema, RelmContextOptionsBuilder, Expression<Func<TriggerSchema, ICollection<R>>>, Expression<Func<R, object>>)
-  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<CoreRelm.Models.Migrations.Introspection.TriggerSchema, R>(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression<System.Func<CoreRelm.Models.Migrations.Introspection.TriggerSchema, System.Collections.Generic.ICollection<R>>>, System.Linq.Expressions.Expression<System.Func<R, object>>)
-  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of TriggerSchema, R)(TriggerSchema, RelmContextOptionsBuilder, Expression(Of Func(Of TriggerSchema, ICollection(Of R))), Expression(Of Func(Of R, Object)))
-  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, R)(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression(Of System.Func(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, System.Collections.Generic.ICollection(Of R))), System.Linq.Expressions.Expression(Of System.Func(Of R, Object)))
-  name.vb: LoadForeignKeyField(Of TriggerSchema, R)(TriggerSchema, RelmContextOptionsBuilder, Expression(Of Func(Of TriggerSchema, ICollection(Of R))), Expression(Of Func(Of R, Object)))
+  definition: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___
+  name: LoadForeignKeyField<TriggerSchema, R>(TriggerSchema, RelmContextOptions, Expression<Func<TriggerSchema, ICollection<R>>>, Expression<Func<R, object>>)
+  nameWithType: ModelExtensions.LoadForeignKeyField<TriggerSchema, R>(TriggerSchema, RelmContextOptions, Expression<Func<TriggerSchema, ICollection<R>>>, Expression<Func<R, object>>)
+  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<CoreRelm.Models.Migrations.Introspection.TriggerSchema, R>(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression<System.Func<CoreRelm.Models.Migrations.Introspection.TriggerSchema, System.Collections.Generic.ICollection<R>>>, System.Linq.Expressions.Expression<System.Func<R, object>>)
+  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of TriggerSchema, R)(TriggerSchema, RelmContextOptions, Expression(Of Func(Of TriggerSchema, ICollection(Of R))), Expression(Of Func(Of R, Object)))
+  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, R)(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression(Of System.Func(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, System.Collections.Generic.ICollection(Of R))), System.Linq.Expressions.Expression(Of System.Func(Of R, Object)))
+  name.vb: LoadForeignKeyField(Of TriggerSchema, R)(TriggerSchema, RelmContextOptions, Expression(Of Func(Of TriggerSchema, ICollection(Of R))), Expression(Of Func(Of R, Object)))
   spec.csharp:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___
   - name: <
   - uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema
     name: TriggerSchema
@@ -2674,9 +2674,9 @@ references:
     href: CoreRelm.Models.Migrations.Introspection.TriggerSchema.html
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -2726,9 +2726,9 @@ references:
   - name: '>'
   - name: )
   spec.vb:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___
   - name: (
   - name: Of
   - name: " "
@@ -2745,9 +2745,9 @@ references:
     href: CoreRelm.Models.Migrations.Introspection.TriggerSchema.html
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -2806,21 +2806,21 @@ references:
   - name: )
   - name: )
   - name: )
-- uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,{R}}})
-  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}})
+- uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,{R}}})
+  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,``1}})
   parent: CoreRelm.Extensions.ModelExtensions
-  definition: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___
-  name: LoadForeignKeyField<TriggerSchema, R>(TriggerSchema, RelmContextOptionsBuilder, Expression<Func<TriggerSchema, R>>)
-  nameWithType: ModelExtensions.LoadForeignKeyField<TriggerSchema, R>(TriggerSchema, RelmContextOptionsBuilder, Expression<Func<TriggerSchema, R>>)
-  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<CoreRelm.Models.Migrations.Introspection.TriggerSchema, R>(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression<System.Func<CoreRelm.Models.Migrations.Introspection.TriggerSchema, R>>)
-  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of TriggerSchema, R)(TriggerSchema, RelmContextOptionsBuilder, Expression(Of Func(Of TriggerSchema, R)))
-  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, R)(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression(Of System.Func(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, R)))
-  name.vb: LoadForeignKeyField(Of TriggerSchema, R)(TriggerSchema, RelmContextOptionsBuilder, Expression(Of Func(Of TriggerSchema, R)))
+  definition: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,``1}})
+  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___
+  name: LoadForeignKeyField<TriggerSchema, R>(TriggerSchema, RelmContextOptions, Expression<Func<TriggerSchema, R>>)
+  nameWithType: ModelExtensions.LoadForeignKeyField<TriggerSchema, R>(TriggerSchema, RelmContextOptions, Expression<Func<TriggerSchema, R>>)
+  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<CoreRelm.Models.Migrations.Introspection.TriggerSchema, R>(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression<System.Func<CoreRelm.Models.Migrations.Introspection.TriggerSchema, R>>)
+  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of TriggerSchema, R)(TriggerSchema, RelmContextOptions, Expression(Of Func(Of TriggerSchema, R)))
+  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, R)(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression(Of System.Func(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, R)))
+  name.vb: LoadForeignKeyField(Of TriggerSchema, R)(TriggerSchema, RelmContextOptions, Expression(Of Func(Of TriggerSchema, R)))
   spec.csharp:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,``1}})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,``1}})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___
   - name: <
   - uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema
     name: TriggerSchema
@@ -2835,9 +2835,9 @@ references:
     href: CoreRelm.Models.Migrations.Introspection.TriggerSchema.html
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -2860,9 +2860,9 @@ references:
   - name: '>'
   - name: )
   spec.vb:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,``1}})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,``1}})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___
   - name: (
   - name: Of
   - name: " "
@@ -2879,9 +2879,9 @@ references:
     href: CoreRelm.Models.Migrations.Introspection.TriggerSchema.html
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -2907,21 +2907,21 @@ references:
   - name: )
   - name: )
   - name: )
-- uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,{R}}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
-  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+- uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,{R}}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
+  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
   parent: CoreRelm.Extensions.ModelExtensions
-  definition: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  name: LoadForeignKeyField<TriggerSchema, R>(TriggerSchema, RelmContextOptionsBuilder, Expression<Func<TriggerSchema, R>>, Expression<Func<R, object>>)
-  nameWithType: ModelExtensions.LoadForeignKeyField<TriggerSchema, R>(TriggerSchema, RelmContextOptionsBuilder, Expression<Func<TriggerSchema, R>>, Expression<Func<R, object>>)
-  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<CoreRelm.Models.Migrations.Introspection.TriggerSchema, R>(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression<System.Func<CoreRelm.Models.Migrations.Introspection.TriggerSchema, R>>, System.Linq.Expressions.Expression<System.Func<R, object>>)
-  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of TriggerSchema, R)(TriggerSchema, RelmContextOptionsBuilder, Expression(Of Func(Of TriggerSchema, R)), Expression(Of Func(Of R, Object)))
-  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, R)(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression(Of System.Func(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, R)), System.Linq.Expressions.Expression(Of System.Func(Of R, Object)))
-  name.vb: LoadForeignKeyField(Of TriggerSchema, R)(TriggerSchema, RelmContextOptionsBuilder, Expression(Of Func(Of TriggerSchema, R)), Expression(Of Func(Of R, Object)))
+  definition: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___
+  name: LoadForeignKeyField<TriggerSchema, R>(TriggerSchema, RelmContextOptions, Expression<Func<TriggerSchema, R>>, Expression<Func<R, object>>)
+  nameWithType: ModelExtensions.LoadForeignKeyField<TriggerSchema, R>(TriggerSchema, RelmContextOptions, Expression<Func<TriggerSchema, R>>, Expression<Func<R, object>>)
+  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<CoreRelm.Models.Migrations.Introspection.TriggerSchema, R>(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression<System.Func<CoreRelm.Models.Migrations.Introspection.TriggerSchema, R>>, System.Linq.Expressions.Expression<System.Func<R, object>>)
+  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of TriggerSchema, R)(TriggerSchema, RelmContextOptions, Expression(Of Func(Of TriggerSchema, R)), Expression(Of Func(Of R, Object)))
+  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, R)(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression(Of System.Func(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, R)), System.Linq.Expressions.Expression(Of System.Func(Of R, Object)))
+  name.vb: LoadForeignKeyField(Of TriggerSchema, R)(TriggerSchema, RelmContextOptions, Expression(Of Func(Of TriggerSchema, R)), Expression(Of Func(Of R, Object)))
   spec.csharp:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___
   - name: <
   - uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema
     name: TriggerSchema
@@ -2936,9 +2936,9 @@ references:
     href: CoreRelm.Models.Migrations.Introspection.TriggerSchema.html
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -2982,9 +2982,9 @@ references:
   - name: '>'
   - name: )
   spec.vb:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___
   - name: (
   - name: Of
   - name: " "
@@ -3001,9 +3001,9 @@ references:
     href: CoreRelm.Models.Migrations.Introspection.TriggerSchema.html
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -3674,21 +3674,21 @@ references:
   - name: )
   - name: )
   - name: )
-- uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{{R}}}},CoreRelm.Interfaces.IRelmDataLoader{{S}})
-  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
+- uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{{R}}}},CoreRelm.Interfaces.IRelmDataLoader{{S}})
+  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
   parent: CoreRelm.Extensions.ModelExtensions
-  definition: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
-  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__
-  name: LoadForeignKeyField<TriggerSchema, R, S>(TriggerSchema, RelmContextOptionsBuilder, Expression<Func<TriggerSchema, ICollection<R>>>, IRelmDataLoader<S>)
-  nameWithType: ModelExtensions.LoadForeignKeyField<TriggerSchema, R, S>(TriggerSchema, RelmContextOptionsBuilder, Expression<Func<TriggerSchema, ICollection<R>>>, IRelmDataLoader<S>)
-  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<CoreRelm.Models.Migrations.Introspection.TriggerSchema, R, S>(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression<System.Func<CoreRelm.Models.Migrations.Introspection.TriggerSchema, System.Collections.Generic.ICollection<R>>>, CoreRelm.Interfaces.IRelmDataLoader<S>)
-  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of TriggerSchema, R, S)(TriggerSchema, RelmContextOptionsBuilder, Expression(Of Func(Of TriggerSchema, ICollection(Of R))), IRelmDataLoader(Of S))
-  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, R, S)(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression(Of System.Func(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, System.Collections.Generic.ICollection(Of R))), CoreRelm.Interfaces.IRelmDataLoader(Of S))
-  name.vb: LoadForeignKeyField(Of TriggerSchema, R, S)(TriggerSchema, RelmContextOptionsBuilder, Expression(Of Func(Of TriggerSchema, ICollection(Of R))), IRelmDataLoader(Of S))
+  definition: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
+  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__
+  name: LoadForeignKeyField<TriggerSchema, R, S>(TriggerSchema, RelmContextOptions, Expression<Func<TriggerSchema, ICollection<R>>>, IRelmDataLoader<S>)
+  nameWithType: ModelExtensions.LoadForeignKeyField<TriggerSchema, R, S>(TriggerSchema, RelmContextOptions, Expression<Func<TriggerSchema, ICollection<R>>>, IRelmDataLoader<S>)
+  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<CoreRelm.Models.Migrations.Introspection.TriggerSchema, R, S>(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression<System.Func<CoreRelm.Models.Migrations.Introspection.TriggerSchema, System.Collections.Generic.ICollection<R>>>, CoreRelm.Interfaces.IRelmDataLoader<S>)
+  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of TriggerSchema, R, S)(TriggerSchema, RelmContextOptions, Expression(Of Func(Of TriggerSchema, ICollection(Of R))), IRelmDataLoader(Of S))
+  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, R, S)(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression(Of System.Func(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, System.Collections.Generic.ICollection(Of R))), CoreRelm.Interfaces.IRelmDataLoader(Of S))
+  name.vb: LoadForeignKeyField(Of TriggerSchema, R, S)(TriggerSchema, RelmContextOptions, Expression(Of Func(Of TriggerSchema, ICollection(Of R))), IRelmDataLoader(Of S))
   spec.csharp:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__
   - name: <
   - uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema
     name: TriggerSchema
@@ -3706,9 +3706,9 @@ references:
     href: CoreRelm.Models.Migrations.Introspection.TriggerSchema.html
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -3745,9 +3745,9 @@ references:
   - name: '>'
   - name: )
   spec.vb:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__
   - name: (
   - name: Of
   - name: " "
@@ -3767,9 +3767,9 @@ references:
     href: CoreRelm.Models.Migrations.Introspection.TriggerSchema.html
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -3813,21 +3813,21 @@ references:
   - name: S
   - name: )
   - name: )
-- uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{{R}}}},CoreRelm.Interfaces.IRelmDataLoader{{S}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
-  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+- uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{{R}}}},CoreRelm.Interfaces.IRelmDataLoader{{S}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
+  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
   parent: CoreRelm.Extensions.ModelExtensions
-  definition: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  name: LoadForeignKeyField<TriggerSchema, R, S>(TriggerSchema, RelmContextOptionsBuilder, Expression<Func<TriggerSchema, ICollection<R>>>, IRelmDataLoader<S>, Expression<Func<R, object>>)
-  nameWithType: ModelExtensions.LoadForeignKeyField<TriggerSchema, R, S>(TriggerSchema, RelmContextOptionsBuilder, Expression<Func<TriggerSchema, ICollection<R>>>, IRelmDataLoader<S>, Expression<Func<R, object>>)
-  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<CoreRelm.Models.Migrations.Introspection.TriggerSchema, R, S>(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression<System.Func<CoreRelm.Models.Migrations.Introspection.TriggerSchema, System.Collections.Generic.ICollection<R>>>, CoreRelm.Interfaces.IRelmDataLoader<S>, System.Linq.Expressions.Expression<System.Func<R, object>>)
-  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of TriggerSchema, R, S)(TriggerSchema, RelmContextOptionsBuilder, Expression(Of Func(Of TriggerSchema, ICollection(Of R))), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
-  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, R, S)(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression(Of System.Func(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, System.Collections.Generic.ICollection(Of R))), CoreRelm.Interfaces.IRelmDataLoader(Of S), System.Linq.Expressions.Expression(Of System.Func(Of R, Object)))
-  name.vb: LoadForeignKeyField(Of TriggerSchema, R, S)(TriggerSchema, RelmContextOptionsBuilder, Expression(Of Func(Of TriggerSchema, ICollection(Of R))), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
+  definition: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
+  name: LoadForeignKeyField<TriggerSchema, R, S>(TriggerSchema, RelmContextOptions, Expression<Func<TriggerSchema, ICollection<R>>>, IRelmDataLoader<S>, Expression<Func<R, object>>)
+  nameWithType: ModelExtensions.LoadForeignKeyField<TriggerSchema, R, S>(TriggerSchema, RelmContextOptions, Expression<Func<TriggerSchema, ICollection<R>>>, IRelmDataLoader<S>, Expression<Func<R, object>>)
+  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<CoreRelm.Models.Migrations.Introspection.TriggerSchema, R, S>(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression<System.Func<CoreRelm.Models.Migrations.Introspection.TriggerSchema, System.Collections.Generic.ICollection<R>>>, CoreRelm.Interfaces.IRelmDataLoader<S>, System.Linq.Expressions.Expression<System.Func<R, object>>)
+  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of TriggerSchema, R, S)(TriggerSchema, RelmContextOptions, Expression(Of Func(Of TriggerSchema, ICollection(Of R))), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
+  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, R, S)(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression(Of System.Func(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, System.Collections.Generic.ICollection(Of R))), CoreRelm.Interfaces.IRelmDataLoader(Of S), System.Linq.Expressions.Expression(Of System.Func(Of R, Object)))
+  name.vb: LoadForeignKeyField(Of TriggerSchema, R, S)(TriggerSchema, RelmContextOptions, Expression(Of Func(Of TriggerSchema, ICollection(Of R))), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
   spec.csharp:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
   - name: <
   - uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema
     name: TriggerSchema
@@ -3845,9 +3845,9 @@ references:
     href: CoreRelm.Models.Migrations.Introspection.TriggerSchema.html
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -3905,9 +3905,9 @@ references:
   - name: '>'
   - name: )
   spec.vb:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
   - name: (
   - name: Of
   - name: " "
@@ -3927,9 +3927,9 @@ references:
     href: CoreRelm.Models.Migrations.Introspection.TriggerSchema.html
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -3998,21 +3998,21 @@ references:
   - name: )
   - name: )
   - name: )
-- uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,{R}}},CoreRelm.Interfaces.IRelmDataLoader{{S}})
-  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})
+- uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,{R}}},CoreRelm.Interfaces.IRelmDataLoader{{S}})
+  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})
   parent: CoreRelm.Extensions.ModelExtensions
-  definition: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})
-  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__
-  name: LoadForeignKeyField<TriggerSchema, R, S>(TriggerSchema, RelmContextOptionsBuilder, Expression<Func<TriggerSchema, R>>, IRelmDataLoader<S>)
-  nameWithType: ModelExtensions.LoadForeignKeyField<TriggerSchema, R, S>(TriggerSchema, RelmContextOptionsBuilder, Expression<Func<TriggerSchema, R>>, IRelmDataLoader<S>)
-  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<CoreRelm.Models.Migrations.Introspection.TriggerSchema, R, S>(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression<System.Func<CoreRelm.Models.Migrations.Introspection.TriggerSchema, R>>, CoreRelm.Interfaces.IRelmDataLoader<S>)
-  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of TriggerSchema, R, S)(TriggerSchema, RelmContextOptionsBuilder, Expression(Of Func(Of TriggerSchema, R)), IRelmDataLoader(Of S))
-  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, R, S)(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression(Of System.Func(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, R)), CoreRelm.Interfaces.IRelmDataLoader(Of S))
-  name.vb: LoadForeignKeyField(Of TriggerSchema, R, S)(TriggerSchema, RelmContextOptionsBuilder, Expression(Of Func(Of TriggerSchema, R)), IRelmDataLoader(Of S))
+  definition: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})
+  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__
+  name: LoadForeignKeyField<TriggerSchema, R, S>(TriggerSchema, RelmContextOptions, Expression<Func<TriggerSchema, R>>, IRelmDataLoader<S>)
+  nameWithType: ModelExtensions.LoadForeignKeyField<TriggerSchema, R, S>(TriggerSchema, RelmContextOptions, Expression<Func<TriggerSchema, R>>, IRelmDataLoader<S>)
+  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<CoreRelm.Models.Migrations.Introspection.TriggerSchema, R, S>(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression<System.Func<CoreRelm.Models.Migrations.Introspection.TriggerSchema, R>>, CoreRelm.Interfaces.IRelmDataLoader<S>)
+  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of TriggerSchema, R, S)(TriggerSchema, RelmContextOptions, Expression(Of Func(Of TriggerSchema, R)), IRelmDataLoader(Of S))
+  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, R, S)(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression(Of System.Func(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, R)), CoreRelm.Interfaces.IRelmDataLoader(Of S))
+  name.vb: LoadForeignKeyField(Of TriggerSchema, R, S)(TriggerSchema, RelmContextOptions, Expression(Of Func(Of TriggerSchema, R)), IRelmDataLoader(Of S))
   spec.csharp:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__
   - name: <
   - uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema
     name: TriggerSchema
@@ -4030,9 +4030,9 @@ references:
     href: CoreRelm.Models.Migrations.Introspection.TriggerSchema.html
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -4063,9 +4063,9 @@ references:
   - name: '>'
   - name: )
   spec.vb:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__
   - name: (
   - name: Of
   - name: " "
@@ -4085,9 +4085,9 @@ references:
     href: CoreRelm.Models.Migrations.Introspection.TriggerSchema.html
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -4123,21 +4123,21 @@ references:
   - name: S
   - name: )
   - name: )
-- uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,{R}}},CoreRelm.Interfaces.IRelmDataLoader{{S}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
-  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+- uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema.CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,{R}}},CoreRelm.Interfaces.IRelmDataLoader{{S}},System.Linq.Expressions.Expression{System.Func{{R},System.Object}})
+  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
   parent: CoreRelm.Extensions.ModelExtensions
-  definition: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  name: LoadForeignKeyField<TriggerSchema, R, S>(TriggerSchema, RelmContextOptionsBuilder, Expression<Func<TriggerSchema, R>>, IRelmDataLoader<S>, Expression<Func<R, object>>)
-  nameWithType: ModelExtensions.LoadForeignKeyField<TriggerSchema, R, S>(TriggerSchema, RelmContextOptionsBuilder, Expression<Func<TriggerSchema, R>>, IRelmDataLoader<S>, Expression<Func<R, object>>)
-  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<CoreRelm.Models.Migrations.Introspection.TriggerSchema, R, S>(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression<System.Func<CoreRelm.Models.Migrations.Introspection.TriggerSchema, R>>, CoreRelm.Interfaces.IRelmDataLoader<S>, System.Linq.Expressions.Expression<System.Func<R, object>>)
-  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of TriggerSchema, R, S)(TriggerSchema, RelmContextOptionsBuilder, Expression(Of Func(Of TriggerSchema, R)), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
-  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, R, S)(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression(Of System.Func(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, R)), CoreRelm.Interfaces.IRelmDataLoader(Of S), System.Linq.Expressions.Expression(Of System.Func(Of R, Object)))
-  name.vb: LoadForeignKeyField(Of TriggerSchema, R, S)(TriggerSchema, RelmContextOptionsBuilder, Expression(Of Func(Of TriggerSchema, R)), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
+  definition: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
+  name: LoadForeignKeyField<TriggerSchema, R, S>(TriggerSchema, RelmContextOptions, Expression<Func<TriggerSchema, R>>, IRelmDataLoader<S>, Expression<Func<R, object>>)
+  nameWithType: ModelExtensions.LoadForeignKeyField<TriggerSchema, R, S>(TriggerSchema, RelmContextOptions, Expression<Func<TriggerSchema, R>>, IRelmDataLoader<S>, Expression<Func<R, object>>)
+  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<CoreRelm.Models.Migrations.Introspection.TriggerSchema, R, S>(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression<System.Func<CoreRelm.Models.Migrations.Introspection.TriggerSchema, R>>, CoreRelm.Interfaces.IRelmDataLoader<S>, System.Linq.Expressions.Expression<System.Func<R, object>>)
+  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of TriggerSchema, R, S)(TriggerSchema, RelmContextOptions, Expression(Of Func(Of TriggerSchema, R)), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
+  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, R, S)(CoreRelm.Models.Migrations.Introspection.TriggerSchema, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression(Of System.Func(Of CoreRelm.Models.Migrations.Introspection.TriggerSchema, R)), CoreRelm.Interfaces.IRelmDataLoader(Of S), System.Linq.Expressions.Expression(Of System.Func(Of R, Object)))
+  name.vb: LoadForeignKeyField(Of TriggerSchema, R, S)(TriggerSchema, RelmContextOptions, Expression(Of Func(Of TriggerSchema, R)), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
   spec.csharp:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
   - name: <
   - uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema
     name: TriggerSchema
@@ -4155,9 +4155,9 @@ references:
     href: CoreRelm.Models.Migrations.Introspection.TriggerSchema.html
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -4209,9 +4209,9 @@ references:
   - name: '>'
   - name: )
   spec.vb:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(CoreRelm.Models.Migrations.Introspection.TriggerSchema,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{CoreRelm.Models.Migrations.Introspection.TriggerSchema,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
   - name: (
   - name: Of
   - name: " "
@@ -4231,9 +4231,9 @@ references:
     href: CoreRelm.Models.Migrations.Introspection.TriggerSchema.html
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -4471,20 +4471,20 @@ references:
   name: ModelExtensions
   nameWithType: ModelExtensions
   fullName: CoreRelm.Extensions.ModelExtensions
-- uid: CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}})
+- uid: CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField``2(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,``1}})
+  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField``2(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,``1}})
   isExternal: true
-  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadDataLoaderField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___
-  name: LoadDataLoaderField<T, S>(T, RelmContextOptionsBuilder, Expression<Func<T, S>>)
-  nameWithType: ModelExtensions.LoadDataLoaderField<T, S>(T, RelmContextOptionsBuilder, Expression<Func<T, S>>)
-  fullName: CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField<T, S>(T, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression<System.Func<T, S>>)
-  nameWithType.vb: ModelExtensions.LoadDataLoaderField(Of T, S)(T, RelmContextOptionsBuilder, Expression(Of Func(Of T, S)))
-  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField(Of T, S)(T, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression(Of System.Func(Of T, S)))
-  name.vb: LoadDataLoaderField(Of T, S)(T, RelmContextOptionsBuilder, Expression(Of Func(Of T, S)))
+  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadDataLoaderField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___
+  name: LoadDataLoaderField<T, S>(T, RelmContextOptions, Expression<Func<T, S>>)
+  nameWithType: ModelExtensions.LoadDataLoaderField<T, S>(T, RelmContextOptions, Expression<Func<T, S>>)
+  fullName: CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField<T, S>(T, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression<System.Func<T, S>>)
+  nameWithType.vb: ModelExtensions.LoadDataLoaderField(Of T, S)(T, RelmContextOptions, Expression(Of Func(Of T, S)))
+  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField(Of T, S)(T, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression(Of System.Func(Of T, S)))
+  name.vb: LoadDataLoaderField(Of T, S)(T, RelmContextOptions, Expression(Of Func(Of T, S)))
   spec.csharp:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField``2(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,``1}})
     name: LoadDataLoaderField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadDataLoaderField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadDataLoaderField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___
   - name: <
   - name: T
   - name: ','
@@ -4495,9 +4495,9 @@ references:
   - name: T
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -4518,9 +4518,9 @@ references:
   - name: '>'
   - name: )
   spec.vb:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadDataLoaderField``2(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,``1}})
     name: LoadDataLoaderField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadDataLoaderField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadDataLoaderField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___
   - name: (
   - name: Of
   - name: " "
@@ -4533,9 +4533,9 @@ references:
   - name: T
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -5031,20 +5031,20 @@ references:
   - name: )
   - name: )
   - name: )
-- uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})
-  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})
+- uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})
+  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})
   isExternal: true
-  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____
-  name: LoadForeignKeyField<T, R>(T, RelmContextOptionsBuilder, Expression<Func<T, ICollection<R>>>)
-  nameWithType: ModelExtensions.LoadForeignKeyField<T, R>(T, RelmContextOptionsBuilder, Expression<Func<T, ICollection<R>>>)
-  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<T, R>(T, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression<System.Func<T, System.Collections.Generic.ICollection<R>>>)
-  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of T, R)(T, RelmContextOptionsBuilder, Expression(Of Func(Of T, ICollection(Of R))))
-  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of T, R)(T, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression(Of System.Func(Of T, System.Collections.Generic.ICollection(Of R))))
-  name.vb: LoadForeignKeyField(Of T, R)(T, RelmContextOptionsBuilder, Expression(Of Func(Of T, ICollection(Of R))))
+  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____
+  name: LoadForeignKeyField<T, R>(T, RelmContextOptions, Expression<Func<T, ICollection<R>>>)
+  nameWithType: ModelExtensions.LoadForeignKeyField<T, R>(T, RelmContextOptions, Expression<Func<T, ICollection<R>>>)
+  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<T, R>(T, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression<System.Func<T, System.Collections.Generic.ICollection<R>>>)
+  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of T, R)(T, RelmContextOptions, Expression(Of Func(Of T, ICollection(Of R))))
+  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of T, R)(T, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression(Of System.Func(Of T, System.Collections.Generic.ICollection(Of R))))
+  name.vb: LoadForeignKeyField(Of T, R)(T, RelmContextOptions, Expression(Of Func(Of T, ICollection(Of R))))
   spec.csharp:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____
   - name: <
   - name: T
   - name: ','
@@ -5055,9 +5055,9 @@ references:
   - name: T
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -5084,9 +5084,9 @@ references:
   - name: '>'
   - name: )
   spec.vb:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____
   - name: (
   - name: Of
   - name: " "
@@ -5099,9 +5099,9 @@ references:
   - name: T
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -5133,20 +5133,20 @@ references:
   - name: )
   - name: )
   - name: )
-- uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+- uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
   isExternal: true
-  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  name: LoadForeignKeyField<T, R>(T, RelmContextOptionsBuilder, Expression<Func<T, ICollection<R>>>, Expression<Func<R, object>>)
-  nameWithType: ModelExtensions.LoadForeignKeyField<T, R>(T, RelmContextOptionsBuilder, Expression<Func<T, ICollection<R>>>, Expression<Func<R, object>>)
-  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<T, R>(T, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression<System.Func<T, System.Collections.Generic.ICollection<R>>>, System.Linq.Expressions.Expression<System.Func<R, object>>)
-  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of T, R)(T, RelmContextOptionsBuilder, Expression(Of Func(Of T, ICollection(Of R))), Expression(Of Func(Of R, Object)))
-  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of T, R)(T, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression(Of System.Func(Of T, System.Collections.Generic.ICollection(Of R))), System.Linq.Expressions.Expression(Of System.Func(Of R, Object)))
-  name.vb: LoadForeignKeyField(Of T, R)(T, RelmContextOptionsBuilder, Expression(Of Func(Of T, ICollection(Of R))), Expression(Of Func(Of R, Object)))
+  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___
+  name: LoadForeignKeyField<T, R>(T, RelmContextOptions, Expression<Func<T, ICollection<R>>>, Expression<Func<R, object>>)
+  nameWithType: ModelExtensions.LoadForeignKeyField<T, R>(T, RelmContextOptions, Expression<Func<T, ICollection<R>>>, Expression<Func<R, object>>)
+  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<T, R>(T, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression<System.Func<T, System.Collections.Generic.ICollection<R>>>, System.Linq.Expressions.Expression<System.Func<R, object>>)
+  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of T, R)(T, RelmContextOptions, Expression(Of Func(Of T, ICollection(Of R))), Expression(Of Func(Of R, Object)))
+  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of T, R)(T, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression(Of System.Func(Of T, System.Collections.Generic.ICollection(Of R))), System.Linq.Expressions.Expression(Of System.Func(Of R, Object)))
+  name.vb: LoadForeignKeyField(Of T, R)(T, RelmContextOptions, Expression(Of Func(Of T, ICollection(Of R))), Expression(Of Func(Of R, Object)))
   spec.csharp:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___
   - name: <
   - name: T
   - name: ','
@@ -5157,9 +5157,9 @@ references:
   - name: T
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -5207,9 +5207,9 @@ references:
   - name: '>'
   - name: )
   spec.vb:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___
   - name: (
   - name: Of
   - name: " "
@@ -5222,9 +5222,9 @@ references:
   - name: T
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -5281,20 +5281,20 @@ references:
   - name: )
   - name: )
   - name: )
-- uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}})
+- uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,``1}})
+  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,``1}})
   isExternal: true
-  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___
-  name: LoadForeignKeyField<T, R>(T, RelmContextOptionsBuilder, Expression<Func<T, R>>)
-  nameWithType: ModelExtensions.LoadForeignKeyField<T, R>(T, RelmContextOptionsBuilder, Expression<Func<T, R>>)
-  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<T, R>(T, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression<System.Func<T, R>>)
-  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of T, R)(T, RelmContextOptionsBuilder, Expression(Of Func(Of T, R)))
-  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of T, R)(T, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression(Of System.Func(Of T, R)))
-  name.vb: LoadForeignKeyField(Of T, R)(T, RelmContextOptionsBuilder, Expression(Of Func(Of T, R)))
+  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___
+  name: LoadForeignKeyField<T, R>(T, RelmContextOptions, Expression<Func<T, R>>)
+  nameWithType: ModelExtensions.LoadForeignKeyField<T, R>(T, RelmContextOptions, Expression<Func<T, R>>)
+  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<T, R>(T, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression<System.Func<T, R>>)
+  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of T, R)(T, RelmContextOptions, Expression(Of Func(Of T, R)))
+  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of T, R)(T, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression(Of System.Func(Of T, R)))
+  name.vb: LoadForeignKeyField(Of T, R)(T, RelmContextOptions, Expression(Of Func(Of T, R)))
   spec.csharp:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,``1}})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___
   - name: <
   - name: T
   - name: ','
@@ -5305,9 +5305,9 @@ references:
   - name: T
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -5328,9 +5328,9 @@ references:
   - name: '>'
   - name: )
   spec.vb:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,``1}})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___
   - name: (
   - name: Of
   - name: " "
@@ -5343,9 +5343,9 @@ references:
   - name: T
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -5369,20 +5369,20 @@ references:
   - name: )
   - name: )
   - name: )
-- uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+- uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
   isExternal: true
-  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  name: LoadForeignKeyField<T, R>(T, RelmContextOptionsBuilder, Expression<Func<T, R>>, Expression<Func<R, object>>)
-  nameWithType: ModelExtensions.LoadForeignKeyField<T, R>(T, RelmContextOptionsBuilder, Expression<Func<T, R>>, Expression<Func<R, object>>)
-  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<T, R>(T, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression<System.Func<T, R>>, System.Linq.Expressions.Expression<System.Func<R, object>>)
-  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of T, R)(T, RelmContextOptionsBuilder, Expression(Of Func(Of T, R)), Expression(Of Func(Of R, Object)))
-  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of T, R)(T, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression(Of System.Func(Of T, R)), System.Linq.Expressions.Expression(Of System.Func(Of R, Object)))
-  name.vb: LoadForeignKeyField(Of T, R)(T, RelmContextOptionsBuilder, Expression(Of Func(Of T, R)), Expression(Of Func(Of R, Object)))
+  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___
+  name: LoadForeignKeyField<T, R>(T, RelmContextOptions, Expression<Func<T, R>>, Expression<Func<R, object>>)
+  nameWithType: ModelExtensions.LoadForeignKeyField<T, R>(T, RelmContextOptions, Expression<Func<T, R>>, Expression<Func<R, object>>)
+  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<T, R>(T, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression<System.Func<T, R>>, System.Linq.Expressions.Expression<System.Func<R, object>>)
+  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of T, R)(T, RelmContextOptions, Expression(Of Func(Of T, R)), Expression(Of Func(Of R, Object)))
+  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of T, R)(T, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression(Of System.Func(Of T, R)), System.Linq.Expressions.Expression(Of System.Func(Of R, Object)))
+  name.vb: LoadForeignKeyField(Of T, R)(T, RelmContextOptions, Expression(Of Func(Of T, R)), Expression(Of Func(Of R, Object)))
   spec.csharp:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___
   - name: <
   - name: T
   - name: ','
@@ -5393,9 +5393,9 @@ references:
   - name: T
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -5437,9 +5437,9 @@ references:
   - name: '>'
   - name: )
   spec.vb:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``2(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___
   - name: (
   - name: Of
   - name: " "
@@ -5452,9 +5452,9 @@ references:
   - name: T
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -6071,20 +6071,20 @@ references:
   - name: )
   - name: )
   - name: )
-- uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
-  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
+- uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
+  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
   isExternal: true
-  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__
-  name: LoadForeignKeyField<T, R, S>(T, RelmContextOptionsBuilder, Expression<Func<T, ICollection<R>>>, IRelmDataLoader<S>)
-  nameWithType: ModelExtensions.LoadForeignKeyField<T, R, S>(T, RelmContextOptionsBuilder, Expression<Func<T, ICollection<R>>>, IRelmDataLoader<S>)
-  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<T, R, S>(T, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression<System.Func<T, System.Collections.Generic.ICollection<R>>>, CoreRelm.Interfaces.IRelmDataLoader<S>)
-  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of T, R, S)(T, RelmContextOptionsBuilder, Expression(Of Func(Of T, ICollection(Of R))), IRelmDataLoader(Of S))
-  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of T, R, S)(T, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression(Of System.Func(Of T, System.Collections.Generic.ICollection(Of R))), CoreRelm.Interfaces.IRelmDataLoader(Of S))
-  name.vb: LoadForeignKeyField(Of T, R, S)(T, RelmContextOptionsBuilder, Expression(Of Func(Of T, ICollection(Of R))), IRelmDataLoader(Of S))
+  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__
+  name: LoadForeignKeyField<T, R, S>(T, RelmContextOptions, Expression<Func<T, ICollection<R>>>, IRelmDataLoader<S>)
+  nameWithType: ModelExtensions.LoadForeignKeyField<T, R, S>(T, RelmContextOptions, Expression<Func<T, ICollection<R>>>, IRelmDataLoader<S>)
+  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<T, R, S>(T, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression<System.Func<T, System.Collections.Generic.ICollection<R>>>, CoreRelm.Interfaces.IRelmDataLoader<S>)
+  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of T, R, S)(T, RelmContextOptions, Expression(Of Func(Of T, ICollection(Of R))), IRelmDataLoader(Of S))
+  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of T, R, S)(T, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression(Of System.Func(Of T, System.Collections.Generic.ICollection(Of R))), CoreRelm.Interfaces.IRelmDataLoader(Of S))
+  name.vb: LoadForeignKeyField(Of T, R, S)(T, RelmContextOptions, Expression(Of Func(Of T, ICollection(Of R))), IRelmDataLoader(Of S))
   spec.csharp:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__
   - name: <
   - name: T
   - name: ','
@@ -6098,9 +6098,9 @@ references:
   - name: T
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -6135,9 +6135,9 @@ references:
   - name: '>'
   - name: )
   spec.vb:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__
   - name: (
   - name: Of
   - name: " "
@@ -6153,9 +6153,9 @@ references:
   - name: T
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -6197,20 +6197,20 @@ references:
   - name: S
   - name: )
   - name: )
-- uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+- uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
   isExternal: true
-  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  name: LoadForeignKeyField<T, R, S>(T, RelmContextOptionsBuilder, Expression<Func<T, ICollection<R>>>, IRelmDataLoader<S>, Expression<Func<R, object>>)
-  nameWithType: ModelExtensions.LoadForeignKeyField<T, R, S>(T, RelmContextOptionsBuilder, Expression<Func<T, ICollection<R>>>, IRelmDataLoader<S>, Expression<Func<R, object>>)
-  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<T, R, S>(T, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression<System.Func<T, System.Collections.Generic.ICollection<R>>>, CoreRelm.Interfaces.IRelmDataLoader<S>, System.Linq.Expressions.Expression<System.Func<R, object>>)
-  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of T, R, S)(T, RelmContextOptionsBuilder, Expression(Of Func(Of T, ICollection(Of R))), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
-  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of T, R, S)(T, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression(Of System.Func(Of T, System.Collections.Generic.ICollection(Of R))), CoreRelm.Interfaces.IRelmDataLoader(Of S), System.Linq.Expressions.Expression(Of System.Func(Of R, Object)))
-  name.vb: LoadForeignKeyField(Of T, R, S)(T, RelmContextOptionsBuilder, Expression(Of Func(Of T, ICollection(Of R))), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
+  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
+  name: LoadForeignKeyField<T, R, S>(T, RelmContextOptions, Expression<Func<T, ICollection<R>>>, IRelmDataLoader<S>, Expression<Func<R, object>>)
+  nameWithType: ModelExtensions.LoadForeignKeyField<T, R, S>(T, RelmContextOptions, Expression<Func<T, ICollection<R>>>, IRelmDataLoader<S>, Expression<Func<R, object>>)
+  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<T, R, S>(T, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression<System.Func<T, System.Collections.Generic.ICollection<R>>>, CoreRelm.Interfaces.IRelmDataLoader<S>, System.Linq.Expressions.Expression<System.Func<R, object>>)
+  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of T, R, S)(T, RelmContextOptions, Expression(Of Func(Of T, ICollection(Of R))), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
+  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of T, R, S)(T, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression(Of System.Func(Of T, System.Collections.Generic.ICollection(Of R))), CoreRelm.Interfaces.IRelmDataLoader(Of S), System.Linq.Expressions.Expression(Of System.Func(Of R, Object)))
+  name.vb: LoadForeignKeyField(Of T, R, S)(T, RelmContextOptions, Expression(Of Func(Of T, ICollection(Of R))), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
   spec.csharp:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
   - name: <
   - name: T
   - name: ','
@@ -6224,9 +6224,9 @@ references:
   - name: T
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -6282,9 +6282,9 @@ references:
   - name: '>'
   - name: )
   spec.vb:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
   - name: (
   - name: Of
   - name: " "
@@ -6300,9 +6300,9 @@ references:
   - name: T
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -6369,20 +6369,20 @@ references:
   - name: )
   - name: )
   - name: )
-- uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})
-  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})
+- uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})
+  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})
   isExternal: true
-  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__
-  name: LoadForeignKeyField<T, R, S>(T, RelmContextOptionsBuilder, Expression<Func<T, R>>, IRelmDataLoader<S>)
-  nameWithType: ModelExtensions.LoadForeignKeyField<T, R, S>(T, RelmContextOptionsBuilder, Expression<Func<T, R>>, IRelmDataLoader<S>)
-  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<T, R, S>(T, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression<System.Func<T, R>>, CoreRelm.Interfaces.IRelmDataLoader<S>)
-  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of T, R, S)(T, RelmContextOptionsBuilder, Expression(Of Func(Of T, R)), IRelmDataLoader(Of S))
-  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of T, R, S)(T, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression(Of System.Func(Of T, R)), CoreRelm.Interfaces.IRelmDataLoader(Of S))
-  name.vb: LoadForeignKeyField(Of T, R, S)(T, RelmContextOptionsBuilder, Expression(Of Func(Of T, R)), IRelmDataLoader(Of S))
+  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__
+  name: LoadForeignKeyField<T, R, S>(T, RelmContextOptions, Expression<Func<T, R>>, IRelmDataLoader<S>)
+  nameWithType: ModelExtensions.LoadForeignKeyField<T, R, S>(T, RelmContextOptions, Expression<Func<T, R>>, IRelmDataLoader<S>)
+  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<T, R, S>(T, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression<System.Func<T, R>>, CoreRelm.Interfaces.IRelmDataLoader<S>)
+  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of T, R, S)(T, RelmContextOptions, Expression(Of Func(Of T, R)), IRelmDataLoader(Of S))
+  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of T, R, S)(T, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression(Of System.Func(Of T, R)), CoreRelm.Interfaces.IRelmDataLoader(Of S))
+  name.vb: LoadForeignKeyField(Of T, R, S)(T, RelmContextOptions, Expression(Of Func(Of T, R)), IRelmDataLoader(Of S))
   spec.csharp:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__
   - name: <
   - name: T
   - name: ','
@@ -6396,9 +6396,9 @@ references:
   - name: T
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -6427,9 +6427,9 @@ references:
   - name: '>'
   - name: )
   spec.vb:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__
   - name: (
   - name: Of
   - name: " "
@@ -6445,9 +6445,9 @@ references:
   - name: T
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -6481,20 +6481,20 @@ references:
   - name: S
   - name: )
   - name: )
-- uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
-  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+- uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+  commentId: M:CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
   isExternal: true
-  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
-  name: LoadForeignKeyField<T, R, S>(T, RelmContextOptionsBuilder, Expression<Func<T, R>>, IRelmDataLoader<S>, Expression<Func<R, object>>)
-  nameWithType: ModelExtensions.LoadForeignKeyField<T, R, S>(T, RelmContextOptionsBuilder, Expression<Func<T, R>>, IRelmDataLoader<S>, Expression<Func<R, object>>)
-  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<T, R, S>(T, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression<System.Func<T, R>>, CoreRelm.Interfaces.IRelmDataLoader<S>, System.Linq.Expressions.Expression<System.Func<R, object>>)
-  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of T, R, S)(T, RelmContextOptionsBuilder, Expression(Of Func(Of T, R)), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
-  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of T, R, S)(T, CoreRelm.Options.RelmContextOptionsBuilder, System.Linq.Expressions.Expression(Of System.Func(Of T, R)), CoreRelm.Interfaces.IRelmDataLoader(Of S), System.Linq.Expressions.Expression(Of System.Func(Of R, Object)))
-  name.vb: LoadForeignKeyField(Of T, R, S)(T, RelmContextOptionsBuilder, Expression(Of Func(Of T, R)), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
+  href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
+  name: LoadForeignKeyField<T, R, S>(T, RelmContextOptions, Expression<Func<T, R>>, IRelmDataLoader<S>, Expression<Func<R, object>>)
+  nameWithType: ModelExtensions.LoadForeignKeyField<T, R, S>(T, RelmContextOptions, Expression<Func<T, R>>, IRelmDataLoader<S>, Expression<Func<R, object>>)
+  fullName: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField<T, R, S>(T, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression<System.Func<T, R>>, CoreRelm.Interfaces.IRelmDataLoader<S>, System.Linq.Expressions.Expression<System.Func<R, object>>)
+  nameWithType.vb: ModelExtensions.LoadForeignKeyField(Of T, R, S)(T, RelmContextOptions, Expression(Of Func(Of T, R)), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
+  fullName.vb: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField(Of T, R, S)(T, CoreRelm.Options.RelmContextOptions, System.Linq.Expressions.Expression(Of System.Func(Of T, R)), CoreRelm.Interfaces.IRelmDataLoader(Of S), System.Linq.Expressions.Expression(Of System.Func(Of R, Object)))
+  name.vb: LoadForeignKeyField(Of T, R, S)(T, RelmContextOptions, Expression(Of Func(Of T, R)), IRelmDataLoader(Of S), Expression(Of Func(Of R, Object)))
   spec.csharp:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
   - name: <
   - name: T
   - name: ','
@@ -6508,9 +6508,9 @@ references:
   - name: T
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1
@@ -6560,9 +6560,9 @@ references:
   - name: '>'
   - name: )
   spec.vb:
-  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptionsBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
+  - uid: CoreRelm.Extensions.ModelExtensions.LoadForeignKeyField``3(``0,CoreRelm.Options.RelmContextOptions,System.Linq.Expressions.Expression{System.Func{``0,``1}},CoreRelm.Interfaces.IRelmDataLoader{``2},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})
     name: LoadForeignKeyField
-    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptionsBuilder_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
+    href: CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___
   - name: (
   - name: Of
   - name: " "
@@ -6578,9 +6578,9 @@ references:
   - name: T
   - name: ','
   - name: " "
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: ','
   - name: " "
   - uid: System.Linq.Expressions.Expression`1

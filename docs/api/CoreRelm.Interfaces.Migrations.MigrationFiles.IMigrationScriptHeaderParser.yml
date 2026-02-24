@@ -1,0 +1,233 @@
+### YamlMime:ManagedReference
+items:
+- uid: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationScriptHeaderParser
+  commentId: T:CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationScriptHeaderParser
+  id: IMigrationScriptHeaderParser
+  parent: CoreRelm.Interfaces.Migrations.MigrationFiles
+  children:
+  - CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationScriptHeaderParser.TryParseHeader(System.String,CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationHeader@,System.String@)
+  - CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationScriptHeaderParser.ValidateHeader(System.String)
+  langs:
+  - csharp
+  - vb
+  name: IMigrationScriptHeaderParser
+  nameWithType: IMigrationScriptHeaderParser
+  fullName: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationScriptHeaderParser
+  type: Interface
+  source:
+    remote:
+      path: CoreRelm/Interfaces/Migrations/MigrationFiles/IMigrationScriptHeaderParser.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: IMigrationScriptHeaderParser
+    path: ../CoreRelm/Interfaces/Migrations/MigrationFiles/IMigrationScriptHeaderParser.cs
+    startLine: 9
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces.Migrations.MigrationFiles
+  syntax:
+    content: public interface IMigrationScriptHeaderParser
+    content.vb: Public Interface IMigrationScriptHeaderParser
+- uid: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationScriptHeaderParser.ValidateHeader(System.String)
+  commentId: M:CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationScriptHeaderParser.ValidateHeader(System.String)
+  id: ValidateHeader(System.String)
+  parent: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationScriptHeaderParser
+  langs:
+  - csharp
+  - vb
+  name: ValidateHeader(string)
+  nameWithType: IMigrationScriptHeaderParser.ValidateHeader(string)
+  fullName: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationScriptHeaderParser.ValidateHeader(string)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Interfaces/Migrations/MigrationFiles/IMigrationScriptHeaderParser.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: ValidateHeader
+    path: ../CoreRelm/Interfaces/Migrations/MigrationFiles/IMigrationScriptHeaderParser.cs
+    startLine: 11
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces.Migrations.MigrationFiles
+  syntax:
+    content: void ValidateHeader(string headerVersion)
+    parameters:
+    - id: headerVersion
+      type: System.String
+    content.vb: Sub ValidateHeader(headerVersion As String)
+  overload: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationScriptHeaderParser.ValidateHeader*
+  nameWithType.vb: IMigrationScriptHeaderParser.ValidateHeader(String)
+  fullName.vb: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationScriptHeaderParser.ValidateHeader(String)
+  name.vb: ValidateHeader(String)
+- uid: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationScriptHeaderParser.TryParseHeader(System.String,CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationHeader@,System.String@)
+  commentId: M:CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationScriptHeaderParser.TryParseHeader(System.String,CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationHeader@,System.String@)
+  id: TryParseHeader(System.String,CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationHeader@,System.String@)
+  parent: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationScriptHeaderParser
+  langs:
+  - csharp
+  - vb
+  name: TryParseHeader(string, out ParsedMigrationHeader, out string?)
+  nameWithType: IMigrationScriptHeaderParser.TryParseHeader(string, out ParsedMigrationHeader, out string?)
+  fullName: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationScriptHeaderParser.TryParseHeader(string, out CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationHeader, out string?)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Interfaces/Migrations/MigrationFiles/IMigrationScriptHeaderParser.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: TryParseHeader
+    path: ../CoreRelm/Interfaces/Migrations/MigrationFiles/IMigrationScriptHeaderParser.cs
+    startLine: 12
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Interfaces.Migrations.MigrationFiles
+  syntax:
+    content: bool TryParseHeader(string sqlText, out ParsedMigrationHeader header, out string? error)
+    parameters:
+    - id: sqlText
+      type: System.String
+    - id: header
+      type: CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationHeader
+    - id: error
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Function TryParseHeader(sqlText As String, header As ParsedMigrationHeader, [error] As String) As Boolean
+  overload: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationScriptHeaderParser.TryParseHeader*
+  nameWithType.vb: IMigrationScriptHeaderParser.TryParseHeader(String, ParsedMigrationHeader, String)
+  fullName.vb: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationScriptHeaderParser.TryParseHeader(String, CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationHeader, String)
+  name.vb: TryParseHeader(String, ParsedMigrationHeader, String)
+references:
+- uid: CoreRelm.Interfaces.Migrations.MigrationFiles
+  commentId: N:CoreRelm.Interfaces.Migrations.MigrationFiles
+  href: CoreRelm.html
+  name: CoreRelm.Interfaces.Migrations.MigrationFiles
+  nameWithType: CoreRelm.Interfaces.Migrations.MigrationFiles
+  fullName: CoreRelm.Interfaces.Migrations.MigrationFiles
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations
+    name: Migrations
+    href: CoreRelm.Interfaces.Migrations.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations.MigrationFiles
+    name: MigrationFiles
+    href: CoreRelm.Interfaces.Migrations.MigrationFiles.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Interfaces
+    name: Interfaces
+    href: CoreRelm.Interfaces.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations
+    name: Migrations
+    href: CoreRelm.Interfaces.Migrations.html
+  - name: .
+  - uid: CoreRelm.Interfaces.Migrations.MigrationFiles
+    name: MigrationFiles
+    href: CoreRelm.Interfaces.Migrations.MigrationFiles.html
+- uid: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationScriptHeaderParser.ValidateHeader*
+  commentId: Overload:CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationScriptHeaderParser.ValidateHeader
+  href: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationScriptHeaderParser.html#CoreRelm_Interfaces_Migrations_MigrationFiles_IMigrationScriptHeaderParser_ValidateHeader_System_String_
+  name: ValidateHeader
+  nameWithType: IMigrationScriptHeaderParser.ValidateHeader
+  fullName: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationScriptHeaderParser.ValidateHeader
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationScriptHeaderParser.TryParseHeader*
+  commentId: Overload:CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationScriptHeaderParser.TryParseHeader
+  href: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationScriptHeaderParser.html#CoreRelm_Interfaces_Migrations_MigrationFiles_IMigrationScriptHeaderParser_TryParseHeader_System_String_CoreRelm_Models_Migrations_Tooling_Apply_ParsedMigrationHeader__System_String__
+  name: TryParseHeader
+  nameWithType: IMigrationScriptHeaderParser.TryParseHeader
+  fullName: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationScriptHeaderParser.TryParseHeader
+- uid: CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationHeader
+  commentId: T:CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationHeader
+  parent: CoreRelm.Models.Migrations.Tooling.Apply
+  href: CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationHeader.html
+  name: ParsedMigrationHeader
+  nameWithType: ParsedMigrationHeader
+  fullName: CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationHeader
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: CoreRelm.Models.Migrations.Tooling.Apply
+  commentId: N:CoreRelm.Models.Migrations.Tooling.Apply
+  href: CoreRelm.html
+  name: CoreRelm.Models.Migrations.Tooling.Apply
+  nameWithType: CoreRelm.Models.Migrations.Tooling.Apply
+  fullName: CoreRelm.Models.Migrations.Tooling.Apply
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling
+    name: Tooling
+    href: CoreRelm.Models.Migrations.Tooling.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling.Apply
+    name: Apply
+    href: CoreRelm.Models.Migrations.Tooling.Apply.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling
+    name: Tooling
+    href: CoreRelm.Models.Migrations.Tooling.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Tooling.Apply
+    name: Apply
+    href: CoreRelm.Models.Migrations.Tooling.Apply.html

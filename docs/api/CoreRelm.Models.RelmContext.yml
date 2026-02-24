@@ -5,13 +5,11 @@ items:
   id: RelmContext
   parent: CoreRelm.Models
   children:
-  - CoreRelm.Models.RelmContext.#ctor(CoreRelm.Interfaces.IRelmContext,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
-  - CoreRelm.Models.RelmContext.#ctor(CoreRelm.Options.RelmContextOptionsBuilder)
-  - CoreRelm.Models.RelmContext.#ctor(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
-  - CoreRelm.Models.RelmContext.#ctor(MySql.Data.MySqlClient.MySqlConnection,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
-  - CoreRelm.Models.RelmContext.#ctor(System.Enum,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
-  - CoreRelm.Models.RelmContext.#ctor(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
-  - CoreRelm.Models.RelmContext.AppliedMigrations
+  - CoreRelm.Models.RelmContext.#ctor(CoreRelm.Options.RelmContextOptions)
+  - CoreRelm.Models.RelmContext.#ctor(CoreRelm.Options.RelmContextOptions,MySql.Data.MySqlClient.MySqlConnection)
+  - CoreRelm.Models.RelmContext.#ctor(CoreRelm.Options.RelmContextOptions,MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction)
+  - CoreRelm.Models.RelmContext.#ctor(CoreRelm.Options.RelmContextOptions,System.Enum)
+  - CoreRelm.Models.RelmContext.#ctor(CoreRelm.Options.RelmContextOptions,System.String,CoreRelm.Options.RelmContextOptions.OptionsBuilderTypes)
   - CoreRelm.Models.RelmContext.BeginTransaction
   - CoreRelm.Models.RelmContext.BeginTransactionAsync(System.Threading.CancellationToken)
   - CoreRelm.Models.RelmContext.BulkTableWriteAsync``1(``0,System.String,System.Type,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
@@ -66,7 +64,7 @@ items:
   - CoreRelm.Models.RelmContext.HasDataSet(System.Type,System.Boolean)
   - CoreRelm.Models.RelmContext.HasDataSet``1(System.Boolean)
   - CoreRelm.Models.RelmContext.HasTransaction
-  - CoreRelm.Models.RelmContext.OnConfigure(CoreRelm.Options.RelmContextOptionsBuilder)
+  - CoreRelm.Models.RelmContext.OnConfigure(CoreRelm.Options.RelmContextOptions)
   - CoreRelm.Models.RelmContext.RollbackTransaction
   - CoreRelm.Models.RelmContext.RollbackTransactionAsync(System.Threading.CancellationToken)
   - CoreRelm.Models.RelmContext.RunAsync``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)
@@ -95,7 +93,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: RelmContext
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 37
+    startLine: 38
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -120,7 +118,7 @@ items:
   inheritance:
   - System.Object
   derivedClasses:
-  - CoreRelm.RelmInternal.Contexts.InformationSchemaContext
+  - CoreRelm.Migrations.Contexts.InformationSchemaContext
   implements:
   - System.IDisposable
   - CoreRelm.Interfaces.IRelmContext
@@ -134,16 +132,16 @@ items:
   - System.Object.ToString
   extensionMethods:
   - CoreRelm.Interfaces.IRelmContext.CoreRelm.Extensions.DbContextExtensions.SetLockWaitTimeout(System.Int32)
-- uid: CoreRelm.Models.RelmContext.OnConfigure(CoreRelm.Options.RelmContextOptionsBuilder)
-  commentId: M:CoreRelm.Models.RelmContext.OnConfigure(CoreRelm.Options.RelmContextOptionsBuilder)
-  id: OnConfigure(CoreRelm.Options.RelmContextOptionsBuilder)
+- uid: CoreRelm.Models.RelmContext.OnConfigure(CoreRelm.Options.RelmContextOptions)
+  commentId: M:CoreRelm.Models.RelmContext.OnConfigure(CoreRelm.Options.RelmContextOptions)
+  id: OnConfigure(CoreRelm.Options.RelmContextOptions)
   parent: CoreRelm.Models.RelmContext
   langs:
   - csharp
   - vb
-  name: OnConfigure(RelmContextOptionsBuilder)
-  nameWithType: RelmContext.OnConfigure(RelmContextOptionsBuilder)
-  fullName: CoreRelm.Models.RelmContext.OnConfigure(CoreRelm.Options.RelmContextOptionsBuilder)
+  name: OnConfigure(RelmContextOptions)
+  nameWithType: RelmContext.OnConfigure(RelmContextOptions)
+  fullName: CoreRelm.Models.RelmContext.OnConfigure(CoreRelm.Options.RelmContextOptions)
   type: Method
   source:
     remote:
@@ -152,7 +150,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: OnConfigure
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 47
+    startLine: 48
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -166,12 +164,12 @@ items:
         initialization.
   example: []
   syntax:
-    content: public virtual void OnConfigure(RelmContextOptionsBuilder OptionsBuilder)
+    content: public virtual void OnConfigure(RelmContextOptions OptionsBuilder)
     parameters:
     - id: OptionsBuilder
-      type: CoreRelm.Options.RelmContextOptionsBuilder
+      type: CoreRelm.Options.RelmContextOptions
       description: A builder used to configure options for the context. Cannot be null.
-    content.vb: Public Overridable Sub OnConfigure(OptionsBuilder As RelmContextOptionsBuilder)
+    content.vb: Public Overridable Sub OnConfigure(OptionsBuilder As RelmContextOptions)
   overload: CoreRelm.Models.RelmContext.OnConfigure*
 - uid: CoreRelm.Models.RelmContext.ContextOptions
   commentId: P:CoreRelm.Models.RelmContext.ContextOptions
@@ -191,64 +189,30 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ContextOptions
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 55
+    startLine: 58
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
-  summary: Gets the options builder used to configure the context.
-  remarks: >-
-    Use this property to customize context-specific settings before building or
-        initializing the context. Changes to the options should be made prior to finalizing the context
-        configuration.
   example: []
   syntax:
-    content: public RelmContextOptionsBuilder ContextOptions { get; }
+    content: public RelmContextOptions ContextOptions { get; }
     parameters: []
     return:
-      type: CoreRelm.Options.RelmContextOptionsBuilder
-    content.vb: Public Property ContextOptions As RelmContextOptionsBuilder
+      type: CoreRelm.Options.RelmContextOptions
+    content.vb: Public ReadOnly Property ContextOptions As RelmContextOptions
   overload: CoreRelm.Models.RelmContext.ContextOptions*
   implements:
   - CoreRelm.Interfaces.IRelmContext.ContextOptions
-- uid: CoreRelm.Models.RelmContext.AppliedMigrations
-  commentId: P:CoreRelm.Models.RelmContext.AppliedMigrations
-  id: AppliedMigrations
+- uid: CoreRelm.Models.RelmContext.#ctor(CoreRelm.Options.RelmContextOptions)
+  commentId: M:CoreRelm.Models.RelmContext.#ctor(CoreRelm.Options.RelmContextOptions)
+  id: '#ctor(CoreRelm.Options.RelmContextOptions)'
   parent: CoreRelm.Models.RelmContext
   langs:
   - csharp
   - vb
-  name: AppliedMigrations
-  nameWithType: RelmContext.AppliedMigrations
-  fullName: CoreRelm.Models.RelmContext.AppliedMigrations
-  type: Property
-  source:
-    remote:
-      path: CoreRelm/Models/RelmContext.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: AppliedMigrations
-    path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 63
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Models
-  syntax:
-    content: public IRelmDataSet<AppliedMigration> AppliedMigrations { get; set; }
-    parameters: []
-    return:
-      type: CoreRelm.Interfaces.IRelmDataSet{CoreRelm.Models.Migrations.Execution.AppliedMigration}
-    content.vb: Public Property AppliedMigrations As IRelmDataSet(Of AppliedMigration)
-  overload: CoreRelm.Models.RelmContext.AppliedMigrations*
-- uid: CoreRelm.Models.RelmContext.#ctor(CoreRelm.Interfaces.IRelmContext,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
-  commentId: M:CoreRelm.Models.RelmContext.#ctor(CoreRelm.Interfaces.IRelmContext,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
-  id: '#ctor(CoreRelm.Interfaces.IRelmContext,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)'
-  parent: CoreRelm.Models.RelmContext
-  langs:
-  - csharp
-  - vb
-  name: RelmContext(IRelmContext, bool, bool, bool, bool, int, bool, bool)
-  nameWithType: RelmContext.RelmContext(IRelmContext, bool, bool, bool, bool, int, bool, bool)
-  fullName: CoreRelm.Models.RelmContext.RelmContext(CoreRelm.Interfaces.IRelmContext, bool, bool, bool, bool, int, bool, bool)
+  name: RelmContext(RelmContextOptions?)
+  nameWithType: RelmContext.RelmContext(RelmContextOptions?)
+  fullName: CoreRelm.Models.RelmContext.RelmContext(CoreRelm.Options.RelmContextOptions?)
   type: Constructor
   source:
     remote:
@@ -257,63 +221,88 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 79
+    startLine: 66
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models
+  syntax:
+    content: public RelmContext(RelmContextOptions? contextOptions)
+    parameters:
+    - id: contextOptions
+      type: CoreRelm.Options.RelmContextOptions
+    content.vb: Public Sub New(contextOptions As RelmContextOptions)
+  overload: CoreRelm.Models.RelmContext.#ctor*
+  nameWithType.vb: RelmContext.New(RelmContextOptions)
+  fullName.vb: CoreRelm.Models.RelmContext.New(CoreRelm.Options.RelmContextOptions)
+  name.vb: New(RelmContextOptions)
+- uid: CoreRelm.Models.RelmContext.#ctor(CoreRelm.Options.RelmContextOptions,System.String,CoreRelm.Options.RelmContextOptions.OptionsBuilderTypes)
+  commentId: M:CoreRelm.Models.RelmContext.#ctor(CoreRelm.Options.RelmContextOptions,System.String,CoreRelm.Options.RelmContextOptions.OptionsBuilderTypes)
+  id: '#ctor(CoreRelm.Options.RelmContextOptions,System.String,CoreRelm.Options.RelmContextOptions.OptionsBuilderTypes)'
+  parent: CoreRelm.Models.RelmContext
+  langs:
+  - csharp
+  - vb
+  name: RelmContext(RelmContextOptions?, string?, OptionsBuilderTypes)
+  nameWithType: RelmContext.RelmContext(RelmContextOptions?, string?, RelmContextOptions.OptionsBuilderTypes)
+  fullName: CoreRelm.Models.RelmContext.RelmContext(CoreRelm.Options.RelmContextOptions?, string?, CoreRelm.Options.RelmContextOptions.OptionsBuilderTypes)
+  type: Constructor
+  source:
+    remote:
+      path: CoreRelm/Models/RelmContext.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: .ctor
+    path: ../CoreRelm/Models/RelmContext.cs
+    startLine: 89
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
   summary: >-
-    Initializes a new instance of the RelmContext class using the specified context options and configuration
+    Initializes a new instance of the RelmContext class using the specified context options and connection
 
-    settings.
+    string information.
+  remarks: >-
+    This constructor is intended for use by derived classes that need to specify a
+        different connection string without manually constructing context options.
   example: []
   syntax:
-    content: public RelmContext(IRelmContext relmContext, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true)
+    content: protected RelmContext(RelmContextOptions? contextOptions, string? connectionUpdateData, RelmContextOptions.OptionsBuilderTypes optionsBuilderType)
     parameters:
-    - id: relmContext
-      type: CoreRelm.Interfaces.IRelmContext
-      description: The context options provider used to configure the RelmContext. Cannot be null.
-    - id: autoOpenConnection
-      type: System.Boolean
-      description: true to automatically open the database connection when the context is created; otherwise, false.
-    - id: autoOpenTransaction
-      type: System.Boolean
-      description: true to automatically begin a transaction when the context is created; otherwise, false.
-    - id: allowUserVariables
-      type: System.Boolean
-      description: true to allow user-defined variables in database queries; otherwise, false.
-    - id: convertZeroDateTime
-      type: System.Boolean
-      description: true to convert zero date/time values to null when reading from the database; otherwise, false.
-    - id: lockWaitTimeoutSeconds
-      type: System.Int32
+    - id: contextOptions
+      type: CoreRelm.Options.RelmContextOptions
+      description: The options used to configure the context. If null, default options will be applied.
+    - id: connectionUpdateData
+      type: System.String
       description: >-
-        The maximum time, in seconds, to wait for a database lock before timing out. Specify 0 to use the default
-            timeout.
-    - id: autoInitializeDataSets
-      type: System.Boolean
-      description: true to automatically initialize data sets when the context is created; otherwise, false.
-    - id: autoVerifyTables
-      type: System.Boolean
-      description: true to automatically verify table existence when the context is created; otherwise, false.
-    content.vb: Public Sub New(relmContext As IRelmContext, autoOpenConnection As Boolean = True, autoOpenTransaction As Boolean = False, allowUserVariables As Boolean = False, convertZeroDateTime As Boolean = False, lockWaitTimeoutSeconds As Integer = 0, autoInitializeDataSets As Boolean = True, autoVerifyTables As Boolean = True)
+        The connection string or named connection to be used for establishing the database connection. Cannot be
+            null.
+    - id: optionsBuilderType
+      type: CoreRelm.Options.RelmContextOptions.OptionsBuilderTypes
+      description: >-
+        Specifies whether the connectionUpdateData parameter is a direct connection string or a named connection
+            string.
+    content.vb: Protected Sub New(contextOptions As RelmContextOptions, connectionUpdateData As String, optionsBuilderType As RelmContextOptions.OptionsBuilderTypes)
   overload: CoreRelm.Models.RelmContext.#ctor*
   exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Thrown if the provided optionsBuilderType is not supported.
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: Thrown if relmContext or relmContext.ContextOptions is null.
-  nameWithType.vb: RelmContext.New(IRelmContext, Boolean, Boolean, Boolean, Boolean, Integer, Boolean, Boolean)
-  fullName.vb: CoreRelm.Models.RelmContext.New(CoreRelm.Interfaces.IRelmContext, Boolean, Boolean, Boolean, Boolean, Integer, Boolean, Boolean)
-  name.vb: New(IRelmContext, Boolean, Boolean, Boolean, Boolean, Integer, Boolean, Boolean)
-- uid: CoreRelm.Models.RelmContext.#ctor(CoreRelm.Options.RelmContextOptionsBuilder)
-  commentId: M:CoreRelm.Models.RelmContext.#ctor(CoreRelm.Options.RelmContextOptionsBuilder)
-  id: '#ctor(CoreRelm.Options.RelmContextOptionsBuilder)'
+    description: Thrown if connectionUpdateData is null or if the built context options are null.
+  nameWithType.vb: RelmContext.New(RelmContextOptions, String, RelmContextOptions.OptionsBuilderTypes)
+  fullName.vb: CoreRelm.Models.RelmContext.New(CoreRelm.Options.RelmContextOptions, String, CoreRelm.Options.RelmContextOptions.OptionsBuilderTypes)
+  name.vb: New(RelmContextOptions, String, OptionsBuilderTypes)
+- uid: CoreRelm.Models.RelmContext.#ctor(CoreRelm.Options.RelmContextOptions,System.Enum)
+  commentId: M:CoreRelm.Models.RelmContext.#ctor(CoreRelm.Options.RelmContextOptions,System.Enum)
+  id: '#ctor(CoreRelm.Options.RelmContextOptions,System.Enum)'
   parent: CoreRelm.Models.RelmContext
   langs:
   - csharp
   - vb
-  name: RelmContext(RelmContextOptionsBuilder)
-  nameWithType: RelmContext.RelmContext(RelmContextOptionsBuilder)
-  fullName: CoreRelm.Models.RelmContext.RelmContext(CoreRelm.Options.RelmContextOptionsBuilder)
+  name: RelmContext(RelmContextOptions?, Enum?)
+  nameWithType: RelmContext.RelmContext(RelmContextOptions?, Enum?)
+  fullName: CoreRelm.Models.RelmContext.RelmContext(CoreRelm.Options.RelmContextOptions?, System.Enum?)
   type: Constructor
   source:
     remote:
@@ -322,117 +311,48 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 97
+    startLine: 129
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
-  summary: >-
-    Initializes a new instance of the RelmContext class with the specified context options and
-
-    configuration settings.
+  summary: Initializes a new instance of the RelmContext class using the specified context options and connection type.
   remarks: >-
-    All configuration settings are validated before the context is initialized. This
-        constructor allows fine-grained control over connection and transaction behavior, as well as SQL
-        compatibility options.
+    This constructor sets up the context options and initializes the data sets based on
+        the provided parameters. It is important to ensure that the connectionType is valid to avoid runtime
+        errors.
   example: []
   syntax:
-    content: public RelmContext(RelmContextOptionsBuilder optionsBuilder)
+    content: protected RelmContext(RelmContextOptions? contextOptions, Enum? connectionType)
     parameters:
-    - id: optionsBuilder
-      type: CoreRelm.Options.RelmContextOptionsBuilder
-      description: The options builder used to configure the context. Cannot be null.
-    content.vb: Public Sub New(optionsBuilder As RelmContextOptionsBuilder)
-  overload: CoreRelm.Models.RelmContext.#ctor*
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: Thrown if <code class="paramref">optionsBuilder</code> is null.
-  nameWithType.vb: RelmContext.New(RelmContextOptionsBuilder)
-  fullName.vb: CoreRelm.Models.RelmContext.New(CoreRelm.Options.RelmContextOptionsBuilder)
-  name.vb: New(RelmContextOptionsBuilder)
-- uid: CoreRelm.Models.RelmContext.#ctor(System.Enum,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
-  commentId: M:CoreRelm.Models.RelmContext.#ctor(System.Enum,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
-  id: '#ctor(System.Enum,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)'
-  parent: CoreRelm.Models.RelmContext
-  langs:
-  - csharp
-  - vb
-  name: RelmContext(Enum, bool, bool, bool, bool, int, bool, bool)
-  nameWithType: RelmContext.RelmContext(Enum, bool, bool, bool, bool, int, bool, bool)
-  fullName: CoreRelm.Models.RelmContext.RelmContext(System.Enum, bool, bool, bool, bool, int, bool, bool)
-  type: Constructor
-  source:
-    remote:
-      path: CoreRelm/Models/RelmContext.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: .ctor
-    path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 124
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Models
-  summary: >-
-    Initializes a new instance of the RelmContext class with the specified connection options and behavior
-
-    settings.
-  remarks: >-
-    Use this constructor to customize context behavior such as connection management,
-        transaction handling, and query options. These settings affect how the context interacts with the database
-        and may impact performance or compatibility depending on the database provider.
-  example: []
-  syntax:
-    content: public RelmContext(Enum connectionStringType, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true)
-    parameters:
-    - id: connectionStringType
+    - id: contextOptions
+      type: CoreRelm.Options.RelmContextOptions
+      description: >-
+        The options used to configure the context. This parameter can be null; if provided, it must contain valid
+            configuration settings for the context.
+    - id: connectionType
       type: System.Enum
       description: >-
-        The type of connection string to use for configuring the database context. Determines how the context
-            connects to the underlying data source.
-    - id: autoOpenConnection
-      type: System.Boolean
-      description: >-
-        true to automatically open the database connection when the context is created; otherwise, false. The
-            default is true.
-    - id: autoOpenTransaction
-      type: System.Boolean
-      description: >-
-        true to automatically begin a transaction when the context is created; otherwise, false. The default is
-            false.
-    - id: allowUserVariables
-      type: System.Boolean
-      description: true to allow user-defined variables in database queries; otherwise, false. The default is false.
-    - id: convertZeroDateTime
-      type: System.Boolean
-      description: >-
-        true to convert zero date/time values from the database to DateTime.MinValue; otherwise, false. The default
-            is false.
-    - id: lockWaitTimeoutSeconds
-      type: System.Int32
-      description: >-
-        The maximum number of seconds to wait for a database lock before timing out. Specify 0 to use the default
-            timeout.
-    - id: autoInitializeDataSets
-      type: System.Boolean
-      description: true to automatically initialize data sets when the context is created; otherwise, false.
-    - id: autoVerifyTables
-      type: System.Boolean
-      description: true to automatically verify table existence when the context is created; otherwise, false.
-    content.vb: Public Sub New(connectionStringType As [Enum], autoOpenConnection As Boolean = True, autoOpenTransaction As Boolean = False, allowUserVariables As Boolean = False, convertZeroDateTime As Boolean = False, lockWaitTimeoutSeconds As Integer = 0, autoInitializeDataSets As Boolean = True, autoVerifyTables As Boolean = True)
+        The type of connection to be used for the context. This parameter cannot be null and determines the
+            connection string type applied to the context.
+    content.vb: Protected Sub New(contextOptions As RelmContextOptions, connectionType As [Enum])
   overload: CoreRelm.Models.RelmContext.#ctor*
-  nameWithType.vb: RelmContext.New(Enum, Boolean, Boolean, Boolean, Boolean, Integer, Boolean, Boolean)
-  fullName.vb: CoreRelm.Models.RelmContext.New(System.Enum, Boolean, Boolean, Boolean, Boolean, Integer, Boolean, Boolean)
-  name.vb: New(Enum, Boolean, Boolean, Boolean, Boolean, Integer, Boolean, Boolean)
-- uid: CoreRelm.Models.RelmContext.#ctor(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
-  commentId: M:CoreRelm.Models.RelmContext.#ctor(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
-  id: '#ctor(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)'
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown if the connectionType parameter is null.
+  nameWithType.vb: RelmContext.New(RelmContextOptions, Enum)
+  fullName.vb: CoreRelm.Models.RelmContext.New(CoreRelm.Options.RelmContextOptions, System.Enum)
+  name.vb: New(RelmContextOptions, Enum)
+- uid: CoreRelm.Models.RelmContext.#ctor(CoreRelm.Options.RelmContextOptions,MySql.Data.MySqlClient.MySqlConnection)
+  commentId: M:CoreRelm.Models.RelmContext.#ctor(CoreRelm.Options.RelmContextOptions,MySql.Data.MySqlClient.MySqlConnection)
+  id: '#ctor(CoreRelm.Options.RelmContextOptions,MySql.Data.MySqlClient.MySqlConnection)'
   parent: CoreRelm.Models.RelmContext
   langs:
   - csharp
   - vb
-  name: RelmContext(string, bool, bool, bool, bool, int, bool, bool)
-  nameWithType: RelmContext.RelmContext(string, bool, bool, bool, bool, int, bool, bool)
-  fullName: CoreRelm.Models.RelmContext.RelmContext(string, bool, bool, bool, bool, int, bool, bool)
+  name: RelmContext(RelmContextOptions?, MySqlConnection?)
+  nameWithType: RelmContext.RelmContext(RelmContextOptions?, MySqlConnection?)
+  fullName: CoreRelm.Models.RelmContext.RelmContext(CoreRelm.Options.RelmContextOptions?, MySql.Data.MySqlClient.MySqlConnection?)
   type: Constructor
   source:
     remote:
@@ -441,177 +361,90 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 143
+    startLine: 156
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
   summary: >-
-    Initializes a new instance of the RelmContext class with the specified connection details and
+    Initializes a new instance of the RelmContext class using the specified context options and database
 
-    configuration options.
+    connection.
+  remarks: >-
+    This constructor configures the context and prepares the necessary data sets for
+        database operations. Supplying custom context options allows for advanced configuration; otherwise, default
+        settings are used.
   example: []
   syntax:
-    content: public RelmContext(string connectionDetails, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true)
+    content: protected RelmContext(RelmContextOptions? contextOptions, MySqlConnection? sqlConnection)
     parameters:
-    - id: connectionDetails
-      type: System.String
-      description: The connection string or details used to establish a database connection.
-    - id: autoOpenConnection
-      type: System.Boolean
-      description: true to automatically open the database connection upon context initialization; otherwise, false.
-    - id: autoOpenTransaction
-      type: System.Boolean
-      description: true to automatically begin a transaction when the context is initialized; otherwise, false.
-    - id: allowUserVariables
-      type: System.Boolean
-      description: true to allow the use of user-defined variables in database queries; otherwise, false.
-    - id: convertZeroDateTime
-      type: System.Boolean
-      description: true to convert zero date/time values to null when reading from the database; otherwise, false.
-    - id: lockWaitTimeoutSeconds
-      type: System.Int32
-      description: The number of seconds to wait for a database lock before timing out. Specify 0 to use the default timeout.
-    - id: autoInitializeDataSets
-      type: System.Boolean
-      description: true to automatically initialize data sets when the context is created; otherwise, false.
-    - id: autoVerifyTables
-      type: System.Boolean
-      description: true to automatically verify table existence when the context is created; otherwise, false.
-    content.vb: Public Sub New(connectionDetails As String, autoOpenConnection As Boolean = True, autoOpenTransaction As Boolean = False, allowUserVariables As Boolean = False, convertZeroDateTime As Boolean = False, lockWaitTimeoutSeconds As Integer = 0, autoInitializeDataSets As Boolean = True, autoVerifyTables As Boolean = True)
-  overload: CoreRelm.Models.RelmContext.#ctor*
-  nameWithType.vb: RelmContext.New(String, Boolean, Boolean, Boolean, Boolean, Integer, Boolean, Boolean)
-  fullName.vb: CoreRelm.Models.RelmContext.New(String, Boolean, Boolean, Boolean, Boolean, Integer, Boolean, Boolean)
-  name.vb: New(String, Boolean, Boolean, Boolean, Boolean, Integer, Boolean, Boolean)
-- uid: CoreRelm.Models.RelmContext.#ctor(MySql.Data.MySqlClient.MySqlConnection,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
-  commentId: M:CoreRelm.Models.RelmContext.#ctor(MySql.Data.MySqlClient.MySqlConnection,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
-  id: '#ctor(MySql.Data.MySqlClient.MySqlConnection,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)'
-  parent: CoreRelm.Models.RelmContext
-  langs:
-  - csharp
-  - vb
-  name: RelmContext(MySqlConnection, bool, bool, bool, bool, int, bool, bool)
-  nameWithType: RelmContext.RelmContext(MySqlConnection, bool, bool, bool, bool, int, bool, bool)
-  fullName: CoreRelm.Models.RelmContext.RelmContext(MySql.Data.MySqlClient.MySqlConnection, bool, bool, bool, bool, int, bool, bool)
-  type: Constructor
-  source:
-    remote:
-      path: CoreRelm/Models/RelmContext.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: .ctor
-    path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 167
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Models
-  summary: >-
-    Initializes a new instance of the RelmContext class using the specified MySQL connection and
-
-    configuration options.
-  example: []
-  syntax:
-    content: public RelmContext(MySqlConnection connection, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true)
-    parameters:
-    - id: connection
-      type: MySql.Data.MySqlClient.MySqlConnection
-      description: The MySqlConnection to use for database operations. Cannot be null.
-    - id: autoOpenConnection
-      type: System.Boolean
-      description: >-
-        Specifies whether the database connection should be automatically opened when the context is created. If
-            <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, the connection is opened; otherwise, it remains closed until explicitly opened.
-    - id: autoOpenTransaction
-      type: System.Boolean
-      description: >-
-        Specifies whether a database transaction should be automatically started when the context is created. If
-            <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, a transaction is started; otherwise, no transaction is started by default.
-    - id: allowUserVariables
-      type: System.Boolean
-      description: Specifies whether user-defined variables are allowed in SQL statements executed by this context. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, user variables are permitted.
-    - id: convertZeroDateTime
-      type: System.Boolean
-      description: Specifies whether zero date/time values from the database should be converted to DateTime.MinValue. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, zero date/time values are converted; otherwise, they are not.
-    - id: lockWaitTimeoutSeconds
-      type: System.Int32
-      description: >-
-        The number of seconds to wait for a database lock before timing out. Specify 0 to use the default server
-            setting.
-    - id: autoInitializeDataSets
-      type: System.Boolean
-      description: true to automatically initialize data sets when the context is created; otherwise, false.
-    - id: autoVerifyTables
-      type: System.Boolean
-      description: true to automatically verify table existence when the context is created; otherwise, false.
-    content.vb: Public Sub New(connection As MySqlConnection, autoOpenConnection As Boolean = True, autoOpenTransaction As Boolean = False, allowUserVariables As Boolean = False, convertZeroDateTime As Boolean = False, lockWaitTimeoutSeconds As Integer = 0, autoInitializeDataSets As Boolean = True, autoVerifyTables As Boolean = True)
-  overload: CoreRelm.Models.RelmContext.#ctor*
-  nameWithType.vb: RelmContext.New(MySqlConnection, Boolean, Boolean, Boolean, Boolean, Integer, Boolean, Boolean)
-  fullName.vb: CoreRelm.Models.RelmContext.New(MySql.Data.MySqlClient.MySqlConnection, Boolean, Boolean, Boolean, Boolean, Integer, Boolean, Boolean)
-  name.vb: New(MySqlConnection, Boolean, Boolean, Boolean, Boolean, Integer, Boolean, Boolean)
-- uid: CoreRelm.Models.RelmContext.#ctor(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
-  commentId: M:CoreRelm.Models.RelmContext.#ctor(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
-  id: '#ctor(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)'
-  parent: CoreRelm.Models.RelmContext
-  langs:
-  - csharp
-  - vb
-  name: RelmContext(MySqlConnection, MySqlTransaction?, bool, bool, bool, int, bool, bool)
-  nameWithType: RelmContext.RelmContext(MySqlConnection, MySqlTransaction?, bool, bool, bool, int, bool, bool)
-  fullName: CoreRelm.Models.RelmContext.RelmContext(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction?, bool, bool, bool, int, bool, bool)
-  type: Constructor
-  source:
-    remote:
-      path: CoreRelm/Models/RelmContext.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: .ctor
-    path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 190
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Models
-  summary: >-
-    Initializes a new instance of the RelmContext class using the specified MySQL connection, transaction,
-
-    and context options.
-  example: []
-  syntax:
-    content: public RelmContext(MySqlConnection connection, MySqlTransaction? transaction, bool autoOpenConnection = true, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true)
-    parameters:
-    - id: connection
+    - id: contextOptions
+      type: CoreRelm.Options.RelmContextOptions
+      description: The options used to configure the context. If null, default options are applied.
+    - id: sqlConnection
       type: MySql.Data.MySqlClient.MySqlConnection
       description: >-
-        The MySqlConnection to use for database operations. Must not be null and should be open or capable of being
-            opened if <code class="paramref">autoOpenConnection</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>.
-    - id: transaction
+        The MySqlConnection instance used to establish a connection to the database. This parameter must not be
+            null.
+    content.vb: Protected Sub New(contextOptions As RelmContextOptions, sqlConnection As MySqlConnection)
+  overload: CoreRelm.Models.RelmContext.#ctor*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown when the sqlConnection parameter is null.
+  nameWithType.vb: RelmContext.New(RelmContextOptions, MySqlConnection)
+  fullName.vb: CoreRelm.Models.RelmContext.New(CoreRelm.Options.RelmContextOptions, MySql.Data.MySqlClient.MySqlConnection)
+  name.vb: New(RelmContextOptions, MySqlConnection)
+- uid: CoreRelm.Models.RelmContext.#ctor(CoreRelm.Options.RelmContextOptions,MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction)
+  commentId: M:CoreRelm.Models.RelmContext.#ctor(CoreRelm.Options.RelmContextOptions,MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction)
+  id: '#ctor(CoreRelm.Options.RelmContextOptions,MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction)'
+  parent: CoreRelm.Models.RelmContext
+  langs:
+  - csharp
+  - vb
+  name: RelmContext(RelmContextOptions?, MySqlConnection?, MySqlTransaction?)
+  nameWithType: RelmContext.RelmContext(RelmContextOptions?, MySqlConnection?, MySqlTransaction?)
+  fullName: CoreRelm.Models.RelmContext.RelmContext(CoreRelm.Options.RelmContextOptions?, MySql.Data.MySqlClient.MySqlConnection?, MySql.Data.MySqlClient.MySqlTransaction?)
+  type: Constructor
+  source:
+    remote:
+      path: CoreRelm/Models/RelmContext.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: .ctor
+    path: ../CoreRelm/Models/RelmContext.cs
+    startLine: 182
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models
+  summary: >-
+    Initializes a new instance of the RelmContext class using the specified context options, database
+
+    connection, and transaction.
+  remarks: >-
+    This constructor configures the context and initializes data sets based on the
+        provided connection and transaction.
+  example: []
+  syntax:
+    content: protected RelmContext(RelmContextOptions? contextOptions, MySqlConnection? sqlConnection, MySqlTransaction? sqlTransaction)
+    parameters:
+    - id: contextOptions
+      type: CoreRelm.Options.RelmContextOptions
+      description: The options used to configure the context. If null, default options are applied.
+    - id: sqlConnection
+      type: MySql.Data.MySqlClient.MySqlConnection
+      description: The MySqlConnection instance used to establish a connection to the database. Cannot be null.
+    - id: sqlTransaction
       type: MySql.Data.MySqlClient.MySqlTransaction
-      description: The MySqlTransaction to associate with the context. Can be null if no transaction is required.
-    - id: autoOpenConnection
-      type: System.Boolean
-      description: Specifies whether the context should automatically open the connection if it is not already open. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, the connection will be opened as needed.
-    - id: allowUserVariables
-      type: System.Boolean
-      description: Indicates whether user-defined variables are allowed in SQL statements executed by the context. Set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to enable support for user variables.
-    - id: convertZeroDateTime
-      type: System.Boolean
-      description: >-
-        Specifies whether zero date/time values from the database should be converted to DateTime.MinValue instead
-            of throwing an exception. Set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to enable conversion.
-    - id: lockWaitTimeoutSeconds
-      type: System.Int32
-      description: >-
-        The maximum number of seconds to wait for a database lock before timing out. Specify 0 to use the default
-            server setting.
-    - id: autoInitializeDataSets
-      type: System.Boolean
-      description: true to automatically initialize data sets when the context is created; otherwise, false.
-    - id: autoVerifyTables
-      type: System.Boolean
-      description: true to automatically verify table existence when the context is created; otherwise, false.
-    content.vb: Public Sub New(connection As MySqlConnection, transaction As MySqlTransaction, autoOpenConnection As Boolean = True, allowUserVariables As Boolean = False, convertZeroDateTime As Boolean = False, lockWaitTimeoutSeconds As Integer = 0, autoInitializeDataSets As Boolean = True, autoVerifyTables As Boolean = True)
+      description: The MySqlTransaction instance associated with the database connection. Cannot be null.
+    content.vb: Protected Sub New(contextOptions As RelmContextOptions, sqlConnection As MySqlConnection, sqlTransaction As MySqlTransaction)
   overload: CoreRelm.Models.RelmContext.#ctor*
-  nameWithType.vb: RelmContext.New(MySqlConnection, MySqlTransaction, Boolean, Boolean, Boolean, Integer, Boolean, Boolean)
-  fullName.vb: CoreRelm.Models.RelmContext.New(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, Boolean, Boolean, Boolean, Integer, Boolean, Boolean)
-  name.vb: New(MySqlConnection, MySqlTransaction, Boolean, Boolean, Boolean, Integer, Boolean, Boolean)
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown if sqlConnection or sqlTransaction is null.
+  nameWithType.vb: RelmContext.New(RelmContextOptions, MySqlConnection, MySqlTransaction)
+  fullName.vb: CoreRelm.Models.RelmContext.New(CoreRelm.Options.RelmContextOptions, MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction)
+  name.vb: New(RelmContextOptions, MySqlConnection, MySqlTransaction)
 - uid: CoreRelm.Models.RelmContext.SetDataLoader``1(CoreRelm.Interfaces.IRelmDataLoader{``0})
   commentId: M:CoreRelm.Models.RelmContext.SetDataLoader``1(CoreRelm.Interfaces.IRelmDataLoader{``0})
   id: SetDataLoader``1(CoreRelm.Interfaces.IRelmDataLoader{``0})
@@ -630,7 +463,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SetDataLoader
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 296
+    startLine: 291
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -676,7 +509,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: StartConnection
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 349
+    startLine: 344
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -726,7 +559,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: StartConnectionAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 366
+    startLine: 361
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -780,7 +613,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: EndConnection
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 408
+    startLine: 403
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -820,7 +653,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: EndConnectionAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 423
+    startLine: 418
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -864,7 +697,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: HasTransaction
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 447
+    startLine: 442
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -895,7 +728,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: BeginTransaction
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 461
+    startLine: 456
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -937,7 +770,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: BeginTransactionAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 477
+    startLine: 472
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -982,7 +815,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: CommitTransaction
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 491
+    startLine: 486
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1016,7 +849,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: CommitTransactionAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 504
+    startLine: 499
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1055,7 +888,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: RollbackTransaction
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 520
+    startLine: 515
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1088,7 +921,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: RollbackTransactionAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 532
+    startLine: 527
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1126,7 +959,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Dispose
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 549
+    startLine: 544
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1160,7 +993,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Dispose
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 563
+    startLine: 558
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1199,7 +1032,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Finalize
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 588
+    startLine: 583
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1237,7 +1070,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataSet
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 598
+    startLine: 593
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1276,7 +1109,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataSet
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 613
+    startLine: 608
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1323,7 +1156,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataSet
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 623
+    startLine: 618
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1360,7 +1193,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataSet
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 646
+    startLine: 641
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1421,7 +1254,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: HasDataSet
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 670
+    startLine: 665
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1463,7 +1296,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: HasDataSet
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 681
+    startLine: 676
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1506,7 +1339,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataSetType
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 692
+    startLine: 687
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1547,7 +1380,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataSetType
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 704
+    startLine: 699
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1594,7 +1427,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataSetType
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 714
+    startLine: 709
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1631,7 +1464,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataSetType
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 726
+    startLine: 721
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1678,7 +1511,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Get
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 758
+    startLine: 753
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1729,7 +1562,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 775
+    startLine: 770
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1782,7 +1615,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Get
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 791
+    startLine: 786
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1830,7 +1663,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 804
+    startLine: 799
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1880,7 +1713,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: FirstOrDefault
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 817
+    startLine: 812
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1929,7 +1762,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: FirstOrDefaultAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 830
+    startLine: 825
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -1980,7 +1813,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Where
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 847
+    startLine: 842
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2037,7 +1870,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Run
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 869
+    startLine: 864
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2094,7 +1927,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: RunAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 887
+    startLine: 882
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2153,7 +1986,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SaveAll
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 905
+    startLine: 900
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2186,7 +2019,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SaveAllAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 919
+    startLine: 914
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2224,7 +2057,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetLastInsertId
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 937
+    startLine: 932
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2257,7 +2090,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetLastInsertIdAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 944
+    startLine: 939
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2293,7 +2126,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetIdFromInternalId
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 954
+    startLine: 949
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2338,7 +2171,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetIdFromInternalIdAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 964
+    startLine: 959
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2385,7 +2218,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataRow
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 976
+    startLine: 971
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2435,7 +2268,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataRowAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 988
+    startLine: 983
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2487,7 +2320,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataTable
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1004
+    startLine: 999
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2541,7 +2374,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataTableAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1020
+    startLine: 1015
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2597,7 +2430,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataObject
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1037
+    startLine: 1032
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2657,7 +2490,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataObjectAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1054
+    startLine: 1049
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2719,7 +2552,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataObjects
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1071
+    startLine: 1066
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2779,7 +2612,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataObjectsAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1088
+    startLine: 1083
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2841,7 +2674,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataList
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1105
+    startLine: 1100
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2900,7 +2733,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetDataListAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1122
+    startLine: 1117
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -2961,7 +2794,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetScalar
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1140
+    startLine: 1135
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -3023,7 +2856,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetScalarAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1160
+    startLine: 1155
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -3089,7 +2922,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: GetBulkTableWriter
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1182
+    startLine: 1177
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -3159,7 +2992,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: BulkTableWrite
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1209
+    startLine: 1204
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -3233,7 +3066,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: BulkTableWriteAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1236
+    startLine: 1231
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -3309,7 +3142,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DoDatabaseWork
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1252
+    startLine: 1247
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -3363,7 +3196,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DoDatabaseWorkAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1267
+    startLine: 1262
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -3417,7 +3250,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DoDatabaseWork
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1285
+    startLine: 1280
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -3475,7 +3308,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DoDatabaseWorkAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1303
+    startLine: 1298
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -3538,7 +3371,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DoDatabaseWork
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1319
+    startLine: 1314
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -3593,7 +3426,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DoDatabaseWorkAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1335
+    startLine: 1330
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -3652,7 +3485,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DoDatabaseWork
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1352
+    startLine: 1347
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -3712,7 +3545,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DoDatabaseWorkAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1369
+    startLine: 1364
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -3774,7 +3607,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WriteToDatabase
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1391
+    startLine: 1386
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -3842,7 +3675,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WriteToDatabaseAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1413
+    startLine: 1408
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -3912,7 +3745,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WriteToDatabase
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1435
+    startLine: 1430
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -3979,7 +3812,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: WriteToDatabaseAsync
     path: ../CoreRelm/Models/RelmContext.cs
-    startLine: 1457
+    startLine: 1452
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models
@@ -4439,17 +4272,17 @@ references:
     href: CoreRelm.Extensions.html
 - uid: CoreRelm.Models.RelmContext.OnConfigure*
   commentId: Overload:CoreRelm.Models.RelmContext.OnConfigure
-  href: CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_OnConfigure_CoreRelm_Options_RelmContextOptionsBuilder_
+  href: CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_OnConfigure_CoreRelm_Options_RelmContextOptions_
   name: OnConfigure
   nameWithType: RelmContext.OnConfigure
   fullName: CoreRelm.Models.RelmContext.OnConfigure
-- uid: CoreRelm.Options.RelmContextOptionsBuilder
-  commentId: T:CoreRelm.Options.RelmContextOptionsBuilder
+- uid: CoreRelm.Options.RelmContextOptions
+  commentId: T:CoreRelm.Options.RelmContextOptions
   parent: CoreRelm.Options
-  href: CoreRelm.Options.RelmContextOptionsBuilder.html
-  name: RelmContextOptionsBuilder
-  nameWithType: RelmContextOptionsBuilder
-  fullName: CoreRelm.Options.RelmContextOptionsBuilder
+  href: CoreRelm.Options.RelmContextOptions.html
+  name: RelmContextOptions
+  nameWithType: RelmContextOptions
+  fullName: CoreRelm.Options.RelmContextOptions
 - uid: CoreRelm.Options
   commentId: N:CoreRelm.Options
   href: CoreRelm.html
@@ -4485,69 +4318,22 @@ references:
   name: ContextOptions
   nameWithType: IRelmContext.ContextOptions
   fullName: CoreRelm.Interfaces.IRelmContext.ContextOptions
-- uid: CoreRelm.Models.RelmContext.AppliedMigrations*
-  commentId: Overload:CoreRelm.Models.RelmContext.AppliedMigrations
-  href: CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_AppliedMigrations
-  name: AppliedMigrations
-  nameWithType: RelmContext.AppliedMigrations
-  fullName: CoreRelm.Models.RelmContext.AppliedMigrations
-- uid: CoreRelm.Interfaces.IRelmDataSet{CoreRelm.Models.Migrations.Execution.AppliedMigration}
-  commentId: T:CoreRelm.Interfaces.IRelmDataSet{CoreRelm.Models.Migrations.Execution.AppliedMigration}
-  parent: CoreRelm.Interfaces
-  definition: CoreRelm.Interfaces.IRelmDataSet`1
-  href: CoreRelm.Interfaces.IRelmDataSet-1.html
-  name: IRelmDataSet<AppliedMigration>
-  nameWithType: IRelmDataSet<AppliedMigration>
-  fullName: CoreRelm.Interfaces.IRelmDataSet<CoreRelm.Models.Migrations.Execution.AppliedMigration>
-  nameWithType.vb: IRelmDataSet(Of AppliedMigration)
-  fullName.vb: CoreRelm.Interfaces.IRelmDataSet(Of CoreRelm.Models.Migrations.Execution.AppliedMigration)
-  name.vb: IRelmDataSet(Of AppliedMigration)
-  spec.csharp:
-  - uid: CoreRelm.Interfaces.IRelmDataSet`1
-    name: IRelmDataSet
-    href: CoreRelm.Interfaces.IRelmDataSet-1.html
-  - name: <
-  - uid: CoreRelm.Models.Migrations.Execution.AppliedMigration
-    name: AppliedMigration
-    href: CoreRelm.Models.Migrations.Execution.AppliedMigration.html
-  - name: '>'
-  spec.vb:
-  - uid: CoreRelm.Interfaces.IRelmDataSet`1
-    name: IRelmDataSet
-    href: CoreRelm.Interfaces.IRelmDataSet-1.html
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: CoreRelm.Models.Migrations.Execution.AppliedMigration
-    name: AppliedMigration
-    href: CoreRelm.Models.Migrations.Execution.AppliedMigration.html
-  - name: )
-- uid: CoreRelm.Interfaces.IRelmDataSet`1
-  commentId: T:CoreRelm.Interfaces.IRelmDataSet`1
-  parent: CoreRelm.Interfaces
-  href: CoreRelm.Interfaces.IRelmDataSet-1.html
-  name: IRelmDataSet<T>
-  nameWithType: IRelmDataSet<T>
-  fullName: CoreRelm.Interfaces.IRelmDataSet<T>
-  nameWithType.vb: IRelmDataSet(Of T)
-  fullName.vb: CoreRelm.Interfaces.IRelmDataSet(Of T)
-  name.vb: IRelmDataSet(Of T)
-  spec.csharp:
-  - uid: CoreRelm.Interfaces.IRelmDataSet`1
-    name: IRelmDataSet
-    href: CoreRelm.Interfaces.IRelmDataSet-1.html
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: CoreRelm.Interfaces.IRelmDataSet`1
-    name: IRelmDataSet
-    href: CoreRelm.Interfaces.IRelmDataSet-1.html
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
+- uid: CoreRelm.Models.RelmContext.#ctor*
+  commentId: Overload:CoreRelm.Models.RelmContext.#ctor
+  href: CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext__ctor_CoreRelm_Options_RelmContextOptions_
+  name: RelmContext
+  nameWithType: RelmContext.RelmContext
+  fullName: CoreRelm.Models.RelmContext.RelmContext
+  nameWithType.vb: RelmContext.New
+  fullName.vb: CoreRelm.Models.RelmContext.New
+  name.vb: New
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
 - uid: System.ArgumentNullException
   commentId: T:System.ArgumentNullException
   isExternal: true
@@ -4555,45 +4341,6 @@ references:
   name: ArgumentNullException
   nameWithType: ArgumentNullException
   fullName: System.ArgumentNullException
-- uid: CoreRelm.Models.RelmContext.#ctor*
-  commentId: Overload:CoreRelm.Models.RelmContext.#ctor
-  href: CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext__ctor_CoreRelm_Interfaces_IRelmContext_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Int32_System_Boolean_System_Boolean_
-  name: RelmContext
-  nameWithType: RelmContext.RelmContext
-  fullName: CoreRelm.Models.RelmContext.RelmContext
-  nameWithType.vb: RelmContext.New
-  fullName.vb: CoreRelm.Models.RelmContext.New
-  name.vb: New
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.boolean
-  name: bool
-  nameWithType: bool
-  fullName: bool
-  nameWithType.vb: Boolean
-  fullName.vb: Boolean
-  name.vb: Boolean
-- uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.int32
-  name: int
-  nameWithType: int
-  fullName: int
-  nameWithType.vb: Integer
-  fullName.vb: Integer
-  name.vb: Integer
-- uid: System.Enum
-  commentId: T:System.Enum
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.enum
-  name: Enum
-  nameWithType: Enum
-  fullName: System.Enum
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -4605,6 +4352,37 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
+- uid: CoreRelm.Options.RelmContextOptions.OptionsBuilderTypes
+  commentId: T:CoreRelm.Options.RelmContextOptions.OptionsBuilderTypes
+  parent: CoreRelm.Options
+  href: CoreRelm.Options.RelmContextOptions.html
+  name: RelmContextOptions.OptionsBuilderTypes
+  nameWithType: RelmContextOptions.OptionsBuilderTypes
+  fullName: CoreRelm.Options.RelmContextOptions.OptionsBuilderTypes
+  spec.csharp:
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
+  - name: .
+  - uid: CoreRelm.Options.RelmContextOptions.OptionsBuilderTypes
+    name: OptionsBuilderTypes
+    href: CoreRelm.Options.RelmContextOptions.OptionsBuilderTypes.html
+  spec.vb:
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
+  - name: .
+  - uid: CoreRelm.Options.RelmContextOptions.OptionsBuilderTypes
+    name: OptionsBuilderTypes
+    href: CoreRelm.Options.RelmContextOptions.OptionsBuilderTypes.html
+- uid: System.Enum
+  commentId: T:System.Enum
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.enum
+  name: Enum
+  nameWithType: Enum
+  fullName: System.Enum
 - uid: MySql.Data.MySqlClient.MySqlConnection
   commentId: T:MySql.Data.MySqlClient.MySqlConnection
   parent: MySql.Data.MySqlClient
@@ -4851,6 +4629,28 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: )
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
 - uid: CoreRelm.Models.RelmContext.StartConnectionAsync*
   commentId: Overload:CoreRelm.Models.RelmContext.StartConnectionAsync
   href: CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_StartConnectionAsync_System_Boolean_System_Int32_System_Threading_CancellationToken_
@@ -5368,6 +5168,32 @@ references:
   name: IRelmModel
   nameWithType: IRelmModel
   fullName: CoreRelm.Interfaces.IRelmModel
+- uid: CoreRelm.Interfaces.IRelmDataSet`1
+  commentId: T:CoreRelm.Interfaces.IRelmDataSet`1
+  parent: CoreRelm.Interfaces
+  href: CoreRelm.Interfaces.IRelmDataSet-1.html
+  name: IRelmDataSet<T>
+  nameWithType: IRelmDataSet<T>
+  fullName: CoreRelm.Interfaces.IRelmDataSet<T>
+  nameWithType.vb: IRelmDataSet(Of T)
+  fullName.vb: CoreRelm.Interfaces.IRelmDataSet(Of T)
+  name.vb: IRelmDataSet(Of T)
+  spec.csharp:
+  - uid: CoreRelm.Interfaces.IRelmDataSet`1
+    name: IRelmDataSet
+    href: CoreRelm.Interfaces.IRelmDataSet-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: CoreRelm.Interfaces.IRelmDataSet`1
+    name: IRelmDataSet
+    href: CoreRelm.Interfaces.IRelmDataSet-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: CoreRelm.Models.RelmContext.GetDataSet*
   commentId: Overload:CoreRelm.Models.RelmContext.GetDataSet
   href: CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_GetDataSet__1

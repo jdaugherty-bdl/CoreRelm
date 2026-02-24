@@ -157,8 +157,8 @@ Class ModelSetValidationReport  <a class="header-action link-secondary" title="V
 
   <a id="CoreRelm_Models_Migrations_Tooling_Validation_ModelSetValidationReport__ctor_" data-uid="CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.#ctor*"></a>
 
-  <h3 id="CoreRelm_Models_Migrations_Tooling_Validation_ModelSetValidationReport__ctor_System_String_System_Collections_Generic_IReadOnlyList_System_String__System_Collections_Generic_IReadOnlyList_System_String__System_Collections_Generic_IReadOnlyDictionary_System_String_System_Collections_Generic_IReadOnlyList_CoreRelm_Models_Migrations_ValidatedModelType___" data-uid="CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.#ctor(System.String,System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType}})">
-  ModelSetValidationReport(string, IReadOnlyList&lt;string&gt;, IReadOnlyList&lt;string&gt;, IReadOnlyDictionary&lt;string, IReadOnlyList&lt;ValidatedModelType&gt;&gt;)
+  <h3 id="CoreRelm_Models_Migrations_Tooling_Validation_ModelSetValidationReport__ctor_System_String_System_Collections_Generic_IReadOnlyList_System_String__System_Collections_Generic_IReadOnlyList_System_String__System_Collections_Generic_IReadOnlyDictionary_System_String_System_Collections_Generic_IReadOnlyList_CoreRelm_Models_Migrations_ValidatedModelType___CoreRelm_Models_Migrations_ResolvedModelSetDiagnostics_" data-uid="CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.#ctor(System.String,System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyDictionary{System.String,System.Collections.Generic.IReadOnlyList{CoreRelm.Models.Migrations.ValidatedModelType}},CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics)">
+  ModelSetValidationReport(string, IReadOnlyList&lt;string&gt;, IReadOnlyList&lt;string&gt;, IReadOnlyDictionary&lt;string, IReadOnlyList&lt;ValidatedModelType&gt;&gt;, ResolvedModelSetDiagnostics?)
   <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Tooling/Validation/ModelSetValidationReport.cs/#L9"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -166,7 +166,7 @@ Class ModelSetValidationReport  <a class="header-action link-secondary" title="V
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ModelSetValidationReport(string SetName, IReadOnlyList&lt;string&gt; Warnings, IReadOnlyList&lt;string&gt; Errors, IReadOnlyDictionary&lt;string, IReadOnlyList&lt;ValidatedModelType&gt;&gt; TypesByDatabase)</code></pre>
+    <pre><code class="lang-csharp hljs">public ModelSetValidationReport(string SetName, IReadOnlyList&lt;string&gt; Warnings, IReadOnlyList&lt;string&gt; Errors, IReadOnlyDictionary&lt;string, IReadOnlyList&lt;ValidatedModelType&gt;&gt; TypesByDatabase, ResolvedModelSetDiagnostics? Diagnostics)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -178,6 +178,8 @@ Class ModelSetValidationReport  <a class="header-action link-secondary" title="V
     <dt><code>Errors</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
     <dd></dd>
     <dt><code>TypesByDatabase</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="CoreRelm.Models.Migrations.ValidatedModelType.html">ValidatedModelType</a>&gt;&gt;</dt>
+    <dd></dd>
+    <dt><code>Diagnostics</code> <a class="xref" href="CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics.html">ResolvedModelSetDiagnostics</a></dt>
     <dd></dd>
   </dl>
 
@@ -194,6 +196,37 @@ Class ModelSetValidationReport  <a class="header-action link-secondary" title="V
 
   <h2 class="section" id="properties">Properties
 </h2>
+
+
+  <a id="CoreRelm_Models_Migrations_Tooling_Validation_ModelSetValidationReport_Diagnostics_" data-uid="CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.Diagnostics*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Tooling_Validation_ModelSetValidationReport_Diagnostics" data-uid="CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.Diagnostics">
+  Diagnostics
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Tooling/Validation/ModelSetValidationReport.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ResolvedModelSetDiagnostics? Diagnostics { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Models.Migrations.ResolvedModelSetDiagnostics.html">ResolvedModelSetDiagnostics</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
 
 
   <a id="CoreRelm_Models_Migrations_Tooling_Validation_ModelSetValidationReport_Errors_" data-uid="CoreRelm.Models.Migrations.Tooling.Validation.ModelSetValidationReport.Errors*"></a>

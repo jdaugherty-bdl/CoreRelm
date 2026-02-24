@@ -9,6 +9,7 @@ items:
   - CoreRelm.Attributes.BaseClasses.RelmIndexBase.AlgorithmType
   - CoreRelm.Attributes.BaseClasses.RelmIndexBase.Comment
   - CoreRelm.Attributes.BaseClasses.RelmIndexBase.Descending
+  - CoreRelm.Attributes.BaseClasses.RelmIndexBase.EngineAttribute
   - CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexKeyHolder
   - CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexLockOption
   - CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexName
@@ -16,7 +17,9 @@ items:
   - CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexVisibility
   - CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexedProperties
   - CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexedPropertyNames
+  - CoreRelm.Attributes.BaseClasses.RelmIndexBase.KeyBlockSize
   - CoreRelm.Attributes.BaseClasses.RelmIndexBase.ParserName
+  - CoreRelm.Attributes.BaseClasses.RelmIndexBase.SecondaryEngineAttribute
   langs:
   - csharp
   - vb
@@ -31,7 +34,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: RelmIndexBase
     path: ../CoreRelm/Attributes/BaseClasses/RelmIndexBase.cs
-    startLine: 34
+    startLine: 35
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes.BaseClasses
@@ -115,7 +118,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Attributes/BaseClasses/RelmIndexBase.cs
-    startLine: 34
+    startLine: 35
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes.BaseClasses
@@ -196,7 +199,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: IndexKeyHolder
     path: ../CoreRelm/Attributes/BaseClasses/RelmIndexBase.cs
-    startLine: 51
+    startLine: 53
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes.BaseClasses
@@ -227,7 +230,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Descending
     path: ../CoreRelm/Attributes/BaseClasses/RelmIndexBase.cs
-    startLine: 56
+    startLine: 58
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes.BaseClasses
@@ -258,7 +261,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: IndexedProperties
     path: ../CoreRelm/Attributes/BaseClasses/RelmIndexBase.cs
-    startLine: 64
+    startLine: 66
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes.BaseClasses
@@ -368,6 +371,41 @@ items:
       type: System.Nullable{CoreRelm.Enums.Indexes.IndexType}
     content.vb: Public Property IndexTypeValue As Indexes.IndexType?
   overload: CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexTypeValue*
+- uid: CoreRelm.Attributes.BaseClasses.RelmIndexBase.KeyBlockSize
+  commentId: P:CoreRelm.Attributes.BaseClasses.RelmIndexBase.KeyBlockSize
+  id: KeyBlockSize
+  parent: CoreRelm.Attributes.BaseClasses.RelmIndexBase
+  langs:
+  - csharp
+  - vb
+  name: KeyBlockSize
+  nameWithType: RelmIndexBase.KeyBlockSize
+  fullName: CoreRelm.Attributes.BaseClasses.RelmIndexBase.KeyBlockSize
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Attributes/BaseClasses/RelmIndexBase.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: KeyBlockSize
+    path: ../CoreRelm/Attributes/BaseClasses/RelmIndexBase.cs
+    startLine: 89
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Attributes.BaseClasses
+  summary: Gets or sets the size, in bytes, of the key block used for cryptographic operations.
+  remarks: >-
+    The key block size must be a positive integer that is compatible with the
+        requirements of the underlying cryptographic algorithm. Ensure that the specified size adheres to the
+        standards of the encryption method in use.
+  example: []
+  syntax:
+    content: public int KeyBlockSize { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property KeyBlockSize As Integer
+  overload: CoreRelm.Attributes.BaseClasses.RelmIndexBase.KeyBlockSize*
 - uid: CoreRelm.Attributes.BaseClasses.RelmIndexBase.ParserName
   commentId: P:CoreRelm.Attributes.BaseClasses.RelmIndexBase.ParserName
   id: ParserName
@@ -386,7 +424,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ParserName
     path: ../CoreRelm/Attributes/BaseClasses/RelmIndexBase.cs
-    startLine: 86
+    startLine: 94
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes.BaseClasses
@@ -417,7 +455,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Comment
     path: ../CoreRelm/Attributes/BaseClasses/RelmIndexBase.cs
-    startLine: 91
+    startLine: 99
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes.BaseClasses
@@ -448,7 +486,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: IndexVisibility
     path: ../CoreRelm/Attributes/BaseClasses/RelmIndexBase.cs
-    startLine: 96
+    startLine: 104
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes.BaseClasses
@@ -461,6 +499,77 @@ items:
       type: System.Nullable{CoreRelm.Enums.Indexes.Visibility}
     content.vb: Public Property IndexVisibility As Indexes.Visibility?
   overload: CoreRelm.Attributes.BaseClasses.RelmIndexBase.IndexVisibility*
+- uid: CoreRelm.Attributes.BaseClasses.RelmIndexBase.EngineAttribute
+  commentId: P:CoreRelm.Attributes.BaseClasses.RelmIndexBase.EngineAttribute
+  id: EngineAttribute
+  parent: CoreRelm.Attributes.BaseClasses.RelmIndexBase
+  langs:
+  - csharp
+  - vb
+  name: EngineAttribute
+  nameWithType: RelmIndexBase.EngineAttribute
+  fullName: CoreRelm.Attributes.BaseClasses.RelmIndexBase.EngineAttribute
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Attributes/BaseClasses/RelmIndexBase.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: EngineAttribute
+    path: ../CoreRelm/Attributes/BaseClasses/RelmIndexBase.cs
+    startLine: 112
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Attributes.BaseClasses
+  summary: >-
+    Gets or sets the engine attribute that specifies a particular characteristic or configuration value for the
+
+    engine.
+  remarks: >-
+    Assign a value that matches the expected format and requirements of the engine. The
+        meaning and valid values for this attribute may vary depending on the engine's implementation.
+  example: []
+  syntax:
+    content: public string EngineAttribute { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property EngineAttribute As String
+  overload: CoreRelm.Attributes.BaseClasses.RelmIndexBase.EngineAttribute*
+- uid: CoreRelm.Attributes.BaseClasses.RelmIndexBase.SecondaryEngineAttribute
+  commentId: P:CoreRelm.Attributes.BaseClasses.RelmIndexBase.SecondaryEngineAttribute
+  id: SecondaryEngineAttribute
+  parent: CoreRelm.Attributes.BaseClasses.RelmIndexBase
+  langs:
+  - csharp
+  - vb
+  name: SecondaryEngineAttribute
+  nameWithType: RelmIndexBase.SecondaryEngineAttribute
+  fullName: CoreRelm.Attributes.BaseClasses.RelmIndexBase.SecondaryEngineAttribute
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Attributes/BaseClasses/RelmIndexBase.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: SecondaryEngineAttribute
+    path: ../CoreRelm/Attributes/BaseClasses/RelmIndexBase.cs
+    startLine: 119
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Attributes.BaseClasses
+  summary: Gets or sets the secondary engine attribute for the configuration.
+  remarks: >-
+    Use this property to specify or retrieve the attribute associated with the secondary
+        engine. Ensure that the value assigned is valid for the intended engine configuration.
+  example: []
+  syntax:
+    content: public string SecondaryEngineAttribute { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property SecondaryEngineAttribute As String
+  overload: CoreRelm.Attributes.BaseClasses.RelmIndexBase.SecondaryEngineAttribute*
 - uid: CoreRelm.Attributes.BaseClasses.RelmIndexBase.AlgorithmType
   commentId: P:CoreRelm.Attributes.BaseClasses.RelmIndexBase.AlgorithmType
   id: AlgorithmType
@@ -479,7 +588,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AlgorithmType
     path: ../CoreRelm/Attributes/BaseClasses/RelmIndexBase.cs
-    startLine: 101
+    startLine: 124
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes.BaseClasses
@@ -510,7 +619,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: IndexLockOption
     path: ../CoreRelm/Attributes/BaseClasses/RelmIndexBase.cs
-    startLine: 106
+    startLine: 129
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes.BaseClasses
@@ -2715,6 +2824,12 @@ references:
   - name: " "
   - name: T
   - name: )
+- uid: CoreRelm.Attributes.BaseClasses.RelmIndexBase.KeyBlockSize*
+  commentId: Overload:CoreRelm.Attributes.BaseClasses.RelmIndexBase.KeyBlockSize
+  href: CoreRelm.Attributes.BaseClasses.RelmIndexBase.html#CoreRelm_Attributes_BaseClasses_RelmIndexBase_KeyBlockSize
+  name: KeyBlockSize
+  nameWithType: RelmIndexBase.KeyBlockSize
+  fullName: CoreRelm.Attributes.BaseClasses.RelmIndexBase.KeyBlockSize
 - uid: CoreRelm.Attributes.BaseClasses.RelmIndexBase.ParserName*
   commentId: Overload:CoreRelm.Attributes.BaseClasses.RelmIndexBase.ParserName
   href: CoreRelm.Attributes.BaseClasses.RelmIndexBase.html#CoreRelm_Attributes_BaseClasses_RelmIndexBase_ParserName
@@ -2759,6 +2874,18 @@ references:
     name: Visibility
     href: CoreRelm.Enums.Indexes.Visibility.html
   - name: '?'
+- uid: CoreRelm.Attributes.BaseClasses.RelmIndexBase.EngineAttribute*
+  commentId: Overload:CoreRelm.Attributes.BaseClasses.RelmIndexBase.EngineAttribute
+  href: CoreRelm.Attributes.BaseClasses.RelmIndexBase.html#CoreRelm_Attributes_BaseClasses_RelmIndexBase_EngineAttribute
+  name: EngineAttribute
+  nameWithType: RelmIndexBase.EngineAttribute
+  fullName: CoreRelm.Attributes.BaseClasses.RelmIndexBase.EngineAttribute
+- uid: CoreRelm.Attributes.BaseClasses.RelmIndexBase.SecondaryEngineAttribute*
+  commentId: Overload:CoreRelm.Attributes.BaseClasses.RelmIndexBase.SecondaryEngineAttribute
+  href: CoreRelm.Attributes.BaseClasses.RelmIndexBase.html#CoreRelm_Attributes_BaseClasses_RelmIndexBase_SecondaryEngineAttribute
+  name: SecondaryEngineAttribute
+  nameWithType: RelmIndexBase.SecondaryEngineAttribute
+  fullName: CoreRelm.Attributes.BaseClasses.RelmIndexBase.SecondaryEngineAttribute
 - uid: CoreRelm.Attributes.BaseClasses.RelmIndexBase.AlgorithmType*
   commentId: Overload:CoreRelm.Attributes.BaseClasses.RelmIndexBase.AlgorithmType
   href: CoreRelm.Attributes.BaseClasses.RelmIndexBase.html#CoreRelm_Attributes_BaseClasses_RelmIndexBase_AlgorithmType

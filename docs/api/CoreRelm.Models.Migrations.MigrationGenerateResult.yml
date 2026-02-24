@@ -51,9 +51,9 @@ items:
   langs:
   - csharp
   - vb
-  name: MigrationGenerateResult(string, bool, string?, string)
-  nameWithType: MigrationGenerateResult.MigrationGenerateResult(string, bool, string?, string)
-  fullName: CoreRelm.Models.Migrations.MigrationGenerateResult.MigrationGenerateResult(string, bool, string?, string)
+  name: MigrationGenerateResult(string?, bool, string?, string)
+  nameWithType: MigrationGenerateResult.MigrationGenerateResult(string?, bool, string?, string)
+  fullName: CoreRelm.Models.Migrations.MigrationGenerateResult.MigrationGenerateResult(string?, bool, string?, string)
   type: Constructor
   source:
     remote:
@@ -67,7 +67,7 @@ items:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations
   syntax:
-    content: public MigrationGenerateResult(string DatabaseName, bool HasChanges, string? Sql, string Message)
+    content: public MigrationGenerateResult(string? DatabaseName, bool HasChanges, string? Sql, string Message)
     parameters:
     - id: DatabaseName
       type: System.String
@@ -105,7 +105,7 @@ items:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations
   syntax:
-    content: public string DatabaseName { get; init; }
+    content: public string? DatabaseName { get; init; }
     parameters: []
     return:
       type: System.String
@@ -205,9 +205,9 @@ items:
   langs:
   - csharp
   - vb
-  name: NoChanges(string, string)
-  nameWithType: MigrationGenerateResult.NoChanges(string, string)
-  fullName: CoreRelm.Models.Migrations.MigrationGenerateResult.NoChanges(string, string)
+  name: NoChanges(string?, string)
+  nameWithType: MigrationGenerateResult.NoChanges(string?, string)
+  fullName: CoreRelm.Models.Migrations.MigrationGenerateResult.NoChanges(string?, string)
   type: Method
   source:
     remote:
@@ -221,7 +221,7 @@ items:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations
   syntax:
-    content: public static MigrationGenerateResult NoChanges(string dbName, string message)
+    content: public static MigrationGenerateResult NoChanges(string? dbName, string message)
     parameters:
     - id: dbName
       type: System.String
@@ -241,9 +241,9 @@ items:
   langs:
   - csharp
   - vb
-  name: Changes(string, string, string)
-  nameWithType: MigrationGenerateResult.Changes(string, string, string)
-  fullName: CoreRelm.Models.Migrations.MigrationGenerateResult.Changes(string, string, string)
+  name: Changes(string?, string, string)
+  nameWithType: MigrationGenerateResult.Changes(string?, string, string)
+  fullName: CoreRelm.Models.Migrations.MigrationGenerateResult.Changes(string?, string, string)
   type: Method
   source:
     remote:
@@ -257,7 +257,7 @@ items:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations
   syntax:
-    content: public static MigrationGenerateResult Changes(string dbName, string sql, string message)
+    content: public static MigrationGenerateResult Changes(string? dbName, string sql, string message)
     parameters:
     - id: dbName
       type: System.String

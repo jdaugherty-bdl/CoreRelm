@@ -5,12 +5,7 @@ items:
   id: InformationSchemaContext
   parent: CoreRelm.RelmInternal.Contexts
   children:
-  - CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor(CoreRelm.Interfaces.IRelmContext,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
-  - CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor(CoreRelm.Options.RelmContextOptionsBuilder)
-  - CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
-  - CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor(MySql.Data.MySqlClient.MySqlConnection,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
-  - CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor(System.Enum,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
-  - CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
+  - CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor(CoreRelm.Options.RelmContextOptions)
   - CoreRelm.RelmInternal.Contexts.InformationSchemaContext.Columns
   - CoreRelm.RelmInternal.Contexts.InformationSchemaContext.ForeignKeys
   - CoreRelm.RelmInternal.Contexts.InformationSchemaContext.FunctionParameters
@@ -45,9 +40,8 @@ items:
   - System.IDisposable
   - CoreRelm.Interfaces.IRelmContext
   inheritedMembers:
-  - CoreRelm.Models.RelmContext.OnConfigure(CoreRelm.Options.RelmContextOptionsBuilder)
+  - CoreRelm.Models.RelmContext.OnConfigure(CoreRelm.Options.RelmContextOptions)
   - CoreRelm.Models.RelmContext.ContextOptions
-  - CoreRelm.Models.RelmContext.AppliedMigrations
   - CoreRelm.Models.RelmContext.SetDataLoader``1(CoreRelm.Interfaces.IRelmDataLoader{{T}})
   - CoreRelm.Models.RelmContext.StartConnection(System.Boolean,System.Int32)
   - CoreRelm.Models.RelmContext.StartConnectionAsync(System.Boolean,System.Int32,System.Threading.CancellationToken)
@@ -123,16 +117,16 @@ items:
   - System.Object.ToString
   extensionMethods:
   - CoreRelm.Interfaces.IRelmContext.CoreRelm.Extensions.DbContextExtensions.SetLockWaitTimeout(System.Int32)
-- uid: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor(CoreRelm.Options.RelmContextOptionsBuilder)
-  commentId: M:CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor(CoreRelm.Options.RelmContextOptionsBuilder)
-  id: '#ctor(CoreRelm.Options.RelmContextOptionsBuilder)'
+- uid: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor(CoreRelm.Options.RelmContextOptions)
+  commentId: M:CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor(CoreRelm.Options.RelmContextOptions)
+  id: '#ctor(CoreRelm.Options.RelmContextOptions)'
   parent: CoreRelm.RelmInternal.Contexts.InformationSchemaContext
   langs:
   - csharp
   - vb
-  name: InformationSchemaContext(RelmContextOptionsBuilder)
-  nameWithType: InformationSchemaContext.InformationSchemaContext(RelmContextOptionsBuilder)
-  fullName: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.InformationSchemaContext(CoreRelm.Options.RelmContextOptionsBuilder)
+  name: InformationSchemaContext(RelmContextOptions)
+  nameWithType: InformationSchemaContext.InformationSchemaContext(RelmContextOptions)
+  fullName: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.InformationSchemaContext(CoreRelm.Options.RelmContextOptions)
   type: Constructor
   source:
     remote:
@@ -141,250 +135,20 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs
-    startLine: 15
+    startLine: 13
   assemblies:
   - CoreRelm
   namespace: CoreRelm.RelmInternal.Contexts
   syntax:
-    content: public InformationSchemaContext(RelmContextOptionsBuilder optionsBuilder)
+    content: public InformationSchemaContext(RelmContextOptions relmContextOptions)
     parameters:
-    - id: optionsBuilder
-      type: CoreRelm.Options.RelmContextOptionsBuilder
-    content.vb: Public Sub New(optionsBuilder As RelmContextOptionsBuilder)
+    - id: relmContextOptions
+      type: CoreRelm.Options.RelmContextOptions
+    content.vb: Public Sub New(relmContextOptions As RelmContextOptions)
   overload: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor*
-  nameWithType.vb: InformationSchemaContext.New(RelmContextOptionsBuilder)
-  fullName.vb: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.New(CoreRelm.Options.RelmContextOptionsBuilder)
-  name.vb: New(RelmContextOptionsBuilder)
-- uid: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor(CoreRelm.Interfaces.IRelmContext,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
-  commentId: M:CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor(CoreRelm.Interfaces.IRelmContext,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
-  id: '#ctor(CoreRelm.Interfaces.IRelmContext,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)'
-  parent: CoreRelm.RelmInternal.Contexts.InformationSchemaContext
-  langs:
-  - csharp
-  - vb
-  name: InformationSchemaContext(IRelmContext, bool, bool, bool, bool, int, bool, bool)
-  nameWithType: InformationSchemaContext.InformationSchemaContext(IRelmContext, bool, bool, bool, bool, int, bool, bool)
-  fullName: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.InformationSchemaContext(CoreRelm.Interfaces.IRelmContext, bool, bool, bool, bool, int, bool, bool)
-  type: Constructor
-  source:
-    remote:
-      path: CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: .ctor
-    path: ../CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs
-    startLine: 19
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.RelmInternal.Contexts
-  syntax:
-    content: public InformationSchemaContext(IRelmContext relmContext, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true)
-    parameters:
-    - id: relmContext
-      type: CoreRelm.Interfaces.IRelmContext
-    - id: autoOpenConnection
-      type: System.Boolean
-    - id: autoOpenTransaction
-      type: System.Boolean
-    - id: allowUserVariables
-      type: System.Boolean
-    - id: convertZeroDateTime
-      type: System.Boolean
-    - id: lockWaitTimeoutSeconds
-      type: System.Int32
-    - id: autoInitializeDataSets
-      type: System.Boolean
-    - id: autoVerifyTables
-      type: System.Boolean
-    content.vb: Public Sub New(relmContext As IRelmContext, autoOpenConnection As Boolean = True, autoOpenTransaction As Boolean = False, allowUserVariables As Boolean = False, convertZeroDateTime As Boolean = False, lockWaitTimeoutSeconds As Integer = 0, autoInitializeDataSets As Boolean = True, autoVerifyTables As Boolean = True)
-  overload: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor*
-  nameWithType.vb: InformationSchemaContext.New(IRelmContext, Boolean, Boolean, Boolean, Boolean, Integer, Boolean, Boolean)
-  fullName.vb: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.New(CoreRelm.Interfaces.IRelmContext, Boolean, Boolean, Boolean, Boolean, Integer, Boolean, Boolean)
-  name.vb: New(IRelmContext, Boolean, Boolean, Boolean, Boolean, Integer, Boolean, Boolean)
-- uid: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor(System.Enum,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
-  commentId: M:CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor(System.Enum,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
-  id: '#ctor(System.Enum,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)'
-  parent: CoreRelm.RelmInternal.Contexts.InformationSchemaContext
-  langs:
-  - csharp
-  - vb
-  name: InformationSchemaContext(Enum, bool, bool, bool, bool, int, bool, bool)
-  nameWithType: InformationSchemaContext.InformationSchemaContext(Enum, bool, bool, bool, bool, int, bool, bool)
-  fullName: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.InformationSchemaContext(System.Enum, bool, bool, bool, bool, int, bool, bool)
-  type: Constructor
-  source:
-    remote:
-      path: CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: .ctor
-    path: ../CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs
-    startLine: 23
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.RelmInternal.Contexts
-  syntax:
-    content: public InformationSchemaContext(Enum connectionStringType, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true)
-    parameters:
-    - id: connectionStringType
-      type: System.Enum
-    - id: autoOpenConnection
-      type: System.Boolean
-    - id: autoOpenTransaction
-      type: System.Boolean
-    - id: allowUserVariables
-      type: System.Boolean
-    - id: convertZeroDateTime
-      type: System.Boolean
-    - id: lockWaitTimeoutSeconds
-      type: System.Int32
-    - id: autoInitializeDataSets
-      type: System.Boolean
-    - id: autoVerifyTables
-      type: System.Boolean
-    content.vb: Public Sub New(connectionStringType As [Enum], autoOpenConnection As Boolean = True, autoOpenTransaction As Boolean = False, allowUserVariables As Boolean = False, convertZeroDateTime As Boolean = False, lockWaitTimeoutSeconds As Integer = 0, autoInitializeDataSets As Boolean = True, autoVerifyTables As Boolean = True)
-  overload: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor*
-  nameWithType.vb: InformationSchemaContext.New(Enum, Boolean, Boolean, Boolean, Boolean, Integer, Boolean, Boolean)
-  fullName.vb: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.New(System.Enum, Boolean, Boolean, Boolean, Boolean, Integer, Boolean, Boolean)
-  name.vb: New(Enum, Boolean, Boolean, Boolean, Boolean, Integer, Boolean, Boolean)
-- uid: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
-  commentId: M:CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
-  id: '#ctor(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)'
-  parent: CoreRelm.RelmInternal.Contexts.InformationSchemaContext
-  langs:
-  - csharp
-  - vb
-  name: InformationSchemaContext(string, bool, bool, bool, bool, int, bool, bool)
-  nameWithType: InformationSchemaContext.InformationSchemaContext(string, bool, bool, bool, bool, int, bool, bool)
-  fullName: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.InformationSchemaContext(string, bool, bool, bool, bool, int, bool, bool)
-  type: Constructor
-  source:
-    remote:
-      path: CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: .ctor
-    path: ../CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs
-    startLine: 27
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.RelmInternal.Contexts
-  syntax:
-    content: public InformationSchemaContext(string connectionDetails, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true)
-    parameters:
-    - id: connectionDetails
-      type: System.String
-    - id: autoOpenConnection
-      type: System.Boolean
-    - id: autoOpenTransaction
-      type: System.Boolean
-    - id: allowUserVariables
-      type: System.Boolean
-    - id: convertZeroDateTime
-      type: System.Boolean
-    - id: lockWaitTimeoutSeconds
-      type: System.Int32
-    - id: autoInitializeDataSets
-      type: System.Boolean
-    - id: autoVerifyTables
-      type: System.Boolean
-    content.vb: Public Sub New(connectionDetails As String, autoOpenConnection As Boolean = True, autoOpenTransaction As Boolean = False, allowUserVariables As Boolean = False, convertZeroDateTime As Boolean = False, lockWaitTimeoutSeconds As Integer = 0, autoInitializeDataSets As Boolean = True, autoVerifyTables As Boolean = True)
-  overload: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor*
-  nameWithType.vb: InformationSchemaContext.New(String, Boolean, Boolean, Boolean, Boolean, Integer, Boolean, Boolean)
-  fullName.vb: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.New(String, Boolean, Boolean, Boolean, Boolean, Integer, Boolean, Boolean)
-  name.vb: New(String, Boolean, Boolean, Boolean, Boolean, Integer, Boolean, Boolean)
-- uid: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor(MySql.Data.MySqlClient.MySqlConnection,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
-  commentId: M:CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor(MySql.Data.MySqlClient.MySqlConnection,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
-  id: '#ctor(MySql.Data.MySqlClient.MySqlConnection,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)'
-  parent: CoreRelm.RelmInternal.Contexts.InformationSchemaContext
-  langs:
-  - csharp
-  - vb
-  name: InformationSchemaContext(MySqlConnection, bool, bool, bool, bool, int, bool, bool)
-  nameWithType: InformationSchemaContext.InformationSchemaContext(MySqlConnection, bool, bool, bool, bool, int, bool, bool)
-  fullName: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.InformationSchemaContext(MySql.Data.MySqlClient.MySqlConnection, bool, bool, bool, bool, int, bool, bool)
-  type: Constructor
-  source:
-    remote:
-      path: CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: .ctor
-    path: ../CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs
-    startLine: 31
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.RelmInternal.Contexts
-  syntax:
-    content: public InformationSchemaContext(MySqlConnection connection, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true)
-    parameters:
-    - id: connection
-      type: MySql.Data.MySqlClient.MySqlConnection
-    - id: autoOpenConnection
-      type: System.Boolean
-    - id: autoOpenTransaction
-      type: System.Boolean
-    - id: allowUserVariables
-      type: System.Boolean
-    - id: convertZeroDateTime
-      type: System.Boolean
-    - id: lockWaitTimeoutSeconds
-      type: System.Int32
-    - id: autoInitializeDataSets
-      type: System.Boolean
-    - id: autoVerifyTables
-      type: System.Boolean
-    content.vb: Public Sub New(connection As MySqlConnection, autoOpenConnection As Boolean = True, autoOpenTransaction As Boolean = False, allowUserVariables As Boolean = False, convertZeroDateTime As Boolean = False, lockWaitTimeoutSeconds As Integer = 0, autoInitializeDataSets As Boolean = True, autoVerifyTables As Boolean = True)
-  overload: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor*
-  nameWithType.vb: InformationSchemaContext.New(MySqlConnection, Boolean, Boolean, Boolean, Boolean, Integer, Boolean, Boolean)
-  fullName.vb: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.New(MySql.Data.MySqlClient.MySqlConnection, Boolean, Boolean, Boolean, Boolean, Integer, Boolean, Boolean)
-  name.vb: New(MySqlConnection, Boolean, Boolean, Boolean, Boolean, Integer, Boolean, Boolean)
-- uid: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
-  commentId: M:CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
-  id: '#ctor(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)'
-  parent: CoreRelm.RelmInternal.Contexts.InformationSchemaContext
-  langs:
-  - csharp
-  - vb
-  name: InformationSchemaContext(MySqlConnection, MySqlTransaction?, bool, bool, bool, int, bool, bool)
-  nameWithType: InformationSchemaContext.InformationSchemaContext(MySqlConnection, MySqlTransaction?, bool, bool, bool, int, bool, bool)
-  fullName: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.InformationSchemaContext(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction?, bool, bool, bool, int, bool, bool)
-  type: Constructor
-  source:
-    remote:
-      path: CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: .ctor
-    path: ../CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs
-    startLine: 35
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.RelmInternal.Contexts
-  syntax:
-    content: public InformationSchemaContext(MySqlConnection connection, MySqlTransaction? transaction, bool autoOpenConnection = true, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true)
-    parameters:
-    - id: connection
-      type: MySql.Data.MySqlClient.MySqlConnection
-    - id: transaction
-      type: MySql.Data.MySqlClient.MySqlTransaction
-    - id: autoOpenConnection
-      type: System.Boolean
-    - id: allowUserVariables
-      type: System.Boolean
-    - id: convertZeroDateTime
-      type: System.Boolean
-    - id: lockWaitTimeoutSeconds
-      type: System.Int32
-    - id: autoInitializeDataSets
-      type: System.Boolean
-    - id: autoVerifyTables
-      type: System.Boolean
-    content.vb: Public Sub New(connection As MySqlConnection, transaction As MySqlTransaction, autoOpenConnection As Boolean = True, allowUserVariables As Boolean = False, convertZeroDateTime As Boolean = False, lockWaitTimeoutSeconds As Integer = 0, autoInitializeDataSets As Boolean = True, autoVerifyTables As Boolean = True)
-  overload: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor*
-  nameWithType.vb: InformationSchemaContext.New(MySqlConnection, MySqlTransaction, Boolean, Boolean, Boolean, Integer, Boolean, Boolean)
-  fullName.vb: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.New(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, Boolean, Boolean, Boolean, Integer, Boolean, Boolean)
-  name.vb: New(MySqlConnection, MySqlTransaction, Boolean, Boolean, Boolean, Integer, Boolean, Boolean)
+  nameWithType.vb: InformationSchemaContext.New(RelmContextOptions)
+  fullName.vb: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.New(CoreRelm.Options.RelmContextOptions)
+  name.vb: New(RelmContextOptions)
 - uid: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.Columns
   commentId: P:CoreRelm.RelmInternal.Contexts.InformationSchemaContext.Columns
   id: Columns
@@ -403,7 +167,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Columns
     path: ../CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs
-    startLine: 39
+    startLine: 15
   assemblies:
   - CoreRelm
   namespace: CoreRelm.RelmInternal.Contexts
@@ -432,7 +196,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ForeignKeys
     path: ../CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs
-    startLine: 40
+    startLine: 16
   assemblies:
   - CoreRelm
   namespace: CoreRelm.RelmInternal.Contexts
@@ -461,7 +225,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: FunctionParameters
     path: ../CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs
-    startLine: 41
+    startLine: 17
   assemblies:
   - CoreRelm
   namespace: CoreRelm.RelmInternal.Contexts
@@ -490,7 +254,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Functions
     path: ../CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs
-    startLine: 42
+    startLine: 18
   assemblies:
   - CoreRelm
   namespace: CoreRelm.RelmInternal.Contexts
@@ -519,7 +283,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Indexes
     path: ../CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs
-    startLine: 43
+    startLine: 19
   assemblies:
   - CoreRelm
   namespace: CoreRelm.RelmInternal.Contexts
@@ -548,7 +312,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Triggers
     path: ../CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs
-    startLine: 44
+    startLine: 20
   assemblies:
   - CoreRelm
   namespace: CoreRelm.RelmInternal.Contexts
@@ -623,30 +387,30 @@ references:
   name: IRelmContext
   nameWithType: IRelmContext
   fullName: CoreRelm.Interfaces.IRelmContext
-- uid: CoreRelm.Models.RelmContext.OnConfigure(CoreRelm.Options.RelmContextOptionsBuilder)
-  commentId: M:CoreRelm.Models.RelmContext.OnConfigure(CoreRelm.Options.RelmContextOptionsBuilder)
+- uid: CoreRelm.Models.RelmContext.OnConfigure(CoreRelm.Options.RelmContextOptions)
+  commentId: M:CoreRelm.Models.RelmContext.OnConfigure(CoreRelm.Options.RelmContextOptions)
   parent: CoreRelm.Models.RelmContext
-  href: CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_OnConfigure_CoreRelm_Options_RelmContextOptionsBuilder_
-  name: OnConfigure(RelmContextOptionsBuilder)
-  nameWithType: RelmContext.OnConfigure(RelmContextOptionsBuilder)
-  fullName: CoreRelm.Models.RelmContext.OnConfigure(CoreRelm.Options.RelmContextOptionsBuilder)
+  href: CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_OnConfigure_CoreRelm_Options_RelmContextOptions_
+  name: OnConfigure(RelmContextOptions)
+  nameWithType: RelmContext.OnConfigure(RelmContextOptions)
+  fullName: CoreRelm.Models.RelmContext.OnConfigure(CoreRelm.Options.RelmContextOptions)
   spec.csharp:
-  - uid: CoreRelm.Models.RelmContext.OnConfigure(CoreRelm.Options.RelmContextOptionsBuilder)
+  - uid: CoreRelm.Models.RelmContext.OnConfigure(CoreRelm.Options.RelmContextOptions)
     name: OnConfigure
-    href: CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_OnConfigure_CoreRelm_Options_RelmContextOptionsBuilder_
+    href: CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_OnConfigure_CoreRelm_Options_RelmContextOptions_
   - name: (
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: )
   spec.vb:
-  - uid: CoreRelm.Models.RelmContext.OnConfigure(CoreRelm.Options.RelmContextOptionsBuilder)
+  - uid: CoreRelm.Models.RelmContext.OnConfigure(CoreRelm.Options.RelmContextOptions)
     name: OnConfigure
-    href: CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_OnConfigure_CoreRelm_Options_RelmContextOptionsBuilder_
+    href: CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_OnConfigure_CoreRelm_Options_RelmContextOptions_
   - name: (
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder
-    name: RelmContextOptionsBuilder
-    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    href: CoreRelm.Options.RelmContextOptions.html
   - name: )
 - uid: CoreRelm.Models.RelmContext.ContextOptions
   commentId: P:CoreRelm.Models.RelmContext.ContextOptions
@@ -655,13 +419,6 @@ references:
   name: ContextOptions
   nameWithType: RelmContext.ContextOptions
   fullName: CoreRelm.Models.RelmContext.ContextOptions
-- uid: CoreRelm.Models.RelmContext.AppliedMigrations
-  commentId: P:CoreRelm.Models.RelmContext.AppliedMigrations
-  parent: CoreRelm.Models.RelmContext
-  href: CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_AppliedMigrations
-  name: AppliedMigrations
-  nameWithType: RelmContext.AppliedMigrations
-  fullName: CoreRelm.Models.RelmContext.AppliedMigrations
 - uid: CoreRelm.Models.RelmContext.SetDataLoader``1(CoreRelm.Interfaces.IRelmDataLoader{{T}})
   commentId: M:CoreRelm.Models.RelmContext.SetDataLoader``1(CoreRelm.Interfaces.IRelmDataLoader{``0})
   parent: CoreRelm.Models.RelmContext
@@ -6196,20 +5953,20 @@ references:
     href: CoreRelm.Extensions.html
 - uid: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor*
   commentId: Overload:CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor
-  href: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.html#CoreRelm_RelmInternal_Contexts_InformationSchemaContext__ctor_CoreRelm_Options_RelmContextOptionsBuilder_
+  href: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.html#CoreRelm_RelmInternal_Contexts_InformationSchemaContext__ctor_CoreRelm_Options_RelmContextOptions_
   name: InformationSchemaContext
   nameWithType: InformationSchemaContext.InformationSchemaContext
   fullName: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.InformationSchemaContext
   nameWithType.vb: InformationSchemaContext.New
   fullName.vb: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.New
   name.vb: New
-- uid: CoreRelm.Options.RelmContextOptionsBuilder
-  commentId: T:CoreRelm.Options.RelmContextOptionsBuilder
+- uid: CoreRelm.Options.RelmContextOptions
+  commentId: T:CoreRelm.Options.RelmContextOptions
   parent: CoreRelm.Options
-  href: CoreRelm.Options.RelmContextOptionsBuilder.html
-  name: RelmContextOptionsBuilder
-  nameWithType: RelmContextOptionsBuilder
-  fullName: CoreRelm.Options.RelmContextOptionsBuilder
+  href: CoreRelm.Options.RelmContextOptions.html
+  name: RelmContextOptions
+  nameWithType: RelmContextOptions
+  fullName: CoreRelm.Options.RelmContextOptions
 - uid: CoreRelm.Options
   commentId: N:CoreRelm.Options
   href: CoreRelm.html
@@ -6232,91 +5989,6 @@ references:
   - uid: CoreRelm.Options
     name: Options
     href: CoreRelm.Options.html
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.boolean
-  name: bool
-  nameWithType: bool
-  fullName: bool
-  nameWithType.vb: Boolean
-  fullName.vb: Boolean
-  name.vb: Boolean
-- uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.int32
-  name: int
-  nameWithType: int
-  fullName: int
-  nameWithType.vb: Integer
-  fullName.vb: Integer
-  name.vb: Integer
-- uid: System.Enum
-  commentId: T:System.Enum
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.enum
-  name: Enum
-  nameWithType: Enum
-  fullName: System.Enum
-- uid: System.String
-  commentId: T:System.String
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: string
-  nameWithType: string
-  fullName: string
-  nameWithType.vb: String
-  fullName.vb: String
-  name.vb: String
-- uid: MySql.Data.MySqlClient.MySqlConnection
-  commentId: T:MySql.Data.MySqlClient.MySqlConnection
-  parent: MySql.Data.MySqlClient
-  isExternal: true
-  name: MySqlConnection
-  nameWithType: MySqlConnection
-  fullName: MySql.Data.MySqlClient.MySqlConnection
-- uid: MySql.Data.MySqlClient
-  commentId: N:MySql.Data.MySqlClient
-  isExternal: true
-  name: MySql.Data.MySqlClient
-  nameWithType: MySql.Data.MySqlClient
-  fullName: MySql.Data.MySqlClient
-  spec.csharp:
-  - uid: MySql
-    name: MySql
-    isExternal: true
-  - name: .
-  - uid: MySql.Data
-    name: Data
-    isExternal: true
-  - name: .
-  - uid: MySql.Data.MySqlClient
-    name: MySqlClient
-    isExternal: true
-  spec.vb:
-  - uid: MySql
-    name: MySql
-    isExternal: true
-  - name: .
-  - uid: MySql.Data
-    name: Data
-    isExternal: true
-  - name: .
-  - uid: MySql.Data.MySqlClient
-    name: MySqlClient
-    isExternal: true
-- uid: MySql.Data.MySqlClient.MySqlTransaction
-  commentId: T:MySql.Data.MySqlClient.MySqlTransaction
-  parent: MySql.Data.MySqlClient
-  isExternal: true
-  name: MySqlTransaction
-  nameWithType: MySqlTransaction
-  fullName: MySql.Data.MySqlClient.MySqlTransaction
 - uid: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.Columns*
   commentId: Overload:CoreRelm.RelmInternal.Contexts.InformationSchemaContext.Columns
   href: CoreRelm.RelmInternal.Contexts.InformationSchemaContext.html#CoreRelm_RelmInternal_Contexts_InformationSchemaContext_Columns

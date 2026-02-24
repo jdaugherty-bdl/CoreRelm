@@ -129,13 +129,10 @@ Class InformationSchemaContext  <a class="header-action link-secondary" title="V
     <dt>Inherited Members</dt>
     <dd>
     <div>
-      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_OnConfigure_CoreRelm_Options_RelmContextOptionsBuilder_">RelmContext.OnConfigure(RelmContextOptionsBuilder)</a>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_OnConfigure_CoreRelm_Options_RelmContextOptions_">RelmContext.OnConfigure(RelmContextOptions)</a>
     </div>
     <div>
       <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_ContextOptions">RelmContext.ContextOptions</a>
-    </div>
-    <div>
-      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_AppliedMigrations">RelmContext.AppliedMigrations</a>
     </div>
     <div>
       <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_SetDataLoader__1_CoreRelm_Interfaces_IRelmDataLoader___0__">RelmContext.SetDataLoader&lt;T&gt;(IRelmDataLoader&lt;T&gt;)</a>
@@ -376,246 +373,21 @@ Class InformationSchemaContext  <a class="header-action link-secondary" title="V
 
   <a id="CoreRelm_RelmInternal_Contexts_InformationSchemaContext__ctor_" data-uid="CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor*"></a>
 
-  <h3 id="CoreRelm_RelmInternal_Contexts_InformationSchemaContext__ctor_CoreRelm_Interfaces_IRelmContext_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Int32_System_Boolean_System_Boolean_" data-uid="CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor(CoreRelm.Interfaces.IRelmContext,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)">
-  InformationSchemaContext(IRelmContext, bool, bool, bool, bool, int, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_RelmInternal_Contexts_InformationSchemaContext__ctor_CoreRelm_Options_RelmContextOptions_" data-uid="CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor(CoreRelm.Options.RelmContextOptions)">
+  InformationSchemaContext(RelmContextOptions)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs/#L14"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public InformationSchemaContext(IRelmContext relmContext, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true)</code></pre>
+    <pre><code class="lang-csharp hljs">public InformationSchemaContext(RelmContextOptions relmContextOptions)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>relmContext</code> <a class="xref" href="CoreRelm.Interfaces.IRelmContext.html">IRelmContext</a></dt>
-    <dd></dd>
-    <dt><code>autoOpenConnection</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-    <dt><code>autoOpenTransaction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-    <dt><code>allowUserVariables</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-    <dt><code>convertZeroDateTime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-    <dt><code>lockWaitTimeoutSeconds</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
-    <dt><code>autoInitializeDataSets</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-    <dt><code>autoVerifyTables</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-
-  <a id="CoreRelm_RelmInternal_Contexts_InformationSchemaContext__ctor_" data-uid="CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor*"></a>
-
-  <h3 id="CoreRelm_RelmInternal_Contexts_InformationSchemaContext__ctor_CoreRelm_Options_RelmContextOptionsBuilder_" data-uid="CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor(CoreRelm.Options.RelmContextOptionsBuilder)">
-  InformationSchemaContext(RelmContextOptionsBuilder)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs/#L16"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public InformationSchemaContext(RelmContextOptionsBuilder optionsBuilder)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>optionsBuilder</code> <a class="xref" href="CoreRelm.Options.RelmContextOptionsBuilder.html">RelmContextOptionsBuilder</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-
-  <a id="CoreRelm_RelmInternal_Contexts_InformationSchemaContext__ctor_" data-uid="CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor*"></a>
-
-  <h3 id="CoreRelm_RelmInternal_Contexts_InformationSchemaContext__ctor_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Boolean_System_Boolean_System_Boolean_System_Int32_System_Boolean_System_Boolean_" data-uid="CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)">
-  InformationSchemaContext(MySqlConnection, MySqlTransaction?, bool, bool, bool, int, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs/#L36"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public InformationSchemaContext(MySqlConnection connection, MySqlTransaction? transaction, bool autoOpenConnection = true, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>connection</code> <span class="xref">MySqlConnection</span></dt>
-    <dd></dd>
-    <dt><code>transaction</code> <span class="xref">MySqlTransaction</span></dt>
-    <dd></dd>
-    <dt><code>autoOpenConnection</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-    <dt><code>allowUserVariables</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-    <dt><code>convertZeroDateTime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-    <dt><code>lockWaitTimeoutSeconds</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
-    <dt><code>autoInitializeDataSets</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-    <dt><code>autoVerifyTables</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-
-  <a id="CoreRelm_RelmInternal_Contexts_InformationSchemaContext__ctor_" data-uid="CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor*"></a>
-
-  <h3 id="CoreRelm_RelmInternal_Contexts_InformationSchemaContext__ctor_MySql_Data_MySqlClient_MySqlConnection_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Int32_System_Boolean_System_Boolean_" data-uid="CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor(MySql.Data.MySqlClient.MySqlConnection,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)">
-  InformationSchemaContext(MySqlConnection, bool, bool, bool, bool, int, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs/#L32"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public InformationSchemaContext(MySqlConnection connection, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>connection</code> <span class="xref">MySqlConnection</span></dt>
-    <dd></dd>
-    <dt><code>autoOpenConnection</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-    <dt><code>autoOpenTransaction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-    <dt><code>allowUserVariables</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-    <dt><code>convertZeroDateTime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-    <dt><code>lockWaitTimeoutSeconds</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
-    <dt><code>autoInitializeDataSets</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-    <dt><code>autoVerifyTables</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-
-  <a id="CoreRelm_RelmInternal_Contexts_InformationSchemaContext__ctor_" data-uid="CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor*"></a>
-
-  <h3 id="CoreRelm_RelmInternal_Contexts_InformationSchemaContext__ctor_System_Enum_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Int32_System_Boolean_System_Boolean_" data-uid="CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor(System.Enum,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)">
-  InformationSchemaContext(Enum, bool, bool, bool, bool, int, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs/#L24"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public InformationSchemaContext(Enum connectionStringType, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>connectionStringType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.enum">Enum</a></dt>
-    <dd></dd>
-    <dt><code>autoOpenConnection</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-    <dt><code>autoOpenTransaction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-    <dt><code>allowUserVariables</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-    <dt><code>convertZeroDateTime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-    <dt><code>lockWaitTimeoutSeconds</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
-    <dt><code>autoInitializeDataSets</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-    <dt><code>autoVerifyTables</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-
-  <a id="CoreRelm_RelmInternal_Contexts_InformationSchemaContext__ctor_" data-uid="CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor*"></a>
-
-  <h3 id="CoreRelm_RelmInternal_Contexts_InformationSchemaContext__ctor_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Int32_System_Boolean_System_Boolean_" data-uid="CoreRelm.RelmInternal.Contexts.InformationSchemaContext.#ctor(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)">
-  InformationSchemaContext(string, bool, bool, bool, bool, int, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs/#L28"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public InformationSchemaContext(string connectionDetails, bool autoOpenConnection = true, bool autoOpenTransaction = false, bool allowUserVariables = false, bool convertZeroDateTime = false, int lockWaitTimeoutSeconds = 0, bool autoInitializeDataSets = true, bool autoVerifyTables = true)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>connectionDetails</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-    <dt><code>autoOpenConnection</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-    <dt><code>autoOpenTransaction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-    <dt><code>allowUserVariables</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-    <dt><code>convertZeroDateTime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-    <dt><code>lockWaitTimeoutSeconds</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
-    <dt><code>autoInitializeDataSets</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-    <dt><code>autoVerifyTables</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dt><code>relmContextOptions</code> <a class="xref" href="CoreRelm.Options.RelmContextOptions.html">RelmContextOptions</a></dt>
     <dd></dd>
   </dl>
 
@@ -638,7 +410,7 @@ Class InformationSchemaContext  <a class="header-action link-secondary" title="V
 
   <h3 id="CoreRelm_RelmInternal_Contexts_InformationSchemaContext_Columns" data-uid="CoreRelm.RelmInternal.Contexts.InformationSchemaContext.Columns">
   Columns
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs/#L16"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -669,7 +441,7 @@ Class InformationSchemaContext  <a class="header-action link-secondary" title="V
 
   <h3 id="CoreRelm_RelmInternal_Contexts_InformationSchemaContext_ForeignKeys" data-uid="CoreRelm.RelmInternal.Contexts.InformationSchemaContext.ForeignKeys">
   ForeignKeys
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs/#L17"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -700,7 +472,7 @@ Class InformationSchemaContext  <a class="header-action link-secondary" title="V
 
   <h3 id="CoreRelm_RelmInternal_Contexts_InformationSchemaContext_FunctionParameters" data-uid="CoreRelm.RelmInternal.Contexts.InformationSchemaContext.FunctionParameters">
   FunctionParameters
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs/#L18"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -731,7 +503,7 @@ Class InformationSchemaContext  <a class="header-action link-secondary" title="V
 
   <h3 id="CoreRelm_RelmInternal_Contexts_InformationSchemaContext_Functions" data-uid="CoreRelm.RelmInternal.Contexts.InformationSchemaContext.Functions">
   Functions
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs/#L19"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -762,7 +534,7 @@ Class InformationSchemaContext  <a class="header-action link-secondary" title="V
 
   <h3 id="CoreRelm_RelmInternal_Contexts_InformationSchemaContext_Indexes" data-uid="CoreRelm.RelmInternal.Contexts.InformationSchemaContext.Indexes">
   Indexes
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs/#L20"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -793,7 +565,7 @@ Class InformationSchemaContext  <a class="header-action link-secondary" title="V
 
   <h3 id="CoreRelm_RelmInternal_Contexts_InformationSchemaContext_Triggers" data-uid="CoreRelm.RelmInternal.Contexts.InformationSchemaContext.Triggers">
   Triggers
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/RelmInternal/Contexts/InformationSchemaContext.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>

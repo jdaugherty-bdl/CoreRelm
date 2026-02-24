@@ -1,0 +1,690 @@
+### YamlMime:ManagedReference
+items:
+- uid: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper
+  commentId: T:CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper
+  id: MigrationChecksumHelper
+  parent: CoreRelm.Migrations.MigrationFiles
+  children:
+  - CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.ApplyComputedChecksumToHeader(System.String)
+  - CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.ComputeStableChecksumSha256(System.String)
+  - CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.FinalizeAndWrite(System.String,System.String)
+  - CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.NormalizeNewlines(System.String)
+  - CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.PlaceholderChecksum64Zeros
+  - CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.ReplaceChecksumWithPlaceholder(System.String)
+  - CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.VerifyChecksum(System.String)
+  - CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.WriteUtf8NoBom(System.String,System.String)
+  langs:
+  - csharp
+  - vb
+  name: MigrationChecksumHelper
+  nameWithType: MigrationChecksumHelper
+  fullName: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper
+  type: Class
+  source:
+    remote:
+      path: CoreRelm/RelmInternal/Helpers/Migrations/MigrationFiles/MigrationChecksumHelper.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: MigrationChecksumHelper
+    path: ../CoreRelm/RelmInternal/Helpers/Migrations/MigrationFiles/MigrationChecksumHelper.cs
+    startLine: 17
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Migrations.MigrationFiles
+  summary: >-
+    Computes a stable SHA-256 checksum for a migration SQL file.
+
+    Rules:
+     - Hash is computed over the entire file contents
+     - But the ChecksumSha256 header value is treated as a placeholder (64 zeroes) during hashing
+     - Newlines are normalized to '\n' before hashing
+     - Output hash is lowercase hex
+  example: []
+  syntax:
+    content: public static class MigrationChecksumHelper
+    content.vb: Public Module MigrationChecksumHelper
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.PlaceholderChecksum64Zeros
+  commentId: F:CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.PlaceholderChecksum64Zeros
+  id: PlaceholderChecksum64Zeros
+  parent: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper
+  langs:
+  - csharp
+  - vb
+  name: PlaceholderChecksum64Zeros
+  nameWithType: MigrationChecksumHelper.PlaceholderChecksum64Zeros
+  fullName: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.PlaceholderChecksum64Zeros
+  type: Field
+  source:
+    remote:
+      path: CoreRelm/RelmInternal/Helpers/Migrations/MigrationFiles/MigrationChecksumHelper.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: PlaceholderChecksum64Zeros
+    path: ../CoreRelm/RelmInternal/Helpers/Migrations/MigrationFiles/MigrationChecksumHelper.cs
+    startLine: 22
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Migrations.MigrationFiles
+  summary: 64 zeros. Used as placeholder in the header during checksum computation to avoid recursion.
+  example: []
+  syntax:
+    content: public const string PlaceholderChecksum64Zeros = "0000000000000000000000000000000000000000000000000000000000000000"
+    return:
+      type: System.String
+    content.vb: Public Const PlaceholderChecksum64Zeros As String = "0000000000000000000000000000000000000000000000000000000000000000"
+- uid: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.NormalizeNewlines(System.String)
+  commentId: M:CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.NormalizeNewlines(System.String)
+  id: NormalizeNewlines(System.String)
+  parent: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper
+  langs:
+  - csharp
+  - vb
+  name: NormalizeNewlines(string)
+  nameWithType: MigrationChecksumHelper.NormalizeNewlines(string)
+  fullName: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.NormalizeNewlines(string)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/RelmInternal/Helpers/Migrations/MigrationFiles/MigrationChecksumHelper.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: NormalizeNewlines
+    path: ../CoreRelm/RelmInternal/Helpers/Migrations/MigrationFiles/MigrationChecksumHelper.cs
+    startLine: 38
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Migrations.MigrationFiles
+  summary: >-
+    Normalize text for hashing:
+     - Convert CRLF and CR to LF
+  example: []
+  syntax:
+    content: public static string NormalizeNewlines(string sqlText)
+    parameters:
+    - id: sqlText
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function NormalizeNewlines(sqlText As String) As String
+  overload: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.NormalizeNewlines*
+  nameWithType.vb: MigrationChecksumHelper.NormalizeNewlines(String)
+  fullName.vb: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.NormalizeNewlines(String)
+  name.vb: NormalizeNewlines(String)
+- uid: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.ReplaceChecksumWithPlaceholder(System.String)
+  commentId: M:CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.ReplaceChecksumWithPlaceholder(System.String)
+  id: ReplaceChecksumWithPlaceholder(System.String)
+  parent: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper
+  langs:
+  - csharp
+  - vb
+  name: ReplaceChecksumWithPlaceholder(string)
+  nameWithType: MigrationChecksumHelper.ReplaceChecksumWithPlaceholder(string)
+  fullName: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.ReplaceChecksumWithPlaceholder(string)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/RelmInternal/Helpers/Migrations/MigrationFiles/MigrationChecksumHelper.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: ReplaceChecksumWithPlaceholder
+    path: ../CoreRelm/RelmInternal/Helpers/Migrations/MigrationFiles/MigrationChecksumHelper.cs
+    startLine: 49
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Migrations.MigrationFiles
+  summary: >-
+    Returns a version of the SQL text where the checksum header value is replaced with 64 zeros.
+
+    If no checksum header line exists, returns the input unchanged.
+  example: []
+  syntax:
+    content: public static string ReplaceChecksumWithPlaceholder(string sqlText)
+    parameters:
+    - id: sqlText
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function ReplaceChecksumWithPlaceholder(sqlText As String) As String
+  overload: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.ReplaceChecksumWithPlaceholder*
+  nameWithType.vb: MigrationChecksumHelper.ReplaceChecksumWithPlaceholder(String)
+  fullName.vb: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.ReplaceChecksumWithPlaceholder(String)
+  name.vb: ReplaceChecksumWithPlaceholder(String)
+- uid: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.ComputeStableChecksumSha256(System.String)
+  commentId: M:CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.ComputeStableChecksumSha256(System.String)
+  id: ComputeStableChecksumSha256(System.String)
+  parent: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper
+  langs:
+  - csharp
+  - vb
+  name: ComputeStableChecksumSha256(string)
+  nameWithType: MigrationChecksumHelper.ComputeStableChecksumSha256(string)
+  fullName: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.ComputeStableChecksumSha256(string)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/RelmInternal/Helpers/Migrations/MigrationFiles/MigrationChecksumHelper.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: ComputeStableChecksumSha256
+    path: ../CoreRelm/RelmInternal/Helpers/Migrations/MigrationFiles/MigrationChecksumHelper.cs
+    startLine: 67
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Migrations.MigrationFiles
+  summary: >-
+    Computes the stable checksum for a migration SQL file:
+     - replace checksum value with placeholder
+     - normalize newlines
+     - SHA-256 over UTF-8 bytes (no BOM concept applies when encoding in-memory)
+  example: []
+  syntax:
+    content: public static string ComputeStableChecksumSha256(string sqlText)
+    parameters:
+    - id: sqlText
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function ComputeStableChecksumSha256(sqlText As String) As String
+  overload: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.ComputeStableChecksumSha256*
+  nameWithType.vb: MigrationChecksumHelper.ComputeStableChecksumSha256(String)
+  fullName.vb: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.ComputeStableChecksumSha256(String)
+  name.vb: ComputeStableChecksumSha256(String)
+- uid: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.ApplyComputedChecksumToHeader(System.String)
+  commentId: M:CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.ApplyComputedChecksumToHeader(System.String)
+  id: ApplyComputedChecksumToHeader(System.String)
+  parent: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper
+  langs:
+  - csharp
+  - vb
+  name: ApplyComputedChecksumToHeader(string)
+  nameWithType: MigrationChecksumHelper.ApplyComputedChecksumToHeader(string)
+  fullName: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.ApplyComputedChecksumToHeader(string)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/RelmInternal/Helpers/Migrations/MigrationFiles/MigrationChecksumHelper.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: ApplyComputedChecksumToHeader
+    path: ../CoreRelm/RelmInternal/Helpers/Migrations/MigrationFiles/MigrationChecksumHelper.cs
+    startLine: 84
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Migrations.MigrationFiles
+  summary: >-
+    Updates (or inserts) the checksum value in the SQL text header.
+
+    If a ChecksumSha256 header line exists, it is replaced.
+
+    If it does not exist, this method will NOT invent a header block; it throws.
+
+    (Keeps behavior strict so you don't silently create partial headers.)
+  example: []
+  syntax:
+    content: public static string ApplyComputedChecksumToHeader(string sqlText)
+    parameters:
+    - id: sqlText
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function ApplyComputedChecksumToHeader(sqlText As String) As String
+  overload: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.ApplyComputedChecksumToHeader*
+  nameWithType.vb: MigrationChecksumHelper.ApplyComputedChecksumToHeader(String)
+  fullName.vb: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.ApplyComputedChecksumToHeader(String)
+  name.vb: ApplyComputedChecksumToHeader(String)
+- uid: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.WriteUtf8NoBom(System.String,System.String)
+  commentId: M:CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.WriteUtf8NoBom(System.String,System.String)
+  id: WriteUtf8NoBom(System.String,System.String)
+  parent: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper
+  langs:
+  - csharp
+  - vb
+  name: WriteUtf8NoBom(string, string)
+  nameWithType: MigrationChecksumHelper.WriteUtf8NoBom(string, string)
+  fullName: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.WriteUtf8NoBom(string, string)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/RelmInternal/Helpers/Migrations/MigrationFiles/MigrationChecksumHelper.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: WriteUtf8NoBom
+    path: ../CoreRelm/RelmInternal/Helpers/Migrations/MigrationFiles/MigrationChecksumHelper.cs
+    startLine: 107
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Migrations.MigrationFiles
+  summary: >-
+    Writes text as UTF-8 without BOM.
+
+    This prevents BOM-related checksum differences across environments.
+  example: []
+  syntax:
+    content: public static void WriteUtf8NoBom(string path, string contents)
+    parameters:
+    - id: path
+      type: System.String
+    - id: contents
+      type: System.String
+    content.vb: Public Shared Sub WriteUtf8NoBom(path As String, contents As String)
+  overload: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.WriteUtf8NoBom*
+  nameWithType.vb: MigrationChecksumHelper.WriteUtf8NoBom(String, String)
+  fullName.vb: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.WriteUtf8NoBom(String, String)
+  name.vb: WriteUtf8NoBom(String, String)
+- uid: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.FinalizeAndWrite(System.String,System.String)
+  commentId: M:CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.FinalizeAndWrite(System.String,System.String)
+  id: FinalizeAndWrite(System.String,System.String)
+  parent: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper
+  langs:
+  - csharp
+  - vb
+  name: FinalizeAndWrite(string, string)
+  nameWithType: MigrationChecksumHelper.FinalizeAndWrite(string, string)
+  fullName: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.FinalizeAndWrite(string, string)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/RelmInternal/Helpers/Migrations/MigrationFiles/MigrationChecksumHelper.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: FinalizeAndWrite
+    path: ../CoreRelm/RelmInternal/Helpers/Migrations/MigrationFiles/MigrationChecksumHelper.cs
+    startLine: 116
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Migrations.MigrationFiles
+  summary: 'Convenience: computes checksum and writes final file (UTF-8 no BOM).'
+  example: []
+  syntax:
+    content: public static void FinalizeAndWrite(string path, string sqlTextWithPlaceholder)
+    parameters:
+    - id: path
+      type: System.String
+    - id: sqlTextWithPlaceholder
+      type: System.String
+    content.vb: Public Shared Sub FinalizeAndWrite(path As String, sqlTextWithPlaceholder As String)
+  overload: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.FinalizeAndWrite*
+  nameWithType.vb: MigrationChecksumHelper.FinalizeAndWrite(String, String)
+  fullName.vb: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.FinalizeAndWrite(String, String)
+  name.vb: FinalizeAndWrite(String, String)
+- uid: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.VerifyChecksum(System.String)
+  commentId: M:CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.VerifyChecksum(System.String)
+  id: VerifyChecksum(System.String)
+  parent: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper
+  langs:
+  - csharp
+  - vb
+  name: VerifyChecksum(string)
+  nameWithType: MigrationChecksumHelper.VerifyChecksum(string)
+  fullName: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.VerifyChecksum(string)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/RelmInternal/Helpers/Migrations/MigrationFiles/MigrationChecksumHelper.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: VerifyChecksum
+    path: ../CoreRelm/RelmInternal/Helpers/Migrations/MigrationFiles/MigrationChecksumHelper.cs
+    startLine: 126
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Migrations.MigrationFiles
+  summary: >-
+    Verifies that the checksum in the SQL text matches the computed stable checksum.
+
+    Returns false if no checksum header line exists.
+  example: []
+  syntax:
+    content: public static bool VerifyChecksum(string sqlText)
+    parameters:
+    - id: sqlText
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function VerifyChecksum(sqlText As String) As Boolean
+  overload: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.VerifyChecksum*
+  nameWithType.vb: MigrationChecksumHelper.VerifyChecksum(String)
+  fullName.vb: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.VerifyChecksum(String)
+  name.vb: VerifyChecksum(String)
+references:
+- uid: CoreRelm.Migrations.MigrationFiles
+  commentId: N:CoreRelm.Migrations.MigrationFiles
+  href: CoreRelm.html
+  name: CoreRelm.Migrations.MigrationFiles
+  nameWithType: CoreRelm.Migrations.MigrationFiles
+  fullName: CoreRelm.Migrations.MigrationFiles
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Migrations
+    name: Migrations
+    href: CoreRelm.Migrations.html
+  - name: .
+  - uid: CoreRelm.Migrations.MigrationFiles
+    name: MigrationFiles
+    href: CoreRelm.Migrations.MigrationFiles.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Migrations
+    name: Migrations
+    href: CoreRelm.Migrations.html
+  - name: .
+  - uid: CoreRelm.Migrations.MigrationFiles
+    name: MigrationFiles
+    href: CoreRelm.Migrations.MigrationFiles.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.NormalizeNewlines*
+  commentId: Overload:CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.NormalizeNewlines
+  href: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.html#CoreRelm_Migrations_MigrationFiles_MigrationChecksumHelper_NormalizeNewlines_System_String_
+  name: NormalizeNewlines
+  nameWithType: MigrationChecksumHelper.NormalizeNewlines
+  fullName: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.NormalizeNewlines
+- uid: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.ReplaceChecksumWithPlaceholder*
+  commentId: Overload:CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.ReplaceChecksumWithPlaceholder
+  href: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.html#CoreRelm_Migrations_MigrationFiles_MigrationChecksumHelper_ReplaceChecksumWithPlaceholder_System_String_
+  name: ReplaceChecksumWithPlaceholder
+  nameWithType: MigrationChecksumHelper.ReplaceChecksumWithPlaceholder
+  fullName: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.ReplaceChecksumWithPlaceholder
+- uid: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.ComputeStableChecksumSha256*
+  commentId: Overload:CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.ComputeStableChecksumSha256
+  href: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.html#CoreRelm_Migrations_MigrationFiles_MigrationChecksumHelper_ComputeStableChecksumSha256_System_String_
+  name: ComputeStableChecksumSha256
+  nameWithType: MigrationChecksumHelper.ComputeStableChecksumSha256
+  fullName: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.ComputeStableChecksumSha256
+- uid: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.ApplyComputedChecksumToHeader*
+  commentId: Overload:CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.ApplyComputedChecksumToHeader
+  href: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.html#CoreRelm_Migrations_MigrationFiles_MigrationChecksumHelper_ApplyComputedChecksumToHeader_System_String_
+  name: ApplyComputedChecksumToHeader
+  nameWithType: MigrationChecksumHelper.ApplyComputedChecksumToHeader
+  fullName: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.ApplyComputedChecksumToHeader
+- uid: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.WriteUtf8NoBom*
+  commentId: Overload:CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.WriteUtf8NoBom
+  href: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.html#CoreRelm_Migrations_MigrationFiles_MigrationChecksumHelper_WriteUtf8NoBom_System_String_System_String_
+  name: WriteUtf8NoBom
+  nameWithType: MigrationChecksumHelper.WriteUtf8NoBom
+  fullName: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.WriteUtf8NoBom
+- uid: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.FinalizeAndWrite*
+  commentId: Overload:CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.FinalizeAndWrite
+  href: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.html#CoreRelm_Migrations_MigrationFiles_MigrationChecksumHelper_FinalizeAndWrite_System_String_System_String_
+  name: FinalizeAndWrite
+  nameWithType: MigrationChecksumHelper.FinalizeAndWrite
+  fullName: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.FinalizeAndWrite
+- uid: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.VerifyChecksum*
+  commentId: Overload:CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.VerifyChecksum
+  href: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.html#CoreRelm_Migrations_MigrationFiles_MigrationChecksumHelper_VerifyChecksum_System_String_
+  name: VerifyChecksum
+  nameWithType: MigrationChecksumHelper.VerifyChecksum
+  fullName: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper.VerifyChecksum
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean

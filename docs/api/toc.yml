@@ -303,6 +303,23 @@ items:
   - uid: CoreRelm.Interfaces.Migrations.IRelmSqlScriptRunner
     name: IRelmSqlScriptRunner
     type: Interface
+- uid: CoreRelm.Interfaces.Migrations.Execution
+  name: CoreRelm.Interfaces.Migrations.Execution
+  type: Namespace
+  items:
+  - uid: CoreRelm.Interfaces.Migrations.Execution.IMigrationApplier
+    name: IMigrationApplier
+    type: Interface
+- uid: CoreRelm.Interfaces.Migrations.MigrationFiles
+  name: CoreRelm.Interfaces.Migrations.MigrationFiles
+  type: Namespace
+  items:
+  - uid: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationFileNameParser
+    name: IMigrationFileNameParser
+    type: Interface
+  - uid: CoreRelm.Interfaces.Migrations.MigrationFiles.IMigrationScriptHeaderParser
+    name: IMigrationScriptHeaderParser
+    type: Interface
 - uid: CoreRelm.Interfaces.Migrations.Tooling
   name: CoreRelm.Interfaces.Migrations.Tooling
   type: Namespace
@@ -345,6 +362,26 @@ items:
     type: Class
   - uid: CoreRelm.Migrations.RelmMigrationTooling
     name: RelmMigrationTooling
+    type: Class
+- uid: CoreRelm.Migrations.Contexts
+  name: CoreRelm.Migrations.Contexts
+  type: Namespace
+  items:
+  - uid: CoreRelm.Migrations.Contexts.InformationSchemaContext
+    name: InformationSchemaContext
+    type: Class
+- uid: CoreRelm.Migrations.MigrationFiles
+  name: CoreRelm.Migrations.MigrationFiles
+  type: Namespace
+  items:
+  - uid: CoreRelm.Migrations.MigrationFiles.MigrationChecksumHelper
+    name: MigrationChecksumHelper
+    type: Class
+  - uid: CoreRelm.Migrations.MigrationFiles.MigrationFileNameParser
+    name: MigrationFileNameParser
+    type: Class
+  - uid: CoreRelm.Migrations.MigrationFiles.MigrationScriptHeaderParser
+    name: MigrationScriptHeaderParser
     type: Class
 - uid: CoreRelm.Models
   name: CoreRelm.Models
@@ -528,6 +565,12 @@ items:
   - uid: CoreRelm.Models.Migrations.Tooling.Apply.MigrationScript
     name: MigrationScript
     type: Class
+  - uid: CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationFileName
+    name: ParsedMigrationFileName
+    type: Class
+  - uid: CoreRelm.Models.Migrations.Tooling.Apply.ParsedMigrationHeader
+    name: ParsedMigrationHeader
+    type: Class
   - uid: CoreRelm.Models.Migrations.Tooling.Apply.PerDatabaseApplyResult
     name: PerDatabaseApplyResult
     type: Class
@@ -574,78 +617,20 @@ items:
   name: CoreRelm.Options
   type: Namespace
   items:
+  - uid: CoreRelm.Options.RelmContextOptions
+    name: RelmContextOptions
+    type: Class
+  - uid: CoreRelm.Options.RelmContextOptions.OptionsBuilderTypes
+    name: RelmContextOptions.OptionsBuilderTypes
+    type: Enum
   - uid: CoreRelm.Options.RelmContextOptionsBuilder
     name: RelmContextOptionsBuilder
     type: Class
-  - uid: CoreRelm.Options.RelmContextOptionsBuilder.OptionsBuilderTypes
-    name: RelmContextOptionsBuilder.OptionsBuilderTypes
-    type: Enum
 - uid: CoreRelm.Persistence
   name: CoreRelm.Persistence
   type: Namespace
   items:
   - uid: CoreRelm.Persistence.BulkTableWriter`1
     name: BulkTableWriter<T>
-    type: Class
-- uid: CoreRelm.RelmInternal.Contexts
-  name: CoreRelm.RelmInternal.Contexts
-  type: Namespace
-  items:
-  - uid: CoreRelm.RelmInternal.Contexts.InformationSchemaContext
-    name: InformationSchemaContext
-    type: Class
-- uid: CoreRelm.RelmInternal.Helpers.Migrations.Execution
-  name: CoreRelm.RelmInternal.Helpers.Migrations.Execution
-  type: Namespace
-  items:
-  - uid: CoreRelm.RelmInternal.Helpers.Migrations.Execution.MigrationApplier
-    name: MigrationApplier
-    type: Class
-  - uid: CoreRelm.RelmInternal.Helpers.Migrations.Execution.MySqlScriptRunner
-    name: MySqlScriptRunner
-    type: Class
-  - uid: CoreRelm.RelmInternal.Helpers.Migrations.Execution.SchemaMigrationsStore
-    name: SchemaMigrationsStore
-    type: Class
-- uid: CoreRelm.RelmInternal.Helpers.Migrations.Introspection
-  name: CoreRelm.RelmInternal.Helpers.Migrations.Introspection
-  type: Namespace
-  items:
-  - uid: CoreRelm.RelmInternal.Helpers.Migrations.Introspection.DbAvailabilityHelper
-    name: DbAvailabilityHelper
-    type: Class
-  - uid: CoreRelm.RelmInternal.Helpers.Migrations.Introspection.SchemaSnapshotFactory
-    name: SchemaSnapshotFactory
-    type: Class
-- uid: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
-  name: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
-  type: Namespace
-  items:
-  - uid: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder
-    name: DesiredSchemaBuilder
-    type: Class
-  - uid: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.RelmMigrationPlanner
-    name: RelmMigrationPlanner
-    type: Class
-- uid: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
-  name: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
-  type: Namespace
-  items:
-  - uid: CoreRelm.RelmInternal.Helpers.Migrations.Provisioning.MySqlDatabaseProvisioner
-    name: MySqlDatabaseProvisioner
-    type: Class
-- uid: CoreRelm.RelmInternal.Helpers.Migrations.Rendering
-  name: CoreRelm.RelmInternal.Helpers.Migrations.Rendering
-  type: Namespace
-  items:
-  - uid: CoreRelm.RelmInternal.Helpers.Migrations.Rendering.MySqlMigrationSqlRenderer
-    name: MySqlMigrationSqlRenderer
-    type: Class
-- uid: CoreRelm.RelmInternal.Models
-  name: CoreRelm.RelmInternal.Models
-  type: Namespace
-  items:
-  - uid: CoreRelm.RelmInternal.Models.ForeignKeyNavigationOptions
-    name: ForeignKeyNavigationOptions
     type: Class
 memberLayout: SamePage

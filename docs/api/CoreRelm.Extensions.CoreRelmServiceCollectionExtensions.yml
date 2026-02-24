@@ -6,6 +6,7 @@ items:
   parent: CoreRelm.Extensions
   children:
   - CoreRelm.Extensions.CoreRelmServiceCollectionExtensions.AddCoreRelm(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)
+  - CoreRelm.Extensions.CoreRelmServiceCollectionExtensions.AddRelmContext``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{CoreRelm.Options.RelmContextOptionsBuilder})
   langs:
   - csharp
   - vb
@@ -20,7 +21,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: CoreRelmServiceCollectionExtensions
     path: ../CoreRelm/Extensions/CoreRelmServiceCollectionExtensions.cs
-    startLine: 21
+    startLine: 26
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Extensions
@@ -56,7 +57,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AddCoreRelm
     path: ../CoreRelm/Extensions/CoreRelmServiceCollectionExtensions.cs
-    startLine: 57
+    startLine: 28
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Extensions
@@ -71,6 +72,45 @@ items:
       type: Microsoft.Extensions.DependencyInjection.IServiceCollection
     content.vb: Public Shared Function AddCoreRelm(services As IServiceCollection, configuration As IConfiguration) As IServiceCollection
   overload: CoreRelm.Extensions.CoreRelmServiceCollectionExtensions.AddCoreRelm*
+- uid: CoreRelm.Extensions.CoreRelmServiceCollectionExtensions.AddRelmContext``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{CoreRelm.Options.RelmContextOptionsBuilder})
+  commentId: M:CoreRelm.Extensions.CoreRelmServiceCollectionExtensions.AddRelmContext``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{CoreRelm.Options.RelmContextOptionsBuilder})
+  id: AddRelmContext``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{CoreRelm.Options.RelmContextOptionsBuilder})
+  isExtensionMethod: true
+  parent: CoreRelm.Extensions.CoreRelmServiceCollectionExtensions
+  langs:
+  - csharp
+  - vb
+  name: AddRelmContext<T>(IServiceCollection, Action<RelmContextOptionsBuilder>)
+  nameWithType: CoreRelmServiceCollectionExtensions.AddRelmContext<T>(IServiceCollection, Action<RelmContextOptionsBuilder>)
+  fullName: CoreRelm.Extensions.CoreRelmServiceCollectionExtensions.AddRelmContext<T>(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<CoreRelm.Options.RelmContextOptionsBuilder>)
+  type: Method
+  source:
+    remote:
+      path: CoreRelm/Extensions/CoreRelmServiceCollectionExtensions.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: AddRelmContext
+    path: ../CoreRelm/Extensions/CoreRelmServiceCollectionExtensions.cs
+    startLine: 39
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Extensions
+  syntax:
+    content: 'public static IServiceCollection AddRelmContext<T>(this IServiceCollection services, Action<RelmContextOptionsBuilder> configure) where T : class'
+    parameters:
+    - id: services
+      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    - id: configure
+      type: System.Action{CoreRelm.Options.RelmContextOptionsBuilder}
+    typeParameters:
+    - id: T
+    return:
+      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    content.vb: Public Shared Function AddRelmContext(Of T As Class)(services As IServiceCollection, configure As Action(Of RelmContextOptionsBuilder)) As IServiceCollection
+  overload: CoreRelm.Extensions.CoreRelmServiceCollectionExtensions.AddRelmContext*
+  nameWithType.vb: CoreRelmServiceCollectionExtensions.AddRelmContext(Of T)(IServiceCollection, Action(Of RelmContextOptionsBuilder))
+  fullName.vb: CoreRelm.Extensions.CoreRelmServiceCollectionExtensions.AddRelmContext(Of T)(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action(Of CoreRelm.Options.RelmContextOptionsBuilder))
+  name.vb: AddRelmContext(Of T)(IServiceCollection, Action(Of RelmContextOptionsBuilder))
 references:
 - uid: CoreRelm.Extensions
   commentId: N:CoreRelm.Extensions
@@ -427,3 +467,70 @@ references:
     name: Configuration
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.configuration
+- uid: CoreRelm.Extensions.CoreRelmServiceCollectionExtensions.AddRelmContext*
+  commentId: Overload:CoreRelm.Extensions.CoreRelmServiceCollectionExtensions.AddRelmContext
+  href: CoreRelm.Extensions.CoreRelmServiceCollectionExtensions.html#CoreRelm_Extensions_CoreRelmServiceCollectionExtensions_AddRelmContext__1_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Action_CoreRelm_Options_RelmContextOptionsBuilder__
+  name: AddRelmContext
+  nameWithType: CoreRelmServiceCollectionExtensions.AddRelmContext
+  fullName: CoreRelm.Extensions.CoreRelmServiceCollectionExtensions.AddRelmContext
+- uid: System.Action{CoreRelm.Options.RelmContextOptionsBuilder}
+  commentId: T:System.Action{CoreRelm.Options.RelmContextOptionsBuilder}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<RelmContextOptionsBuilder>
+  nameWithType: Action<RelmContextOptionsBuilder>
+  fullName: System.Action<CoreRelm.Options.RelmContextOptionsBuilder>
+  nameWithType.vb: Action(Of RelmContextOptionsBuilder)
+  fullName.vb: System.Action(Of CoreRelm.Options.RelmContextOptionsBuilder)
+  name.vb: Action(Of RelmContextOptionsBuilder)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: CoreRelm.Options.RelmContextOptionsBuilder
+    name: RelmContextOptionsBuilder
+    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.Options.RelmContextOptionsBuilder
+    name: RelmContextOptionsBuilder
+    href: CoreRelm.Options.RelmContextOptionsBuilder.html
+  - name: )
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )

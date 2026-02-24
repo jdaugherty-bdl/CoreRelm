@@ -79,9 +79,9 @@ items:
   langs:
   - csharp
   - vb
-  name: BuildAsync(string, List<ValidatedModelType>)
-  nameWithType: DesiredSchemaBuilder.BuildAsync(string, List<ValidatedModelType>)
-  fullName: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder.BuildAsync(string, System.Collections.Generic.List<CoreRelm.Models.Migrations.ValidatedModelType>)
+  name: BuildAsync(string?, List<ValidatedModelType>)
+  nameWithType: DesiredSchemaBuilder.BuildAsync(string?, List<ValidatedModelType>)
+  fullName: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans.DesiredSchemaBuilder.BuildAsync(string?, System.Collections.Generic.List<CoreRelm.Models.Migrations.ValidatedModelType>)
   type: Method
   source:
     remote:
@@ -96,7 +96,7 @@ items:
   namespace: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
   example: []
   syntax:
-    content: public Task<SchemaSnapshot> BuildAsync(string databaseFilter, List<ValidatedModelType> modelsForDb)
+    content: public Task<SchemaSnapshot> BuildAsync(string? databaseFilter, List<ValidatedModelType> modelsForDb)
     parameters:
     - id: databaseFilter
       type: System.String
@@ -129,7 +129,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Build
     path: ../CoreRelm/RelmInternal/Helpers/Migrations/MigrationPlans/DesiredSchemaBuilder.cs
-    startLine: 38
+    startLine: 40
   assemblies:
   - CoreRelm
   namespace: CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans

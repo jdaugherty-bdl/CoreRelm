@@ -156,11 +156,51 @@ Interface IRelmDatabaseProvisioner  <a class="header-action link-secondary" titl
 
 
 
+  <a id="CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_EnsureForApplyOrMigrateAsync_" data-uid="CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.EnsureForApplyOrMigrateAsync*"></a>
+
+  <h3 id="CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_EnsureForApplyOrMigrateAsync_CoreRelm_Models_Migrations_MigrationOptions_System_Action_System_String_System_Object____System_Action_System_String_System_Object____" data-uid="CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.EnsureForApplyOrMigrateAsync(CoreRelm.Models.Migrations.MigrationOptions,System.Action{System.String,System.Object[]},System.Action{System.String,System.Object[]})">
+  EnsureForApplyOrMigrateAsync(MigrationOptions, Action&lt;string, object[]?&gt;, Action&lt;string, object[]?&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/Migrations/IRelmDatabaseProvisioner.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; EnsureForApplyOrMigrateAsync(MigrationOptions migrationOptions, Action&lt;string, object[]?&gt; logInfo, Action&lt;string, object[]?&gt; logWarn)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>migrationOptions</code> <a class="xref" href="CoreRelm.Models.Migrations.MigrationOptions.html">MigrationOptions</a></dt>
+    <dd></dd>
+    <dt><code>logInfo</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-2">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]&gt;</dt>
+    <dd></dd>
+    <dt><code>logWarn</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-2">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_InitializeEmptyDatabaseAsync_" data-uid="CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync*"></a>
 
   <h3 id="CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_InitializeEmptyDatabaseAsync_CoreRelm_Models_Migrations_MigrationOptions_System_Nullable_CoreRelm_Enums_CharsetEnums_DatabaseCharset__System_Nullable_CoreRelm_Enums_CharsetEnums_DatabaseCollation__" data-uid="CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.InitializeEmptyDatabaseAsync(CoreRelm.Models.Migrations.MigrationOptions,System.Nullable{CoreRelm.Enums.CharsetEnums.DatabaseCharset},System.Nullable{CoreRelm.Enums.CharsetEnums.DatabaseCollation})">
   InitializeEmptyDatabaseAsync(MigrationOptions, DatabaseCharset?, DatabaseCollation?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/Migrations/IRelmDatabaseProvisioner.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/Migrations/IRelmDatabaseProvisioner.cs/#L16"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -183,6 +223,44 @@ Interface IRelmDatabaseProvisioner  <a class="header-action link-secondary" titl
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_WarnIfMissingAsync_" data-uid="CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.WarnIfMissingAsync*"></a>
+
+  <h3 id="CoreRelm_Interfaces_Migrations_IRelmDatabaseProvisioner_WarnIfMissingAsync_CoreRelm_Models_Migrations_MigrationOptions_System_Action_System_String__" data-uid="CoreRelm.Interfaces.Migrations.IRelmDatabaseProvisioner.WarnIfMissingAsync(CoreRelm.Models.Migrations.MigrationOptions,System.Action{System.String})">
+  WarnIfMissingAsync(MigrationOptions, Action&lt;string&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Interfaces/Migrations/IRelmDatabaseProvisioner.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; WarnIfMissingAsync(MigrationOptions migrationOptions, Action&lt;string&gt; logWarn)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>migrationOptions</code> <a class="xref" href="CoreRelm.Models.Migrations.MigrationOptions.html">MigrationOptions</a></dt>
+    <dd></dd>
+    <dt><code>logWarn</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
     <dd></dd>
   </dl>
 

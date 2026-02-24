@@ -18,7 +18,7 @@ namespace CoreRelm.Migrations.MigrationFiles
     ///   -- Database: ledgerlite
     ///   -- TimestampUtc: 2026-01-31T21:19:35Z
     ///   -- Slug: add_users
-    ///   -- ChecksumSha256: <hash>
+    ///   -- ChecksumSha256: --hash--
     ///
     /// If no header block is found, returns false with error=null.
     /// </summary>

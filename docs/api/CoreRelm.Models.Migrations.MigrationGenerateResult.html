@@ -158,7 +158,7 @@ Class MigrationGenerateResult  <a class="header-action link-secondary" title="Vi
   <a id="CoreRelm_Models_Migrations_MigrationGenerateResult__ctor_" data-uid="CoreRelm.Models.Migrations.MigrationGenerateResult.#ctor*"></a>
 
   <h3 id="CoreRelm_Models_Migrations_MigrationGenerateResult__ctor_System_String_System_Boolean_System_String_System_String_" data-uid="CoreRelm.Models.Migrations.MigrationGenerateResult.#ctor(System.String,System.Boolean,System.String,System.String)">
-  MigrationGenerateResult(string, bool, string?, string)
+  MigrationGenerateResult(string?, bool, string?, string)
   <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationGenerateResult.cs/#L9"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -166,7 +166,7 @@ Class MigrationGenerateResult  <a class="header-action link-secondary" title="Vi
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MigrationGenerateResult(string DatabaseName, bool HasChanges, string? Sql, string Message)</code></pre>
+    <pre><code class="lang-csharp hljs">public MigrationGenerateResult(string? DatabaseName, bool HasChanges, string? Sql, string Message)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -207,7 +207,7 @@ Class MigrationGenerateResult  <a class="header-action link-secondary" title="Vi
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string DatabaseName { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string? DatabaseName { get; init; }</code></pre>
   </div>
 
 
@@ -327,7 +327,7 @@ Class MigrationGenerateResult  <a class="header-action link-secondary" title="Vi
   <a id="CoreRelm_Models_Migrations_MigrationGenerateResult_Changes_" data-uid="CoreRelm.Models.Migrations.MigrationGenerateResult.Changes*"></a>
 
   <h3 id="CoreRelm_Models_Migrations_MigrationGenerateResult_Changes_System_String_System_String_System_String_" data-uid="CoreRelm.Models.Migrations.MigrationGenerateResult.Changes(System.String,System.String,System.String)">
-  Changes(string, string, string)
+  Changes(string?, string, string)
   <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationGenerateResult.cs/#L14"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -335,7 +335,7 @@ Class MigrationGenerateResult  <a class="header-action link-secondary" title="Vi
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static MigrationGenerateResult Changes(string dbName, string sql, string message)</code></pre>
+    <pre><code class="lang-csharp hljs">public static MigrationGenerateResult Changes(string? dbName, string sql, string message)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -367,7 +367,7 @@ Class MigrationGenerateResult  <a class="header-action link-secondary" title="Vi
   <a id="CoreRelm_Models_Migrations_MigrationGenerateResult_NoChanges_" data-uid="CoreRelm.Models.Migrations.MigrationGenerateResult.NoChanges*"></a>
 
   <h3 id="CoreRelm_Models_Migrations_MigrationGenerateResult_NoChanges_System_String_System_String_" data-uid="CoreRelm.Models.Migrations.MigrationGenerateResult.NoChanges(System.String,System.String)">
-  NoChanges(string, string)
+  NoChanges(string?, string)
   <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationGenerateResult.cs/#L11"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -375,7 +375,7 @@ Class MigrationGenerateResult  <a class="header-action link-secondary" title="Vi
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static MigrationGenerateResult NoChanges(string dbName, string message)</code></pre>
+    <pre><code class="lang-csharp hljs">public static MigrationGenerateResult NoChanges(string? dbName, string message)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>

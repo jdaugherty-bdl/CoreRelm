@@ -14,11 +14,13 @@ items:
   - CoreRelm.Models.Migrations.MigrationOptions.JsonFlag
   - CoreRelm.Models.Migrations.MigrationOptions.JsonPath
   - CoreRelm.Models.Migrations.MigrationOptions.MigrationErrorPath
+  - CoreRelm.Models.Migrations.MigrationOptions.MigrationName
   - CoreRelm.Models.Migrations.MigrationOptions.MigrationsPath
   - CoreRelm.Models.Migrations.MigrationOptions.ModelSetsPath
   - CoreRelm.Models.Migrations.MigrationOptions.Quiet
   - CoreRelm.Models.Migrations.MigrationOptions.SaveSystemMigrations
   - CoreRelm.Models.Migrations.MigrationOptions.SetName
+  - CoreRelm.Models.Migrations.MigrationOptions.StampUtc
   langs:
   - csharp
   - vb
@@ -38,10 +40,12 @@ items:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations
   syntax:
-    content: public class MigrationOptions
-    content.vb: Public Class MigrationOptions
+    content: 'public record MigrationOptions : IEquatable<MigrationOptions>'
+    content.vb: Public Class MigrationOptions Implements IEquatable(Of MigrationOptions)
   inheritance:
   - System.Object
+  implements:
+  - System.IEquatable{CoreRelm.Models.Migrations.MigrationOptions}
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -137,6 +141,64 @@ items:
       type: System.String
     content.vb: Public Property SetName As String
   overload: CoreRelm.Models.Migrations.MigrationOptions.SetName*
+- uid: CoreRelm.Models.Migrations.MigrationOptions.MigrationName
+  commentId: P:CoreRelm.Models.Migrations.MigrationOptions.MigrationName
+  id: MigrationName
+  parent: CoreRelm.Models.Migrations.MigrationOptions
+  langs:
+  - csharp
+  - vb
+  name: MigrationName
+  nameWithType: MigrationOptions.MigrationName
+  fullName: CoreRelm.Models.Migrations.MigrationOptions.MigrationName
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/MigrationOptions.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: MigrationName
+    path: ../CoreRelm/Models/Migrations/MigrationOptions.cs
+    startLine: 13
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations
+  syntax:
+    content: public string? MigrationName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property MigrationName As String
+  overload: CoreRelm.Models.Migrations.MigrationOptions.MigrationName*
+- uid: CoreRelm.Models.Migrations.MigrationOptions.StampUtc
+  commentId: P:CoreRelm.Models.Migrations.MigrationOptions.StampUtc
+  id: StampUtc
+  parent: CoreRelm.Models.Migrations.MigrationOptions
+  langs:
+  - csharp
+  - vb
+  name: StampUtc
+  nameWithType: MigrationOptions.StampUtc
+  fullName: CoreRelm.Models.Migrations.MigrationOptions.StampUtc
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/MigrationOptions.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: StampUtc
+    path: ../CoreRelm/Models/Migrations/MigrationOptions.cs
+    startLine: 14
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations
+  syntax:
+    content: public DateTime StampUtc { get; set; }
+    parameters: []
+    return:
+      type: System.DateTime
+    content.vb: Public Property StampUtc As Date
+  overload: CoreRelm.Models.Migrations.MigrationOptions.StampUtc*
 - uid: CoreRelm.Models.Migrations.MigrationOptions.MigrationsPath
   commentId: P:CoreRelm.Models.Migrations.MigrationOptions.MigrationsPath
   id: MigrationsPath
@@ -155,7 +217,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: MigrationsPath
     path: ../CoreRelm/Models/Migrations/MigrationOptions.cs
-    startLine: 13
+    startLine: 15
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations
@@ -184,7 +246,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ModelSetsPath
     path: ../CoreRelm/Models/Migrations/MigrationOptions.cs
-    startLine: 14
+    startLine: 16
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations
@@ -213,7 +275,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: MigrationErrorPath
     path: ../CoreRelm/Models/Migrations/MigrationOptions.cs
-    startLine: 15
+    startLine: 17
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations
@@ -242,7 +304,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Quiet
     path: ../CoreRelm/Models/Migrations/MigrationOptions.cs
-    startLine: 16
+    startLine: 18
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations
@@ -271,7 +333,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: JsonFlag
     path: ../CoreRelm/Models/Migrations/MigrationOptions.cs
-    startLine: 17
+    startLine: 19
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations
@@ -300,7 +362,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: JsonPath
     path: ../CoreRelm/Models/Migrations/MigrationOptions.cs
-    startLine: 18
+    startLine: 20
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations
@@ -329,7 +391,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DropFunctionsOnCreate
     path: ../CoreRelm/Models/Migrations/MigrationOptions.cs
-    startLine: 19
+    startLine: 21
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations
@@ -358,7 +420,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Destructive
     path: ../CoreRelm/Models/Migrations/MigrationOptions.cs
-    startLine: 20
+    startLine: 22
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations
@@ -387,7 +449,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Apply
     path: ../CoreRelm/Models/Migrations/MigrationOptions.cs
-    startLine: 21
+    startLine: 23
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations
@@ -416,7 +478,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: SaveSystemMigrations
     path: ../CoreRelm/Models/Migrations/MigrationOptions.cs
-    startLine: 22
+    startLine: 24
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations
@@ -445,7 +507,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: CancelToken
     path: ../CoreRelm/Models/Migrations/MigrationOptions.cs
-    startLine: 23
+    startLine: 25
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations
@@ -498,6 +560,39 @@ references:
   nameWithType.vb: Object
   fullName.vb: Object
   name.vb: Object
+- uid: System.IEquatable{CoreRelm.Models.Migrations.MigrationOptions}
+  commentId: T:System.IEquatable{CoreRelm.Models.Migrations.MigrationOptions}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<MigrationOptions>
+  nameWithType: IEquatable<MigrationOptions>
+  fullName: System.IEquatable<CoreRelm.Models.Migrations.MigrationOptions>
+  nameWithType.vb: IEquatable(Of MigrationOptions)
+  fullName.vb: System.IEquatable(Of CoreRelm.Models.Migrations.MigrationOptions)
+  name.vb: IEquatable(Of MigrationOptions)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: CoreRelm.Models.Migrations.MigrationOptions
+    name: MigrationOptions
+    href: CoreRelm.Models.Migrations.MigrationOptions.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.Models.Migrations.MigrationOptions
+    name: MigrationOptions
+    href: CoreRelm.Models.Migrations.MigrationOptions.html
+  - name: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -724,6 +819,34 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: CoreRelm.Models.Migrations.MigrationOptions.DatabaseName*
   commentId: Overload:CoreRelm.Models.Migrations.MigrationOptions.DatabaseName
   href: CoreRelm.Models.Migrations.MigrationOptions.html#CoreRelm_Models_Migrations_MigrationOptions_DatabaseName
@@ -753,6 +876,29 @@ references:
   name: SetName
   nameWithType: MigrationOptions.SetName
   fullName: CoreRelm.Models.Migrations.MigrationOptions.SetName
+- uid: CoreRelm.Models.Migrations.MigrationOptions.MigrationName*
+  commentId: Overload:CoreRelm.Models.Migrations.MigrationOptions.MigrationName
+  href: CoreRelm.Models.Migrations.MigrationOptions.html#CoreRelm_Models_Migrations_MigrationOptions_MigrationName
+  name: MigrationName
+  nameWithType: MigrationOptions.MigrationName
+  fullName: CoreRelm.Models.Migrations.MigrationOptions.MigrationName
+- uid: CoreRelm.Models.Migrations.MigrationOptions.StampUtc*
+  commentId: Overload:CoreRelm.Models.Migrations.MigrationOptions.StampUtc
+  href: CoreRelm.Models.Migrations.MigrationOptions.html#CoreRelm_Models_Migrations_MigrationOptions_StampUtc
+  name: StampUtc
+  nameWithType: MigrationOptions.StampUtc
+  fullName: CoreRelm.Models.Migrations.MigrationOptions.StampUtc
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+  nameWithType.vb: Date
+  fullName.vb: Date
+  name.vb: Date
 - uid: CoreRelm.Models.Migrations.MigrationOptions.MigrationsPath*
   commentId: Overload:CoreRelm.Models.Migrations.MigrationOptions.MigrationsPath
   href: CoreRelm.Models.Migrations.MigrationOptions.html#CoreRelm_Models_Migrations_MigrationOptions_MigrationsPath
