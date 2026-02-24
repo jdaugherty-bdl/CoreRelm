@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
 {
-    public sealed class MySqlScriptRunner : IRelmSqlScriptRunner
+    internal sealed class MySqlScriptRunner : IRelmSqlScriptRunner
     {
         public async Task ExecuteScriptAsync(IRelmContext context, string sql, CancellationToken cancellationToken = default, Action<Exception>? exceptionHandler = null)
         {
