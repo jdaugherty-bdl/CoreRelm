@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.RelmInternal.Helpers.Migrations.Introspection
 {
-    public static class SchemaSnapshotFactory
+    internal static class SchemaSnapshotFactory
     {
         public static SchemaSnapshot Empty(string? dbName) =>
             new(
