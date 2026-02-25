@@ -17,7 +17,9 @@ namespace CoreRelm.Attributes
         /// <summary>
         /// Gets or sets the name of the database.
         /// </summary>
-        public string DatabaseName { get; private set; }
+        public string? DatabaseName { get; private set; }
+
+        public bool UseContextDatabaseName { get; set; } = false;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RelmDatabase"/> class with the specified database name.
@@ -30,6 +32,17 @@ namespace CoreRelm.Attributes
                 throw new ArgumentNullException(nameof(databaseName));
 
             DatabaseName = databaseName;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RelmDatabase"/> class with the specified database name.
+        /// </summary>
+        /// <param name="databaseName">The name of the database. This value cannot be null, empty, or consist only of white-space characters.</param>
+        /// <param name="useContextDatabaseName">Indicates whether to use the current database name from the current context (loop, etc.). Defaults to false.</param>
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="databaseName"/> is null, empty, or consists only of white-space characters.</exception>
+        public RelmDatabase(bool useContextDatabaseName = false)
+        {
+            UseContextDatabaseName = useContextDatabaseName;
         }
     }
 }

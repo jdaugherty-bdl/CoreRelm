@@ -8,7 +8,7 @@ using static CoreRelm.Enums.MigrationEnums;
 
 namespace CoreRelm.Models.Migrations.Execution
 {
-    [RelmDatabase("ledgerlite")]
+    [RelmDatabase(useContextDatabaseName: true)]
     [RelmTable("schema_migrations")]
     public class AppliedMigration : RelmModel
     {

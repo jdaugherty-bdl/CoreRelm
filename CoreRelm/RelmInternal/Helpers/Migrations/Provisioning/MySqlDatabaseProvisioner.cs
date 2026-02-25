@@ -106,12 +106,20 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Provisioning
             if ((charset ?? DatabaseCharset.Default) != DatabaseCharset.Default)
                 sql += $" CHARACTER SET {charset}";
             if ((collation ?? DatabaseCollation.Default) != DatabaseCollation.Default)
-                sql += $" COLLATE {collation}";
+                sql += $" COLLATE {collation?.ToDescriptionString()}";
             sql += ";";
 
             await using var cmd = conn.CreateCommand();
             cmd.CommandText = sql;
-            await cmd.ExecuteNonQueryAsync(migrationOptions.CancelToken);
+            try
+            {
+                await cmd.ExecuteNonQueryAsync(migrationOptions.CancelToken);
+            }
+            catch (Exception ex)
+            {
+                _log?.LogFormatted(LogLevel.Error, "Failed to create database '{DatabaseName}': {ErrorMessage}", args: [migrationOptions.DatabaseName, ex.Message], exception: ex);
+                throw;
+            }
             _log?.LogFormatted(LogLevel.Information, "Database '{DatabaseName}' initialized (created if it did not exist).", args: [migrationOptions.DatabaseName], singleIndentLine: true, postDecreaseLevel: true);
         }
 

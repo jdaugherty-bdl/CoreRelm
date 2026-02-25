@@ -10,6 +10,7 @@ namespace CoreRelm.Models.Migrations.MigrationPlans
         bool DropFunctionsOnCreate,
         bool Destructive,
         string MigrationName,
+        string MigrationFileName,
         string ModelSetName,
         ISet<string> ScopeTables,
         DateTime StampUtc

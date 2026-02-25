@@ -13,7 +13,8 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
     internal class DataNamingHelper
     {
         // The regular expression search and replace strings to turn "CapitalCase" property names into "underscore_case" column names
-        public static string UnderscoreSearchPattern => @"(?<!_|^|Internal)([A-Z])";
+        //public static string UnderscoreSearchPattern => @"(?<!_|^|Internal)([A-Z])|(?<=[a-zA-Z])(?=\d)";
+        public static string UnderscoreSearchPattern => @"(?<!_|^|Internal)([A-Z]|[0-9]+)";
         public static string UnderscoreReplacePattern => @"_$1";
 
         /// <summary>
@@ -36,12 +37,6 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
         public static List<KeyValuePair<string, Tuple<string, PropertyInfo>>> GetUnderscoreProperties(Type TargetType, bool GetOnlyDbResolvables = true, bool GetOnlyNonVirtualColumns = true)
         {
             // get all properties marked with the DALResolvable attribute
-            /*
-            var convertableProperties = TargetType
-                .GetProperties()
-                .Where(x => !GetOnlyDbResolvables || x.GetCustomAttributes(true).Any(y => y.GetType() == typeof(RelmColumn) && (!GetOnlyNonVirtualColumns || (GetOnlyNonVirtualColumns && !((RelmColumn)y).Virtual))))
-                .ToList();
-            */
             var convertableProperties = new List<PropertyInfo>();
             foreach (var x in TargetType.GetProperties())
             {
@@ -69,13 +64,13 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
             }
 
             // get the underscore names of all properties, add "_#" to the end of duplicate property names
+            /*
             var underscoreNames = convertableProperties
-                //.ToDictionary(x => x.Name.StartsWith("InternalId") ? x.Name : Regex.Replace(x.Name, UnderscoreSearchPattern, UnderscoreReplacePattern), x => new Tuple<string, PropertyInfo>(x.Name, x))
-                .Select(x => new Tuple<string, PropertyInfo>(x.Name.StartsWith("InternalId") 
+                .Select(x => new Tuple<string?, PropertyInfo>(x.Name == "InternalId" 
                         ? x.Name 
-                        : (string.IsNullOrWhiteSpace(x.GetCustomAttribute<RelmColumn>(true).ColumnName)
+                        : (string.IsNullOrWhiteSpace(x.GetCustomAttribute<RelmColumn>(true)?.ColumnName)
                             ? Regex.Replace(x.Name, UnderscoreSearchPattern, UnderscoreReplacePattern)
-                            : x.GetCustomAttribute<RelmColumn>(true).ColumnName.Trim())
+                            : x.GetCustomAttribute<RelmColumn>(true)?.ColumnName?.Trim())
                     , x))
                 .OrderBy(x => x.Item1)
                 .Segment((prev, next, index) => prev.Item1 != next.Item1)
@@ -86,8 +81,54 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
                             .Skip(1)
                             .Select((y, index) => new Tuple<string, PropertyInfo>($"{y.Item1}_{index}", y.Item2)))
                 )
-                .ToDictionary(x => x.Item1, x => new Tuple<string, PropertyInfo>(x.Item2.Name, x.Item2))
+                .ToDictionary(x => x.Item1, x => new Tuple<string?, PropertyInfo>(x.Item2.Name, x.Item2))
                 .ToList();
+            */
+            var columnNamedProperties = new List<Tuple<string, PropertyInfo>>();
+            foreach (var x in convertableProperties)
+            {
+                if (x.Name.Equals("InternalId", StringComparison.OrdinalIgnoreCase))
+                {
+                    columnNamedProperties.Add(new Tuple<string, PropertyInfo>(x.Name, x));
+                    continue;
+                }
+
+                var columnName = x.GetCustomAttribute<RelmColumn>(true)?.ColumnName?.Trim();
+                if (string.IsNullOrWhiteSpace(columnName))
+                    columnName = Regex.Replace(x.Name, UnderscoreSearchPattern, UnderscoreReplacePattern);
+
+                columnNamedProperties.Add(new Tuple<string, PropertyInfo>(columnName, x));
+            }
+
+            var orderedColumnNamedProperties = columnNamedProperties
+                .OrderBy(x => x.Item1)
+                .ToList();
+
+            var groupedColumnNamedProperties = orderedColumnNamedProperties
+                .GroupBy(x => x.Item1)
+                .ToDictionary(x => x.Key, x => x.ToList());
+
+            var selectManyProperties = new Dictionary<string, Tuple<string, PropertyInfo>>();
+            foreach (var kvp in groupedColumnNamedProperties)
+            {
+                var columnName = kvp.Key;
+                var properties = kvp.Value;
+
+                for (int i = 0; i < properties.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        // don't rename the first column of the same name, only the duplicates
+                        selectManyProperties[columnName] = properties[i];
+                        continue;
+                    }
+
+                    var property = properties[i];
+                    selectManyProperties[$"{property.Item1}_{i - 1}"] = property;
+                }
+            }
+
+            var underscoreNames = selectManyProperties.ToList();
 
             return underscoreNames;
         }

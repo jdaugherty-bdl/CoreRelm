@@ -62,7 +62,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Rendering
                 });
 
             var safeName = UrlStringHelper.Slugify(plan.MigrationName);
-            var headerString = MigrationHeaderFormatter.BuildHeader(header, plan.MigrationType.ToString(), plan.DatabaseName, plan.StampUtc, safeName, null, null);
+            var headerString = MigrationHeaderFormatter.BuildHeader(header, plan.MigrationType.ToString(), plan.DatabaseName, plan.StampUtc, safeName, plan.MigrationFileName, null);
 
             /*
             query.AppendLine("-- =============================================");

@@ -4,6 +4,7 @@ using CoreRelm.Interfaces.Migrations.Execution;
 using CoreRelm.Models;
 using CoreRelm.Models.Migrations;
 using CoreRelm.Options;
+using CoreRelm.RelmInternal.Contexts;
 using CoreRelm.RelmInternal.Helpers.Migrations.Introspection;
 using CoreRelm.RelmInternal.Helpers.Migrations.Provisioning;
 using MySql.Data.MySqlClient;
@@ -41,7 +42,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
             var context = new RelmContextOptionsBuilder(dbConn)
                 .SetAutoInitializeDataSets(false)
                 .SetAutoVerifyTables(false) // turn off auto-verify because we may be creating tables here
-                .Build<RelmContext>() 
+                .Build<RelmInternalAppliedMigrationContext>() 
                 ?? 
                 throw new InvalidOperationException("Failed to build RelmContext for migration application.");
 

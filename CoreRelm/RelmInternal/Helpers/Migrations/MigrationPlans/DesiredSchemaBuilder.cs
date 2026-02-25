@@ -68,8 +68,11 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                 var tableAttr = GetTypeAttribute(modelClrType, nameof(RelmTable))
                     ?? throw new MissingRelmTableAttributeException(modelClrType);
 
-                var databaseName = GetStringProperty(dbAttr, nameof(RelmDatabase.DatabaseName))
-                    ?? throw new InvalidOperationException($"[{dbAttr?.GetType().Name}] on {modelClrType.FullName} must expose DatabaseName.");
+                var useContextDatabaseName = GetBoolProperty(dbAttr, nameof(RelmDatabase.UseContextDatabaseName)) ?? false;
+                var databaseName = useContextDatabaseName
+                    ? databaseFilter
+                    : (GetStringProperty(dbAttr, nameof(RelmDatabase.DatabaseName))
+                        ?? throw new InvalidOperationException($"[{dbAttr?.GetType().Name}] on {modelClrType.FullName} must expose DatabaseName."));
                 var tableName = GetStringProperty(tableAttr, nameof(RelmTable.TableName))
                     ?? throw new InvalidOperationException($"[{tableAttr.GetType().Name}] on {modelClrType.FullName} must expose TableName.");
 

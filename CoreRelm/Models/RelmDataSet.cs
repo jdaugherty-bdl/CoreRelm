@@ -859,11 +859,14 @@ namespace CoreRelm.Models
         public async Task<int> SaveAsync(CancellationToken cancellationToken = default)
         {
             int rowsUpdated;
+            /*
             var contextOptions = _currentContext?.ContextOptions ?? new();
             if (contextOptions.OptionsBuilderType == Options.RelmContextOptions.OptionsBuilderTypes.OpenConnection)
                 rowsUpdated = _items == null ? 0 : (await _items.Where(x => x != null).Select(x => x!).WriteToDatabaseAsync(contextOptions.DatabaseConnection, sqlTransaction: contextOptions.DatabaseTransaction, cancellationToken: cancellationToken));
             else
                 rowsUpdated = _items == null ? 0 : (await _items.Where(x => x != null).Select(x => x!).WriteToDatabaseAsync(contextOptions.ConnectionStringType, cancellationToken: cancellationToken));
+            */
+            rowsUpdated = _items == null ? 0 : (await _items.Where(x => x != null).Select(x => x!).WriteToDatabaseAsync(_currentContext, cancellationToken: cancellationToken));
 
             Modified = false;
 

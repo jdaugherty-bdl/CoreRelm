@@ -12,6 +12,7 @@ namespace CoreRelm.Models.Migrations.MigrationPlans
     public sealed record MigrationPlan(
         string DatabaseName,
         string MigrationName,
+        string MigrationFileName,
         string ModelSetName,
         RelmMigrationType MigrationType,
         IReadOnlyList<IMigrationOperation> Operations,

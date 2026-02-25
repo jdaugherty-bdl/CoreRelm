@@ -69,7 +69,7 @@ namespace CoreRelm.Tests
     public sealed class FakeMigrationPlanner : IRelmMigrationPlanner
     {
         public Func<SchemaSnapshot, SchemaSnapshot, MigrationPlanOptions, MigrationPlan> Handler { get; set; }
-            = (desired, actual, options) => new MigrationPlan(desired.DatabaseName, options.MigrationName, options.ModelSetName, RelmMigrationType.Migration, [], [], [], options.StampUtc);
+            = (desired, actual, options) => new MigrationPlan(desired.DatabaseName, options.MigrationName, options.MigrationFileName, options.ModelSetName, RelmMigrationType.Migration, [], [], [], options.StampUtc);
 
         public MigrationPlan Plan(SchemaSnapshot desired, SchemaSnapshot actual, MigrationPlanOptions options) => Handler(desired, actual, options);
     }
@@ -99,6 +99,16 @@ namespace CoreRelm.Tests
 
         public Task<bool> DatabaseExistsAsync(MigrationOptions options) 
             => Task.FromResult(Exists);
+
+        public Task<bool> EnsureForApplyOrMigrateAsync(MigrationOptions migrationOptions, Action<string, object[]?> logInfo, Action<string, object[]?> logWarn)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> WarnIfMissingAsync(MigrationOptions migrationOptions, Action<string> logWarn)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public sealed class FakeSchemaMigrationsStore : IRelmSchemaMigrationsStore
@@ -110,7 +120,7 @@ namespace CoreRelm.Tests
             throw new NotImplementedException();
         }
 
-        public Task<Dictionary<string, AppliedMigration>?> GetAppliedMigrationsAsync(RelmContext context, CancellationToken ct = default)
+        public Task<Dictionary<string, AppliedMigration>?> GetAppliedMigrationsAsync(IRelmContext context, CancellationToken ct = default)
             => Task.FromResult(Applied);
 
 

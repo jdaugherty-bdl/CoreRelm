@@ -32,18 +32,18 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Providers
             MigrationOptions migrationOptions,
             ILogger<IMigrationSqlProvider>? log = null) : IMigrationSqlProvider
     {
-        public MigrationGenerateResult Generate(List<ValidatedModelType> modelsForDb)
+        public MigrationGenerateResult Generate(List<ValidatedModelType> modelsForDb, string migrationFileName)
         {
             // This provider is intended to be used in an async flow,
             // but IMigrationSqlProvider is sync. We keep it sync by calling .GetAwaiter().GetResult().
             // If you prefer, change the provider interface to async later.
 
-            return GenerateAsync(modelsForDb)
+            return GenerateAsync(modelsForDb, migrationFileName)
                 .GetAwaiter()
                 .GetResult();
         }
 
-        public async Task<MigrationGenerateResult> GenerateAsync(List<ValidatedModelType> modelsForDb)
+        public async Task<MigrationGenerateResult> GenerateAsync(List<ValidatedModelType> modelsForDb, string migrationFileName)
         {
             log?.SaveIndentLevel("DefaultRelmMigrationSqlProvider.GenerateAsync");
 
@@ -96,6 +96,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Providers
                 DropFunctionsOnCreate: migrationOptions.DropFunctionsOnCreate,
                 Destructive: migrationOptions.Destructive,
                 MigrationName: $"Migration_{DateTime.UtcNow:yyyyMMdd_HHmmss}",
+                MigrationFileName: migrationFileName,
                 ModelSetName: "Default", // You can customize this if you have multiple model sets or want to include more context
                 ScopeTables: scopeTables,
                 StampUtc: migrationOptions.StampUtc

@@ -15,6 +15,7 @@ namespace CoreRelm.Models.Migrations.Tooling.Generation
         bool EnsureDatabaseExistsDuringGenerate = true,
         bool DropFunctionsOnCreate = false,
         string MigrationName = "migration",
+        string MigrationFileName = "migration.sql",
         DateTime? TimestampUtc = null,
         // Host policy: if DB missing and not applying, treat actual schema as empty and warn
         bool TreatMissingDatabaseAsEmpty = true,

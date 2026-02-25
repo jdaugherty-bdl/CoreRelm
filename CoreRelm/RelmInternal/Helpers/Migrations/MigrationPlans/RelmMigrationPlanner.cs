@@ -133,6 +133,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
             return new MigrationPlan(
                 desired.DatabaseName,
                 options.MigrationName,
+                options.MigrationFileName,
                 options.ModelSetName,
                 RelmMigrationType.Migration,
                 migrationOperations, 

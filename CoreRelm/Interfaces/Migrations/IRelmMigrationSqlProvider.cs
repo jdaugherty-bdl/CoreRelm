@@ -10,8 +10,8 @@ namespace CoreRelm.Interfaces.Migrations
 {
     public interface IMigrationSqlProvider
     {
-        MigrationGenerateResult Generate(List<ValidatedModelType> modelsForDb);
+        MigrationGenerateResult Generate(List<ValidatedModelType> modelsForDb, string migrationFileName);
 
-        Task<MigrationGenerateResult> GenerateAsync(List<ValidatedModelType> modelsForDb);
+        Task<MigrationGenerateResult> GenerateAsync(List<ValidatedModelType> modelsForDb, string migrationFileName);
     }
 }

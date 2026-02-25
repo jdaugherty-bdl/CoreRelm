@@ -11,8 +11,6 @@ namespace CoreRelm.RelmInternal.Extensions
 {
     internal static class UnderscoreNamesHelper
     {
-        //TODO: update ReplacePattern to include option for converting to lowercase everything EXCEPT "InternalId"
-
         /// <summary>
         /// Gets the regular expression pattern used to identify uppercase letters  that are not preceded by an
         /// underscore, the start of a string, or the text "Internal".

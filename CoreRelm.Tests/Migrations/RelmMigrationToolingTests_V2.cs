@@ -1,4 +1,5 @@
-﻿using CoreRelm.Interfaces.Metadata;
+﻿using CoreRelm.Attributes;
+using CoreRelm.Interfaces.Metadata;
 using CoreRelm.Interfaces.Migrations;
 using CoreRelm.Interfaces.ModelSets;
 using CoreRelm.Migrations;
@@ -14,6 +15,7 @@ using CoreRelm.Models.Migrations.Tooling.Drift;
 using CoreRelm.Models.Migrations.Tooling.Generation;
 using CoreRelm.Models.Migrations.Tooling.Validation;
 using CoreRelm.Options;
+using CoreRelm.RelmInternal.Contexts;
 using CoreRelm.RelmInternal.Helpers.Migrations.Introspection;
 using CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans;
 using Moq;
@@ -31,6 +33,40 @@ public sealed class RelmMigrationToolingTests_V2 : IClassFixture<JsonConfigurati
     {
         // Keep same pattern as your existing tests.
         RelmHelper.UseConfiguration(fixture.Configuration);
+    }
+
+    // --------------------------
+    // Test models
+    // --------------------------
+
+    private readonly ModelSetsFile modelSetFile = new()
+    {
+        Version = 1,
+        Sets = new Dictionary<string, ModelSetDefinition>(StringComparer.Ordinal)
+        {
+            ["set"] = new ModelSetDefinition
+            {
+                Types = [typeof(A_Table_Model).FullName, typeof(B_Table_Model).FullName]
+            }
+        }
+    };
+
+    [RelmDatabase("db1")]
+    [RelmTable("a_table")]
+    private sealed class A_Table_Model : RelmModel
+    {
+        [RelmColumn]
+        public string CompanyName { get; set; } = string.Empty;
+
+        [RelmColumn]
+        public string GroupInternalId { get; set; } = string.Empty;
+    }
+    [RelmDatabase("db2")]
+    [RelmTable("b_table")]
+    private sealed class B_Table_Model : RelmModel
+    {
+        [RelmColumn]
+        public string GroupName { get; set; } = string.Empty;
     }
 
     private static ResolvedModelSet MakeResolvedSet(params (string db, Type type)[] pairs)
@@ -54,16 +90,35 @@ public sealed class RelmMigrationToolingTests_V2 : IClassFixture<JsonConfigurati
     [Fact]
     public void ValidateModelSet_AppliesDatabaseFilter_AndPreservesResolverWarnings()
     {
-        var resolved = MakeResolvedSet(("db1", typeof(string)), ("db2", typeof(int)));
+        var resolved = MakeResolvedSet(("db1", typeof(A_Table_Model)), ("db2", typeof(B_Table_Model)));
 
         var resolver = new Mock<IModelSetResolver>(MockBehavior.Strict);
         resolver
             .Setup(r => r.ResolveSet(It.IsAny<ModelSetsFile>(), "set", It.IsAny<Assembly>()))
             .Returns(resolved);
 
+        resolver
+            .Setup(r => r.ResolveSetWithDiagnostics(It.IsAny<ModelSetsFile>(), "set", It.IsAny<Assembly>()))
+            .Returns((resolved, new ResolvedModelSetDiagnostics(
+                SetName: "set",
+                AssemblyTypeCount: 0,
+                ExplicitTypeNameCount: 0,
+                ExplicitTypesResolvedCount: 0,
+                NamespacePrefixCount: 0,
+                NamespaceMatchedCount: 0,
+                CandidateCountBeforeFilter: 0,
+                AbstractExcludedCount: 0,
+                NotRelmModelExcludedCount: 0,
+                IncludedCount: resolved.AllModels.Count,
+                MissingRelmDatabaseCount: 0,
+                MissingRelmTableCount: 0,
+                AttributeValueErrorCount: 0,
+                Errors: []
+            )));
+
         var tooling = BuildTooling(resolver.Object);
 
-        var report = tooling.ValidateModelSet(new ModelSetsFile(), "set", ThisAssembly,
+        var report = tooling.ValidateModelSet(modelSetFile, "set", ThisAssembly,
             new ModelSetValidateOptions(DatabaseFilter: "db1"));
 
         Assert.Single(report.TypesByDatabase);
@@ -76,16 +131,40 @@ public sealed class RelmMigrationToolingTests_V2 : IClassFixture<JsonConfigurati
     public async Task GenerateMigrationsAsync_NoChanges_WhenPlannerReturnsZeroOps()
     {
         const string db = "db1";
-        var resolved = MakeResolvedSet((db, typeof(string)));
+        var resolved = MakeResolvedSet((db, typeof(A_Table_Model)));
 
         var planner = new Mock<IRelmMigrationPlanner>(MockBehavior.Strict);
         planner.Setup(p => p.Plan(It.IsAny<SchemaSnapshot>(), It.IsAny<SchemaSnapshot>(), It.IsAny<MigrationPlanOptions>()))
             .Returns((SchemaSnapshot desired, SchemaSnapshot actual, MigrationPlanOptions opt) =>
-                new MigrationPlan(db, opt.MigrationName, opt.ModelSetName, RelmMigrationType.Migration, [], [], [], opt.StampUtc));
+                new MigrationPlan(db, opt.MigrationName, opt.MigrationFileName, opt.ModelSetName, RelmMigrationType.Migration, [], [], [], opt.StampUtc));
 
         var renderer = new Mock<IRelmMigrationSqlRenderer>(MockBehavior.Strict);
 
-        var tooling = BuildTooling(resolved: resolved, planner: planner.Object, renderer: renderer.Object);
+        var resolver = new Mock<IModelSetResolver>(MockBehavior.Strict);
+        resolver
+            .Setup(r => r.ResolveSet(It.IsAny<ModelSetsFile>(), "set", It.IsAny<Assembly>()))
+            .Returns(resolved);
+
+        resolver
+            .Setup(r => r.ResolveSetWithDiagnostics(It.IsAny<ModelSetsFile>(), "set", It.IsAny<Assembly>()))
+            .Returns((resolved, new ResolvedModelSetDiagnostics(
+                SetName: "set",
+                AssemblyTypeCount: 0,
+                ExplicitTypeNameCount: 0,
+                ExplicitTypesResolvedCount: 0,
+                NamespacePrefixCount: 0,
+                NamespaceMatchedCount: 0,
+                CandidateCountBeforeFilter: 0,
+                AbstractExcludedCount: 0,
+                NotRelmModelExcludedCount: 0,
+                IncludedCount: resolved.AllModels.Count,
+                MissingRelmDatabaseCount: 0,
+                MissingRelmTableCount: 0,
+                AttributeValueErrorCount: 0,
+                Errors: []
+            )));
+
+        var tooling = BuildTooling(resolver.Object, planner: planner.Object, renderer: renderer.Object);
 
         var options = new GenerateMigrationsOptions(
             ConnectionStringTemplate: "Server=localhost;Database={db};Uid=x;Pwd=y;",
@@ -94,7 +173,7 @@ public sealed class RelmMigrationToolingTests_V2 : IClassFixture<JsonConfigurati
             TreatMissingDatabaseAsEmpty: true
         );
 
-        var result = await tooling.GenerateMigrationsAsync(new ModelSetsFile(), "set", ThisAssembly, options);
+        var result = await tooling.GenerateMigrationsAsync(modelSetFile, "set", ThisAssembly, options);
 
         Assert.True(result.ByDatabase.ContainsKey(db));
         var perDb = result.ByDatabase[db];
@@ -111,16 +190,40 @@ public sealed class RelmMigrationToolingTests_V2 : IClassFixture<JsonConfigurati
     public async Task GenerateMigrationsAsync_Blockers_PreventSql()
     {
         const string db = "db1";
-        var resolved = MakeResolvedSet((db, typeof(string)));
+        var resolved = MakeResolvedSet((db, typeof(A_Table_Model)));
 
         var planner = new Mock<IRelmMigrationPlanner>(MockBehavior.Strict);
         planner.Setup(p => p.Plan(It.IsAny<SchemaSnapshot>(), It.IsAny<SchemaSnapshot>(), It.IsAny<MigrationPlanOptions>()))
             .Returns((SchemaSnapshot desired, SchemaSnapshot actual, MigrationPlanOptions opt) =>
-                new MigrationPlan(db, opt.MigrationName, opt.ModelSetName, RelmMigrationType.Migration, [Mock.Of<IMigrationOperation>()], [], ["blocker"], opt.StampUtc));
+                new MigrationPlan(db, opt.MigrationName, opt.MigrationFileName, opt.ModelSetName, RelmMigrationType.Migration, [Mock.Of<IMigrationOperation>()], [], ["blocker"], opt.StampUtc));
 
         var renderer = new Mock<IRelmMigrationSqlRenderer>(MockBehavior.Strict);
 
-        var tooling = BuildTooling(resolved: resolved, planner: planner.Object, renderer: renderer.Object);
+        var resolver = new Mock<IModelSetResolver>(MockBehavior.Strict);
+        resolver
+            .Setup(r => r.ResolveSet(It.IsAny<ModelSetsFile>(), "set", It.IsAny<Assembly>()))
+            .Returns(resolved);
+
+        resolver
+            .Setup(r => r.ResolveSetWithDiagnostics(It.IsAny<ModelSetsFile>(), "set", It.IsAny<Assembly>()))
+            .Returns((resolved, new ResolvedModelSetDiagnostics(
+                SetName: "set",
+                AssemblyTypeCount: 0,
+                ExplicitTypeNameCount: 0,
+                ExplicitTypesResolvedCount: 0,
+                NamespacePrefixCount: 0,
+                NamespaceMatchedCount: 0,
+                CandidateCountBeforeFilter: 0,
+                AbstractExcludedCount: 0,
+                NotRelmModelExcludedCount: 0,
+                IncludedCount: resolved.AllModels.Count,
+                MissingRelmDatabaseCount: 0,
+                MissingRelmTableCount: 0,
+                AttributeValueErrorCount: 0,
+                Errors: []
+            )));
+
+        var tooling = BuildTooling(resolver.Object, planner: planner.Object, renderer: renderer.Object);
 
         var options = new GenerateMigrationsOptions(
             ConnectionStringTemplate: "Server=localhost;Database={db};Uid=x;Pwd=y;",
@@ -130,6 +233,7 @@ public sealed class RelmMigrationToolingTests_V2 : IClassFixture<JsonConfigurati
 
         var result = await tooling.GenerateMigrationsAsync(new ModelSetsFile(), "set", ThisAssembly, options);
 
+        Assert.True(result.ByDatabase.ContainsKey(db));
         var perDb = result.ByDatabase[db];
         Assert.True(perDb.HasChanges);
         Assert.Null(perDb.Sql);
@@ -149,7 +253,7 @@ public sealed class RelmMigrationToolingTests_V2 : IClassFixture<JsonConfigurati
         var planner = new Mock<IRelmMigrationPlanner>(MockBehavior.Strict);
         planner.Setup(p => p.Plan(It.IsAny<SchemaSnapshot>(), It.IsAny<SchemaSnapshot>(), It.IsAny<MigrationPlanOptions>()))
             .Returns((SchemaSnapshot desired, SchemaSnapshot actual, MigrationPlanOptions opt) =>
-                new MigrationPlan(db, opt.MigrationName, opt.ModelSetName, RelmMigrationType.Migration, [Mock.Of<IMigrationOperation>()], [], [], opt.StampUtc));
+                new MigrationPlan(db, opt.MigrationName, opt.MigrationFileName, opt.ModelSetName, RelmMigrationType.Migration, [Mock.Of<IMigrationOperation>()], [], [], opt.StampUtc));
 
         MySqlRenderOptions? captured = null;
         var renderer = new Mock<IRelmMigrationSqlRenderer>(MockBehavior.Strict);
@@ -157,7 +261,31 @@ public sealed class RelmMigrationToolingTests_V2 : IClassFixture<JsonConfigurati
             .Callback<MigrationPlan, MySqlRenderOptions>((p, opts) => captured = opts)
             .Returns("SQL");
 
-        var tooling = BuildTooling(resolved: resolved, planner: planner.Object, renderer: renderer.Object);
+        var resolver = new Mock<IModelSetResolver>(MockBehavior.Strict);
+        resolver
+            .Setup(r => r.ResolveSet(It.IsAny<ModelSetsFile>(), "set", It.IsAny<Assembly>()))
+            .Returns(resolved);
+
+        resolver
+            .Setup(r => r.ResolveSetWithDiagnostics(It.IsAny<ModelSetsFile>(), "set", It.IsAny<Assembly>()))
+            .Returns((resolved, new ResolvedModelSetDiagnostics(
+                SetName: "set",
+                AssemblyTypeCount: 0,
+                ExplicitTypeNameCount: 0,
+                ExplicitTypesResolvedCount: 0,
+                NamespacePrefixCount: 0,
+                NamespaceMatchedCount: 0,
+                CandidateCountBeforeFilter: 0,
+                AbstractExcludedCount: 0,
+                NotRelmModelExcludedCount: 0,
+                IncludedCount: resolved.AllModels.Count,
+                MissingRelmDatabaseCount: 0,
+                MissingRelmTableCount: 0,
+                AttributeValueErrorCount: 0,
+                Errors: []
+            )));
+
+        var tooling = BuildTooling(resolver.Object, planner: planner.Object, renderer: renderer.Object);
 
         var options = new GenerateMigrationsOptions(
             ConnectionStringTemplate: "Server=localhost;Database={db};Uid=x;Pwd=y;",
@@ -204,6 +332,7 @@ public sealed class RelmMigrationToolingTests_V2 : IClassFixture<JsonConfigurati
 
         var status = await tooling.GetStatusAsync(request);
 
+        Assert.True(status.ByDatabase.ContainsKey(db));
         var perDb = status.ByDatabase[db];
         Assert.False(perDb.DatabaseExists);
         Assert.Equal(0, perDb.AppliedCount);
@@ -221,7 +350,7 @@ public sealed class RelmMigrationToolingTests_V2 : IClassFixture<JsonConfigurati
 
         var applied = new Dictionary<string, AppliedMigration>(StringComparer.Ordinal)
         {
-            ["a.sql"] = new AppliedMigration("a.sql", CoreRelm.Enums.MigrationEnums.RelmMigrationType.Migration, "oldchecksum", DateTime.UtcNow)
+            ["a.sql"] = new AppliedMigration("a.sql", RelmMigrationType.Migration, "oldchecksum", DateTime.UtcNow)
         };
 
         var store = new Mock<IRelmSchemaMigrationsStore>(MockBehavior.Strict);
@@ -295,7 +424,8 @@ public sealed class RelmMigrationToolingTests_V2 : IClassFixture<JsonConfigurati
             provisioner,
             migrationsStore,
             log: null,
-            informationSchemaContextFactory: cs => new RelmContextOptionsBuilder(cs).SetAutoOpenConnection(false).SetAutoInitializeDataSets(false).SetAutoVerifyTables(false).Build<InformationSchemaContext>() ?? throw new InvalidOperationException("Failed to build InformationSchemaContext")
+            informationSchemaContextFactory: cs => new RelmContextOptionsBuilder(cs).SetAutoOpenConnection(false).SetAutoInitializeDataSets(false).SetAutoVerifyTables(false).Build<InformationSchemaContext>() ?? throw new InvalidOperationException("Failed to build InformationSchemaContext"),
+            appliedMigrationContextFactory: cs => new RelmContextOptionsBuilder(cs).SetAutoOpenConnection(false).SetAutoInitializeDataSets(false).SetAutoVerifyTables(false).Build<RelmInternalAppliedMigrationContext>() ?? throw new InvalidOperationException("Failed to build RelmInternalAppliedMigrationContext")
         );
     }
 
@@ -304,7 +434,7 @@ public sealed class RelmMigrationToolingTests_V2 : IClassFixture<JsonConfigurati
     {
         // Arrange
         const string db = "db1";
-        var resolved = MakeResolvedSet((db, typeof(string)));
+        var resolved = MakeResolvedSet((db, typeof(A_Table_Model)));
         MigrationPlanOptions? captured = null;
 
         var planner = new Mock<IRelmMigrationPlanner>(MockBehavior.Strict);
@@ -312,12 +442,36 @@ public sealed class RelmMigrationToolingTests_V2 : IClassFixture<JsonConfigurati
             .Returns((SchemaSnapshot desired, SchemaSnapshot actual, MigrationPlanOptions opt) =>
             {
                 captured = opt;
-                return new MigrationPlan(db, opt.MigrationName, opt.ModelSetName, RelmMigrationType.Migration, [], [], [], opt.StampUtc);
+                return new MigrationPlan(db, opt.MigrationName, opt.MigrationFileName, opt.ModelSetName, RelmMigrationType.Migration, [], [], [], opt.StampUtc);
             });
 
         var renderer = new Mock<IRelmMigrationSqlRenderer>(MockBehavior.Strict);
 
-        var tooling = BuildTooling(resolved: resolved, planner: planner.Object, renderer: renderer.Object);
+        var resolver = new Mock<IModelSetResolver>(MockBehavior.Strict);
+        resolver
+            .Setup(r => r.ResolveSet(It.IsAny<ModelSetsFile>(), "set", It.IsAny<Assembly>()))
+            .Returns(resolved);
+
+        resolver
+            .Setup(r => r.ResolveSetWithDiagnostics(It.IsAny<ModelSetsFile>(), "set", It.IsAny<Assembly>()))
+            .Returns((resolved, new ResolvedModelSetDiagnostics(
+                SetName: "set",
+                AssemblyTypeCount: 0,
+                ExplicitTypeNameCount: 0,
+                ExplicitTypesResolvedCount: 0,
+                NamespacePrefixCount: 0,
+                NamespaceMatchedCount: 0,
+                CandidateCountBeforeFilter: 0,
+                AbstractExcludedCount: 0,
+                NotRelmModelExcludedCount: 0,
+                IncludedCount: resolved.AllModels.Count,
+                MissingRelmDatabaseCount: 0,
+                MissingRelmTableCount: 0,
+                AttributeValueErrorCount: 0,
+                Errors: []
+            )));
+
+        var tooling = BuildTooling(resolver.Object, planner: planner.Object, renderer: renderer.Object);
 
         var options = new GenerateMigrationsOptions(
             ConnectionStringTemplate: "Server=localhost;Database={db};Uid=x;Pwd=y;",
@@ -352,6 +506,7 @@ public sealed class RelmMigrationToolingTests_V2 : IClassFixture<JsonConfigurati
             DropFunctionsOnCreate: false,
             Destructive: false,
             MigrationName: "migration-1",
+            MigrationFileName: "migration-1.sql",
             ModelSetName: "set-1",
             ScopeTables: new HashSet<string>(StringComparer.Ordinal),
             StampUtc: DateTime.UtcNow
@@ -372,6 +527,7 @@ public sealed class RelmMigrationToolingTests_V2 : IClassFixture<JsonConfigurati
         var plan = new MigrationPlan(
             DatabaseName: "db1",
             MigrationName: "migration-1",
+            MigrationFileName: "migration-1.sql",
             ModelSetName: "set-1",
             MigrationType: RelmMigrationType.Migration,
             Operations: [],

@@ -52,9 +52,15 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
                 new(typeof(AppliedMigration), localMigrationOptions.DatabaseName, RelmHelper.GetDalTable<AppliedMigration>() ?? "schema_migrations")
             };
 
+            var safeName = UrlStringHelper.Slugify(localMigrationOptions.MigrationName);
+            log?.LogFormatted(LogLevel.Information, "Generated safe migration name for file naming: {SafeName}", args: [safeName]);
+
+            var migrationFileName = $"SYSTEM_MIGRATION_{localMigrationOptions.StampUtc:yyyyMMdd_HHmmss}_{safeName}__db-{localMigrationOptions.DatabaseName}.sql";
+            log?.LogFormatted(LogLevel.Information, "Constructed migration file name: {FileName}", args: [migrationFileName]);
+
             log?.LogFormatted(LogLevel.Information, "Invoking migration SQL provider to generate SQL for ensuring schema migrations table exists...");
             log?.SaveIndentLevel("GenerateAsync");
-            var result = await provider.GenerateAsync(models);
+            var result = await provider.GenerateAsync(models, migrationFileName);
             log?.RestoreIndentLevel("GenerateAsync");
             if (!result.HasChanges)
             {
@@ -69,12 +75,6 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
 
             var checksum = result.Sql.Sha256Hex();
             log?.LogFormatted(LogLevel.Information, "Generated migration SQL checksum (SHA-256): {Checksum}", args: [checksum], preIncreaseLevel: true);
-
-            var safeName = UrlStringHelper.Slugify(localMigrationOptions.MigrationName);
-            log?.LogFormatted(LogLevel.Information, "Generated safe migration name for file naming: {SafeName}", args: [safeName]);
-
-            var migrationFileName = $"SYSTEM_MIGRATION_{localMigrationOptions.StampUtc:yyyyMMdd_HHmmss}_{safeName}__db-{localMigrationOptions.DatabaseName}.sql";
-            log?.LogFormatted(LogLevel.Information, "Constructed migration file name: {FileName}", args: [migrationFileName]);
 
             var migrationFilePath = Path.Combine(localMigrationOptions.MigrationsPath ?? ".", migrationFileName);
             if (localMigrationOptions.SaveSystemMigrations && !string.IsNullOrWhiteSpace(localMigrationOptions.MigrationsPath))
@@ -127,7 +127,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
             return rowsUpdated;
         }
 
-        public async Task<Dictionary<string, AppliedMigration>?> GetAppliedMigrationsAsync(RelmContext context, CancellationToken cancellationToken = default)
+        public async Task<Dictionary<string, AppliedMigration>?> GetAppliedMigrationsAsync(IRelmContext context, CancellationToken cancellationToken = default)
         {
             var migrationDataset = context.GetDataSet<AppliedMigration>();
             if (migrationDataset == null)
@@ -146,13 +146,15 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Execution
 
         public async Task<int> RecordAppliedMigrationAsync(IRelmContext context, string migrationFile, RelmMigrationType migrationType, string checksumSha256, CancellationToken ct = default)
         {
+            var ddd = await GetAppliedMigrationsAsync(context, ct);
+
             var appliedMigration = new AppliedMigration(
                 fileName: migrationFile,
                 migrationType: migrationType,
                 checksumSha256: checksumSha256,
                 appliedUtc: DateTime.UtcNow);
 
-            var rowsUpdated = appliedMigration.WriteToDatabase(context);
+            var rowsUpdated = await appliedMigration.WriteToDatabaseAsync(context);
 
             return rowsUpdated;
         }

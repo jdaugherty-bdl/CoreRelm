@@ -13,6 +13,7 @@ using CoreRelm.Models.Migrations.Tooling.Drift;
 using CoreRelm.Models.Migrations.Tooling.Generation;
 using CoreRelm.Models.Migrations.Tooling.Validation;
 using CoreRelm.Options;
+using CoreRelm.RelmInternal.Contexts;
 using CoreRelm.RelmInternal.Helpers.Migrations.Introspection;
 using CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans;
 using Microsoft.Extensions.Logging;
@@ -49,6 +50,14 @@ namespace CoreRelm.Migrations
             ??
             throw new InvalidOperationException("Migration tooling failed to build InformationSchemaContext.");
 
+        private readonly Func<string, RelmInternalAppliedMigrationContext> _appliedMigrationContextFactory = dbConn =>
+            new RelmContextOptionsBuilder(dbConn)
+                .SetAutoInitializeDataSets(false)
+                .SetAutoVerifyTables(false)
+                .Build<RelmInternalAppliedMigrationContext>()
+            ??
+            throw new InvalidOperationException("Migration tooling failed to build RelmInternalAppliedMigrationContext.");
+
         // internal constructor for testing
         internal RelmMigrationTooling(
             IModelSetResolver modelSetResolver,
@@ -59,7 +68,9 @@ namespace CoreRelm.Migrations
             IRelmDatabaseProvisioner provisioner,
             IRelmSchemaMigrationsStore migrationsStore,
             ILogger<RelmMigrationTooling>? log,
-            Func<string, InformationSchemaContext> informationSchemaContextFactory) : this(
+            Func<string, InformationSchemaContext> informationSchemaContextFactory, 
+            Func<string, RelmInternalAppliedMigrationContext> appliedMigrationContextFactory) 
+            : this(
                 modelSetResolver,
                 introspector,
                 desiredBuilder,
@@ -70,6 +81,7 @@ namespace CoreRelm.Migrations
                 log)
         {
             _informationSchemaContextFactory = informationSchemaContextFactory ?? throw new ArgumentNullException(nameof(informationSchemaContextFactory));
+            _appliedMigrationContextFactory = appliedMigrationContextFactory ?? throw new ArgumentNullException(nameof(appliedMigrationContextFactory));
         }
 
         private (IReadOnlyDictionary<string, List<ValidatedModelType>>? ModelsByDatabase, ResolvedModelSetDiagnostics? Diagnostics) ResolveAndValidateModelSets(ModelSetsFile modelSets, string setName, Assembly modelsAssembly, List<string> warnings, List<string> errors)
@@ -200,6 +212,7 @@ namespace CoreRelm.Migrations
                     DropFunctionsOnCreate: options.DropFunctionsOnCreate,
                     Destructive: options.Destructive,
                     MigrationName: options.MigrationName,
+                    MigrationFileName: options.MigrationFileName,
                     ModelSetName: setName,
                     ScopeTables: scopeTables,
                     StampUtc: stamp
@@ -305,8 +318,7 @@ namespace CoreRelm.Migrations
                     ?? throw new ArgumentException("Connection string template is required.", nameof(request.ConnectionStringTemplate));
 
                 // Ensure SchemaMigrations table exists, then read applied list
-                //var applied = await migrationsStore.GetAppliedMigrationsAsync(new InformationSchemaContext(dbConn, autoInitializeDataSets: false, autoVerifyTables: false));
-                var applied = await migrationsStore.GetAppliedMigrationsAsync(_informationSchemaContextFactory(dbConn));
+                 var applied = await migrationsStore.GetAppliedMigrationsAsync(_appliedMigrationContextFactory(dbConn));
                 // ^ implemented in store: open connection, ensure table, return map filename->checksum
 
                 if (applied == null)

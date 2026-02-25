@@ -507,15 +507,20 @@ namespace CoreRelm.RelmInternal.Helpers.DataTransfer.Persistence
         /// type <typeparamref name="T"/> or the <paramref name="forceType"/>.</exception>
         private static async Task<int> BulkTableWriteAsyncStatic<T>(BulkTableWriter<T> tableWriter, T sourceData, string? tableName = null, Type? forceType = null, int batchSize = 100, string? databaseName = null, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false, CancellationToken cancellationToken = default)
         {
-            var rowsUpdated = await tableWriter
+            var interTableWriter = tableWriter
                 .SetTableName(tableName ?? (forceType ?? typeof(T)).GetCustomAttribute<RelmTable>()?.TableName ?? throw new CustomAttributeFormatException(CoreUtilities.NoDalTableAttributeError))
-                .SetDatabaseName(databaseName ?? (forceType ?? typeof(T)).GetCustomAttribute<RelmDatabase>()?.DatabaseName)
                 .SetSourceData(sourceData)
                 .SetBatchSize(batchSize)
                 .AllowAutoDateColumns(allowAutoDateColumns)
                 .AllowAutoIncrementColumns(allowAutoIncrementColumns)
                 .AllowPrimaryKeyColumns(allowPrimaryKeyColumns)
-                .AllowUniqueColumns(allowUniqueColumns)
+                .AllowUniqueColumns(allowUniqueColumns);
+
+            var databaseAttribute = (forceType ?? typeof(T)).GetCustomAttribute<RelmDatabase>();
+            if (!(databaseAttribute?.UseContextDatabaseName ?? true))
+                interTableWriter.SetDatabaseName(databaseName ?? databaseAttribute?.DatabaseName);
+
+            var rowsUpdated = await interTableWriter
                 .WriteAsync(cancellationToken: cancellationToken);
 
             return rowsUpdated;

@@ -20,6 +20,7 @@ using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using static CoreRelm.Enums.Indexes;
 using static CoreRelm.Enums.SecurityEnums;
 using static CoreRelm.Enums.StoredProcedures;
 using static CoreRelm.Enums.Triggers;
@@ -144,7 +145,8 @@ namespace CoreRelm.Models
         /// </summary>
         [RelmKey]
         [RelmDto]
-        [RelmColumn(columnSize: 45, isNullable: false, unique: true)]
+        [RelmIndex(indexType: IndexType.UNIQUE)]
+        [RelmColumn(columnSize: 45, isNullable: false)]
         public string? InternalId { get; set; }
 
         /// <summary>
