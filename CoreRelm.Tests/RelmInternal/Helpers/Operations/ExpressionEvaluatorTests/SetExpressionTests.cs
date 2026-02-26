@@ -38,9 +38,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             predicate = x => new ComplexTestModel { TestColumnInternalId = "TEST_VALUE", TestColumnId = 1 };
 
             // Act
-            var result = evaluator.EvaluateSet(new KeyValuePair<Command, List<IRelmExecutionCommand?>>(
-                    Command.Set, 
-                    [new RelmExecutionCommand(Command.Set, predicate.Body)])
+            var result = evaluator.EvaluateSet([new RelmExecutionCommand(Command.Set, predicate.Body)]
                 , queryParameters);
 
             // Assert
@@ -57,9 +55,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             predicate = x => new ComplexTestModel { TestColumnInternalId = "TEST_VALUE" };
 
             // Act
-            var result = evaluator.EvaluateSet(new KeyValuePair<Command, List<IRelmExecutionCommand?>>(
-                    Command.Set, 
-                    [new RelmExecutionCommand(Command.Set, predicate.Body)])
+            var result = evaluator.EvaluateSet([new RelmExecutionCommand(Command.Set, predicate.Body)]
                 , queryParameters);
 
             // Assert
@@ -79,9 +75,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             var result = evaluator.EvaluateWhereNew([new RelmExecutionCommand(Command.Where, wherePredicate)], 
                 queryParameters);
 
-            result += evaluator.EvaluateSet(new KeyValuePair<Command, List<IRelmExecutionCommand?>>(
-                    Command.Set,
-                    [new RelmExecutionCommand(Command.Set, predicate.Body)])
+            result += evaluator.EvaluateSet([new RelmExecutionCommand(Command.Set, predicate.Body)]
                 , queryParameters);
 
             // Assert
@@ -99,9 +93,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             predicate = x => new ComplexTestModel { Active = false };
 
             // Act
-            var result = evaluator.EvaluateSet(new KeyValuePair<Command, List<IRelmExecutionCommand?>>(
-                    Command.Set, 
-                    [new RelmExecutionCommand(Command.Set, predicate.Body)])
+            var result = evaluator.EvaluateSet([new RelmExecutionCommand(Command.Set, predicate.Body)]
                 , queryParameters);
 
             // Assert
@@ -117,9 +109,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             predicate = x => new ComplexTestModel();
 
             // Act & Assert
-            Assert.Throws<NotSupportedException>(() => evaluator.EvaluateSet(new KeyValuePair<Command, List<IRelmExecutionCommand?>>(
-                    Command.Set, 
-                    [new RelmExecutionCommand(Command.Set, predicate.Body)])
+            Assert.Throws<NotSupportedException>(() => evaluator.EvaluateSet([new RelmExecutionCommand(Command.Set, predicate.Body)]
                 , queryParameters));
         }
     }

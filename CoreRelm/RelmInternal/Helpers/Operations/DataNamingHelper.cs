@@ -29,19 +29,19 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
             return GetUnderscoreProperties(TargetObject.GetType(), GetOnlyDbResolvables, GetOnlyNonVirtualColumns: GetOnlyNonVirtualColumns);
         }
 
-        public static List<KeyValuePair<string, Tuple<string, PropertyInfo>>> GetUnderscoreProperties<T>(bool GetOnlyDbResolvables = true, bool GetOnlyNonVirtualColumns = true)
+        public static List<KeyValuePair<string, Tuple<string, PropertyInfo>>> GetUnderscoreProperties<T>(bool GetOnlyRelmColumns = true, bool GetOnlyNonVirtualColumns = true)
         {
-            return GetUnderscoreProperties(typeof(T), GetOnlyDbResolvables: GetOnlyDbResolvables, GetOnlyNonVirtualColumns: GetOnlyNonVirtualColumns);
+            return GetUnderscoreProperties(typeof(T), GetOnlyRelmColumns: GetOnlyRelmColumns, GetOnlyNonVirtualColumns: GetOnlyNonVirtualColumns);
         }
 
-        public static List<KeyValuePair<string, Tuple<string, PropertyInfo>>> GetUnderscoreProperties(Type TargetType, bool GetOnlyDbResolvables = true, bool GetOnlyNonVirtualColumns = true)
+        public static List<KeyValuePair<string, Tuple<string, PropertyInfo>>> GetUnderscoreProperties(Type TargetType, bool GetOnlyRelmColumns = true, bool GetOnlyNonVirtualColumns = true)
         {
             // get all properties marked with the DALResolvable attribute
             var convertableProperties = new List<PropertyInfo>();
             foreach (var x in TargetType.GetProperties())
             {
                 var customAttributes = x.GetCustomAttributes(true);
-                var addItem = !GetOnlyDbResolvables;
+                var addItem = !GetOnlyRelmColumns;
                 if (!addItem)
                 {
                     foreach (var customAttribute in customAttributes)
@@ -116,15 +116,13 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
 
                 for (int i = 0; i < properties.Count; i++)
                 {
-                    if (i == 0)
-                    {
-                        // don't rename the first column of the same name, only the duplicates
-                        selectManyProperties[columnName] = properties[i];
-                        continue;
-                    }
-
                     var property = properties[i];
-                    selectManyProperties[$"{property.Item1}_{i - 1}"] = property;
+                    var itemKey = property.Item1;
+
+                    if (i > 0)
+                        itemKey = $"{property.Item1}_{i - 1}";
+
+                    selectManyProperties[itemKey] = new Tuple<string, PropertyInfo>(property.Item2.Name, property.Item2);
                 }
             }
 

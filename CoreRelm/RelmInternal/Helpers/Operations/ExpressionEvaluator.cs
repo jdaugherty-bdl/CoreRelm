@@ -108,12 +108,12 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
             return query;
         }
 
-        internal Tuple<string, string> EvaluateInsertInto(KeyValuePair<Command, List<IRelmExecutionCommand>> commandExpression, Dictionary<string, object> queryParameters)
+        internal Tuple<string, string> EvaluateInsertInto(List<IRelmExecutionCommand> commandExpressions, Dictionary<string, object> queryParameters)
         {
             var setLines = new List<string>();
             var usedColumns = new List<string>();
 
-            var set = commandExpression.Value.FirstOrDefault();
+            var set = commandExpressions.FirstOrDefault();
             var currentAlias = GetTableAlias(((RelmTable?)set?.ExecutionExpression?.Type.GetCustomAttributes(typeof(RelmTable), true).FirstOrDefault())?.TableName);
 
             if (string.IsNullOrWhiteSpace(currentAlias))
@@ -130,12 +130,12 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
             return new Tuple<string, string>(queryPrefix, queryPostfix);
         }
 
-        internal string EvaluateSet(KeyValuePair<Command, List<IRelmExecutionCommand?>> commandExpression, Dictionary<string, object?> queryParameters)
+        internal string EvaluateSet(List<IRelmExecutionCommand?> commandExpressions, Dictionary<string, object?> queryParameters)
         {
             var setLines = new List<string>();
             var usedColumns = new List<string?>();
 
-            var set = commandExpression.Value.FirstOrDefault();
+            var set = commandExpressions.FirstOrDefault();
             var currentAlias = GetTableAlias(((RelmTable?)set?.ExecutionExpression?.Type.GetCustomAttributes(typeof(RelmTable), true).FirstOrDefault())?.TableName);
 
             if (string.IsNullOrWhiteSpace(currentAlias))
@@ -257,22 +257,22 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
 
         }
 
-        internal string EvaluateOrderBy(KeyValuePair<Command, List<IRelmExecutionCommand?>> CommandExpression, bool IsDescending)
+        internal string EvaluateOrderBy(List<IRelmExecutionCommand?> CommandExpressions, bool IsDescending)
         {
-            return EvaluatePostProcessor(CommandExpression.Value, IsDescending);
+            return EvaluatePostProcessor(CommandExpressions, IsDescending);
         }
 
-        internal string EvaluateGroupBy(KeyValuePair<Command, List<IRelmExecutionCommand?>> CommandExpression)
+        internal string EvaluateGroupBy(List<IRelmExecutionCommand?> CommandExpressions)
         {
-            return EvaluatePostProcessor(CommandExpression.Value);
+            return EvaluatePostProcessor(CommandExpressions);
         }
 
-        internal string EvaluateCount(KeyValuePair<Command, List<IRelmExecutionCommand?>> CommandExpression)
+        internal string EvaluateCount(List<IRelmExecutionCommand?> CommandExpressions)
         {
             var findQuery = string.Empty;
 
             var countItems = new List<string>();
-            foreach (var command in CommandExpression.Value)
+            foreach (var command in CommandExpressions)
             {
                 if (command == null)
                     continue;
@@ -322,24 +322,24 @@ namespace CoreRelm.RelmInternal.Helpers.Operations
             return findQuery;
         }
 
-        internal string EvaluateLimit(KeyValuePair<Command, List<IRelmExecutionCommand?>> CommandExpression)
+        internal string EvaluateLimit(List<IRelmExecutionCommand?> CommandExpressions)
         {
-            return $" LIMIT {(CommandExpression.Value[0]?.ExecutionExpression as ConstantExpression)?.Value} ";
+            return $" LIMIT {(CommandExpressions[0]?.ExecutionExpression as ConstantExpression)?.Value} ";
         }
 
-        internal string EvaluateOffset(KeyValuePair<Command, List<IRelmExecutionCommand?>> CommandExpression)
+        internal string EvaluateOffset(List<IRelmExecutionCommand?> CommandExpressions)
         {
-            return $" OFFSET {(CommandExpression.Value[0]?.ExecutionExpression as ConstantExpression)?.Value} ";
+            return $" OFFSET {(CommandExpressions[0]?.ExecutionExpression as ConstantExpression)?.Value} ";
         }
 
-        internal string EvaluateDistinctBy(KeyValuePair<Command, List<IRelmExecutionCommand?>> CommandExpression)
+        internal string EvaluateDistinctBy(List<IRelmExecutionCommand?> CommandExpressions)
         {
             MemberExpression? methodOperand;
-            if (CommandExpression.Value[0]?.ExecutionExpression is MemberExpression methodCall)
+            if (CommandExpressions[0]?.ExecutionExpression is MemberExpression methodCall)
                 methodOperand = methodCall;
-            else if (CommandExpression.Value[0]?.ExecutionExpression is UnaryExpression unaryExpression)
+            else if (CommandExpressions[0]?.ExecutionExpression is UnaryExpression unaryExpression)
                 methodOperand = unaryExpression.Operand as MemberExpression;
-            else if (CommandExpression.Value[0]?.ExecutionExpression is LambdaExpression lambdaExpression)
+            else if (CommandExpressions[0]?.ExecutionExpression is LambdaExpression lambdaExpression)
                 methodOperand = lambdaExpression.Body is UnaryExpression lambdaUnary && lambdaUnary.NodeType == ExpressionType.Convert
                     ? lambdaUnary.Operand as MemberExpression
                     : lambdaExpression.Body as MemberExpression;

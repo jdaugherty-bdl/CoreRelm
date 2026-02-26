@@ -39,7 +39,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations
                 resultMap["Test_Value_0"].Item1,
             };
 
-            Assert.True(duplicateNames.SetEquals(["Test_Value"]));
+            Assert.True(duplicateNames.SetEquals(["TestValue", "Test_Value"]));
         }
 
         [Fact]
@@ -49,7 +49,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations
             var targetType = typeof(DataNamingHelperModel);
 
             // Act
-            var results = DataNamingHelper.GetUnderscoreProperties(targetType, GetOnlyDbResolvables: true, GetOnlyNonVirtualColumns: false);
+            var results = DataNamingHelper.GetUnderscoreProperties(targetType, GetOnlyRelmColumns: true, GetOnlyNonVirtualColumns: false);
             var resultMap = results.ToDictionary(x => x.Key, x => x.Value);
 
             // Assert
@@ -64,7 +64,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations
             var expectedPropertyCount = targetType.GetProperties().Length;
 
             // Act
-            var results = DataNamingHelper.GetUnderscoreProperties(targetType, GetOnlyDbResolvables: false);
+            var results = DataNamingHelper.GetUnderscoreProperties(targetType, GetOnlyRelmColumns: false);
             var resultMap = results.ToDictionary(x => x.Key, x => x.Value);
 
             // Assert

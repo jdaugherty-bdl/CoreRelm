@@ -367,25 +367,25 @@ namespace CoreRelm.Models
                             break;
                         case Command.OrderBy:
                         case Command.OrderByDescending:
-                            queryPieces[command.Key].Add(expressionEvaluator.EvaluateOrderBy(command, command.Key == Command.OrderByDescending));
+                            queryPieces[command.Key].Add(expressionEvaluator.EvaluateOrderBy(command.Value, command.Key == Command.OrderByDescending));
                             break;
                         case Command.Set:
-                            queryPieces[command.Key].Add(expressionEvaluator.EvaluateSet(command, FindOptions));
+                            queryPieces[command.Key].Add(expressionEvaluator.EvaluateSet(command.Value, FindOptions));
                             break;
                         case Command.Limit:
-                            queryPieces[command.Key].Add(expressionEvaluator.EvaluateLimit(command));
+                            queryPieces[command.Key].Add(expressionEvaluator.EvaluateLimit(command.Value));
                             break;
                         case Command.Offset:
-                            queryPieces[command.Key].Add(expressionEvaluator.EvaluateOffset(command));
+                            queryPieces[command.Key].Add(expressionEvaluator.EvaluateOffset(command.Value));
                             break;
                         case Command.GroupBy:
-                            queryPieces[command.Key].Add(expressionEvaluator.EvaluateGroupBy(command));
+                            queryPieces[command.Key].Add(expressionEvaluator.EvaluateGroupBy(command.Value));
                             break;
                         case Command.DistinctBy:
-                            queryPieces[command.Key].Add(expressionEvaluator.EvaluateDistinctBy(command));
+                            queryPieces[command.Key].Add(expressionEvaluator.EvaluateDistinctBy(command.Value));
                             break;
                         case Command.Count:
-                            queryPieces[command.Key].Add(expressionEvaluator.EvaluateCount(command));
+                            queryPieces[command.Key].Add(expressionEvaluator.EvaluateCount(command.Value));
                             break;
                     }
                 }

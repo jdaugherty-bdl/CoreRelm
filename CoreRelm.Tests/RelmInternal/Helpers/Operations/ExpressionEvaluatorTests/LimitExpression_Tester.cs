@@ -37,9 +37,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             var limitCount = 1;
 
             // Act
-            var result = evaluator.EvaluateLimit(new KeyValuePair<Command, List<IRelmExecutionCommand>>(
-                Command.Limit,
-                new List<IRelmExecutionCommand> { new RelmExecutionCommand(Command.Limit, Expression.Constant(limitCount, limitCount.GetType())) }));
+            var result = evaluator.EvaluateLimit([new RelmExecutionCommand(Command.Limit, Expression.Constant(limitCount, limitCount.GetType()))]);
 
             // Assert
             Assert.Equal(" LIMIT 1 ", result);
@@ -52,9 +50,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             var offsetCount = 1;
 
             // Act
-            var result = evaluator.EvaluateOffset(new KeyValuePair<Command, List<IRelmExecutionCommand>>(
-                Command.Offset,
-                new List<IRelmExecutionCommand> { new RelmExecutionCommand(Command.Offset, Expression.Constant(offsetCount, offsetCount.GetType())) }));
+            var result = evaluator.EvaluateOffset([new RelmExecutionCommand(Command.Offset, Expression.Constant(offsetCount, offsetCount.GetType()))]);
 
             // Assert
             Assert.Equal(" OFFSET 1 ", result);

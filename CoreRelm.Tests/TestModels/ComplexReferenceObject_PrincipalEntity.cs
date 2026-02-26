@@ -19,6 +19,9 @@ namespace CoreRelm.Tests.TestModels
         public string? ComplexTestModelLocalKey { get; set; }
 
         [RelmColumn]
+        public string? ComplexTest_ModelLocalKey { get; set; }
+
+        [RelmColumn]
         public ComplexTestModel? TestModel { get; set; }
     }
 }

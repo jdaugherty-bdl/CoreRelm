@@ -77,9 +77,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
         public void TestCountQuery_NoOperand()
         {
             // Act
-            var result = evaluator.EvaluateCount(new KeyValuePair<Command, List<IRelmExecutionCommand?>>(
-                Command.Count,
-                [new RelmExecutionCommand(Command.Count, null)]));
+            var result = evaluator.EvaluateCount([new RelmExecutionCommand(Command.Count, null)]);
 
             // Assert
             Assert.Equal(" COUNT(*) AS `count_rows` ", result);
@@ -92,9 +90,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             Expression<Func<ComplexTestModel, object>>? predicate = x => x.Id;
 
             // Act
-            var result = evaluator.EvaluateCount(new KeyValuePair<Command, List<IRelmExecutionCommand?>>(
-                Command.Count,
-                [new RelmExecutionCommand(Command.Count, predicate.Body)]));
+            var result = evaluator.EvaluateCount([new RelmExecutionCommand(Command.Count, predicate.Body)]);
 
             // Assert
             Assert.Equal(" COUNT(a.`Id`) AS `count_Id` ", result);
@@ -107,9 +103,7 @@ namespace CoreRelm.Tests.RelmInternal.Helpers.Operations.ExpressionEvaluatorTest
             Expression<Func<ComplexTestModel, object>>? predicate = x => new { x.Id, x.TestColumnInternalId };
 
             // Act
-            var result = evaluator.EvaluateCount(new KeyValuePair<Command, List<IRelmExecutionCommand?>>(
-                Command.Count,
-                [new RelmExecutionCommand(Command.Count, predicate.Body)]));
+            var result = evaluator.EvaluateCount([new RelmExecutionCommand(Command.Count, predicate.Body)]);
 
             // Assert
             Assert.Equal(" COUNT(a.`Id`) AS `count_Id` , COUNT(a.`test_column_InternalId`) AS `count_test_column_InternalId` ", result);
