@@ -157,8 +157,8 @@ Class GenerateMigrationsOptions  <a class="header-action link-secondary" title="
 
   <a id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions__ctor_" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.#ctor*"></a>
 
-  <h3 id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions__ctor_System_String_System_String_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_String_System_Nullable_System_DateTime__System_Boolean_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.Nullable{System.DateTime},System.Boolean,System.Threading.CancellationToken)">
-  GenerateMigrationsOptions(string?, string?, string?, bool, bool, bool, bool, string, DateTime?, bool, CancellationToken)
+  <h3 id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions__ctor_System_String_System_String_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_String_System_String_System_Nullable_System_DateTime__System_Boolean_System_Threading_CancellationToken_" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.String,System.Nullable{System.DateTime},System.Boolean,System.Threading.CancellationToken)">
+  GenerateMigrationsOptions(string?, string?, string?, bool, bool, bool, bool, string, string, DateTime?, bool, CancellationToken)
   <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Tooling/Generation/GenerateMigrationsOptions.cs/#L9"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -166,7 +166,7 @@ Class GenerateMigrationsOptions  <a class="header-action link-secondary" title="
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public GenerateMigrationsOptions(string? ConnectionString = null, string? ConnectionStringTemplate = null, string? DatabaseName = null, bool Destructive = false, bool IncludeUseDatabase = true, bool EnsureDatabaseExistsDuringGenerate = true, bool DropFunctionsOnCreate = false, string MigrationName = &quot;migration&quot;, DateTime? TimestampUtc = null, bool TreatMissingDatabaseAsEmpty = true, CancellationToken CancelToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public GenerateMigrationsOptions(string? ConnectionString = null, string? ConnectionStringTemplate = null, string? DatabaseName = null, bool Destructive = false, bool IncludeUseDatabase = true, bool EnsureDatabaseExistsDuringGenerate = true, bool DropFunctionsOnCreate = false, string MigrationName = &quot;migration&quot;, string MigrationFileName = &quot;migration.sql&quot;, DateTime? TimestampUtc = null, bool TreatMissingDatabaseAsEmpty = true, CancellationToken CancelToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -186,6 +186,8 @@ Class GenerateMigrationsOptions  <a class="header-action link-secondary" title="
     <dt><code>DropFunctionsOnCreate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd></dd>
     <dt><code>MigrationName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>MigrationFileName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
     <dt><code>TimestampUtc</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</dt>
     <dd></dd>
@@ -214,7 +216,7 @@ Class GenerateMigrationsOptions  <a class="header-action link-secondary" title="
 
   <h3 id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_CancelToken" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.CancelToken">
   CancelToken
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Tooling/Generation/GenerateMigrationsOptions.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Tooling/Generation/GenerateMigrationsOptions.cs/#L22"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -458,6 +460,37 @@ Class GenerateMigrationsOptions  <a class="header-action link-secondary" title="
 
 
 
+  <a id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_MigrationFileName_" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.MigrationFileName*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_MigrationFileName" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.MigrationFileName">
+  MigrationFileName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Tooling/Generation/GenerateMigrationsOptions.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string MigrationFileName { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_MigrationName_" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.MigrationName*"></a>
 
   <h3 id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_MigrationName" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.MigrationName">
@@ -493,7 +526,7 @@ Class GenerateMigrationsOptions  <a class="header-action link-secondary" title="
 
   <h3 id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_TimestampUtc" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.TimestampUtc">
   TimestampUtc
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Tooling/Generation/GenerateMigrationsOptions.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Tooling/Generation/GenerateMigrationsOptions.cs/#L19"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -524,7 +557,7 @@ Class GenerateMigrationsOptions  <a class="header-action link-secondary" title="
 
   <h3 id="CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_TreatMissingDatabaseAsEmpty" data-uid="CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.TreatMissingDatabaseAsEmpty">
   TreatMissingDatabaseAsEmpty
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Tooling/Generation/GenerateMigrationsOptions.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Tooling/Generation/GenerateMigrationsOptions.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>

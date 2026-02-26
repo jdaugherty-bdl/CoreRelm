@@ -5,7 +5,7 @@ items:
   id: GenerateMigrationsOptions
   parent: CoreRelm.Models.Migrations.Tooling.Generation
   children:
-  - CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.Nullable{System.DateTime},System.Boolean,System.Threading.CancellationToken)
+  - CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.String,System.Nullable{System.DateTime},System.Boolean,System.Threading.CancellationToken)
   - CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.CancelToken
   - CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.ConnectionString
   - CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.ConnectionStringTemplate
@@ -14,6 +14,7 @@ items:
   - CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.DropFunctionsOnCreate
   - CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.EnsureDatabaseExistsDuringGenerate
   - CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.IncludeUseDatabase
+  - CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.MigrationFileName
   - CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.MigrationName
   - CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.TimestampUtc
   - CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.TreatMissingDatabaseAsEmpty
@@ -49,16 +50,16 @@ items:
   - System.Object.GetType
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.Nullable{System.DateTime},System.Boolean,System.Threading.CancellationToken)
-  commentId: M:CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.Nullable{System.DateTime},System.Boolean,System.Threading.CancellationToken)
-  id: '#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.Nullable{System.DateTime},System.Boolean,System.Threading.CancellationToken)'
+- uid: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.String,System.Nullable{System.DateTime},System.Boolean,System.Threading.CancellationToken)
+  commentId: M:CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.String,System.Nullable{System.DateTime},System.Boolean,System.Threading.CancellationToken)
+  id: '#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.String,System.Nullable{System.DateTime},System.Boolean,System.Threading.CancellationToken)'
   parent: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions
   langs:
   - csharp
   - vb
-  name: GenerateMigrationsOptions(string?, string?, string?, bool, bool, bool, bool, string, DateTime?, bool, CancellationToken)
-  nameWithType: GenerateMigrationsOptions.GenerateMigrationsOptions(string?, string?, string?, bool, bool, bool, bool, string, DateTime?, bool, CancellationToken)
-  fullName: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.GenerateMigrationsOptions(string?, string?, string?, bool, bool, bool, bool, string, System.DateTime?, bool, System.Threading.CancellationToken)
+  name: GenerateMigrationsOptions(string?, string?, string?, bool, bool, bool, bool, string, string, DateTime?, bool, CancellationToken)
+  nameWithType: GenerateMigrationsOptions.GenerateMigrationsOptions(string?, string?, string?, bool, bool, bool, bool, string, string, DateTime?, bool, CancellationToken)
+  fullName: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.GenerateMigrationsOptions(string?, string?, string?, bool, bool, bool, bool, string, string, System.DateTime?, bool, System.Threading.CancellationToken)
   type: Constructor
   source:
     remote:
@@ -72,7 +73,7 @@ items:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Tooling.Generation
   syntax:
-    content: public GenerateMigrationsOptions(string? ConnectionString = null, string? ConnectionStringTemplate = null, string? DatabaseName = null, bool Destructive = false, bool IncludeUseDatabase = true, bool EnsureDatabaseExistsDuringGenerate = true, bool DropFunctionsOnCreate = false, string MigrationName = "migration", DateTime? TimestampUtc = null, bool TreatMissingDatabaseAsEmpty = true, CancellationToken CancelToken = default)
+    content: public GenerateMigrationsOptions(string? ConnectionString = null, string? ConnectionStringTemplate = null, string? DatabaseName = null, bool Destructive = false, bool IncludeUseDatabase = true, bool EnsureDatabaseExistsDuringGenerate = true, bool DropFunctionsOnCreate = false, string MigrationName = "migration", string MigrationFileName = "migration.sql", DateTime? TimestampUtc = null, bool TreatMissingDatabaseAsEmpty = true, CancellationToken CancelToken = default)
     parameters:
     - id: ConnectionString
       type: System.String
@@ -90,17 +91,19 @@ items:
       type: System.Boolean
     - id: MigrationName
       type: System.String
+    - id: MigrationFileName
+      type: System.String
     - id: TimestampUtc
       type: System.Nullable{System.DateTime}
     - id: TreatMissingDatabaseAsEmpty
       type: System.Boolean
     - id: CancelToken
       type: System.Threading.CancellationToken
-    content.vb: Public Sub New(ConnectionString As String = Nothing, ConnectionStringTemplate As String = Nothing, DatabaseName As String = Nothing, Destructive As Boolean = False, IncludeUseDatabase As Boolean = True, EnsureDatabaseExistsDuringGenerate As Boolean = True, DropFunctionsOnCreate As Boolean = False, MigrationName As String = "migration", TimestampUtc As Date? = Nothing, TreatMissingDatabaseAsEmpty As Boolean = True, CancelToken As CancellationToken = Nothing)
+    content.vb: Public Sub New(ConnectionString As String = Nothing, ConnectionStringTemplate As String = Nothing, DatabaseName As String = Nothing, Destructive As Boolean = False, IncludeUseDatabase As Boolean = True, EnsureDatabaseExistsDuringGenerate As Boolean = True, DropFunctionsOnCreate As Boolean = False, MigrationName As String = "migration", MigrationFileName As String = "migration.sql", TimestampUtc As Date? = Nothing, TreatMissingDatabaseAsEmpty As Boolean = True, CancelToken As CancellationToken = Nothing)
   overload: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.#ctor*
-  nameWithType.vb: GenerateMigrationsOptions.New(String, String, String, Boolean, Boolean, Boolean, Boolean, String, Date?, Boolean, CancellationToken)
-  fullName.vb: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.New(String, String, String, Boolean, Boolean, Boolean, Boolean, String, Date?, Boolean, System.Threading.CancellationToken)
-  name.vb: New(String, String, String, Boolean, Boolean, Boolean, Boolean, String, Date?, Boolean, CancellationToken)
+  nameWithType.vb: GenerateMigrationsOptions.New(String, String, String, Boolean, Boolean, Boolean, Boolean, String, String, Date?, Boolean, CancellationToken)
+  fullName.vb: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.New(String, String, String, Boolean, Boolean, Boolean, Boolean, String, String, Date?, Boolean, System.Threading.CancellationToken)
+  name.vb: New(String, String, String, Boolean, Boolean, Boolean, Boolean, String, String, Date?, Boolean, CancellationToken)
 - uid: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.ConnectionString
   commentId: P:CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.ConnectionString
   id: ConnectionString
@@ -333,6 +336,35 @@ items:
       type: System.String
     content.vb: Public Property MigrationName As String
   overload: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.MigrationName*
+- uid: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.MigrationFileName
+  commentId: P:CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.MigrationFileName
+  id: MigrationFileName
+  parent: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions
+  langs:
+  - csharp
+  - vb
+  name: MigrationFileName
+  nameWithType: GenerateMigrationsOptions.MigrationFileName
+  fullName: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.MigrationFileName
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Tooling/Generation/GenerateMigrationsOptions.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: MigrationFileName
+    path: ../CoreRelm/Models/Migrations/Tooling/Generation/GenerateMigrationsOptions.cs
+    startLine: 17
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Tooling.Generation
+  syntax:
+    content: public string MigrationFileName { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property MigrationFileName As String
+  overload: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.MigrationFileName*
 - uid: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.TimestampUtc
   commentId: P:CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.TimestampUtc
   id: TimestampUtc
@@ -351,7 +383,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: TimestampUtc
     path: ../CoreRelm/Models/Migrations/Tooling/Generation/GenerateMigrationsOptions.cs
-    startLine: 17
+    startLine: 18
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Tooling.Generation
@@ -380,7 +412,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: TreatMissingDatabaseAsEmpty
     path: ../CoreRelm/Models/Migrations/Tooling/Generation/GenerateMigrationsOptions.cs
-    startLine: 19
+    startLine: 20
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Tooling.Generation
@@ -409,7 +441,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: CancelToken
     path: ../CoreRelm/Models/Migrations/Tooling/Generation/GenerateMigrationsOptions.cs
-    startLine: 20
+    startLine: 21
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Tooling.Generation
@@ -743,7 +775,7 @@ references:
   - name: )
 - uid: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.#ctor*
   commentId: Overload:CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.#ctor
-  href: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.html#CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions__ctor_System_String_System_String_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_String_System_Nullable_System_DateTime__System_Boolean_System_Threading_CancellationToken_
+  href: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.html#CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions__ctor_System_String_System_String_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_String_System_String_System_Nullable_System_DateTime__System_Boolean_System_Threading_CancellationToken_
   name: GenerateMigrationsOptions
   nameWithType: GenerateMigrationsOptions.GenerateMigrationsOptions
   fullName: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.GenerateMigrationsOptions
@@ -906,6 +938,12 @@ references:
   name: MigrationName
   nameWithType: GenerateMigrationsOptions.MigrationName
   fullName: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.MigrationName
+- uid: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.MigrationFileName*
+  commentId: Overload:CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.MigrationFileName
+  href: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.html#CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_MigrationFileName
+  name: MigrationFileName
+  nameWithType: GenerateMigrationsOptions.MigrationFileName
+  fullName: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.MigrationFileName
 - uid: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.TimestampUtc*
   commentId: Overload:CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.TimestampUtc
   href: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.html#CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_TimestampUtc

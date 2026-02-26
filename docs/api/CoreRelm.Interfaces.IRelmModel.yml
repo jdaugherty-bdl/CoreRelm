@@ -7,21 +7,10 @@ items:
   children:
   - CoreRelm.Interfaces.IRelmModel.Active
   - CoreRelm.Interfaces.IRelmModel.CreateDate
-  - CoreRelm.Interfaces.IRelmModel.GenerateDTO(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String,System.Func{CoreRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}},System.Int32)
-  - CoreRelm.Interfaces.IRelmModel.GetUnderscoreProperties(System.Boolean)
   - CoreRelm.Interfaces.IRelmModel.Id
   - CoreRelm.Interfaces.IRelmModel.InternalId
   - CoreRelm.Interfaces.IRelmModel.LastUpdated
   - CoreRelm.Interfaces.IRelmModel.ResetCoreAttributes(System.Boolean,System.Boolean)
-  - CoreRelm.Interfaces.IRelmModel.ResetWithData(System.Data.DataRow,System.String)
-  - CoreRelm.Interfaces.IRelmModel.WriteToDatabase(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  - CoreRelm.Interfaces.IRelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  - CoreRelm.Interfaces.IRelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  - CoreRelm.Interfaces.IRelmModel.WriteToDatabase(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  - CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  - CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  - CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  - CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
   langs:
   - csharp
   - vb
@@ -52,8 +41,20 @@ items:
         operations.
   example: []
   syntax:
-    content: public interface IRelmModel
-    content.vb: Public Interface IRelmModel
+    content: 'public interface IRelmModel : IRelmModelClean'
+    content.vb: Public Interface IRelmModel Inherits IRelmModelClean
+  inheritedMembers:
+  - CoreRelm.Interfaces.IRelmModelClean.ResetWithData(System.Data.DataRow,System.String)
+  - CoreRelm.Interfaces.IRelmModelClean.GetUnderscoreProperties(System.Boolean)
+  - CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  - CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  - CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  - CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  - CoreRelm.Interfaces.IRelmModelClean.GenerateDTO(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String,System.Func{CoreRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}},System.Int32)
+  - CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  - CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  - CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  - CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
 - uid: CoreRelm.Interfaces.IRelmModel.Id
   commentId: P:CoreRelm.Interfaces.IRelmModel.Id
   id: Id
@@ -255,667 +256,6 @@ items:
   nameWithType.vb: IRelmModel.ResetCoreAttributes(Boolean, Boolean)
   fullName.vb: CoreRelm.Interfaces.IRelmModel.ResetCoreAttributes(Boolean, Boolean)
   name.vb: ResetCoreAttributes(Boolean, Boolean)
-- uid: CoreRelm.Interfaces.IRelmModel.ResetWithData(System.Data.DataRow,System.String)
-  commentId: M:CoreRelm.Interfaces.IRelmModel.ResetWithData(System.Data.DataRow,System.String)
-  id: ResetWithData(System.Data.DataRow,System.String)
-  parent: CoreRelm.Interfaces.IRelmModel
-  langs:
-  - csharp
-  - vb
-  name: ResetWithData(DataRow, string?)
-  nameWithType: IRelmModel.ResetWithData(DataRow, string?)
-  fullName: CoreRelm.Interfaces.IRelmModel.ResetWithData(System.Data.DataRow, string?)
-  type: Method
-  source:
-    remote:
-      path: CoreRelm/Interfaces/IRelmModel.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: ResetWithData
-    path: ../CoreRelm/Interfaces/IRelmModel.cs
-    startLine: 69
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Interfaces
-  summary: Resets the current model's state using the specified data and optionally sets an alternate table name.
-  example: []
-  syntax:
-    content: IRelmModel ResetWithData(DataRow modelData, string? alternateTableName = null)
-    parameters:
-    - id: modelData
-      type: System.Data.DataRow
-      description: The <xref href="System.Data.DataRow" data-throw-if-not-resolved="false"></xref> containing the data to reset the model with. Cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
-    - id: alternateTableName
-      type: System.String
-      description: >-
-        An optional alternate table name to associate with the model. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, the default table
-            name is used.
-    return:
-      type: CoreRelm.Interfaces.IRelmModel
-      description: An updated instance of the model implementing <xref href="CoreRelm.Interfaces.IRelmModel" data-throw-if-not-resolved="false"></xref> with the new data applied.
-    content.vb: Function ResetWithData(modelData As DataRow, alternateTableName As String = Nothing) As IRelmModel
-  overload: CoreRelm.Interfaces.IRelmModel.ResetWithData*
-  nameWithType.vb: IRelmModel.ResetWithData(DataRow, String)
-  fullName.vb: CoreRelm.Interfaces.IRelmModel.ResetWithData(System.Data.DataRow, String)
-  name.vb: ResetWithData(DataRow, String)
-- uid: CoreRelm.Interfaces.IRelmModel.GetUnderscoreProperties(System.Boolean)
-  commentId: M:CoreRelm.Interfaces.IRelmModel.GetUnderscoreProperties(System.Boolean)
-  id: GetUnderscoreProperties(System.Boolean)
-  parent: CoreRelm.Interfaces.IRelmModel
-  langs:
-  - csharp
-  - vb
-  name: GetUnderscoreProperties(bool)
-  nameWithType: IRelmModel.GetUnderscoreProperties(bool)
-  fullName: CoreRelm.Interfaces.IRelmModel.GetUnderscoreProperties(bool)
-  type: Method
-  source:
-    remote:
-      path: CoreRelm/Interfaces/IRelmModel.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: GetUnderscoreProperties
-    path: ../CoreRelm/Interfaces/IRelmModel.cs
-    startLine: 79
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Interfaces
-  summary: Retrieves a list of properties with each name converted to underscore case.
-  example: []
-  syntax:
-    content: List<KeyValuePair<string, Tuple<string, PropertyInfo>>> GetUnderscoreProperties(bool getOnlyRelmColumns = true)
-    parameters:
-    - id: getOnlyRelmColumns
-      type: System.Boolean
-      description: >-
-        A boolean value indicating whether to include only properties marked as Relm columns.  If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, only Realm column properties are included; otherwise, all underscore-prefixed properties
-            are included.
-    return:
-      type: System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.Tuple{System.String,System.Reflection.PropertyInfo}}}
-      description: >-
-        A list of key-value pairs where the key is the property name, and the value is a tuple containing the
-            property's metadata string and its <xref href="System.Reflection.PropertyInfo" data-throw-if-not-resolved="false"></xref>.
-    content.vb: Function GetUnderscoreProperties(getOnlyRelmColumns As Boolean = True) As List(Of KeyValuePair(Of String, Tuple(Of String, PropertyInfo)))
-  overload: CoreRelm.Interfaces.IRelmModel.GetUnderscoreProperties*
-  nameWithType.vb: IRelmModel.GetUnderscoreProperties(Boolean)
-  fullName.vb: CoreRelm.Interfaces.IRelmModel.GetUnderscoreProperties(Boolean)
-  name.vb: GetUnderscoreProperties(Boolean)
-- uid: CoreRelm.Interfaces.IRelmModel.WriteToDatabase(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  commentId: M:CoreRelm.Interfaces.IRelmModel.WriteToDatabase(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  id: WriteToDatabase(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  parent: CoreRelm.Interfaces.IRelmModel
-  langs:
-  - csharp
-  - vb
-  name: WriteToDatabase(Enum, int, bool, bool, bool, bool)
-  nameWithType: IRelmModel.WriteToDatabase(Enum, int, bool, bool, bool, bool)
-  fullName: CoreRelm.Interfaces.IRelmModel.WriteToDatabase(System.Enum, int, bool, bool, bool, bool)
-  type: Method
-  source:
-    remote:
-      path: CoreRelm/Interfaces/IRelmModel.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: WriteToDatabase
-    path: ../CoreRelm/Interfaces/IRelmModel.cs
-    startLine: 98
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Interfaces
-  summary: Writes data to the specified database connection in batches.
-  remarks: >-
-    This method writes data to the database in batches to optimize performance.  Ensure
-        that the specified connection is valid and that the data conforms to the constraints  specified by the
-        parameter flags. If any of the flags are set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>,  the corresponding column types will
-        be allowed in the data being written.
-  example: []
-  syntax:
-    content: int WriteToDatabase(Enum connectionName, int batchSize = 10, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
-    parameters:
-    - id: connectionName
-      type: System.Enum
-      description: The name of the database connection to use. Must be a valid connection identifier.
-    - id: batchSize
-      type: System.Int32
-      description: The number of records to write in each batch. Defaults to 10. Must be greater than 0.
-    - id: allowAutoIncrementColumns
-      type: System.Boolean
-      description: Indicates whether auto-increment columns are allowed in the data being written. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
-    - id: allowPrimaryKeyColumns
-      type: System.Boolean
-      description: Indicates whether primary key columns are allowed in the data being written. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
-    - id: allowUniqueColumns
-      type: System.Boolean
-      description: Indicates whether unique columns are allowed in the data being written. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
-    - id: allowAutoDateColumns
-      type: System.Boolean
-      description: Indicates whether auto-generated date columns are allowed in the data being written. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
-    return:
-      type: System.Int32
-      description: The number of records successfully written to the database.
-    content.vb: Function WriteToDatabase(connectionName As [Enum], batchSize As Integer = 10, allowAutoIncrementColumns As Boolean = False, allowPrimaryKeyColumns As Boolean = False, allowUniqueColumns As Boolean = False, allowAutoDateColumns As Boolean = False) As Integer
-  overload: CoreRelm.Interfaces.IRelmModel.WriteToDatabase*
-  nameWithType.vb: IRelmModel.WriteToDatabase(Enum, Integer, Boolean, Boolean, Boolean, Boolean)
-  fullName.vb: CoreRelm.Interfaces.IRelmModel.WriteToDatabase(System.Enum, Integer, Boolean, Boolean, Boolean, Boolean)
-  name.vb: WriteToDatabase(Enum, Integer, Boolean, Boolean, Boolean, Boolean)
-- uid: CoreRelm.Interfaces.IRelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  commentId: M:CoreRelm.Interfaces.IRelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  id: WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  parent: CoreRelm.Interfaces.IRelmModel
-  langs:
-  - csharp
-  - vb
-  name: WriteToDatabase(MySqlConnection, int, bool, bool, bool, bool)
-  nameWithType: IRelmModel.WriteToDatabase(MySqlConnection, int, bool, bool, bool, bool)
-  fullName: CoreRelm.Interfaces.IRelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection, int, bool, bool, bool, bool)
-  type: Method
-  source:
-    remote:
-      path: CoreRelm/Interfaces/IRelmModel.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: WriteToDatabase
-    path: ../CoreRelm/Interfaces/IRelmModel.cs
-    startLine: 115
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Interfaces
-  summary: Writes data to the database using the specified connection and optional transaction.
-  example: []
-  syntax:
-    content: int WriteToDatabase(MySqlConnection existingConnection, int BatchSize = 10, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
-    parameters:
-    - id: existingConnection
-      type: MySql.Data.MySqlClient.MySqlConnection
-      description: >-
-        An open <xref href="MySql.Data.MySqlClient.MySqlConnection" data-throw-if-not-resolved="false"></xref> to the database where the data will be written. The connection must
-            remain open for the duration of the operation.
-    - id: BatchSize
-      type: System.Int32
-      description: The number of rows to write in each batch. Must be greater than zero. Defaults to 10.
-    - id: allowAutoIncrementColumns
-      type: System.Boolean
-      description: A value indicating whether columns with auto-increment constraints are allowed to be written. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, auto-increment columns will be included; otherwise, they will be excluded.
-    - id: allowPrimaryKeyColumns
-      type: System.Boolean
-      description: >-
-        A value indicating whether primary key columns are allowed to be written. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, primary
-            key columns will be included; otherwise, they will be excluded.
-    - id: allowUniqueColumns
-      type: System.Boolean
-      description: >-
-        A value indicating whether unique columns are allowed to be written. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, unique
-            columns will be included; otherwise, they will be excluded.
-    - id: allowAutoDateColumns
-      type: System.Boolean
-      description: >-
-        A value indicating whether columns with automatic date generation constraints are allowed to be written. If
-            <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, such columns will be included; otherwise, they will be excluded.
-    return:
-      type: System.Int32
-      description: The number of rows successfully written to the database.
-    content.vb: Function WriteToDatabase(existingConnection As MySqlConnection, BatchSize As Integer = 10, allowAutoIncrementColumns As Boolean = False, allowPrimaryKeyColumns As Boolean = False, allowUniqueColumns As Boolean = False, allowAutoDateColumns As Boolean = False) As Integer
-  overload: CoreRelm.Interfaces.IRelmModel.WriteToDatabase*
-  nameWithType.vb: IRelmModel.WriteToDatabase(MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean)
-  fullName.vb: CoreRelm.Interfaces.IRelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean)
-  name.vb: WriteToDatabase(MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean)
-- uid: CoreRelm.Interfaces.IRelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  commentId: M:CoreRelm.Interfaces.IRelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  id: WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  parent: CoreRelm.Interfaces.IRelmModel
-  langs:
-  - csharp
-  - vb
-  name: WriteToDatabase(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool)
-  nameWithType: IRelmModel.WriteToDatabase(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool)
-  fullName: CoreRelm.Interfaces.IRelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, int, bool, bool, bool, bool)
-  type: Method
-  source:
-    remote:
-      path: CoreRelm/Interfaces/IRelmModel.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: WriteToDatabase
-    path: ../CoreRelm/Interfaces/IRelmModel.cs
-    startLine: 134
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Interfaces
-  summary: Writes data to the database using the specified connection and optional transaction.
-  example: []
-  syntax:
-    content: int WriteToDatabase(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, int BatchSize = 10, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
-    parameters:
-    - id: existingConnection
-      type: MySql.Data.MySqlClient.MySqlConnection
-      description: >-
-        An open <xref href="MySql.Data.MySqlClient.MySqlConnection" data-throw-if-not-resolved="false"></xref> to the database where the data will be written. The connection must
-            remain open for the duration of the operation.
-    - id: sqlTransaction
-      type: MySql.Data.MySqlClient.MySqlTransaction
-      description: >-
-        An optional <xref href="MySql.Data.MySqlClient.MySqlTransaction" data-throw-if-not-resolved="false"></xref> to use for the operation. If null, the operation will not be part
-            of a transaction.
-    - id: BatchSize
-      type: System.Int32
-      description: The number of rows to write in each batch. Must be greater than zero. Defaults to 10.
-    - id: allowAutoIncrementColumns
-      type: System.Boolean
-      description: A value indicating whether columns with auto-increment constraints are allowed to be written. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, auto-increment columns will be included; otherwise, they will be excluded.
-    - id: allowPrimaryKeyColumns
-      type: System.Boolean
-      description: >-
-        A value indicating whether primary key columns are allowed to be written. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, primary
-            key columns will be included; otherwise, they will be excluded.
-    - id: allowUniqueColumns
-      type: System.Boolean
-      description: >-
-        A value indicating whether unique columns are allowed to be written. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, unique
-            columns will be included; otherwise, they will be excluded.
-    - id: allowAutoDateColumns
-      type: System.Boolean
-      description: >-
-        A value indicating whether columns with automatic date generation constraints are allowed to be written. If
-            <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, such columns will be included; otherwise, they will be excluded.
-    return:
-      type: System.Int32
-      description: The number of rows successfully written to the database.
-    content.vb: Function WriteToDatabase(existingConnection As MySqlConnection, sqlTransaction As MySqlTransaction, BatchSize As Integer = 10, allowAutoIncrementColumns As Boolean = False, allowPrimaryKeyColumns As Boolean = False, allowUniqueColumns As Boolean = False, allowAutoDateColumns As Boolean = False) As Integer
-  overload: CoreRelm.Interfaces.IRelmModel.WriteToDatabase*
-  nameWithType.vb: IRelmModel.WriteToDatabase(MySqlConnection, MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean)
-  fullName.vb: CoreRelm.Interfaces.IRelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean)
-  name.vb: WriteToDatabase(MySqlConnection, MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean)
-- uid: CoreRelm.Interfaces.IRelmModel.WriteToDatabase(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  commentId: M:CoreRelm.Interfaces.IRelmModel.WriteToDatabase(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  id: WriteToDatabase(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  parent: CoreRelm.Interfaces.IRelmModel
-  langs:
-  - csharp
-  - vb
-  name: WriteToDatabase(IRelmContext, int, bool, bool, bool, bool)
-  nameWithType: IRelmModel.WriteToDatabase(IRelmContext, int, bool, bool, bool, bool)
-  fullName: CoreRelm.Interfaces.IRelmModel.WriteToDatabase(CoreRelm.Interfaces.IRelmContext, int, bool, bool, bool, bool)
-  type: Method
-  source:
-    remote:
-      path: CoreRelm/Interfaces/IRelmModel.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: WriteToDatabase
-    path: ../CoreRelm/Interfaces/IRelmModel.cs
-    startLine: 153
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Interfaces
-  summary: >-
-    Writes data to the database using the specified context and batch size, with options to control column
-
-    behavior.
-  remarks: >-
-    This method provides fine-grained control over how data is written to the database by
-        allowing or disallowing writes to specific types of columns. Use the optional parameters to customize the
-        behavior based on the constraints of your database schema.
-  example: []
-  syntax:
-    content: int WriteToDatabase(IRelmContext relmContext, int batchSize = 10, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false)
-    parameters:
-    - id: relmContext
-      type: CoreRelm.Interfaces.IRelmContext
-      description: The database context used to perform the write operation. This cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
-    - id: batchSize
-      type: System.Int32
-      description: The number of records to write in each batch. Must be greater than 0. The default value is 10.
-    - id: allowAutoIncrementColumns
-      type: System.Boolean
-      description: >-
-        If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, allows writing to columns with auto-increment constraints; otherwise, these
-            columns are ignored.
-    - id: allowPrimaryKeyColumns
-      type: System.Boolean
-      description: If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, allows writing to primary key columns; otherwise, these columns are ignored.
-    - id: allowUniqueColumns
-      type: System.Boolean
-      description: >-
-        If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, allows writing to columns with unique constraints; otherwise, these columns are
-            ignored.
-    - id: allowAutoDateColumns
-      type: System.Boolean
-      description: >-
-        If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, allows writing to columns with automatic date generation constraints; otherwise,
-            these columns are ignored.
-    return:
-      type: System.Int32
-      description: The number of records successfully written to the database.
-    content.vb: Function WriteToDatabase(relmContext As IRelmContext, batchSize As Integer = 10, allowAutoIncrementColumns As Boolean = False, allowPrimaryKeyColumns As Boolean = False, allowUniqueColumns As Boolean = False, allowAutoDateColumns As Boolean = False) As Integer
-  overload: CoreRelm.Interfaces.IRelmModel.WriteToDatabase*
-  nameWithType.vb: IRelmModel.WriteToDatabase(IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean)
-  fullName.vb: CoreRelm.Interfaces.IRelmModel.WriteToDatabase(CoreRelm.Interfaces.IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean)
-  name.vb: WriteToDatabase(IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean)
-- uid: CoreRelm.Interfaces.IRelmModel.GenerateDTO(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String,System.Func{CoreRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}},System.Int32)
-  commentId: M:CoreRelm.Interfaces.IRelmModel.GenerateDTO(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String,System.Func{CoreRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}},System.Int32)
-  id: GenerateDTO(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String,System.Func{CoreRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}},System.Int32)
-  parent: CoreRelm.Interfaces.IRelmModel
-  langs:
-  - csharp
-  - vb
-  name: GenerateDTO(IEnumerable<string>?, IEnumerable<string>?, string?, Func<IRelmModel, Dictionary<string, object>>?, int)
-  nameWithType: IRelmModel.GenerateDTO(IEnumerable<string>?, IEnumerable<string>?, string?, Func<IRelmModel, Dictionary<string, object>>?, int)
-  fullName: CoreRelm.Interfaces.IRelmModel.GenerateDTO(System.Collections.Generic.IEnumerable<string>?, System.Collections.Generic.IEnumerable<string>?, string?, System.Func<CoreRelm.Interfaces.IRelmModel, System.Collections.Generic.Dictionary<string, object>>?, int)
-  type: Method
-  source:
-    remote:
-      path: CoreRelm/Interfaces/IRelmModel.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: GenerateDTO
-    path: ../CoreRelm/Interfaces/IRelmModel.cs
-    startLine: 173
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Interfaces
-  summary: >-
-    Generates a dynamic Data Transfer Object (DTO) based on the specified properties and additional
-
-    configuration.
-  remarks: >-
-    The method allows fine-grained control over the properties included in the DTO by
-        specifying inclusion and exclusion lists. If both <code class="paramref">includeProperties</code> and <code class="paramref">excludeProperties</code> are provided, the exclusion list takes precedence.
-  example: []
-  syntax:
-    content: dynamic GenerateDTO(IEnumerable<string>? includeProperties = null, IEnumerable<string>? excludeProperties = null, string? sourceObjectName = null, Func<IRelmModel, Dictionary<string, object>>? getAdditionalObjectProperties = null, int iteration = 0)
-    parameters:
-    - id: includeProperties
-      type: System.Collections.Generic.IEnumerable{System.String}
-      description: >-
-        A collection of property names to include in the generated DTO. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, all properties
-            are included by default.
-    - id: excludeProperties
-      type: System.Collections.Generic.IEnumerable{System.String}
-      description: >-
-        A collection of property names to exclude from the generated DTO. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, no properties
-            are excluded.
-    - id: sourceObjectName
-      type: System.String
-      description: >-
-        The name of the source object from which the DTO is generated. Can be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if the source
-            object name is not required.
-    - id: getAdditionalObjectProperties
-      type: System.Func{CoreRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}}
-      description: >-
-        A function that takes an <xref href="CoreRelm.Interfaces.IRelmModel" data-throw-if-not-resolved="false"></xref> instance and returns a dictionary of additional properties
-            to include in the DTO. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, no additional properties are added.
-    - id: iteration
-      type: System.Int32
-      description: The current iteration count, used to track recursive or iterative calls. Defaults to 0.
-    return:
-      type: dynamic
-      description: >-
-        A dynamic object representing the generated DTO, including the specified properties and any additional
-            properties provided.
-    content.vb: Function GenerateDTO(includeProperties As IEnumerable(Of String) = Nothing, excludeProperties As IEnumerable(Of String) = Nothing, sourceObjectName As String = Nothing, getAdditionalObjectProperties As Func(Of IRelmModel, Dictionary(Of String, Object)) = Nothing, iteration As Integer = 0) As Object
-  overload: CoreRelm.Interfaces.IRelmModel.GenerateDTO*
-  nameWithType.vb: IRelmModel.GenerateDTO(IEnumerable(Of String), IEnumerable(Of String), String, Func(Of IRelmModel, Dictionary(Of String, Object)), Integer)
-  fullName.vb: CoreRelm.Interfaces.IRelmModel.GenerateDTO(System.Collections.Generic.IEnumerable(Of String), System.Collections.Generic.IEnumerable(Of String), String, System.Func(Of CoreRelm.Interfaces.IRelmModel, System.Collections.Generic.Dictionary(Of String, Object)), Integer)
-  name.vb: GenerateDTO(IEnumerable(Of String), IEnumerable(Of String), String, Func(Of IRelmModel, Dictionary(Of String, Object)), Integer)
-- uid: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  commentId: M:CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  id: WriteToDatabaseAsync(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  parent: CoreRelm.Interfaces.IRelmModel
-  langs:
-  - csharp
-  - vb
-  name: WriteToDatabaseAsync(Enum, int, bool, bool, bool, bool, CancellationToken)
-  nameWithType: IRelmModel.WriteToDatabaseAsync(Enum, int, bool, bool, bool, bool, CancellationToken)
-  fullName: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(System.Enum, int, bool, bool, bool, bool, System.Threading.CancellationToken)
-  type: Method
-  source:
-    remote:
-      path: CoreRelm/Interfaces/IRelmModel.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: WriteToDatabaseAsync
-    path: ../CoreRelm/Interfaces/IRelmModel.cs
-    startLine: 196
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Interfaces
-  summary: Writes data to the specified database connection in batches.
-  remarks: >-
-    This method writes data to the database in batches to optimize performance.  Ensure
-        that the specified connection is valid and that the data conforms to the constraints  specified by the
-        parameter flags. If any of the flags are set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>,  the corresponding column types will
-        be allowed in the data being written.
-  example: []
-  syntax:
-    content: Task<int> WriteToDatabaseAsync(Enum connectionName, int batchSize = 10, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false, CancellationToken cancellationToken = default)
-    parameters:
-    - id: connectionName
-      type: System.Enum
-      description: The name of the database connection to use. Must be a valid connection identifier.
-    - id: batchSize
-      type: System.Int32
-      description: The number of records to write in each batch. Defaults to 10. Must be greater than 0.
-    - id: allowAutoIncrementColumns
-      type: System.Boolean
-      description: Indicates whether auto-increment columns are allowed in the data being written. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
-    - id: allowPrimaryKeyColumns
-      type: System.Boolean
-      description: Indicates whether primary key columns are allowed in the data being written. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
-    - id: allowUniqueColumns
-      type: System.Boolean
-      description: Indicates whether unique columns are allowed in the data being written. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
-    - id: allowAutoDateColumns
-      type: System.Boolean
-      description: Indicates whether auto-generated date columns are allowed in the data being written. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
-    - id: cancellationToken
-      type: System.Threading.CancellationToken
-    return:
-      type: System.Threading.Tasks.Task{System.Int32}
-      description: The number of records successfully written to the database.
-    content.vb: Function WriteToDatabaseAsync(connectionName As [Enum], batchSize As Integer = 10, allowAutoIncrementColumns As Boolean = False, allowPrimaryKeyColumns As Boolean = False, allowUniqueColumns As Boolean = False, allowAutoDateColumns As Boolean = False, cancellationToken As CancellationToken = Nothing) As Task(Of Integer)
-  overload: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync*
-  nameWithType.vb: IRelmModel.WriteToDatabaseAsync(Enum, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
-  fullName.vb: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(System.Enum, Integer, Boolean, Boolean, Boolean, Boolean, System.Threading.CancellationToken)
-  name.vb: WriteToDatabaseAsync(Enum, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
-- uid: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  commentId: M:CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  id: WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  parent: CoreRelm.Interfaces.IRelmModel
-  langs:
-  - csharp
-  - vb
-  name: WriteToDatabaseAsync(MySqlConnection, int, bool, bool, bool, bool, CancellationToken)
-  nameWithType: IRelmModel.WriteToDatabaseAsync(MySqlConnection, int, bool, bool, bool, bool, CancellationToken)
-  fullName: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection, int, bool, bool, bool, bool, System.Threading.CancellationToken)
-  type: Method
-  source:
-    remote:
-      path: CoreRelm/Interfaces/IRelmModel.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: WriteToDatabaseAsync
-    path: ../CoreRelm/Interfaces/IRelmModel.cs
-    startLine: 213
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Interfaces
-  summary: Writes data to the database using the specified connection and optional transaction.
-  example: []
-  syntax:
-    content: Task<int> WriteToDatabaseAsync(MySqlConnection existingConnection, int BatchSize = 10, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false, CancellationToken cancellationToken = default)
-    parameters:
-    - id: existingConnection
-      type: MySql.Data.MySqlClient.MySqlConnection
-      description: >-
-        An open <xref href="MySql.Data.MySqlClient.MySqlConnection" data-throw-if-not-resolved="false"></xref> to the database where the data will be written. The connection must
-            remain open for the duration of the operation.
-    - id: BatchSize
-      type: System.Int32
-      description: The number of rows to write in each batch. Must be greater than zero. Defaults to 10.
-    - id: allowAutoIncrementColumns
-      type: System.Boolean
-      description: A value indicating whether columns with auto-increment constraints are allowed to be written. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, auto-increment columns will be included; otherwise, they will be excluded.
-    - id: allowPrimaryKeyColumns
-      type: System.Boolean
-      description: >-
-        A value indicating whether primary key columns are allowed to be written. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, primary
-            key columns will be included; otherwise, they will be excluded.
-    - id: allowUniqueColumns
-      type: System.Boolean
-      description: >-
-        A value indicating whether unique columns are allowed to be written. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, unique
-            columns will be included; otherwise, they will be excluded.
-    - id: allowAutoDateColumns
-      type: System.Boolean
-      description: >-
-        A value indicating whether columns with automatic date generation constraints are allowed to be written. If
-            <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, such columns will be included; otherwise, they will be excluded.
-    - id: cancellationToken
-      type: System.Threading.CancellationToken
-    return:
-      type: System.Threading.Tasks.Task{System.Int32}
-      description: The number of rows successfully written to the database.
-    content.vb: Function WriteToDatabaseAsync(existingConnection As MySqlConnection, BatchSize As Integer = 10, allowAutoIncrementColumns As Boolean = False, allowPrimaryKeyColumns As Boolean = False, allowUniqueColumns As Boolean = False, allowAutoDateColumns As Boolean = False, cancellationToken As CancellationToken = Nothing) As Task(Of Integer)
-  overload: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync*
-  nameWithType.vb: IRelmModel.WriteToDatabaseAsync(MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
-  fullName.vb: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean, System.Threading.CancellationToken)
-  name.vb: WriteToDatabaseAsync(MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
-- uid: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  commentId: M:CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  id: WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  parent: CoreRelm.Interfaces.IRelmModel
-  langs:
-  - csharp
-  - vb
-  name: WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool, CancellationToken)
-  nameWithType: IRelmModel.WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool, CancellationToken)
-  fullName: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, int, bool, bool, bool, bool, System.Threading.CancellationToken)
-  type: Method
-  source:
-    remote:
-      path: CoreRelm/Interfaces/IRelmModel.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: WriteToDatabaseAsync
-    path: ../CoreRelm/Interfaces/IRelmModel.cs
-    startLine: 232
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Interfaces
-  summary: Writes data to the database using the specified connection and optional transaction.
-  example: []
-  syntax:
-    content: Task<int> WriteToDatabaseAsync(MySqlConnection existingConnection, MySqlTransaction sqlTransaction, int BatchSize = 10, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false, CancellationToken cancellationToken = default)
-    parameters:
-    - id: existingConnection
-      type: MySql.Data.MySqlClient.MySqlConnection
-      description: >-
-        An open <xref href="MySql.Data.MySqlClient.MySqlConnection" data-throw-if-not-resolved="false"></xref> to the database where the data will be written. The connection must
-            remain open for the duration of the operation.
-    - id: sqlTransaction
-      type: MySql.Data.MySqlClient.MySqlTransaction
-      description: >-
-        An optional <xref href="MySql.Data.MySqlClient.MySqlTransaction" data-throw-if-not-resolved="false"></xref> to use for the operation. If null, the operation will not be part
-            of a transaction.
-    - id: BatchSize
-      type: System.Int32
-      description: The number of rows to write in each batch. Must be greater than zero. Defaults to 10.
-    - id: allowAutoIncrementColumns
-      type: System.Boolean
-      description: A value indicating whether columns with auto-increment constraints are allowed to be written. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, auto-increment columns will be included; otherwise, they will be excluded.
-    - id: allowPrimaryKeyColumns
-      type: System.Boolean
-      description: >-
-        A value indicating whether primary key columns are allowed to be written. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, primary
-            key columns will be included; otherwise, they will be excluded.
-    - id: allowUniqueColumns
-      type: System.Boolean
-      description: >-
-        A value indicating whether unique columns are allowed to be written. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, unique
-            columns will be included; otherwise, they will be excluded.
-    - id: allowAutoDateColumns
-      type: System.Boolean
-      description: >-
-        A value indicating whether columns with automatic date generation constraints are allowed to be written. If
-            <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, such columns will be included; otherwise, they will be excluded.
-    - id: cancellationToken
-      type: System.Threading.CancellationToken
-    return:
-      type: System.Threading.Tasks.Task{System.Int32}
-      description: The number of rows successfully written to the database.
-    content.vb: Function WriteToDatabaseAsync(existingConnection As MySqlConnection, sqlTransaction As MySqlTransaction, BatchSize As Integer = 10, allowAutoIncrementColumns As Boolean = False, allowPrimaryKeyColumns As Boolean = False, allowUniqueColumns As Boolean = False, allowAutoDateColumns As Boolean = False, cancellationToken As CancellationToken = Nothing) As Task(Of Integer)
-  overload: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync*
-  nameWithType.vb: IRelmModel.WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
-  fullName.vb: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean, System.Threading.CancellationToken)
-  name.vb: WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
-- uid: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  commentId: M:CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  id: WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  parent: CoreRelm.Interfaces.IRelmModel
-  langs:
-  - csharp
-  - vb
-  name: WriteToDatabaseAsync(IRelmContext, int, bool, bool, bool, bool, CancellationToken)
-  nameWithType: IRelmModel.WriteToDatabaseAsync(IRelmContext, int, bool, bool, bool, bool, CancellationToken)
-  fullName: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext, int, bool, bool, bool, bool, System.Threading.CancellationToken)
-  type: Method
-  source:
-    remote:
-      path: CoreRelm/Interfaces/IRelmModel.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: WriteToDatabaseAsync
-    path: ../CoreRelm/Interfaces/IRelmModel.cs
-    startLine: 251
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Interfaces
-  summary: >-
-    Writes data to the database using the specified context and batch size, with options to control column
-
-    behavior.
-  remarks: >-
-    This method provides fine-grained control over how data is written to the database by
-        allowing or disallowing writes to specific types of columns. Use the optional parameters to customize the
-        behavior based on the constraints of your database schema.
-  example: []
-  syntax:
-    content: Task<int> WriteToDatabaseAsync(IRelmContext relmContext, int batchSize = 10, bool allowAutoIncrementColumns = false, bool allowPrimaryKeyColumns = false, bool allowUniqueColumns = false, bool allowAutoDateColumns = false, CancellationToken cancellationToken = default)
-    parameters:
-    - id: relmContext
-      type: CoreRelm.Interfaces.IRelmContext
-      description: The database context used to perform the write operation. This cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
-    - id: batchSize
-      type: System.Int32
-      description: The number of records to write in each batch. Must be greater than 0. The default value is 10.
-    - id: allowAutoIncrementColumns
-      type: System.Boolean
-      description: >-
-        If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, allows writing to columns with auto-increment constraints; otherwise, these
-            columns are ignored.
-    - id: allowPrimaryKeyColumns
-      type: System.Boolean
-      description: If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, allows writing to primary key columns; otherwise, these columns are ignored.
-    - id: allowUniqueColumns
-      type: System.Boolean
-      description: >-
-        If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, allows writing to columns with unique constraints; otherwise, these columns are
-            ignored.
-    - id: allowAutoDateColumns
-      type: System.Boolean
-      description: >-
-        If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, allows writing to columns with automatic date generation constraints; otherwise,
-            these columns are ignored.
-    - id: cancellationToken
-      type: System.Threading.CancellationToken
-    return:
-      type: System.Threading.Tasks.Task{System.Int32}
-      description: The number of records successfully written to the database.
-    content.vb: Function WriteToDatabaseAsync(relmContext As IRelmContext, batchSize As Integer = 10, allowAutoIncrementColumns As Boolean = False, allowPrimaryKeyColumns As Boolean = False, allowUniqueColumns As Boolean = False, allowAutoDateColumns As Boolean = False, cancellationToken As CancellationToken = Nothing) As Task(Of Integer)
-  overload: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync*
-  nameWithType.vb: IRelmModel.WriteToDatabaseAsync(IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
-  fullName.vb: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean, System.Threading.CancellationToken)
-  name.vb: WriteToDatabaseAsync(IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
 references:
 - uid: CoreRelm.Interfaces
   commentId: N:CoreRelm.Interfaces
@@ -939,6 +279,1028 @@ references:
   - uid: CoreRelm.Interfaces
     name: Interfaces
     href: CoreRelm.Interfaces.html
+- uid: CoreRelm.Interfaces.IRelmModelClean.ResetWithData(System.Data.DataRow,System.String)
+  commentId: M:CoreRelm.Interfaces.IRelmModelClean.ResetWithData(System.Data.DataRow,System.String)
+  parent: CoreRelm.Interfaces.IRelmModelClean
+  isExternal: true
+  href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_ResetWithData_System_Data_DataRow_System_String_
+  name: ResetWithData(DataRow, string)
+  nameWithType: IRelmModelClean.ResetWithData(DataRow, string)
+  fullName: CoreRelm.Interfaces.IRelmModelClean.ResetWithData(System.Data.DataRow, string)
+  nameWithType.vb: IRelmModelClean.ResetWithData(DataRow, String)
+  fullName.vb: CoreRelm.Interfaces.IRelmModelClean.ResetWithData(System.Data.DataRow, String)
+  name.vb: ResetWithData(DataRow, String)
+  spec.csharp:
+  - uid: CoreRelm.Interfaces.IRelmModelClean.ResetWithData(System.Data.DataRow,System.String)
+    name: ResetWithData
+    href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_ResetWithData_System_Data_DataRow_System_String_
+  - name: (
+  - uid: System.Data.DataRow
+    name: DataRow
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datarow
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Interfaces.IRelmModelClean.ResetWithData(System.Data.DataRow,System.String)
+    name: ResetWithData
+    href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_ResetWithData_System_Data_DataRow_System_String_
+  - name: (
+  - uid: System.Data.DataRow
+    name: DataRow
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datarow
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: CoreRelm.Interfaces.IRelmModelClean.GetUnderscoreProperties(System.Boolean)
+  commentId: M:CoreRelm.Interfaces.IRelmModelClean.GetUnderscoreProperties(System.Boolean)
+  parent: CoreRelm.Interfaces.IRelmModelClean
+  isExternal: true
+  href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_GetUnderscoreProperties_System_Boolean_
+  name: GetUnderscoreProperties(bool)
+  nameWithType: IRelmModelClean.GetUnderscoreProperties(bool)
+  fullName: CoreRelm.Interfaces.IRelmModelClean.GetUnderscoreProperties(bool)
+  nameWithType.vb: IRelmModelClean.GetUnderscoreProperties(Boolean)
+  fullName.vb: CoreRelm.Interfaces.IRelmModelClean.GetUnderscoreProperties(Boolean)
+  name.vb: GetUnderscoreProperties(Boolean)
+  spec.csharp:
+  - uid: CoreRelm.Interfaces.IRelmModelClean.GetUnderscoreProperties(System.Boolean)
+    name: GetUnderscoreProperties
+    href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_GetUnderscoreProperties_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Interfaces.IRelmModelClean.GetUnderscoreProperties(System.Boolean)
+    name: GetUnderscoreProperties
+    href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_GetUnderscoreProperties_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  commentId: M:CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  parent: CoreRelm.Interfaces.IRelmModelClean
+  isExternal: true
+  href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabase_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  name: WriteToDatabase(Enum, int, bool, bool, bool, bool)
+  nameWithType: IRelmModelClean.WriteToDatabase(Enum, int, bool, bool, bool, bool)
+  fullName: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(System.Enum, int, bool, bool, bool, bool)
+  nameWithType.vb: IRelmModelClean.WriteToDatabase(Enum, Integer, Boolean, Boolean, Boolean, Boolean)
+  fullName.vb: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(System.Enum, Integer, Boolean, Boolean, Boolean, Boolean)
+  name.vb: WriteToDatabase(Enum, Integer, Boolean, Boolean, Boolean, Boolean)
+  spec.csharp:
+  - uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+    name: WriteToDatabase
+    href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabase_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  - name: (
+  - uid: System.Enum
+    name: Enum
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.enum
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+    name: WriteToDatabase
+    href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabase_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  - name: (
+  - uid: System.Enum
+    name: Enum
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.enum
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  commentId: M:CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  parent: CoreRelm.Interfaces.IRelmModelClean
+  isExternal: true
+  href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  name: WriteToDatabase(MySqlConnection, int, bool, bool, bool, bool)
+  nameWithType: IRelmModelClean.WriteToDatabase(MySqlConnection, int, bool, bool, bool, bool)
+  fullName: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection, int, bool, bool, bool, bool)
+  nameWithType.vb: IRelmModelClean.WriteToDatabase(MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean)
+  fullName.vb: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean)
+  name.vb: WriteToDatabase(MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean)
+  spec.csharp:
+  - uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+    name: WriteToDatabase
+    href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  - name: (
+  - uid: MySql.Data.MySqlClient.MySqlConnection
+    name: MySqlConnection
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+    name: WriteToDatabase
+    href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  - name: (
+  - uid: MySql.Data.MySqlClient.MySqlConnection
+    name: MySqlConnection
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  commentId: M:CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  parent: CoreRelm.Interfaces.IRelmModelClean
+  isExternal: true
+  href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  name: WriteToDatabase(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool)
+  nameWithType: IRelmModelClean.WriteToDatabase(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool)
+  fullName: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, int, bool, bool, bool, bool)
+  nameWithType.vb: IRelmModelClean.WriteToDatabase(MySqlConnection, MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean)
+  fullName.vb: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean)
+  name.vb: WriteToDatabase(MySqlConnection, MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean)
+  spec.csharp:
+  - uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+    name: WriteToDatabase
+    href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  - name: (
+  - uid: MySql.Data.MySqlClient.MySqlConnection
+    name: MySqlConnection
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: MySql.Data.MySqlClient.MySqlTransaction
+    name: MySqlTransaction
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+    name: WriteToDatabase
+    href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  - name: (
+  - uid: MySql.Data.MySqlClient.MySqlConnection
+    name: MySqlConnection
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: MySql.Data.MySqlClient.MySqlTransaction
+    name: MySqlTransaction
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  commentId: M:CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  parent: CoreRelm.Interfaces.IRelmModelClean
+  isExternal: true
+  href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabase_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  name: WriteToDatabase(IRelmContext, int, bool, bool, bool, bool)
+  nameWithType: IRelmModelClean.WriteToDatabase(IRelmContext, int, bool, bool, bool, bool)
+  fullName: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(CoreRelm.Interfaces.IRelmContext, int, bool, bool, bool, bool)
+  nameWithType.vb: IRelmModelClean.WriteToDatabase(IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean)
+  fullName.vb: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(CoreRelm.Interfaces.IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean)
+  name.vb: WriteToDatabase(IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean)
+  spec.csharp:
+  - uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+    name: WriteToDatabase
+    href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabase_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  - name: (
+  - uid: CoreRelm.Interfaces.IRelmContext
+    name: IRelmContext
+    href: CoreRelm.Interfaces.IRelmContext.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+    name: WriteToDatabase
+    href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabase_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  - name: (
+  - uid: CoreRelm.Interfaces.IRelmContext
+    name: IRelmContext
+    href: CoreRelm.Interfaces.IRelmContext.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: CoreRelm.Interfaces.IRelmModelClean.GenerateDTO(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String,System.Func{CoreRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}},System.Int32)
+  commentId: M:CoreRelm.Interfaces.IRelmModelClean.GenerateDTO(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String,System.Func{CoreRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}},System.Int32)
+  parent: CoreRelm.Interfaces.IRelmModelClean
+  isExternal: true
+  href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_GenerateDTO_System_Collections_Generic_IEnumerable_System_String__System_Collections_Generic_IEnumerable_System_String__System_String_System_Func_CoreRelm_Interfaces_IRelmModel_System_Collections_Generic_Dictionary_System_String_System_Object___System_Int32_
+  name: GenerateDTO(IEnumerable<string>, IEnumerable<string>, string, Func<IRelmModel, Dictionary<string, object>>, int)
+  nameWithType: IRelmModelClean.GenerateDTO(IEnumerable<string>, IEnumerable<string>, string, Func<IRelmModel, Dictionary<string, object>>, int)
+  fullName: CoreRelm.Interfaces.IRelmModelClean.GenerateDTO(System.Collections.Generic.IEnumerable<string>, System.Collections.Generic.IEnumerable<string>, string, System.Func<CoreRelm.Interfaces.IRelmModel, System.Collections.Generic.Dictionary<string, object>>, int)
+  nameWithType.vb: IRelmModelClean.GenerateDTO(IEnumerable(Of String), IEnumerable(Of String), String, Func(Of IRelmModel, Dictionary(Of String, Object)), Integer)
+  fullName.vb: CoreRelm.Interfaces.IRelmModelClean.GenerateDTO(System.Collections.Generic.IEnumerable(Of String), System.Collections.Generic.IEnumerable(Of String), String, System.Func(Of CoreRelm.Interfaces.IRelmModel, System.Collections.Generic.Dictionary(Of String, Object)), Integer)
+  name.vb: GenerateDTO(IEnumerable(Of String), IEnumerable(Of String), String, Func(Of IRelmModel, Dictionary(Of String, Object)), Integer)
+  spec.csharp:
+  - uid: CoreRelm.Interfaces.IRelmModelClean.GenerateDTO(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String,System.Func{CoreRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}},System.Int32)
+    name: GenerateDTO
+    href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_GenerateDTO_System_Collections_Generic_IEnumerable_System_String__System_Collections_Generic_IEnumerable_System_String__System_String_System_Func_CoreRelm_Interfaces_IRelmModel_System_Collections_Generic_Dictionary_System_String_System_Object___System_Int32_
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: CoreRelm.Interfaces.IRelmModel
+    name: IRelmModel
+    href: CoreRelm.Interfaces.IRelmModel.html
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Interfaces.IRelmModelClean.GenerateDTO(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String,System.Func{CoreRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}},System.Int32)
+    name: GenerateDTO
+    href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_GenerateDTO_System_Collections_Generic_IEnumerable_System_String__System_Collections_Generic_IEnumerable_System_String__System_String_System_Func_CoreRelm_Interfaces_IRelmModel_System_Collections_Generic_Dictionary_System_String_System_Object___System_Int32_
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: CoreRelm.Interfaces.IRelmModel
+    name: IRelmModel
+    href: CoreRelm.Interfaces.IRelmModel.html
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  commentId: M:CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  parent: CoreRelm.Interfaces.IRelmModelClean
+  isExternal: true
+  href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabaseAsync_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  name: WriteToDatabaseAsync(Enum, int, bool, bool, bool, bool, CancellationToken)
+  nameWithType: IRelmModelClean.WriteToDatabaseAsync(Enum, int, bool, bool, bool, bool, CancellationToken)
+  fullName: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(System.Enum, int, bool, bool, bool, bool, System.Threading.CancellationToken)
+  nameWithType.vb: IRelmModelClean.WriteToDatabaseAsync(Enum, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+  fullName.vb: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(System.Enum, Integer, Boolean, Boolean, Boolean, Boolean, System.Threading.CancellationToken)
+  name.vb: WriteToDatabaseAsync(Enum, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+  spec.csharp:
+  - uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+    name: WriteToDatabaseAsync
+    href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabaseAsync_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Enum
+    name: Enum
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.enum
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+    name: WriteToDatabaseAsync
+    href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabaseAsync_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Enum
+    name: Enum
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.enum
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  commentId: M:CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  parent: CoreRelm.Interfaces.IRelmModelClean
+  isExternal: true
+  href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  name: WriteToDatabaseAsync(MySqlConnection, int, bool, bool, bool, bool, CancellationToken)
+  nameWithType: IRelmModelClean.WriteToDatabaseAsync(MySqlConnection, int, bool, bool, bool, bool, CancellationToken)
+  fullName: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection, int, bool, bool, bool, bool, System.Threading.CancellationToken)
+  nameWithType.vb: IRelmModelClean.WriteToDatabaseAsync(MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+  fullName.vb: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean, System.Threading.CancellationToken)
+  name.vb: WriteToDatabaseAsync(MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+  spec.csharp:
+  - uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+    name: WriteToDatabaseAsync
+    href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  - name: (
+  - uid: MySql.Data.MySqlClient.MySqlConnection
+    name: MySqlConnection
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+    name: WriteToDatabaseAsync
+    href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  - name: (
+  - uid: MySql.Data.MySqlClient.MySqlConnection
+    name: MySqlConnection
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  commentId: M:CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  parent: CoreRelm.Interfaces.IRelmModelClean
+  isExternal: true
+  href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  name: WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool, CancellationToken)
+  nameWithType: IRelmModelClean.WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool, CancellationToken)
+  fullName: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, int, bool, bool, bool, bool, System.Threading.CancellationToken)
+  nameWithType.vb: IRelmModelClean.WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+  fullName.vb: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean, System.Threading.CancellationToken)
+  name.vb: WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+  spec.csharp:
+  - uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+    name: WriteToDatabaseAsync
+    href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  - name: (
+  - uid: MySql.Data.MySqlClient.MySqlConnection
+    name: MySqlConnection
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: MySql.Data.MySqlClient.MySqlTransaction
+    name: MySqlTransaction
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+    name: WriteToDatabaseAsync
+    href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  - name: (
+  - uid: MySql.Data.MySqlClient.MySqlConnection
+    name: MySqlConnection
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: MySql.Data.MySqlClient.MySqlTransaction
+    name: MySqlTransaction
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  commentId: M:CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  parent: CoreRelm.Interfaces.IRelmModelClean
+  isExternal: true
+  href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabaseAsync_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  name: WriteToDatabaseAsync(IRelmContext, int, bool, bool, bool, bool, CancellationToken)
+  nameWithType: IRelmModelClean.WriteToDatabaseAsync(IRelmContext, int, bool, bool, bool, bool, CancellationToken)
+  fullName: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext, int, bool, bool, bool, bool, System.Threading.CancellationToken)
+  nameWithType.vb: IRelmModelClean.WriteToDatabaseAsync(IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+  fullName.vb: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean, System.Threading.CancellationToken)
+  name.vb: WriteToDatabaseAsync(IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+  spec.csharp:
+  - uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+    name: WriteToDatabaseAsync
+    href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabaseAsync_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  - name: (
+  - uid: CoreRelm.Interfaces.IRelmContext
+    name: IRelmContext
+    href: CoreRelm.Interfaces.IRelmContext.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+    name: WriteToDatabaseAsync
+    href: CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabaseAsync_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  - name: (
+  - uid: CoreRelm.Interfaces.IRelmContext
+    name: IRelmContext
+    href: CoreRelm.Interfaces.IRelmContext.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: CoreRelm.Interfaces.IRelmModelClean
+  commentId: T:CoreRelm.Interfaces.IRelmModelClean
+  parent: CoreRelm.Interfaces
+  href: CoreRelm.Interfaces.IRelmModelClean.html
+  name: IRelmModelClean
+  nameWithType: IRelmModelClean
+  fullName: CoreRelm.Interfaces.IRelmModelClean
 - uid: CoreRelm.Interfaces.IRelmModel.Id*
   commentId: Overload:CoreRelm.Interfaces.IRelmModel.Id
   href: CoreRelm.Interfaces.IRelmModel.html#CoreRelm_Interfaces_IRelmModel_Id
@@ -1101,609 +1463,3 @@ references:
   name: IRelmModel
   nameWithType: IRelmModel
   fullName: CoreRelm.Interfaces.IRelmModel
-- uid: System.Data.DataRow
-  commentId: T:System.Data.DataRow
-  parent: System.Data
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.data.datarow
-  name: DataRow
-  nameWithType: DataRow
-  fullName: System.Data.DataRow
-- uid: CoreRelm.Interfaces.IRelmModel.ResetWithData*
-  commentId: Overload:CoreRelm.Interfaces.IRelmModel.ResetWithData
-  href: CoreRelm.Interfaces.IRelmModel.html#CoreRelm_Interfaces_IRelmModel_ResetWithData_System_Data_DataRow_System_String_
-  name: ResetWithData
-  nameWithType: IRelmModel.ResetWithData
-  fullName: CoreRelm.Interfaces.IRelmModel.ResetWithData
-- uid: System.Data
-  commentId: N:System.Data
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System.Data
-  nameWithType: System.Data
-  fullName: System.Data
-  spec.csharp:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Data
-    name: Data
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.data
-  spec.vb:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Data
-    name: Data
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.data
-- uid: System.Reflection.PropertyInfo
-  commentId: T:System.Reflection.PropertyInfo
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.reflection.propertyinfo
-  name: PropertyInfo
-  nameWithType: PropertyInfo
-  fullName: System.Reflection.PropertyInfo
-- uid: CoreRelm.Interfaces.IRelmModel.GetUnderscoreProperties*
-  commentId: Overload:CoreRelm.Interfaces.IRelmModel.GetUnderscoreProperties
-  href: CoreRelm.Interfaces.IRelmModel.html#CoreRelm_Interfaces_IRelmModel_GetUnderscoreProperties_System_Boolean_
-  name: GetUnderscoreProperties
-  nameWithType: IRelmModel.GetUnderscoreProperties
-  fullName: CoreRelm.Interfaces.IRelmModel.GetUnderscoreProperties
-- uid: System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.Tuple{System.String,System.Reflection.PropertyInfo}}}
-  commentId: T:System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.Tuple{System.String,System.Reflection.PropertyInfo}}}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.List`1
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
-  name: List<KeyValuePair<string, Tuple<string, PropertyInfo>>>
-  nameWithType: List<KeyValuePair<string, Tuple<string, PropertyInfo>>>
-  fullName: System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<string, System.Tuple<string, System.Reflection.PropertyInfo>>>
-  nameWithType.vb: List(Of KeyValuePair(Of String, Tuple(Of String, PropertyInfo)))
-  fullName.vb: System.Collections.Generic.List(Of System.Collections.Generic.KeyValuePair(Of String, System.Tuple(Of String, System.Reflection.PropertyInfo)))
-  name.vb: List(Of KeyValuePair(Of String, Tuple(Of String, PropertyInfo)))
-  spec.csharp:
-  - uid: System.Collections.Generic.List`1
-    name: List
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
-  - name: <
-  - uid: System.Collections.Generic.KeyValuePair`2
-    name: KeyValuePair
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
-  - name: <
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: ','
-  - name: " "
-  - uid: System.Tuple`2
-    name: Tuple
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.tuple-2
-  - name: <
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: ','
-  - name: " "
-  - uid: System.Reflection.PropertyInfo
-    name: PropertyInfo
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.reflection.propertyinfo
-  - name: '>'
-  - name: '>'
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.List`1
-    name: List
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Collections.Generic.KeyValuePair`2
-    name: KeyValuePair
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: ','
-  - name: " "
-  - uid: System.Tuple`2
-    name: Tuple
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.tuple-2
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: ','
-  - name: " "
-  - uid: System.Reflection.PropertyInfo
-    name: PropertyInfo
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.reflection.propertyinfo
-  - name: )
-  - name: )
-  - name: )
-- uid: System.Collections.Generic.List`1
-  commentId: T:System.Collections.Generic.List`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
-  name: List<T>
-  nameWithType: List<T>
-  fullName: System.Collections.Generic.List<T>
-  nameWithType.vb: List(Of T)
-  fullName.vb: System.Collections.Generic.List(Of T)
-  name.vb: List(Of T)
-  spec.csharp:
-  - uid: System.Collections.Generic.List`1
-    name: List
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.List`1
-    name: List
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-- uid: System.Collections.Generic
-  commentId: N:System.Collections.Generic
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
-  fullName: System.Collections.Generic
-  spec.csharp:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Collections
-    name: Collections
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections
-  - name: .
-  - uid: System.Collections.Generic
-    name: Generic
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
-  spec.vb:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Collections
-    name: Collections
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections
-  - name: .
-  - uid: System.Collections.Generic
-    name: Generic
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
-- uid: CoreRelm.Interfaces.IRelmModel.WriteToDatabase*
-  commentId: Overload:CoreRelm.Interfaces.IRelmModel.WriteToDatabase
-  href: CoreRelm.Interfaces.IRelmModel.html#CoreRelm_Interfaces_IRelmModel_WriteToDatabase_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
-  name: WriteToDatabase
-  nameWithType: IRelmModel.WriteToDatabase
-  fullName: CoreRelm.Interfaces.IRelmModel.WriteToDatabase
-- uid: System.Enum
-  commentId: T:System.Enum
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.enum
-  name: Enum
-  nameWithType: Enum
-  fullName: System.Enum
-- uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.int32
-  name: int
-  nameWithType: int
-  fullName: int
-  nameWithType.vb: Integer
-  fullName.vb: Integer
-  name.vb: Integer
-- uid: MySql.Data.MySqlClient.MySqlConnection
-  commentId: T:MySql.Data.MySqlClient.MySqlConnection
-  parent: MySql.Data.MySqlClient
-  isExternal: true
-  name: MySqlConnection
-  nameWithType: MySqlConnection
-  fullName: MySql.Data.MySqlClient.MySqlConnection
-- uid: MySql.Data.MySqlClient
-  commentId: N:MySql.Data.MySqlClient
-  isExternal: true
-  name: MySql.Data.MySqlClient
-  nameWithType: MySql.Data.MySqlClient
-  fullName: MySql.Data.MySqlClient
-  spec.csharp:
-  - uid: MySql
-    name: MySql
-    isExternal: true
-  - name: .
-  - uid: MySql.Data
-    name: Data
-    isExternal: true
-  - name: .
-  - uid: MySql.Data.MySqlClient
-    name: MySqlClient
-    isExternal: true
-  spec.vb:
-  - uid: MySql
-    name: MySql
-    isExternal: true
-  - name: .
-  - uid: MySql.Data
-    name: Data
-    isExternal: true
-  - name: .
-  - uid: MySql.Data.MySqlClient
-    name: MySqlClient
-    isExternal: true
-- uid: MySql.Data.MySqlClient.MySqlTransaction
-  commentId: T:MySql.Data.MySqlClient.MySqlTransaction
-  parent: MySql.Data.MySqlClient
-  isExternal: true
-  name: MySqlTransaction
-  nameWithType: MySqlTransaction
-  fullName: MySql.Data.MySqlClient.MySqlTransaction
-- uid: CoreRelm.Interfaces.IRelmContext
-  commentId: T:CoreRelm.Interfaces.IRelmContext
-  parent: CoreRelm.Interfaces
-  href: CoreRelm.Interfaces.IRelmContext.html
-  name: IRelmContext
-  nameWithType: IRelmContext
-  fullName: CoreRelm.Interfaces.IRelmContext
-- uid: CoreRelm.Interfaces.IRelmModel.GenerateDTO*
-  commentId: Overload:CoreRelm.Interfaces.IRelmModel.GenerateDTO
-  href: CoreRelm.Interfaces.IRelmModel.html#CoreRelm_Interfaces_IRelmModel_GenerateDTO_System_Collections_Generic_IEnumerable_System_String__System_Collections_Generic_IEnumerable_System_String__System_String_System_Func_CoreRelm_Interfaces_IRelmModel_System_Collections_Generic_Dictionary_System_String_System_Object___System_Int32_
-  name: GenerateDTO
-  nameWithType: IRelmModel.GenerateDTO
-  fullName: CoreRelm.Interfaces.IRelmModel.GenerateDTO
-- uid: System.Collections.Generic.IEnumerable{System.String}
-  commentId: T:System.Collections.Generic.IEnumerable{System.String}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.IEnumerable`1
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  name: IEnumerable<string>
-  nameWithType: IEnumerable<string>
-  fullName: System.Collections.Generic.IEnumerable<string>
-  nameWithType.vb: IEnumerable(Of String)
-  fullName.vb: System.Collections.Generic.IEnumerable(Of String)
-  name.vb: IEnumerable(Of String)
-  spec.csharp:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  - name: <
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: )
-- uid: System.Func{CoreRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}}
-  commentId: T:System.Func{CoreRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}}
-  parent: System
-  definition: System.Func`2
-  href: https://learn.microsoft.com/dotnet/api/system.func-2
-  name: Func<IRelmModel, Dictionary<string, object>>
-  nameWithType: Func<IRelmModel, Dictionary<string, object>>
-  fullName: System.Func<CoreRelm.Interfaces.IRelmModel, System.Collections.Generic.Dictionary<string, object>>
-  nameWithType.vb: Func(Of IRelmModel, Dictionary(Of String, Object))
-  fullName.vb: System.Func(Of CoreRelm.Interfaces.IRelmModel, System.Collections.Generic.Dictionary(Of String, Object))
-  name.vb: Func(Of IRelmModel, Dictionary(Of String, Object))
-  spec.csharp:
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: <
-  - uid: CoreRelm.Interfaces.IRelmModel
-    name: IRelmModel
-    href: CoreRelm.Interfaces.IRelmModel.html
-  - name: ','
-  - name: " "
-  - uid: System.Collections.Generic.Dictionary`2
-    name: Dictionary
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
-  - name: <
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: ','
-  - name: " "
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: '>'
-  - name: '>'
-  spec.vb:
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: CoreRelm.Interfaces.IRelmModel
-    name: IRelmModel
-    href: CoreRelm.Interfaces.IRelmModel.html
-  - name: ','
-  - name: " "
-  - uid: System.Collections.Generic.Dictionary`2
-    name: Dictionary
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: ','
-  - name: " "
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-  - name: )
-- uid: dynamic
-  commentId: T:System.Object
-  isExternal: true
-  name: dynamic
-  nameWithType: dynamic
-  fullName: dynamic
-  nameWithType.vb: Object
-  fullName.vb: Object
-  name.vb: Object
-- uid: System.Collections.Generic.IEnumerable`1
-  commentId: T:System.Collections.Generic.IEnumerable`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  name: IEnumerable<T>
-  nameWithType: IEnumerable<T>
-  fullName: System.Collections.Generic.IEnumerable<T>
-  nameWithType.vb: IEnumerable(Of T)
-  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
-  name.vb: IEnumerable(Of T)
-  spec.csharp:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-- uid: System.Func`2
-  commentId: T:System.Func`2
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.func-2
-  name: Func<T, TResult>
-  nameWithType: Func<T, TResult>
-  fullName: System.Func<T, TResult>
-  nameWithType.vb: Func(Of T, TResult)
-  fullName.vb: System.Func(Of T, TResult)
-  name.vb: Func(Of T, TResult)
-  spec.csharp:
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - name: TResult
-  - name: '>'
-  spec.vb:
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - name: TResult
-  - name: )
-- uid: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync*
-  commentId: Overload:CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync
-  href: CoreRelm.Interfaces.IRelmModel.html#CoreRelm_Interfaces_IRelmModel_WriteToDatabaseAsync_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
-  name: WriteToDatabaseAsync
-  nameWithType: IRelmModel.WriteToDatabaseAsync
-  fullName: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync
-- uid: System.Threading.CancellationToken
-  commentId: T:System.Threading.CancellationToken
-  parent: System.Threading
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
-  name: CancellationToken
-  nameWithType: CancellationToken
-  fullName: System.Threading.CancellationToken
-- uid: System.Threading.Tasks.Task{System.Int32}
-  commentId: T:System.Threading.Tasks.Task{System.Int32}
-  parent: System.Threading.Tasks
-  definition: System.Threading.Tasks.Task`1
-  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
-  name: Task<int>
-  nameWithType: Task<int>
-  fullName: System.Threading.Tasks.Task<int>
-  nameWithType.vb: Task(Of Integer)
-  fullName.vb: System.Threading.Tasks.Task(Of Integer)
-  name.vb: Task(Of Integer)
-  spec.csharp:
-  - uid: System.Threading.Tasks.Task`1
-    name: Task
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
-  - name: <
-  - uid: System.Int32
-    name: int
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: '>'
-  spec.vb:
-  - uid: System.Threading.Tasks.Task`1
-    name: Task
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Int32
-    name: Integer
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: )
-- uid: System.Threading
-  commentId: N:System.Threading
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System.Threading
-  nameWithType: System.Threading
-  fullName: System.Threading
-  spec.csharp:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Threading
-    name: Threading
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading
-  spec.vb:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Threading
-    name: Threading
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading
-- uid: System.Threading.Tasks.Task`1
-  commentId: T:System.Threading.Tasks.Task`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
-  name: Task<TResult>
-  nameWithType: Task<TResult>
-  fullName: System.Threading.Tasks.Task<TResult>
-  nameWithType.vb: Task(Of TResult)
-  fullName.vb: System.Threading.Tasks.Task(Of TResult)
-  name.vb: Task(Of TResult)
-  spec.csharp:
-  - uid: System.Threading.Tasks.Task`1
-    name: Task
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
-  - name: <
-  - name: TResult
-  - name: '>'
-  spec.vb:
-  - uid: System.Threading.Tasks.Task`1
-    name: Task
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: TResult
-  - name: )
-- uid: System.Threading.Tasks
-  commentId: N:System.Threading.Tasks
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System.Threading.Tasks
-  nameWithType: System.Threading.Tasks
-  fullName: System.Threading.Tasks
-  spec.csharp:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Threading
-    name: Threading
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading
-  - name: .
-  - uid: System.Threading.Tasks
-    name: Tasks
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
-  spec.vb:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Threading
-    name: Threading
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading
-  - name: .
-  - uid: System.Threading.Tasks
-    name: Tasks
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks

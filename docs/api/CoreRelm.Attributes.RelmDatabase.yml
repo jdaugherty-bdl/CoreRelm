@@ -5,8 +5,10 @@ items:
   id: RelmDatabase
   parent: CoreRelm.Attributes
   children:
+  - CoreRelm.Attributes.RelmDatabase.#ctor(System.Boolean)
   - CoreRelm.Attributes.RelmDatabase.#ctor(System.String)
   - CoreRelm.Attributes.RelmDatabase.DatabaseName
+  - CoreRelm.Attributes.RelmDatabase.UseContextDatabaseName
   langs:
   - csharp
   - vb
@@ -115,12 +117,41 @@ items:
   summary: Gets or sets the name of the database.
   example: []
   syntax:
-    content: public string DatabaseName { get; }
+    content: public string? DatabaseName { get; }
     parameters: []
     return:
       type: System.String
     content.vb: Public Property DatabaseName As String
   overload: CoreRelm.Attributes.RelmDatabase.DatabaseName*
+- uid: CoreRelm.Attributes.RelmDatabase.UseContextDatabaseName
+  commentId: P:CoreRelm.Attributes.RelmDatabase.UseContextDatabaseName
+  id: UseContextDatabaseName
+  parent: CoreRelm.Attributes.RelmDatabase
+  langs:
+  - csharp
+  - vb
+  name: UseContextDatabaseName
+  nameWithType: RelmDatabase.UseContextDatabaseName
+  fullName: CoreRelm.Attributes.RelmDatabase.UseContextDatabaseName
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Attributes/RelmDatabase.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: UseContextDatabaseName
+    path: ../CoreRelm/Attributes/RelmDatabase.cs
+    startLine: 21
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Attributes
+  syntax:
+    content: public bool UseContextDatabaseName { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property UseContextDatabaseName As Boolean
+  overload: CoreRelm.Attributes.RelmDatabase.UseContextDatabaseName*
 - uid: CoreRelm.Attributes.RelmDatabase.#ctor(System.String)
   commentId: M:CoreRelm.Attributes.RelmDatabase.#ctor(System.String)
   id: '#ctor(System.String)'
@@ -139,7 +170,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: ../CoreRelm/Attributes/RelmDatabase.cs
-    startLine: 26
+    startLine: 28
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Attributes
@@ -160,6 +191,45 @@ items:
   nameWithType.vb: RelmDatabase.New(String)
   fullName.vb: CoreRelm.Attributes.RelmDatabase.New(String)
   name.vb: New(String)
+- uid: CoreRelm.Attributes.RelmDatabase.#ctor(System.Boolean)
+  commentId: M:CoreRelm.Attributes.RelmDatabase.#ctor(System.Boolean)
+  id: '#ctor(System.Boolean)'
+  parent: CoreRelm.Attributes.RelmDatabase
+  langs:
+  - csharp
+  - vb
+  name: RelmDatabase(bool)
+  nameWithType: RelmDatabase.RelmDatabase(bool)
+  fullName: CoreRelm.Attributes.RelmDatabase.RelmDatabase(bool)
+  type: Constructor
+  source:
+    remote:
+      path: CoreRelm/Attributes/RelmDatabase.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: .ctor
+    path: ../CoreRelm/Attributes/RelmDatabase.cs
+    startLine: 42
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Attributes
+  summary: Initializes a new instance of the <xref href="CoreRelm.Attributes.RelmDatabase" data-throw-if-not-resolved="false"></xref> class with the specified database name.
+  example: []
+  syntax:
+    content: public RelmDatabase(bool useContextDatabaseName = false)
+    parameters:
+    - id: useContextDatabaseName
+      type: System.Boolean
+      description: Indicates whether to use the current database name from the current context (loop, etc.). Defaults to false.
+    content.vb: Public Sub New(useContextDatabaseName As Boolean = False)
+  overload: CoreRelm.Attributes.RelmDatabase.#ctor*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown if <code class="paramref">databaseName</code> is null, empty, or consists only of white-space characters.
+  nameWithType.vb: RelmDatabase.New(Boolean)
+  fullName.vb: CoreRelm.Attributes.RelmDatabase.New(Boolean)
+  name.vb: New(Boolean)
 references:
 - uid: CoreRelm.Attributes.RelmDatabase.DatabaseName
   commentId: P:CoreRelm.Attributes.RelmDatabase.DatabaseName
@@ -1976,6 +2046,23 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
+- uid: CoreRelm.Attributes.RelmDatabase.UseContextDatabaseName*
+  commentId: Overload:CoreRelm.Attributes.RelmDatabase.UseContextDatabaseName
+  href: CoreRelm.Attributes.RelmDatabase.html#CoreRelm_Attributes_RelmDatabase_UseContextDatabaseName
+  name: UseContextDatabaseName
+  nameWithType: RelmDatabase.UseContextDatabaseName
+  fullName: CoreRelm.Attributes.RelmDatabase.UseContextDatabaseName
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: CoreRelm.Attributes.RelmDatabase
   commentId: T:CoreRelm.Attributes.RelmDatabase
   parent: CoreRelm.Attributes

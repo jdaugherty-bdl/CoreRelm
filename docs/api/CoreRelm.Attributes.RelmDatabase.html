@@ -263,9 +263,48 @@ The <a class="xref" href="CoreRelm.Attributes.RelmDatabase.html#CoreRelm_Attribu
 
   <a id="CoreRelm_Attributes_RelmDatabase__ctor_" data-uid="CoreRelm.Attributes.RelmDatabase.#ctor*"></a>
 
+  <h3 id="CoreRelm_Attributes_RelmDatabase__ctor_System_Boolean_" data-uid="CoreRelm.Attributes.RelmDatabase.#ctor(System.Boolean)">
+  RelmDatabase(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Attributes/RelmDatabase.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="CoreRelm.Attributes.RelmDatabase.html">RelmDatabase</a> class with the specified database name.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RelmDatabase(bool useContextDatabaseName = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>useContextDatabaseName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Indicates whether to use the current database name from the current context (loop, etc.). Defaults to false.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown if <code class="paramref">databaseName</code> is null, empty, or consists only of white-space characters.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="CoreRelm_Attributes_RelmDatabase__ctor_" data-uid="CoreRelm.Attributes.RelmDatabase.#ctor*"></a>
+
   <h3 id="CoreRelm_Attributes_RelmDatabase__ctor_System_String_" data-uid="CoreRelm.Attributes.RelmDatabase.#ctor(System.String)">
   RelmDatabase(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Attributes/RelmDatabase.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Attributes/RelmDatabase.cs/#L29"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="CoreRelm.Attributes.RelmDatabase.html">RelmDatabase</a> class with the specified database name.</p>
@@ -316,7 +355,7 @@ The <a class="xref" href="CoreRelm.Attributes.RelmDatabase.html#CoreRelm_Attribu
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string DatabaseName { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string? DatabaseName { get; }</code></pre>
   </div>
 
 
@@ -326,6 +365,37 @@ The <a class="xref" href="CoreRelm.Attributes.RelmDatabase.html#CoreRelm_Attribu
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Attributes_RelmDatabase_UseContextDatabaseName_" data-uid="CoreRelm.Attributes.RelmDatabase.UseContextDatabaseName*"></a>
+
+  <h3 id="CoreRelm_Attributes_RelmDatabase_UseContextDatabaseName" data-uid="CoreRelm.Attributes.RelmDatabase.UseContextDatabaseName">
+  UseContextDatabaseName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Attributes/RelmDatabase.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool UseContextDatabaseName { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd></dd>
   </dl>
 

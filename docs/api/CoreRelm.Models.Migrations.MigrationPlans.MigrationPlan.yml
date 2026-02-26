@@ -5,10 +5,11 @@ items:
   id: MigrationPlan
   parent: CoreRelm.Models.Migrations.MigrationPlans
   children:
-  - CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.#ctor(System.String,System.String,System.String,CoreRelm.Enums.MigrationEnums.RelmMigrationType,System.Collections.Generic.IReadOnlyList{CoreRelm.Interfaces.Migrations.IMigrationOperation},System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyList{System.String},System.DateTime)
+  - CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.#ctor(System.String,System.String,System.String,System.String,CoreRelm.Enums.MigrationEnums.RelmMigrationType,System.Collections.Generic.IReadOnlyList{CoreRelm.Interfaces.Migrations.IMigrationOperation},System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyList{System.String},System.DateTime)
   - CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.Blockers
   - CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.DatabaseName
   - CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.HasChanges
+  - CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.MigrationFileName
   - CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.MigrationName
   - CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.MigrationType
   - CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.ModelSetName
@@ -47,16 +48,16 @@ items:
   - System.Object.GetType
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.#ctor(System.String,System.String,System.String,CoreRelm.Enums.MigrationEnums.RelmMigrationType,System.Collections.Generic.IReadOnlyList{CoreRelm.Interfaces.Migrations.IMigrationOperation},System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyList{System.String},System.DateTime)
-  commentId: M:CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.#ctor(System.String,System.String,System.String,CoreRelm.Enums.MigrationEnums.RelmMigrationType,System.Collections.Generic.IReadOnlyList{CoreRelm.Interfaces.Migrations.IMigrationOperation},System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyList{System.String},System.DateTime)
-  id: '#ctor(System.String,System.String,System.String,CoreRelm.Enums.MigrationEnums.RelmMigrationType,System.Collections.Generic.IReadOnlyList{CoreRelm.Interfaces.Migrations.IMigrationOperation},System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyList{System.String},System.DateTime)'
+- uid: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.#ctor(System.String,System.String,System.String,System.String,CoreRelm.Enums.MigrationEnums.RelmMigrationType,System.Collections.Generic.IReadOnlyList{CoreRelm.Interfaces.Migrations.IMigrationOperation},System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyList{System.String},System.DateTime)
+  commentId: M:CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.#ctor(System.String,System.String,System.String,System.String,CoreRelm.Enums.MigrationEnums.RelmMigrationType,System.Collections.Generic.IReadOnlyList{CoreRelm.Interfaces.Migrations.IMigrationOperation},System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyList{System.String},System.DateTime)
+  id: '#ctor(System.String,System.String,System.String,System.String,CoreRelm.Enums.MigrationEnums.RelmMigrationType,System.Collections.Generic.IReadOnlyList{CoreRelm.Interfaces.Migrations.IMigrationOperation},System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyList{System.String},System.DateTime)'
   parent: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan
   langs:
   - csharp
   - vb
-  name: MigrationPlan(string, string, string, RelmMigrationType, IReadOnlyList<IMigrationOperation>, IReadOnlyList<string>, IReadOnlyList<string>, DateTime)
-  nameWithType: MigrationPlan.MigrationPlan(string, string, string, MigrationEnums.RelmMigrationType, IReadOnlyList<IMigrationOperation>, IReadOnlyList<string>, IReadOnlyList<string>, DateTime)
-  fullName: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.MigrationPlan(string, string, string, CoreRelm.Enums.MigrationEnums.RelmMigrationType, System.Collections.Generic.IReadOnlyList<CoreRelm.Interfaces.Migrations.IMigrationOperation>, System.Collections.Generic.IReadOnlyList<string>, System.Collections.Generic.IReadOnlyList<string>, System.DateTime)
+  name: MigrationPlan(string, string, string, string, RelmMigrationType, IReadOnlyList<IMigrationOperation>, IReadOnlyList<string>, IReadOnlyList<string>, DateTime)
+  nameWithType: MigrationPlan.MigrationPlan(string, string, string, string, MigrationEnums.RelmMigrationType, IReadOnlyList<IMigrationOperation>, IReadOnlyList<string>, IReadOnlyList<string>, DateTime)
+  fullName: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.MigrationPlan(string, string, string, string, CoreRelm.Enums.MigrationEnums.RelmMigrationType, System.Collections.Generic.IReadOnlyList<CoreRelm.Interfaces.Migrations.IMigrationOperation>, System.Collections.Generic.IReadOnlyList<string>, System.Collections.Generic.IReadOnlyList<string>, System.DateTime)
   type: Constructor
   source:
     remote:
@@ -70,11 +71,13 @@ items:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.MigrationPlans
   syntax:
-    content: public MigrationPlan(string DatabaseName, string MigrationName, string ModelSetName, MigrationEnums.RelmMigrationType MigrationType, IReadOnlyList<IMigrationOperation> Operations, IReadOnlyList<string> Warnings, IReadOnlyList<string> Blockers, DateTime StampUtc)
+    content: public MigrationPlan(string DatabaseName, string MigrationName, string MigrationFileName, string ModelSetName, MigrationEnums.RelmMigrationType MigrationType, IReadOnlyList<IMigrationOperation> Operations, IReadOnlyList<string> Warnings, IReadOnlyList<string> Blockers, DateTime StampUtc)
     parameters:
     - id: DatabaseName
       type: System.String
     - id: MigrationName
+      type: System.String
+    - id: MigrationFileName
       type: System.String
     - id: ModelSetName
       type: System.String
@@ -88,11 +91,11 @@ items:
       type: System.Collections.Generic.IReadOnlyList{System.String}
     - id: StampUtc
       type: System.DateTime
-    content.vb: Public Sub New(DatabaseName As String, MigrationName As String, ModelSetName As String, MigrationType As MigrationEnums.RelmMigrationType, Operations As IReadOnlyList(Of IMigrationOperation), Warnings As IReadOnlyList(Of String), Blockers As IReadOnlyList(Of String), StampUtc As Date)
+    content.vb: Public Sub New(DatabaseName As String, MigrationName As String, MigrationFileName As String, ModelSetName As String, MigrationType As MigrationEnums.RelmMigrationType, Operations As IReadOnlyList(Of IMigrationOperation), Warnings As IReadOnlyList(Of String), Blockers As IReadOnlyList(Of String), StampUtc As Date)
   overload: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.#ctor*
-  nameWithType.vb: MigrationPlan.New(String, String, String, MigrationEnums.RelmMigrationType, IReadOnlyList(Of IMigrationOperation), IReadOnlyList(Of String), IReadOnlyList(Of String), Date)
-  fullName.vb: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.New(String, String, String, CoreRelm.Enums.MigrationEnums.RelmMigrationType, System.Collections.Generic.IReadOnlyList(Of CoreRelm.Interfaces.Migrations.IMigrationOperation), System.Collections.Generic.IReadOnlyList(Of String), System.Collections.Generic.IReadOnlyList(Of String), Date)
-  name.vb: New(String, String, String, RelmMigrationType, IReadOnlyList(Of IMigrationOperation), IReadOnlyList(Of String), IReadOnlyList(Of String), Date)
+  nameWithType.vb: MigrationPlan.New(String, String, String, String, MigrationEnums.RelmMigrationType, IReadOnlyList(Of IMigrationOperation), IReadOnlyList(Of String), IReadOnlyList(Of String), Date)
+  fullName.vb: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.New(String, String, String, String, CoreRelm.Enums.MigrationEnums.RelmMigrationType, System.Collections.Generic.IReadOnlyList(Of CoreRelm.Interfaces.Migrations.IMigrationOperation), System.Collections.Generic.IReadOnlyList(Of String), System.Collections.Generic.IReadOnlyList(Of String), Date)
+  name.vb: New(String, String, String, String, RelmMigrationType, IReadOnlyList(Of IMigrationOperation), IReadOnlyList(Of String), IReadOnlyList(Of String), Date)
 - uid: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.DatabaseName
   commentId: P:CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.DatabaseName
   id: DatabaseName
@@ -151,6 +154,35 @@ items:
       type: System.String
     content.vb: Public Property MigrationName As String
   overload: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.MigrationName*
+- uid: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.MigrationFileName
+  commentId: P:CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.MigrationFileName
+  id: MigrationFileName
+  parent: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan
+  langs:
+  - csharp
+  - vb
+  name: MigrationFileName
+  nameWithType: MigrationPlan.MigrationFileName
+  fullName: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.MigrationFileName
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/MigrationPlans/MigrationPlan.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: MigrationFileName
+    path: ../CoreRelm/Models/Migrations/MigrationPlans/MigrationPlan.cs
+    startLine: 14
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.MigrationPlans
+  syntax:
+    content: public string MigrationFileName { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property MigrationFileName As String
+  overload: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.MigrationFileName*
 - uid: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.ModelSetName
   commentId: P:CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.ModelSetName
   id: ModelSetName
@@ -169,7 +201,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: ModelSetName
     path: ../CoreRelm/Models/Migrations/MigrationPlans/MigrationPlan.cs
-    startLine: 14
+    startLine: 15
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.MigrationPlans
@@ -198,7 +230,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: MigrationType
     path: ../CoreRelm/Models/Migrations/MigrationPlans/MigrationPlan.cs
-    startLine: 15
+    startLine: 16
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.MigrationPlans
@@ -227,7 +259,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Operations
     path: ../CoreRelm/Models/Migrations/MigrationPlans/MigrationPlan.cs
-    startLine: 16
+    startLine: 17
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.MigrationPlans
@@ -256,7 +288,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Warnings
     path: ../CoreRelm/Models/Migrations/MigrationPlans/MigrationPlan.cs
-    startLine: 17
+    startLine: 18
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.MigrationPlans
@@ -285,7 +317,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Blockers
     path: ../CoreRelm/Models/Migrations/MigrationPlans/MigrationPlan.cs
-    startLine: 18
+    startLine: 19
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.MigrationPlans
@@ -314,7 +346,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: StampUtc
     path: ../CoreRelm/Models/Migrations/MigrationPlans/MigrationPlan.cs
-    startLine: 19
+    startLine: 20
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.MigrationPlans
@@ -343,7 +375,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: HasChanges
     path: ../CoreRelm/Models/Migrations/MigrationPlans/MigrationPlan.cs
-    startLine: 22
+    startLine: 23
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.MigrationPlans
@@ -669,7 +701,7 @@ references:
   - name: )
 - uid: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.#ctor*
   commentId: Overload:CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.#ctor
-  href: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.html#CoreRelm_Models_Migrations_MigrationPlans_MigrationPlan__ctor_System_String_System_String_System_String_CoreRelm_Enums_MigrationEnums_RelmMigrationType_System_Collections_Generic_IReadOnlyList_CoreRelm_Interfaces_Migrations_IMigrationOperation__System_Collections_Generic_IReadOnlyList_System_String__System_Collections_Generic_IReadOnlyList_System_String__System_DateTime_
+  href: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.html#CoreRelm_Models_Migrations_MigrationPlans_MigrationPlan__ctor_System_String_System_String_System_String_System_String_CoreRelm_Enums_MigrationEnums_RelmMigrationType_System_Collections_Generic_IReadOnlyList_CoreRelm_Interfaces_Migrations_IMigrationOperation__System_Collections_Generic_IReadOnlyList_System_String__System_Collections_Generic_IReadOnlyList_System_String__System_DateTime_
   name: MigrationPlan
   nameWithType: MigrationPlan.MigrationPlan
   fullName: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.MigrationPlan
@@ -888,6 +920,12 @@ references:
   name: MigrationName
   nameWithType: MigrationPlan.MigrationName
   fullName: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.MigrationName
+- uid: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.MigrationFileName*
+  commentId: Overload:CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.MigrationFileName
+  href: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.html#CoreRelm_Models_Migrations_MigrationPlans_MigrationPlan_MigrationFileName
+  name: MigrationFileName
+  nameWithType: MigrationPlan.MigrationFileName
+  fullName: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.MigrationFileName
 - uid: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.ModelSetName*
   commentId: Overload:CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.ModelSetName
   href: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.html#CoreRelm_Models_Migrations_MigrationPlans_MigrationPlan_ModelSetName

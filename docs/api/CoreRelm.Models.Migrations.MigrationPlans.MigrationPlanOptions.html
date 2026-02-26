@@ -157,8 +157,8 @@ Class MigrationPlanOptions  <a class="header-action link-secondary" title="View 
 
   <a id="CoreRelm_Models_Migrations_MigrationPlans_MigrationPlanOptions__ctor_" data-uid="CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.#ctor*"></a>
 
-  <h3 id="CoreRelm_Models_Migrations_MigrationPlans_MigrationPlanOptions__ctor_System_Boolean_System_Boolean_System_String_System_String_System_Collections_Generic_ISet_System_String__System_DateTime_" data-uid="CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.#ctor(System.Boolean,System.Boolean,System.String,System.String,System.Collections.Generic.ISet{System.String},System.DateTime)">
-  MigrationPlanOptions(bool, bool, string, string, ISet&lt;string&gt;, DateTime)
+  <h3 id="CoreRelm_Models_Migrations_MigrationPlans_MigrationPlanOptions__ctor_System_Boolean_System_Boolean_System_String_System_String_System_String_System_Collections_Generic_ISet_System_String__System_DateTime_" data-uid="CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.#ctor(System.Boolean,System.Boolean,System.String,System.String,System.String,System.Collections.Generic.ISet{System.String},System.DateTime)">
+  MigrationPlanOptions(bool, bool, string, string, string, ISet&lt;string&gt;, DateTime)
   <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationPlans/MigrationPlanOptions.cs/#L9"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -166,7 +166,7 @@ Class MigrationPlanOptions  <a class="header-action link-secondary" title="View 
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MigrationPlanOptions(bool DropFunctionsOnCreate, bool Destructive, string MigrationName, string ModelSetName, ISet&lt;string&gt; ScopeTables, DateTime StampUtc)</code></pre>
+    <pre><code class="lang-csharp hljs">public MigrationPlanOptions(bool DropFunctionsOnCreate, bool Destructive, string MigrationName, string MigrationFileName, string ModelSetName, ISet&lt;string&gt; ScopeTables, DateTime StampUtc)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -176,6 +176,8 @@ Class MigrationPlanOptions  <a class="header-action link-secondary" title="View 
     <dt><code>Destructive</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd></dd>
     <dt><code>MigrationName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>MigrationFileName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
     <dt><code>ModelSetName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
@@ -262,6 +264,37 @@ Class MigrationPlanOptions  <a class="header-action link-secondary" title="View 
 
 
 
+  <a id="CoreRelm_Models_Migrations_MigrationPlans_MigrationPlanOptions_MigrationFileName_" data-uid="CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.MigrationFileName*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_MigrationPlans_MigrationPlanOptions_MigrationFileName" data-uid="CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.MigrationFileName">
+  MigrationFileName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationPlans/MigrationPlanOptions.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string MigrationFileName { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="CoreRelm_Models_Migrations_MigrationPlans_MigrationPlanOptions_MigrationName_" data-uid="CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.MigrationName*"></a>
 
   <h3 id="CoreRelm_Models_Migrations_MigrationPlans_MigrationPlanOptions_MigrationName" data-uid="CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.MigrationName">
@@ -297,7 +330,7 @@ Class MigrationPlanOptions  <a class="header-action link-secondary" title="View 
 
   <h3 id="CoreRelm_Models_Migrations_MigrationPlans_MigrationPlanOptions_ModelSetName" data-uid="CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.ModelSetName">
   ModelSetName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationPlans/MigrationPlanOptions.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationPlans/MigrationPlanOptions.cs/#L14"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -328,7 +361,7 @@ Class MigrationPlanOptions  <a class="header-action link-secondary" title="View 
 
   <h3 id="CoreRelm_Models_Migrations_MigrationPlans_MigrationPlanOptions_ScopeTables" data-uid="CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.ScopeTables">
   ScopeTables
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationPlans/MigrationPlanOptions.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationPlans/MigrationPlanOptions.cs/#L15"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -359,7 +392,7 @@ Class MigrationPlanOptions  <a class="header-action link-secondary" title="View 
 
   <h3 id="CoreRelm_Models_Migrations_MigrationPlans_MigrationPlanOptions_StampUtc" data-uid="CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.StampUtc">
   StampUtc
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationPlans/MigrationPlanOptions.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/MigrationPlans/MigrationPlanOptions.cs/#L16"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>

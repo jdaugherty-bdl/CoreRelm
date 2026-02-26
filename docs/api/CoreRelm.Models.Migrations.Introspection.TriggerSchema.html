@@ -103,7 +103,7 @@ Class TriggerSchema  <a class="header-action link-secondary" title="View source"
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[RelmDatabase(&quot;INFORMATION_SCHEMA&quot;)]
 [RelmTable(&quot;TRIGGERS&quot;)]
-public class TriggerSchema : RelmModel, IRelmModel</code></pre>
+public class TriggerSchema : RelmModel, IRelmModel, IRelmModelClean</code></pre>
   </div>
 
 
@@ -113,6 +113,7 @@ public class TriggerSchema : RelmModel, IRelmModel</code></pre>
     <dt>Inheritance</dt>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="CoreRelm.Models.RelmModelClean.html">RelmModelClean</a></div>
       <div><a class="xref" href="CoreRelm.Models.RelmModel.html">RelmModel</a></div>
       <div><span class="xref">TriggerSchema</span></div>
     </dd>
@@ -122,6 +123,7 @@ public class TriggerSchema : RelmModel, IRelmModel</code></pre>
     <dt>Implements</dt>
     <dd>
       <div><a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a></div>
+      <div><a class="xref" href="CoreRelm.Interfaces.IRelmModelClean.html">IRelmModelClean</a></div>
     </dd>
   </dl>
 
@@ -129,9 +131,6 @@ public class TriggerSchema : RelmModel, IRelmModel</code></pre>
   <dl class="typelist inheritedMembers">
     <dt>Inherited Members</dt>
     <dd>
-    <div>
-      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_DtoTypeProcessor">RelmModel.DtoTypeProcessor</a>
-    </div>
     <div>
       <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_Id">RelmModel.Id</a>
     </div>
@@ -154,43 +153,46 @@ public class TriggerSchema : RelmModel, IRelmModel</code></pre>
       <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_ResetWithData_System_Data_DataRow_System_String_">RelmModel.ResetWithData(DataRow, string)</a>
     </div>
     <div>
-      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_GetUnderscoreProperties_System_Boolean_">RelmModel.GetUnderscoreProperties(bool)</a>
+      <a class="xref" href="CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_DtoTypeProcessor">RelmModelClean.DtoTypeProcessor</a>
     </div>
     <div>
-      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModel.WriteToDatabase(Enum, int, bool, bool, bool, bool)</a>
+      <a class="xref" href="CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_GetUnderscoreProperties_System_Boolean_">RelmModelClean.GetUnderscoreProperties(bool)</a>
     </div>
     <div>
-      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabaseAsync_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_">RelmModel.WriteToDatabaseAsync(Enum, int, bool, bool, bool, bool, CancellationToken)</a>
+      <a class="xref" href="CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_WriteToDatabase_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModelClean.WriteToDatabase(Enum, int, bool, bool, bool, bool)</a>
     </div>
     <div>
-      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModel.WriteToDatabase(MySqlConnection, int, bool, bool, bool, bool)</a>
+      <a class="xref" href="CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_WriteToDatabaseAsync_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_">RelmModelClean.WriteToDatabaseAsync(Enum, int, bool, bool, bool, bool, CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModel.WriteToDatabase(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool)</a>
+      <a class="xref" href="CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModelClean.WriteToDatabase(MySqlConnection, int, bool, bool, bool, bool)</a>
     </div>
     <div>
-      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_">RelmModel.WriteToDatabaseAsync(MySqlConnection, int, bool, bool, bool, bool, CancellationToken)</a>
+      <a class="xref" href="CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModelClean.WriteToDatabase(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool)</a>
     </div>
     <div>
-      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_">RelmModel.WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool, CancellationToken)</a>
+      <a class="xref" href="CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_">RelmModelClean.WriteToDatabaseAsync(MySqlConnection, int, bool, bool, bool, bool, CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModel.WriteToDatabase(IRelmContext, int, bool, bool, bool, bool)</a>
+      <a class="xref" href="CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_">RelmModelClean.WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool, CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabaseAsync_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_">RelmModel.WriteToDatabaseAsync(IRelmContext, int, bool, bool, bool, bool, CancellationToken)</a>
+      <a class="xref" href="CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_WriteToDatabase_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModelClean.WriteToDatabase(IRelmContext, int, bool, bool, bool, bool)</a>
     </div>
     <div>
-      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_CoreRelm_Options_RelmContextOptions_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModel.WriteToDatabase(RelmContextOptions, int, bool, bool, bool, bool)</a>
+      <a class="xref" href="CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_WriteToDatabaseAsync_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_">RelmModelClean.WriteToDatabaseAsync(IRelmContext, int, bool, bool, bool, bool, CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_CopyFromSource__1___0_">RelmModel.CopyFromSource&lt;T&gt;(T)</a>
+      <a class="xref" href="CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_WriteToDatabase_CoreRelm_Options_RelmContextOptions_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModelClean.WriteToDatabase(RelmContextOptions, int, bool, bool, bool, bool)</a>
     </div>
     <div>
-      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_GenerateDTO_System_Collections_Generic_IEnumerable_System_String__System_Collections_Generic_IEnumerable_System_String__System_String_System_Func_CoreRelm_Interfaces_IRelmModel_System_Collections_Generic_Dictionary_System_String_System_Object___System_Int32_">RelmModel.GenerateDTO(IEnumerable&lt;string&gt;, IEnumerable&lt;string&gt;, string, Func&lt;IRelmModel, Dictionary&lt;string, object&gt;&gt;, int)</a>
+      <a class="xref" href="CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_CopyFromSource__1___0_">RelmModelClean.CopyFromSource&lt;T&gt;(T)</a>
     </div>
     <div>
-      <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_Duplicate">RelmModel.Duplicate()</a>
+      <a class="xref" href="CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_GenerateDTO_System_Collections_Generic_IEnumerable_System_String__System_Collections_Generic_IEnumerable_System_String__System_String_System_Func_CoreRelm_Interfaces_IRelmModel_System_Collections_Generic_Dictionary_System_String_System_Object___System_Int32_">RelmModelClean.GenerateDTO(IEnumerable&lt;string&gt;, IEnumerable&lt;string&gt;, string, Func&lt;IRelmModel, Dictionary&lt;string, object&gt;&gt;, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_Duplicate">RelmModelClean.Duplicate()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>

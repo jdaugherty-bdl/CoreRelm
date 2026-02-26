@@ -843,6 +843,15 @@ references:
   commentId: T:CoreRelm.Attributes.RelmDatabase
   fullName: CoreRelm.Attributes.RelmDatabase
   nameWithType: RelmDatabase
+- uid: CoreRelm.Attributes.RelmDatabase.#ctor(System.Boolean)
+  name: RelmDatabase(bool)
+  href: api/CoreRelm.Attributes.RelmDatabase.html#CoreRelm_Attributes_RelmDatabase__ctor_System_Boolean_
+  commentId: M:CoreRelm.Attributes.RelmDatabase.#ctor(System.Boolean)
+  name.vb: New(Boolean)
+  fullName: CoreRelm.Attributes.RelmDatabase.RelmDatabase(bool)
+  fullName.vb: CoreRelm.Attributes.RelmDatabase.New(Boolean)
+  nameWithType: RelmDatabase.RelmDatabase(bool)
+  nameWithType.vb: RelmDatabase.New(Boolean)
 - uid: CoreRelm.Attributes.RelmDatabase.#ctor(System.String)
   name: RelmDatabase(string)
   href: api/CoreRelm.Attributes.RelmDatabase.html#CoreRelm_Attributes_RelmDatabase__ctor_System_String_
@@ -875,6 +884,19 @@ references:
   isSpec: "True"
   fullName: CoreRelm.Attributes.RelmDatabase.DatabaseName
   nameWithType: RelmDatabase.DatabaseName
+- uid: CoreRelm.Attributes.RelmDatabase.UseContextDatabaseName
+  name: UseContextDatabaseName
+  href: api/CoreRelm.Attributes.RelmDatabase.html#CoreRelm_Attributes_RelmDatabase_UseContextDatabaseName
+  commentId: P:CoreRelm.Attributes.RelmDatabase.UseContextDatabaseName
+  fullName: CoreRelm.Attributes.RelmDatabase.UseContextDatabaseName
+  nameWithType: RelmDatabase.UseContextDatabaseName
+- uid: CoreRelm.Attributes.RelmDatabase.UseContextDatabaseName*
+  name: UseContextDatabaseName
+  href: api/CoreRelm.Attributes.RelmDatabase.html#CoreRelm_Attributes_RelmDatabase_UseContextDatabaseName_
+  commentId: Overload:CoreRelm.Attributes.RelmDatabase.UseContextDatabaseName
+  isSpec: "True"
+  fullName: CoreRelm.Attributes.RelmDatabase.UseContextDatabaseName
+  nameWithType: RelmDatabase.UseContextDatabaseName
 - uid: CoreRelm.Attributes.RelmDto
   name: RelmDto
   href: api/CoreRelm.Attributes.RelmDto.html
@@ -1219,6 +1241,34 @@ references:
   fullName.vb: CoreRelm.Attributes.RelmProcedureParameter(Of T).ParameterKey
   nameWithType: RelmProcedureParameter<T>.ParameterKey
   nameWithType.vb: RelmProcedureParameter(Of T).ParameterKey
+- uid: CoreRelm.Attributes.RelmProcedure`1
+  name: RelmProcedure<T>
+  href: api/CoreRelm.Attributes.RelmProcedure-1.html
+  commentId: T:CoreRelm.Attributes.RelmProcedure`1
+  name.vb: RelmProcedure(Of T)
+  fullName: CoreRelm.Attributes.RelmProcedure<T>
+  fullName.vb: CoreRelm.Attributes.RelmProcedure(Of T)
+  nameWithType: RelmProcedure<T>
+  nameWithType.vb: RelmProcedure(Of T)
+- uid: CoreRelm.Attributes.RelmProcedure`1.#ctor(`0,System.String,System.String,System.String,System.String,System.Boolean,CoreRelm.Enums.StoredProcedures.ProcedureDataAccess,CoreRelm.Enums.SecurityEnums.SqlSecurityLevel)
+  name: RelmProcedure(T, string, string, string, string, bool, ProcedureDataAccess, SqlSecurityLevel)
+  href: api/CoreRelm.Attributes.RelmProcedure-1.html#CoreRelm_Attributes_RelmProcedure_1__ctor__0_System_String_System_String_System_String_System_String_System_Boolean_CoreRelm_Enums_StoredProcedures_ProcedureDataAccess_CoreRelm_Enums_SecurityEnums_SqlSecurityLevel_
+  commentId: M:CoreRelm.Attributes.RelmProcedure`1.#ctor(`0,System.String,System.String,System.String,System.String,System.Boolean,CoreRelm.Enums.StoredProcedures.ProcedureDataAccess,CoreRelm.Enums.SecurityEnums.SqlSecurityLevel)
+  name.vb: New(T, String, String, String, String, Boolean, ProcedureDataAccess, SqlSecurityLevel)
+  fullName: CoreRelm.Attributes.RelmProcedure<T>.RelmProcedure(T, string, string, string, string, bool, CoreRelm.Enums.StoredProcedures.ProcedureDataAccess, CoreRelm.Enums.SecurityEnums.SqlSecurityLevel)
+  fullName.vb: CoreRelm.Attributes.RelmProcedure(Of T).New(T, String, String, String, String, Boolean, CoreRelm.Enums.StoredProcedures.ProcedureDataAccess, CoreRelm.Enums.SecurityEnums.SqlSecurityLevel)
+  nameWithType: RelmProcedure<T>.RelmProcedure(T, string, string, string, string, bool, StoredProcedures.ProcedureDataAccess, SecurityEnums.SqlSecurityLevel)
+  nameWithType.vb: RelmProcedure(Of T).New(T, String, String, String, String, Boolean, StoredProcedures.ProcedureDataAccess, SecurityEnums.SqlSecurityLevel)
+- uid: CoreRelm.Attributes.RelmProcedure`1.#ctor*
+  name: RelmProcedure
+  href: api/CoreRelm.Attributes.RelmProcedure-1.html#CoreRelm_Attributes_RelmProcedure_1__ctor_
+  commentId: Overload:CoreRelm.Attributes.RelmProcedure`1.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: CoreRelm.Attributes.RelmProcedure<T>.RelmProcedure
+  fullName.vb: CoreRelm.Attributes.RelmProcedure(Of T).New
+  nameWithType: RelmProcedure<T>.RelmProcedure
+  nameWithType.vb: RelmProcedure(Of T).New
 - uid: CoreRelm.Attributes.RelmTable
   name: RelmTable
   href: api/CoreRelm.Attributes.RelmTable.html
@@ -5266,38 +5316,6 @@ references:
   isSpec: "True"
   fullName: CoreRelm.Interfaces.IRelmModel.CreateDate
   nameWithType: IRelmModel.CreateDate
-- uid: CoreRelm.Interfaces.IRelmModel.GenerateDTO(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String,System.Func{CoreRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}},System.Int32)
-  name: GenerateDTO(IEnumerable<string>?, IEnumerable<string>?, string?, Func<IRelmModel, Dictionary<string, object>>?, int)
-  href: api/CoreRelm.Interfaces.IRelmModel.html#CoreRelm_Interfaces_IRelmModel_GenerateDTO_System_Collections_Generic_IEnumerable_System_String__System_Collections_Generic_IEnumerable_System_String__System_String_System_Func_CoreRelm_Interfaces_IRelmModel_System_Collections_Generic_Dictionary_System_String_System_Object___System_Int32_
-  commentId: M:CoreRelm.Interfaces.IRelmModel.GenerateDTO(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String,System.Func{CoreRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}},System.Int32)
-  name.vb: GenerateDTO(IEnumerable(Of String), IEnumerable(Of String), String, Func(Of IRelmModel, Dictionary(Of String, Object)), Integer)
-  fullName: CoreRelm.Interfaces.IRelmModel.GenerateDTO(System.Collections.Generic.IEnumerable<string>?, System.Collections.Generic.IEnumerable<string>?, string?, System.Func<CoreRelm.Interfaces.IRelmModel, System.Collections.Generic.Dictionary<string, object>>?, int)
-  fullName.vb: CoreRelm.Interfaces.IRelmModel.GenerateDTO(System.Collections.Generic.IEnumerable(Of String), System.Collections.Generic.IEnumerable(Of String), String, System.Func(Of CoreRelm.Interfaces.IRelmModel, System.Collections.Generic.Dictionary(Of String, Object)), Integer)
-  nameWithType: IRelmModel.GenerateDTO(IEnumerable<string>?, IEnumerable<string>?, string?, Func<IRelmModel, Dictionary<string, object>>?, int)
-  nameWithType.vb: IRelmModel.GenerateDTO(IEnumerable(Of String), IEnumerable(Of String), String, Func(Of IRelmModel, Dictionary(Of String, Object)), Integer)
-- uid: CoreRelm.Interfaces.IRelmModel.GenerateDTO*
-  name: GenerateDTO
-  href: api/CoreRelm.Interfaces.IRelmModel.html#CoreRelm_Interfaces_IRelmModel_GenerateDTO_
-  commentId: Overload:CoreRelm.Interfaces.IRelmModel.GenerateDTO
-  isSpec: "True"
-  fullName: CoreRelm.Interfaces.IRelmModel.GenerateDTO
-  nameWithType: IRelmModel.GenerateDTO
-- uid: CoreRelm.Interfaces.IRelmModel.GetUnderscoreProperties(System.Boolean)
-  name: GetUnderscoreProperties(bool)
-  href: api/CoreRelm.Interfaces.IRelmModel.html#CoreRelm_Interfaces_IRelmModel_GetUnderscoreProperties_System_Boolean_
-  commentId: M:CoreRelm.Interfaces.IRelmModel.GetUnderscoreProperties(System.Boolean)
-  name.vb: GetUnderscoreProperties(Boolean)
-  fullName: CoreRelm.Interfaces.IRelmModel.GetUnderscoreProperties(bool)
-  fullName.vb: CoreRelm.Interfaces.IRelmModel.GetUnderscoreProperties(Boolean)
-  nameWithType: IRelmModel.GetUnderscoreProperties(bool)
-  nameWithType.vb: IRelmModel.GetUnderscoreProperties(Boolean)
-- uid: CoreRelm.Interfaces.IRelmModel.GetUnderscoreProperties*
-  name: GetUnderscoreProperties
-  href: api/CoreRelm.Interfaces.IRelmModel.html#CoreRelm_Interfaces_IRelmModel_GetUnderscoreProperties_
-  commentId: Overload:CoreRelm.Interfaces.IRelmModel.GetUnderscoreProperties
-  isSpec: "True"
-  fullName: CoreRelm.Interfaces.IRelmModel.GetUnderscoreProperties
-  nameWithType: IRelmModel.GetUnderscoreProperties
 - uid: CoreRelm.Interfaces.IRelmModel.Id
   name: Id
   href: api/CoreRelm.Interfaces.IRelmModel.html#CoreRelm_Interfaces_IRelmModel_Id
@@ -5353,108 +5371,6 @@ references:
   isSpec: "True"
   fullName: CoreRelm.Interfaces.IRelmModel.ResetCoreAttributes
   nameWithType: IRelmModel.ResetCoreAttributes
-- uid: CoreRelm.Interfaces.IRelmModel.ResetWithData(System.Data.DataRow,System.String)
-  name: ResetWithData(DataRow, string?)
-  href: api/CoreRelm.Interfaces.IRelmModel.html#CoreRelm_Interfaces_IRelmModel_ResetWithData_System_Data_DataRow_System_String_
-  commentId: M:CoreRelm.Interfaces.IRelmModel.ResetWithData(System.Data.DataRow,System.String)
-  name.vb: ResetWithData(DataRow, String)
-  fullName: CoreRelm.Interfaces.IRelmModel.ResetWithData(System.Data.DataRow, string?)
-  fullName.vb: CoreRelm.Interfaces.IRelmModel.ResetWithData(System.Data.DataRow, String)
-  nameWithType: IRelmModel.ResetWithData(DataRow, string?)
-  nameWithType.vb: IRelmModel.ResetWithData(DataRow, String)
-- uid: CoreRelm.Interfaces.IRelmModel.ResetWithData*
-  name: ResetWithData
-  href: api/CoreRelm.Interfaces.IRelmModel.html#CoreRelm_Interfaces_IRelmModel_ResetWithData_
-  commentId: Overload:CoreRelm.Interfaces.IRelmModel.ResetWithData
-  isSpec: "True"
-  fullName: CoreRelm.Interfaces.IRelmModel.ResetWithData
-  nameWithType: IRelmModel.ResetWithData
-- uid: CoreRelm.Interfaces.IRelmModel.WriteToDatabase(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  name: WriteToDatabase(IRelmContext, int, bool, bool, bool, bool)
-  href: api/CoreRelm.Interfaces.IRelmModel.html#CoreRelm_Interfaces_IRelmModel_WriteToDatabase_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
-  commentId: M:CoreRelm.Interfaces.IRelmModel.WriteToDatabase(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  name.vb: WriteToDatabase(IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean)
-  fullName: CoreRelm.Interfaces.IRelmModel.WriteToDatabase(CoreRelm.Interfaces.IRelmContext, int, bool, bool, bool, bool)
-  fullName.vb: CoreRelm.Interfaces.IRelmModel.WriteToDatabase(CoreRelm.Interfaces.IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean)
-  nameWithType: IRelmModel.WriteToDatabase(IRelmContext, int, bool, bool, bool, bool)
-  nameWithType.vb: IRelmModel.WriteToDatabase(IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean)
-- uid: CoreRelm.Interfaces.IRelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  name: WriteToDatabase(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool)
-  href: api/CoreRelm.Interfaces.IRelmModel.html#CoreRelm_Interfaces_IRelmModel_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
-  commentId: M:CoreRelm.Interfaces.IRelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  name.vb: WriteToDatabase(MySqlConnection, MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean)
-  fullName: CoreRelm.Interfaces.IRelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, int, bool, bool, bool, bool)
-  fullName.vb: CoreRelm.Interfaces.IRelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean)
-  nameWithType: IRelmModel.WriteToDatabase(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool)
-  nameWithType.vb: IRelmModel.WriteToDatabase(MySqlConnection, MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean)
-- uid: CoreRelm.Interfaces.IRelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  name: WriteToDatabase(MySqlConnection, int, bool, bool, bool, bool)
-  href: api/CoreRelm.Interfaces.IRelmModel.html#CoreRelm_Interfaces_IRelmModel_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
-  commentId: M:CoreRelm.Interfaces.IRelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  name.vb: WriteToDatabase(MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean)
-  fullName: CoreRelm.Interfaces.IRelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection, int, bool, bool, bool, bool)
-  fullName.vb: CoreRelm.Interfaces.IRelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean)
-  nameWithType: IRelmModel.WriteToDatabase(MySqlConnection, int, bool, bool, bool, bool)
-  nameWithType.vb: IRelmModel.WriteToDatabase(MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean)
-- uid: CoreRelm.Interfaces.IRelmModel.WriteToDatabase(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  name: WriteToDatabase(Enum, int, bool, bool, bool, bool)
-  href: api/CoreRelm.Interfaces.IRelmModel.html#CoreRelm_Interfaces_IRelmModel_WriteToDatabase_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
-  commentId: M:CoreRelm.Interfaces.IRelmModel.WriteToDatabase(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  name.vb: WriteToDatabase(Enum, Integer, Boolean, Boolean, Boolean, Boolean)
-  fullName: CoreRelm.Interfaces.IRelmModel.WriteToDatabase(System.Enum, int, bool, bool, bool, bool)
-  fullName.vb: CoreRelm.Interfaces.IRelmModel.WriteToDatabase(System.Enum, Integer, Boolean, Boolean, Boolean, Boolean)
-  nameWithType: IRelmModel.WriteToDatabase(Enum, int, bool, bool, bool, bool)
-  nameWithType.vb: IRelmModel.WriteToDatabase(Enum, Integer, Boolean, Boolean, Boolean, Boolean)
-- uid: CoreRelm.Interfaces.IRelmModel.WriteToDatabase*
-  name: WriteToDatabase
-  href: api/CoreRelm.Interfaces.IRelmModel.html#CoreRelm_Interfaces_IRelmModel_WriteToDatabase_
-  commentId: Overload:CoreRelm.Interfaces.IRelmModel.WriteToDatabase
-  isSpec: "True"
-  fullName: CoreRelm.Interfaces.IRelmModel.WriteToDatabase
-  nameWithType: IRelmModel.WriteToDatabase
-- uid: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  name: WriteToDatabaseAsync(IRelmContext, int, bool, bool, bool, bool, CancellationToken)
-  href: api/CoreRelm.Interfaces.IRelmModel.html#CoreRelm_Interfaces_IRelmModel_WriteToDatabaseAsync_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
-  commentId: M:CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  name.vb: WriteToDatabaseAsync(IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
-  fullName: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext, int, bool, bool, bool, bool, System.Threading.CancellationToken)
-  fullName.vb: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean, System.Threading.CancellationToken)
-  nameWithType: IRelmModel.WriteToDatabaseAsync(IRelmContext, int, bool, bool, bool, bool, CancellationToken)
-  nameWithType.vb: IRelmModel.WriteToDatabaseAsync(IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
-- uid: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  name: WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool, CancellationToken)
-  href: api/CoreRelm.Interfaces.IRelmModel.html#CoreRelm_Interfaces_IRelmModel_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
-  commentId: M:CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  name.vb: WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
-  fullName: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, int, bool, bool, bool, bool, System.Threading.CancellationToken)
-  fullName.vb: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean, System.Threading.CancellationToken)
-  nameWithType: IRelmModel.WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool, CancellationToken)
-  nameWithType.vb: IRelmModel.WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
-- uid: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  name: WriteToDatabaseAsync(MySqlConnection, int, bool, bool, bool, bool, CancellationToken)
-  href: api/CoreRelm.Interfaces.IRelmModel.html#CoreRelm_Interfaces_IRelmModel_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
-  commentId: M:CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  name.vb: WriteToDatabaseAsync(MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
-  fullName: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection, int, bool, bool, bool, bool, System.Threading.CancellationToken)
-  fullName.vb: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean, System.Threading.CancellationToken)
-  nameWithType: IRelmModel.WriteToDatabaseAsync(MySqlConnection, int, bool, bool, bool, bool, CancellationToken)
-  nameWithType.vb: IRelmModel.WriteToDatabaseAsync(MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
-- uid: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  name: WriteToDatabaseAsync(Enum, int, bool, bool, bool, bool, CancellationToken)
-  href: api/CoreRelm.Interfaces.IRelmModel.html#CoreRelm_Interfaces_IRelmModel_WriteToDatabaseAsync_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
-  commentId: M:CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  name.vb: WriteToDatabaseAsync(Enum, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
-  fullName: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(System.Enum, int, bool, bool, bool, bool, System.Threading.CancellationToken)
-  fullName.vb: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync(System.Enum, Integer, Boolean, Boolean, Boolean, Boolean, System.Threading.CancellationToken)
-  nameWithType: IRelmModel.WriteToDatabaseAsync(Enum, int, bool, bool, bool, bool, CancellationToken)
-  nameWithType.vb: IRelmModel.WriteToDatabaseAsync(Enum, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
-- uid: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync*
-  name: WriteToDatabaseAsync
-  href: api/CoreRelm.Interfaces.IRelmModel.html#CoreRelm_Interfaces_IRelmModel_WriteToDatabaseAsync_
-  commentId: Overload:CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync
-  isSpec: "True"
-  fullName: CoreRelm.Interfaces.IRelmModel.WriteToDatabaseAsync
-  nameWithType: IRelmModel.WriteToDatabaseAsync
 - uid: CoreRelm.Interfaces.IRelmModelApartment
   name: IRelmModelApartment
   href: api/CoreRelm.Interfaces.IRelmModelApartment.html
@@ -5526,6 +5442,146 @@ references:
   isSpec: "True"
   fullName: CoreRelm.Interfaces.IRelmModelApartment.UserName
   nameWithType: IRelmModelApartment.UserName
+- uid: CoreRelm.Interfaces.IRelmModelClean
+  name: IRelmModelClean
+  href: api/CoreRelm.Interfaces.IRelmModelClean.html
+  commentId: T:CoreRelm.Interfaces.IRelmModelClean
+  fullName: CoreRelm.Interfaces.IRelmModelClean
+  nameWithType: IRelmModelClean
+- uid: CoreRelm.Interfaces.IRelmModelClean.GenerateDTO(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String,System.Func{CoreRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}},System.Int32)
+  name: GenerateDTO(IEnumerable<string>?, IEnumerable<string>?, string?, Func<IRelmModel, Dictionary<string, object>>?, int)
+  href: api/CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_GenerateDTO_System_Collections_Generic_IEnumerable_System_String__System_Collections_Generic_IEnumerable_System_String__System_String_System_Func_CoreRelm_Interfaces_IRelmModel_System_Collections_Generic_Dictionary_System_String_System_Object___System_Int32_
+  commentId: M:CoreRelm.Interfaces.IRelmModelClean.GenerateDTO(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String,System.Func{CoreRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}},System.Int32)
+  name.vb: GenerateDTO(IEnumerable(Of String), IEnumerable(Of String), String, Func(Of IRelmModel, Dictionary(Of String, Object)), Integer)
+  fullName: CoreRelm.Interfaces.IRelmModelClean.GenerateDTO(System.Collections.Generic.IEnumerable<string>?, System.Collections.Generic.IEnumerable<string>?, string?, System.Func<CoreRelm.Interfaces.IRelmModel, System.Collections.Generic.Dictionary<string, object>>?, int)
+  fullName.vb: CoreRelm.Interfaces.IRelmModelClean.GenerateDTO(System.Collections.Generic.IEnumerable(Of String), System.Collections.Generic.IEnumerable(Of String), String, System.Func(Of CoreRelm.Interfaces.IRelmModel, System.Collections.Generic.Dictionary(Of String, Object)), Integer)
+  nameWithType: IRelmModelClean.GenerateDTO(IEnumerable<string>?, IEnumerable<string>?, string?, Func<IRelmModel, Dictionary<string, object>>?, int)
+  nameWithType.vb: IRelmModelClean.GenerateDTO(IEnumerable(Of String), IEnumerable(Of String), String, Func(Of IRelmModel, Dictionary(Of String, Object)), Integer)
+- uid: CoreRelm.Interfaces.IRelmModelClean.GenerateDTO*
+  name: GenerateDTO
+  href: api/CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_GenerateDTO_
+  commentId: Overload:CoreRelm.Interfaces.IRelmModelClean.GenerateDTO
+  isSpec: "True"
+  fullName: CoreRelm.Interfaces.IRelmModelClean.GenerateDTO
+  nameWithType: IRelmModelClean.GenerateDTO
+- uid: CoreRelm.Interfaces.IRelmModelClean.GetUnderscoreProperties(System.Boolean)
+  name: GetUnderscoreProperties(bool)
+  href: api/CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_GetUnderscoreProperties_System_Boolean_
+  commentId: M:CoreRelm.Interfaces.IRelmModelClean.GetUnderscoreProperties(System.Boolean)
+  name.vb: GetUnderscoreProperties(Boolean)
+  fullName: CoreRelm.Interfaces.IRelmModelClean.GetUnderscoreProperties(bool)
+  fullName.vb: CoreRelm.Interfaces.IRelmModelClean.GetUnderscoreProperties(Boolean)
+  nameWithType: IRelmModelClean.GetUnderscoreProperties(bool)
+  nameWithType.vb: IRelmModelClean.GetUnderscoreProperties(Boolean)
+- uid: CoreRelm.Interfaces.IRelmModelClean.GetUnderscoreProperties*
+  name: GetUnderscoreProperties
+  href: api/CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_GetUnderscoreProperties_
+  commentId: Overload:CoreRelm.Interfaces.IRelmModelClean.GetUnderscoreProperties
+  isSpec: "True"
+  fullName: CoreRelm.Interfaces.IRelmModelClean.GetUnderscoreProperties
+  nameWithType: IRelmModelClean.GetUnderscoreProperties
+- uid: CoreRelm.Interfaces.IRelmModelClean.ResetWithData(System.Data.DataRow,System.String)
+  name: ResetWithData(DataRow, string?)
+  href: api/CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_ResetWithData_System_Data_DataRow_System_String_
+  commentId: M:CoreRelm.Interfaces.IRelmModelClean.ResetWithData(System.Data.DataRow,System.String)
+  name.vb: ResetWithData(DataRow, String)
+  fullName: CoreRelm.Interfaces.IRelmModelClean.ResetWithData(System.Data.DataRow, string?)
+  fullName.vb: CoreRelm.Interfaces.IRelmModelClean.ResetWithData(System.Data.DataRow, String)
+  nameWithType: IRelmModelClean.ResetWithData(DataRow, string?)
+  nameWithType.vb: IRelmModelClean.ResetWithData(DataRow, String)
+- uid: CoreRelm.Interfaces.IRelmModelClean.ResetWithData*
+  name: ResetWithData
+  href: api/CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_ResetWithData_
+  commentId: Overload:CoreRelm.Interfaces.IRelmModelClean.ResetWithData
+  isSpec: "True"
+  fullName: CoreRelm.Interfaces.IRelmModelClean.ResetWithData
+  nameWithType: IRelmModelClean.ResetWithData
+- uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  name: WriteToDatabase(IRelmContext, int, bool, bool, bool, bool)
+  href: api/CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabase_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  commentId: M:CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  name.vb: WriteToDatabase(IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean)
+  fullName: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(CoreRelm.Interfaces.IRelmContext, int, bool, bool, bool, bool)
+  fullName.vb: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(CoreRelm.Interfaces.IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean)
+  nameWithType: IRelmModelClean.WriteToDatabase(IRelmContext, int, bool, bool, bool, bool)
+  nameWithType.vb: IRelmModelClean.WriteToDatabase(IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean)
+- uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  name: WriteToDatabase(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool)
+  href: api/CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  commentId: M:CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  name.vb: WriteToDatabase(MySqlConnection, MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean)
+  fullName: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, int, bool, bool, bool, bool)
+  fullName.vb: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean)
+  nameWithType: IRelmModelClean.WriteToDatabase(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool)
+  nameWithType.vb: IRelmModelClean.WriteToDatabase(MySqlConnection, MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean)
+- uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  name: WriteToDatabase(MySqlConnection, int, bool, bool, bool, bool)
+  href: api/CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  commentId: M:CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  name.vb: WriteToDatabase(MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean)
+  fullName: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection, int, bool, bool, bool, bool)
+  fullName.vb: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean)
+  nameWithType: IRelmModelClean.WriteToDatabase(MySqlConnection, int, bool, bool, bool, bool)
+  nameWithType.vb: IRelmModelClean.WriteToDatabase(MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean)
+- uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  name: WriteToDatabase(Enum, int, bool, bool, bool, bool)
+  href: api/CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabase_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  commentId: M:CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  name.vb: WriteToDatabase(Enum, Integer, Boolean, Boolean, Boolean, Boolean)
+  fullName: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(System.Enum, int, bool, bool, bool, bool)
+  fullName.vb: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase(System.Enum, Integer, Boolean, Boolean, Boolean, Boolean)
+  nameWithType: IRelmModelClean.WriteToDatabase(Enum, int, bool, bool, bool, bool)
+  nameWithType.vb: IRelmModelClean.WriteToDatabase(Enum, Integer, Boolean, Boolean, Boolean, Boolean)
+- uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase*
+  name: WriteToDatabase
+  href: api/CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabase_
+  commentId: Overload:CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase
+  isSpec: "True"
+  fullName: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabase
+  nameWithType: IRelmModelClean.WriteToDatabase
+- uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  name: WriteToDatabaseAsync(IRelmContext, int, bool, bool, bool, bool, CancellationToken)
+  href: api/CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabaseAsync_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  commentId: M:CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  name.vb: WriteToDatabaseAsync(IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+  fullName: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext, int, bool, bool, bool, bool, System.Threading.CancellationToken)
+  fullName.vb: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean, System.Threading.CancellationToken)
+  nameWithType: IRelmModelClean.WriteToDatabaseAsync(IRelmContext, int, bool, bool, bool, bool, CancellationToken)
+  nameWithType.vb: IRelmModelClean.WriteToDatabaseAsync(IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+- uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  name: WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool, CancellationToken)
+  href: api/CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  commentId: M:CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  name.vb: WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+  fullName: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, int, bool, bool, bool, bool, System.Threading.CancellationToken)
+  fullName.vb: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean, System.Threading.CancellationToken)
+  nameWithType: IRelmModelClean.WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool, CancellationToken)
+  nameWithType.vb: IRelmModelClean.WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+- uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  name: WriteToDatabaseAsync(MySqlConnection, int, bool, bool, bool, bool, CancellationToken)
+  href: api/CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  commentId: M:CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  name.vb: WriteToDatabaseAsync(MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+  fullName: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection, int, bool, bool, bool, bool, System.Threading.CancellationToken)
+  fullName.vb: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean, System.Threading.CancellationToken)
+  nameWithType: IRelmModelClean.WriteToDatabaseAsync(MySqlConnection, int, bool, bool, bool, bool, CancellationToken)
+  nameWithType.vb: IRelmModelClean.WriteToDatabaseAsync(MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+- uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  name: WriteToDatabaseAsync(Enum, int, bool, bool, bool, bool, CancellationToken)
+  href: api/CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabaseAsync_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  commentId: M:CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  name.vb: WriteToDatabaseAsync(Enum, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+  fullName: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(System.Enum, int, bool, bool, bool, bool, System.Threading.CancellationToken)
+  fullName.vb: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync(System.Enum, Integer, Boolean, Boolean, Boolean, Boolean, System.Threading.CancellationToken)
+  nameWithType: IRelmModelClean.WriteToDatabaseAsync(Enum, int, bool, bool, bool, bool, CancellationToken)
+  nameWithType.vb: IRelmModelClean.WriteToDatabaseAsync(Enum, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+- uid: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync*
+  name: WriteToDatabaseAsync
+  href: api/CoreRelm.Interfaces.IRelmModelClean.html#CoreRelm_Interfaces_IRelmModelClean_WriteToDatabaseAsync_
+  commentId: Overload:CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync
+  isSpec: "True"
+  fullName: CoreRelm.Interfaces.IRelmModelClean.WriteToDatabaseAsync
+  nameWithType: IRelmModelClean.WriteToDatabaseAsync
 - uid: CoreRelm.Interfaces.Metadata
   name: CoreRelm.Interfaces.Metadata
   href: api/CoreRelm.Interfaces.Metadata.html
@@ -5632,15 +5688,15 @@ references:
   commentId: T:CoreRelm.Interfaces.Migrations.IMigrationSqlProvider
   fullName: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider
   nameWithType: IMigrationSqlProvider
-- uid: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
-  name: Generate(List<ValidatedModelType>)
-  href: api/CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.html#CoreRelm_Interfaces_Migrations_IMigrationSqlProvider_Generate_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__
-  commentId: M:CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
-  name.vb: Generate(List(Of ValidatedModelType))
-  fullName: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(System.Collections.Generic.List<CoreRelm.Models.Migrations.ValidatedModelType>)
-  fullName.vb: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(System.Collections.Generic.List(Of CoreRelm.Models.Migrations.ValidatedModelType))
-  nameWithType: IMigrationSqlProvider.Generate(List<ValidatedModelType>)
-  nameWithType.vb: IMigrationSqlProvider.Generate(List(Of ValidatedModelType))
+- uid: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},System.String)
+  name: Generate(List<ValidatedModelType>, string)
+  href: api/CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.html#CoreRelm_Interfaces_Migrations_IMigrationSqlProvider_Generate_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__System_String_
+  commentId: M:CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},System.String)
+  name.vb: Generate(List(Of ValidatedModelType), String)
+  fullName: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(System.Collections.Generic.List<CoreRelm.Models.Migrations.ValidatedModelType>, string)
+  fullName.vb: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate(System.Collections.Generic.List(Of CoreRelm.Models.Migrations.ValidatedModelType), String)
+  nameWithType: IMigrationSqlProvider.Generate(List<ValidatedModelType>, string)
+  nameWithType.vb: IMigrationSqlProvider.Generate(List(Of ValidatedModelType), String)
 - uid: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate*
   name: Generate
   href: api/CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.html#CoreRelm_Interfaces_Migrations_IMigrationSqlProvider_Generate_
@@ -5648,15 +5704,15 @@ references:
   isSpec: "True"
   fullName: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.Generate
   nameWithType: IMigrationSqlProvider.Generate
-- uid: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.GenerateAsync(System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
-  name: GenerateAsync(List<ValidatedModelType>)
-  href: api/CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.html#CoreRelm_Interfaces_Migrations_IMigrationSqlProvider_GenerateAsync_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__
-  commentId: M:CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.GenerateAsync(System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType})
-  name.vb: GenerateAsync(List(Of ValidatedModelType))
-  fullName: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.GenerateAsync(System.Collections.Generic.List<CoreRelm.Models.Migrations.ValidatedModelType>)
-  fullName.vb: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.GenerateAsync(System.Collections.Generic.List(Of CoreRelm.Models.Migrations.ValidatedModelType))
-  nameWithType: IMigrationSqlProvider.GenerateAsync(List<ValidatedModelType>)
-  nameWithType.vb: IMigrationSqlProvider.GenerateAsync(List(Of ValidatedModelType))
+- uid: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.GenerateAsync(System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},System.String)
+  name: GenerateAsync(List<ValidatedModelType>, string)
+  href: api/CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.html#CoreRelm_Interfaces_Migrations_IMigrationSqlProvider_GenerateAsync_System_Collections_Generic_List_CoreRelm_Models_Migrations_ValidatedModelType__System_String_
+  commentId: M:CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.GenerateAsync(System.Collections.Generic.List{CoreRelm.Models.Migrations.ValidatedModelType},System.String)
+  name.vb: GenerateAsync(List(Of ValidatedModelType), String)
+  fullName: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.GenerateAsync(System.Collections.Generic.List<CoreRelm.Models.Migrations.ValidatedModelType>, string)
+  fullName.vb: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.GenerateAsync(System.Collections.Generic.List(Of CoreRelm.Models.Migrations.ValidatedModelType), String)
+  nameWithType: IMigrationSqlProvider.GenerateAsync(List<ValidatedModelType>, string)
+  nameWithType.vb: IMigrationSqlProvider.GenerateAsync(List(Of ValidatedModelType), String)
 - uid: CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.GenerateAsync*
   name: GenerateAsync
   href: api/CoreRelm.Interfaces.Migrations.IMigrationSqlProvider.html#CoreRelm_Interfaces_Migrations_IMigrationSqlProvider_GenerateAsync_
@@ -5867,12 +5923,12 @@ references:
   isSpec: "True"
   fullName: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.EnsureSchemaMigrationTableAsync
   nameWithType: IRelmSchemaMigrationsStore.EnsureSchemaMigrationTableAsync
-- uid: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.GetAppliedMigrationsAsync(CoreRelm.Models.RelmContext,System.Threading.CancellationToken)
-  name: GetAppliedMigrationsAsync(RelmContext, CancellationToken)
-  href: api/CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.html#CoreRelm_Interfaces_Migrations_IRelmSchemaMigrationsStore_GetAppliedMigrationsAsync_CoreRelm_Models_RelmContext_System_Threading_CancellationToken_
-  commentId: M:CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.GetAppliedMigrationsAsync(CoreRelm.Models.RelmContext,System.Threading.CancellationToken)
-  fullName: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.GetAppliedMigrationsAsync(CoreRelm.Models.RelmContext, System.Threading.CancellationToken)
-  nameWithType: IRelmSchemaMigrationsStore.GetAppliedMigrationsAsync(RelmContext, CancellationToken)
+- uid: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.GetAppliedMigrationsAsync(CoreRelm.Interfaces.IRelmContext,System.Threading.CancellationToken)
+  name: GetAppliedMigrationsAsync(IRelmContext, CancellationToken)
+  href: api/CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.html#CoreRelm_Interfaces_Migrations_IRelmSchemaMigrationsStore_GetAppliedMigrationsAsync_CoreRelm_Interfaces_IRelmContext_System_Threading_CancellationToken_
+  commentId: M:CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.GetAppliedMigrationsAsync(CoreRelm.Interfaces.IRelmContext,System.Threading.CancellationToken)
+  fullName: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.GetAppliedMigrationsAsync(CoreRelm.Interfaces.IRelmContext, System.Threading.CancellationToken)
+  nameWithType: IRelmSchemaMigrationsStore.GetAppliedMigrationsAsync(IRelmContext, CancellationToken)
 - uid: CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.GetAppliedMigrationsAsync*
   name: GetAppliedMigrationsAsync
   href: api/CoreRelm.Interfaces.Migrations.IRelmSchemaMigrationsStore.html#CoreRelm_Interfaces_Migrations_IRelmSchemaMigrationsStore_GetAppliedMigrationsAsync_
@@ -9174,15 +9230,15 @@ references:
   commentId: T:CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan
   fullName: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan
   nameWithType: MigrationPlan
-- uid: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.#ctor(System.String,System.String,System.String,CoreRelm.Enums.MigrationEnums.RelmMigrationType,System.Collections.Generic.IReadOnlyList{CoreRelm.Interfaces.Migrations.IMigrationOperation},System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyList{System.String},System.DateTime)
-  name: MigrationPlan(string, string, string, RelmMigrationType, IReadOnlyList<IMigrationOperation>, IReadOnlyList<string>, IReadOnlyList<string>, DateTime)
-  href: api/CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.html#CoreRelm_Models_Migrations_MigrationPlans_MigrationPlan__ctor_System_String_System_String_System_String_CoreRelm_Enums_MigrationEnums_RelmMigrationType_System_Collections_Generic_IReadOnlyList_CoreRelm_Interfaces_Migrations_IMigrationOperation__System_Collections_Generic_IReadOnlyList_System_String__System_Collections_Generic_IReadOnlyList_System_String__System_DateTime_
-  commentId: M:CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.#ctor(System.String,System.String,System.String,CoreRelm.Enums.MigrationEnums.RelmMigrationType,System.Collections.Generic.IReadOnlyList{CoreRelm.Interfaces.Migrations.IMigrationOperation},System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyList{System.String},System.DateTime)
-  name.vb: New(String, String, String, RelmMigrationType, IReadOnlyList(Of IMigrationOperation), IReadOnlyList(Of String), IReadOnlyList(Of String), Date)
-  fullName: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.MigrationPlan(string, string, string, CoreRelm.Enums.MigrationEnums.RelmMigrationType, System.Collections.Generic.IReadOnlyList<CoreRelm.Interfaces.Migrations.IMigrationOperation>, System.Collections.Generic.IReadOnlyList<string>, System.Collections.Generic.IReadOnlyList<string>, System.DateTime)
-  fullName.vb: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.New(String, String, String, CoreRelm.Enums.MigrationEnums.RelmMigrationType, System.Collections.Generic.IReadOnlyList(Of CoreRelm.Interfaces.Migrations.IMigrationOperation), System.Collections.Generic.IReadOnlyList(Of String), System.Collections.Generic.IReadOnlyList(Of String), Date)
-  nameWithType: MigrationPlan.MigrationPlan(string, string, string, MigrationEnums.RelmMigrationType, IReadOnlyList<IMigrationOperation>, IReadOnlyList<string>, IReadOnlyList<string>, DateTime)
-  nameWithType.vb: MigrationPlan.New(String, String, String, MigrationEnums.RelmMigrationType, IReadOnlyList(Of IMigrationOperation), IReadOnlyList(Of String), IReadOnlyList(Of String), Date)
+- uid: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.#ctor(System.String,System.String,System.String,System.String,CoreRelm.Enums.MigrationEnums.RelmMigrationType,System.Collections.Generic.IReadOnlyList{CoreRelm.Interfaces.Migrations.IMigrationOperation},System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyList{System.String},System.DateTime)
+  name: MigrationPlan(string, string, string, string, RelmMigrationType, IReadOnlyList<IMigrationOperation>, IReadOnlyList<string>, IReadOnlyList<string>, DateTime)
+  href: api/CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.html#CoreRelm_Models_Migrations_MigrationPlans_MigrationPlan__ctor_System_String_System_String_System_String_System_String_CoreRelm_Enums_MigrationEnums_RelmMigrationType_System_Collections_Generic_IReadOnlyList_CoreRelm_Interfaces_Migrations_IMigrationOperation__System_Collections_Generic_IReadOnlyList_System_String__System_Collections_Generic_IReadOnlyList_System_String__System_DateTime_
+  commentId: M:CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.#ctor(System.String,System.String,System.String,System.String,CoreRelm.Enums.MigrationEnums.RelmMigrationType,System.Collections.Generic.IReadOnlyList{CoreRelm.Interfaces.Migrations.IMigrationOperation},System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyList{System.String},System.DateTime)
+  name.vb: New(String, String, String, String, RelmMigrationType, IReadOnlyList(Of IMigrationOperation), IReadOnlyList(Of String), IReadOnlyList(Of String), Date)
+  fullName: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.MigrationPlan(string, string, string, string, CoreRelm.Enums.MigrationEnums.RelmMigrationType, System.Collections.Generic.IReadOnlyList<CoreRelm.Interfaces.Migrations.IMigrationOperation>, System.Collections.Generic.IReadOnlyList<string>, System.Collections.Generic.IReadOnlyList<string>, System.DateTime)
+  fullName.vb: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.New(String, String, String, String, CoreRelm.Enums.MigrationEnums.RelmMigrationType, System.Collections.Generic.IReadOnlyList(Of CoreRelm.Interfaces.Migrations.IMigrationOperation), System.Collections.Generic.IReadOnlyList(Of String), System.Collections.Generic.IReadOnlyList(Of String), Date)
+  nameWithType: MigrationPlan.MigrationPlan(string, string, string, string, MigrationEnums.RelmMigrationType, IReadOnlyList<IMigrationOperation>, IReadOnlyList<string>, IReadOnlyList<string>, DateTime)
+  nameWithType.vb: MigrationPlan.New(String, String, String, String, MigrationEnums.RelmMigrationType, IReadOnlyList(Of IMigrationOperation), IReadOnlyList(Of String), IReadOnlyList(Of String), Date)
 - uid: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.#ctor*
   name: MigrationPlan
   href: api/CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.html#CoreRelm_Models_Migrations_MigrationPlans_MigrationPlan__ctor_
@@ -9232,6 +9288,19 @@ references:
   isSpec: "True"
   fullName: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.HasChanges
   nameWithType: MigrationPlan.HasChanges
+- uid: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.MigrationFileName
+  name: MigrationFileName
+  href: api/CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.html#CoreRelm_Models_Migrations_MigrationPlans_MigrationPlan_MigrationFileName
+  commentId: P:CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.MigrationFileName
+  fullName: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.MigrationFileName
+  nameWithType: MigrationPlan.MigrationFileName
+- uid: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.MigrationFileName*
+  name: MigrationFileName
+  href: api/CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.html#CoreRelm_Models_Migrations_MigrationPlans_MigrationPlan_MigrationFileName_
+  commentId: Overload:CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.MigrationFileName
+  isSpec: "True"
+  fullName: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.MigrationFileName
+  nameWithType: MigrationPlan.MigrationFileName
 - uid: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.MigrationName
   name: MigrationName
   href: api/CoreRelm.Models.Migrations.MigrationPlans.MigrationPlan.html#CoreRelm_Models_Migrations_MigrationPlans_MigrationPlan_MigrationName
@@ -9316,15 +9385,15 @@ references:
   commentId: T:CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions
   fullName: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions
   nameWithType: MigrationPlanOptions
-- uid: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.#ctor(System.Boolean,System.Boolean,System.String,System.String,System.Collections.Generic.ISet{System.String},System.DateTime)
-  name: MigrationPlanOptions(bool, bool, string, string, ISet<string>, DateTime)
-  href: api/CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.html#CoreRelm_Models_Migrations_MigrationPlans_MigrationPlanOptions__ctor_System_Boolean_System_Boolean_System_String_System_String_System_Collections_Generic_ISet_System_String__System_DateTime_
-  commentId: M:CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.#ctor(System.Boolean,System.Boolean,System.String,System.String,System.Collections.Generic.ISet{System.String},System.DateTime)
-  name.vb: New(Boolean, Boolean, String, String, ISet(Of String), Date)
-  fullName: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.MigrationPlanOptions(bool, bool, string, string, System.Collections.Generic.ISet<string>, System.DateTime)
-  fullName.vb: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.New(Boolean, Boolean, String, String, System.Collections.Generic.ISet(Of String), Date)
-  nameWithType: MigrationPlanOptions.MigrationPlanOptions(bool, bool, string, string, ISet<string>, DateTime)
-  nameWithType.vb: MigrationPlanOptions.New(Boolean, Boolean, String, String, ISet(Of String), Date)
+- uid: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.#ctor(System.Boolean,System.Boolean,System.String,System.String,System.String,System.Collections.Generic.ISet{System.String},System.DateTime)
+  name: MigrationPlanOptions(bool, bool, string, string, string, ISet<string>, DateTime)
+  href: api/CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.html#CoreRelm_Models_Migrations_MigrationPlans_MigrationPlanOptions__ctor_System_Boolean_System_Boolean_System_String_System_String_System_String_System_Collections_Generic_ISet_System_String__System_DateTime_
+  commentId: M:CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.#ctor(System.Boolean,System.Boolean,System.String,System.String,System.String,System.Collections.Generic.ISet{System.String},System.DateTime)
+  name.vb: New(Boolean, Boolean, String, String, String, ISet(Of String), Date)
+  fullName: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.MigrationPlanOptions(bool, bool, string, string, string, System.Collections.Generic.ISet<string>, System.DateTime)
+  fullName.vb: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.New(Boolean, Boolean, String, String, String, System.Collections.Generic.ISet(Of String), Date)
+  nameWithType: MigrationPlanOptions.MigrationPlanOptions(bool, bool, string, string, string, ISet<string>, DateTime)
+  nameWithType.vb: MigrationPlanOptions.New(Boolean, Boolean, String, String, String, ISet(Of String), Date)
 - uid: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.#ctor*
   name: MigrationPlanOptions
   href: api/CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.html#CoreRelm_Models_Migrations_MigrationPlans_MigrationPlanOptions__ctor_
@@ -9361,6 +9430,19 @@ references:
   isSpec: "True"
   fullName: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.DropFunctionsOnCreate
   nameWithType: MigrationPlanOptions.DropFunctionsOnCreate
+- uid: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.MigrationFileName
+  name: MigrationFileName
+  href: api/CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.html#CoreRelm_Models_Migrations_MigrationPlans_MigrationPlanOptions_MigrationFileName
+  commentId: P:CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.MigrationFileName
+  fullName: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.MigrationFileName
+  nameWithType: MigrationPlanOptions.MigrationFileName
+- uid: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.MigrationFileName*
+  name: MigrationFileName
+  href: api/CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.html#CoreRelm_Models_Migrations_MigrationPlans_MigrationPlanOptions_MigrationFileName_
+  commentId: Overload:CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.MigrationFileName
+  isSpec: "True"
+  fullName: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.MigrationFileName
+  nameWithType: MigrationPlanOptions.MigrationFileName
 - uid: CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.MigrationName
   name: MigrationName
   href: api/CoreRelm.Models.Migrations.MigrationPlans.MigrationPlanOptions.html#CoreRelm_Models_Migrations_MigrationPlans_MigrationPlanOptions_MigrationName
@@ -12011,15 +12093,15 @@ references:
   commentId: T:CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions
   fullName: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions
   nameWithType: GenerateMigrationsOptions
-- uid: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.Nullable{System.DateTime},System.Boolean,System.Threading.CancellationToken)
-  name: GenerateMigrationsOptions(string?, string?, string?, bool, bool, bool, bool, string, DateTime?, bool, CancellationToken)
-  href: api/CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.html#CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions__ctor_System_String_System_String_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_String_System_Nullable_System_DateTime__System_Boolean_System_Threading_CancellationToken_
-  commentId: M:CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.Nullable{System.DateTime},System.Boolean,System.Threading.CancellationToken)
-  name.vb: New(String, String, String, Boolean, Boolean, Boolean, Boolean, String, Date?, Boolean, CancellationToken)
-  fullName: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.GenerateMigrationsOptions(string?, string?, string?, bool, bool, bool, bool, string, System.DateTime?, bool, System.Threading.CancellationToken)
-  fullName.vb: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.New(String, String, String, Boolean, Boolean, Boolean, Boolean, String, Date?, Boolean, System.Threading.CancellationToken)
-  nameWithType: GenerateMigrationsOptions.GenerateMigrationsOptions(string?, string?, string?, bool, bool, bool, bool, string, DateTime?, bool, CancellationToken)
-  nameWithType.vb: GenerateMigrationsOptions.New(String, String, String, Boolean, Boolean, Boolean, Boolean, String, Date?, Boolean, CancellationToken)
+- uid: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.String,System.Nullable{System.DateTime},System.Boolean,System.Threading.CancellationToken)
+  name: GenerateMigrationsOptions(string?, string?, string?, bool, bool, bool, bool, string, string, DateTime?, bool, CancellationToken)
+  href: api/CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.html#CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions__ctor_System_String_System_String_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_String_System_String_System_Nullable_System_DateTime__System_Boolean_System_Threading_CancellationToken_
+  commentId: M:CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.String,System.Nullable{System.DateTime},System.Boolean,System.Threading.CancellationToken)
+  name.vb: New(String, String, String, Boolean, Boolean, Boolean, Boolean, String, String, Date?, Boolean, CancellationToken)
+  fullName: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.GenerateMigrationsOptions(string?, string?, string?, bool, bool, bool, bool, string, string, System.DateTime?, bool, System.Threading.CancellationToken)
+  fullName.vb: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.New(String, String, String, Boolean, Boolean, Boolean, Boolean, String, String, Date?, Boolean, System.Threading.CancellationToken)
+  nameWithType: GenerateMigrationsOptions.GenerateMigrationsOptions(string?, string?, string?, bool, bool, bool, bool, string, string, DateTime?, bool, CancellationToken)
+  nameWithType.vb: GenerateMigrationsOptions.New(String, String, String, Boolean, Boolean, Boolean, Boolean, String, String, Date?, Boolean, CancellationToken)
 - uid: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.#ctor*
   name: GenerateMigrationsOptions
   href: api/CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.html#CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions__ctor_
@@ -12134,6 +12216,19 @@ references:
   isSpec: "True"
   fullName: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.IncludeUseDatabase
   nameWithType: GenerateMigrationsOptions.IncludeUseDatabase
+- uid: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.MigrationFileName
+  name: MigrationFileName
+  href: api/CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.html#CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_MigrationFileName
+  commentId: P:CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.MigrationFileName
+  fullName: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.MigrationFileName
+  nameWithType: GenerateMigrationsOptions.MigrationFileName
+- uid: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.MigrationFileName*
+  name: MigrationFileName
+  href: api/CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.html#CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_MigrationFileName_
+  commentId: Overload:CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.MigrationFileName
+  isSpec: "True"
+  fullName: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.MigrationFileName
+  nameWithType: GenerateMigrationsOptions.MigrationFileName
 - uid: CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.MigrationName
   name: MigrationName
   href: api/CoreRelm.Models.Migrations.Tooling.Generation.GenerateMigrationsOptions.html#CoreRelm_Models_Migrations_Tooling_Generation_GenerateMigrationsOptions_MigrationName
@@ -14873,22 +14968,6 @@ references:
   isSpec: "True"
   fullName: CoreRelm.Models.RelmModel.Active
   nameWithType: RelmModel.Active
-- uid: CoreRelm.Models.RelmModel.CopyFromSource*
-  name: CopyFromSource
-  href: api/CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_CopyFromSource_
-  commentId: Overload:CoreRelm.Models.RelmModel.CopyFromSource
-  isSpec: "True"
-  fullName: CoreRelm.Models.RelmModel.CopyFromSource
-  nameWithType: RelmModel.CopyFromSource
-- uid: CoreRelm.Models.RelmModel.CopyFromSource``1(``0)
-  name: CopyFromSource<T>(T)
-  href: api/CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_CopyFromSource__1___0_
-  commentId: M:CoreRelm.Models.RelmModel.CopyFromSource``1(``0)
-  name.vb: CopyFromSource(Of T)(T)
-  fullName: CoreRelm.Models.RelmModel.CopyFromSource<T>(T)
-  fullName.vb: CoreRelm.Models.RelmModel.CopyFromSource(Of T)(T)
-  nameWithType: RelmModel.CopyFromSource<T>(T)
-  nameWithType.vb: RelmModel.CopyFromSource(Of T)(T)
 - uid: CoreRelm.Models.RelmModel.CreateDate
   name: CreateDate
   href: api/CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_CreateDate
@@ -14902,57 +14981,6 @@ references:
   isSpec: "True"
   fullName: CoreRelm.Models.RelmModel.CreateDate
   nameWithType: RelmModel.CreateDate
-- uid: CoreRelm.Models.RelmModel.DtoTypeProcessor
-  name: DtoTypeProcessor
-  href: api/CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_DtoTypeProcessor
-  commentId: E:CoreRelm.Models.RelmModel.DtoTypeProcessor
-  fullName: CoreRelm.Models.RelmModel.DtoTypeProcessor
-  nameWithType: RelmModel.DtoTypeProcessor
-- uid: CoreRelm.Models.RelmModel.Duplicate
-  name: Duplicate()
-  href: api/CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_Duplicate
-  commentId: M:CoreRelm.Models.RelmModel.Duplicate
-  fullName: CoreRelm.Models.RelmModel.Duplicate()
-  nameWithType: RelmModel.Duplicate()
-- uid: CoreRelm.Models.RelmModel.Duplicate*
-  name: Duplicate
-  href: api/CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_Duplicate_
-  commentId: Overload:CoreRelm.Models.RelmModel.Duplicate
-  isSpec: "True"
-  fullName: CoreRelm.Models.RelmModel.Duplicate
-  nameWithType: RelmModel.Duplicate
-- uid: CoreRelm.Models.RelmModel.GenerateDTO(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String,System.Func{CoreRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}},System.Int32)
-  name: GenerateDTO(IEnumerable<string>?, IEnumerable<string>?, string?, Func<IRelmModel, Dictionary<string, object>>?, int)
-  href: api/CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_GenerateDTO_System_Collections_Generic_IEnumerable_System_String__System_Collections_Generic_IEnumerable_System_String__System_String_System_Func_CoreRelm_Interfaces_IRelmModel_System_Collections_Generic_Dictionary_System_String_System_Object___System_Int32_
-  commentId: M:CoreRelm.Models.RelmModel.GenerateDTO(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String,System.Func{CoreRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}},System.Int32)
-  name.vb: GenerateDTO(IEnumerable(Of String), IEnumerable(Of String), String, Func(Of IRelmModel, Dictionary(Of String, Object)), Integer)
-  fullName: CoreRelm.Models.RelmModel.GenerateDTO(System.Collections.Generic.IEnumerable<string>?, System.Collections.Generic.IEnumerable<string>?, string?, System.Func<CoreRelm.Interfaces.IRelmModel, System.Collections.Generic.Dictionary<string, object>>?, int)
-  fullName.vb: CoreRelm.Models.RelmModel.GenerateDTO(System.Collections.Generic.IEnumerable(Of String), System.Collections.Generic.IEnumerable(Of String), String, System.Func(Of CoreRelm.Interfaces.IRelmModel, System.Collections.Generic.Dictionary(Of String, Object)), Integer)
-  nameWithType: RelmModel.GenerateDTO(IEnumerable<string>?, IEnumerable<string>?, string?, Func<IRelmModel, Dictionary<string, object>>?, int)
-  nameWithType.vb: RelmModel.GenerateDTO(IEnumerable(Of String), IEnumerable(Of String), String, Func(Of IRelmModel, Dictionary(Of String, Object)), Integer)
-- uid: CoreRelm.Models.RelmModel.GenerateDTO*
-  name: GenerateDTO
-  href: api/CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_GenerateDTO_
-  commentId: Overload:CoreRelm.Models.RelmModel.GenerateDTO
-  isSpec: "True"
-  fullName: CoreRelm.Models.RelmModel.GenerateDTO
-  nameWithType: RelmModel.GenerateDTO
-- uid: CoreRelm.Models.RelmModel.GetUnderscoreProperties(System.Boolean)
-  name: GetUnderscoreProperties(bool)
-  href: api/CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_GetUnderscoreProperties_System_Boolean_
-  commentId: M:CoreRelm.Models.RelmModel.GetUnderscoreProperties(System.Boolean)
-  name.vb: GetUnderscoreProperties(Boolean)
-  fullName: CoreRelm.Models.RelmModel.GetUnderscoreProperties(bool)
-  fullName.vb: CoreRelm.Models.RelmModel.GetUnderscoreProperties(Boolean)
-  nameWithType: RelmModel.GetUnderscoreProperties(bool)
-  nameWithType.vb: RelmModel.GetUnderscoreProperties(Boolean)
-- uid: CoreRelm.Models.RelmModel.GetUnderscoreProperties*
-  name: GetUnderscoreProperties
-  href: api/CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_GetUnderscoreProperties_
-  commentId: Overload:CoreRelm.Models.RelmModel.GetUnderscoreProperties
-  isSpec: "True"
-  fullName: CoreRelm.Models.RelmModel.GetUnderscoreProperties
-  nameWithType: RelmModel.GetUnderscoreProperties
 - uid: CoreRelm.Models.RelmModel.Id
   name: Id
   href: api/CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_Id
@@ -15024,101 +15052,6 @@ references:
   isSpec: "True"
   fullName: CoreRelm.Models.RelmModel.ResetWithData
   nameWithType: RelmModel.ResetWithData
-- uid: CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  name: WriteToDatabase(IRelmContext, int, bool, bool, bool, bool)
-  href: api/CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
-  commentId: M:CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  name.vb: WriteToDatabase(IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean)
-  fullName: CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Interfaces.IRelmContext, int, bool, bool, bool, bool)
-  fullName.vb: CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Interfaces.IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean)
-  nameWithType: RelmModel.WriteToDatabase(IRelmContext, int, bool, bool, bool, bool)
-  nameWithType.vb: RelmModel.WriteToDatabase(IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean)
-- uid: CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Options.RelmContextOptions,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  name: WriteToDatabase(RelmContextOptions, int, bool, bool, bool, bool)
-  href: api/CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_CoreRelm_Options_RelmContextOptions_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
-  commentId: M:CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Options.RelmContextOptions,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  name.vb: WriteToDatabase(RelmContextOptions, Integer, Boolean, Boolean, Boolean, Boolean)
-  fullName: CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Options.RelmContextOptions, int, bool, bool, bool, bool)
-  fullName.vb: CoreRelm.Models.RelmModel.WriteToDatabase(CoreRelm.Options.RelmContextOptions, Integer, Boolean, Boolean, Boolean, Boolean)
-  nameWithType: RelmModel.WriteToDatabase(RelmContextOptions, int, bool, bool, bool, bool)
-  nameWithType.vb: RelmModel.WriteToDatabase(RelmContextOptions, Integer, Boolean, Boolean, Boolean, Boolean)
-- uid: CoreRelm.Models.RelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  name: WriteToDatabase(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool)
-  href: api/CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
-  commentId: M:CoreRelm.Models.RelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  name.vb: WriteToDatabase(MySqlConnection, MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean)
-  fullName: CoreRelm.Models.RelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, int, bool, bool, bool, bool)
-  fullName.vb: CoreRelm.Models.RelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean)
-  nameWithType: RelmModel.WriteToDatabase(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool)
-  nameWithType.vb: RelmModel.WriteToDatabase(MySqlConnection, MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean)
-- uid: CoreRelm.Models.RelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  name: WriteToDatabase(MySqlConnection, int, bool, bool, bool, bool)
-  href: api/CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
-  commentId: M:CoreRelm.Models.RelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  name.vb: WriteToDatabase(MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean)
-  fullName: CoreRelm.Models.RelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection, int, bool, bool, bool, bool)
-  fullName.vb: CoreRelm.Models.RelmModel.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean)
-  nameWithType: RelmModel.WriteToDatabase(MySqlConnection, int, bool, bool, bool, bool)
-  nameWithType.vb: RelmModel.WriteToDatabase(MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean)
-- uid: CoreRelm.Models.RelmModel.WriteToDatabase(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  name: WriteToDatabase(Enum, int, bool, bool, bool, bool)
-  href: api/CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
-  commentId: M:CoreRelm.Models.RelmModel.WriteToDatabase(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  name.vb: WriteToDatabase(Enum, Integer, Boolean, Boolean, Boolean, Boolean)
-  fullName: CoreRelm.Models.RelmModel.WriteToDatabase(System.Enum, int, bool, bool, bool, bool)
-  fullName.vb: CoreRelm.Models.RelmModel.WriteToDatabase(System.Enum, Integer, Boolean, Boolean, Boolean, Boolean)
-  nameWithType: RelmModel.WriteToDatabase(Enum, int, bool, bool, bool, bool)
-  nameWithType.vb: RelmModel.WriteToDatabase(Enum, Integer, Boolean, Boolean, Boolean, Boolean)
-- uid: CoreRelm.Models.RelmModel.WriteToDatabase*
-  name: WriteToDatabase
-  href: api/CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabase_
-  commentId: Overload:CoreRelm.Models.RelmModel.WriteToDatabase
-  isSpec: "True"
-  fullName: CoreRelm.Models.RelmModel.WriteToDatabase
-  nameWithType: RelmModel.WriteToDatabase
-- uid: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  name: WriteToDatabaseAsync(IRelmContext, int, bool, bool, bool, bool, CancellationToken)
-  href: api/CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabaseAsync_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
-  commentId: M:CoreRelm.Models.RelmModel.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  name.vb: WriteToDatabaseAsync(IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
-  fullName: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext, int, bool, bool, bool, bool, System.Threading.CancellationToken)
-  fullName.vb: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean, System.Threading.CancellationToken)
-  nameWithType: RelmModel.WriteToDatabaseAsync(IRelmContext, int, bool, bool, bool, bool, CancellationToken)
-  nameWithType.vb: RelmModel.WriteToDatabaseAsync(IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
-- uid: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  name: WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool, CancellationToken)
-  href: api/CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
-  commentId: M:CoreRelm.Models.RelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  name.vb: WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
-  fullName: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, int, bool, bool, bool, bool, System.Threading.CancellationToken)
-  fullName.vb: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean, System.Threading.CancellationToken)
-  nameWithType: RelmModel.WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool, CancellationToken)
-  nameWithType.vb: RelmModel.WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
-- uid: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  name: WriteToDatabaseAsync(MySqlConnection, int, bool, bool, bool, bool, CancellationToken)
-  href: api/CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
-  commentId: M:CoreRelm.Models.RelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  name.vb: WriteToDatabaseAsync(MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
-  fullName: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection, int, bool, bool, bool, bool, System.Threading.CancellationToken)
-  fullName.vb: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean, System.Threading.CancellationToken)
-  nameWithType: RelmModel.WriteToDatabaseAsync(MySqlConnection, int, bool, bool, bool, bool, CancellationToken)
-  nameWithType.vb: RelmModel.WriteToDatabaseAsync(MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
-- uid: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  name: WriteToDatabaseAsync(Enum, int, bool, bool, bool, bool, CancellationToken)
-  href: api/CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabaseAsync_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
-  commentId: M:CoreRelm.Models.RelmModel.WriteToDatabaseAsync(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
-  name.vb: WriteToDatabaseAsync(Enum, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
-  fullName: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(System.Enum, int, bool, bool, bool, bool, System.Threading.CancellationToken)
-  fullName.vb: CoreRelm.Models.RelmModel.WriteToDatabaseAsync(System.Enum, Integer, Boolean, Boolean, Boolean, Boolean, System.Threading.CancellationToken)
-  nameWithType: RelmModel.WriteToDatabaseAsync(Enum, int, bool, bool, bool, bool, CancellationToken)
-  nameWithType.vb: RelmModel.WriteToDatabaseAsync(Enum, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
-- uid: CoreRelm.Models.RelmModel.WriteToDatabaseAsync*
-  name: WriteToDatabaseAsync
-  href: api/CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_WriteToDatabaseAsync_
-  commentId: Overload:CoreRelm.Models.RelmModel.WriteToDatabaseAsync
-  isSpec: "True"
-  fullName: CoreRelm.Models.RelmModel.WriteToDatabaseAsync
-  nameWithType: RelmModel.WriteToDatabaseAsync
 - uid: CoreRelm.Models.RelmModelApartment
   name: RelmModelApartment
   href: api/CoreRelm.Models.RelmModelApartment.html
@@ -15243,6 +15176,227 @@ references:
   isSpec: "True"
   fullName: CoreRelm.Models.RelmModelApartment.UserName
   nameWithType: RelmModelApartment.UserName
+- uid: CoreRelm.Models.RelmModelClean
+  name: RelmModelClean
+  href: api/CoreRelm.Models.RelmModelClean.html
+  commentId: T:CoreRelm.Models.RelmModelClean
+  fullName: CoreRelm.Models.RelmModelClean
+  nameWithType: RelmModelClean
+- uid: CoreRelm.Models.RelmModelClean.#ctor
+  name: RelmModelClean()
+  href: api/CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean__ctor
+  commentId: M:CoreRelm.Models.RelmModelClean.#ctor
+  name.vb: New()
+  fullName: CoreRelm.Models.RelmModelClean.RelmModelClean()
+  fullName.vb: CoreRelm.Models.RelmModelClean.New()
+  nameWithType: RelmModelClean.RelmModelClean()
+  nameWithType.vb: RelmModelClean.New()
+- uid: CoreRelm.Models.RelmModelClean.#ctor(CoreRelm.Interfaces.IRelmModel)
+  name: RelmModelClean(IRelmModel)
+  href: api/CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean__ctor_CoreRelm_Interfaces_IRelmModel_
+  commentId: M:CoreRelm.Models.RelmModelClean.#ctor(CoreRelm.Interfaces.IRelmModel)
+  name.vb: New(IRelmModel)
+  fullName: CoreRelm.Models.RelmModelClean.RelmModelClean(CoreRelm.Interfaces.IRelmModel)
+  fullName.vb: CoreRelm.Models.RelmModelClean.New(CoreRelm.Interfaces.IRelmModel)
+  nameWithType: RelmModelClean.RelmModelClean(IRelmModel)
+  nameWithType.vb: RelmModelClean.New(IRelmModel)
+- uid: CoreRelm.Models.RelmModelClean.#ctor(System.Data.DataRow,System.String)
+  name: RelmModelClean(DataRow, string?)
+  href: api/CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean__ctor_System_Data_DataRow_System_String_
+  commentId: M:CoreRelm.Models.RelmModelClean.#ctor(System.Data.DataRow,System.String)
+  name.vb: New(DataRow, String)
+  fullName: CoreRelm.Models.RelmModelClean.RelmModelClean(System.Data.DataRow, string?)
+  fullName.vb: CoreRelm.Models.RelmModelClean.New(System.Data.DataRow, String)
+  nameWithType: RelmModelClean.RelmModelClean(DataRow, string?)
+  nameWithType.vb: RelmModelClean.New(DataRow, String)
+- uid: CoreRelm.Models.RelmModelClean.#ctor*
+  name: RelmModelClean
+  href: api/CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean__ctor_
+  commentId: Overload:CoreRelm.Models.RelmModelClean.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: CoreRelm.Models.RelmModelClean.RelmModelClean
+  fullName.vb: CoreRelm.Models.RelmModelClean.New
+  nameWithType: RelmModelClean.RelmModelClean
+  nameWithType.vb: RelmModelClean.New
+- uid: CoreRelm.Models.RelmModelClean.CopyFromSource*
+  name: CopyFromSource
+  href: api/CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_CopyFromSource_
+  commentId: Overload:CoreRelm.Models.RelmModelClean.CopyFromSource
+  isSpec: "True"
+  fullName: CoreRelm.Models.RelmModelClean.CopyFromSource
+  nameWithType: RelmModelClean.CopyFromSource
+- uid: CoreRelm.Models.RelmModelClean.CopyFromSource``1(``0)
+  name: CopyFromSource<T>(T)
+  href: api/CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_CopyFromSource__1___0_
+  commentId: M:CoreRelm.Models.RelmModelClean.CopyFromSource``1(``0)
+  name.vb: CopyFromSource(Of T)(T)
+  fullName: CoreRelm.Models.RelmModelClean.CopyFromSource<T>(T)
+  fullName.vb: CoreRelm.Models.RelmModelClean.CopyFromSource(Of T)(T)
+  nameWithType: RelmModelClean.CopyFromSource<T>(T)
+  nameWithType.vb: RelmModelClean.CopyFromSource(Of T)(T)
+- uid: CoreRelm.Models.RelmModelClean.DtoTypeProcessor
+  name: DtoTypeProcessor
+  href: api/CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_DtoTypeProcessor
+  commentId: E:CoreRelm.Models.RelmModelClean.DtoTypeProcessor
+  fullName: CoreRelm.Models.RelmModelClean.DtoTypeProcessor
+  nameWithType: RelmModelClean.DtoTypeProcessor
+- uid: CoreRelm.Models.RelmModelClean.Duplicate
+  name: Duplicate()
+  href: api/CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_Duplicate
+  commentId: M:CoreRelm.Models.RelmModelClean.Duplicate
+  fullName: CoreRelm.Models.RelmModelClean.Duplicate()
+  nameWithType: RelmModelClean.Duplicate()
+- uid: CoreRelm.Models.RelmModelClean.Duplicate*
+  name: Duplicate
+  href: api/CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_Duplicate_
+  commentId: Overload:CoreRelm.Models.RelmModelClean.Duplicate
+  isSpec: "True"
+  fullName: CoreRelm.Models.RelmModelClean.Duplicate
+  nameWithType: RelmModelClean.Duplicate
+- uid: CoreRelm.Models.RelmModelClean.GenerateDTO(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String,System.Func{CoreRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}},System.Int32)
+  name: GenerateDTO(IEnumerable<string>?, IEnumerable<string>?, string?, Func<IRelmModel, Dictionary<string, object>>?, int)
+  href: api/CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_GenerateDTO_System_Collections_Generic_IEnumerable_System_String__System_Collections_Generic_IEnumerable_System_String__System_String_System_Func_CoreRelm_Interfaces_IRelmModel_System_Collections_Generic_Dictionary_System_String_System_Object___System_Int32_
+  commentId: M:CoreRelm.Models.RelmModelClean.GenerateDTO(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String,System.Func{CoreRelm.Interfaces.IRelmModel,System.Collections.Generic.Dictionary{System.String,System.Object}},System.Int32)
+  name.vb: GenerateDTO(IEnumerable(Of String), IEnumerable(Of String), String, Func(Of IRelmModel, Dictionary(Of String, Object)), Integer)
+  fullName: CoreRelm.Models.RelmModelClean.GenerateDTO(System.Collections.Generic.IEnumerable<string>?, System.Collections.Generic.IEnumerable<string>?, string?, System.Func<CoreRelm.Interfaces.IRelmModel, System.Collections.Generic.Dictionary<string, object>>?, int)
+  fullName.vb: CoreRelm.Models.RelmModelClean.GenerateDTO(System.Collections.Generic.IEnumerable(Of String), System.Collections.Generic.IEnumerable(Of String), String, System.Func(Of CoreRelm.Interfaces.IRelmModel, System.Collections.Generic.Dictionary(Of String, Object)), Integer)
+  nameWithType: RelmModelClean.GenerateDTO(IEnumerable<string>?, IEnumerable<string>?, string?, Func<IRelmModel, Dictionary<string, object>>?, int)
+  nameWithType.vb: RelmModelClean.GenerateDTO(IEnumerable(Of String), IEnumerable(Of String), String, Func(Of IRelmModel, Dictionary(Of String, Object)), Integer)
+- uid: CoreRelm.Models.RelmModelClean.GenerateDTO*
+  name: GenerateDTO
+  href: api/CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_GenerateDTO_
+  commentId: Overload:CoreRelm.Models.RelmModelClean.GenerateDTO
+  isSpec: "True"
+  fullName: CoreRelm.Models.RelmModelClean.GenerateDTO
+  nameWithType: RelmModelClean.GenerateDTO
+- uid: CoreRelm.Models.RelmModelClean.GetUnderscoreProperties(System.Boolean)
+  name: GetUnderscoreProperties(bool)
+  href: api/CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_GetUnderscoreProperties_System_Boolean_
+  commentId: M:CoreRelm.Models.RelmModelClean.GetUnderscoreProperties(System.Boolean)
+  name.vb: GetUnderscoreProperties(Boolean)
+  fullName: CoreRelm.Models.RelmModelClean.GetUnderscoreProperties(bool)
+  fullName.vb: CoreRelm.Models.RelmModelClean.GetUnderscoreProperties(Boolean)
+  nameWithType: RelmModelClean.GetUnderscoreProperties(bool)
+  nameWithType.vb: RelmModelClean.GetUnderscoreProperties(Boolean)
+- uid: CoreRelm.Models.RelmModelClean.GetUnderscoreProperties*
+  name: GetUnderscoreProperties
+  href: api/CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_GetUnderscoreProperties_
+  commentId: Overload:CoreRelm.Models.RelmModelClean.GetUnderscoreProperties
+  isSpec: "True"
+  fullName: CoreRelm.Models.RelmModelClean.GetUnderscoreProperties
+  nameWithType: RelmModelClean.GetUnderscoreProperties
+- uid: CoreRelm.Models.RelmModelClean.ResetWithData(System.Data.DataRow,System.String)
+  name: ResetWithData(DataRow, string?)
+  href: api/CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_ResetWithData_System_Data_DataRow_System_String_
+  commentId: M:CoreRelm.Models.RelmModelClean.ResetWithData(System.Data.DataRow,System.String)
+  name.vb: ResetWithData(DataRow, String)
+  fullName: CoreRelm.Models.RelmModelClean.ResetWithData(System.Data.DataRow, string?)
+  fullName.vb: CoreRelm.Models.RelmModelClean.ResetWithData(System.Data.DataRow, String)
+  nameWithType: RelmModelClean.ResetWithData(DataRow, string?)
+  nameWithType.vb: RelmModelClean.ResetWithData(DataRow, String)
+- uid: CoreRelm.Models.RelmModelClean.ResetWithData*
+  name: ResetWithData
+  href: api/CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_ResetWithData_
+  commentId: Overload:CoreRelm.Models.RelmModelClean.ResetWithData
+  isSpec: "True"
+  fullName: CoreRelm.Models.RelmModelClean.ResetWithData
+  nameWithType: RelmModelClean.ResetWithData
+- uid: CoreRelm.Models.RelmModelClean.WriteToDatabase(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  name: WriteToDatabase(IRelmContext, int, bool, bool, bool, bool)
+  href: api/CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_WriteToDatabase_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  commentId: M:CoreRelm.Models.RelmModelClean.WriteToDatabase(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  name.vb: WriteToDatabase(IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean)
+  fullName: CoreRelm.Models.RelmModelClean.WriteToDatabase(CoreRelm.Interfaces.IRelmContext, int, bool, bool, bool, bool)
+  fullName.vb: CoreRelm.Models.RelmModelClean.WriteToDatabase(CoreRelm.Interfaces.IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean)
+  nameWithType: RelmModelClean.WriteToDatabase(IRelmContext, int, bool, bool, bool, bool)
+  nameWithType.vb: RelmModelClean.WriteToDatabase(IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean)
+- uid: CoreRelm.Models.RelmModelClean.WriteToDatabase(CoreRelm.Options.RelmContextOptions,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  name: WriteToDatabase(RelmContextOptions, int, bool, bool, bool, bool)
+  href: api/CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_WriteToDatabase_CoreRelm_Options_RelmContextOptions_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  commentId: M:CoreRelm.Models.RelmModelClean.WriteToDatabase(CoreRelm.Options.RelmContextOptions,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  name.vb: WriteToDatabase(RelmContextOptions, Integer, Boolean, Boolean, Boolean, Boolean)
+  fullName: CoreRelm.Models.RelmModelClean.WriteToDatabase(CoreRelm.Options.RelmContextOptions, int, bool, bool, bool, bool)
+  fullName.vb: CoreRelm.Models.RelmModelClean.WriteToDatabase(CoreRelm.Options.RelmContextOptions, Integer, Boolean, Boolean, Boolean, Boolean)
+  nameWithType: RelmModelClean.WriteToDatabase(RelmContextOptions, int, bool, bool, bool, bool)
+  nameWithType.vb: RelmModelClean.WriteToDatabase(RelmContextOptions, Integer, Boolean, Boolean, Boolean, Boolean)
+- uid: CoreRelm.Models.RelmModelClean.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  name: WriteToDatabase(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool)
+  href: api/CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  commentId: M:CoreRelm.Models.RelmModelClean.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  name.vb: WriteToDatabase(MySqlConnection, MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean)
+  fullName: CoreRelm.Models.RelmModelClean.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, int, bool, bool, bool, bool)
+  fullName.vb: CoreRelm.Models.RelmModelClean.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean)
+  nameWithType: RelmModelClean.WriteToDatabase(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool)
+  nameWithType.vb: RelmModelClean.WriteToDatabase(MySqlConnection, MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean)
+- uid: CoreRelm.Models.RelmModelClean.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  name: WriteToDatabase(MySqlConnection, int, bool, bool, bool, bool)
+  href: api/CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  commentId: M:CoreRelm.Models.RelmModelClean.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  name.vb: WriteToDatabase(MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean)
+  fullName: CoreRelm.Models.RelmModelClean.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection, int, bool, bool, bool, bool)
+  fullName.vb: CoreRelm.Models.RelmModelClean.WriteToDatabase(MySql.Data.MySqlClient.MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean)
+  nameWithType: RelmModelClean.WriteToDatabase(MySqlConnection, int, bool, bool, bool, bool)
+  nameWithType.vb: RelmModelClean.WriteToDatabase(MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean)
+- uid: CoreRelm.Models.RelmModelClean.WriteToDatabase(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  name: WriteToDatabase(Enum, int, bool, bool, bool, bool)
+  href: api/CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_WriteToDatabase_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  commentId: M:CoreRelm.Models.RelmModelClean.WriteToDatabase(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  name.vb: WriteToDatabase(Enum, Integer, Boolean, Boolean, Boolean, Boolean)
+  fullName: CoreRelm.Models.RelmModelClean.WriteToDatabase(System.Enum, int, bool, bool, bool, bool)
+  fullName.vb: CoreRelm.Models.RelmModelClean.WriteToDatabase(System.Enum, Integer, Boolean, Boolean, Boolean, Boolean)
+  nameWithType: RelmModelClean.WriteToDatabase(Enum, int, bool, bool, bool, bool)
+  nameWithType.vb: RelmModelClean.WriteToDatabase(Enum, Integer, Boolean, Boolean, Boolean, Boolean)
+- uid: CoreRelm.Models.RelmModelClean.WriteToDatabase*
+  name: WriteToDatabase
+  href: api/CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_WriteToDatabase_
+  commentId: Overload:CoreRelm.Models.RelmModelClean.WriteToDatabase
+  isSpec: "True"
+  fullName: CoreRelm.Models.RelmModelClean.WriteToDatabase
+  nameWithType: RelmModelClean.WriteToDatabase
+- uid: CoreRelm.Models.RelmModelClean.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  name: WriteToDatabaseAsync(IRelmContext, int, bool, bool, bool, bool, CancellationToken)
+  href: api/CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_WriteToDatabaseAsync_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  commentId: M:CoreRelm.Models.RelmModelClean.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  name.vb: WriteToDatabaseAsync(IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+  fullName: CoreRelm.Models.RelmModelClean.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext, int, bool, bool, bool, bool, System.Threading.CancellationToken)
+  fullName.vb: CoreRelm.Models.RelmModelClean.WriteToDatabaseAsync(CoreRelm.Interfaces.IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean, System.Threading.CancellationToken)
+  nameWithType: RelmModelClean.WriteToDatabaseAsync(IRelmContext, int, bool, bool, bool, bool, CancellationToken)
+  nameWithType.vb: RelmModelClean.WriteToDatabaseAsync(IRelmContext, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+- uid: CoreRelm.Models.RelmModelClean.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  name: WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool, CancellationToken)
+  href: api/CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  commentId: M:CoreRelm.Models.RelmModelClean.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,MySql.Data.MySqlClient.MySqlTransaction,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  name.vb: WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+  fullName: CoreRelm.Models.RelmModelClean.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, int, bool, bool, bool, bool, System.Threading.CancellationToken)
+  fullName.vb: CoreRelm.Models.RelmModelClean.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection, MySql.Data.MySqlClient.MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean, System.Threading.CancellationToken)
+  nameWithType: RelmModelClean.WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool, CancellationToken)
+  nameWithType.vb: RelmModelClean.WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+- uid: CoreRelm.Models.RelmModelClean.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  name: WriteToDatabaseAsync(MySqlConnection, int, bool, bool, bool, bool, CancellationToken)
+  href: api/CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  commentId: M:CoreRelm.Models.RelmModelClean.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  name.vb: WriteToDatabaseAsync(MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+  fullName: CoreRelm.Models.RelmModelClean.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection, int, bool, bool, bool, bool, System.Threading.CancellationToken)
+  fullName.vb: CoreRelm.Models.RelmModelClean.WriteToDatabaseAsync(MySql.Data.MySqlClient.MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean, System.Threading.CancellationToken)
+  nameWithType: RelmModelClean.WriteToDatabaseAsync(MySqlConnection, int, bool, bool, bool, bool, CancellationToken)
+  nameWithType.vb: RelmModelClean.WriteToDatabaseAsync(MySqlConnection, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+- uid: CoreRelm.Models.RelmModelClean.WriteToDatabaseAsync(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  name: WriteToDatabaseAsync(Enum, int, bool, bool, bool, bool, CancellationToken)
+  href: api/CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_WriteToDatabaseAsync_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_
+  commentId: M:CoreRelm.Models.RelmModelClean.WriteToDatabaseAsync(System.Enum,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)
+  name.vb: WriteToDatabaseAsync(Enum, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+  fullName: CoreRelm.Models.RelmModelClean.WriteToDatabaseAsync(System.Enum, int, bool, bool, bool, bool, System.Threading.CancellationToken)
+  fullName.vb: CoreRelm.Models.RelmModelClean.WriteToDatabaseAsync(System.Enum, Integer, Boolean, Boolean, Boolean, Boolean, System.Threading.CancellationToken)
+  nameWithType: RelmModelClean.WriteToDatabaseAsync(Enum, int, bool, bool, bool, bool, CancellationToken)
+  nameWithType.vb: RelmModelClean.WriteToDatabaseAsync(Enum, Integer, Boolean, Boolean, Boolean, Boolean, CancellationToken)
+- uid: CoreRelm.Models.RelmModelClean.WriteToDatabaseAsync*
+  name: WriteToDatabaseAsync
+  href: api/CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_WriteToDatabaseAsync_
+  commentId: Overload:CoreRelm.Models.RelmModelClean.WriteToDatabaseAsync
+  isSpec: "True"
+  fullName: CoreRelm.Models.RelmModelClean.WriteToDatabaseAsync
+  nameWithType: RelmModelClean.WriteToDatabaseAsync
 - uid: CoreRelm.Models.RelmQuickContext
   name: RelmQuickContext
   href: api/CoreRelm.Models.RelmQuickContext.html
