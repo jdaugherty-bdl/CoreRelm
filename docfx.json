@@ -1,0 +1,59 @@
+{
+  "$schema": "https://raw.githubusercontent.com/dotnet/docfx/main/schemas/docfx.schema.json",
+  "metadata": [
+    {
+      "src": [
+        {
+          "src": "CoreRelm",
+          "files": [
+            "**/*.csproj"
+          ],
+          "exclude": [
+            "**/CoreRelm.Tests.csproj",
+            "**/examples/CoreRelm.Quickstart/CoreRelm.Quickstart.csproj"
+          ]
+        }
+      ],
+      "dest": "docs/api"
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "src": "documentation",
+        "files": [
+          "**/*.{md,yml}"
+        ],
+        "exclude": [
+          "obj/**"
+        ]
+      },
+      {
+        "src": "docs/api",
+        "files": [ "**/*.yml" ],
+        "dest": "api" // This puts the finished HTML into docs/api
+      }
+    ],
+    "resource": [
+      {
+        "src": "documentation",
+        "files": [
+          "images/**"
+        ]
+      }
+    ],
+    "dest": "docs",
+    "template": [
+      "default",
+      "modern",
+      "documentation/relm-template"
+    ],
+    "globalMetadata": {
+      "_appLogoPath": "images/icon_large2.png",
+      "_appName": "CoreRelm",
+      "_appTitle": "CoreRelm",
+      "_enableSearch": true,
+      "pdf": true
+    }
+  }
+}

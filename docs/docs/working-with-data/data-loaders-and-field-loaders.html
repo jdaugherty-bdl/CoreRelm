@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Data Loaders and Field Loaders | CoreRelm </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Data Loaders and Field Loaders | CoreRelm ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/documentation/docs/working-with-data/data-loaders-and-field-loaders.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/icon_large2.png" alt="CoreRelm">
+            CoreRelm
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="data-loaders-and-field-loaders">Data Loaders and Field Loaders</h1>
+
+<p>This page explains how data loaders and field loaders fit into the CoreRelm model.</p>
+<p>CoreRelm includes loader-oriented feature areas in the QuickStart and codebase. These patterns are useful when the default data-loading flow is not enough and you want a more specialized loading strategy.</p>
+<h2 id="why-loaders-exist">Why loaders exist</h2>
+<p>A standard dataset query is often enough for common entity work.</p>
+<p>Loaders become useful when:</p>
+<ul>
+<li>a field needs custom load behavior</li>
+<li>related or derived values need special handling</li>
+<li>you want a reusable loading pattern</li>
+<li>the loading logic should be made explicit rather than hidden in scattered ad hoc code</li>
+</ul>
+<h2 id="loader-oriented-feature-areas">Loader-oriented feature areas</h2>
+<p>The QuickStart inventory includes:</p>
+<ul>
+<li>data loader examples</li>
+<li>field loader files</li>
+<li>dedicated loading examples tied to data access workflows</li>
+</ul>
+<p>That indicates loaders are meant to be a supported concept, not a one-off internal trick.</p>
+<h2 id="data-loaders">Data loaders</h2>
+<p>A data loader is best understood as a reusable strategy for loading or shaping data beyond the simplest default path.</p>
+<p>Use a data loader when:</p>
+<ul>
+<li>the same loading behavior should be reused</li>
+<li>the logic is important enough to name and document</li>
+<li>you want a clearer boundary around data-shaping logic</li>
+</ul>
+<h2 id="field-loaders">Field loaders</h2>
+<p>A field loader is a narrower version of the same idea. It focuses on a particular field or field-like behavior.</p>
+<p>A field loader can be useful when:</p>
+<ul>
+<li>one field needs special lookup logic</li>
+<li>a field is derived from a more complex loading path</li>
+<li>a property should be filled by a clearly named reusable mechanism</li>
+</ul>
+<h2 id="loader-mindset">Loader mindset</h2>
+<p>The important design idea is this:</p>
+<ul>
+<li>keep common loading logic reusable</li>
+<li>keep special loading logic discoverable</li>
+<li>avoid burying repeated data-shaping behavior in many unrelated call sites</li>
+</ul>
+<p>That makes the data-access layer easier to understand over time.</p>
+<h2 id="loaders-versus-dtos-versus-relationships">Loaders versus DTOs versus relationships</h2>
+<p>These three ideas are related, but they solve different problems:</p>
+<ul>
+<li><strong>relationships</strong> describe how entities connect</li>
+<li><strong>DTOs</strong> shape results for a task</li>
+<li><strong>loaders</strong> define reusable loading behavior when the default path is not enough</li>
+</ul>
+<p>Keeping those responsibilities distinct will make the documentation clearer.</p>
+<h2 id="example-loader-style-mental-model">Example loader-style mental model</h2>
+<p>A loader-oriented workflow often looks like this:</p>
+<ol>
+<li>define the loader concept</li>
+<li>attach or reference it where appropriate</li>
+<li>use it as part of a query or load operation</li>
+<li>keep the loading behavior reusable and understandable</li>
+</ol>
+<h2 id="design-guidance">Design guidance</h2>
+<p>A good default approach is:</p>
+<ul>
+<li>do not reach for loaders first when a simple query is enough</li>
+<li>introduce loaders when the behavior is repeated or important</li>
+<li>keep loaders focused and clearly named</li>
+<li>document what the loader is responsible for and what it is not responsible for</li>
+</ul>
+<h2 id="where-to-go-next">Where to go next</h2>
+<p>After this page, the best next steps are:</p>
+<ol>
+<li><a href="bulk-operations.html">Bulk Operations</a></li>
+<li><a href="database-work-helpers.html">Database Work Helpers</a></li>
+</ol>
+<p>Those pages cover performance-oriented and lower-level data workflows.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/documentation/docs/working-with-data/data-loaders-and-field-loaders.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

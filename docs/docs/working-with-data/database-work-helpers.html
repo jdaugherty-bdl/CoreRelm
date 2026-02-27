@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Database Work Helpers | CoreRelm </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Database Work Helpers | CoreRelm ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/documentation/docs/working-with-data/database-work-helpers.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/icon_large2.png" alt="CoreRelm">
+            CoreRelm
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="database-work-helpers">Database Work Helpers</h1>
+
+<p>This page explains where lower-level database work helpers fit into CoreRelm.</p>
+<p>CoreRelm is not trying to hide the database completely. One of its design goals is to give you structure while still keeping relational and connection-level details understandable. Database work helpers are part of that philosophy.</p>
+<h2 id="why-database-work-helpers-exist">Why database work helpers exist</h2>
+<p>A model- and dataset-centered workflow is often the best default.</p>
+<p>But some situations call for a more direct shape, such as:</p>
+<ul>
+<li>administrative operations</li>
+<li>reporting-oriented access</li>
+<li>raw or specialized data retrieval</li>
+<li>tasks that do not naturally fit a full model workflow</li>
+<li>utility operations that are easier to express closer to the database</li>
+</ul>
+<h2 id="database-work-in-the-quickstart-surface">Database work in the QuickStart surface</h2>
+<p>The QuickStart inventory includes a dedicated <code>DatabaseWorkExamples</code> file, along with separate examples for data rows, data tables, data objects, and data lists.</p>
+<p>That suggests CoreRelm intentionally supports a layered data-access model:</p>
+<ul>
+<li>entity-oriented access when you want it</li>
+<li>lower-level access when you need it</li>
+</ul>
+<h2 id="lower-level-helpers-and-identity-utilities">Lower-level helpers and identity utilities</h2>
+<p>The current docs and examples also show direct helper-style operations such as:</p>
+<ul>
+<li><code>GetLastInsertId()</code></li>
+<li><code>GetIdFromInternalId(...)</code></li>
+<li><code>GetDataSet&lt;T&gt;()</code></li>
+<li><code>RelmHelper.GetDalTable&lt;T&gt;()</code></li>
+</ul>
+<p>These are useful because they support practical relational workflows without forcing the developer to abandon the broader CoreRelm model.</p>
+<h2 id="example-helper-shape">Example helper shape</h2>
+<pre><code class="lang-csharp">var lastInsertId = context.GetLastInsertId();
+
+var tableName = RelmHelper.GetDalTable&lt;ExampleModel&gt;();
+var internalId = &quot;some-guid-value&quot;;
+var idFromInternalId = context.GetIdFromInternalId(tableName, internalId);
+</code></pre>
+<p>This is a good example of CoreRelm's design style:</p>
+<ul>
+<li>still structured</li>
+<li>still model-aware</li>
+<li>still explicit about the database</li>
+</ul>
+<h2 id="when-to-go-lower-level">When to go lower level</h2>
+<p>A good time to use lower-level database helpers is when:</p>
+<ul>
+<li>the job is not naturally entity-oriented</li>
+<li>you need a data shape other than full models</li>
+<li>the query is closer to raw relational logic</li>
+<li>the helper makes the intent clearer than forcing a model path would</li>
+</ul>
+<h2 id="lower-level-does-not-mean-abandoning-structure">Lower-level does not mean abandoning structure</h2>
+<p>One of the strengths of CoreRelm is that even lower-level work can still remain part of a readable, structured system.</p>
+<p>That means lower-level access should still aim to be:</p>
+<ul>
+<li>discoverable</li>
+<li>intentional</li>
+<li>well-bounded</li>
+<li>understandable in the surrounding context</li>
+</ul>
+<h2 id="design-guidance">Design guidance</h2>
+<p>A good default approach is:</p>
+<ul>
+<li>start with models and datasets when the workflow is entity-based</li>
+<li>move to lower-level database helpers when the job clearly calls for it</li>
+<li>do not force everything into one abstraction level</li>
+<li>keep helper usage explicit and easy to trace</li>
+</ul>
+<h2 id="where-to-go-next">Where to go next</h2>
+<p>After this page, the next best step is to move into the Transactions, Migrations, and Advanced Topics section.</p>
+<p>That is where reliability, schema workflows, and more advanced runtime patterns come together.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/documentation/docs/working-with-data/database-work-helpers.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Error Handling and Diagnostics | CoreRelm </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Error Handling and Diagnostics | CoreRelm ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/documentation/docs/troubleshooting/error-handling-and-diagnostics.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/icon_large2.png" alt="CoreRelm">
+            CoreRelm
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="error-handling-and-diagnostics">Error Handling and Diagnostics</h1>
+
+<p>This page explains how to think about error handling and diagnostics in CoreRelm.</p>
+<p>CoreRelm is most effective when database behavior stays visible. That includes failure paths. A good error-handling strategy should make it easy to see what failed, where it failed, and what should happen next.</p>
+<h2 id="core-error-handling-mindset">Core error-handling mindset</h2>
+<p>A good default approach in CoreRelm is:</p>
+<ul>
+<li>make transaction boundaries explicit</li>
+<li>roll back multi-step operations when they fail</li>
+<li>keep error paths simple</li>
+<li>log useful application and database context</li>
+<li>avoid hiding failures behind overly clever abstractions</li>
+</ul>
+<p>This fits the broader design preference of explicitness over magic.</p>
+<h2 id="error-handling-and-transactions">Error handling and transactions</h2>
+<p>The most important error-handling pattern in CoreRelm is usually the transaction boundary.</p>
+<h3 id="standard-pattern">Standard pattern</h3>
+<pre><code class="lang-csharp">using var context = new RelmContextOptionsBuilder(&quot;name=ExampleConnectionString&quot;)
+    .Build&lt;ExampleContext&gt;();
+
+context.BeginTransaction();
+
+try
+{
+    // multi-step database work here
+
+    context.CommitTransaction();
+}
+catch
+{
+    context.RollbackTransaction();
+    throw;
+}
+</code></pre>
+<p>This pattern is valuable because the success path and failure path are both easy to follow.</p>
+<h2 id="why-rollback-matters">Why rollback matters</h2>
+<p>Rollback matters when multiple related operations should succeed or fail together.</p>
+<p>Without a clear rollback path, it becomes harder to answer:</p>
+<ul>
+<li>which operations were completed</li>
+<li>which operations failed</li>
+<li>whether the database is in a partial state</li>
+<li>what the recovery action should be</li>
+</ul>
+<h2 id="diagnostics-and-inspection">Diagnostics and inspection</h2>
+<p>The broader CoreRelm docs direction already identifies diagnostics members such as:</p>
+<ul>
+<li><code>HasError</code></li>
+<li><code>LastExecutionError</code></li>
+<li><code>LastExecutionException</code></li>
+</ul>
+<p>These kinds of diagnostics are useful because they let the developer inspect library- or database-related failure information without guessing blindly.</p>
+<h2 id="a-practical-diagnostic-workflow">A practical diagnostic workflow</h2>
+<p>A useful diagnostic workflow is:</p>
+<ol>
+<li>identify whether the operation failed</li>
+<li>inspect any CoreRelm-exposed diagnostic state</li>
+<li>inspect the application exception path</li>
+<li>confirm whether a rollback occurred or should occur</li>
+<li>log enough information to reproduce or investigate later</li>
+</ol>
+<h2 id="migration-related-diagnostics">Migration-related diagnostics</h2>
+<p>Diagnostics matter for migrations too, not just runtime CRUD work.</p>
+<p>Migration diagnostics should help answer questions such as:</p>
+<ul>
+<li>did generation fail?</li>
+<li>did validation detect drift?</li>
+<li>did application fail on a particular object or step?</li>
+<li>what environment was affected?</li>
+</ul>
+<p>That is why troubleshooting and migrations should remain closely connected in the docs.</p>
+<h2 id="common-failure-categories">Common failure categories</h2>
+<p>The most useful categories to cover over time are:</p>
+<ul>
+<li>configuration problems</li>
+<li>connection or provider issues</li>
+<li>dataset initialization confusion</li>
+<li>relationship or key mismatches</li>
+<li>migration validation or apply failures</li>
+<li>unexpected result-shape or loading behavior</li>
+</ul>
+<h2 id="design-guidance">Design guidance</h2>
+<p>A good default approach is:</p>
+<ul>
+<li>make write boundaries explicit</li>
+<li>inspect diagnostics close to the failure</li>
+<li>do not swallow exceptions silently</li>
+<li>keep error handling boring, predictable, and readable</li>
+</ul>
+<h2 id="where-to-go-next">Where to go next</h2>
+<p>After this page, the best next step is <a href="faq.html">FAQ</a>.</p>
+<p>That page collects common problems and answers in one place.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/documentation/docs/troubleshooting/error-handling-and-diagnostics.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

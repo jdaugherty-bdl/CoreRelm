@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Migrations Overview | CoreRelm </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Migrations Overview | CoreRelm ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/documentation/docs/advanced/migrations-overview.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/icon_large2.png" alt="CoreRelm">
+            CoreRelm
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="migrations-overview">Migrations Overview</h1>
+
+<p>This page explains what migrations mean in CoreRelm and why migrations should be treated as a first-class part of the public feature set.</p>
+<p>CoreRelm includes migrations-related APIs and tooling as part of its broader ORM story. Migrations are not just an implementation detail; they are part of how the library approaches schema evolution and relational consistency.</p>
+<h2 id="why-migrations-exist">Why migrations exist</h2>
+<p>A runtime ORM story is only part of the picture.</p>
+<p>Applications also need a way to think about:</p>
+<ul>
+<li>schema changes over time</li>
+<li>desired model shape versus current database shape</li>
+<li>reviewable change history</li>
+<li>safe rollout of structural changes</li>
+</ul>
+<p>CoreRelm's migrations tooling exists to support those needs.</p>
+<h2 id="migrations-as-part-of-the-public-surface">Migrations as part of the public surface</h2>
+<p>The current project materials make it clear that migrations are a major feature area.</p>
+<p>That includes:</p>
+<ul>
+<li>public migrations-related documentation and examples</li>
+<li>migrations tests</li>
+<li>model set parsing and resolver behavior</li>
+<li>migration tooling and validation workflows</li>
+<li>schema-oriented helper and rendering layers</li>
+</ul>
+<p>This is why migrations deserve their own section in the guide rather than just API reference pages.</p>
+<h2 id="high-level-migrations-mental-model">High-level migrations mental model</h2>
+<p>A useful way to think about migrations in CoreRelm is:</p>
+<ol>
+<li>define or resolve the desired schema shape</li>
+<li>compare that desired shape to the current database state</li>
+<li>generate or plan the changes needed</li>
+<li>review the resulting migration artifacts</li>
+<li>apply the migration safely</li>
+</ol>
+<p>That is the broad workflow the rest of this section builds on.</p>
+<h2 id="model-sets-and-desired-schema">Model sets and desired schema</h2>
+<p>One of the central ideas in the CoreRelm migrations surface is the model set.</p>
+<p>A model set represents the schema-relevant view of the models that should define the desired database shape.</p>
+<p>That matters because migrations need a stable source of truth for what the database is expected to look like.</p>
+<h2 id="migrations-are-more-than-script-generation">Migrations are more than script generation</h2>
+<p>A good migrations system is not only about producing SQL.</p>
+<p>It is also about:</p>
+<ul>
+<li>naming and organizing changes</li>
+<li>validating assumptions</li>
+<li>detecting drift</li>
+<li>making rollout safer</li>
+<li>keeping schema history understandable over time</li>
+</ul>
+<p>The CoreRelm migrations surface should be documented with that broader perspective in mind.</p>
+<h2 id="reviewability-matters">Reviewability matters</h2>
+<p>CoreRelm's documentation should treat generated migrations as reviewable artifacts.</p>
+<p>A good default stance is:</p>
+<ul>
+<li>prefer explicit, readable migration outputs</li>
+<li>review generated changes before applying them</li>
+<li>use tests and staging environments for confidence</li>
+<li>treat migration files and generated SQL as part of the deployment story</li>
+</ul>
+<h2 id="runtime-examples-versus-migration-ready-definitions">Runtime examples versus migration-ready definitions</h2>
+<p>As elsewhere in the docs, it is important to distinguish between:</p>
+<ul>
+<li>examples that show runtime usage shape</li>
+<li>examples that fully define schema intent</li>
+</ul>
+<p>Not every runtime model example is necessarily enough to produce a complete migration on its own.</p>
+<h2 id="design-guidance">Design guidance</h2>
+<p>A good default approach is:</p>
+<ul>
+<li>treat migrations as deliberate, reviewable schema changes</li>
+<li>keep naming and organization consistent</li>
+<li>understand the difference between desired schema and current database state</li>
+<li>use validation and status checks before rollout where possible</li>
+</ul>
+<h2 id="where-to-go-next">Where to go next</h2>
+<p>After this page, the best next steps are:</p>
+<ol>
+<li><a href="generating-migrations.html">Generating Migrations</a></li>
+<li><a href="applying-migrations.html">Applying Migrations</a></li>
+<li><a href="drift-detection-and-validation.html">Drift Detection and Validation</a></li>
+</ol>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/documentation/docs/advanced/migrations-overview.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

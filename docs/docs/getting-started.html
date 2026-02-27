@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Getting Started | CoreRelm </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Getting Started | CoreRelm ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/documentation/docs/getting-started.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/icon_large2.png" alt="CoreRelm">
+            CoreRelm
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="getting-started">Getting Started</h1>
+
+<p>This page is designed to help a new user understand the basic shape of CoreRelm as quickly as possible.</p>
+<p>CoreRelm uses a documentation-first QuickStart project. The examples are intended to demonstrate what a call may look like. They are not required to compile or run as-is.</p>
+<h2 id="before-you-begin">Before you begin</h2>
+<p>CoreRelm currently supports:</p>
+<ul>
+<li>.NET 8+</li>
+<li>MySQL 8+ only</li>
+</ul>
+<p>The QuickStart project and the broader codebase are currently organized around that provider model.</p>
+<h2 id="the-basic-flow">The basic flow</h2>
+<p>A typical CoreRelm workflow looks like this:</p>
+<ol>
+<li>Define a model and apply mapping attributes</li>
+<li>Define a context</li>
+<li>Build <code>RelmContextOptions</code></li>
+<li>Create a context</li>
+<li>Read or write data through the context and its datasets</li>
+<li>Use explicit transactions when an operation spans multiple writes</li>
+</ol>
+<h2 id="define-a-model">Define a model</h2>
+<p>In order to work with CoreRelm, you need to define models that represent your database entities. Models are classes decorated with attributes that describe how they map to database tables and columns.</p>
+<p>To automatically include the standard metadata columns, your model should inherit from <code>RelmModel</code>. This base class includes properties for <code>Id</code>, <code>InternalId</code>, <code>CreateDate</code>, and <code>LastUpdated</code>. If you want to define a model without those standard columns, you can inherit directly from <code>RelmModelClean</code> and apply the necessary attributes.</p>
+<p>The following example shows a simple model with a few properties and a foreign key relationship. The attributes indicate how the model maps to the database, and the navigation properties allow for easy access to related data. This model is <em>not</em> migratable as-is because column types and lengths are not specified.</p>
+<h3 id="example-model-shape">Example model shape</h3>
+<pre><code class="lang-csharp">[RelmTable(&quot;example_models&quot;)]
+public class ExampleModel : RelmModel
+{
+    [RelmColumn]
+    public string? Name { get; set; }
+
+    [RelmColumn]
+    public int Value { get; set; }
+
+    [RelmColumn]
+    public string? GroupInternalId { get; set; }
+
+    [RelmForeignKey(foreignKey: nameof(ExampleGroup.InternalId), localKey: nameof(GroupInternalId))]
+    public virtual ExampleGroup Group { get; set; }
+}
+
+[RelmTable(&quot;example_groups&quot;)]
+public class ExampleGroup : RelmModel
+{
+    [RelmColumn]
+    public string? Name { get; set; }
+
+    [RelmForeignKey(foreignKey: nameof(ExampleModel.GroupInternalId), localKey: nameof(InternalId))]
+    public virtual ICollection&lt;ExampleModel&gt; Models { get; set; }
+}
+</code></pre>
+<h2 id="configure-a-context">Configure a context</h2>
+<p>CoreRelm uses <code>RelmContextOptionsBuilder</code> to configure runtime behavior.</p>
+<p>The QuickStart project shows multiple options builder constructor styles, including:</p>
+<ul>
+<li>starting from defaults</li>
+<li>copying from an existing options object</li>
+<li>initializing from an enum-backed connection reference</li>
+<li>initializing from a connection</li>
+<li>initializing from a connection and transaction</li>
+<li>initializing from a named connection string</li>
+<li>initializing from a raw connection string</li>
+<li>initializing from explicit server, database, user, and password values</li>
+<li>initializing from explicit server, port, database, user, and password values</li>
+</ul>
+<p>In practice, most applications should start with the simplest configuration that fits their use case and only override the settings they actually need.</p>
+<h3 id="example-maximal-options-shape">Example maximal options shape</h3>
+<pre><code class="lang-csharp">var options = new RelmContextOptionsBuilder(&quot;name=ExampleConnectionString&quot;)
+    .SetAutoOpenConnection(true)
+    .SetAutoOpenTransaction(false)
+    .SetAllowUserVariables(false)
+    .SetConvertZeroDateTime(false)
+    .SetLockWaitTimeoutSeconds(0)
+    .SetAutoInitializeDataSets(true)
+    .SetAutoVerifyTables(true)
+    .BuildOptions();
+</code></pre>
+<p>CoreRelm also supports a more lazy-loading style by disabling automatic dataset initialization and automatic table verification.</p>
+<pre><code class="lang-csharp">var quickOptions = new RelmContextOptionsBuilder(&quot;name=ExampleConnectionString&quot;)
+    .SetAutoInitializeDataSets(false)
+    .SetAutoVerifyTables(false)
+    .BuildOptions();
+</code></pre>
+<p>The eager pattern favors readiness up front. The lazy pattern favors lower startup work and loads metadata as needed.</p>
+<h2 id="define-a-context">Define a context</h2>
+<p>A context is the main runtime object used to work with CoreRelm.</p>
+<p>The QuickStart project includes an <code>ExampleContext</code> that inherits from <code>RelmContext</code> and exposes model-oriented data access members.</p>
+<h3 id="example-context-shape">Example context shape</h3>
+<pre><code class="lang-csharp">public class ExampleContext(RelmContextOptions contextOptions) : RelmContext(contextOptions)
+{
+    public IRelmDataSet&lt;ExampleModel&gt;? ExampleModels { get; set; }
+    public IRelmDataSet&lt;ExampleGroup&gt;? ExampleGroups { get; set; }
+}
+</code></pre>
+<p>The exact datasets you expose will depend on your application. The important part is that the context becomes the central place where configuration, connection behavior, transactions, and model access come together.</p>
+<h2 id="initialize-and-use-a-context">Initialize and use a context</h2>
+<p>The QuickStart shows both standard scoped usage and a more lazy-loading quick-context style.</p>
+<h3 id="example-usage-shape">Example usage shape</h3>
+<pre><code class="lang-csharp">var relmContext = new RelmContextOptionsBuilder(&quot;name=ExampleConnectionString&quot;)
+    .Build&lt;ExampleContext&gt;();
+</code></pre>
+<h3 id="example-scoped-transaction-pattern">Example scoped transaction pattern</h3>
+<pre><code class="lang-csharp">using var scopedContext = new RelmContextOptionsBuilder(&quot;name=ExampleConnectionString&quot;)
+    .Build&lt;ExampleContext&gt;();
+
+scopedContext.BeginTransaction();
+
+try
+{
+    // Perform database operations here
+
+    scopedContext.CommitTransaction();
+}
+catch
+{
+    scopedContext.RollbackTransaction();
+    throw;
+}
+</code></pre>
+<p>CoreRelm is most readable when transaction boundaries are explicit. If an operation spans multiple writes, prefer a clear begin/commit or begin/rollback pattern.</p>
+<h2 id="common-feature-areas-shown-in-the-quickstart-project">Common feature areas shown in the QuickStart project</h2>
+<p>The QuickStart project is broad. It currently demonstrates the shape of calls for several public feature areas, including:</p>
+<ul>
+<li>context usage</li>
+<li>connection examples</li>
+<li>identity helpers</li>
+<li>data row, data table, data object, and data list access patterns</li>
+<li>database work helpers</li>
+<li>bulk table writing</li>
+<li>attributes</li>
+<li>foreign keys</li>
+<li>DTOs</li>
+<li>data loaders</li>
+<li>model reset behavior</li>
+<li>model property naming conventions</li>
+</ul>
+<p>Treat the QuickStart project as a usage map. It is there to show how features look in code, even when the examples are intentionally lightweight.</p>
+<h2 id="quick-start-in-60-seconds">Quick Start in 60 Seconds</h2>
+<p>The following example is intentionally small and focuses on the shape of the workflow.</p>
+<p>It will create an <code>ExampleContext</code> context that:</p>
+<ul>
+<li>Automatically opens the connection named <code>ExampleConnectionString</code> in the <code>appSettings.json</code> file.</li>
+<li>Opens the database connection.</li>
+<li>Leaves the database transaction closed.</li>
+<li>Automatically (eager) initializes all data sets.</li>
+<li>Automatically (eager) verifies data sets against database table list.</li>
+</ul>
+<h3 id="1-build-options--create-context-one-step">1. Build options &amp; create context (one step)</h3>
+<pre><code class="lang-csharp">using var context = new RelmContextOptionsBuilder(&quot;name=ExampleConnectionString&quot;)
+    .Build&lt;ExampleContext&gt;();
+</code></pre>
+<h3 id="2-use-the-context">2. Use the context</h3>
+<pre><code class="lang-csharp">var lastInsertId = context.GetLastInsertId();
+
+var tableName = RelmHelper.GetDalTable&lt;ExampleModel&gt;();
+var internalId = &quot;some-guid-value&quot;;
+var idFromInternalId = context.GetIdFromInternalId(tableName, internalId);
+
+if (context.ExampleModels == null)
+    context.GetDataSet&lt;ExampleModel&gt;();
+
+var exampleActiveModels = context
+    .ExampleModels
+    .Where(model =&gt; model.Active == true &amp;&amp; model.Id &gt; 5)
+    .OrderByDescending(model =&gt; model.CreateDate)
+    .Load();
+</code></pre>
+<p>This is not meant to be a complete application. It is meant to show the basic shape of a configured context and a few common operations.</p>
+<h2 id="eager-versus-quick-context-behavior">Eager versus quick context behavior</h2>
+<p>The QuickStart distinguishes between two high-level approaches:</p>
+<h3 id="eager-context">Eager context</h3>
+<p>An eager context initializes datasets withno data retrieval and verifies tables up front.</p>
+<p>This can make some later operations faster because metadata work has already been done.</p>
+<h3 id="quick-context">Quick context</h3>
+<p>A quick context disables automatic dataset initialization and automatic table verification.</p>
+<p>This reduces up-front work and allows metadata to load as needed, but the first operation for a given path may do more work.</p>
+<p>This distinction is useful when deciding how much startup work you want versus how much lazy runtime work you are comfortable with. For example, a web application may prefer a quick context to minimize startup time, while a background processing application may prefer an eager context to ensure readiness.</p>
+<h2 id="error-handling-guidance">Error handling guidance</h2>
+<p>A good default pattern is:</p>
+<ul>
+<li>start a transaction explicitly when needed</li>
+<li>commit only after all related operations succeed</li>
+<li>roll back on failure</li>
+<li>keep error paths simple and predictable</li>
+</ul>
+<h3 id="example">Example</h3>
+<pre><code class="lang-csharp">using var relmContext = new RelmContextOptionsBuilder(&quot;name=ExampleConnectionString&quot;)
+    .SetAutoOpenTransaction(true)
+    .Build&lt;ExampleContext&gt;();
+
+try
+{
+    // Run database work examples
+    // Run bulk write examples
+
+    // Transaction will auto-commit when the context is disposed if no errors occur
+}
+catch (Exception ex)
+{
+    relmContext.RollbackTransaction();
+    Console.WriteLine($&quot;An error occurred: {ex.Message}&quot;);
+}
+</code></pre>
+<h2 id="where-to-go-next">Where to go next</h2>
+<p>After this page, the best next steps are:</p>
+<ol>
+<li>Review the Core Concepts section to understand <code>RelmContext</code>, <code>RelmDataSet</code>, <code>RelmModel</code>, and attributes</li>
+<li>Move into Working with Data for CRUD, querying, relationships, DTOs, loaders, and bulk operations</li>
+<li>Review Transactions, Migrations, and Advanced Topics for reliability and schema workflows</li>
+<li>Use the API reference when you need type and member details</li>
+</ol>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/documentation/docs/getting-started.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

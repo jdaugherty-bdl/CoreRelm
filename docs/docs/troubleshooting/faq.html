@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>FAQ | CoreRelm </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="FAQ | CoreRelm ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/documentation/docs/troubleshooting/faq.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/icon_large2.png" alt="CoreRelm">
+            CoreRelm
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="faq">FAQ</h1>
+
+<p>This page collects common questions and recurring points of confusion about CoreRelm.</p>
+<p>It should grow over time as real usage reveals which topics users most often stumble on.</p>
+<h2 id="general-questions">General questions</h2>
+<h3 id="is-corerelm-trying-to-hide-the-database">Is CoreRelm trying to hide the database?</h3>
+<p>No. CoreRelm is designed to provide structure and readability while still keeping relational behavior understandable and visible.</p>
+<h3 id="are-the-quickstart-examples-supposed-to-compile-and-run-as-is">Are the QuickStart examples supposed to compile and run as-is?</h3>
+<p>Not necessarily. The QuickStart project is documentation-first. Its purpose is to show what usage calls may look like and to demonstrate feature shape.</p>
+<h3 id="what-database-provider-does-corerelm-currently-target">What database provider does CoreRelm currently target?</h3>
+<p>CoreRelm is currently focused on MySQL 8+.</p>
+<h2 id="models-and-mapping">Models and mapping</h2>
+<h3 id="what-is-the-difference-between-relmmodel-and-relmmodelclean">What is the difference between <code>RelmModel</code> and <code>RelmModelClean</code>?</h3>
+<p><code>RelmModel</code> includes standard metadata fields by default, while <code>RelmModelClean</code> gives you a cleaner base when you want tighter control over the model shape.</p>
+<h3 id="why-does-my-model-example-work-conceptually-but-not-seem-migration-ready">Why does my model example work conceptually but not seem migration-ready?</h3>
+<p>Because a runtime usage example and a full schema-definition example are not always the same thing. Some model examples are intended to teach call shape and mapping intent, not to be a complete migrations-ready schema.</p>
+<h2 id="contexts-and-datasets">Contexts and datasets</h2>
+<h3 id="what-is-the-difference-between-an-eager-context-and-a-quick-context">What is the difference between an eager context and a quick context?</h3>
+<p>An eager context initializes datasets and verifies tables up front. A quick context disables that automatic work and loads metadata as needed.</p>
+<h3 id="why-do-i-sometimes-need-to-retrieve-a-data-set-manually">Why do I sometimes need to retrieve a data set manually?</h3>
+<p>In quick-context-style workflows, datasets may not be initialized up front, so manual retrieval becomes part of the runtime pattern.</p>
+<h2 id="transactions">Transactions</h2>
+<h3 id="should-i-use-explicit-transactions">Should I use explicit transactions?</h3>
+<p>Yes, especially for multi-step write workflows. Explicit transaction boundaries are one of the clearest and safest defaults in CoreRelm.</p>
+<h3 id="when-would-i-use-auto-open-transaction-behavior">When would I use auto-open transaction behavior?</h3>
+<p>When it fits the application flow, but explicit transactions are usually easier to read and troubleshoot.</p>
+<h2 id="migrations">Migrations</h2>
+<h3 id="are-migrations-a-first-class-feature-in-corerelm">Are migrations a first-class feature in CoreRelm?</h3>
+<p>Yes. Migrations are part of the public story and deserve both narrative docs and API reference coverage.</p>
+<h3 id="why-separate-generating-from-applying-migrations">Why separate generating from applying migrations?</h3>
+<p>Because they answer different questions. Generating creates the artifact; applying executes it against a database.</p>
+<h3 id="what-is-schema-drift">What is schema drift?</h3>
+<p>Schema drift is the mismatch between the intended schema state and the actual database state.</p>
+<h2 id="troubleshooting-questions-to-add-over-time">Troubleshooting questions to add over time</h2>
+<p>This page should eventually collect real-world answers for issues such as:</p>
+<ul>
+<li>connection string problems</li>
+<li>foreign-key confusion</li>
+<li>migrations validation failures</li>
+<li>unexpected loader behavior</li>
+<li>result-shape misunderstandings</li>
+<li>DI lifetime or integration confusion</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/documentation/docs/troubleshooting/faq.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Generating Migrations | CoreRelm </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Generating Migrations | CoreRelm ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/documentation/docs/advanced/generating-migrations.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/icon_large2.png" alt="CoreRelm">
+            CoreRelm
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="generating-migrations">Generating Migrations</h1>
+
+<p>This page explains the role of migration generation in CoreRelm and how to think about it safely.</p>
+<p>Generating a migration is the point where the desired schema model becomes a concrete change plan or artifact that can be reviewed and eventually applied.</p>
+<h2 id="the-goal-of-generation">The goal of generation</h2>
+<p>Migration generation should answer a simple question:</p>
+<blockquote>
+<p>Given the desired schema and the current database state, what change artifact should be produced?</p>
+</blockquote>
+<p>That artifact should be understandable enough to review and reliable enough to use as part of a controlled schema workflow.</p>
+<h2 id="high-level-generation-flow">High-level generation flow</h2>
+<p>A good mental model for generation is:</p>
+<ol>
+<li>resolve the desired schema input</li>
+<li>compare it to the current state</li>
+<li>build a migration plan</li>
+<li>render the resulting artifact</li>
+<li>review the output before applying it</li>
+</ol>
+<p>This is one reason the documentation should separate generation from application. They are related, but they are not the same responsibility.</p>
+<h2 id="example-usage-shape">Example usage shape</h2>
+<pre><code class="lang-csharp">var migrationTool = new RelmMigrationTooling();
+var result = migrationTool.GenerateMigration(/* model set / options */);
+
+if (!result.Success)
+{
+    // inspect errors
+}
+</code></pre>
+<p>This is intentionally documentation-style and focuses on call shape rather than complete runnable setup.</p>
+<h2 id="naming-and-organization">Naming and organization</h2>
+<p>Generated migrations are easier to maintain over time when naming is consistent.</p>
+<p>Good documentation guidance should include:</p>
+<ul>
+<li>use clear, descriptive names</li>
+<li>keep ordering understandable</li>
+<li>avoid ambiguous migration purpose</li>
+<li>organize files in a way that makes history readable</li>
+</ul>
+<h2 id="review-before-apply">Review before apply</h2>
+<p>Generation should usually be followed by review.</p>
+<p>That review may include:</p>
+<ul>
+<li>reading the generated SQL or migration script</li>
+<li>checking intended object changes</li>
+<li>confirming table, key, and constraint behavior</li>
+<li>verifying that the migration matches the desired change, not just that it exists</li>
+</ul>
+<h2 id="generation-inputs">Generation inputs</h2>
+<p>The broader CoreRelm migrations surface suggests that generation depends on more than one thing, including:</p>
+<ul>
+<li>model sets</li>
+<li>current schema state</li>
+<li>migration planning logic</li>
+<li>rendering logic</li>
+</ul>
+<p>That is why generation should be documented as a workflow step, not just as a single method call.</p>
+<h2 id="generation-and-tests">Generation and tests</h2>
+<p>Migration generation benefits from tests because schema workflows are easy to break in subtle ways.</p>
+<p>The repository materials indicate test coverage around migrations planning and parsing, which is a strong signal that generation should be treated carefully.</p>
+<h2 id="design-guidance">Design guidance</h2>
+<p>A good default approach is:</p>
+<ul>
+<li>generate with clear intent</li>
+<li>review the artifact before applying it</li>
+<li>keep naming consistent</li>
+<li>treat migration outputs as part of the versioned schema story</li>
+</ul>
+<h2 id="where-to-go-next">Where to go next</h2>
+<p>After this page, the best next steps are:</p>
+<ol>
+<li><a href="applying-migrations.html">Applying Migrations</a></li>
+<li><a href="drift-detection-and-validation.html">Drift Detection and Validation</a></li>
+</ol>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/documentation/docs/advanced/generating-migrations.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
