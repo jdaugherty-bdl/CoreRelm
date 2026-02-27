@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class InformationSchemaContext | CoreRelm </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class InformationSchemaContext | CoreRelm ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/jdaugherty-bdl/CoreRelm/new/master/apiSpec/new?filename=CoreRelm_Migrations_Contexts_InformationSchemaContext.md&amp;value=---%0Auid%3A%20CoreRelm.Migrations.Contexts.InformationSchemaContext%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/icon_large2.png" alt="CoreRelm">
+            CoreRelm
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="CoreRelm.Migrations.Contexts.InformationSchemaContext">
+
+
+
+  <h1 id="CoreRelm_Migrations_Contexts_InformationSchemaContext" data-uid="CoreRelm.Migrations.Contexts.InformationSchemaContext" class="text-break">
+Class InformationSchemaContext  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Migrations/Contexts/InformationSchemaContext.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="CoreRelm.html">CoreRelm</a>.<a class="xref" href="CoreRelm.Migrations.html">Migrations</a>.<a class="xref" href="CoreRelm.Migrations.Contexts.html">Contexts</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>CoreRelm.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class InformationSchemaContext : RelmContext, IDisposable, IRelmContext</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="CoreRelm.Models.RelmContext.html">RelmContext</a></div>
+      <div><span class="xref">InformationSchemaContext</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+      <div><a class="xref" href="CoreRelm.Interfaces.IRelmContext.html">IRelmContext</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_OnConfigure_CoreRelm_Options_RelmContextOptions_">RelmContext.OnConfigure(RelmContextOptions)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_ContextOptions">RelmContext.ContextOptions</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_SetDataLoader__1_CoreRelm_Interfaces_IRelmDataLoader___0__">RelmContext.SetDataLoader&lt;T&gt;(IRelmDataLoader&lt;T&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_StartConnection_System_Boolean_System_Int32_">RelmContext.StartConnection(bool, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_StartConnectionAsync_System_Boolean_System_Int32_System_Threading_CancellationToken_">RelmContext.StartConnectionAsync(bool, int, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_EndConnection_System_Boolean_">RelmContext.EndConnection(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_EndConnectionAsync_System_Boolean_System_Threading_CancellationToken_">RelmContext.EndConnectionAsync(bool, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_HasTransaction">RelmContext.HasTransaction()</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_BeginTransaction">RelmContext.BeginTransaction()</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_BeginTransactionAsync_System_Threading_CancellationToken_">RelmContext.BeginTransactionAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_CommitTransaction">RelmContext.CommitTransaction()</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_CommitTransactionAsync_System_Threading_CancellationToken_">RelmContext.CommitTransactionAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_RollbackTransaction">RelmContext.RollbackTransaction()</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_RollbackTransactionAsync_System_Threading_CancellationToken_">RelmContext.RollbackTransactionAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_Dispose">RelmContext.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_Dispose_System_Boolean_">RelmContext.Dispose(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_GetDataSet__1">RelmContext.GetDataSet&lt;T&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_GetDataSet__1_System_Boolean_">RelmContext.GetDataSet&lt;T&gt;(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_GetDataSet_System_Type_">RelmContext.GetDataSet(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_GetDataSet_System_Type_System_Boolean_">RelmContext.GetDataSet(Type, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_HasDataSet__1_System_Boolean_">RelmContext.HasDataSet&lt;T&gt;(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_HasDataSet_System_Type_System_Boolean_">RelmContext.HasDataSet(Type, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_GetDataSetType__1">RelmContext.GetDataSetType&lt;T&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_GetDataSetType__1_System_Boolean_">RelmContext.GetDataSetType&lt;T&gt;(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_GetDataSetType_System_Type_">RelmContext.GetDataSetType(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_GetDataSetType_System_Type_System_Boolean_">RelmContext.GetDataSetType(Type, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_Get__1_System_Boolean_">RelmContext.Get&lt;T&gt;(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_GetAsync__1_System_Boolean_System_Threading_CancellationToken_">RelmContext.GetAsync&lt;T&gt;(bool, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_Get__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Boolean_">RelmContext.Get&lt;T&gt;(Expression&lt;Func&lt;T, bool&gt;&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_GetAsync__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Boolean_System_Threading_CancellationToken_">RelmContext.GetAsync&lt;T&gt;(Expression&lt;Func&lt;T, bool&gt;&gt;, bool, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_FirstOrDefault__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Boolean_">RelmContext.FirstOrDefault&lt;T&gt;(Expression&lt;Func&lt;T, bool&gt;&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_FirstOrDefaultAsync__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Boolean_System_Threading_CancellationToken_">RelmContext.FirstOrDefaultAsync&lt;T&gt;(Expression&lt;Func&lt;T, bool&gt;&gt;, bool, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_Where__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___">RelmContext.Where&lt;T&gt;(Expression&lt;Func&lt;T, bool&gt;&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_Run__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__">RelmContext.Run&lt;T&gt;(string, Dictionary&lt;string, object&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_RunAsync__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Threading_CancellationToken_">RelmContext.RunAsync&lt;T&gt;(string, Dictionary&lt;string, object&gt;, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_SaveAll">RelmContext.SaveAll()</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_SaveAllAsync_System_Threading_CancellationToken_">RelmContext.SaveAllAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_GetLastInsertId">RelmContext.GetLastInsertId()</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_GetLastInsertIdAsync_System_Threading_CancellationToken_">RelmContext.GetLastInsertIdAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_GetIdFromInternalId_System_String_System_String_">RelmContext.GetIdFromInternalId(string, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_GetIdFromInternalIdAsync_System_String_System_String_System_Threading_CancellationToken_">RelmContext.GetIdFromInternalIdAsync(string, string, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_GetDataRow_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_">RelmContext.GetDataRow(string, Dictionary&lt;string, object&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_GetDataRowAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Threading_CancellationToken_">RelmContext.GetDataRowAsync(string, Dictionary&lt;string, object&gt;, bool, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_GetDataTable_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_">RelmContext.GetDataTable(string, Dictionary&lt;string, object&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_GetDataTableAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Threading_CancellationToken_">RelmContext.GetDataTableAsync(string, Dictionary&lt;string, object&gt;, bool, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_GetDataObject__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_">RelmContext.GetDataObject&lt;T&gt;(string, Dictionary&lt;string, object&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_GetDataObjectAsync__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Threading_CancellationToken_">RelmContext.GetDataObjectAsync&lt;T&gt;(string, Dictionary&lt;string, object&gt;, bool, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_GetDataObjects__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_">RelmContext.GetDataObjects&lt;T&gt;(string, Dictionary&lt;string, object&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_GetDataObjectsAsync__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Threading_CancellationToken_">RelmContext.GetDataObjectsAsync&lt;T&gt;(string, Dictionary&lt;string, object&gt;, bool, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_GetDataList__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_">RelmContext.GetDataList&lt;T&gt;(string, Dictionary&lt;string, object&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_GetDataListAsync__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Threading_CancellationToken_">RelmContext.GetDataListAsync&lt;T&gt;(string, Dictionary&lt;string, object&gt;, bool, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_GetScalar__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_">RelmContext.GetScalar&lt;T&gt;(string, Dictionary&lt;string, object&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_GetScalarAsync__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Threading_CancellationToken_">RelmContext.GetScalarAsync&lt;T&gt;(string, Dictionary&lt;string, object&gt;, bool, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_GetBulkTableWriter__1_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmContext.GetBulkTableWriter&lt;T&gt;(string, bool, bool, bool, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_BulkTableWrite__1___0_System_String_System_Type_System_Int32_System_Boolean_System_Boolean_System_Boolean_">RelmContext.BulkTableWrite&lt;T&gt;(T, string, Type, int, bool, bool, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_BulkTableWriteAsync__1___0_System_String_System_Type_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_">RelmContext.BulkTableWriteAsync&lt;T&gt;(T, string, Type, int, bool, bool, bool, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_DoDatabaseWork_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_">RelmContext.DoDatabaseWork(string, Dictionary&lt;string, object&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_DoDatabaseWorkAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Threading_CancellationToken_">RelmContext.DoDatabaseWorkAsync(string, Dictionary&lt;string, object&gt;, bool, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_DoDatabaseWork__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_">RelmContext.DoDatabaseWork&lt;T&gt;(string, Dictionary&lt;string, object&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_DoDatabaseWorkAsync__1_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Threading_CancellationToken_">RelmContext.DoDatabaseWorkAsync&lt;T&gt;(string, Dictionary&lt;string, object&gt;, bool, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_DoDatabaseWork_System_String_System_Func_MySql_Data_MySqlClient_MySqlCommand_System_Object__System_Boolean_">RelmContext.DoDatabaseWork(string, Func&lt;MySqlCommand, object&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_DoDatabaseWorkAsync_System_String_System_Func_MySql_Data_MySqlClient_MySqlCommand_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Object___System_Boolean_System_Threading_CancellationToken_">RelmContext.DoDatabaseWorkAsync(string, Func&lt;MySqlCommand, CancellationToken, Task&lt;object&gt;&gt;, bool, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_DoDatabaseWork__1_System_String_System_Func_MySql_Data_MySqlClient_MySqlCommand___0__System_Boolean_">RelmContext.DoDatabaseWork&lt;T&gt;(string, Func&lt;MySqlCommand, T&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_DoDatabaseWorkAsync__1_System_String_System_Func_MySql_Data_MySqlClient_MySqlCommand_System_Threading_CancellationToken_System_Threading_Tasks_Task___0___System_Boolean_System_Threading_CancellationToken_">RelmContext.DoDatabaseWorkAsync&lt;T&gt;(string, Func&lt;MySqlCommand, CancellationToken, Task&lt;T&gt;&gt;, bool, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_WriteToDatabase_CoreRelm_Interfaces_IRelmModel_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmContext.WriteToDatabase(IRelmModel, int, bool, bool, bool, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_WriteToDatabaseAsync_CoreRelm_Interfaces_IRelmModel_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_">RelmContext.WriteToDatabaseAsync(IRelmModel, int, bool, bool, bool, bool, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_WriteToDatabase_System_Collections_Generic_IEnumerable_CoreRelm_Interfaces_IRelmModel__System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmContext.WriteToDatabase(IEnumerable&lt;IRelmModel&gt;, int, bool, bool, bool, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmContext.html#CoreRelm_Models_RelmContext_WriteToDatabaseAsync_System_Collections_Generic_IEnumerable_CoreRelm_Interfaces_IRelmModel__System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_">RelmContext.WriteToDatabaseAsync(IEnumerable&lt;IRelmModel&gt;, int, bool, bool, bool, bool, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.DbContextExtensions.html#CoreRelm_Extensions_DbContextExtensions_SetLockWaitTimeout_CoreRelm_Interfaces_IRelmContext_System_Int32_">DbContextExtensions.SetLockWaitTimeout(IRelmContext, int)</a>
+  </div>
+  </dd></dl>
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="CoreRelm_Migrations_Contexts_InformationSchemaContext__ctor_" data-uid="CoreRelm.Migrations.Contexts.InformationSchemaContext.#ctor*"></a>
+
+  <h3 id="CoreRelm_Migrations_Contexts_InformationSchemaContext__ctor_CoreRelm_Options_RelmContextOptions_" data-uid="CoreRelm.Migrations.Contexts.InformationSchemaContext.#ctor(CoreRelm.Options.RelmContextOptions)">
+  InformationSchemaContext(RelmContextOptions)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Migrations/Contexts/InformationSchemaContext.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public InformationSchemaContext(RelmContextOptions relmContextOptions)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>relmContextOptions</code> <a class="xref" href="CoreRelm.Options.RelmContextOptions.html">RelmContextOptions</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="CoreRelm_Migrations_Contexts_InformationSchemaContext_Columns_" data-uid="CoreRelm.Migrations.Contexts.InformationSchemaContext.Columns*"></a>
+
+  <h3 id="CoreRelm_Migrations_Contexts_InformationSchemaContext_Columns" data-uid="CoreRelm.Migrations.Contexts.InformationSchemaContext.Columns">
+  Columns
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Migrations/Contexts/InformationSchemaContext.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual IRelmDataSet&lt;ColumnSchema&gt;? Columns { get; protected set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet</a>&lt;<a class="xref" href="CoreRelm.Models.Migrations.Introspection.ColumnSchema.html">ColumnSchema</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Migrations_Contexts_InformationSchemaContext_ForeignKeys_" data-uid="CoreRelm.Migrations.Contexts.InformationSchemaContext.ForeignKeys*"></a>
+
+  <h3 id="CoreRelm_Migrations_Contexts_InformationSchemaContext_ForeignKeys" data-uid="CoreRelm.Migrations.Contexts.InformationSchemaContext.ForeignKeys">
+  ForeignKeys
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Migrations/Contexts/InformationSchemaContext.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual IRelmDataSet&lt;ForeignKeySchema&gt;? ForeignKeys { get; protected set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet</a>&lt;<a class="xref" href="CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.html">ForeignKeySchema</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Migrations_Contexts_InformationSchemaContext_FunctionParameters_" data-uid="CoreRelm.Migrations.Contexts.InformationSchemaContext.FunctionParameters*"></a>
+
+  <h3 id="CoreRelm_Migrations_Contexts_InformationSchemaContext_FunctionParameters" data-uid="CoreRelm.Migrations.Contexts.InformationSchemaContext.FunctionParameters">
+  FunctionParameters
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Migrations/Contexts/InformationSchemaContext.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual IRelmDataSet&lt;FunctionParameterSchema&gt;? FunctionParameters { get; protected set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet</a>&lt;<a class="xref" href="CoreRelm.Models.Migrations.Introspection.FunctionParameterSchema.html">FunctionParameterSchema</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Migrations_Contexts_InformationSchemaContext_Functions_" data-uid="CoreRelm.Migrations.Contexts.InformationSchemaContext.Functions*"></a>
+
+  <h3 id="CoreRelm_Migrations_Contexts_InformationSchemaContext_Functions" data-uid="CoreRelm.Migrations.Contexts.InformationSchemaContext.Functions">
+  Functions
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Migrations/Contexts/InformationSchemaContext.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual IRelmDataSet&lt;FunctionSchema&gt;? Functions { get; protected set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet</a>&lt;<a class="xref" href="CoreRelm.Models.Migrations.Introspection.FunctionSchema.html">FunctionSchema</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Migrations_Contexts_InformationSchemaContext_Indexes_" data-uid="CoreRelm.Migrations.Contexts.InformationSchemaContext.Indexes*"></a>
+
+  <h3 id="CoreRelm_Migrations_Contexts_InformationSchemaContext_Indexes" data-uid="CoreRelm.Migrations.Contexts.InformationSchemaContext.Indexes">
+  Indexes
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Migrations/Contexts/InformationSchemaContext.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual IRelmDataSet&lt;IndexSchema&gt;? Indexes { get; protected set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet</a>&lt;<a class="xref" href="CoreRelm.Models.Migrations.Introspection.IndexSchema.html">IndexSchema</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Migrations_Contexts_InformationSchemaContext_Triggers_" data-uid="CoreRelm.Migrations.Contexts.InformationSchemaContext.Triggers*"></a>
+
+  <h3 id="CoreRelm_Migrations_Contexts_InformationSchemaContext_Triggers" data-uid="CoreRelm.Migrations.Contexts.InformationSchemaContext.Triggers">
+  Triggers
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Migrations/Contexts/InformationSchemaContext.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual IRelmDataSet&lt;TriggerSchema&gt;? Triggers { get; protected set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmDataSet-1.html">IRelmDataSet</a>&lt;<a class="xref" href="CoreRelm.Models.Migrations.Introspection.TriggerSchema.html">TriggerSchema</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Migrations/Contexts/InformationSchemaContext.cs/#L14" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

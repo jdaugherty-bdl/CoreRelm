@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Contributing | CoreRelm </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Contributing | CoreRelm ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/docs/docs/troubleshooting/contributing.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/icon_large2.png" alt="CoreRelm">
+            CoreRelm
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="contributing">Contributing</h1>
+
+<p>This page explains how to contribute to CoreRelm.</p>
+<p>As the project grows, it is helpful to make contribution expectations clear for code, tests, docs, examples, and broader project maintenance.</p>
+<h2 id="general-contribution-mindset">General contribution mindset</h2>
+<p>A good contribution should aim to improve one or more of the following:</p>
+<ul>
+<li>clarity</li>
+<li>correctness</li>
+<li>maintainability</li>
+<li>documentation quality</li>
+<li>test coverage</li>
+<li>user experience for library consumers</li>
+</ul>
+<h2 id="core-expectations">Core expectations</h2>
+<p>A good default expectation is:</p>
+<ul>
+<li>keep changes focused</li>
+<li>prefer clear and explicit code</li>
+<li>add or update tests when behavior changes</li>
+<li>update documentation when public behavior changes</li>
+<li>keep examples aligned with the public surface</li>
+</ul>
+<h2 id="documentation-contributions">Documentation contributions</h2>
+<p>If a public feature changes, documentation should usually be updated in more than one place.</p>
+<p>That may include:</p>
+<ul>
+<li>the guide pages</li>
+<li>the QuickStart examples</li>
+<li>the README</li>
+<li>generated API docs or API-doc inputs</li>
+<li>tests that serve as behavioral evidence</li>
+</ul>
+<p>This matters because different documentation layers serve different purposes.</p>
+<h2 id="example-contributions">Example contributions</h2>
+<p>QuickStart examples should stay aligned with the real public surface.</p>
+<p>Because the QuickStart project is documentation-first, example contributions should prioritize:</p>
+<ul>
+<li>clear usage shape</li>
+<li>focused feature demonstration</li>
+<li>consistency with the guide</li>
+<li>consistency with actual public types and members</li>
+</ul>
+<h2 id="code-contributions">Code contributions</h2>
+<p>Code contributions should keep CoreRelm's design style in mind:</p>
+<ul>
+<li>explicitness over magic</li>
+<li>readable relational behavior</li>
+<li>visible transaction and configuration boundaries</li>
+<li>practical, understandable APIs</li>
+</ul>
+<h2 id="test-contributions">Test contributions</h2>
+<p>Tests are especially important for:</p>
+<ul>
+<li>migrations behavior</li>
+<li>parsing and planning logic</li>
+<li>relationship behavior</li>
+<li>configuration and options behavior</li>
+<li>public feature regressions</li>
+</ul>
+<p>A good contribution often includes the tests needed to make the change trustworthy.</p>
+<h2 id="documentation-first-improvements">Documentation-first improvements</h2>
+<p>Not every valuable contribution needs to be a code change.</p>
+<p>Useful contributions can also include:</p>
+<ul>
+<li>clarifying docs wording</li>
+<li>mapping examples to guide pages</li>
+<li>improving troubleshooting coverage</li>
+<li>refining architecture notes</li>
+<li>improving contribution guidance itself</li>
+</ul>
+<h2 id="design-guidance">Design guidance</h2>
+<p>A good default approach is:</p>
+<ul>
+<li>make the smallest clear change that solves the problem</li>
+<li>support public changes with tests and docs</li>
+<li>keep the project easier to understand after the change than before it</li>
+</ul>
+<h2 id="where-to-go-next">Where to go next</h2>
+<p>After this page, the next best step is <a href="roadmap.html">Roadmap</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/docs/docs/troubleshooting/contributing.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

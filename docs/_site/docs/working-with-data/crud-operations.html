@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>CRUD Operations | CoreRelm </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="CRUD Operations | CoreRelm ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/docs/docs/working-with-data/crud-operations.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/icon_large2.png" alt="CoreRelm">
+            CoreRelm
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="crud-operations">CRUD Operations</h1>
+
+<p>This page explains the basic create, read, update, and delete workflow shape in CoreRelm.</p>
+<p>CoreRelm is designed to make common relational work more structured and readable while still keeping the database visible in the way you work. In practice, that means CRUD operations are usually expressed through a configured context and its data sets.</p>
+<h2 id="the-basic-crud-flow">The basic CRUD flow</h2>
+<p>A typical CRUD workflow in CoreRelm looks like this:</p>
+<ol>
+<li>Build or create a context</li>
+<li>Access the relevant data set</li>
+<li>Create, load, or query a model</li>
+<li>Change the model or write a new one</li>
+<li>Use explicit transactions when the operation spans multiple writes</li>
+</ol>
+<p>This is intentionally direct. CoreRelm prefers explicitness over hidden behavior.</p>
+<h2 id="create">Create</h2>
+<p>A common create flow starts from the context and a data set.</p>
+<h3 id="example-shape">Example shape</h3>
+<pre><code class="lang-csharp">var person = context.People.New();
+person.FirstName = &quot;Ada&quot;;
+person.LastName = &quot;Lovelace&quot;;
+person.WriteToDatabase(context);
+</code></pre>
+<p>This pattern is useful because it keeps the operation readable:</p>
+<ul>
+<li>start from the configured runtime</li>
+<li>create a new model instance through the relevant data set</li>
+<li>populate values</li>
+<li>write the model using the context</li>
+</ul>
+<p>Depending on the surrounding workflow, you may also use model-level save patterns in other examples. The important concept is that the create flow remains visible and easy to follow.</p>
+<h2 id="read">Read</h2>
+<p>CoreRelm supports both direct lookup and broader query-style retrieval.</p>
+<h3 id="find-a-single-model">Find a single model</h3>
+<pre><code class="lang-csharp">var found = context.People.Find(person.InternalId);
+</code></pre>
+<p>This is the narrow &quot;get me this one model&quot; shape.</p>
+<h3 id="query-for-multiple-models">Query for multiple models</h3>
+<pre><code class="lang-csharp">var results = context.People
+    .Where(x =&gt; x.LastName == &quot;Lovelace&quot;)
+    .OrderBy(x =&gt; x.FirstName)
+    .Load();
+</code></pre>
+<p>This is the broader &quot;filter, shape, and materialize&quot; flow.</p>
+<h2 id="update">Update</h2>
+<p>A common update shape is:</p>
+<ol>
+<li>Load or find a model</li>
+<li>Change one or more properties</li>
+<li>Persist the updated model</li>
+</ol>
+<h3 id="example-shape-1">Example shape</h3>
+<pre><code class="lang-csharp">var found = context.People.Find(person.InternalId);
+
+if (found != null)
+{
+    found.LastName = &quot;Byron&quot;;
+    found.WriteToDatabase(context);
+}
+</code></pre>
+<p>In CoreRelm, the update step is usually easy to reason about because the model is explicit and the persistence step is visible.</p>
+<h2 id="delete">Delete</h2>
+<p>Delete examples should follow the same philosophy as the rest of the library:</p>
+<ul>
+<li>make the boundary clear</li>
+<li>make the target clear</li>
+<li>make the persistence step clear</li>
+</ul>
+<h3 id="example-shape-2">Example shape</h3>
+<pre><code class="lang-csharp">var found = context.People.Find(person.InternalId);
+
+if (found != null)
+{
+    found.DeleteFromDatabase(context);
+}
+</code></pre>
+<p>Even if the exact helper methods vary by feature area, the documentation should keep the mental model consistent: load the target, then perform an explicit removal step.</p>
+<h2 id="using-data-sets-as-the-primary-surface">Using data sets as the primary surface</h2>
+<p>For everyday CRUD work, the most common entry point is the model-specific data set exposed by the context.</p>
+<p>That makes the code easier to navigate because the developer can usually answer:</p>
+<ul>
+<li>Which model am I working with?</li>
+<li>Which context owns it?</li>
+<li>Which data set is the access surface?</li>
+</ul>
+<h2 id="save-and-write-patterns">Save and write patterns</h2>
+<p>Across the documentation and examples, you may see slightly different persistence verbs depending on the example focus:</p>
+<ul>
+<li><code>WriteToDatabase(...)</code></li>
+<li>model-level save patterns</li>
+<li>data set batch-add flows followed by a save step</li>
+</ul>
+<p>Those are all part of the same broader idea: CoreRelm keeps persistence visible in code instead of hiding it behind large amounts of implicit state tracking.</p>
+<h2 id="crud-and-transactions">CRUD and transactions</h2>
+<p>For a single isolated write, a lightweight flow may be enough.</p>
+<p>For multiple related writes, a better default pattern is:</p>
+<pre><code class="lang-csharp">using var context = new RelmContextOptionsBuilder(&quot;name=ExampleConnectionString&quot;)
+    .Build&lt;ExampleContext&gt;();
+
+context.BeginTransaction();
+
+try
+{
+    // create, update, or delete multiple related models here
+
+    context.CommitTransaction();
+}
+catch
+{
+    context.RollbackTransaction();
+    throw;
+}
+</code></pre>
+<p>CoreRelm is most readable when transaction boundaries are explicit.</p>
+<h2 id="design-guidance">Design guidance</h2>
+<p>A good default CRUD mindset in CoreRelm is:</p>
+<ul>
+<li>begin from the context</li>
+<li>use the relevant data set</li>
+<li>keep model state changes readable</li>
+<li>make persistence steps explicit</li>
+<li>introduce explicit transactions when operations become multi-step</li>
+</ul>
+<h2 id="where-to-go-next">Where to go next</h2>
+<p>After this page, the best next steps are:</p>
+<ol>
+<li><a href="querying-and-result-shapes.html">Querying and Result Shapes</a></li>
+<li><a href="relationships-and-foreign-keys.html">Relationships and Foreign Keys</a></li>
+</ol>
+<p>Those pages explain how CRUD grows into richer querying and relationship-oriented workflows.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/docs/docs/working-with-data/crud-operations.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

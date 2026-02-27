@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class RelmModel | CoreRelm </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class RelmModel | CoreRelm ">
+      
+      <meta name="description" content="Represents a base model for entities in the Relm framework, providing core attributes and functionality for data manipulation, database operations, and DTO generation.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/jdaugherty-bdl/CoreRelm/new/master/apiSpec/new?filename=CoreRelm_Models_RelmModel.md&amp;value=---%0Auid%3A%20CoreRelm.Models.RelmModel%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/icon_large2.png" alt="CoreRelm">
+            CoreRelm
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="CoreRelm.Models.RelmModel">
+
+
+
+  <h1 id="CoreRelm_Models_RelmModel" data-uid="CoreRelm.Models.RelmModel" class="text-break">
+Class RelmModel  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="CoreRelm.html">CoreRelm</a>.<a class="xref" href="CoreRelm.Models.html">Models</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>CoreRelm.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Represents a base model for entities in the Relm framework, providing core attributes and functionality for data
+manipulation, database operations, and DTO generation.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmFunction(&quot;uuid_v4&quot;, &quot;\r\n        -- 16 cryptographically strong random bytes\r\n        DECLARE b BINARY(16);\r\n        SET b = RANDOM_BYTES(16);\r\n\r\n        -- Set version to 4 (0100xxxx) in byte 7 (1-indexed)\r\n        SET b = INSERT(b, 7, 1, CHAR((ASCII(SUBSTR(b, 7, 1)) &amp; 15) | 64 USING latin1));\r\n\r\n        -- Set variant to RFC 4122 (10xxxxxx) in byte 9\r\n        SET b = INSERT(b, 9, 1, CHAR((ASCII(SUBSTR(b, 9, 1)) &amp; 63) | 128 USING latin1));\r\n\r\n        -- Format as 8-4-4-4-12\r\n        RETURN LOWER(CONCAT(\r\n            HEX(SUBSTR(b,  1, 4)), &#39;-&#39;,\r\n            HEX(SUBSTR(b,  5, 2)), &#39;-&#39;,\r\n            HEX(SUBSTR(b,  7, 2)), &#39;-&#39;,\r\n            HEX(SUBSTR(b,  9, 2)), &#39;-&#39;,\r\n            HEX(SUBSTR(b, 11, 6))\r\n        ));&quot;, &quot;CHAR&quot;, 36, &quot;Generates a version 4 UUID as a string in the format &#39;xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx&#39;, where &#39;x&#39; is any hexadecimal digit and &#39;y&#39; is one of 8, 9, A, or B.&quot;, null, false, StoredProcedures.ProcedureDataAccess.NoSql, SecurityEnums.SqlSecurityLevel.Invoker)]
+[RelmTrigger(Triggers.TriggerTime.BEFORE, Triggers.TriggerEvent.INSERT, &quot;\r\n    BEGIN\r\n        IF NEW.InternalId IS NULL OR NEW.InternalId = &#39;&#39; THEN\r\n            SET NEW.InternalId = uuid_v4();\r\n        END IF;\r\n    END&quot;, null, Triggers.TriggerOrdering.FOLLOWS, null)]
+public class RelmModel : RelmModelClean, IRelmModel, IRelmModelClean</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="CoreRelm.Models.RelmModelClean.html">RelmModelClean</a></div>
+      <div><span class="xref">RelmModel</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a></div>
+      <div><a class="xref" href="CoreRelm.Interfaces.IRelmModelClean.html">IRelmModelClean</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="CoreRelm.Models.Migrations.Execution.AppliedMigration.html">AppliedMigration</a></div>
+      <div><a class="xref" href="CoreRelm.Models.Migrations.Introspection.ColumnSchema.html">ColumnSchema</a></div>
+      <div><a class="xref" href="CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.html">ForeignKeySchema</a></div>
+      <div><a class="xref" href="CoreRelm.Models.Migrations.Introspection.FunctionParameterSchema.html">FunctionParameterSchema</a></div>
+      <div><a class="xref" href="CoreRelm.Models.Migrations.Introspection.FunctionSchema.html">FunctionSchema</a></div>
+      <div><a class="xref" href="CoreRelm.Models.Migrations.Introspection.IndexSchema.html">IndexSchema</a></div>
+      <div><a class="xref" href="CoreRelm.Models.Migrations.Introspection.TriggerSchema.html">TriggerSchema</a></div>
+      <div><a class="xref" href="CoreRelm.Models.RelmModelApartment.html">RelmModelApartment</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_DtoTypeProcessor">RelmModelClean.DtoTypeProcessor</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_GetUnderscoreProperties_System_Boolean_">RelmModelClean.GetUnderscoreProperties(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_WriteToDatabase_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModelClean.WriteToDatabase(Enum, int, bool, bool, bool, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_WriteToDatabaseAsync_System_Enum_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_">RelmModelClean.WriteToDatabaseAsync(Enum, int, bool, bool, bool, bool, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModelClean.WriteToDatabase(MySqlConnection, int, bool, bool, bool, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_WriteToDatabase_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModelClean.WriteToDatabase(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_">RelmModelClean.WriteToDatabaseAsync(MySqlConnection, int, bool, bool, bool, bool, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_WriteToDatabaseAsync_MySql_Data_MySqlClient_MySqlConnection_MySql_Data_MySqlClient_MySqlTransaction_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_">RelmModelClean.WriteToDatabaseAsync(MySqlConnection, MySqlTransaction, int, bool, bool, bool, bool, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_WriteToDatabase_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModelClean.WriteToDatabase(IRelmContext, int, bool, bool, bool, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_WriteToDatabaseAsync_CoreRelm_Interfaces_IRelmContext_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Threading_CancellationToken_">RelmModelClean.WriteToDatabaseAsync(IRelmContext, int, bool, bool, bool, bool, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_WriteToDatabase_CoreRelm_Options_RelmContextOptions_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RelmModelClean.WriteToDatabase(RelmContextOptions, int, bool, bool, bool, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_CopyFromSource__1___0_">RelmModelClean.CopyFromSource&lt;T&gt;(T)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_GenerateDTO_System_Collections_Generic_IEnumerable_System_String__System_Collections_Generic_IEnumerable_System_String__System_String_System_Func_CoreRelm_Interfaces_IRelmModel_System_Collections_Generic_Dictionary_System_String_System_Object___System_Int32_">RelmModelClean.GenerateDTO(IEnumerable&lt;string&gt;, IEnumerable&lt;string&gt;, string, Func&lt;IRelmModel, Dictionary&lt;string, object&gt;&gt;, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="CoreRelm.Models.RelmModelClean.html#CoreRelm_Models_RelmModelClean_Duplicate">RelmModelClean.Duplicate()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadDataLoaderField__2___0_CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___">ModelExtensions.LoadDataLoaderField&lt;T, S&gt;(T, IRelmContext, Expression&lt;Func&lt;T, S&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadDataLoaderField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___">ModelExtensions.LoadDataLoaderField&lt;T, S&gt;(T, RelmContextOptions, Expression&lt;Func&lt;T, S&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, IRelmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, IRelmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, IRelmContext, Expression&lt;Func&lt;T, R&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, IRelmContext, Expression&lt;Func&lt;T, R&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, RelmContextOptions, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, RelmContextOptions, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, RelmContextOptions, Expression&lt;Func&lt;T, R&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__2___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R&gt;(T, RelmContextOptions, Expression&lt;Func&lt;T, R&gt;&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmContext, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmContext, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Interfaces_IRelmContext_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, IRelmContext, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, RelmContextOptions, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0_System_Collections_Generic_ICollection___1____CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, RelmContextOptions, Expression&lt;Func&lt;T, ICollection&lt;R&gt;&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, RelmContextOptions, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CoreRelm.Extensions.ModelExtensions.html#CoreRelm_Extensions_ModelExtensions_LoadForeignKeyField__3___0_CoreRelm_Options_RelmContextOptions_System_Linq_Expressions_Expression_System_Func___0___1___CoreRelm_Interfaces_IRelmDataLoader___2__System_Linq_Expressions_Expression_System_Func___1_System_Object___">ModelExtensions.LoadForeignKeyField&lt;T, R, S&gt;(T, RelmContextOptions, Expression&lt;Func&lt;T, R&gt;&gt;, IRelmDataLoader&lt;S&gt;, Expression&lt;Func&lt;R, object&gt;&gt;)</a>
+  </div>
+  </dd></dl>
+
+
+
+  <h2 id="CoreRelm_Models_RelmModel_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>The <a class="xref" href="CoreRelm.Models.RelmModel.html">RelmModel</a> class serves as a foundational class for entities, offering
+features such as: <ul><li>Core attributes like <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_Id">Id</a>, <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_Active">Active</a>, <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_InternalId">InternalId</a>, <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_CreateDate">CreateDate</a>, and <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_LastUpdated">LastUpdated</a>.</li><li>Support for resetting
+attributes to default values using <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_ResetCoreAttributes_System_Boolean_System_Boolean_">ResetCoreAttributes(bool, bool)</a>.</li><li>Data population from database
+rows via <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_ResetWithData_System_Data_DataRow_System_String_">ResetWithData(DataRow, string?)</a>.</li><li>Bulk database write operations through various
+<code>WriteToDatabase</code> overloads.</li><li>Dynamic Data Transfer Object (DTO) generation with GenerateDTO.</li></ul> This class is designed to be extended by specific entity types and provides
+a flexible foundation for working with relational data in the Relm framework.
+</div>
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="CoreRelm_Models_RelmModel__ctor_" data-uid="CoreRelm.Models.RelmModel.#ctor*"></a>
+
+  <h3 id="CoreRelm_Models_RelmModel__ctor" data-uid="CoreRelm.Models.RelmModel.#ctor">
+  RelmModel()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L120"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="CoreRelm.Models.RelmModel.html">RelmModel</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RelmModel()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Models_RelmModel__ctor_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This constructor initializes the core attributes of the model by invoking the <a class="xref" href="CoreRelm.Models.RelmModel.html#CoreRelm_Models_RelmModel_ResetCoreAttributes_System_Boolean_System_Boolean_">ResetCoreAttributes(bool, bool)</a> method.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Models_RelmModel__ctor_" data-uid="CoreRelm.Models.RelmModel.#ctor*"></a>
+
+  <h3 id="CoreRelm_Models_RelmModel__ctor_CoreRelm_Interfaces_IRelmModel_" data-uid="CoreRelm.Models.RelmModel.#ctor(CoreRelm.Interfaces.IRelmModel)">
+  RelmModel(IRelmModel)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L132"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the RelmModel class by copying the values from the specified source model.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RelmModel(IRelmModel fromModel)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>fromModel</code> <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a></dt>
+    <dd><p>The source model from which to copy property values. This parameter cannot be null.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Models_RelmModel__ctor_CoreRelm_Interfaces_IRelmModel__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This constructor copies the Id, Active, InternalId, CreateDate, and LastUpdated
+properties from the provided model. Use this constructor to create a new RelmModel instance that mirrors the
+state of an existing IRelmModel.</p>
+</div>
+
+
+
+
+  <a id="CoreRelm_Models_RelmModel__ctor_" data-uid="CoreRelm.Models.RelmModel.#ctor*"></a>
+
+  <h3 id="CoreRelm_Models_RelmModel__ctor_System_Data_DataRow_System_String_" data-uid="CoreRelm.Models.RelmModel.#ctor(System.Data.DataRow,System.String)">
+  RelmModel(DataRow, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L152"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the RelmModel class using the specified data row and an optional alternate
+table name.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RelmModel(DataRow modelData, string? alternateTableName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>modelData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.datarow">DataRow</a></dt>
+    <dd><p>The DataRow containing the model data. This parameter cannot be null.</p>
+</dd>
+    <dt><code>alternateTableName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>An optional string representing an alternate table name. If provided, it will be used instead of the default
+table name.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Models_RelmModel__ctor_System_Data_DataRow_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This constructor throws an ArgumentNullException if modelData is null, ensuring that
+valid data is provided for model initialization.</p>
+</div>
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="CoreRelm_Models_RelmModel_Active_" data-uid="CoreRelm.Models.RelmModel.Active*"></a>
+
+  <h3 id="CoreRelm_Models_RelmModel_Active" data-uid="CoreRelm.Models.RelmModel.Active">
+  Active
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L91"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets a value indicating whether the entity is active.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, MySqlDbType.VarChar, null, 1, null, false, false, false, false, &quot;1&quot;, false, false)]
+public bool Active { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_RelmModel_CreateDate_" data-uid="CoreRelm.Models.RelmModel.CreateDate*"></a>
+
+  <h3 id="CoreRelm_Models_RelmModel_CreateDate" data-uid="CoreRelm.Models.RelmModel.CreateDate">
+  CreateDate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L106"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the creation date and time of the entity.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, MySqlDbType.VarChar, null, -1, null, false, false, false, false, &quot;CURRENT_TIMESTAMP&quot;, false, false)]
+public DateTime CreateDate { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_RelmModel_Id_" data-uid="CoreRelm.Models.RelmModel.Id*"></a>
+
+  <h3 id="CoreRelm_Models_RelmModel_Id" data-uid="CoreRelm.Models.RelmModel.Id">
+  Id
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the unique auto-number row identifier for the entity.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, MySqlDbType.VarChar, null, -1, null, false, true, true, false, null, false, false)]
+public long? Id { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_RelmModel_InternalId_" data-uid="CoreRelm.Models.RelmModel.InternalId*"></a>
+
+  <h3 id="CoreRelm_Models_RelmModel_InternalId" data-uid="CoreRelm.Models.RelmModel.InternalId">
+  InternalId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L97"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the unique internal identifier for the entity.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmIndex(null, Indexes.IndexType.UNIQUE, -1, null, null, Indexes.Visibility.None, null, null, Indexes.Algorithm.None, Indexes.LockOption.None)]
+[RelmColumn(null, MySqlDbType.VarChar, null, 45, null, false, false, false, false, null, false, false)]
+public string? InternalId { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_RelmModel_LastUpdated_" data-uid="CoreRelm.Models.RelmModel.LastUpdated*"></a>
+
+  <h3 id="CoreRelm_Models_RelmModel_LastUpdated" data-uid="CoreRelm.Models.RelmModel.LastUpdated">
+  LastUpdated
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L112"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the timestamp of the last update.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RelmColumn(null, MySqlDbType.VarChar, null, -1, null, false, false, false, false, &quot;CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP&quot;, false, false)]
+public DateTime LastUpdated { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="CoreRelm_Models_RelmModel_ResetCoreAttributes_" data-uid="CoreRelm.Models.RelmModel.ResetCoreAttributes*"></a>
+
+  <h3 id="CoreRelm_Models_RelmModel_ResetCoreAttributes_System_Boolean_System_Boolean_" data-uid="CoreRelm.Models.RelmModel.ResetCoreAttributes(System.Boolean,System.Boolean)">
+  ResetCoreAttributes(bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L164"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Resets the core attributes of the model to their default values.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IRelmModel ResetCoreAttributes(bool nullInternalId = false, bool resetCreateDate = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>nullInternalId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, sets the internal ID to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>; otherwise, generates a new unique
+identifier.</p>
+</dd>
+    <dt><code>resetCreateDate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, resets the creation date to the current date and time.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a></dt>
+    <dd><p>The current instance of the model with updated core attributes.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="CoreRelm_Models_RelmModel_ResetWithData_" data-uid="CoreRelm.Models.RelmModel.ResetWithData*"></a>
+
+  <h3 id="CoreRelm_Models_RelmModel_ResetWithData_System_Data_DataRow_System_String_" data-uid="CoreRelm.Models.RelmModel.ResetWithData(System.Data.DataRow,System.String)">
+  ResetWithData(DataRow, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L188"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Resets the model's attributes using the specified data row, optionally using an alternate table name.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IRelmModel ResetWithData(DataRow modelData, string? alternateTableName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>modelData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.datarow">DataRow</a></dt>
+    <dd><p>The data row containing the values to apply to the model. Cannot be null.</p>
+</dd>
+    <dt><code>alternateTableName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>An optional alternate table name to use when resetting the model. If null, the default table name is used.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a></dt>
+    <dd><p>An instance of <a class="xref" href="CoreRelm.Interfaces.IRelmModel.html">IRelmModel</a> representing the model after the reset operation.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="CoreRelm_Models_RelmModel_ResetWithData_System_Data_DataRow_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method resets core attributes before delegating to the base implementation. Use
+this method to update the model's state from a data source.</p>
+</div>
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/RelmModel.cs/#L47" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
