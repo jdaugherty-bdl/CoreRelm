@@ -132,13 +132,13 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Rendering
                     RenderCreateTable(query, createTableOperation.Table, options);
                     break;
                 case AddColumnOperation addColumnOperation:
-                    query.AppendLine($"ALTER TABLE `{EscapeIdentifier(addColumnOperation.TableName)}` ADD COLUMN {RenderColumnDefinition(addColumnOperation.Column)};");
+                    query.AppendLine($"ALTER TABLE `{EscapeIdentifier(addColumnOperation.Column.TableName)}` ADD COLUMN {RenderColumnDefinition(addColumnOperation.Column)};");
                     break;
                 case AlterColumnOperation alterColumnOperation:
                     var queryStatement = new StringBuilder();
 
                     queryStatement.Append("ALTER TABLE `");
-                    queryStatement.Append(EscapeIdentifier(alterColumnOperation.TableName));
+                    queryStatement.Append(EscapeIdentifier(alterColumnOperation.Desired.TableName));
                     queryStatement.Append("` MODIFY COLUMN ");
                     queryStatement.Append(RenderColumnDefinition(alterColumnOperation.Desired));
 
@@ -154,21 +154,21 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Rendering
                     break;
                 case DropIndexOperation dropIndexOperation:
                     // MySQL requires DROP PRIMARY KEY for primary; we won't emit that here.
-                    if (string.Equals(dropIndexOperation.IndexName, "PRIMARY", StringComparison.OrdinalIgnoreCase))
+                    if (string.Equals(dropIndexOperation.Index.IndexName, "PRIMARY", StringComparison.OrdinalIgnoreCase))
                         throw new InvalidOperationException("Refusing to render DROP PRIMARY KEY via DropIndexOperation.");
-                    query.AppendLine($"DROP INDEX `{EscapeIdentifier(dropIndexOperation.IndexName)}` ON `{EscapeIdentifier(dropIndexOperation.TableName)}`;");
+                    query.AppendLine($"DROP INDEX `{EscapeIdentifier(dropIndexOperation.Index.IndexName)}` ON `{EscapeIdentifier(dropIndexOperation.Index.TableName)}`;");
                     break;
                 case CreateIndexOperation createIndexOperation:
-                    RenderCreateIndex(query, createIndexOperation.TableName, createIndexOperation.Index);
+                    RenderCreateIndex(query, createIndexOperation.Index.TableName, createIndexOperation.Index);
                     break;
                 case DropForeignKeyOperation dropForeignKeyOperation:
-                    query.AppendLine($"ALTER TABLE `{EscapeIdentifier(dropForeignKeyOperation.TableName)}` DROP FOREIGN KEY `{EscapeIdentifier(dropForeignKeyOperation.ConstraintName)}`;");
+                    query.AppendLine($"ALTER TABLE `{EscapeIdentifier(dropForeignKeyOperation.ForeignKey.TableName)}` DROP FOREIGN KEY `{EscapeIdentifier(dropForeignKeyOperation.ForeignKey.ConstraintName)}`;");
                     break;
                 case AddForeignKeyOperation addForeignKeyOperation:
-                    RenderAddForeignKey(query, addForeignKeyOperation.TableName, addForeignKeyOperation.ForeignKey);
+                    RenderAddForeignKey(query, addForeignKeyOperation.ForeignKey.TableName, addForeignKeyOperation.ForeignKey);
                     break;
                 case DropTriggerOperation dropTriggerOperation:
-                    query.AppendLine($"DROP TRIGGER IF EXISTS `{EscapeIdentifier(dropTriggerOperation.TriggerName)}`;");
+                    query.AppendLine($"DROP TRIGGER IF EXISTS `{EscapeIdentifier(dropTriggerOperation.Trigger.TriggerName)}`;");
                     break;
                 case CreateTriggerOperation createTriggerOperation:
                     RenderCreateTrigger(query, createTriggerOperation.TableName, createTriggerOperation.Trigger, options);

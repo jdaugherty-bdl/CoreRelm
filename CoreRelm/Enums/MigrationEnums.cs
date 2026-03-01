@@ -14,5 +14,18 @@ namespace CoreRelm.Enums
             Migration,
             SystemMigration
         }
+
+        public enum MigrationOperationReversibility
+        {
+            Reversible = 0,
+            UnknownReversible = 1,
+            NonReversible = 2
+        }
+
+        public enum RollbackPlanStatus
+        {
+            FullyReversible = 0,
+            Blocked = 1
+        }
     }
 }

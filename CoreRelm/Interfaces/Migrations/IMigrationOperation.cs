@@ -9,6 +9,6 @@ namespace CoreRelm.Interfaces.Migrations
 {
     public interface IMigrationOperation
     {
-        string Description { get; }
+        string? Description { get; }
     }
 }

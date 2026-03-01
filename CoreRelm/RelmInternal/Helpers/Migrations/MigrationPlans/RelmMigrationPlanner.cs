@@ -225,7 +225,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                         log?.LogFormatted(LogLevel.Information, "Table name for foreign key is '{TableName}'; proceeding with reordering", args: [migrationOperation.Table.TableName]);
 
                     log?.LogFormatted(LogLevel.Information, "Adding AddForeignKey operation to the end of the migration operations list", args: []);
-                    var newFk = new AddForeignKeyOperation(migrationOperation.Table.TableName, conflictingForeignKey.Value);
+                    var newFk = new AddForeignKeyOperation(conflictingForeignKey.Value);
                     migrationOperations.Add(newFk);
 
                     log?.LogFormatted(LogLevel.Information, "Removing original foreign key from CreateTable operation for table '{TableName}'", args: [migrationOperation.Table.TableName], postDecreaseLevel: true);
@@ -272,7 +272,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                 if (!string.IsNullOrWhiteSpace(desiredColumn.ColumnName) && !actualTable.Columns.TryGetValue(desiredColumn.ColumnName, out actualColumn))
                 {
                     log?.LogFormatted(LogLevel.Information, "Column '{ColumnName}' does not exist in actual schema; planning AddColumn", args: [desiredColumn.ColumnName], singleIndentLine: true);
-                    migrationOperations.Add(new AddColumnOperation(desiredTable.TableName, desiredColumn));
+                    migrationOperations.Add(new AddColumnOperation(desiredColumn));
                     continue;
                 }
                 else                    
@@ -296,7 +296,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                         log?.LogFormatted(LogLevel.Information, "Destructive changes are turned on", args: []);
 
                     log?.LogFormatted(LogLevel.Information, "Planning AlterColumn for column '{ColumnName}' due to differences", args: [desiredColumn.ColumnName]);
-                    migrationOperations.Add(new AlterColumnOperation(desiredTable.TableName, desiredColumn, string.Join("; ", diffs)));
+                    migrationOperations.Add(new AlterColumnOperation(actualColumn, desiredColumn, string.Join("; ", diffs)));
                 }
                 else
                 {
@@ -465,7 +465,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                 if (!string.IsNullOrWhiteSpace(desiredIndex.IndexName) && !actualTable.Indexes.TryGetValue(desiredIndex.IndexName, out actualIndex))
                 {
                     log?.LogFormatted(LogLevel.Information, "Index '{IndexName}' does not exist in actual schema; planning CreateIndex", args: [desiredIndex.IndexName], singleIndentLine: true);
-                    migrationOperations.Add(new CreateIndexOperation(desiredTable.TableName, desiredIndex));
+                    migrationOperations.Add(new CreateIndexOperation(desiredIndex));
                     continue;
                 }
                 else
@@ -496,8 +496,8 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                     // NOTE: index drops for indexes not in desired are handled in destructive mode in PlanDestructiveDrops.
                     // Meaningful differences: drop+create
                     log?.LogFormatted(LogLevel.Information, "Planning DropIndex and CreateIndex for index '{IndexName}' on table '{TableName}'", args: [desiredIndex.IndexName, desiredTable.TableName]);
-                    migrationOperations.Add(new DropIndexOperation(desiredTable.TableName, desiredIndex.IndexName));
-                    migrationOperations.Add(new CreateIndexOperation(desiredTable.TableName, desiredIndex));
+                    migrationOperations.Add(new DropIndexOperation(desiredIndex));
+                    migrationOperations.Add(new CreateIndexOperation(desiredIndex));
                 }
                 else 
                 {
@@ -622,7 +622,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                 if (!string.IsNullOrWhiteSpace(desiredForeignKey.ConstraintName) && !actualTable.ForeignKeys.TryGetValue(desiredForeignKey.ConstraintName, out actualForeignKey))
                 {
                     log?.LogFormatted(LogLevel.Information, "Foreign key '{ForeignKeyName}' does not exist in actual schema; planning AddForeignKey", args: [desiredForeignKey.ConstraintName], singleIndentLine: true);
-                    migrationOperations.Add(new AddForeignKeyOperation(desiredTable.TableName, desiredForeignKey));
+                    migrationOperations.Add(new AddForeignKeyOperation(desiredForeignKey));
                     continue;
                 }
                 else
@@ -650,8 +650,8 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
 
                 // Drop+add is data-safe; allow even in non-destructive mode
                 log?.LogFormatted(LogLevel.Information, "Planning DropForeignKey and AddForeignKey for foreign key '{ForeignKeyName}' on table '{TableName}'", args: [desiredForeignKey.ConstraintName, desiredTable.TableName]);
-                migrationOperations.Add(new DropForeignKeyOperation(desiredTable.TableName, desiredForeignKey.ConstraintName));
-                migrationOperations.Add(new AddForeignKeyOperation(desiredTable.TableName, desiredForeignKey));
+                migrationOperations.Add(new DropForeignKeyOperation(desiredForeignKey));
+                migrationOperations.Add(new AddForeignKeyOperation(desiredForeignKey));
 
                 log?.LogFormatted(LogLevel.Information, "Finished planning foreign key '{ForeignKeyName}'", args: [desiredForeignKey.ConstraintName]);
             }
@@ -816,7 +816,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                 if (!string.IsNullOrWhiteSpace(desiredTrigger.TriggerName) && !actualTable.Triggers.TryGetValue(desiredTrigger.TriggerName, out actualTrigger))
                 {
                     log?.LogFormatted(LogLevel.Information, "Trigger '{TriggerName}' does not exist in actual schema; planning CreateTrigger", args: [desiredTrigger.TriggerName], singleIndentLine: true);
-                    migrationOperations.Add(new CreateTriggerOperation(desiredTable.TableName, desiredTrigger));
+                    migrationOperations.Add(new CreateTriggerOperation(desiredTrigger));
                     continue;
                 }
                 else
@@ -844,8 +844,8 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
 
                 // Drop+create is data-safe
                 log?.LogFormatted(LogLevel.Information, "Planning DropTrigger and CreateTrigger for trigger '{TriggerName}' on table '{TableName}'", args: [desiredTrigger.TriggerName, desiredTable.TableName]);
-                migrationOperations.Add(new DropTriggerOperation(desiredTable.TableName, desiredTrigger.TriggerName));
-                migrationOperations.Add(new CreateTriggerOperation(desiredTable.TableName, desiredTrigger));
+                migrationOperations.Add(new DropTriggerOperation(desiredTrigger));
+                migrationOperations.Add(new CreateTriggerOperation(desiredTrigger));
 
                 log?.LogFormatted(LogLevel.Information, "Finished planning trigger '{TriggerName}'", args: [desiredTrigger.TriggerName]);
             }
@@ -942,9 +942,9 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                     if (options.DropFunctionsOnCreate)
                     {
                         log?.LogFormatted(LogLevel.Information, "Option 'DropFunctionsOnCreate' is enabled; planning DropFunction before CreateFunction for function '{FunctionName}'", args: [desiredFunction.RoutineName]);
-                        migrationOperations.Add(new DropFunctionOperation(desiredFunction.RoutineName, desiredFunction));
+                        migrationOperations.Add(new DropFunctionOperation(desiredFunction));
                     }
-                    migrationOperations.Add(new CreateFunctionOperation(desiredFunction.RoutineName, desiredFunction));
+                    migrationOperations.Add(new CreateFunctionOperation(desiredFunction));
                     continue;
                 }
                 else 
@@ -972,8 +972,8 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
 
                 // Drop+create is data-safe
                 log?.LogFormatted(LogLevel.Information, "Function '{FunctionName}' differs from actual schema; planning DropFunction and CreateFunction", args: [desiredFunction.RoutineName]);
-                migrationOperations.Add(new DropFunctionOperation(desiredFunction.RoutineName, desiredFunction));
-                migrationOperations.Add(new CreateFunctionOperation(desiredFunction.RoutineName, desiredFunction));
+                migrationOperations.Add(new DropFunctionOperation(desiredFunction));
+                migrationOperations.Add(new CreateFunctionOperation(desiredFunction));
 
                 log?.LogFormatted(LogLevel.Information, "Finished planning function '{FunctionName}'", args: [desiredFunction.RoutineName]);
             }
@@ -1138,7 +1138,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                 if (!desiredTable.Indexes.ContainsKey(actualIdxName))
                 {
                     log?.LogFormatted(LogLevel.Information, "Index '{IndexName}' exists in actual schema but not in desired schema; planning DropIndex", args: [actualIdxName]);
-                    ops.Add(new DropIndexOperation(tableName, actualIdxName));
+                    ops.Add(new DropIndexOperation(actualTable.Indexes[actualIdxName]));
                 }
                 else
                     log?.LogFormatted(LogLevel.Information, "Index '{IndexName}' is not present in desired table, marking for drop", args: [actualIdxName]);
@@ -1161,7 +1161,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                 if (!desiredTable.ForeignKeys.ContainsKey(actualFkName))
                 {
                     log?.LogFormatted(LogLevel.Information, "Foreign key '{ForeignKeyName}' exists in actual schema but not in desired schema; planning DropForeignKey", args: [actualFkName]);
-                    ops.Add(new DropForeignKeyOperation(tableName, actualFkName));
+                    ops.Add(new DropForeignKeyOperation(actualTable.ForeignKeys[actualFkName]));
                 }
                 else
                     log?.LogFormatted(LogLevel.Information, "Foreign key '{ForeignKeyName}' exists in desired schema; skipping drop", args: [actualFkName]);
@@ -1184,7 +1184,7 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans
                 if (!desiredTable.Triggers.ContainsKey(actualTrgName))
                 {
                     log?.LogFormatted(LogLevel.Information, "Trigger '{TriggerName}' exists in actual schema but not in desired schema; planning DropTrigger", args: [actualTrgName]);
-                    ops.Add(new DropTriggerOperation(tableName, actualTrgName));
+                    ops.Add(new DropTriggerOperation(actualTable.Triggers[actualTrgName]));
                 }
                 else
                     log?.LogFormatted(LogLevel.Information, "Trigger '{TriggerName}' exists in desired schema; skipping drop", args: [actualTrgName]);

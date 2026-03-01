@@ -8,58 +8,77 @@ using System.Threading.Tasks;
 
 namespace CoreRelm.Models.Migrations.Rendering
 {
+    /******************************** TABLE OPERATIONS *********************************/
     public sealed record CreateTableOperation(TableSchema Table) : IMigrationOperation
     {
         public string Description => $"Create table `{Table.TableName}`";
     }
 
-    public sealed record AddColumnOperation(string TableName, ColumnSchema Column) : IMigrationOperation
+    public sealed record DropTableOperation(TableSchema OriginalTable) : IMigrationOperation
     {
-        public string Description => $"Add column `{Column.ColumnName}` to `{TableName}`";
+        public string Description => $"Drop table `{OriginalTable.TableName}`";
+    }
+    
+    /******************************** COLUMN OPERATIONS *********************************/
+    public sealed record AddColumnOperation(ColumnSchema Column) : IMigrationOperation
+    {
+        public string Description => $"Add column `{Column.TableName}`.`{Column.ColumnName}`";
     }
 
-    public sealed record AlterColumnOperation(string TableName, ColumnSchema Desired, string Reason) : IMigrationOperation
+    public sealed record AlterColumnOperation(ColumnSchema Current, ColumnSchema Desired, string Reason) : IMigrationOperation
     {
-        public string Description => $"Alter column `{Desired.ColumnName}` on `{TableName}` ({Reason})";
+        public string Description => $"Alter column `{Current.TableName}`.`{Current.ColumnName}` => `{Desired.TableName}`.`{Desired.ColumnName}` (Reason: {Reason})";
     }
 
-    public sealed record DropIndexOperation(string TableName, string IndexName) : IMigrationOperation
+    public sealed record DropColumnOperation(ColumnSchema Column) : IMigrationOperation
     {
-        public string Description => $"Drop index `{IndexName}` on `{TableName}`";
+        public string Description => $"Drop column `{Column.TableName}`.`{Column.ColumnName}`";
     }
 
-    public sealed record CreateIndexOperation(string TableName, IndexSchema Index) : IMigrationOperation
+    /******************************** INDEX OPERATIONS *********************************/
+    public sealed record CreateIndexOperation(IndexSchema Index) : IMigrationOperation
     {
-        public string Description => $"Create index `{Index.IndexName}` on `{TableName}`";
+        public string Description => $"Create index `{Index.TableName}`.`{Index.IndexName}`";
+    }
+    public sealed record DropIndexOperation(IndexSchema Index) : IMigrationOperation
+    {
+        public string Description => $"Drop index `{Index.TableName}`.`{Index.IndexName}`";
     }
 
-    public sealed record DropForeignKeyOperation(string TableName, string ConstraintName) : IMigrationOperation
+
+    /******************************** FOREIGN KEY OPERATIONS *********************************/
+    public sealed record AddForeignKeyOperation(ForeignKeySchema ForeignKey) : IMigrationOperation
     {
-        public string Description => $"Drop foreign key `{ConstraintName}` on `{TableName}`";
+        public string Description => $"Add foreign key `{ForeignKey.TableName}`.`{ForeignKey.ConstraintName}`";
+    }
+    public sealed record DropForeignKeyOperation(ForeignKeySchema ForeignKey) : IMigrationOperation
+    {
+        public string Description => $"Drop foreign key `{ForeignKey.TableName}`.`{ForeignKey.ConstraintName}`";
     }
 
-    public sealed record AddForeignKeyOperation(string TableName, ForeignKeySchema ForeignKey) : IMigrationOperation
+
+    /******************************** TRIGGER OPERATIONS *********************************/
+    public sealed record CreateTriggerOperation(TriggerSchema Trigger) : IMigrationOperation
     {
-        public string Description => $"Add foreign key `{ForeignKey.ConstraintName}` on `{TableName}`";
+        public string? TableName => Trigger.EventObjectTable;
+        public string Description => $"Create trigger `{TableName}`.`{Trigger.TriggerName}`";
+    }
+    public sealed record DropTriggerOperation(TriggerSchema Trigger) : IMigrationOperation
+    {
+        public string? TableName => Trigger.EventObjectTable;
+        public string Description => $"Drop trigger `{TableName}`.`{Trigger.TriggerName}`";
     }
 
-    public sealed record DropTriggerOperation(string TableName, string TriggerName) : IMigrationOperation
-    {
-        public string Description => $"Drop trigger `{TriggerName}` on `{TableName}`";
-    }
 
-    public sealed record CreateTriggerOperation(string TableName, TriggerSchema Trigger) : IMigrationOperation
+    /******************************** FUNCTION (STORED PROCEDURE) OPERATIONS *********************************/
+    public sealed record CreateFunctionOperation(FunctionSchema Function) : IMigrationOperation
     {
-        public string Description => $"Create trigger `{Trigger.TriggerName}` on `{TableName}`";
-    }
-
-    public sealed record DropFunctionOperation(string FunctionName, FunctionSchema Function) : IMigrationOperation
-    {
-        public string Description => $"Drop function `{FunctionName}`";
-    }
-
-    public sealed record CreateFunctionOperation(string FunctionName, FunctionSchema Function) : IMigrationOperation
-    {
+        public string? FunctionName => Function.RoutineName;
         public string Description => $"Create function `{FunctionName}`";
+    }
+    public sealed record DropFunctionOperation(FunctionSchema Function) : IMigrationOperation
+    {
+        public string? FunctionName => Function.RoutineName;
+        public string Description => $"Drop function `{FunctionName}`";
     }
 }
