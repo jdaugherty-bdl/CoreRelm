@@ -5,10 +5,10 @@ items:
   id: DropTriggerOperation
   parent: CoreRelm.Models.Migrations.Rendering
   children:
-  - CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.#ctor(System.String,System.String)
+  - CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.#ctor(CoreRelm.Models.Migrations.Introspection.TriggerSchema)
   - CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.Description
   - CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.TableName
-  - CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.TriggerName
+  - CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.Trigger
   langs:
   - csharp
   - vb
@@ -23,7 +23,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DropTriggerOperation
     path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
-    startLine: 45
+    startLine: 65
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Rendering
@@ -42,16 +42,16 @@ items:
   - System.Object.GetType
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.#ctor(System.String,System.String)
-  commentId: M:CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.#ctor(System.String,System.String)
-  id: '#ctor(System.String,System.String)'
+- uid: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.#ctor(CoreRelm.Models.Migrations.Introspection.TriggerSchema)
+  commentId: M:CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.#ctor(CoreRelm.Models.Migrations.Introspection.TriggerSchema)
+  id: '#ctor(CoreRelm.Models.Migrations.Introspection.TriggerSchema)'
   parent: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation
   langs:
   - csharp
   - vb
-  name: DropTriggerOperation(string, string)
-  nameWithType: DropTriggerOperation.DropTriggerOperation(string, string)
-  fullName: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.DropTriggerOperation(string, string)
+  name: DropTriggerOperation(TriggerSchema)
+  nameWithType: DropTriggerOperation.DropTriggerOperation(TriggerSchema)
+  fullName: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.DropTriggerOperation(CoreRelm.Models.Migrations.Introspection.TriggerSchema)
   type: Constructor
   source:
     remote:
@@ -60,22 +60,49 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
-    startLine: 45
+    startLine: 65
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Rendering
   syntax:
-    content: public DropTriggerOperation(string TableName, string TriggerName)
+    content: public DropTriggerOperation(TriggerSchema Trigger)
     parameters:
-    - id: TableName
-      type: System.String
-    - id: TriggerName
-      type: System.String
-    content.vb: Public Sub New(TableName As String, TriggerName As String)
+    - id: Trigger
+      type: CoreRelm.Models.Migrations.Introspection.TriggerSchema
+    content.vb: Public Sub New(Trigger As TriggerSchema)
   overload: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.#ctor*
-  nameWithType.vb: DropTriggerOperation.New(String, String)
-  fullName.vb: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.New(String, String)
-  name.vb: New(String, String)
+  nameWithType.vb: DropTriggerOperation.New(TriggerSchema)
+  fullName.vb: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.New(CoreRelm.Models.Migrations.Introspection.TriggerSchema)
+  name.vb: New(TriggerSchema)
+- uid: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.Trigger
+  commentId: P:CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.Trigger
+  id: Trigger
+  parent: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation
+  langs:
+  - csharp
+  - vb
+  name: Trigger
+  nameWithType: DropTriggerOperation.Trigger
+  fullName: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.Trigger
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: Trigger
+    path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
+    startLine: 65
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Rendering
+  syntax:
+    content: public TriggerSchema Trigger { get; init; }
+    parameters: []
+    return:
+      type: CoreRelm.Models.Migrations.Introspection.TriggerSchema
+    content.vb: Public Property Trigger As TriggerSchema
+  overload: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.Trigger*
 - uid: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.TableName
   commentId: P:CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.TableName
   id: TableName
@@ -94,46 +121,17 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: TableName
     path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
-    startLine: 45
+    startLine: 67
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Rendering
   syntax:
-    content: public string TableName { get; init; }
+    content: public string? TableName { get; }
     parameters: []
     return:
       type: System.String
-    content.vb: Public Property TableName As String
+    content.vb: Public ReadOnly Property TableName As String
   overload: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.TableName*
-- uid: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.TriggerName
-  commentId: P:CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.TriggerName
-  id: TriggerName
-  parent: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation
-  langs:
-  - csharp
-  - vb
-  name: TriggerName
-  nameWithType: DropTriggerOperation.TriggerName
-  fullName: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.TriggerName
-  type: Property
-  source:
-    remote:
-      path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: TriggerName
-    path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
-    startLine: 45
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Models.Migrations.Rendering
-  syntax:
-    content: public string TriggerName { get; init; }
-    parameters: []
-    return:
-      type: System.String
-    content.vb: Public Property TriggerName As String
-  overload: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.TriggerName*
 - uid: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.Description
   commentId: P:CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.Description
   id: Description
@@ -152,7 +150,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Description
     path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
-    startLine: 47
+    startLine: 68
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Rendering
@@ -518,13 +516,70 @@ references:
   - name: )
 - uid: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.#ctor*
   commentId: Overload:CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.#ctor
-  href: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.html#CoreRelm_Models_Migrations_Rendering_DropTriggerOperation__ctor_System_String_System_String_
+  href: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.html#CoreRelm_Models_Migrations_Rendering_DropTriggerOperation__ctor_CoreRelm_Models_Migrations_Introspection_TriggerSchema_
   name: DropTriggerOperation
   nameWithType: DropTriggerOperation.DropTriggerOperation
   fullName: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.DropTriggerOperation
   nameWithType.vb: DropTriggerOperation.New
   fullName.vb: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.New
   name.vb: New
+- uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema
+  commentId: T:CoreRelm.Models.Migrations.Introspection.TriggerSchema
+  parent: CoreRelm.Models.Migrations.Introspection
+  href: CoreRelm.Models.Migrations.Introspection.TriggerSchema.html
+  name: TriggerSchema
+  nameWithType: TriggerSchema
+  fullName: CoreRelm.Models.Migrations.Introspection.TriggerSchema
+- uid: CoreRelm.Models.Migrations.Introspection
+  commentId: N:CoreRelm.Models.Migrations.Introspection
+  href: CoreRelm.html
+  name: CoreRelm.Models.Migrations.Introspection
+  nameWithType: CoreRelm.Models.Migrations.Introspection
+  fullName: CoreRelm.Models.Migrations.Introspection
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Introspection
+    name: Introspection
+    href: CoreRelm.Models.Migrations.Introspection.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Introspection
+    name: Introspection
+    href: CoreRelm.Models.Migrations.Introspection.html
+- uid: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.Trigger*
+  commentId: Overload:CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.Trigger
+  href: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.html#CoreRelm_Models_Migrations_Rendering_DropTriggerOperation_Trigger
+  name: Trigger
+  nameWithType: DropTriggerOperation.Trigger
+  fullName: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.Trigger
+- uid: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.TableName*
+  commentId: Overload:CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.TableName
+  href: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.html#CoreRelm_Models_Migrations_Rendering_DropTriggerOperation_TableName
+  name: TableName
+  nameWithType: DropTriggerOperation.TableName
+  fullName: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.TableName
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -536,18 +591,6 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
-- uid: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.TableName*
-  commentId: Overload:CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.TableName
-  href: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.html#CoreRelm_Models_Migrations_Rendering_DropTriggerOperation_TableName
-  name: TableName
-  nameWithType: DropTriggerOperation.TableName
-  fullName: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.TableName
-- uid: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.TriggerName*
-  commentId: Overload:CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.TriggerName
-  href: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.html#CoreRelm_Models_Migrations_Rendering_DropTriggerOperation_TriggerName
-  name: TriggerName
-  nameWithType: DropTriggerOperation.TriggerName
-  fullName: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.TriggerName
 - uid: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.Description*
   commentId: Overload:CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.Description
   href: CoreRelm.Models.Migrations.Rendering.DropTriggerOperation.html#CoreRelm_Models_Migrations_Rendering_DropTriggerOperation_Description

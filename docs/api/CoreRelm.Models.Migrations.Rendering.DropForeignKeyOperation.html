@@ -89,7 +89,7 @@
 
 
   <h1 id="CoreRelm_Models_Migrations_Rendering_DropForeignKeyOperation" data-uid="CoreRelm.Models.Migrations.Rendering.DropForeignKeyOperation" class="text-break">
-Class DropForeignKeyOperation  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L36"><i class="bi bi-code-slash"></i></a>
+Class DropForeignKeyOperation  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L54"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -158,23 +158,21 @@ Class DropForeignKeyOperation  <a class="header-action link-secondary" title="Vi
 
   <a id="CoreRelm_Models_Migrations_Rendering_DropForeignKeyOperation__ctor_" data-uid="CoreRelm.Models.Migrations.Rendering.DropForeignKeyOperation.#ctor*"></a>
 
-  <h3 id="CoreRelm_Models_Migrations_Rendering_DropForeignKeyOperation__ctor_System_String_System_String_" data-uid="CoreRelm.Models.Migrations.Rendering.DropForeignKeyOperation.#ctor(System.String,System.String)">
-  DropForeignKeyOperation(string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Models_Migrations_Rendering_DropForeignKeyOperation__ctor_CoreRelm_Models_Migrations_Introspection_ForeignKeySchema_" data-uid="CoreRelm.Models.Migrations.Rendering.DropForeignKeyOperation.#ctor(CoreRelm.Models.Migrations.Introspection.ForeignKeySchema)">
+  DropForeignKeyOperation(ForeignKeySchema)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L54"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DropForeignKeyOperation(string TableName, string ConstraintName)</code></pre>
+    <pre><code class="lang-csharp hljs">public DropForeignKeyOperation(ForeignKeySchema ForeignKey)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>TableName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-    <dt><code>ConstraintName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dt><code>ForeignKey</code> <a class="xref" href="CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.html">ForeignKeySchema</a></dt>
     <dd></dd>
   </dl>
 
@@ -193,42 +191,11 @@ Class DropForeignKeyOperation  <a class="header-action link-secondary" title="Vi
 </h2>
 
 
-  <a id="CoreRelm_Models_Migrations_Rendering_DropForeignKeyOperation_ConstraintName_" data-uid="CoreRelm.Models.Migrations.Rendering.DropForeignKeyOperation.ConstraintName*"></a>
-
-  <h3 id="CoreRelm_Models_Migrations_Rendering_DropForeignKeyOperation_ConstraintName" data-uid="CoreRelm.Models.Migrations.Rendering.DropForeignKeyOperation.ConstraintName">
-  ConstraintName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L36"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string ConstraintName { get; init; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
   <a id="CoreRelm_Models_Migrations_Rendering_DropForeignKeyOperation_Description_" data-uid="CoreRelm.Models.Migrations.Rendering.DropForeignKeyOperation.Description*"></a>
 
   <h3 id="CoreRelm_Models_Migrations_Rendering_DropForeignKeyOperation_Description" data-uid="CoreRelm.Models.Migrations.Rendering.DropForeignKeyOperation.Description">
   Description
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L38"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L56"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -255,18 +222,18 @@ Class DropForeignKeyOperation  <a class="header-action link-secondary" title="Vi
 
 
 
-  <a id="CoreRelm_Models_Migrations_Rendering_DropForeignKeyOperation_TableName_" data-uid="CoreRelm.Models.Migrations.Rendering.DropForeignKeyOperation.TableName*"></a>
+  <a id="CoreRelm_Models_Migrations_Rendering_DropForeignKeyOperation_ForeignKey_" data-uid="CoreRelm.Models.Migrations.Rendering.DropForeignKeyOperation.ForeignKey*"></a>
 
-  <h3 id="CoreRelm_Models_Migrations_Rendering_DropForeignKeyOperation_TableName" data-uid="CoreRelm.Models.Migrations.Rendering.DropForeignKeyOperation.TableName">
-  TableName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Models_Migrations_Rendering_DropForeignKeyOperation_ForeignKey" data-uid="CoreRelm.Models.Migrations.Rendering.DropForeignKeyOperation.ForeignKey">
+  ForeignKey
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L54"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string TableName { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ForeignKeySchema ForeignKey { get; init; }</code></pre>
   </div>
 
 
@@ -275,7 +242,7 @@ Class DropForeignKeyOperation  <a class="header-action link-secondary" title="Vi
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dt><a class="xref" href="CoreRelm.Models.Migrations.Introspection.ForeignKeySchema.html">ForeignKeySchema</a></dt>
     <dd></dd>
   </dl>
 
@@ -290,7 +257,7 @@ Class DropForeignKeyOperation  <a class="header-action link-secondary" title="Vi
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L36" class="edit-link">Edit this page</a>
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L54" class="edit-link">Edit this page</a>
         </div>
 
 

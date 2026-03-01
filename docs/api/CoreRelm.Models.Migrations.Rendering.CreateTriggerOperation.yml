@@ -5,7 +5,7 @@ items:
   id: CreateTriggerOperation
   parent: CoreRelm.Models.Migrations.Rendering
   children:
-  - CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.#ctor(System.String,CoreRelm.Models.Migrations.Introspection.TriggerSchema)
+  - CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.#ctor(CoreRelm.Models.Migrations.Introspection.TriggerSchema)
   - CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.Description
   - CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.TableName
   - CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.Trigger
@@ -23,7 +23,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: CreateTriggerOperation
     path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
-    startLine: 50
+    startLine: 60
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Rendering
@@ -42,16 +42,16 @@ items:
   - System.Object.GetType
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.#ctor(System.String,CoreRelm.Models.Migrations.Introspection.TriggerSchema)
-  commentId: M:CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.#ctor(System.String,CoreRelm.Models.Migrations.Introspection.TriggerSchema)
-  id: '#ctor(System.String,CoreRelm.Models.Migrations.Introspection.TriggerSchema)'
+- uid: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.#ctor(CoreRelm.Models.Migrations.Introspection.TriggerSchema)
+  commentId: M:CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.#ctor(CoreRelm.Models.Migrations.Introspection.TriggerSchema)
+  id: '#ctor(CoreRelm.Models.Migrations.Introspection.TriggerSchema)'
   parent: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation
   langs:
   - csharp
   - vb
-  name: CreateTriggerOperation(string, TriggerSchema)
-  nameWithType: CreateTriggerOperation.CreateTriggerOperation(string, TriggerSchema)
-  fullName: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.CreateTriggerOperation(string, CoreRelm.Models.Migrations.Introspection.TriggerSchema)
+  name: CreateTriggerOperation(TriggerSchema)
+  nameWithType: CreateTriggerOperation.CreateTriggerOperation(TriggerSchema)
+  fullName: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.CreateTriggerOperation(CoreRelm.Models.Migrations.Introspection.TriggerSchema)
   type: Constructor
   source:
     remote:
@@ -60,51 +60,20 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
-    startLine: 50
+    startLine: 60
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Rendering
   syntax:
-    content: public CreateTriggerOperation(string TableName, TriggerSchema Trigger)
+    content: public CreateTriggerOperation(TriggerSchema Trigger)
     parameters:
-    - id: TableName
-      type: System.String
     - id: Trigger
       type: CoreRelm.Models.Migrations.Introspection.TriggerSchema
-    content.vb: Public Sub New(TableName As String, Trigger As TriggerSchema)
+    content.vb: Public Sub New(Trigger As TriggerSchema)
   overload: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.#ctor*
-  nameWithType.vb: CreateTriggerOperation.New(String, TriggerSchema)
-  fullName.vb: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.New(String, CoreRelm.Models.Migrations.Introspection.TriggerSchema)
-  name.vb: New(String, TriggerSchema)
-- uid: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.TableName
-  commentId: P:CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.TableName
-  id: TableName
-  parent: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation
-  langs:
-  - csharp
-  - vb
-  name: TableName
-  nameWithType: CreateTriggerOperation.TableName
-  fullName: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.TableName
-  type: Property
-  source:
-    remote:
-      path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: TableName
-    path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
-    startLine: 50
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Models.Migrations.Rendering
-  syntax:
-    content: public string TableName { get; init; }
-    parameters: []
-    return:
-      type: System.String
-    content.vb: Public Property TableName As String
-  overload: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.TableName*
+  nameWithType.vb: CreateTriggerOperation.New(TriggerSchema)
+  fullName.vb: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.New(CoreRelm.Models.Migrations.Introspection.TriggerSchema)
+  name.vb: New(TriggerSchema)
 - uid: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.Trigger
   commentId: P:CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.Trigger
   id: Trigger
@@ -123,7 +92,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Trigger
     path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
-    startLine: 50
+    startLine: 60
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Rendering
@@ -134,6 +103,35 @@ items:
       type: CoreRelm.Models.Migrations.Introspection.TriggerSchema
     content.vb: Public Property Trigger As TriggerSchema
   overload: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.Trigger*
+- uid: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.TableName
+  commentId: P:CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.TableName
+  id: TableName
+  parent: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation
+  langs:
+  - csharp
+  - vb
+  name: TableName
+  nameWithType: CreateTriggerOperation.TableName
+  fullName: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.TableName
+  type: Property
+  source:
+    remote:
+      path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
+      branch: master
+      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
+    id: TableName
+    path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
+    startLine: 62
+  assemblies:
+  - CoreRelm
+  namespace: CoreRelm.Models.Migrations.Rendering
+  syntax:
+    content: public string? TableName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property TableName As String
+  overload: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.TableName*
 - uid: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.Description
   commentId: P:CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.Description
   id: Description
@@ -152,7 +150,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Description
     path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
-    startLine: 52
+    startLine: 63
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Rendering
@@ -518,24 +516,13 @@ references:
   - name: )
 - uid: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.#ctor*
   commentId: Overload:CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.#ctor
-  href: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.html#CoreRelm_Models_Migrations_Rendering_CreateTriggerOperation__ctor_System_String_CoreRelm_Models_Migrations_Introspection_TriggerSchema_
+  href: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.html#CoreRelm_Models_Migrations_Rendering_CreateTriggerOperation__ctor_CoreRelm_Models_Migrations_Introspection_TriggerSchema_
   name: CreateTriggerOperation
   nameWithType: CreateTriggerOperation.CreateTriggerOperation
   fullName: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.CreateTriggerOperation
   nameWithType.vb: CreateTriggerOperation.New
   fullName.vb: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.New
   name.vb: New
-- uid: System.String
-  commentId: T:System.String
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: string
-  nameWithType: string
-  fullName: string
-  nameWithType.vb: String
-  fullName.vb: String
-  name.vb: String
 - uid: CoreRelm.Models.Migrations.Introspection.TriggerSchema
   commentId: T:CoreRelm.Models.Migrations.Introspection.TriggerSchema
   parent: CoreRelm.Models.Migrations.Introspection
@@ -581,18 +568,29 @@ references:
   - uid: CoreRelm.Models.Migrations.Introspection
     name: Introspection
     href: CoreRelm.Models.Migrations.Introspection.html
-- uid: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.TableName*
-  commentId: Overload:CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.TableName
-  href: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.html#CoreRelm_Models_Migrations_Rendering_CreateTriggerOperation_TableName
-  name: TableName
-  nameWithType: CreateTriggerOperation.TableName
-  fullName: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.TableName
 - uid: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.Trigger*
   commentId: Overload:CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.Trigger
   href: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.html#CoreRelm_Models_Migrations_Rendering_CreateTriggerOperation_Trigger
   name: Trigger
   nameWithType: CreateTriggerOperation.Trigger
   fullName: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.Trigger
+- uid: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.TableName*
+  commentId: Overload:CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.TableName
+  href: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.html#CoreRelm_Models_Migrations_Rendering_CreateTriggerOperation_TableName
+  name: TableName
+  nameWithType: CreateTriggerOperation.TableName
+  fullName: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.TableName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
 - uid: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.Description*
   commentId: Overload:CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.Description
   href: CoreRelm.Models.Migrations.Rendering.CreateTriggerOperation.html#CoreRelm_Models_Migrations_Rendering_CreateTriggerOperation_Description

@@ -89,7 +89,7 @@
 
 
   <h1 id="CoreRelm_Models_Migrations_Rendering_AlterColumnOperation" data-uid="CoreRelm.Models.Migrations.Rendering.AlterColumnOperation" class="text-break">
-Class AlterColumnOperation  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L21"><i class="bi bi-code-slash"></i></a>
+Class AlterColumnOperation  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L28"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -158,21 +158,21 @@ Class AlterColumnOperation  <a class="header-action link-secondary" title="View 
 
   <a id="CoreRelm_Models_Migrations_Rendering_AlterColumnOperation__ctor_" data-uid="CoreRelm.Models.Migrations.Rendering.AlterColumnOperation.#ctor*"></a>
 
-  <h3 id="CoreRelm_Models_Migrations_Rendering_AlterColumnOperation__ctor_System_String_CoreRelm_Models_Migrations_Introspection_ColumnSchema_System_String_" data-uid="CoreRelm.Models.Migrations.Rendering.AlterColumnOperation.#ctor(System.String,CoreRelm.Models.Migrations.Introspection.ColumnSchema,System.String)">
-  AlterColumnOperation(string, ColumnSchema, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  <h3 id="CoreRelm_Models_Migrations_Rendering_AlterColumnOperation__ctor_CoreRelm_Models_Migrations_Introspection_ColumnSchema_CoreRelm_Models_Migrations_Introspection_ColumnSchema_System_String_" data-uid="CoreRelm.Models.Migrations.Rendering.AlterColumnOperation.#ctor(CoreRelm.Models.Migrations.Introspection.ColumnSchema,CoreRelm.Models.Migrations.Introspection.ColumnSchema,System.String)">
+  AlterColumnOperation(ColumnSchema, ColumnSchema, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L28"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public AlterColumnOperation(string TableName, ColumnSchema Desired, string Reason)</code></pre>
+    <pre><code class="lang-csharp hljs">public AlterColumnOperation(ColumnSchema Current, ColumnSchema Desired, string Reason)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>TableName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dt><code>Current</code> <a class="xref" href="CoreRelm.Models.Migrations.Introspection.ColumnSchema.html">ColumnSchema</a></dt>
     <dd></dd>
     <dt><code>Desired</code> <a class="xref" href="CoreRelm.Models.Migrations.Introspection.ColumnSchema.html">ColumnSchema</a></dt>
     <dd></dd>
@@ -195,11 +195,42 @@ Class AlterColumnOperation  <a class="header-action link-secondary" title="View 
 </h2>
 
 
+  <a id="CoreRelm_Models_Migrations_Rendering_AlterColumnOperation_Current_" data-uid="CoreRelm.Models.Migrations.Rendering.AlterColumnOperation.Current*"></a>
+
+  <h3 id="CoreRelm_Models_Migrations_Rendering_AlterColumnOperation_Current" data-uid="CoreRelm.Models.Migrations.Rendering.AlterColumnOperation.Current">
+  Current
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ColumnSchema Current { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="CoreRelm.Models.Migrations.Introspection.ColumnSchema.html">ColumnSchema</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="CoreRelm_Models_Migrations_Rendering_AlterColumnOperation_Description_" data-uid="CoreRelm.Models.Migrations.Rendering.AlterColumnOperation.Description*"></a>
 
   <h3 id="CoreRelm_Models_Migrations_Rendering_AlterColumnOperation_Description" data-uid="CoreRelm.Models.Migrations.Rendering.AlterColumnOperation.Description">
   Description
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L30"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -230,7 +261,7 @@ Class AlterColumnOperation  <a class="header-action link-secondary" title="View 
 
   <h3 id="CoreRelm_Models_Migrations_Rendering_AlterColumnOperation_Desired" data-uid="CoreRelm.Models.Migrations.Rendering.AlterColumnOperation.Desired">
   Desired
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L28"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -261,7 +292,7 @@ Class AlterColumnOperation  <a class="header-action link-secondary" title="View 
 
   <h3 id="CoreRelm_Models_Migrations_Rendering_AlterColumnOperation_Reason" data-uid="CoreRelm.Models.Migrations.Rendering.AlterColumnOperation.Reason">
   Reason
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L28"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -288,42 +319,11 @@ Class AlterColumnOperation  <a class="header-action link-secondary" title="View 
 
 
 
-  <a id="CoreRelm_Models_Migrations_Rendering_AlterColumnOperation_TableName_" data-uid="CoreRelm.Models.Migrations.Rendering.AlterColumnOperation.TableName*"></a>
-
-  <h3 id="CoreRelm_Models_Migrations_Rendering_AlterColumnOperation_TableName" data-uid="CoreRelm.Models.Migrations.Rendering.AlterColumnOperation.TableName">
-  TableName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L21"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string TableName { get; init; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L21" class="edit-link">Edit this page</a>
+          <a href="https://github.com/jdaugherty-bdl/CoreRelm/blob/master/CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs/#L28" class="edit-link">Edit this page</a>
         </div>
 
 

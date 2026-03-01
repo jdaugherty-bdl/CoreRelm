@@ -5,10 +5,9 @@ items:
   id: AddColumnOperation
   parent: CoreRelm.Models.Migrations.Rendering
   children:
-  - CoreRelm.Models.Migrations.Rendering.AddColumnOperation.#ctor(System.String,CoreRelm.Models.Migrations.Introspection.ColumnSchema)
+  - CoreRelm.Models.Migrations.Rendering.AddColumnOperation.#ctor(CoreRelm.Models.Migrations.Introspection.ColumnSchema)
   - CoreRelm.Models.Migrations.Rendering.AddColumnOperation.Column
   - CoreRelm.Models.Migrations.Rendering.AddColumnOperation.Description
-  - CoreRelm.Models.Migrations.Rendering.AddColumnOperation.TableName
   langs:
   - csharp
   - vb
@@ -23,7 +22,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: AddColumnOperation
     path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
-    startLine: 15
+    startLine: 22
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Rendering
@@ -42,16 +41,16 @@ items:
   - System.Object.GetType
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: CoreRelm.Models.Migrations.Rendering.AddColumnOperation.#ctor(System.String,CoreRelm.Models.Migrations.Introspection.ColumnSchema)
-  commentId: M:CoreRelm.Models.Migrations.Rendering.AddColumnOperation.#ctor(System.String,CoreRelm.Models.Migrations.Introspection.ColumnSchema)
-  id: '#ctor(System.String,CoreRelm.Models.Migrations.Introspection.ColumnSchema)'
+- uid: CoreRelm.Models.Migrations.Rendering.AddColumnOperation.#ctor(CoreRelm.Models.Migrations.Introspection.ColumnSchema)
+  commentId: M:CoreRelm.Models.Migrations.Rendering.AddColumnOperation.#ctor(CoreRelm.Models.Migrations.Introspection.ColumnSchema)
+  id: '#ctor(CoreRelm.Models.Migrations.Introspection.ColumnSchema)'
   parent: CoreRelm.Models.Migrations.Rendering.AddColumnOperation
   langs:
   - csharp
   - vb
-  name: AddColumnOperation(string, ColumnSchema)
-  nameWithType: AddColumnOperation.AddColumnOperation(string, ColumnSchema)
-  fullName: CoreRelm.Models.Migrations.Rendering.AddColumnOperation.AddColumnOperation(string, CoreRelm.Models.Migrations.Introspection.ColumnSchema)
+  name: AddColumnOperation(ColumnSchema)
+  nameWithType: AddColumnOperation.AddColumnOperation(ColumnSchema)
+  fullName: CoreRelm.Models.Migrations.Rendering.AddColumnOperation.AddColumnOperation(CoreRelm.Models.Migrations.Introspection.ColumnSchema)
   type: Constructor
   source:
     remote:
@@ -60,51 +59,20 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
-    startLine: 15
+    startLine: 22
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Rendering
   syntax:
-    content: public AddColumnOperation(string TableName, ColumnSchema Column)
+    content: public AddColumnOperation(ColumnSchema Column)
     parameters:
-    - id: TableName
-      type: System.String
     - id: Column
       type: CoreRelm.Models.Migrations.Introspection.ColumnSchema
-    content.vb: Public Sub New(TableName As String, Column As ColumnSchema)
+    content.vb: Public Sub New(Column As ColumnSchema)
   overload: CoreRelm.Models.Migrations.Rendering.AddColumnOperation.#ctor*
-  nameWithType.vb: AddColumnOperation.New(String, ColumnSchema)
-  fullName.vb: CoreRelm.Models.Migrations.Rendering.AddColumnOperation.New(String, CoreRelm.Models.Migrations.Introspection.ColumnSchema)
-  name.vb: New(String, ColumnSchema)
-- uid: CoreRelm.Models.Migrations.Rendering.AddColumnOperation.TableName
-  commentId: P:CoreRelm.Models.Migrations.Rendering.AddColumnOperation.TableName
-  id: TableName
-  parent: CoreRelm.Models.Migrations.Rendering.AddColumnOperation
-  langs:
-  - csharp
-  - vb
-  name: TableName
-  nameWithType: AddColumnOperation.TableName
-  fullName: CoreRelm.Models.Migrations.Rendering.AddColumnOperation.TableName
-  type: Property
-  source:
-    remote:
-      path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: TableName
-    path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
-    startLine: 15
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Models.Migrations.Rendering
-  syntax:
-    content: public string TableName { get; init; }
-    parameters: []
-    return:
-      type: System.String
-    content.vb: Public Property TableName As String
-  overload: CoreRelm.Models.Migrations.Rendering.AddColumnOperation.TableName*
+  nameWithType.vb: AddColumnOperation.New(ColumnSchema)
+  fullName.vb: CoreRelm.Models.Migrations.Rendering.AddColumnOperation.New(CoreRelm.Models.Migrations.Introspection.ColumnSchema)
+  name.vb: New(ColumnSchema)
 - uid: CoreRelm.Models.Migrations.Rendering.AddColumnOperation.Column
   commentId: P:CoreRelm.Models.Migrations.Rendering.AddColumnOperation.Column
   id: Column
@@ -123,7 +91,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Column
     path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
-    startLine: 15
+    startLine: 22
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Rendering
@@ -152,7 +120,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Description
     path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
-    startLine: 17
+    startLine: 24
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Rendering
@@ -518,24 +486,13 @@ references:
   - name: )
 - uid: CoreRelm.Models.Migrations.Rendering.AddColumnOperation.#ctor*
   commentId: Overload:CoreRelm.Models.Migrations.Rendering.AddColumnOperation.#ctor
-  href: CoreRelm.Models.Migrations.Rendering.AddColumnOperation.html#CoreRelm_Models_Migrations_Rendering_AddColumnOperation__ctor_System_String_CoreRelm_Models_Migrations_Introspection_ColumnSchema_
+  href: CoreRelm.Models.Migrations.Rendering.AddColumnOperation.html#CoreRelm_Models_Migrations_Rendering_AddColumnOperation__ctor_CoreRelm_Models_Migrations_Introspection_ColumnSchema_
   name: AddColumnOperation
   nameWithType: AddColumnOperation.AddColumnOperation
   fullName: CoreRelm.Models.Migrations.Rendering.AddColumnOperation.AddColumnOperation
   nameWithType.vb: AddColumnOperation.New
   fullName.vb: CoreRelm.Models.Migrations.Rendering.AddColumnOperation.New
   name.vb: New
-- uid: System.String
-  commentId: T:System.String
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: string
-  nameWithType: string
-  fullName: string
-  nameWithType.vb: String
-  fullName.vb: String
-  name.vb: String
 - uid: CoreRelm.Models.Migrations.Introspection.ColumnSchema
   commentId: T:CoreRelm.Models.Migrations.Introspection.ColumnSchema
   parent: CoreRelm.Models.Migrations.Introspection
@@ -581,12 +538,6 @@ references:
   - uid: CoreRelm.Models.Migrations.Introspection
     name: Introspection
     href: CoreRelm.Models.Migrations.Introspection.html
-- uid: CoreRelm.Models.Migrations.Rendering.AddColumnOperation.TableName*
-  commentId: Overload:CoreRelm.Models.Migrations.Rendering.AddColumnOperation.TableName
-  href: CoreRelm.Models.Migrations.Rendering.AddColumnOperation.html#CoreRelm_Models_Migrations_Rendering_AddColumnOperation_TableName
-  name: TableName
-  nameWithType: AddColumnOperation.TableName
-  fullName: CoreRelm.Models.Migrations.Rendering.AddColumnOperation.TableName
 - uid: CoreRelm.Models.Migrations.Rendering.AddColumnOperation.Column*
   commentId: Overload:CoreRelm.Models.Migrations.Rendering.AddColumnOperation.Column
   href: CoreRelm.Models.Migrations.Rendering.AddColumnOperation.html#CoreRelm_Models_Migrations_Rendering_AddColumnOperation_Column
@@ -606,3 +557,14 @@ references:
   name: Description
   nameWithType: IMigrationOperation.Description
   fullName: CoreRelm.Interfaces.Migrations.IMigrationOperation.Description
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String

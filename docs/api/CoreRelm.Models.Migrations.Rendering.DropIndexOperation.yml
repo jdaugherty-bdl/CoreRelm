@@ -5,10 +5,9 @@ items:
   id: DropIndexOperation
   parent: CoreRelm.Models.Migrations.Rendering
   children:
-  - CoreRelm.Models.Migrations.Rendering.DropIndexOperation.#ctor(System.String,System.String)
+  - CoreRelm.Models.Migrations.Rendering.DropIndexOperation.#ctor(CoreRelm.Models.Migrations.Introspection.IndexSchema)
   - CoreRelm.Models.Migrations.Rendering.DropIndexOperation.Description
-  - CoreRelm.Models.Migrations.Rendering.DropIndexOperation.IndexName
-  - CoreRelm.Models.Migrations.Rendering.DropIndexOperation.TableName
+  - CoreRelm.Models.Migrations.Rendering.DropIndexOperation.Index
   langs:
   - csharp
   - vb
@@ -23,7 +22,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: DropIndexOperation
     path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
-    startLine: 25
+    startLine: 42
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Rendering
@@ -42,16 +41,16 @@ items:
   - System.Object.GetType
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.#ctor(System.String,System.String)
-  commentId: M:CoreRelm.Models.Migrations.Rendering.DropIndexOperation.#ctor(System.String,System.String)
-  id: '#ctor(System.String,System.String)'
+- uid: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.#ctor(CoreRelm.Models.Migrations.Introspection.IndexSchema)
+  commentId: M:CoreRelm.Models.Migrations.Rendering.DropIndexOperation.#ctor(CoreRelm.Models.Migrations.Introspection.IndexSchema)
+  id: '#ctor(CoreRelm.Models.Migrations.Introspection.IndexSchema)'
   parent: CoreRelm.Models.Migrations.Rendering.DropIndexOperation
   langs:
   - csharp
   - vb
-  name: DropIndexOperation(string, string)
-  nameWithType: DropIndexOperation.DropIndexOperation(string, string)
-  fullName: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.DropIndexOperation(string, string)
+  name: DropIndexOperation(IndexSchema)
+  nameWithType: DropIndexOperation.DropIndexOperation(IndexSchema)
+  fullName: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.DropIndexOperation(CoreRelm.Models.Migrations.Introspection.IndexSchema)
   type: Constructor
   source:
     remote:
@@ -60,80 +59,49 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: .ctor
     path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
-    startLine: 25
+    startLine: 42
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Rendering
   syntax:
-    content: public DropIndexOperation(string TableName, string IndexName)
+    content: public DropIndexOperation(IndexSchema Index)
     parameters:
-    - id: TableName
-      type: System.String
-    - id: IndexName
-      type: System.String
-    content.vb: Public Sub New(TableName As String, IndexName As String)
+    - id: Index
+      type: CoreRelm.Models.Migrations.Introspection.IndexSchema
+    content.vb: Public Sub New(Index As IndexSchema)
   overload: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.#ctor*
-  nameWithType.vb: DropIndexOperation.New(String, String)
-  fullName.vb: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.New(String, String)
-  name.vb: New(String, String)
-- uid: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.TableName
-  commentId: P:CoreRelm.Models.Migrations.Rendering.DropIndexOperation.TableName
-  id: TableName
+  nameWithType.vb: DropIndexOperation.New(IndexSchema)
+  fullName.vb: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.New(CoreRelm.Models.Migrations.Introspection.IndexSchema)
+  name.vb: New(IndexSchema)
+- uid: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.Index
+  commentId: P:CoreRelm.Models.Migrations.Rendering.DropIndexOperation.Index
+  id: Index
   parent: CoreRelm.Models.Migrations.Rendering.DropIndexOperation
   langs:
   - csharp
   - vb
-  name: TableName
-  nameWithType: DropIndexOperation.TableName
-  fullName: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.TableName
+  name: Index
+  nameWithType: DropIndexOperation.Index
+  fullName: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.Index
   type: Property
   source:
     remote:
       path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
       branch: master
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: TableName
+    id: Index
     path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
-    startLine: 25
+    startLine: 42
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Rendering
   syntax:
-    content: public string TableName { get; init; }
+    content: public IndexSchema Index { get; init; }
     parameters: []
     return:
-      type: System.String
-    content.vb: Public Property TableName As String
-  overload: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.TableName*
-- uid: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.IndexName
-  commentId: P:CoreRelm.Models.Migrations.Rendering.DropIndexOperation.IndexName
-  id: IndexName
-  parent: CoreRelm.Models.Migrations.Rendering.DropIndexOperation
-  langs:
-  - csharp
-  - vb
-  name: IndexName
-  nameWithType: DropIndexOperation.IndexName
-  fullName: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.IndexName
-  type: Property
-  source:
-    remote:
-      path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
-      branch: master
-      repo: https://github.com/jdaugherty-bdl/CoreRelm.git
-    id: IndexName
-    path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
-    startLine: 25
-  assemblies:
-  - CoreRelm
-  namespace: CoreRelm.Models.Migrations.Rendering
-  syntax:
-    content: public string IndexName { get; init; }
-    parameters: []
-    return:
-      type: System.String
-    content.vb: Public Property IndexName As String
-  overload: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.IndexName*
+      type: CoreRelm.Models.Migrations.Introspection.IndexSchema
+    content.vb: Public Property Index As IndexSchema
+  overload: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.Index*
 - uid: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.Description
   commentId: P:CoreRelm.Models.Migrations.Rendering.DropIndexOperation.Description
   id: Description
@@ -152,7 +120,7 @@ items:
       repo: https://github.com/jdaugherty-bdl/CoreRelm.git
     id: Description
     path: CoreRelm/Models/Migrations/Rendering/DatabaseOperationRenderingRecords.cs
-    startLine: 27
+    startLine: 44
   assemblies:
   - CoreRelm
   namespace: CoreRelm.Models.Migrations.Rendering
@@ -518,36 +486,64 @@ references:
   - name: )
 - uid: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.#ctor*
   commentId: Overload:CoreRelm.Models.Migrations.Rendering.DropIndexOperation.#ctor
-  href: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.html#CoreRelm_Models_Migrations_Rendering_DropIndexOperation__ctor_System_String_System_String_
+  href: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.html#CoreRelm_Models_Migrations_Rendering_DropIndexOperation__ctor_CoreRelm_Models_Migrations_Introspection_IndexSchema_
   name: DropIndexOperation
   nameWithType: DropIndexOperation.DropIndexOperation
   fullName: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.DropIndexOperation
   nameWithType.vb: DropIndexOperation.New
   fullName.vb: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.New
   name.vb: New
-- uid: System.String
-  commentId: T:System.String
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: string
-  nameWithType: string
-  fullName: string
-  nameWithType.vb: String
-  fullName.vb: String
-  name.vb: String
-- uid: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.TableName*
-  commentId: Overload:CoreRelm.Models.Migrations.Rendering.DropIndexOperation.TableName
-  href: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.html#CoreRelm_Models_Migrations_Rendering_DropIndexOperation_TableName
-  name: TableName
-  nameWithType: DropIndexOperation.TableName
-  fullName: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.TableName
-- uid: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.IndexName*
-  commentId: Overload:CoreRelm.Models.Migrations.Rendering.DropIndexOperation.IndexName
-  href: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.html#CoreRelm_Models_Migrations_Rendering_DropIndexOperation_IndexName
-  name: IndexName
-  nameWithType: DropIndexOperation.IndexName
-  fullName: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.IndexName
+- uid: CoreRelm.Models.Migrations.Introspection.IndexSchema
+  commentId: T:CoreRelm.Models.Migrations.Introspection.IndexSchema
+  parent: CoreRelm.Models.Migrations.Introspection
+  href: CoreRelm.Models.Migrations.Introspection.IndexSchema.html
+  name: IndexSchema
+  nameWithType: IndexSchema
+  fullName: CoreRelm.Models.Migrations.Introspection.IndexSchema
+- uid: CoreRelm.Models.Migrations.Introspection
+  commentId: N:CoreRelm.Models.Migrations.Introspection
+  href: CoreRelm.html
+  name: CoreRelm.Models.Migrations.Introspection
+  nameWithType: CoreRelm.Models.Migrations.Introspection
+  fullName: CoreRelm.Models.Migrations.Introspection
+  spec.csharp:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Introspection
+    name: Introspection
+    href: CoreRelm.Models.Migrations.Introspection.html
+  spec.vb:
+  - uid: CoreRelm
+    name: CoreRelm
+    href: CoreRelm.html
+  - name: .
+  - uid: CoreRelm.Models
+    name: Models
+    href: CoreRelm.Models.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations
+    name: Migrations
+    href: CoreRelm.Models.Migrations.html
+  - name: .
+  - uid: CoreRelm.Models.Migrations.Introspection
+    name: Introspection
+    href: CoreRelm.Models.Migrations.Introspection.html
+- uid: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.Index*
+  commentId: Overload:CoreRelm.Models.Migrations.Rendering.DropIndexOperation.Index
+  href: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.html#CoreRelm_Models_Migrations_Rendering_DropIndexOperation_Index
+  name: Index
+  nameWithType: DropIndexOperation.Index
+  fullName: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.Index
 - uid: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.Description*
   commentId: Overload:CoreRelm.Models.Migrations.Rendering.DropIndexOperation.Description
   href: CoreRelm.Models.Migrations.Rendering.DropIndexOperation.html#CoreRelm_Models_Migrations_Rendering_DropIndexOperation_Description
@@ -561,3 +557,14 @@ references:
   name: Description
   nameWithType: IMigrationOperation.Description
   fullName: CoreRelm.Interfaces.Migrations.IMigrationOperation.Description
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
