@@ -11,6 +11,7 @@ using CoreRelm.Options;
 using CoreRelm.RelmInternal.Helpers.Migrations.Introspection;
 using CoreRelm.RelmInternal.Helpers.Migrations.MigrationPlans;
 using CoreRelm.RelmInternal.Helpers.Migrations.Provisioning;
+using CoreRelm.RelmInternal.Models.Migrations.MigrationPlans;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
@@ -44,6 +45,16 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Providers
         }
 
         public async Task<MigrationGenerateResult> GenerateAsync(List<ValidatedModelType> modelsForDb, string migrationFileName)
+        {
+            // This provider is intended to be used in an async flow,
+            // but IMigrationSqlProvider is sync. We keep it sync by calling .GetAwaiter().GetResult().
+            // If you prefer, change the provider interface to async later.
+            var artifact = await GenerateArtifactAsync(modelsForDb, migrationFileName);
+
+            return new MigrationGenerateResult(artifact.Plan.DatabaseName, artifact.HasChanges, artifact.Sql, artifact.Message);
+        }
+
+        internal async Task<GeneratedMigrationArtifact> GenerateArtifactAsync(List<ValidatedModelType> modelsForDb, string migrationFileName)
         {
             log?.SaveIndentLevel("DefaultRelmMigrationSqlProvider.GenerateAsync");
 
@@ -108,9 +119,11 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Providers
 
             if (plan.Operations.Count == 0 && plan.Blockers.Count == 0)
             {
-                return MigrationGenerateResult.NoChanges(
+                var noChangeResult = MigrationGenerateResult.NoChanges(
                     migrationOptions.DatabaseName,
                     $"No changes detected for database '{migrationOptions.DatabaseName}'. No migration file written.");
+
+                return new GeneratedMigrationArtifact(plan, noChangeResult.Sql, noChangeResult.HasChanges, noChangeResult.Message);
             }
 
             log?.SaveIndentLevel("rendering");
@@ -126,10 +139,12 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Providers
 
             log?.RestoreIndentLevel("DefaultRelmMigrationSqlProvider.GenerateAsync");
 
-            return MigrationGenerateResult.Changes(
+            var changeResult = MigrationGenerateResult.Changes(
                 migrationOptions.DatabaseName,
                 sql,
                 $"Changes detected for database '{migrationOptions.DatabaseName}'. Migration will be generated.");
+
+            return new GeneratedMigrationArtifact(plan, changeResult.Sql, changeResult.HasChanges, changeResult.Message);
         }
     }
 }

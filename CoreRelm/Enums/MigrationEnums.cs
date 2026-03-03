@@ -12,6 +12,7 @@ namespace CoreRelm.Enums
         {
             None,
             Migration,
+            MigrationRollback,
             SystemMigration
         }
 

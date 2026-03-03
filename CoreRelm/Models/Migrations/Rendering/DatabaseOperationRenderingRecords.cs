@@ -14,9 +14,9 @@ namespace CoreRelm.Models.Migrations.Rendering
         public string Description => $"Create table `{Table.TableName}`";
     }
 
-    public sealed record DropTableOperation(TableSchema OriginalTable) : IMigrationOperation
+    public sealed record DropTableOperation(TableSchema Table) : IMigrationOperation
     {
-        public string Description => $"Drop table `{OriginalTable.TableName}`";
+        public string Description => $"Drop table `{Table.TableName}`";
     }
     
     /******************************** COLUMN OPERATIONS *********************************/

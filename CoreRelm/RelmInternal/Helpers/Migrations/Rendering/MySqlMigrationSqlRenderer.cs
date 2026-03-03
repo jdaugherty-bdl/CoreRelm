@@ -131,6 +131,9 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Rendering
                 case CreateTableOperation createTableOperation:
                     RenderCreateTable(query, createTableOperation.Table, options);
                     break;
+                case DropTableOperation dropTableOperation:
+                    query.AppendLine($"DROP TABLE IF EXISTS `{EscapeIdentifier(dropTableOperation.Table.TableName)}`;");
+                    break;
                 case AddColumnOperation addColumnOperation:
                     query.AppendLine($"ALTER TABLE `{EscapeIdentifier(addColumnOperation.Column.TableName)}` ADD COLUMN {RenderColumnDefinition(addColumnOperation.Column)};");
                     break;
@@ -151,6 +154,10 @@ namespace CoreRelm.RelmInternal.Helpers.Migrations.Rendering
                     queryStatement.Append(';');
 
                     query.AppendLine(queryStatement.ToString());
+                    break;
+                case DropColumnOperation dropColumnOperation:
+                    query.AppendLine(
+                        $"ALTER TABLE `{EscapeIdentifier(dropColumnOperation.Column.TableName)}` DROP COLUMN `{EscapeIdentifier(dropColumnOperation.Column.ColumnName)}`;");
                     break;
                 case DropIndexOperation dropIndexOperation:
                     // MySQL requires DROP PRIMARY KEY for primary; we won't emit that here.
